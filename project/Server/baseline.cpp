@@ -15,6 +15,8 @@ int main()
     //     exit (EXIT_FAILURE);
     // }
 
+
+
     if (LZW_send_data == NULL){
         std::cerr << "Could not calloc LZW_send_data." << std::endl;
         exit (EXIT_FAILURE);
@@ -24,17 +26,24 @@ int main()
     if (File == NULL)
         Exit_with_error("fopen for send_data failed");
 
-    int boundary_num = cdc("LittlePrince.txt", ArrayOfChunks);   //boundary_num should use char?
-    int arr_offset = 0;
+    uint16_t *chunk_size = (uint16_t *)malloc(sizeof(uint16_t) * MAX_CHUNK);
+    if (chunk_size == NULL){
+        std::cerr << "Could not calloc chunk_size." << std::endl;
+        exit (EXIT_FAILURE);
+    }
+
+    int boundary_num = cdc("LittlePrince.txt", ArrayOfChunks, chunk_size);   //boundary_num should use char?
+    // int arr_offset = 0;
+
 	for (int i = 0; i < boundary_num; i++){
-        deDup_header = deDup(ArrayOfChunks[i], chunkTable);
+        deDup_header = deDup(ArrayOfChunks[i], chunk_size[i], chunkTable);
         if (deDup_header & 1u){
             if (fwrite(&deDup_header, 1, sizeof(deDup_header), File) != sizeof(deDup_header))
                 Exit_with_error("fwrite dedup header to compressed_data.bin failed");
             // memcpy(send_data_arr_total + arr_offset, &deDup_header, sizeof(deDup_header));
             // arr_offset += sizeof(deDup_header) / 2;
         }else{
-            int in_length = //////;
+            int in_length = chunk_size[i];
             LZW_output_length = LZW(ArrayOfChunks[i], in_length, LZW_send_data);
             if (fwrite(LZW_send_data, 1, LZW_output_length, File) != LZW_output_length)
                 Exit_with_error("fwrite LZW output to compressed_data.bin failed");
