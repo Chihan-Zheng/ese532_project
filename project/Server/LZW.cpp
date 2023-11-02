@@ -17,8 +17,9 @@
                                                      -> store_array = HASH_CHUNKS[some hash]
     in_length: length of input chunk
 */
-void LZW (char *in, char *store_array, int in_length){
+uint16_t LZW (char *in, int in_length, char *send_data){
     uint16_t dict[DICT_SIZE][256];         //SIZE may be extended in the for loop
+    char store_array[in_length];
     uint16_t code = (uint16_t)*in;    //current code
     uint16_t next_code = 256;         //next new code
     uint8_t next_char = ' ';          //next char of in
@@ -37,4 +38,16 @@ void LZW (char *in, char *store_array, int in_length){
         in++;
     }
     store_array[j++] = code;        //store the last part of in
+
+    uint32_t header = 0;
+    uint16_t compressed_length = 0;
+    compressed_length = sizeof(store_array);
+
+    // char LZW_output[4 + compressed_length];      //8bits boundary
+    header = compressed_length << 1;
+    memcpy(send_data, &header, 4);
+    memcpy(send_data, store_array, compressed_length);
+
+    return (compressed_length + 4);
+
 }
