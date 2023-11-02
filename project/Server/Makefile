@@ -21,4 +21,7 @@ $(DECODER_EXE): $(DECODER_OBJECTS)
 clean-baseline:
 	-$(RM) $(BASELINE_EXE) $(BASELINE_OBJECTS) 
 
-clean: clean-baseline
+clean-decoder:
+-$(RM) $(DECODER_EXE) $(DECODER_OBJECTS) 
+
+clean: clean-baseline clean-decoder
