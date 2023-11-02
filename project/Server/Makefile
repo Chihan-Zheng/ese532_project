@@ -23,13 +23,7 @@ clean-baseline:
 	-$(RM) $(BASELINE_EXE) $(BASELINE_OBJECTS) 
 
 clean-decoder:
-<<<<<<< HEAD
 -$(RM) $(DECODER_EXE) $(DECODER_OBJECTS) 
 
 clean: clean-baseline clean-decoder
-=======
-	-$(RM) $(DECODER_EXE) $(DECODER_OBJECTS) 
-
-clean: clean-baseline clean-decoder
 	-$(RM) *.bin decompressed.txt
->>>>>>> 9477402f8216864ab2bb1455e727f5dd7a094620
