@@ -1,9 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdint.h>
-#include <math.h>
-#include <iostream>
+#include "Constants.h"
 
 /* current status */
 /* The code is tested using the provided “LittlePrince.txt” and Benjamin Franklin’s autobiography. 
@@ -33,7 +28,7 @@ uint64_t hash_func(unsigned char *input, unsigned int pos)
 
 //Calculating rolling hash for the input. Once the hash at some point modulus to some number equals
 //target 0, or it hits the maximum chunk size, we call it a boundary.
-int cdc_window(unsigned char *buff, unsigned int buff_size, unsigned char** chunk)
+int cdc_window(unsigned char *buff, unsigned int buff_size, char** chunk)
 {
 	uint64_t *hash = (uint64_t *)malloc(sizeof(uint64_t) * (buff_size - WIN_SIZE));
 	int boundary_index = 0;
@@ -46,7 +41,7 @@ int cdc_window(unsigned char *buff, unsigned int buff_size, unsigned char** chun
 		if((((hash[i] % MODULUS) == TARGET)&&(i-previous_boundary>=MIN_CHUNK))||(i-previous_boundary>=MAX_CHUNK)||(i==buff_size-WIN_SIZE-1)) {
             
 			printf("The index %d is a boundary\n", i); //Print out the boundary we found.
-			chunk[boundary_index] = (unsigned char*)malloc(sizeof(unsigned char)*MAX_CHUNK);
+			chunk[boundary_index] = (char*)malloc(sizeof(unsigned char)*MAX_CHUNK);
 			if(i<buff_size-WIN_SIZE-1)
 			memcpy(chunk[boundary_index], buff+previous_boundary, i-previous_boundary);
 			else
@@ -63,7 +58,7 @@ int cdc_window(unsigned char *buff, unsigned int buff_size, unsigned char** chun
 
 }
 //read the input file and call the rolling hash function.
-int cdc( const char* file, unsigned char** chunk)
+int cdc( const char* file, char** chunk)
 {
 	FILE* fp = fopen(file,"r" );
 	if(fp == NULL ){
@@ -90,7 +85,7 @@ int cdc( const char* file, unsigned char** chunk)
     free(buff);
     return boundary_num;
 }
-void test_print_chunk(unsigned char** chunk, int boundary_num){
+void test_print_chunk(char** chunk, int boundary_num){
 	for(int i=0;i<boundary_num;i++){
       printf("The chunk %d has content of:\n",i);
 	  printf("%s\n",chunk[i]);
@@ -98,10 +93,10 @@ void test_print_chunk(unsigned char** chunk, int boundary_num){
 	
 }
 //main function for testing. Shouldn't be included in the final interface.
-int main()
+/* int main()
 {
-    unsigned char *ArrayOfChunks[MAX_BOUNDARY];
+    char *ArrayOfChunks[MAX_BOUNDARY];
 	int boundary_num = cdc("LittlePrince.txt", ArrayOfChunks);
 	test_print_chunk(ArrayOfChunks, boundary_num);
 	return 0;
-}
+} */
