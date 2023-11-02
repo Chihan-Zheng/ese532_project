@@ -18,6 +18,7 @@ uint16_t LZW (char *in, uint16_t in_length, uint16_t *send_data){
     uint16_t j = 0;                   //index of store array (should j++ every time after store)
     unsigned char shift = 0;
 
+    std::cout << "\ninput chunk length: " << in_length << std::endl;
     for (int i = 0; i < (in_length - 1); i++){
         next_char = *(in + 1);       //next character
         if (temp_code = dict[code][next_char]){     //check strings exist or not
@@ -26,6 +27,10 @@ uint16_t LZW (char *in, uint16_t in_length, uint16_t *send_data){
             if (j == 0){
                 shift = 3;
                 store_array[0] = code << shift;
+                std::cout << "code: " << next_code << std::endl;
+                dict[code][next_char] = next_code++;     //encode new code
+                code = next_char;       //restart from the next_character
+                j++;
             }else{
                 shift = shift + 3;
                 store_array[j] = code << shift;
@@ -33,8 +38,9 @@ uint16_t LZW (char *in, uint16_t in_length, uint16_t *send_data){
                 store_array[j-1] = store_array[j-1] | (code >> shift);
                 shift = 16 - shift;
                 j++;
-                
+                 
                 dict[code][next_char] = next_code++;     //encode new code
+                std::cout << "code: " << next_code << std::endl;
                 code = next_char;       //restart from the next_character
             }
         }
