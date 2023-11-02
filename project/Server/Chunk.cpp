@@ -16,10 +16,10 @@ Nota that we are sending a array of char arrays.
 
 #define WIN_SIZE 8
 #define PRIME 3
-#define MODULUS 1024
+#define MODULUS 256
 #define TARGET 0
-#define MAX_BOUNDARY 256
-#define MAX_CHUNK 4096
+#define MAX_BOUNDARY 1024
+#define MAX_CHUNK 256
 #define MIN_CHUNK 8
 //calculating hash value for window size = WIN_SIZE
 uint64_t hash_func(unsigned char *input, unsigned int pos)
