@@ -1,5 +1,6 @@
 # HOST_CXX ?= aarch64-linux-gnu-g++
 HOST_CXX ?= g++
+RM = rm -f
 
 BASELINE_SOURCES = baseline.cpp Chunk.cpp Dedup.cpp LZW.cpp ./common/Utilities.cpp
 BASELINE_OBJECTS =$(BASELINE_SOURCES:.cpp=.o)
@@ -22,6 +23,13 @@ clean-baseline:
 	-$(RM) $(BASELINE_EXE) $(BASELINE_OBJECTS) 
 
 clean-decoder:
+<<<<<<< HEAD
 -$(RM) $(DECODER_EXE) $(DECODER_OBJECTS) 
 
 clean: clean-baseline clean-decoder
+=======
+	-$(RM) $(DECODER_EXE) $(DECODER_OBJECTS) 
+
+clean: clean-baseline clean-decoder
+	-$(RM) *.bin decompressed.txt
+>>>>>>> 9477402f8216864ab2bb1455e727f5dd7a094620
