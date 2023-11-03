@@ -16,6 +16,8 @@
 
 void Exit_with_error(const char *s);
 void send_data(unsigned char *Data, uint16_t Data_size);
+uint16_t swap_endian_16(uint16_t value);
+uint32_t swap_endian_32(uint32_t value);
 
 #endif
 

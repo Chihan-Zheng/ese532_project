@@ -37,6 +37,7 @@ uint16_t LZW (char *in, uint16_t in_length, uint16_t *send_data){
                 shift = 16 - shift;
                 store_array[j-1] = store_array[j-1] | (code >> shift);
                 shift = 16 - shift;
+                store_array[j-1] = swap_endian_16(store_array[j-1]);
                 j++;
                  
                 dict[code][next_char] = next_code++;     //encode new code
@@ -50,12 +51,14 @@ uint16_t LZW (char *in, uint16_t in_length, uint16_t *send_data){
     store_array[j] = code << shift;
     shift = 16 - shift;
     store_array[j-1] = store_array[j-1] | (code >> shift);        //store the last part of in
+    store_array[j-1] = swap_endian_16(store_array[j-1]);
 
     //-----------------------generate LZW output----------------------------
     uint32_t header = 0;
     uint16_t compressed_length = (j+1) * sizeof(uint16_t);    //j is entry number of store_array
 
     header = compressed_length << 1;
+    header = swap_endian_32(header);
     memcpy(send_data, &header, 4);
     memcpy(send_data + 4, store_array, compressed_length);
     //-----------------------------------------------------------------------------

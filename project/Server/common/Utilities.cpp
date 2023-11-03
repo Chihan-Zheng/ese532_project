@@ -19,3 +19,14 @@ void send_data(unsigned char *Data, uint16_t Data_size)
     // if (fclose(File) != 0)
     //     Exit_with_error("fclose for send_data failed");
 }
+
+uint16_t swap_endian_16(uint16_t value) {
+    return (value >> 8) | (value << 8);
+}
+
+uint32_t swap_endian_32(uint32_t value) {
+    return ((value & 0x000000FF) << 24) |
+           ((value & 0x0000FF00) << 8) |
+           ((value & 0x00FF0000) >> 8) |
+           ((value & 0xFF000000) >> 24);
+}
