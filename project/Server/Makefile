@@ -2,13 +2,13 @@
 HOST_CXX ?= g++
 RM = rm -f
 
-BASELINE_SOURCES = baseline.cpp Chunk.cpp Dedup.cpp LZW.cpp ./common/Utilities.cpp
+BASELINE_SOURCES = baseline.cpp Chunk.cpp Dedup.cpp LZW.cpp ./common/Utilities.cpp ../Decoder/Decoder.cpp
 BASELINE_OBJECTS =$(BASELINE_SOURCES:.cpp=.o)
 BASELINE_EXE = baseline
 
-DECODER_SOURCES = ../Decoder/Decoder.cpp
-DECODER_OBJECTS =$(DECODER_SOURCES:.cpp=.o)
-DECODER_EXE = decoder
+# DECODER_SOURCES = ../Decoder/Decoder.cpp
+# DECODER_OBJECTS =$(DECODER_SOURCES:.cpp=.o)
+# DECODER_EXE = decoder
 
 $(BASELINE_EXE): $(BASELINE_OBJECTS)
 	$(HOST_CXX) -o "$@" $(+) $(LDFLAGS)
@@ -22,8 +22,8 @@ $(DECODER_EXE): $(DECODER_OBJECTS)
 clean-baseline:
 	-$(RM) $(BASELINE_EXE) $(BASELINE_OBJECTS) 
 
-clean-decoder:
-	-$(RM) $(DECODER_EXE) $(DECODER_OBJECTS) 
+# clean-decoder:
+# 	-$(RM) $(DECODER_EXE) $(DECODER_OBJECTS) 
 
-clean: clean-baseline clean-decoder
+clean: clean-baseline 
 	-$(RM) *.bin decompressed

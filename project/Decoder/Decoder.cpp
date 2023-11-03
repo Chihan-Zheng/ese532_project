@@ -36,9 +36,8 @@ static const std::string Decompress(size_t Size)
   Input_position = 0;
 
   Code_table.clear();
-  for (int i = 0; i < 256; i++){
+  for (int i = 0; i < 256; i++)
     Code_table.push_back(std::string(1, (char) i));
-    std::cout << "Code_table[" << i << "]: \" " << std::string(1, (char) i) << "\""<< std::endl;}
 
   int Old = Read_code();
   std::string Symbol(1, Old);
