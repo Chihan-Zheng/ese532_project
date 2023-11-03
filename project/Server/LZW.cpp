@@ -9,7 +9,7 @@
     send_data: the output data: 32bits header + compressed data
 */
 uint16_t LZW (char *in, uint16_t in_length, uint16_t *send_data){
-    uint16_t dict[DICT_SIZE][256];         //SIZE may be extended in the for loop
+    uint16_t dict[MAX_DICT_SIZE][256];         //SIZE may be extended in the for loop
     uint16_t store_array[in_length];
     uint16_t code = (uint16_t)*in;    //current code
     uint16_t next_code = 256;         //next new code

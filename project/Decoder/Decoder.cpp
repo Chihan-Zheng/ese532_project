@@ -53,6 +53,7 @@ static const std::string Decompress(size_t Size)
     else{
       std::cout << "New: " << New << std::endl;
       Symbols = Code_table[New];}
+    std::cout << "Output is: \"" << Output << "\"" << std::endl;
     Output += Symbols;
     Symbol = std::string(1, Symbols[0]);
     Code_table.push_back(Code_table[Old] + Symbol);
