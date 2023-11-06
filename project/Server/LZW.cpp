@@ -10,7 +10,7 @@
 */
 uint16_t LZW (char *in, uint16_t in_length, uint16_t *send_data){
     uint16_t dict[MAX_DICT_SIZE][256] = {0};         //SIZE may be extended in the for loop
-    uint16_t store_array[in_length] {0};
+    uint16_t store_array[in_length] = {0};
     uint16_t code = (uint16_t)*in;    //current code
     uint16_t next_code = 256;         //next new code
     uint8_t next_char = ' ';          //next char of in
@@ -65,12 +65,13 @@ uint16_t LZW (char *in, uint16_t in_length, uint16_t *send_data){
             store_array[j] = swap_endian_16(store_array[j]);
             shift = 16 - shift;
             store_array[j-1] = store_array[j-1] | (code >> shift);        //store the last part of in
+            store_array[j-1] = swap_endian_16(store_array[j-1]);
         }else{
             char vacant_bit_number = shift - 13;
             store_array[j-1] = store_array[j-1] | (code << vacant_bit_number);
+            store_array[j-1] = swap_endian_16(store_array[j-1]);
             j = j - 1;
         }
-        store_array[j-1] = swap_endian_16(store_array[j-1]);
     }
 
     //-----------------------generate LZW output----------------------------

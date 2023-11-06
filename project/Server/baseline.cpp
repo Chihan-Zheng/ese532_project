@@ -26,7 +26,7 @@ int main()
     if (File == NULL)
         Exit_with_error("fopen for send_data failed");
 
-    uint16_t *chunk_size = (uint16_t *)malloc(sizeof(uint16_t) * MAX_CHUNK);
+    uint16_t *chunk_size = (uint16_t *)malloc(sizeof(uint16_t) * MAX_BOUNDARY);
     if (chunk_size == NULL){
         std::cerr << "Could not calloc chunk_size." << std::endl;
         exit (EXIT_FAILURE);
