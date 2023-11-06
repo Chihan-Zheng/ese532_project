@@ -35,5 +35,5 @@ clean-decoder:
 clean-endian:
 	-$(RM) $(ENDIAN_EXE) $(ENDIAN_OBJECTS) 
 
-clean: clean-baseline clean-endian
+clean: clean-baseline clean-endian clean-decoder
 	-$(RM) *.bin decompressed
