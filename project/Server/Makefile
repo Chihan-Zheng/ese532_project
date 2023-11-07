@@ -14,7 +14,7 @@ DECODER_SOURCES = ../Decoder/Decoder.cpp
 DECODER_OBJECTS =$(DECODER_SOURCES:.cpp=.o)
 DECODER_EXE = decoder
 
-ENCODER_SOURCES = encoder.cpp server.cpp
+ENCODER_SOURCES = encoder.cpp server.cpp Chunk.cpp Dedup.cpp LZW.cpp ./common/Utilities.cpp
 ENCODER_OBJECTS =$(ENCODER_SOURCES:.cpp=.o)
 ENCODER_EXE = encoder
 
