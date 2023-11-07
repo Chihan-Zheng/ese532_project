@@ -1,10 +1,14 @@
-# HOST_CXX ?= aarch64-linux-gnu-g++
-HOST_CXX ?= g++
+HOST_CXX ?= aarch64-linux-gnu-g++
+# HOST_CXX ?= g++
 RM = rm -f
 
 BASELINE_SOURCES = baseline.cpp Chunk.cpp Dedup.cpp LZW.cpp ./common/Utilities.cpp
 BASELINE_OBJECTS =$(BASELINE_SOURCES:.cpp=.o)
 BASELINE_EXE = baseline
+
+CLIENT_SOURCES = ../Client/client.cpp
+CLIENT_OBJECTS =$(CLIENT_SOURCES:.cpp=.o)
+CLIENT_EXE = client
 
 DECODER_SOURCES = ../Decoder/Decoder.cpp
 DECODER_OBJECTS =$(DECODER_SOURCES:.cpp=.o)
@@ -19,6 +23,9 @@ ENDIAN_OBJECTS =$(ENDIAN_SOURCES:.cpp=.o)
 ENDIAN_EXE = endian
 
 $(BASELINE_EXE): $(BASELINE_OBJECTS)
+	$(HOST_CXX) -o "$@" $(+) $(LDFLAGS)
+
+$(CLIENT_EXE): $(CLIENT_OBJECTS)
 	$(HOST_CXX) -o "$@" $(+) $(LDFLAGS)
 
 $(DECODER_EXE): $(DECODER_OBJECTS)
@@ -36,6 +43,9 @@ $(ENDIAN_EXE): $(ENDIAN_OBJECTS)
 clean-baseline:
 	-$(RM) $(BASELINE_EXE) $(BASELINE_OBJECTS) 
 
+clean-client:
+	-$(RM) $(CLIENT_EXE) $(CLIENT_OBJECTS) 
+
 clean-decoder:
 	-$(RM) $(DECODER_EXE) $(DECODER_OBJECTS) 
 
@@ -45,5 +55,5 @@ clean-encoder:
 clean-endian:
 	-$(RM) $(ENDIAN_EXE) $(ENDIAN_OBJECTS) 
 
-clean: clean-baseline clean-endian clean-decoder clean-encoder
+clean: clean-baseline clean-endian clean-decoder clean-encoder clean-client
 	-$(RM) *.bin decompressed
