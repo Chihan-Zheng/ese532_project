@@ -30,6 +30,7 @@ uint64_t hash_func(unsigned char *input, unsigned int pos)
 //target 0, or it hits the maximum chunk size, we call it a boundary.
 int cdc_window(unsigned char *buff, unsigned int buff_size, char** chunk, uint16_t *chunk_size)
 {
+	int test = 0;
 	uint64_t *hash = (uint64_t *)malloc(sizeof(uint64_t) * (buff_size - WIN_SIZE));
 	int boundary_index = 0;
 	int previous_boundary = 0;
