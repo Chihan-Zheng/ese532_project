@@ -13,6 +13,7 @@
 #include <fcntl.h>
 #include <sys/mman.h>
 #include "stopwatch.h"
+#include "Constants.h"
 
 #define NUM_PACKETS 8
 #define pipe_depth 4
@@ -117,12 +118,62 @@ int main(int argc, char* argv[]) {
 		offset += length;
 		writer++;
 	}
+	//----------------------------------encode-------------------------------------------
+	char *ArrayOfChunks[MAX_BOUNDARY];
+    std::unordered_map<uint64_t, uint32_t> chunkTable;
+    uint32_t deDup_header;     //output of deDup function
+    uint16_t LZW_output_length;        
+    uint16_t *LZW_send_data = (uint16_t *)calloc(Max_Chunk_Size + 2, sizeof(uint16_t));     //Max_Chunk_Size + 32bits header -> unit is 16bits
 
-	// write file to root and you can use diff tool on board
-	FILE *outfd = fopen("output_cpu.bin", "wb");
-	int bytes_written = fwrite(&file[0], 1, offset, outfd);
-	printf("write file with %d\n", bytes_written);
-	fclose(outfd);
+    if (LZW_send_data == NULL){
+        std::cerr << "Could not calloc LZW_send_data." << std::endl;
+        exit (EXIT_FAILURE);
+    }
+
+    FILE *File = fopen("./compressed_data.bin", "wb");
+    if (File == NULL)
+        Exit_with_error("fopen for send_data failed");
+
+    uint16_t *chunk_size = (uint16_t *)malloc(sizeof(uint16_t) * MAX_BOUNDARY);
+    if (chunk_size == NULL){
+        std::cerr << "Could not calloc chunk_size." << std::endl;
+        exit (EXIT_FAILURE);
+    }
+
+    int boundary_num = cdc(file, ArrayOfChunks, chunk_size);   //boundary_num should use char?
+    std::cout << "chunk number: " << boundary_num << std::endl;
+	for (int i = 0; i < boundary_num; i++){
+        deDup_header = deDup(ArrayOfChunks[i], chunk_size[i], chunkTable);
+        if (deDup_header & 1u){
+            std::cout << "deDup_header - boundary: " << i << std::endl;
+            if (fwrite(&deDup_header, 1, sizeof(deDup_header), File) != sizeof(deDup_header))
+                Exit_with_error("fwrite dedup header to compressed_data.bin failed");
+        }else{
+            std::cout << "LZW_header - boundary: " << i << std::endl;
+            uint16_t in_length = chunk_size[i];
+            LZW_output_length = LZW(ArrayOfChunks[i], in_length, LZW_send_data);
+            std::cout << "LZW_output_length[" << i << "]: " << LZW_output_length << "\n" <<std::endl;
+            if (fwrite(LZW_send_data, 1, LZW_output_length, File) != LZW_output_length)
+                Exit_with_error("fwrite LZW output to compressed_data.bin failed");
+            memset(LZW_send_data, 0, (Max_Chunk_Size + 2) * sizeof(uint16_t));
+        }
+    }
+	fseek(File, 0, SEEK_END); // seek to end of file
+	int file_size = ftell(File); // get current file pointer
+	fseek(File, 0, SEEK_SET); // seek back to beginning of file
+
+    if (fclose(File) != 0)
+    Exit_with_error("fclose for send_data failed");
+	//----------------------------------end of encode-------------------------------------------
+
+	// // write file to root and you can use diff tool on board
+	// FILE *outfd = fopen("output_cpu.bin", "wb");
+	// int bytes_written = fwrite(&file[0], 1, offset, outfd);
+	// printf("write file with %d\n", bytes_written);
+	// fclose(outfd);
+	printf("input file with %dB\n", offset);
+	printf("encode file with %dB\n", file_size);
+	printf("Compressed ratio: %d%\n", (file_size / offset)*100);
 
 	for (int i = 0; i < NUM_PACKETS; i++) {
 		free(input[i]);
@@ -131,7 +182,8 @@ int main(int argc, char* argv[]) {
 	free(file);
 	std::cout << "--------------- Key Throughputs ---------------" << std::endl;
 	float ethernet_latency = ethernet_timer.latency() / 1000.0;
-	float input_throughput = (bytes_written * 8 / 1000000.0) / ethernet_latency; // Mb/s
+	// float input_throughput = (bytes_written * 8 / 1000000.0) / ethernet_latency; // Mb/s
+	float input_throughput = (offset * 8 / 1000000.0) / ethernet_latency; // Mb/s
 	std::cout << "Input Throughput to Encoder: " << input_throughput << " Mb/s."
 			<< " (Latency: " << ethernet_latency << "s)." << std::endl;
 
