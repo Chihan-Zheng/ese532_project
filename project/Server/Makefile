@@ -10,6 +10,10 @@ DECODER_SOURCES = ../Decoder/Decoder.cpp
 DECODER_OBJECTS =$(DECODER_SOURCES:.cpp=.o)
 DECODER_EXE = decoder
 
+ENCODER_SOURCES = encoder.cpp server.cpp
+ENCODER_OBJECTS =$(ENCODER_SOURCES:.cpp=.o)
+ENCODER_EXE = encoder
+
 ENDIAN_SOURCES = ./common/check_endian.cpp ./common/Utilities.cpp
 ENDIAN_OBJECTS =$(ENDIAN_SOURCES:.cpp=.o)
 ENDIAN_EXE = endian
@@ -18,6 +22,9 @@ $(BASELINE_EXE): $(BASELINE_OBJECTS)
 	$(HOST_CXX) -o "$@" $(+) $(LDFLAGS)
 
 $(DECODER_EXE): $(DECODER_OBJECTS)
+	$(HOST_CXX) -o "$@" $(+) $(LDFLAGS)
+
+$(ENCODER_EXE): $(ENCODER_OBJECTS)
 	$(HOST_CXX) -o "$@" $(+) $(LDFLAGS)
 
 $(ENDIAN_EXE): $(ENDIAN_OBJECTS)
@@ -32,8 +39,11 @@ clean-baseline:
 clean-decoder:
 	-$(RM) $(DECODER_EXE) $(DECODER_OBJECTS) 
 
+clean-encoder:
+	-$(RM) $(ENCODER_EXE) $(ENCODER_OBJECTS) 
+
 clean-endian:
 	-$(RM) $(ENDIAN_EXE) $(ENDIAN_OBJECTS) 
 
-clean: clean-baseline clean-endian clean-decoder
+clean: clean-baseline clean-endian clean-decoder clean-encoder
 	-$(RM) *.bin decompressed
