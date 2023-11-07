@@ -140,7 +140,7 @@ int main(int argc, char* argv[]) {
         exit (EXIT_FAILURE);
     }
 
-    int boundary_num = cdc(file, ArrayOfChunks, chunk_size);   //boundary_num should use char?
+    int boundary_num = cdc((const char*)file, ArrayOfChunks, chunk_size);   //boundary_num should use char?
     std::cout << "chunk number: " << boundary_num << std::endl;
 	for (int i = 0; i < boundary_num; i++){
         deDup_header = deDup(ArrayOfChunks[i], chunk_size[i], chunkTable);
