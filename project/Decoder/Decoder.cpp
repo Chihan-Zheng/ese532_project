@@ -46,19 +46,16 @@ static const std::string Decompress(size_t Size)
   {
     int New = Read_code();
     std::string Symbols;
-    if (New >= (int) Code_table.size()){
-      std::cout << "Old: " << Old << std::endl;
-      Symbols = Code_table[Old] + Symbol;}
-    else{
-      std::cout << "New: " << New << std::endl;
-      Symbols = Code_table[New];}
-    std::cout << "Output is: \"" << Output << "\"" << std::endl;
+    if (New >= (int) Code_table.size())
+      Symbols = Code_table[Old] + Symbol;
+    else
+      Symbols = Code_table[New];
     Output += Symbols;
     Symbol = std::string(1, Symbols[0]);
     Code_table.push_back(Code_table[Old] + Symbol);
     Old = New;
   }
-  // std::cout << "Output is: \"" << Output << "\"" << std::endl;
+
   return Output;
 }
 

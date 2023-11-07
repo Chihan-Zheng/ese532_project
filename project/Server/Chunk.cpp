@@ -1,4 +1,9 @@
-#include "Constants.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdint.h>
+#include <math.h>
+#include <iostream>
 
 /* current status */
 /* The code is tested using the provided “LittlePrince.txt” and Benjamin Franklin’s autobiography. 
@@ -11,10 +16,10 @@ Nota that we are sending a array of char arrays.
 
 #define WIN_SIZE 8
 #define PRIME 3
-#define MODULUS 1024
+#define MODULUS 256
 #define TARGET 0
-#define MAX_BOUNDARY 256
-#define MAX_CHUNK 4096
+#define MAX_BOUNDARY 1024
+#define MAX_CHUNK 256
 #define MIN_CHUNK 8
 //calculating hash value for window size = WIN_SIZE
 uint64_t hash_func(unsigned char *input, unsigned int pos)
@@ -28,7 +33,7 @@ uint64_t hash_func(unsigned char *input, unsigned int pos)
 
 //Calculating rolling hash for the input. Once the hash at some point modulus to some number equals
 //target 0, or it hits the maximum chunk size, we call it a boundary.
-int cdc_window(unsigned char *buff, unsigned int buff_size, char** chunk, uint16_t *chunk_size)
+int cdc_window(unsigned char *buff, unsigned int buff_size, unsigned char** chunk)
 {
 	int test = 0;
 	uint64_t *hash = (uint64_t *)malloc(sizeof(uint64_t) * (buff_size - WIN_SIZE));
@@ -42,12 +47,11 @@ int cdc_window(unsigned char *buff, unsigned int buff_size, char** chunk, uint16
 		if((((hash[i] % MODULUS) == TARGET)&&(i-previous_boundary>=MIN_CHUNK))||(i-previous_boundary>=MAX_CHUNK)||(i==buff_size-WIN_SIZE-1)) {
             
 			printf("The index %d is a boundary\n", i); //Print out the boundary we found.
-			chunk[boundary_index] = (char*)malloc(sizeof(char)*MAX_CHUNK);
+			chunk[boundary_index] = (unsigned char*)malloc(sizeof(unsigned char)*MAX_CHUNK);
 			if(i<buff_size-WIN_SIZE-1)
 			memcpy(chunk[boundary_index], buff+previous_boundary, i-previous_boundary);
 			else
 			memcpy(chunk[boundary_index], buff+previous_boundary, buff_size-previous_boundary);  //because the hash cannot calculate after buff_size-win_size, the last chunk copy will be different.
-			chunk_size[boundary_index] = i - previous_boundary;
 			previous_boundary = i;
             boundary_index++;
 			//printf("The hash calculated at this index is %d\n",hash[i]); //Print out the hash value calculated at this char.
@@ -60,7 +64,7 @@ int cdc_window(unsigned char *buff, unsigned int buff_size, char** chunk, uint16
 
 }
 //read the input file and call the rolling hash function.
-int cdc( const char* file, char** chunk, uint16_t *chunk_size)
+int cdc( const char* file, unsigned char** chunk)
 {
 	FILE* fp = fopen(file,"r" );
 	if(fp == NULL ){
@@ -82,12 +86,12 @@ int cdc( const char* file, char** chunk, uint16_t *chunk_size)
 
 	int bytes_read = fread(&buff[0],sizeof(unsigned char),file_size,fp);
 	
-	int boundary_num = cdc_window(buff, file_size, chunk, chunk_size);
+	int boundary_num = cdc_window(buff, file_size, chunk);
 
     free(buff);
     return boundary_num;
 }
-void test_print_chunk(char** chunk, int boundary_num){
+void test_print_chunk(unsigned char** chunk, int boundary_num){
 	for(int i=0;i<boundary_num;i++){
       printf("The chunk %d has content of:\n",i);
 	  printf("%s\n",chunk[i]);
@@ -95,10 +99,10 @@ void test_print_chunk(char** chunk, int boundary_num){
 	
 }
 //main function for testing. Shouldn't be included in the final interface.
-/* int main()
+int main()
 {
-    char *ArrayOfChunks[MAX_BOUNDARY];
+    unsigned char *ArrayOfChunks[MAX_BOUNDARY];
 	int boundary_num = cdc("LittlePrince.txt", ArrayOfChunks);
 	test_print_chunk(ArrayOfChunks, boundary_num);
 	return 0;
-} */
+}
