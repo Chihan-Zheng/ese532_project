@@ -94,6 +94,7 @@ int main(int argc, char* argv[]) {
 
 	//last message
 	while (!done) {
+		printf("Reach while loop\n");
 		// reset ring buffer
 		if (writer == NUM_PACKETS) {
 			writer = 0;
