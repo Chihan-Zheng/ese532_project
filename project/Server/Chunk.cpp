@@ -39,22 +39,26 @@ int cdc_window(unsigned char *buff, unsigned int buff_size, char** chunk, uint16
 		else
 		hash[i] = hash[i-1] * PRIME - buff[i-1]*pow(PRIME, WIN_SIZE+1) + buff[i+WIN_SIZE-1]*PRIME;
 		if((((hash[i] % MODULUS) == TARGET)&&(i-previous_boundary>=MIN_CHUNK))||(i-previous_boundary>=MAX_CHUNK)||(i==buff_size-WIN_SIZE-1)) {
-            
+		// if((((hash[i] % MODULUS) == TARGET)&&(i-previous_boundary>=MIN_CHUNK))||(i-previous_boundary>=MAX_CHUNK)||(i==buff_size-WIN_SIZE)) {
+
 			printf("The index %d is a boundary\n", i); //Print out the boundary we found.
 			chunk[boundary_index] = (char*)malloc(sizeof(char)*MAX_CHUNK);
-			if(i<buff_size-WIN_SIZE-1)
-			memcpy(chunk[boundary_index], buff+previous_boundary, i-previous_boundary);
-			else
-			memcpy(chunk[boundary_index], buff+previous_boundary, buff_size-previous_boundary);  //because the hash cannot calculate after buff_size-win_size, the last chunk copy will be different.
-			chunk_size[boundary_index] = i - previous_boundary;
+			if(i<buff_size-WIN_SIZE-1){
+				memcpy(chunk[boundary_index], buff+previous_boundary, i-previous_boundary);
+				chunk_size[boundary_index] = i - previous_boundary;
+			}else{
+				memcpy(chunk[boundary_index], buff+previous_boundary, buff_size-previous_boundary);  //because the hash cannot calculate after buff_size-win_size, the last chunk copy will be different.
+				chunk_size[boundary_index] = i - previous_boundary + WIN_SIZE + 1;
+			}
 			previous_boundary = i;
             boundary_index++;
 			//printf("The hash calculated at this index is %d\n",hash[i]); //Print out the hash value calculated at this char.
-			//printf("The calculated 8 bytes are: %c%c%c%c%c%c%c%c\n",buff[i],buff[i+1],buff[i+2],buff[i+3],buff[i+4],buff[i+5],buff[i+6],buff[i+7]); //print out the 8 characters that hash based on.
+			// printf("The calculated 8 bytes are: %c%c%c%c%c%c%c%c\n",buff[i],buff[i+1],buff[i+2],buff[i+3],buff[i+4],buff[i+5],buff[i+6],buff[i+7]); //print out the 8 characters that hash based on.
         }
 		
 	}
 	free(hash);
+	
 	return boundary_index;
 
 }

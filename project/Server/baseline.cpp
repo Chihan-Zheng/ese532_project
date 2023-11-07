@@ -38,7 +38,7 @@ int main()
 	for (int i = 0; i < boundary_num; i++){
         deDup_header = deDup(ArrayOfChunks[i], chunk_size[i], chunkTable);
         if (deDup_header & 1u){
-            deDup_header = swap_endian_32(deDup_header);
+            // deDup_header = swap_endian_32(deDup_header);   //do not swap endian for header
             std::cout << "deDup_header - boundary: " << i << std::endl;
             if (fwrite(&deDup_header, 1, sizeof(deDup_header), File) != sizeof(deDup_header))
                 Exit_with_error("fwrite dedup header to compressed_data.bin failed");

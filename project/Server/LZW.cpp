@@ -79,7 +79,7 @@ uint16_t LZW (char *in, uint16_t in_length, uint16_t *send_data){
     uint16_t compressed_length = (j+1) * sizeof(uint16_t);    //j is entry number of store_array
 
     header = compressed_length << 1;
-    header = swap_endian_32(header);
+    // header = swap_endian_32(header);    //do not swap endian for header
     memcpy(send_data, &header, 4);
     memcpy(send_data + 2, store_array, compressed_length);
     //-----------------------------------------------------------------------------

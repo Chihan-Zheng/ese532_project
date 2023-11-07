@@ -47,12 +47,12 @@ static const std::string Decompress(size_t Size)
     int New = Read_code();
     std::string Symbols;
     if (New >= (int) Code_table.size()){
-      std::cout << "Old: " << Old << std::endl;
+      // std::cout << "Old: " << Old << std::endl;
       Symbols = Code_table[Old] + Symbol;}
     else{
-      std::cout << "New: " << New << std::endl;
+      // std::cout << "New: " << New << std::endl;
       Symbols = Code_table[New];}
-    std::cout << "Output is: \"" << Output << "\"" << std::endl;
+    // std::cout << "Output is: \"" << Output << "\"" << std::endl;
     Output += Symbols;
     Symbol = std::string(1, Symbols[0]);
     Code_table.push_back(Code_table[Old] + Symbol);
@@ -95,7 +95,9 @@ int main(int Parameter_count, char * Parameters[])
 
     if ((Header & 1) == 0)
     {
+      std::cout << "header: " << Header << std::endl;
       int Chunk_size = Header >> 1;
+      std::cout << "Chunk size: " << Chunk_size << std::endl;
       const std::string & Chunk = Decompress(Chunk_size);
       Chunks.push_back(Chunk);
       std::cout << "Decompressed chunk of size " << Chunk.length() << ".\n";
