@@ -11,7 +11,7 @@
 #define PRIME 3
 #define MODULUS 1024
 #define TARGET 0
-#define MAX_BOUNDARY 256
+#define MAX_BOUNDARY 512
 #define MAX_CHUNK 4096
 #define MIN_CHUNK 8
 

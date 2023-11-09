@@ -66,23 +66,23 @@ uint16_t LZW (char *in, uint16_t in_length, uint16_t *send_data){
             shift = 16 - shift;
             store_array[j-1] = store_array[j-1] | (code >> shift);        //store the last part of in
             store_array[j-1] = swap_endian_16(store_array[j-1]);
+            shift = 16 - shift;
         }else{
             char vacant_bit_number = shift - 13;
             store_array[j-1] = store_array[j-1] | (code << vacant_bit_number);
             store_array[j-1] = swap_endian_16(store_array[j-1]);
             j = j - 1;
+            shift = vacant_bit_number;
         }
     }
 
     //-----------------------generate LZW output----------------------------
     uint32_t header = 0;
     uint16_t compressed_length = (j+1) * sizeof(uint16_t);    //j is entry number of store_array
-    printf("j: %d\n", j);
-    printf("store_array[j]: %04x\n", store_array[j]);
-    if ((store_array[j] >> 8) == 0){
+
+    if (shift >= 8){
         compressed_length = compressed_length - 1;
     }
-    printf("compressed_length: %0d\n", compressed_length);
     header = compressed_length << 1;
     // header = swap_endian_32(header);    //do not swap endian for header
     memcpy(send_data, &header, 4);

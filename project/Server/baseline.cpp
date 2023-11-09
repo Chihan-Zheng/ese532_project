@@ -15,8 +15,6 @@ int main()
     //     exit (EXIT_FAILURE);
     // }
 
-
-
     if (LZW_send_data == NULL){
         std::cerr << "Could not calloc LZW_send_data." << std::endl;
         exit (EXIT_FAILURE);
@@ -57,9 +55,9 @@ int main()
             // arr_offset += LZW_output_length / 2;
         }
     }
-
+    
     if (fclose(File) != 0)
-    Exit_with_error("fclose for send_data failed");
+        Exit_with_error("fclose for send_data failed");
   
 
 
