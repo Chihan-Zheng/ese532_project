@@ -77,7 +77,12 @@ uint16_t LZW (char *in, uint16_t in_length, uint16_t *send_data){
     //-----------------------generate LZW output----------------------------
     uint32_t header = 0;
     uint16_t compressed_length = (j+1) * sizeof(uint16_t);    //j is entry number of store_array
-
+    printf("j: %d\n", j);
+    printf("store_array[j]: %04x\n", store_array[j]);
+    if ((store_array[j] >> 8) == 0){
+        compressed_length = compressed_length - 1;
+    }
+    printf("compressed_length: %0d\n", compressed_length);
     header = compressed_length << 1;
     // header = swap_endian_32(header);    //do not swap endian for header
     memcpy(send_data, &header, 4);
