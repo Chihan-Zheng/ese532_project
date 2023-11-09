@@ -143,7 +143,8 @@ int main(int argc, char* argv[]) {
 
 	FILE *input_file = fopen("input_text.txt", "wb");
 	int bytes_written = fwrite(&file[0], 1, offset, input_file);
-    int boundary_num = cdc("input_text.txt", ArrayOfChunks, chunk_size);   //boundary_num should use char?
+
+    int boundary_num = cdc("LittlePrince.txt", ArrayOfChunks, chunk_size);   //boundary_num should use char?
     std::cout << "chunk number: " << boundary_num << std::endl;
 	for (int i = 0; i < boundary_num; i++){
         deDup_header = deDup(ArrayOfChunks[i], chunk_size[i], chunkTable);
@@ -161,6 +162,7 @@ int main(int argc, char* argv[]) {
             memset(LZW_send_data, 0, (Max_Chunk_Size + 2) * sizeof(uint16_t));
         }
     }
+
 	fseek(File, 0, SEEK_END); // seek to end of file
 	int file_size = ftell(File); // get current file pointer
 	fseek(File, 0, SEEK_SET); // seek back to beginning of file
