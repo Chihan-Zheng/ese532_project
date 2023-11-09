@@ -10,10 +10,13 @@ uint64_t basicHash(char* input, size_t length) {
 }
 
 uint32_t deDup(char* inputChunk, uint16_t chunk_size,
-    std::unordered_map<uint64_t, uint32_t>& chunkTable) {
+    std::unordered_map<uint64_t, uint32_t>& chunkTable,
+    stopwatch& stopwatch) {
         // size_t length = sizeof(inputChunk)/sizeof(char);
         size_t length = chunk_size;
+        stopwatch.start();
         uint64_t hash = basicHash(inputChunk, length);
+        stopwatch.stop();
         auto it = chunkTable.find(hash);
 
         if (it == chunkTable.end()) {

@@ -30,11 +30,22 @@ int main()
         exit (EXIT_FAILURE);
     }
 
+    stopwatch cdc_timer;
+    stopwatch SHA_timer;
+    stopwatch deDup_timer;
+    stopwatch LZW_timer;
+    stopwatch total_timer;
+
+    total_timer.start();
+    cdc_timer.start();
     int boundary_num = cdc("LittlePrince.txt", ArrayOfChunks, chunk_size);   //boundary_num should use char?
+    cdc_timer.stop();
     // int arr_offset = 0;
     std::cout << "chunk number: " << boundary_num << std::endl;
 	for (int i = 0; i < boundary_num; i++){
-        deDup_header = deDup(ArrayOfChunks[i], chunk_size[i], chunkTable);
+        deDup_timer.start();
+        deDup_header = deDup(ArrayOfChunks[i], chunk_size[i], chunkTable, std::ref(SHA_timer));
+        deDup_timer.stop();
         if (deDup_header & 1u){
             // deDup_header = swap_endian_32(deDup_header);   //do not swap endian for header
             std::cout << "deDup_header - boundary: " << i << std::endl;
@@ -45,7 +56,9 @@ int main()
         }else{
             std::cout << "LZW_header - boundary: " << i << std::endl;
             uint16_t in_length = chunk_size[i];
+            LZW_timer.start();
             LZW_output_length = LZW(ArrayOfChunks[i], in_length, LZW_send_data);
+            LZW_timer.stop();
             std::cout << "LZW_output_length[" << i << "]: " << LZW_output_length << "\n" <<std::endl;
             if (fwrite(LZW_send_data, 1, LZW_output_length, File) != LZW_output_length)
                 Exit_with_error("fwrite LZW output to compressed_data.bin failed");
@@ -56,9 +69,41 @@ int main()
         }
     }
     
+    fseek(File, 0, SEEK_END); // seek to end of file
+	int file_size = ftell(File); // get current file pointer
+	fseek(File, 0, SEEK_SET); // seek back to beginning of file
+
     if (fclose(File) != 0)
         Exit_with_error("fclose for send_data failed");
-  
+    total_timer.stop();
+    
+    //---------------------------------print time and compress ratio---------------------------------------
+    std::cout << "------------------------------Function Execution Time-------------------------------" << std::endl;
+    std::cout << "Total latency of CDC is: " << cdc_timer.latency() << " ms." << std::endl;
+    std::cout << "Total latency of SHA is: " << SHA_timer.latency() << " ms." << std::endl;
+    std::cout << "Total latency of deDup is: " << deDup_timer.latency() << " ms." << std::endl;
+    std::cout << "Total latency of LZW is: " << LZW_timer.latency() << " ms." << std::endl;
+    std::cout << "Total time taken from CDC to get output file is: " << total_timer.latency() << " ms." << std::endl;
+    std::cout << "------------------------------------------------------------------------------------" << std::endl;
+    std::cout << "Average latency of SHA is: " << SHA_timer.avg_latency() << " ms." << std::endl;
+    std::cout << "Average latency of deDup is: " << deDup_timer.avg_latency() << " ms." << std::endl;
+    std::cout << "Average latency of LZW is: " << LZW_timer.avg_latency() << " ms." << std::endl;
+    std::cout << "-----------------------------------Compress Ratio-----------------------------------" << std::endl;
+    FILE* input_file = fopen("LittlePrince.txt","r");
+	if(input_file == NULL ){
+		perror("fopen error");
+		return 0;
+	}
+	fseek(input_file, 0, SEEK_END); // seek to end of file
+	int input_file_size = ftell(input_file); // get current file pointer
+	fseek(input_file, 0, SEEK_SET); // seek back to beginning of file
+    if (fclose(input_file) != 0)
+    	Exit_with_error("fclose for input_file failed");
+    printf("input file with %dB\n", input_file_size);
+	printf("encode file with %dB\n", file_size);
+	printf("Compressed ratio: %.2f%%\n", (file_size * 100.0 / input_file_size));
+    std::cout << "-----------------------------------------------------------------------------------" << std::endl;
+    //-------------------------------end of print time---------------------------------------
 
 
 

@@ -143,11 +143,22 @@ int main(int argc, char* argv[]) {
 
 	FILE *input_file = fopen("input_text.txt", "wb");
 	int bytes_written = fwrite(&file[0], 1, offset, input_file);
+	
+	stopwatch cdc_timer;
+    stopwatch SHA_timer;
+    stopwatch deDup_timer;
+    stopwatch LZW_timer;
+    stopwatch total_timer;
 
+    total_timer.start();
+    cdc_timer.start();
     int boundary_num = cdc("LittlePrince.txt", ArrayOfChunks, chunk_size);   //boundary_num should use char?
-    std::cout << "chunk number: " << boundary_num << std::endl;
+    cdc_timer.stop();
+	std::cout << "chunk number: " << boundary_num << std::endl;
 	for (int i = 0; i < boundary_num; i++){
-        deDup_header = deDup(ArrayOfChunks[i], chunk_size[i], chunkTable);
+		deDup_timer.start();
+        deDup_header = deDup(ArrayOfChunks[i], chunk_size[i], chunkTable, std::ref(SHA_timer));
+        deDup_timer.stop();
         if (deDup_header & 1u){
             std::cout << "deDup_header - boundary: " << i << std::endl;
             if (fwrite(&deDup_header, 1, sizeof(deDup_header), File) != sizeof(deDup_header))
@@ -155,7 +166,9 @@ int main(int argc, char* argv[]) {
         }else{
             std::cout << "LZW_header - boundary: " << i << std::endl;
             uint16_t in_length = chunk_size[i];
+            LZW_timer.start();
             LZW_output_length = LZW(ArrayOfChunks[i], in_length, LZW_send_data);
+            LZW_timer.stop();
             std::cout << "LZW_output_length[" << i << "]: " << LZW_output_length << "\n" <<std::endl;
             if (fwrite(LZW_send_data, 1, LZW_output_length, File) != LZW_output_length)
                 Exit_with_error("fwrite LZW output to compressed_data.bin failed");
@@ -168,7 +181,8 @@ int main(int argc, char* argv[]) {
 	fseek(File, 0, SEEK_SET); // seek back to beginning of file
 
     if (fclose(File) != 0)
-    Exit_with_error("fclose for send_data failed");
+    	Exit_with_error("fclose for send_data failed");
+	total_timer.stop();
 	//----------------------------------end of encode-------------------------------------------
 
 	// // write file to root and you can use diff tool on board
@@ -176,21 +190,35 @@ int main(int argc, char* argv[]) {
 	// int bytes_written = fwrite(&file[0], 1, offset, outfd);
 	// printf("write file with %d\n", bytes_written);
 	// fclose(outfd);
-	printf("input file with %dB\n", offset);
-	printf("encode file with %dB\n", file_size);
-	printf("Compressed ratio: %d%\n", (file_size * 100 / offset));
 
 	for (int i = 0; i < NUM_PACKETS; i++) {
 		free(input[i]);
 	}
 
 	free(file);
+	
+	 //---------------------------------print functions execution time---------------------------------------
+    std::cout << "------------------------------Function Execution Time-------------------------------" << std::endl;
+    std::cout << "Total latency of CDC is: " << cdc_timer.latency() << " ms." << std::endl;
+    std::cout << "Total latency of SHA is: " << SHA_timer.latency() << " ms." << std::endl;
+    std::cout << "Total latency of deDup is: " << deDup_timer.latency() << " ms." << std::endl;
+    std::cout << "Total latency of LZW is: " << LZW_timer.latency() << " ms." << std::endl;
+    std::cout << "Total time taken from CDC to get output file is: " << total_timer.latency() << " ms." << std::endl;
+    std::cout << "------------------------------------------------------------------------------------" << std::endl;
+    std::cout << "Average latency of SHA is: " << SHA_timer.avg_latency() << " ms." << std::endl;
+    std::cout << "Average latency of deDup is: " << deDup_timer.avg_latency() << " ms." << std::endl;
+    std::cout << "Average latency of LZW is: " << LZW_timer.avg_latency() << " ms." << std::endl;
+    //-----------------------------------------end of print time---------------------------------------
 	std::cout << "--------------- Key Throughputs ---------------" << std::endl;
 	float ethernet_latency = ethernet_timer.latency() / 1000.0;
 	// float input_throughput = (bytes_written * 8 / 1000000.0) / ethernet_latency; // Mb/s
 	float input_throughput = (offset * 8 / 1000000.0) / ethernet_latency; // Mb/s
 	std::cout << "Input Throughput to Encoder: " << input_throughput << " Mb/s."
 			<< " (Latency: " << ethernet_latency << "s)." << std::endl;
+	std::cout << "-----------------------------------Compress Ratio-----------------------------------" << std::endl;
+	printf("input file with %dB\n", offset);
+	printf("encode file with %dB\n", file_size);
+	printf("Compressed ratio: %.2f%\n", (file_size * 100.0 / offset));
 
 	return 0;
 }
