@@ -141,7 +141,9 @@ int main(int argc, char* argv[]) {
         exit (EXIT_FAILURE);
     }
 
-    int boundary_num = cdc((const char*)file, ArrayOfChunks, chunk_size);   //boundary_num should use char?
+	FILE *input_file = fopen("input_text.txt", "wb");
+	int bytes_written = fwrite(&file[0], 1, offset, input_file);
+    int boundary_num = cdc("input_text.txt", ArrayOfChunks, chunk_size);   //boundary_num should use char?
     std::cout << "chunk number: " << boundary_num << std::endl;
 	for (int i = 0; i < boundary_num; i++){
         deDup_header = deDup(ArrayOfChunks[i], chunk_size[i], chunkTable);
@@ -174,7 +176,7 @@ int main(int argc, char* argv[]) {
 	// fclose(outfd);
 	printf("input file with %dB\n", offset);
 	printf("encode file with %dB\n", file_size);
-	printf("Compressed ratio: %d%\n", (file_size / offset)*100);
+	printf("Compressed ratio: %d%\n", (file_size * 100 / offset));
 
 	for (int i = 0; i < NUM_PACKETS; i++) {
 		free(input[i]);
