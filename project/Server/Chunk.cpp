@@ -33,6 +33,7 @@ int cdc_window(unsigned char *buff, unsigned int buff_size, char** chunk, uint16
 	uint64_t *hash = (uint64_t *)malloc(sizeof(uint64_t) * (buff_size - WIN_SIZE));
 	int boundary_index = 0;
 	int previous_boundary = 0;
+	std::cout << "---------------------------------Boundary Index--------------------------------------" << std::endl;
     for(unsigned int i = WIN_SIZE; i<buff_size - WIN_SIZE; i++){
 		if(i == WIN_SIZE)
 		hash[i] = hash_func(buff, WIN_SIZE);

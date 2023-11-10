@@ -35,12 +35,16 @@ int main()
     stopwatch deDup_timer;
     stopwatch LZW_timer;
     stopwatch total_timer;
+    int deDup_final_bytes = 0;
+	int LZW_final_bytes = 0;
+	int LZW_total_input_bytes = 0;
 
     total_timer.start();
     cdc_timer.start();
     int boundary_num = cdc("LittlePrince.txt", ArrayOfChunks, chunk_size);   //boundary_num should use char?
     cdc_timer.stop();
     // int arr_offset = 0;
+    std::cout << "-------------------------------Chunks Info-------------------------------------" << std::endl;
     std::cout << "chunk number: " << boundary_num << std::endl;
 	for (int i = 0; i < boundary_num; i++){
         deDup_timer.start();
@@ -51,10 +55,11 @@ int main()
             std::cout << "deDup_header - boundary: " << i << std::endl;
             if (fwrite(&deDup_header, 1, sizeof(deDup_header), File) != sizeof(deDup_header))
                 Exit_with_error("fwrite dedup header to compressed_data.bin failed");
+            deDup_final_bytes += sizeof(deDup_header);
             // memcpy(send_data_arr_total + arr_offset, &deDup_header, sizeof(deDup_header));
             // arr_offset += sizeof(deDup_header) / 2;
         }else{
-            std::cout << "LZW_header - boundary: " << i << std::endl;
+            std::cout << "\n" << "LZW_header - boundary: " << i << std::endl;
             uint16_t in_length = chunk_size[i];
             LZW_timer.start();
             LZW_output_length = LZW(ArrayOfChunks[i], in_length, LZW_send_data);
@@ -63,6 +68,8 @@ int main()
             if (fwrite(LZW_send_data, 1, LZW_output_length, File) != LZW_output_length)
                 Exit_with_error("fwrite LZW output to compressed_data.bin failed");
             memset(LZW_send_data, 0, (Max_Chunk_Size + 2) * sizeof(uint16_t));
+            LZW_total_input_bytes += in_length;
+			LZW_final_bytes += LZW_output_length;
 
             // memcpy(send_data_arr_total + arr_offset, LZW_send_data, LZW_output_length);
             // arr_offset += LZW_output_length / 2;
@@ -102,6 +109,10 @@ int main()
     printf("input file with %dB\n", input_file_size);
 	printf("encode file with %dB\n", file_size);
 	printf("Compressed ratio: %.2f%%\n", (file_size * 100.0 / input_file_size));
+    float LZW_contribution = (LZW_total_input_bytes - LZW_final_bytes) * 100.0 / (input_file_size - file_size);
+	float deDup_contribution = 100.0 - LZW_contribution;
+	printf("Compression Contribution of deDup: %.2f%%\n", deDup_contribution);
+	printf("Compression Contribution of LZW: %.2f%%\n", LZW_contribution);
     std::cout << "-----------------------------------------------------------------------------------" << std::endl;
     //-------------------------------end of print time---------------------------------------
 
