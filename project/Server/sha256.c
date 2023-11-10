@@ -160,7 +160,7 @@ void sha256_final(SHA256_CTX *ctx, BYTE hash[])
 void sha256_hash(SHA256_CTX* ctx, const BYTE data[], BYTE hash[], size_t runLen)
 {
 	size_t idx;
-	size_t len = strlen(data);
+	size_t len = strlen((char *)data);
 	sha256_init(ctx);
 	for (idx = 0; idx < runLen; ++idx)
 		sha256_update(ctx, data, len);

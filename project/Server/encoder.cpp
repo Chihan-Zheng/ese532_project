@@ -41,6 +41,7 @@ void handle_input(int argc, char* argv[], int* blocksize) {
 }
 
 int main(int argc, char* argv[]) {
+
 	stopwatch ethernet_timer;
 	unsigned char* input[NUM_PACKETS];
 	int writer = 0;
@@ -120,7 +121,7 @@ int main(int argc, char* argv[]) {
 	}
 	//----------------------------------encode-------------------------------------------
 	char *ArrayOfChunks[MAX_BOUNDARY];
-    std::unordered_map<uint64_t, uint32_t> chunkTable;
+    std::unordered_map<string, uint32_t> chunkTable;
     uint32_t deDup_header;     //output of deDup function
     uint16_t LZW_output_length;        
     uint16_t *LZW_send_data = (uint16_t *)calloc(Max_Chunk_Size + 2, sizeof(uint16_t));     //Max_Chunk_Size + 32bits header -> unit is 16bits
