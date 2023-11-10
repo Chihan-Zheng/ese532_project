@@ -15,11 +15,14 @@
 #define MAX_CHUNK 4096
 #define MIN_CHUNK 8
 
+
+string hexconvert(unsigned char* bytes, int size);
 uint64_t hash_func(unsigned char *input, unsigned int pos);
 int cdc( const char* file, char** chunk, uint16_t *chunk_size);
 uint64_t basicHash(char* input, size_t length);
-uint32_t deDup(char* inputChunk, uint16_t chunk_size, 
-               std::unordered_map<uint64_t, uint32_t>& chunkTable, stopwatch& stopwatch);
+uint32_t deDup(char* inputChunk, uint16_t chunk_size,
+               std::unordered_map<string, uint32_t>& chunkTable,
+               stopwatch& stopwatch);
 uint16_t LZW (char *in, uint16_t in_length, uint16_t *send_data);
 
 #endif

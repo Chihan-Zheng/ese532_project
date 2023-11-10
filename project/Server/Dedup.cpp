@@ -1,21 +1,35 @@
 #include "Constants.h"
+#include "stopwatch.h"
+#include <iomanip>
+#include <sstream>
+#include <vector>
 
-uint64_t basicHash(char* input, size_t length) {
-    uint64_t hash = 0;
+using namespace std;
 
-    for (size_t i = 0; i < length; i++) {
-        hash += static_cast <uint64_t>(input[i]);
+string hexconvert(unsigned char* bytes, int size) {
+    stringstream ss;
+    ss << hex << setfill('0');
+    for (int i = 0; i < size; i++) {
+        ss << setw(2) << static_cast<int>(bytes[i]);
     }
-    return hash;
+    return ss.str();
 }
 
 uint32_t deDup(char* inputChunk, uint16_t chunk_size,
-    std::unordered_map<uint64_t, uint32_t>& chunkTable,
+    std::unordered_map<string, uint32_t>& chunkTable,
     stopwatch& stopwatch) {
-        // size_t length = sizeof(inputChunk)/sizeof(char);
-        size_t length = chunk_size;
+    unsigned char uinputChunk[static_cast<int>(chunk_size)];
+    for (size_t i = 0; i < chunk_size; i++) {
+            uinputChunk[i] = static_cast<unsigned char>(inputChunk[i]);
+        }
+    
+        //size_t length = sizeof(inputChunk)/sizeof(char);
+        //size_t length = chunk_size;
+    BYTE buf[SHA256_BLOCK_SIZE];
+    SHA256_CTX ctx;
         stopwatch.start();
-        uint64_t hash = basicHash(inputChunk, length);
+    sha256_hash(&ctx, uinputChunk, buf, 1);
+    string hash = hexconvert(buf, SHA256_BLOCK_SIZE);
         stopwatch.stop();
         auto it = chunkTable.find(hash);
 

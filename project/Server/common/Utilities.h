@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+using namespace std;
 #include <stdint.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -15,6 +16,7 @@
 #include <sys/stat.h>
 #include "stopwatch.h"
 #include <functional>
+#include "sha256.h"
 
 void Exit_with_error(const char *s);
 void send_data(unsigned char *Data, uint16_t Data_size);
