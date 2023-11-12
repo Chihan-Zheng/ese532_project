@@ -4,8 +4,17 @@
 #include <stdlib.h>
 #include <fstream>
 #include <sstream>
+#include "ap_int.h"
 //****************************************************************************************************************
-#define CAPACITY 32768 // hash output is 15 bits, and we have 1 entry per bucket, so capacity is 2^15
+#define HASH_BIT_NUM 15
+#define CAPACITY (1 << HASH_BIT_NUM) // hash output is 15 bits, and we have 1 entry per bucket, so capacity is 2^15
+#define KEY_LEN 20
+#define BUCKETS_NUM 3
+#define CODE_LEN 13
+#define BUCKET_LEN (KEY_LEN + CODE_LEN + 1)
+
+#define MATCH_UNITS_COLUMN_NUM 1
+#define ASSOC_MEM_SIZE (72 * MATCH_UNITS_COLUMN_NUM)
 // #define CAPACITY 4096
 // try  uncommenting the line above and commenting line 6 to make the hash table smaller 
 // and see what happens to the number of entries in the assoc mem 
@@ -17,13 +26,13 @@ void Exit_with_error(const char *s)
     exit(EXIT_FAILURE);
 }
 
-unsigned int my_hash(unsigned long key)
+unsigned int my_hash(ap_uint<KEY_LEN> key)
 {
-    key &= 0xFFFFF; // make sure the key is only 20 bits
+    key &= (1<<KEY_LEN) - 1; // make sure the key is only 20 bits
 
     unsigned int hashed = 0;
 
-    for(int i = 0; i < 20; i++)
+    for(int i = 0; i < KEY_LEN; i++)
     {
         hashed += (key >> i)&0x01;
         hashed += hashed << 10;
@@ -32,58 +41,66 @@ unsigned int my_hash(unsigned long key)
     hashed += hashed << 3;
     hashed ^= hashed >> 11;
     hashed += hashed << 15;
-    return hashed & 0x7FFF;          // hash output is 15 bits
+
+    return hashed & ((1<<HASH_BIT_NUM) - 1);
+    // return hashed & 0x7FFF;          // hash output is 15 bits
     // return hashed & 0xFFF;   
 }
 
-void hash_lookup(unsigned long* hash_table, unsigned int key, bool* hit, unsigned int* result)
+void hash_lookup(ap_uint<BUCKET_LEN> hash_table[CAPACITY][BUCKETS_NUM], ap_uint<KEY_LEN> key, 
+                bool* hit, ap_uint<CODE_LEN>* result)
 {
     //std::cout << "hash_lookup():" << std::endl;
-    key &= 0xFFFFF; // make sure key is only 20 bits 
+    key &= (1<<KEY_LEN) - 1; // make sure key is only 20 bits 
 
-    unsigned long lookup = hash_table[my_hash(key)];
+    for (int i = 0; i < BUCKETS_NUM; i++){
+        ap_uint<BUCKET_LEN> lookup = hash_table[my_hash(key)][i];
 
-    // [valid][value][key]
-    unsigned int stored_key = lookup&0xFFFFF;       // stored key is 20 bits
-    unsigned int value = (lookup >> 20)&0xFFF;      // value is 12 bits
-    unsigned int valid = (lookup >> (20 + 12))&0x1; // valid is 1 bit
+        // [valid][value][key]
+        ap_uint<KEY_LEN> stored_key = lookup & ((1<<KEY_LEN) - 1);       // stored key is 20 bits
+        ap_uint<CODE_LEN> value = (lookup >> KEY_LEN) & ((1<<CODE_LEN) - 1);      // value is 12 bits
+        ap_uint<1> valid = (lookup >> (KEY_LEN + CODE_LEN)) & 0x1; // valid is 1 bit
+
+        if(valid && (key == stored_key))
+        {
+            *hit = 1;
+            *result = value;
+            return;
+            //std::cout << "\thit the hash" << std::endl;
+            //std::cout << "\t(k,v,h) = " << key << " " << value << " " << my_hash(key) << std::endl;
+        }
+    }
+
+    //the hash table does not have the key
+    *hit = 0;
+    *result = 0;
+    //std::cout << "\tmissed the hash" << std::endl;
     
-    if(valid && (key == stored_key))
-    {
-        *hit = 1;
-        *result = value;
-        //std::cout << "\thit the hash" << std::endl;
-        //std::cout << "\t(k,v,h) = " << key << " " << value << " " << my_hash(key) << std::endl;
-    }
-    else
-    {
-        *hit = 0;
-        *result = 0;
-        //std::cout << "\tmissed the hash" << std::endl;
-    }
 }
 
-void hash_insert(unsigned long* hash_table, unsigned int key, unsigned int value, bool* collision)
+void hash_insert(ap_uint<BUCKET_LEN> hash_table[CAPACITY][BUCKETS_NUM], ap_uint<KEY_LEN> key, 
+                ap_uint<CODE_LEN> value, bool* collision)
 {
     //std::cout << "hash_insert():" << std::endl;
-    key &= 0xFFFFF;   // make sure key is only 20 bits
-    value &= 0xFFF;   // value is only 12 bits
+    key &= (1<<KEY_LEN) - 1;   // make sure key is only 20 bits
+    value &= (1<<CODE_LEN) - 1;   // value is only 13 bits
 
-    unsigned long lookup = hash_table[my_hash(key)];
-    unsigned int valid = (lookup >> (20 + 12))&0x1;
+    for (int i = 0; i < BUCKETS_NUM; i++){
+        ap_uint<BUCKET_LEN> lookup = hash_table[my_hash(key)][i];
+        ap_uint<1> valid = (lookup >> (KEY_LEN + CODE_LEN)) & 0x1;
 
-    if(valid)
-    {
-        *collision = 1;
-        //std::cout << "\tcollision in the hash" << std::endl;
+        if(!valid)
+        {
+            hash_table[my_hash(key)][i] = (1UL << (KEY_LEN + CODE_LEN)) | (value << KEY_LEN) | key;
+            *collision = 0;
+            //std::cout << "\tinserted into the hash table\tBucket: " << i << std::endl;
+            //std::cout << "\t(k,v,h) = " << key << " " << value << " " << my_hash(key) << std::endl;
+            return;
+        }
     }
-    else
-    {
-        hash_table[my_hash(key)] = (1UL << (20 + 12)) | (value << 20) | key;
-        *collision = 0;
-        //std::cout << "\tinserted into the hash table" << std::endl;
-        //std::cout << "\t(k,v,h) = " << key << " " << value << " " << my_hash(key) << std::endl;
-    }
+
+    *collision = 1;
+    //std::cout << "\tcollision in the hash" << std::endl;
 }
 //****************************************************************************************************************
 typedef struct
@@ -93,22 +110,22 @@ typedef struct
     // The output width of each of these memories is 64 bits, so we can only store 64 key
     // value pairs in our associative memory map.
 
-    unsigned long upper_key_mem[512]; // the output of these  will be 64 bits wide (size of unsigned long).
-    unsigned long middle_key_mem[512];
-    unsigned long lower_key_mem[512]; 
-    unsigned int value[64];    // value store is 64 deep, because the lookup mems are 64 bits wide
+    ap_int<ASSOC_MEM_SIZE> upper_key_mem[512]; // the output of these  will be 64 bits wide (size of unsigned long).
+    ap_int<ASSOC_MEM_SIZE> middle_key_mem[512];
+    ap_int<ASSOC_MEM_SIZE> lower_key_mem[512]; 
+    ap_int<CODE_LEN> value[ASSOC_MEM_SIZE];    // value store is 64 deep, because the lookup mems are 64 bits wide
     unsigned int fill;         // tells us how many entries we've currently stored 
 } assoc_mem;
 
-// cast to struct and use ap types to pull out various feilds.
+// cast to struct and use ap types to pull out various fields.
 
-void assoc_insert(assoc_mem* mem,  unsigned int key, unsigned int value, bool* collision)
+void assoc_insert(assoc_mem* mem, ap_uint<KEY_LEN> key, ap_uint<CODE_LEN> value, bool* collision)
 {
     //std::cout << "assoc_insert():" << std::endl;
-    key &= 0xFFFFF; // make sure key is only 20 bits
-    value &= 0xFFF;   // value is only 12 bits
+    key &= (1<<KEY_LEN) - 1; // make sure key is only 20 bits
+    value &= (1<<CODE_LEN) - 1;   // value is only 12 bits
 
-    if(mem->fill < 64)
+    if(mem->fill < ASSOC_MEM_SIZE)
     {
         mem->upper_key_mem[(key >> 18)%512] |= (1 << mem->fill);  // set the fill'th bit to 1, while preserving everything else
         mem->middle_key_mem[(key >> 9)%512] |= (1 << mem->fill);  // set the fill'th bit to 1, while preserving everything else
@@ -126,26 +143,27 @@ void assoc_insert(assoc_mem* mem,  unsigned int key, unsigned int value, bool* c
     }
 }
 
-void assoc_lookup(assoc_mem* mem, unsigned int key, bool* hit, unsigned int* result)
+void assoc_lookup(assoc_mem* mem, ap_uint<KEY_LEN> key, bool* hit, ap_uint<CODE_LEN>* result)
 {
     //std::cout << "assoc_lookup():" << std::endl;
-    key &= 0xFFFFF; // make sure key is only 20 bits
+    key &= (1<<KEY_LEN) - 1; // make sure key is only 20 bits
 
-    unsigned int match_high = mem->upper_key_mem[(key >> 18)%512];
-    unsigned int match_middle = mem->middle_key_mem[(key >> 9)%512];
-    unsigned int match_low  = mem->lower_key_mem[(key >> 0)%512];
+    ap_int<ASSOC_MEM_SIZE> match_high = mem->upper_key_mem[(key >> 18)%512];
+    ap_int<ASSOC_MEM_SIZE> match_middle = mem->middle_key_mem[(key >> 9)%512];
+    ap_int<ASSOC_MEM_SIZE> match_low  = mem->lower_key_mem[(key >> 0)%512];
 
-    unsigned int match = match_high & match_middle & match_low;
+    ap_int<ASSOC_MEM_SIZE> match = match_high & match_middle & match_low;
 
     unsigned int address = 0;
-    for(; address < 64; address++)
+    for(; address < ASSOC_MEM_SIZE; address++)
     {
         if((match >> address) & 0x1)
         {   
             break;
         }
     }
-    if(address != 64)
+
+    if(address != ASSOC_MEM_SIZE)
     {
         *result = mem->value[address];
         *hit = 1;
@@ -159,7 +177,8 @@ void assoc_lookup(assoc_mem* mem, unsigned int key, bool* hit, unsigned int* res
     }
 }
 //****************************************************************************************************************
-void insert(unsigned long* hash_table, assoc_mem* mem, unsigned int key, unsigned int value, bool* collision)
+void insert(ap_uint<BUCKET_LEN> hash_table[CAPACITY][BUCKETS_NUM], assoc_mem* mem, ap_uint<KEY_LEN> key, 
+            ap_uint<CODE_LEN> value, bool* collision)
 {
     hash_insert(hash_table, key, value, collision);
     if(*collision)
@@ -168,7 +187,8 @@ void insert(unsigned long* hash_table, assoc_mem* mem, unsigned int key, unsigne
     }
 }
 
-void lookup(unsigned long* hash_table, assoc_mem* mem, unsigned int key, bool* hit, unsigned int* result)
+void lookup(ap_uint<BUCKET_LEN> hash_table[CAPACITY][BUCKETS_NUM], assoc_mem* mem, 
+            ap_uint<KEY_LEN> key, bool* hit, ap_uint<CODE_LEN>* result)
 {
     hash_lookup(hash_table, key, hit, result);
     if(!*hit)
@@ -185,14 +205,17 @@ void hardware_encoding(std::string s1)
     }
 
     // create hash table and assoc mem
-    unsigned long hash_table[CAPACITY];
+    // unsigned long hash_table[CAPACITY];
+    ap_uint<BUCKET_LEN> hash_table[CAPACITY][BUCKETS_NUM];
     assoc_mem my_assoc_mem;
 
     // make sure the memories are clear
-    for(int i = 0; i < CAPACITY; i++)
-    {
-        hash_table[i] = 0;
+    for(int i = 0; i < CAPACITY; i++){
+        for (int j = 0; j < BUCKETS_NUM; j++){
+            hash_table[i][j] = 0;
+         }
     }
+
     my_assoc_mem.fill = 0;
     for(int i = 0; i < 512; i++)
     {
@@ -205,24 +228,25 @@ void hardware_encoding(std::string s1)
     for(unsigned long i = 0; i < 256; i++)
     {
         bool collision = 0;
-        unsigned int key = (i << 8) + 0UL; // lower 8 bits are the next char, the upper bits are the prefix code
+        ap_uint<KEY_LEN> key = (i << 8) + 0UL; // lower 8 bits are the next char, the upper bits are the prefix code
         insert(hash_table, &my_assoc_mem, key, i, &collision);
     }
-    int next_code = 256;
+    ap_uint<CODE_LEN> next_code = 256;
 
 
-    unsigned int prefix_code = s1[0];
-    unsigned int code = 0;
+    ap_uint<CODE_LEN> prefix_code = s1[0];
+    ap_uint<CODE_LEN> code = 0;
     unsigned char next_char = 0;
 
-    int i = 0;
+    ap_uint<CODE_LEN> i = 0;
     while(i < s1.length())
     {
         if(i + 1 == s1.length())
         {
-            std::cout << prefix_code;
+            uint32_t written_code = prefix_code.to_uint();
+            std::cout << written_code;
             std::cout << "\n";
-            if (fwrite(&prefix_code, 1, 4, file_hw) != 4)
+            if (fwrite(&written_code, 1, 4, file_hw) != 4)
                 Exit_with_error("fwrite LZW output to compressed_data.bin failed");
             break;
         }
@@ -233,9 +257,10 @@ void hardware_encoding(std::string s1)
         lookup(hash_table, &my_assoc_mem, (prefix_code << 8) + next_char, &hit, &code);
         if(!hit)
         {
-            std::cout << prefix_code;
+            uint32_t written_code = prefix_code.to_uint();
+            std::cout << written_code;
             std::cout << "\n";
-            if (fwrite(&prefix_code, 1, 4, file_hw) != 4)
+            if (fwrite(&written_code, 1, 4, file_hw) != 4)
                 Exit_with_error("fwrite LZW output to compressed_data.bin failed");
 
             bool collision = 0;
@@ -342,16 +367,16 @@ void decoding(std::vector<int> op)
 int main()
 {
 
-    // std::string s = "WYS*WYGWYS*WYSWYSG";
+    std::string s = "WYS*WYGWYS*WYSWYSG";
 
-    std::ifstream file("./LittlePrince.txt");
+/*     std::ifstream file("./LittlePrince.txt");
     std::stringstream buffer;
     buffer << file.rdbuf();
     std::string s = buffer.str();
     if (!file) {
         std::cerr << "cannot open file" << std::endl;
         return 1;
-    }
+    } */
 
     std::cout << "Our message is: " << s << std::endl << std::endl;
     std::cout << "Running the software compression we get: " << std::endl;
