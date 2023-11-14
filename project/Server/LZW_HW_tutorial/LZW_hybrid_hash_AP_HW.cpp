@@ -8,12 +8,12 @@
 //****************************************************************************************************************
 #define HASH_BIT_NUM 15
 #define CAPACITY (1 << HASH_BIT_NUM) // hash output is 15 bits, and we have 1 entry per bucket, so capacity is 2^15
-#define KEY_LEN 20
-#define BUCKETS_NUM 3
+#define KEY_LEN (CODE_LEN + 8)
+#define BUCKETS_NUM 2
 #define CODE_LEN 13
 #define BUCKET_LEN (KEY_LEN + CODE_LEN + 1)
 
-#define MATCH_UNITS_COLUMN_NUM 1
+#define MATCH_UNITS_COLUMN_NUM 100
 #define ASSOC_MEM_SIZE (72 * MATCH_UNITS_COLUMN_NUM)
 // #define CAPACITY 4096
 // try  uncommenting the line above and commenting line 6 to make the hash table smaller 
@@ -28,7 +28,7 @@ void Exit_with_error(const char *s)
 
 unsigned int my_hash(ap_uint<KEY_LEN> key)
 {
-    key &= (1<<KEY_LEN) - 1; // make sure the key is only 20 bits
+    // key &= (1<<KEY_LEN) - 1; // make sure the key is only 20 bits
 
     unsigned int hashed = 0;
 
@@ -101,16 +101,17 @@ void hardware_encoding(std::string s1)
         // hash_insert(hash_table, key, value, collision);
         //--------------------------hash_insert-----------------------
         //std::cout << "hash_insert():" << std::endl;
-        key &= (1<<KEY_LEN) - 1;   // make sure key is only 20 bits
-        i &= (1<<CODE_LEN) - 1;   // value is only 13 bits
+        ap_uint<CODE_LEN> value = i;
+        // key &= (1<<KEY_LEN) - 1;   // make sure key is only 20 bits
+        // value &= (1<<CODE_LEN) - 1;   // value is only 13 bits
 
         for (int i = 0; i < BUCKETS_NUM; i++){
             ap_uint<BUCKET_LEN> lookup = hash_table[my_hash(key)][i];
             ap_uint<1> valid = (lookup >> (KEY_LEN + CODE_LEN)) & 0x1;
 
             if(!valid)
-            {
-                hash_table[my_hash(key)][i] = (1UL << (KEY_LEN + CODE_LEN)) | (i << KEY_LEN) | key;
+            {   
+                hash_table[my_hash(key)][i] = (1UL << (KEY_LEN + CODE_LEN)) | (value.to_uint() << KEY_LEN) | key;
                 collision = 0;
                 //std::cout << "\tinserted into the hash table\tBucket: " << i << std::endl;
                 //std::cout << "\t(k,v,h) = " << key << " " << value << " " << my_hash(key) << std::endl;
@@ -127,18 +128,19 @@ void hardware_encoding(std::string s1)
             // assoc_insert(mem, key, value, collision);
             //------------------------assoc_insert------------------------------------
             //std::cout << "assoc_insert():" << std::endl;
-            key &= (1<<KEY_LEN) - 1; // make sure key is only 20 bits
-            i &= (1<<CODE_LEN) - 1;   // value is only 12 bits
+            // key &= (1<<KEY_LEN) - 1; // make sure key is only 20 bits
+            // value &= (1<<CODE_LEN) - 1;   // value is only 12 bits
 
-            if(mem->fill < ASSOC_MEM_SIZE)
+            if(my_assoc_mem.fill < ASSOC_MEM_SIZE)
             {
-                mem->upper_key_mem[(key >> 18)%512] |= (1 << mem->fill);  // set the fill'th bit to 1, while preserving everything else
-                mem->middle_key_mem[(key >> 9)%512] |= (1 << mem->fill);  // set the fill'th bit to 1, while preserving everything else
-                mem->lower_key_mem[(key >> 0)%512] |= (1 << mem->fill);   // set the fill'th bit to 1, while preserving everything else
-                mem->value[mem->fill] = i;
-                mem->fill++;
+                ap_int<ASSOC_MEM_SIZE> mask = 1;
+                my_assoc_mem.upper_key_mem[(key >> 18)%512] |= (mask << my_assoc_mem.fill);  // set the fill'th bit to 1, while preserving everything else
+                my_assoc_mem.middle_key_mem[(key >> 9)%512] |= (mask << my_assoc_mem.fill);  // set the fill'th bit to 1, while preserving everything else
+                my_assoc_mem.lower_key_mem[(key >> 0)%512] |= (mask << my_assoc_mem.fill);   // set the fill'th bit to 1, while preserving everything else
+                my_assoc_mem.value[my_assoc_mem.fill] = value;
+                my_assoc_mem.fill++;
                 collision = 0;
-                //std::cout << "\tinserted into the assoc mem" << std::endl;
+                // std::cout << "\tinserted into the assoc mem" << std::endl;
                 //std::cout << "\t(k,v) = " << key << " " << value << std::endl;
             }
             else
@@ -159,7 +161,7 @@ void hardware_encoding(std::string s1)
 
     ap_uint<CODE_LEN> i = 0;
     while(i < s1.length())
-    {
+    {   
         if(i + 1 == s1.length())
         {
             uint32_t written_code = prefix_code.to_uint();
@@ -175,14 +177,13 @@ void hardware_encoding(std::string s1)
         //std::cout << "prefix_code " << prefix_code << " next_char " << next_char << std::endl;
 
         // lookup(hash_table, &my_assoc_mem, (prefix_code << 8) + next_char, &hit, &code);
-        //---------------------------------lookup----------------------------------------------------
-        key = (prefix_code << 8) + next_char;
+        //--------------------------------------------------------------lookup--------------------------------------------------------------------------------
+        ap_uint<KEY_LEN> key = (prefix_code.to_uint() << 8) + next_char;
         //-------------------------------hash_lookup-----------------------------------
         //std::cout << "hash_lookup():" << std::endl;
-        key &= (1<<KEY_LEN) - 1; // make sure key is only 20 bits 
-
-        for (int i = 0; i < BUCKETS_NUM; i++){
-            ap_uint<BUCKET_LEN> lookup = hash_table[my_hash(key)][i];
+        // key &= (1<<KEY_LEN) - 1; // make sure key is only 20 bits 
+        for (int j = 0; j < BUCKETS_NUM; j++){
+            ap_uint<BUCKET_LEN> lookup = hash_table[my_hash(key)][j];
 
             // [valid][value][key]
             ap_uint<KEY_LEN> stored_key = lookup & ((1<<KEY_LEN) - 1);       // stored key is 20 bits
@@ -193,6 +194,8 @@ void hardware_encoding(std::string s1)
             {
                 hit = 1;
                 code = value;
+                // std::cout << "lookup: " << lookup << std::endl;
+                // std::cout << "value: " << value<< " code: " << code << std::endl;
                 break;
                 //std::cout << "\thit the hash" << std::endl;
                 //std::cout << "\t(k,v,h) = " << key << " " << value << " " << my_hash(key) << std::endl;
@@ -203,11 +206,11 @@ void hardware_encoding(std::string s1)
         {
             //-----------------------------assoc_lookup-----------------------
                 //std::cout << "assoc_lookup():" << std::endl;
-            key &= (1<<KEY_LEN) - 1; // make sure key is only 20 bits
+            // key &= (1<<KEY_LEN) - 1; // make sure key is only 20 bits
 
-            ap_int<ASSOC_MEM_SIZE> match_high = mem->upper_key_mem[(key >> 18)%512];
-            ap_int<ASSOC_MEM_SIZE> match_middle = mem->middle_key_mem[(key >> 9)%512];
-            ap_int<ASSOC_MEM_SIZE> match_low  = mem->lower_key_mem[(key >> 0)%512];
+            ap_int<ASSOC_MEM_SIZE> match_high = my_assoc_mem.upper_key_mem[(key >> 18)%512];
+            ap_int<ASSOC_MEM_SIZE> match_middle = my_assoc_mem.middle_key_mem[(key >> 9)%512];
+            ap_int<ASSOC_MEM_SIZE> match_low  = my_assoc_mem.lower_key_mem[(key >> 0)%512];
 
             ap_int<ASSOC_MEM_SIZE> match = match_high & match_middle & match_low;
 
@@ -222,7 +225,7 @@ void hardware_encoding(std::string s1)
 
             if(address != ASSOC_MEM_SIZE)
             {
-                code = mem->value[address];
+                code = my_assoc_mem.value[address];
                 hit = 1;
                 //std::cout << "\thit the assoc" << std::endl;
                 //std::cout << "\t(k,v) = " << key << " " << *result << std::endl;
@@ -234,7 +237,7 @@ void hardware_encoding(std::string s1)
             }
             //-----------------------------end assoc_lookup--------------------------
         }
-        //----------------------------------end loopup-------------------------------------------------------------------------
+        //-----------------------------------------------------------------------end loopup-------------------------------------------------------------------------
 
         if(!hit)
         {
@@ -246,23 +249,25 @@ void hardware_encoding(std::string s1)
 
             bool collision = 0;
             // insert(hash_table, &my_assoc_mem, (prefix_code << 8) + next_char, next_code, &collision);
-            //----------------------------------------------insert----------------------------------------------------
+            //--------------------------------------------------------------------------------insert-----------------------------------------------------------------------
             // hash_insert(hash_table, key, value, collision);
-            key = (prefix_code << 8) + next_char;
+            // key = (prefix_code << 8) + next_char;
             //--------------------------hash_insert-----------------------
             //std::cout << "hash_insert():" << std::endl;
-            key &= (1<<KEY_LEN) - 1;   // make sure key is only 20 bits
-            next_code &= (1<<CODE_LEN) - 1;   // value is only 13 bits
+            // key &= (1<<KEY_LEN) - 1;   // make sure key is only 20 bits
+            // next_code &= (1<<CODE_LEN) - 1;   // value is only 13 bits
 
-            for (int i = 0; i < BUCKETS_NUM; i++){
-                ap_uint<BUCKET_LEN> lookup = hash_table[my_hash(key)][i];
+            for (int j = 0; j < BUCKETS_NUM; j++){
+                ap_uint<BUCKET_LEN> lookup = hash_table[my_hash(key)][j];
                 ap_uint<1> valid = (lookup >> (KEY_LEN + CODE_LEN)) & 0x1;
-
+                // std::cout << "key is: " << key << std::endl;
+                // std::cout << "inserted into the hash table\tmy_hash(key): " << my_hash(key) << "\ti: " << i << std::endl;
+                // std::cout << "valid: " << valid << std::endl;
                 if(!valid)
                 {
-                    hash_table[my_hash(key)][i] = (1UL << (KEY_LEN + CODE_LEN)) | (next_code << KEY_LEN) | key;
+                    hash_table[my_hash(key)][j] = (1UL << (KEY_LEN + CODE_LEN)) | (next_code.to_uint() << KEY_LEN) | key;
                     collision = 0;
-                    //std::cout << "\tinserted into the hash table\tBucket: " << i << std::endl;
+                    // std::cout << "\tinserted into the hash table\tBucket: " << i << std::endl;
                     //std::cout << "\t(k,v,h) = " << key << " " << value << " " << my_hash(key) << std::endl;
                     break;
                 }
@@ -277,28 +282,29 @@ void hardware_encoding(std::string s1)
                 // assoc_insert(mem, key, value, collision);
                 //------------------------assoc_insert------------------------------------
                 //std::cout << "assoc_insert():" << std::endl;
-                key &= (1<<KEY_LEN) - 1; // make sure key is only 20 bits
-                next_code &= (1<<CODE_LEN) - 1;   // value is only 12 bits
+                // key &= (1<<KEY_LEN) - 1; // make sure key is only 20 bits
+                // next_code &= (1<<CODE_LEN) - 1;   // value is only 12 bits
 
-                if(mem->fill < ASSOC_MEM_SIZE)
+                if(my_assoc_mem.fill < ASSOC_MEM_SIZE)
                 {
-                    mem->upper_key_mem[(key >> 18)%512] |= (1 << mem->fill);  // set the fill'th bit to 1, while preserving everything else
-                    mem->middle_key_mem[(key >> 9)%512] |= (1 << mem->fill);  // set the fill'th bit to 1, while preserving everything else
-                    mem->lower_key_mem[(key >> 0)%512] |= (1 << mem->fill);   // set the fill'th bit to 1, while preserving everything else
-                    mem->value[mem->fill] = next_code;
-                    mem->fill++;
+                    ap_int<ASSOC_MEM_SIZE> mask = 1;
+                    my_assoc_mem.upper_key_mem[(key >> 18)%512] |= (mask << my_assoc_mem.fill);  // set the fill'th bit to 1, while preserving everything else
+                    my_assoc_mem.middle_key_mem[(key >> 9)%512] |= (mask << my_assoc_mem.fill);  // set the fill'th bit to 1, while preserving everything else
+                    my_assoc_mem.lower_key_mem[(key >> 0)%512] |= (mask << my_assoc_mem.fill);   // set the fill'th bit to 1, while preserving everything else
+                    my_assoc_mem.value[my_assoc_mem.fill] = next_code;
+                    my_assoc_mem.fill++;
                     collision = 0;
-                    //std::cout << "\tinserted into the assoc mem" << std::endl;
-                    //std::cout << "\t(k,v) = " << key << " " << value << std::endl;
+                    // std::cout << "\tinserted into the assoc mem. i: " << i  << "\thash_value:" << my_hash(key) <<std::endl;
+                    // std::cout << "\t(k,v) = " << key << " " << next_code << std::endl;
                 }
                 else
                 {
                     collision = 1;
-                    //std::cout << "\tcollision in the assoc mem" << std::endl;
+                    // std::cout << "\tcollision in the assoc mem. i: " << i << std::endl;
                 }
                 //------------------------end assoc_insert-------------------------------
             }
-            //-----------------------------------------------end insert--------------------------------------------------
+            //------------------------------------------------------------------------end insert----------------------------------------------------------------------------
             
             if(collision)
             {
@@ -308,10 +314,12 @@ void hardware_encoding(std::string s1)
             next_code += 1;
 
             prefix_code = next_char;
+            // std::cout << "prefix_code: " << prefix_code << " i: " << i << std::endl;
         }
         else
         {
             prefix_code = code;
+            // std::cout << "prefix_code exists: " << prefix_code << " i: " << i << std::endl;
         }
         i += 1;
     }
@@ -403,18 +411,18 @@ void decoding(std::vector<int> op)
 int main()
 {
 
-    std::string s = "WYS*WYGWYS*WYSWYSG";
+    // std::string s = "WYS*WYGWYS*WYSWYSG";
 
-/*     std::ifstream file("./LittlePrince.txt");
+    std::ifstream file("./LittlePrince.txt");
     std::stringstream buffer;
     buffer << file.rdbuf();
     std::string s = buffer.str();
     if (!file) {
         std::cerr << "cannot open file" << std::endl;
         return 1;
-    } */
+    }
 
-    std::cout << "Our message is: " << s << std::endl << std::endl;
+    // std::cout << "Our message is: " << s << std::endl << std::endl;
     std::cout << "Running the software compression we get: " << std::endl;
 
     std::vector<int> output_code = encoding(s);

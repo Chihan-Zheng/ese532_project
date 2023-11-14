@@ -2,7 +2,7 @@
 HOST_CXX ?= g++
 RM = rm -f
 
-LZW_SOURCES = LZW_hybrid_hash_AP.cpp
+LZW_SOURCES = LZW_hybrid_hash.cpp
 LZW_OBJECTS =$(LZW_SOURCES:.cpp=.o)
 LZW_EXE = LZW
 
