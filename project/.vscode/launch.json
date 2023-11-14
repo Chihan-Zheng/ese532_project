@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/chihan/ese532/hw/ese532_project/project/Server/LZW_HW_tutorial",
-      "program": "/home/chihan/ese532/hw/ese532_project/project/Server/LZW_HW_tutorial/build/Debug/outDebug",
+      "cwd": "/home1/c/chihan/chihan/ese532_project/project/Server/LZW_HW_tutorial",
+      "program": "/home1/c/chihan/chihan/ese532_project/project/Server/LZW_HW_tutorial/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

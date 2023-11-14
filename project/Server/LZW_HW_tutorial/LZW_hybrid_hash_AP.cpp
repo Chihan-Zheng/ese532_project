@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <fstream>
 #include <sstream>
-#include "ap_int.h"
+#include <ap_int.h>
 //****************************************************************************************************************
 #define HASH_BIT_NUM 15
 #define CAPACITY (1 << HASH_BIT_NUM) // hash output is 15 bits, and we have 1 entry per bucket, so capacity is 2^15
