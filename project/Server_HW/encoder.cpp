@@ -14,6 +14,7 @@
 #include <sys/mman.h>
 #include "stopwatch.h"
 #include "Constants.h"
+#include <CL/cl2.hpp>
 
 #define NUM_PACKETS 8
 #define pipe_depth 4
@@ -41,6 +42,12 @@ void handle_input(int argc, char* argv[], int* blocksize) {
 }
 
 int main(int argc, char* argv[]) {
+	if (argc < 2)
+	{
+		std::cout << "No compressed file defined\n";
+		return 1;
+	}
+
 	stopwatch ethernet_timer;
 	unsigned char* input[NUM_PACKETS];
 	int writer = 0;
@@ -49,15 +56,52 @@ int main(int argc, char* argv[]) {
 	int count = 0;
 	ESE532_Server server;
 
-	//--------------------------------------encode define--------------------------------------------
+	//-----------------------------------------Host Start------------------------------------------------
+	EventTimer timer2;
+    std::cout << "Running Encoding Task" << std::endl;
+    // ------------------------------------------------------------------------------------
+    // Step 1: Initialize the OpenCL environment
+    // ------------------------------------------------------------------------------------
+    timer2.add("OpenCL Initialization");
+    cl_int err;
+    std::string binaryFile = argv[1];
+    unsigned fileBufSize;
+    std::vector<cl::Device> devices = get_xilinx_devices();
+    devices.resize(1);
+    cl::Device device = devices[0];
+    cl::Context context(device, NULL, NULL, NULL, &err);
+    char *fileBuf = read_binary_file(binaryFile, fileBufSize);
+    cl::Program::Binaries bins{{fileBuf, fileBufSize}};
+    cl::Program program(context, devices, bins, NULL, &err);
+    cl::CommandQueue q(context, device, CL_QUEUE_PROFILING_ENABLE | CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE, &err);
+    cl::Kernel krnl_LZW(program, "LZW_hybrid_hash_HW", &err);
+
+	 // ------------------------------------------------------------------------------------
+    // Step 2: Create buffers and initialize test values
+    // ------------------------------------------------------------------------------------
 	char *ArrayOfChunks[MAX_BOUNDARY];
     std::unordered_map<uint64_t, uint32_t> chunkTable;
     uint32_t deDup_header;     //output of deDup function
-    char LZW_inChunk[MAX_CHUNK];
     uint16_t LZW_output_length;        
     uint16_t LZW_send_data[Max_Chunk_Size + 2];     //Max_Chunk_Size + 32bits header -> unit is 16bits
 
-    FILE *File = fopen("./compressed_data.bin", "wb");
+    timer2.add("Allocate contiguous OpenCL buffers");
+
+    cl::Buffer Input_buf;
+    cl::Buffer Output_buf;
+
+	size_t Input_buf_size = Max_Chunk_Size;
+	size_t Output_buf_size = (Max_Chunk_Size + 2) * sizeof(uint16_t);
+ 
+	for (int i = 0; i < MAX_BOUNDARY; i++){
+		Input_buf[i] = cl::Buffer(context, CL_MEM_READ_ONLY, Input_buf_size, NULL, &err);
+		Output_buf[i] = cl::Buffer(context, CL_MEM_WRITE_ONLY, Output_buf_size, NULL, &err);
+	}
+
+	LZW_send_data = (uint16_t*)q.enqueueMapBuffer(Output_buf, CL_TRUE, CL_MAP_READ, 0, Output_buf_size);
+
+	//--------------------------------------encode define--------------------------------------------
+    FILE *File = fopen(argv[1], "wb");
     if (File == NULL)
         Exit_with_error("fopen for send_data failed");
 
@@ -145,6 +189,12 @@ int main(int argc, char* argv[]) {
 		/* memcpy(&file[offset], &buffer[HEADER], length); */
 		offset += length;
 		writer++;
+
+		// ------------------------------------------------------------------------------------
+		// Step 3: Start encoding
+		// ------------------------------------------------------------------------------------
+		//--- define flags for kernel
+		timer2.add("Running the encoding");
 		//-------------------------------------start encoding-----------------------------------------------
 		if (count == 2) {
 			//--- 2 packet:
@@ -159,6 +209,18 @@ int main(int argc, char* argv[]) {
 			int boundary_num = cdc(&buffer[2], length, ArrayOfChunks, chunk_size);   //boundary_num should use char?
 			cdc_timer.stop();
 		}
+		//--------------map buffers----------
+		for (int i = 0; i < boundary_num; i++){
+			ArrayOfChunks[i] = (unsigned char*)q.enqueueMapBuffer(Input_buf[i], CL_TRUE, CL_MAP_WRITE, 0, Input_buf_size);
+ 			LZW_send_data = (uint16_t*)q.enqueueMapBuffer(Output_buf[i], CL_TRUE, CL_MAP_READ, 0, Output_buf_size);
+		}
+		//-----------------------------------------
+		std::vector<cl::Event> write_done(boundary_num);
+		std::vector<cl::Event> write_waitlist;
+		std::vector<std::vector<cl::Event>> execute_waitlist(boundary_num);
+		std::vector<cl::Event> execute_done(boundary_num);
+		std::vector<cl::Event> read_waitlist;
+		std::vector<cl::Event> read_done(FRAMES);
 
 		std::cout << "-------------------------------Chunks Info-------------------------------------" << std::endl;
 		std::cout << "chunk number: " << boundary_num << std::endl;
@@ -175,9 +237,23 @@ int main(int argc, char* argv[]) {
 				std::cout << "\n" << "LZW_header - boundary: " << i << std::endl;
 				uint16_t in_length = chunk_size[i];
 				LZW_timer.start();
-				LZW_output_length = LZW_hybrid_hash_HW(ArrayOfChunks[i], in_length, LZW_send_data);
+				// LZW_output_length = LZW_hybrid_hash_HW(ArrayOfChunks[i], in_length, LZW_send_data);
+				//--------------------------------kernel computation --------------------------------
+				krnl_LZW.setArg(0, Input_buf[i]);
+				krnl_LZW.setArg(1, Output_buf[i]);
+
+				q.enqueueMigrateMemObjects({Input_buf[i]}, 0 /* 0 means from host*/, &write_waitlist, &write_done[i]);
+				write_waitlist.push_back(write_done[i]);
+			
+				execute_waitlist[i].push_back(write_done[i]);
+				q.enqueueTask(krnl_LZW, &execute_waitlist[i], &execute_done[i]);
+
+				read_waitlist.push_back(execute_done[i]);
+				q.enqueueMigrateMemObjects({Output_buf[i]}, CL_MIGRATE_MEM_OBJECT_HOST, &read_waitlist, &read_done[i]);
+				read_waitlist.push_back(read_done[i]);
+				//--------------------------------kernel computation --------------------------------
 				LZW_timer.stop();
-				std::cout << "LZW_output_length[" << i << "]: " << LZW_output_length << "\n" << std::endl;
+				// std::cout << "LZW_output_length[" << i << "]: " << LZW_output_length << "\n" << std::endl;
 				if (fwrite(LZW_send_data, 1, LZW_output_length, File) != LZW_output_length)
 					Exit_with_error("fwrite LZW output to compressed_data.bin failed");
 				memset(LZW_send_data, 0, (Max_Chunk_Size + 2) * sizeof(uint16_t));
@@ -185,13 +261,10 @@ int main(int argc, char* argv[]) {
 				LZW_final_bytes += LZW_output_length;
 			}
 		}
-
-
-
 		//---------------------------------------end encoding----------------------------------------------
-
 	}
-	
+	 q.finish();
+
 	//----------------------------------File of codes-------------------------------------------
 	fseek(File, 0, SEEK_END); // seek to end of file
 	int file_size = ftell(File); // get current file pointer
@@ -207,12 +280,23 @@ int main(int argc, char* argv[]) {
 	// int bytes_written = fwrite(&file[0], 1, offset, outfd);
 	// printf("write file with %d\n", bytes_written);
 	// fclose(outfd);
-
+	
 	for (int i = 0; i < NUM_PACKETS; i++) {
 		free(input[i]);
 	}
 
 	free(file);
+	// ------------------------------------------------------------------------------------
+    // Step 5: Release Allocated Resources
+    // ------------------------------------------------------------------------------------
+    std::cout << "--------------- Key execution times ---------------"
+    << std::endl;
+    timer2.print();
+
+    for (int i = 0; i < MAX_BOUNDARY; i++){
+        q.enqueueUnmapMemObject(Input_buf[i], ArrayOfChunks[i]);
+        q.enqueueUnmapMemObject(Output_buf[i], LZW_send_data);
+    }
 	
 	 //---------------------------------print functions execution time---------------------------------------------------------
     std::cout << "------------------------------Functions Execution Time-------------------------------" << std::endl;
