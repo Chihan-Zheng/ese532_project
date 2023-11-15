@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
   <source>
-    <originFiles name="LZW_hybrid_hash_AP_HW.cpp" path="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/LZW_HW_tutorial/LZW_hybrid_hash_AP_HW.cpp"/>
     <originFiles name="LittlePrince.txt" path="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/LZW_HW_tutorial/LittlePrince.txt"/>
+    <originFiles name="LZW_hybrid_hash_AP_HW.cpp" path="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/LZW_HW_tutorial/LZW_hybrid_hash_AP_HW.cpp"/>
   </source>
   <testbench>
     <originFiles name="LZW_hybrid_hash_AP_HW.cpp" path="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/LZW_HW_tutorial/LZW_hybrid_hash_AP_HW.cpp"/>

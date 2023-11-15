@@ -60,8 +60,6 @@
                                     <listOptionValue builtIn="false" value="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/include/etc"/>
                                     									
                                     <listOptionValue builtIn="false" value="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/include"/>
-                                    									
-                                    <listOptionValue builtIn="false" value="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/LZW_HW_tutorial"/>
                                     								
                                 </option>
                                 								
@@ -96,8 +94,6 @@
                                     <listOptionValue builtIn="false" value="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/include/etc"/>
                                     									
                                     <listOptionValue builtIn="false" value="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/include"/>
-                                    									
-                                    <listOptionValue builtIn="false" value="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/LZW_HW_tutorial"/>
                                     								
                                 </option>
                                 								
@@ -163,7 +159,7 @@
                     					
                     <sourceEntries>
                         						
-                        <entry excluding=".apc|.settings|solution1|source/LZW_hybrid_hash_AP_HW.cpp|*.c*|*.C*" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+                        <entry excluding=".apc|.settings|solution1|*.c*|*.C*" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
                         					
                     </sourceEntries>
                     				
@@ -232,8 +228,6 @@
                                     <listOptionValue builtIn="false" value="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/include/etc"/>
                                     									
                                     <listOptionValue builtIn="false" value="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/include"/>
-                                    									
-                                    <listOptionValue builtIn="false" value="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/LZW_HW_tutorial"/>
                                     								
                                 </option>
                                 								
@@ -258,8 +252,6 @@
                                     <listOptionValue builtIn="false" value="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/include/etc"/>
                                     									
                                     <listOptionValue builtIn="false" value="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/include"/>
-                                    									
-                                    <listOptionValue builtIn="false" value="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/LZW_HW_tutorial"/>
                                     								
                                 </option>
                                 								
@@ -315,7 +307,7 @@
                     					
                     <sourceEntries>
                         						
-                        <entry excluding=".apc|.settings|solution1|source/LZW_hybrid_hash_AP_HW.cpp|*.c*|*.C*" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+                        <entry excluding=".apc|.settings|solution1|*.c*|*.C*" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
                         					
                     </sourceEntries>
                     				

@@ -1,0 +1,111 @@
+INFO: Applying HLS Y2K22 patch v1.2 for IP revision
+INFO: [HLS 200-10] Running '/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/bin/unwrapped/lnx64.o/vitis_hls'
+INFO: [HLS 200-10] For user 'chihan' on host 'klick.seas.upenn.edu' (Linux_x86_64 version 5.14.21-150500.55.36-default) on Tue Nov 14 21:02:30 EST 2023
+INFO: [HLS 200-10] On os "openSUSE Leap 15.5"
+INFO: [HLS 200-10] In directory '/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server'
+Sourcing Tcl script '/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/LZW_HW/solution1/csim.tcl'
+INFO: [HLS 200-1510] Running: open_project LZW_HW 
+INFO: [HLS 200-10] Opening project '/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/LZW_HW'.
+INFO: [HLS 200-1510] Running: set_top LZW_hybrid_hash_HW 
+INFO: [HLS 200-1510] Running: add_files Chunk.cpp 
+INFO: [HLS 200-10] Adding design file 'Chunk.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files Constants.h 
+INFO: [HLS 200-10] Adding design file 'Constants.h' to the project
+INFO: [HLS 200-1510] Running: add_files Dedup.cpp 
+INFO: [HLS 200-10] Adding design file 'Dedup.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files LZW_hybrid_hash_HW.cpp 
+INFO: [HLS 200-10] Adding design file 'LZW_hybrid_hash_HW.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files LittlePrince.txt 
+INFO: [HLS 200-10] Adding design file 'LittlePrince.txt' to the project
+INFO: [HLS 200-1510] Running: add_files common/Utilities.cpp 
+INFO: [HLS 200-10] Adding design file 'common/Utilities.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files common/Utilities.h 
+INFO: [HLS 200-10] Adding design file 'common/Utilities.h' to the project
+INFO: [HLS 200-1510] Running: add_files stopwatch.h 
+INFO: [HLS 200-10] Adding design file 'stopwatch.h' to the project
+INFO: [HLS 200-1510] Running: add_files -tb baseline.cpp 
+INFO: [HLS 200-10] Adding test bench file 'baseline.cpp' to the project
+INFO: [HLS 200-1510] Running: open_solution solution1 -flow_target vitis 
+INFO: [HLS 200-10] Opening solution '/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/LZW_HW/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 6.667ns.
+INFO: [HLS 200-10] Setting target device to 'xczu3eg-sbva484-1-i'
+INFO: [HLS 200-1505] Using flow_target 'vitis'
+Resolution: For help on HLS 200-1505 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-1505.html
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_latency=64
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_alignment_byte_size=64
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_max_widen_bitwidth=512
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_offset=slave
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_rtl -register_reset_num=3
+INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-i 
+INFO: [HLS 200-1510] Running: create_clock -period 150MHz -name default 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 6.667ns.
+INFO: [HLS 200-1510] Running: csim_design -quiet 
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+   Compiling ../../../../LZW_hybrid_hash_HW.cpp in debug mode
+   Generating csim.exe
+---------------------------------Boundary Index--------------------------------------
+The index 1072 is a boundary
+The index 2647 is a boundary
+The index 3916 is a boundary
+The index 5491 is a boundary
+The index 6760 is a boundary
+The index 8335 is a boundary
+The index 9604 is a boundary
+The index 11179 is a boundary
+The index 12448 is a boundary
+The index 14023 is a boundary
+The index 14238 is a boundary
+-------------------------------Chunks Info-------------------------------------
+chunk number: 11
+
+LZW_header - boundary: 0
+
+assoc mem entry count: 2
+LZW_output_length[0]: 962
+
+
+LZW_header - boundary: 1
+
+assoc mem entry count: 12
+LZW_output_length[1]: 1326
+
+
+LZW_header - boundary: 2
+
+assoc mem entry count: 5
+LZW_output_length[2]: 1098
+
+deDup_header - boundary: 3
+deDup_header - boundary: 4
+deDup_header - boundary: 5
+deDup_header - boundary: 6
+deDup_header - boundary: 7
+deDup_header - boundary: 8
+deDup_header - boundary: 9
+
+LZW_header - boundary: 10
+
+assoc mem entry count: 0
+LZW_output_length[10]: 271
+
+------------------------------Function Execution Time-------------------------------
+Total latency of CDC is: 29.1991 ms.
+Total latency of SHA is: 0.021769 ms.
+Total latency of deDup is: 0.043835 ms.
+Total latency of LZW is: 54.1339 ms.
+Total time taken from CDC to get output file is: 84.4819 ms.
+------------------------------------------------------------------------------------
+Average latency of SHA is: 0.001979 ms.
+Average latency of deDup is: 0.003985 ms.
+Average latency of LZW is: 13.5335 ms.
+-----------------------------------Compress Ratio-----------------------------------
+input file with 14247B
+encode file with 3685B
+Compressed ratio: 25.87%
+Compression Contribution of deDup: 95.43%
+Compression Contribution of LZW: 4.57%
+-----------------------------------------------------------------------------------
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 0.84 seconds. CPU system time: 0.13 seconds. Elapsed time: 1.46 seconds; current allocated memory: 208.292 MB.
