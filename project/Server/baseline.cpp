@@ -42,7 +42,7 @@ int main()
 
     total_timer.start();
     cdc_timer.start();
-    int boundary_num = cdc("LittlePrince.txt", ArrayOfChunks, chunk_size);   //boundary_num should use char?
+    int boundary_num = cdc("test.txt", ArrayOfChunks, chunk_size);   //boundary_num should use char?
     cdc_timer.stop();
     // int arr_offset = 0;
     std::cout << "-------------------------------Chunks Info-------------------------------------" << std::endl;
