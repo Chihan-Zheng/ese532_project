@@ -217,7 +217,7 @@ void LZW_hybrid_hash_HW(char *in, uint16_t in_length, uint16_t *send_data, uint1
             if(collision)
             {
                 std::cout << "ERROR: FAILED TO INSERT! NO MORE ROOM IN ASSOC MEM!" << std::endl;
-                return 1;
+                // return 1;
             }
 
             //-------------------------------------insert code to store_array------------------------------------------

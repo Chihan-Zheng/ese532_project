@@ -34,7 +34,7 @@ typedef struct
 } assoc_mem;
 
 //****************************************************************************************************************
-uint16_t LZW_hybrid_hash_HW(char in[Max_Chunk_Size], uint16_t in_length, uint16_t send_data[Max_Chunk_Size + 2])
+void LZW_hybrid_hash_HW(char *in, uint16_t in_length, uint16_t *send_data, uint16_t *output_length)
 {
     // create hash table and assoc mem
     ap_uint<BUCKET_LEN> hash_table[CAPACITY][BUCKETS_NUM];
@@ -217,7 +217,7 @@ uint16_t LZW_hybrid_hash_HW(char in[Max_Chunk_Size], uint16_t in_length, uint16_
             if(collision)
             {
                 std::cout << "ERROR: FAILED TO INSERT! NO MORE ROOM IN ASSOC MEM!" << std::endl;
-                return 1;
+                // return 1;
             }
 
             //-------------------------------------insert code to store_array------------------------------------------
@@ -289,5 +289,6 @@ uint16_t LZW_hybrid_hash_HW(char in[Max_Chunk_Size], uint16_t in_length, uint16_
     //-----------------------------------------------------------------------------
 
     std::cout << std::endl << "assoc mem entry count: " << my_assoc_mem.fill << std::endl;
-    return (compressed_length + 4);
+    *output_length = compressed_length + 4;
+    // return (compressed_length + 4);
 }

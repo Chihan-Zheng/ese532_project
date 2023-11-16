@@ -27,7 +27,7 @@ void handle_input(int argc, char* argv[], int* blocksize) {
 }
 
 int main(int argc, char* argv[]) {
-	if (argc < 2)
+	if (argc < 3)
 	{
 		std::cout << "No compressed file defined\n";
 		return 1;
@@ -49,7 +49,7 @@ int main(int argc, char* argv[]) {
     // ------------------------------------------------------------------------------------
     timer2.add("OpenCL Initialization");
     cl_int err;
-    std::string binaryFile = argv[1];
+    std::string binaryFile = argv[2];
     unsigned fileBufSize;
     std::vector<cl::Device> devices = get_xilinx_devices();
     devices.resize(1);
@@ -67,13 +67,16 @@ int main(int argc, char* argv[]) {
 	char *ArrayOfChunks[MAX_BOUNDARY];
     std::unordered_map<uint64_t, uint32_t> chunkTable;
     uint32_t deDup_header;     //output of deDup function
-    uint16_t LZW_output_length;        
+	uint16_t *in_length;
+    uint16_t *LZW_output_length;        
     uint16_t *LZW_send_data = (uint16_t *)calloc(Max_Chunk_Size + 2, sizeof(uint16_t));     //Max_Chunk_Size + 32bits header -> unit is 16bits
 
     timer2.add("Allocate contiguous OpenCL buffers");
 
     cl::Buffer Input_buf[MAX_BOUNDARY];
+	cl::Buffer In_length_buf;
     cl::Buffer Output_buf[MAX_BOUNDARY];
+	cl::Buffer Output_length_buf;
 
 	size_t Input_buf_size = Max_Chunk_Size;
 	size_t Output_buf_size = (Max_Chunk_Size + 2) * sizeof(uint16_t);
@@ -81,6 +84,14 @@ int main(int argc, char* argv[]) {
 	for (int i = 0; i < MAX_BOUNDARY; i++){
 		Input_buf[i] = cl::Buffer(context, CL_MEM_READ_ONLY, Input_buf_size, NULL, &err);
 		Output_buf[i] = cl::Buffer(context, CL_MEM_WRITE_ONLY, Output_buf_size, NULL, &err);
+	}
+	In_length_buf = cl::Buffer(context, CL_MEM_READ_ONLY, sizeof(in_length), NULL, &err);
+	Output_length_buf = cl::Buffer(context, CL_MEM_WRITE_ONLY, sizeof(LZW_output_length), NULL, &err);
+
+	for (int i = 0; i < MAX_BOUNDARY; i++){
+		ArrayOfChunks[i] = (char *)malloc(Max_Chunk_Size);
+		if (ArrayOfChunks[i] == NULL)
+			Exit_with_error("malloc failed at encoder for ArrayOfChunks");
 	}
 
 	//--------------------------------------encode define--------------------------------------------
@@ -200,6 +211,8 @@ int main(int argc, char* argv[]) {
 			ArrayOfChunks[i] = (char*)q.enqueueMapBuffer(Input_buf[i], CL_TRUE, CL_MAP_WRITE, 0, Input_buf_size);
  			LZW_send_data = (uint16_t*)q.enqueueMapBuffer(Output_buf[i], CL_TRUE, CL_MAP_READ, 0, Output_buf_size);
 		}
+		in_length = (uint16_t*)q.enqueueMapBuffer(In_length_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(uint16_t));
+		LZW_output_length = (uint16_t*)q.enqueueMapBuffer(Output_length_buf, CL_TRUE, CL_MAP_READ, 0, sizeof(uint16_t));
 		//-----------------------------------------
 		std::vector<cl::Event> write_done(boundary_num);
 		std::vector<cl::Event> write_waitlist;
@@ -221,30 +234,33 @@ int main(int argc, char* argv[]) {
 				deDup_final_bytes += sizeof(deDup_header);
 			}else{
 				std::cout << "\n" << "LZW_header - boundary: " << i << std::endl;
-				uint16_t in_length = chunk_size[i];
+				*in_length = chunk_size[i];
 				LZW_timer.start();
 				// LZW_output_length = LZW_hybrid_hash_HW(ArrayOfChunks[i], in_length, LZW_send_data);
 				//--------------------------------kernel computation --------------------------------
 				krnl_LZW.setArg(0, Input_buf[i]);
-				krnl_LZW.setArg(1, Output_buf[i]);
+				krnl_LZW.setArg(1, In_length_buf);
+				krnl_LZW.setArg(2, Output_buf[i]);
+				krnl_LZW.setArg(3, Output_length_buf);
 
-				q.enqueueMigrateMemObjects({Input_buf[i]}, 0 /* 0 means from host*/, &write_waitlist, &write_done[i]);
+				q.enqueueMigrateMemObjects({Input_buf[i], In_length_buf}, 0 /* 0 means from host*/, &write_waitlist, &write_done[i]);
 				write_waitlist.push_back(write_done[i]);
+				
 			
 				execute_waitlist[i].push_back(write_done[i]);
 				q.enqueueTask(krnl_LZW, &execute_waitlist[i], &execute_done[i]);
 
 				read_waitlist.push_back(execute_done[i]);
-				q.enqueueMigrateMemObjects({Output_buf[i]}, CL_MIGRATE_MEM_OBJECT_HOST, &read_waitlist, &read_done[i]);
+				q.enqueueMigrateMemObjects({Output_buf[i], Output_length_buf}, CL_MIGRATE_MEM_OBJECT_HOST, &read_waitlist, &read_done[i]);
 				read_waitlist.push_back(read_done[i]);
 				//--------------------------------kernel computation --------------------------------
 				LZW_timer.stop();
 				// std::cout << "LZW_output_length[" << i << "]: " << LZW_output_length << "\n" << std::endl;
-				if (fwrite(LZW_send_data, 1, LZW_output_length, File) != LZW_output_length)
+				if (fwrite(LZW_send_data, 1, *LZW_output_length, File) != *LZW_output_length)
 					Exit_with_error("fwrite LZW output to compressed_data.bin failed");
 				memset(LZW_send_data, 0, (Max_Chunk_Size + 2) * sizeof(uint16_t));
-				LZW_total_input_bytes += in_length;
-				LZW_final_bytes += LZW_output_length;
+				LZW_total_input_bytes += *in_length;
+				LZW_final_bytes += *LZW_output_length;
 			}
 		}
 		//---------------------------------------end encoding----------------------------------------------
@@ -272,6 +288,10 @@ int main(int argc, char* argv[]) {
 	}
 
 	free(file);
+	for (int i = 0; i < MAX_BOUNDARY; i++){
+		free(ArrayOfChunks[i]);
+	}
+	free(LZW_send_data);
 	// ------------------------------------------------------------------------------------
     // Step 5: Release Allocated Resources
     // ------------------------------------------------------------------------------------
