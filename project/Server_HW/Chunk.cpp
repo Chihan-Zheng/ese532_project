@@ -89,7 +89,7 @@ int cdc( unsigned char* buff, int buff_size,char** chunk, uint16_t *chunk_size)
 	
 	int boundary_num = cdc_window(buff,  buff_size, chunk, chunk_size);
 
-    free(buff);
+    // free(buff);
     return boundary_num;
 }
 void test_print_chunk(char** chunk, int boundary_num){

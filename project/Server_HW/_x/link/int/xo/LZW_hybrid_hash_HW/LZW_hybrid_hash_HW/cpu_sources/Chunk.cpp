@@ -64,29 +64,30 @@ int cdc_window(unsigned char *buff, unsigned int buff_size, char** chunk, uint16
 
 }
 //read the input file and call the rolling hash function.
-int cdc( const char* file, char** chunk, uint16_t *chunk_size)
+// int cdc( const char* file, char** chunk, uint16_t *chunk_size)
+int cdc( unsigned char* buff, int buff_size,char** chunk, uint16_t *chunk_size)
 {
-	FILE* fp = fopen(file,"r" );
-	if(fp == NULL ){
-		perror("fopen error");
-		return 0;
-	}
+	// FILE* fp = fopen(file,"r" );
+	// if(fp == NULL ){
+	// 	perror("fopen error");
+	// 	return 0;
+	// }
 
-	fseek(fp, 0, SEEK_END); // seek to end of file
-	int file_size = ftell(fp); // get current file pointer
-	fseek(fp, 0, SEEK_SET); // seek back to beginning of file
+	// fseek(fp, 0, SEEK_END); // seek to end of file
+	// int file_size = ftell(fp); // get current file pointer
+	// fseek(fp, 0, SEEK_SET); // seek back to beginning of file
 
-	unsigned char* buff = (unsigned char *)malloc((sizeof(unsigned char) * file_size ));	
-	if(buff == NULL)
-	{
-		perror("not enough space");
-		fclose(fp);
-		return 0;
-	}
+	// unsigned char* buff = (unsigned char *)malloc((sizeof(unsigned char) * file_size ));	
+	// if(buff == NULL)
+	// {
+	// 	perror("not enough space");
+	// 	fclose(fp);
+	// 	return 0;
+	// }
 
-	int bytes_read = fread(&buff[0],sizeof(unsigned char),file_size,fp);
+	// int bytes_read = fread(&buff[0],sizeof(unsigned char),file_size,fp);
 	
-	int boundary_num = cdc_window(buff, file_size, chunk, chunk_size);
+	int boundary_num = cdc_window(buff,  buff_size, chunk, chunk_size);
 
     free(buff);
     return boundary_num;

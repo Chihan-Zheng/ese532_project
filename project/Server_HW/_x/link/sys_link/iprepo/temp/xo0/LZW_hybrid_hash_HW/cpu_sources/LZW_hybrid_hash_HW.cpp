@@ -34,8 +34,9 @@ typedef struct
 } assoc_mem;
 
 //****************************************************************************************************************
-void LZW_hybrid_hash_HW(char *in, uint16_t in_length, uint16_t *send_data, uint16_t *output_length)
+void LZW_hybrid_hash_HW(char *in, uint16_t *input_length, uint16_t *send_data, uint16_t *output_length)
 {
+    uint16_t in_length = *input_length;
     // create hash table and assoc mem
     ap_uint<BUCKET_LEN> hash_table[CAPACITY][BUCKETS_NUM];
     assoc_mem my_assoc_mem;
