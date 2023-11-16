@@ -62,9 +62,10 @@ int main()
         }else{
             std::cout << "\n" << "LZW_header - boundary: " << i << std::endl;
             uint16_t in_length = chunk_size[i];
+            uint16_t LZW_output_length = 0;
             
             LZW_timer.start();
-            LZW_output_length = LZW_hybrid_hash_HW(ArrayOfChunks[i], in_length, LZW_send_data);
+            LZW_hybrid_hash_HW(ArrayOfChunks[i], &in_length, LZW_send_data, &LZW_output_length);
             LZW_timer.stop();
             std::cout << "LZW_output_length[" << i << "]: " << LZW_output_length << "\n" <<std::endl;
             if (fwrite(LZW_send_data, 1, LZW_output_length, File) != LZW_output_length)
