@@ -31,7 +31,7 @@ uint32_t deDup(char* inputChunk, uint16_t chunk_size,
                std::unordered_map<uint64_t, uint32_t>& chunkTable, stopwatch& stopwatch);
 unsigned int my_hash(ap_uint<KEY_LEN> key);
 uint16_t LZW_hybrid_hash_HW(char in[MAX_CHUNK], uint16_t in_length, 
-                        uint16_t send_data[Max_Chunk_Size + 2]);
+                        uint16_t *send_data);
 
 #endif
 

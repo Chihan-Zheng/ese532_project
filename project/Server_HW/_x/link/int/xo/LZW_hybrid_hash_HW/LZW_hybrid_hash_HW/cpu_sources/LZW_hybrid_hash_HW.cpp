@@ -34,7 +34,7 @@ typedef struct
 } assoc_mem;
 
 //****************************************************************************************************************
-uint16_t LZW_hybrid_hash_HW(char in[MAX_CHUNK], uint16_t in_length, uint16_t send_data[Max_Chunk_Size + 2])
+uint16_t LZW_hybrid_hash_HW(char in[Max_Chunk_Size], uint16_t in_length, uint16_t send_data[Max_Chunk_Size + 2])
 {
     // create hash table and assoc mem
     ap_uint<BUCKET_LEN> hash_table[CAPACITY][BUCKETS_NUM];
@@ -222,12 +222,12 @@ uint16_t LZW_hybrid_hash_HW(char in[MAX_CHUNK], uint16_t in_length, uint16_t sen
 
             //-------------------------------------insert code to store_array------------------------------------------
             if (j == 0){   //the first code
-                shift = 3;
+                shift = shift_offset;
                 store_array[0] = prefix_code.to_uint() << shift;
                 j++;
             }else{       
                 if (shift < CODE_LEN){      //check whether empty space of store_array[j-1] is greater than 13
-                    shift = shift + 3;
+                    shift = shift + shift_offset;
                     store_array[j] = prefix_code.to_uint() << shift;     //xxxxx00 yyyyyyyy -> xxxxx|yy yyyyyy00 (shift here is 2)
                     shift = 16 - shift;      
                     store_array[j-1] = store_array[j-1] | (prefix_code.to_uint() >> shift);
@@ -235,7 +235,7 @@ uint16_t LZW_hybrid_hash_HW(char in[MAX_CHUNK], uint16_t in_length, uint16_t sen
                     store_array[j-1] = swap_endian_16(store_array[j-1]);
                     j++;
                 }else{
-                    char vacant_bit_number = shift - 13;      //the rest bits number after code is written to store_array[j-1]
+                    char vacant_bit_number = shift - CODE_LEN;      //the rest bits number after code is written to store_array[j-1]
                     store_array[j-1] = store_array[j-1] | (prefix_code.to_uint() << vacant_bit_number);
                     shift = vacant_bit_number;     
                     //do not j++ here 
@@ -254,12 +254,12 @@ uint16_t LZW_hybrid_hash_HW(char in[MAX_CHUNK], uint16_t in_length, uint16_t sen
 
     //deal with the last part of chunk or if there is only one character in chunk
     if (in_length == 1) {      //if chunk length is 1: a single character
-        shift = shift + 3;
+        shift = shift + shift_offset;
         store_array[j] = prefix_code.to_uint() << shift;
         store_array[j] = swap_endian_16(store_array[j]);
     }else{ 
-        if (shift < 13){ 
-            shift = shift + 3;
+        if (shift < CODE_LEN){ 
+            shift = shift + shift_offset;
             store_array[j] = prefix_code.to_uint() << shift;
             store_array[j] = swap_endian_16(store_array[j]);
             shift = 16 - shift;
@@ -267,7 +267,7 @@ uint16_t LZW_hybrid_hash_HW(char in[MAX_CHUNK], uint16_t in_length, uint16_t sen
             store_array[j-1] = swap_endian_16(store_array[j-1]);
             shift = 16 - shift;
         }else{
-            char vacant_bit_number = shift - 13;
+            char vacant_bit_number = shift - CODE_LEN;
             store_array[j-1] = store_array[j-1] | (prefix_code.to_uint() << vacant_bit_number);
             store_array[j-1] = swap_endian_16(store_array[j-1]);
             j = j - 1;

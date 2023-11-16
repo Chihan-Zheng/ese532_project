@@ -1,20 +1,5 @@
 #include "encoder.h"
-
-#include <stdio.h>
-#include <stdint.h>
-#include <stdlib.h>
-#include <string.h>
-#include <iostream>
-#include "server.h"
-#include <unistd.h>
-#include <fcntl.h>
-#include <pthread.h>
-#include <errno.h>
-#include <fcntl.h>
-#include <sys/mman.h>
-#include "stopwatch.h"
 #include "Constants.h"
-#include <CL/cl2.hpp>
 
 #define NUM_PACKETS 8
 #define pipe_depth 4
@@ -83,12 +68,12 @@ int main(int argc, char* argv[]) {
     std::unordered_map<uint64_t, uint32_t> chunkTable;
     uint32_t deDup_header;     //output of deDup function
     uint16_t LZW_output_length;        
-    uint16_t LZW_send_data[Max_Chunk_Size + 2];     //Max_Chunk_Size + 32bits header -> unit is 16bits
+    uint16_t *LZW_send_data = (uint16_t *)calloc(Max_Chunk_Size + 2, sizeof(uint16_t));     //Max_Chunk_Size + 32bits header -> unit is 16bits
 
     timer2.add("Allocate contiguous OpenCL buffers");
 
-    cl::Buffer Input_buf;
-    cl::Buffer Output_buf;
+    cl::Buffer Input_buf[MAX_BOUNDARY];
+    cl::Buffer Output_buf[MAX_BOUNDARY];
 
 	size_t Input_buf_size = Max_Chunk_Size;
 	size_t Output_buf_size = (Max_Chunk_Size + 2) * sizeof(uint16_t);
@@ -97,8 +82,6 @@ int main(int argc, char* argv[]) {
 		Input_buf[i] = cl::Buffer(context, CL_MEM_READ_ONLY, Input_buf_size, NULL, &err);
 		Output_buf[i] = cl::Buffer(context, CL_MEM_WRITE_ONLY, Output_buf_size, NULL, &err);
 	}
-
-	LZW_send_data = (uint16_t*)q.enqueueMapBuffer(Output_buf, CL_TRUE, CL_MAP_READ, 0, Output_buf_size);
 
 	//--------------------------------------encode define--------------------------------------------
     FILE *File = fopen(argv[1], "wb");
@@ -186,8 +169,8 @@ int main(int argc, char* argv[]) {
 		length = buffer[0] | (buffer[1] << 8);
 		length &= ~DONE_BIT_H;
 		//printf("length: %d offset %d\n",length,offset);
-		/* memcpy(&file[offset], &buffer[HEADER], length); */
-		offset += length;
+		/* memcpy(&file[offset], &buffer[HEADER], length);
+		offset += length; */
 		writer++;
 
 		// ------------------------------------------------------------------------------------
@@ -196,22 +179,25 @@ int main(int argc, char* argv[]) {
 		//--- define flags for kernel
 		timer2.add("Running the encoding");
 		//-------------------------------------start encoding-----------------------------------------------
+		int boundary_num = 0;
 		if (count == 2) {
 			//--- 2 packet:
 			memcpy(&file[offset], &buffer[HEADER], length);
-			int bytes_written = fwrite(&file[0], 1, offset, buffer);
+			offset += length;
+			// if (fread(buffer, 1, offset, &file[0]) != offset)
+ 			// 	Exit_with_error("fread for first two packets failed");
     		cdc_timer.start();
-    		int boundary_num = cdc(buffer, offset, ArrayOfChunks, chunk_size);   //boundary_num should use char?
+    		boundary_num = cdc(file, offset, ArrayOfChunks, chunk_size);   //boundary_num should use char?
    			cdc_timer.stop();
 		}else{
 			//--- 1 packet:
 			cdc_timer.start();
-			int boundary_num = cdc(&buffer[2], length, ArrayOfChunks, chunk_size);   //boundary_num should use char?
+			boundary_num = cdc(&buffer[2], length, ArrayOfChunks, chunk_size);   //boundary_num should use char?
 			cdc_timer.stop();
 		}
 		//--------------map buffers----------
 		for (int i = 0; i < boundary_num; i++){
-			ArrayOfChunks[i] = (unsigned char*)q.enqueueMapBuffer(Input_buf[i], CL_TRUE, CL_MAP_WRITE, 0, Input_buf_size);
+			ArrayOfChunks[i] = (char*)q.enqueueMapBuffer(Input_buf[i], CL_TRUE, CL_MAP_WRITE, 0, Input_buf_size);
  			LZW_send_data = (uint16_t*)q.enqueueMapBuffer(Output_buf[i], CL_TRUE, CL_MAP_READ, 0, Output_buf_size);
 		}
 		//-----------------------------------------
@@ -220,7 +206,7 @@ int main(int argc, char* argv[]) {
 		std::vector<std::vector<cl::Event>> execute_waitlist(boundary_num);
 		std::vector<cl::Event> execute_done(boundary_num);
 		std::vector<cl::Event> read_waitlist;
-		std::vector<cl::Event> read_done(FRAMES);
+		std::vector<cl::Event> read_done(boundary_num);
 
 		std::cout << "-------------------------------Chunks Info-------------------------------------" << std::endl;
 		std::cout << "chunk number: " << boundary_num << std::endl;
