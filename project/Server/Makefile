@@ -1,5 +1,5 @@
-# HOST_CXX ?= aarch64-linux-gnu-g++
-HOST_CXX ?= g++
+HOST_CXX ?= aarch64-linux-gnu-g++
+# HOST_CXX ?= g++
 RM = rm -f
 
 BASELINE_SOURCES = baseline.cpp Chunk.cpp Dedup.cpp LZW.cpp ./common/Utilities.cpp
