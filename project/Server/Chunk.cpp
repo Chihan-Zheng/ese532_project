@@ -101,8 +101,9 @@ void test_print_chunk(char** chunk, int boundary_num){
 //main function for testing. Shouldn't be included in the final interface.
 /* int main()
 {
+	uint16_t chunk_size;
     char *ArrayOfChunks[MAX_BOUNDARY];
-	int boundary_num = cdc("LittlePrince.txt", ArrayOfChunks);
+	int boundary_num = cdc("test.txt", ArrayOfChunks, &chunk_size);
 	test_print_chunk(ArrayOfChunks, boundary_num);
 	return 0;
 } */

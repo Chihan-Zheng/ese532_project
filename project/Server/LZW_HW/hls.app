@@ -6,6 +6,7 @@
     </Simulation>
     <files xmlns="">
         <file name="../../baseline.cpp" sc="0" tb="1" cflags=" -Wno-unknown-pragmas" csimflags=" -Wno-unknown-pragmas" blackbox="false"/>
+        <file name="test.txt" sc="0" tb="false" cflags="" csimflags="" blackbox="false"/>
         <file name="stopwatch.h" sc="0" tb="false" cflags="" csimflags="" blackbox="false"/>
         <file name="common/Utilities.h" sc="0" tb="false" cflags="" csimflags="" blackbox="false"/>
         <file name="common/Utilities.cpp" sc="0" tb="false" cflags="" csimflags="" blackbox="false"/>
