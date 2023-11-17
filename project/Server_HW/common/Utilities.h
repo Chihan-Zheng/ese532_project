@@ -26,6 +26,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+using namespace std;
 #include <stdint.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -36,13 +37,16 @@
 #include <fstream>
 #include <sstream>
 #include <ap_int.h>
-#include "EventTimer.h"
-#include <CL/cl2.hpp>
+// #include "EventTimer.h"
+// #include <CL/cl2.hpp>
 #include "../server.h"
 #include <pthread.h>
 #include <errno.h>
 #include <sys/mman.h>
 #include "../encoder.h"
+#include <atomic>
+
+
 
 void Exit_with_error(const char *s);
 void send_data(unsigned char *Data, uint16_t Data_size);

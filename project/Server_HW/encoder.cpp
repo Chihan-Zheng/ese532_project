@@ -65,7 +65,7 @@ int main(int argc, char* argv[]) {
     // ------------------------------------------------------------------------------------
 	char *ArrayOfChunks[MAX_BOUNDARY];
 	char *ArrayOfChunks_temp[MAX_BOUNDARY];
-    std::unordered_map<uint64_t, uint32_t> chunkTable;
+    std::unordered_map<string, uint32_t> chunkTable;
     uint32_t deDup_header;     //output of deDup function
 	uint16_t *LZW_input_length;
     uint16_t *LZW_output_length;   

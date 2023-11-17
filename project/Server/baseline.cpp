@@ -4,7 +4,7 @@
 int main()
 {
     char *ArrayOfChunks[MAX_BOUNDARY];
-    std::unordered_map<uint64_t, uint32_t> chunkTable;
+    std::unordered_map<string, uint32_t> chunkTable;
     uint32_t deDup_header;     //output of deDup function
     // uint16_t *send_data_arr_total = (unsigned char *)malloc((sizeof(unsigned char) * file_size));  ///
     char LZW_inChunk[MAX_CHUNK];
