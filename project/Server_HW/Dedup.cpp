@@ -150,13 +150,13 @@ void sha256_final(SHA256_CTX *ctx, BYTE hash[])
 	}
 }
 
-void sha256_hash(SHA256_CTX* ctx, const BYTE data[], BYTE hash[], size_t runLen)
+void sha256_hash(SHA256_CTX* ctx, const BYTE data[], BYTE hash[], size_t runLen, uint16_t data_len)
 {
 	size_t idx;
-	size_t len = strlen((char *)data);
+	// size_t len = strlen((char *)data);
 	sha256_init(ctx);
 	for (idx = 0; idx < runLen; ++idx)
-		sha256_update(ctx, data, len);
+		sha256_update(ctx, data, data_len);
     sha256_final(ctx, hash);
 }
 
@@ -192,7 +192,7 @@ uint32_t deDup(char* inputChunk, uint16_t chunk_size,
     BYTE buf[SHA256_BLOCK_SIZE];
     SHA256_CTX ctx;
         stopwatch.start();
-    sha256_hash(&ctx, uinputChunk, buf, 1);
+    sha256_hash(&ctx, uinputChunk, buf, 1, chunk_size);
     string hash = hexconvert(buf, SHA256_BLOCK_SIZE);
         stopwatch.stop();
         auto it = chunkTable.find(hash);

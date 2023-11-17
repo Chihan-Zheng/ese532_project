@@ -1,5 +1,5 @@
-HOST_CXX ?= aarch64-linux-gnu-g++
-# HOST_CXX ?= g++
+# HOST_CXX ?= aarch64-linux-gnu-g++
+HOST_CXX ?= g++
 VPP ?= ${XILINX_VITIS}/bin/v++
 RM = rm -f
 RMDIR = rm -rf

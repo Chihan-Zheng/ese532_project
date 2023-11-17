@@ -11,6 +11,7 @@
 
 /*************************** HEADER FILES ***************************/
 #include <stddef.h>
+#include "Constants.h"
 
 /****************************** MACROS ******************************/
 #define SHA256_BLOCK_SIZE 32            // SHA256 outputs a 32 byte digest
@@ -30,7 +31,7 @@ typedef struct {
 void sha256_init(SHA256_CTX *ctx);
 void sha256_update(SHA256_CTX *ctx, const BYTE data[], size_t len);
 void sha256_final(SHA256_CTX *ctx, BYTE hash[]);
-void sha256_hash(SHA256_CTX* ctx, const BYTE data[], BYTE hash[], size_t runLen);
+void sha256_hash(SHA256_CTX* ctx, const BYTE data[], BYTE hash[], size_t runLen, uint16_t data_len);
 void sha256_hash_file(SHA256_CTX* ctx, const BYTE data[], BYTE hash[], size_t dataLen);
 
 #endif   // SHA256_H
