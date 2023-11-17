@@ -26,7 +26,7 @@ void handle_input(int argc, char* argv[], int* blocksize) {
 }
 
 int main(int argc, char* argv[]) {
-	if (argc < 3)
+	if (argc < 2)
 	{
 		std::cout << "No compressed file defined\n";
 		return 1;
@@ -48,7 +48,7 @@ int main(int argc, char* argv[]) {
     // ------------------------------------------------------------------------------------
     timer2.add("OpenCL Initialization");
     cl_int err;
-    std::string binaryFile = argv[2];
+    std::string binaryFile = "encoder.xclbin";
     unsigned fileBufSize;
     std::vector<cl::Device> devices = get_xilinx_devices();
     devices.resize(1);
@@ -315,8 +315,8 @@ int main(int argc, char* argv[]) {
 	// printf("after end of encoder\n");
 	// // write file to root and you can use diff tool on board
 	// FILE *outfd = fopen("output_cpu.bin", "wb");
-	FILE *outfd = fopen("test_chunks.txt", "wb");
-	int bytes_written = fwrite(&file[0], 1, offset, outfd);
+	// FILE *outfd = fopen("test_chunks.txt", "wb");
+	// int bytes_written = fwrite(&file[0], 1, offset, outfd);
 	// printf("write file with %d\n", bytes_written);
 	// fclose(outfd);
 	for (int i = 0; i < NUM_PACKETS; i++) {
@@ -343,7 +343,7 @@ int main(int argc, char* argv[]) {
     std::cout << "Total latency of deDup is: " << deDup_timer.latency() << " ms." << std::endl;
     std::cout << "Total latency of LZW is: " << LZW_timer.latency() << " ms.\n" << std::endl;
     std::cout << "Total time taken from CDC to get output file is: " << total_timer.latency() << " ms." << std::endl;
-	float total_latency = (total_timer.latency() + ethernet_timer.latency()) / 1000.0;
+	float total_latency = total_timer.latency() / 1000.0;
 	float overall_throughput = (offset * 8 / 1000000000.0) / total_latency;
 	std::cout << "Overall throughput: " << overall_throughput << " Gb/s." << std::endl;
     std::cout << "------------------------------------------------------------------------------------" << std::endl;
