@@ -218,7 +218,7 @@ int main(int argc, char* argv[]) {
 		timer2.add("Running the encoding");
 		//-------------------------------------start encoding-----------------------------------------------
 		int boundary_num = 0;
-		printf("before cdc\n");
+		// printf("before cdc\n");
 		if (count == 2) {
 			//--- 2 packet:
 			memcpy(&file[offset], &buffer[HEADER], length);
@@ -229,7 +229,7 @@ int main(int argc, char* argv[]) {
     		cdc_timer.start();
     		boundary_num = cdc(file, offset, ArrayOfChunks_temp, chunk_size);   //boundary_num should use char?
    			cdc_timer.stop();
-			printf("reach first cdc\n");
+			// printf("reach first cdc\n");
 			FILE *outfd = fopen("test_chunks.bin", "wb");
 			int bytes_written = fwrite(&file[0], 1, offset, outfd);
 		}else{
@@ -239,12 +239,12 @@ int main(int argc, char* argv[]) {
 			boundary_num = cdc(&buffer[2], length, ArrayOfChunks_temp, chunk_size);   //boundary_num should use char?
 			cdc_timer.stop();
 		}
-		printf("after cdc\n");
+		// printf("after cdc\n");
 
 		std::cout << "-------------------------------Chunks Info-------------------------------------" << std::endl;
 		std::cout << "chunk number: " << boundary_num << std::endl;
 		for (int i = 0; i < boundary_num; i++){
-			printf("for loop i: %d\n", i);
+			// printf("for loop i: %d\n", i);
 			deDup_timer.start();
 			deDup_header = deDup(ArrayOfChunks_temp[i], chunk_size[i], chunkTable, std::ref(SHA_timer));
 			deDup_timer.stop();
@@ -264,7 +264,7 @@ int main(int argc, char* argv[]) {
 				*LZW_input_length = chunk_size[i];
 				LZW_timer.start();
 				// LZW_output_length = LZW_hybrid_hash_HW(ArrayOfChunks[i], in_length, LZW_send_data);
-				printf("before kernel\n");
+				// printf("before kernel\n");
 				//--------------------------------kernel computation --------------------------------
 				krnl_LZW.setArg(0, Input_buf);
 				krnl_LZW.setArg(1, In_length_buf);
@@ -284,9 +284,9 @@ int main(int argc, char* argv[]) {
 				//--------------------------------kernel computation --------------------------------
 				read_done[i].wait();
 				
-				printf("after kernel\n");
+				// printf("after kernel\n");
 				LZW_timer.stop();
-				printf("after while loop i: %d\n", i);
+				// printf("after while loop i: %d\n", i);
 				// std::cout << "LZW_output_length[" << i << "]: " << LZW_output_length << "\n" << std::endl;
 				if (fwrite(LZW_send_data, 1, *LZW_output_length, File) != *LZW_output_length)
 					Exit_with_error("fwrite LZW output to compressed_data.bin failed");
@@ -312,7 +312,7 @@ int main(int argc, char* argv[]) {
     	Exit_with_error("fclose for send_data failed");
 	total_timer.stop();
 	//----------------------------------end of encode-------------------------------------------
-	printf("after end of encoder\n");
+	// printf("after end of encoder\n");
 	// // write file to root and you can use diff tool on board
 	// FILE *outfd = fopen("output_cpu.bin", "wb");
 	FILE *outfd = fopen("test_chunks.txt", "wb");
@@ -322,7 +322,7 @@ int main(int argc, char* argv[]) {
 	for (int i = 0; i < NUM_PACKETS; i++) {
 		free(input[i]);
 	}
-	printf("after free input\n");
+	// printf("after free input\n");
 
 	free(file);
 	// ------------------------------------------------------------------------------------

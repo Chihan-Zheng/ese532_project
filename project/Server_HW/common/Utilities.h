@@ -37,8 +37,8 @@ using namespace std;
 #include <fstream>
 #include <sstream>
 #include <ap_int.h>
-// #include "EventTimer.h"
-// #include <CL/cl2.hpp>
+#include "EventTimer.h"
+#include <CL/cl2.hpp>
 #include "../server.h"
 #include <pthread.h>
 #include <errno.h>
