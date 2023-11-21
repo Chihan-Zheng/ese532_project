@@ -1,7 +1,6 @@
 INFO: [SIM 2] *************** CSIM start ***************
 INFO: [SIM 4] CSIM will launch GCC as the compiler.
    Compiling ../../../../baseline.cpp in debug mode
-   Compiling ../../../../common/Utilities.cpp in debug mode
    Compiling ../../../../LZW_hybrid_hash_HW.cpp in debug mode
    Compiling ../../../../Dedup.cpp in debug mode
    Compiling ../../../../Chunk.cpp in debug mode
@@ -158,9 +157,11 @@ The index 172410 is a boundary
 The index 173329 is a boundary
 The index 175211 is a boundary
 The index 179307 is a boundary
-The index 179525 is a boundary
+The index 179533 is a boundary
+The index 183584 is a boundary
+The index 187626 is a boundary
 -------------------------------Chunks Info-------------------------------------
-chunk number: 152
+chunk number: 154
 
 LZW_header - boundary: 0
 
@@ -1071,24 +1072,31 @@ LZW_output_length[150]: 2999
 LZW_header - boundary: 151
 
 assoc mem entry count: 1
-LZW_output_length[151]: 289
+LZW_output_length[151]: 287
 
+
+LZW_header - boundary: 152
+
+assoc mem entry count: 41
+LZW_output_length[152]: 2973
+
+deDup_header - boundary: 153
 ------------------------------Function Execution Time-------------------------------
-Total latency of CDC is: 386.017 ms.
-Total latency of SHA is: 0.299358 ms.
-Total latency of deDup is: 0.51217 ms.
-Total latency of LZW is: 2180.46 ms.
-Total time taken from CDC to get output file is: 2568.43 ms.
+Total latency of CDC is: 373.44 ms.
+Total latency of SHA is: 0.443667 ms.
+Total latency of deDup is: 0.654603 ms.
+Total latency of LZW is: 2257.73 ms.
+Total time taken from CDC to get output file is: 2633.26 ms.
 ------------------------------------------------------------------------------------
-Average latency of SHA is: 0.00196946 ms.
-Average latency of deDup is: 0.00336954 ms.
-Average latency of LZW is: 14.3451 ms.
+Average latency of SHA is: 0.00288095 ms.
+Average latency of deDup is: 0.00425067 ms.
+Average latency of LZW is: 14.7564 ms.
 -----------------------------------Compress Ratio-----------------------------------
-input file with 14247B
-encode file with 151953B
-Compressed ratio: 1066.56%
-Compression Contribution of deDup: 120.03%
-Compression Contribution of LZW: -20.03%
+input file with 187635B
+encode file with 154928B
+Compressed ratio: 82.57%
+Compression Contribution of deDup: 12.37%
+Compression Contribution of LZW: 87.63%
 -----------------------------------------------------------------------------------
 INFO: [SIM 1] CSim done with 0 errors.
 INFO: [SIM 3] *************** CSIM finish ***************

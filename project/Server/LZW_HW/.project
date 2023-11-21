@@ -87,6 +87,11 @@
 			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/test.txt</location>
 		</link>
 		<link>
+			<name>source/test_copy.txt</name>
+			<type>1</type>
+			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/test_copy.txt</location>
+		</link>
+		<link>
 			<name>testbench/baseline.cpp</name>
 			<type>1</type>
 			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/baseline.cpp</location>

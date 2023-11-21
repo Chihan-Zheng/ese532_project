@@ -5,21 +5,6 @@
                 <option name="name" value="LZW_hybrid_hash_HW"/>
             </pragma>
         </directive>
-        <directive functionName="LZW_hybrid_hash_HW" label="" functionLabel="">
-            <pragma name="TOP">
-                <option name="name" value="LZW_hybrid_hash_HW"/>
-            </pragma>
-        </directive>
-        <directive functionName="LZW_hybrid_hash_HW" label="" functionLabel="">
-            <pragma name="TOP">
-                <option name="name" value="LZW_hybrid_hash_HW"/>
-            </pragma>
-        </directive>
-        <directive functionName="LZW_hybrid_hash_HW" label="" functionLabel="">
-            <pragma name="TOP">
-                <option name="name" value="LZW_hybrid_hash_HW"/>
-            </pragma>
-        </directive>
     </sourceFile>
 </AutoPilot:ProjectResources>
 

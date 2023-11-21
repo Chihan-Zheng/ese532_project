@@ -20,4 +20,5 @@ obj/Utilities.o: ../../../../common/Utilities.cpp \
  /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/include/ap_fixed.h \
  /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/include/ap_fixed_base.h \
  /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/include/ap_fixed_ref.h \
- /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/include/ap_fixed_special.h
+ /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/include/ap_fixed_special.h \
+ ../../../../common/../server.h ../../../../common/../encoder.h

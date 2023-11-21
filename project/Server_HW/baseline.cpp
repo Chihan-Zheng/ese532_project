@@ -42,7 +42,7 @@ int main()
 
     total_timer.start();
     cdc_timer.start();
-    int boundary_num = cdc("LittlePrince.txt", ArrayOfChunks, chunk_size);   //boundary_num should use char?
+    int boundary_num = cdc("test copy.txt", ArrayOfChunks, chunk_size);   //boundary_num should use char?
     cdc_timer.stop();
     // int arr_offset = 0;
     std::cout << "-------------------------------Chunks Info-------------------------------------" << std::endl;
@@ -99,7 +99,7 @@ int main()
     std::cout << "Average latency of deDup is: " << deDup_timer.avg_latency() << " ms." << std::endl;
     std::cout << "Average latency of LZW is: " << LZW_timer.avg_latency() << " ms." << std::endl;
     std::cout << "-----------------------------------Compress Ratio-----------------------------------" << std::endl;
-    FILE* input_file = fopen("LittlePrince.txt","r");
+    FILE* input_file = fopen("test copy.txt","r");
 	if(input_file == NULL ){
 		perror("fopen error");
 		return 0;

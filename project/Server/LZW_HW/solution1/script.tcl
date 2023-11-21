@@ -14,11 +14,12 @@ add_files common/Utilities.cpp
 add_files common/Utilities.h
 add_files stopwatch.h
 add_files test.txt
-add_files -tb baseline.cpp
+add_files test_copy.txt
+add_files -tb baseline.cpp -cflags "-Wno-unknown-pragmas"
 open_solution "solution1" -flow_target vitis
 set_part {xczu3eg-sbva484-1-i}
 create_clock -period 150MHz -name default
-#source "./LZW_HW/solution1/directives.tcl"
+source "./LZW_HW/solution1/directives.tcl"
 csim_design
 csynth_design
 cosim_design
