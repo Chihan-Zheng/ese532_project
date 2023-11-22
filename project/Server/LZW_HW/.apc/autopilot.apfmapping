@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
   <source>
+    <originFiles name="test_copy.txt" path="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/test_copy.txt"/>
+    <originFiles name="test.txt" path="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/test.txt"/>
     <originFiles name="stopwatch.h" path="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/stopwatch.h"/>
     <originFiles name="Utilities.h" path="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/common/Utilities.h"/>
     <originFiles name="Utilities.cpp" path="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/common/Utilities.cpp"/>
@@ -9,8 +11,6 @@
     <originFiles name="Dedup.cpp" path="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/Dedup.cpp"/>
     <originFiles name="Constants.h" path="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/Constants.h"/>
     <originFiles name="Chunk.cpp" path="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/Chunk.cpp"/>
-    <originFiles name="test_copy.txt" path="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/test_copy.txt"/>
-    <originFiles name="test.txt" path="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/test.txt"/>
   </source>
   <testbench>
     <originFiles name="baseline.cpp" path="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/baseline.cpp"/>

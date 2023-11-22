@@ -185,7 +185,7 @@ void LZW_hybrid_hash_HW(char *in, uint16_t *input_length, uint16_t *send_data, u
                 ap_uint<1> valid = (lookup >> (KEY_LEN + CODE_LEN)) & 0x1;
                 if(!valid)
                 {
-                    hash_table[my_hash(key)][j] = (1UL << (KEY_LEN + CODE_LEN)) | (next_code.to_uint() << KEY_LEN) | key;
+                    hash_table[my_hash(key)][j] = (1UL << (KEY_LEN + CODE_LEN)) | (next_code.to_uint64() << KEY_LEN) | key;
                     collision = 0;
                     break;
                 }

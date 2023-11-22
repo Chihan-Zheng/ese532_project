@@ -1,9 +1,6 @@
 INFO: [SIM 2] *************** CSIM start ***************
 INFO: [SIM 4] CSIM will launch GCC as the compiler.
-   Compiling ../../../../baseline.cpp in debug mode
    Compiling ../../../../LZW_hybrid_hash_HW.cpp in debug mode
-   Compiling ../../../../Dedup.cpp in debug mode
-   Compiling ../../../../Chunk.cpp in debug mode
    Generating csim.exe
 ---------------------------------Boundary Index--------------------------------------
 The index 2270 is a boundary
@@ -1082,15 +1079,15 @@ LZW_output_length[152]: 2973
 
 deDup_header - boundary: 153
 ------------------------------Function Execution Time-------------------------------
-Total latency of CDC is: 373.44 ms.
-Total latency of SHA is: 0.443667 ms.
-Total latency of deDup is: 0.654603 ms.
-Total latency of LZW is: 2257.73 ms.
-Total time taken from CDC to get output file is: 2633.26 ms.
+Total latency of CDC is: 699.537 ms.
+Total latency of SHA is: 0.748627 ms.
+Total latency of deDup is: 1.78342 ms.
+Total latency of LZW is: 5486.91 ms.
+Total time taken from CDC to get output file is: 6192.62 ms.
 ------------------------------------------------------------------------------------
-Average latency of SHA is: 0.00288095 ms.
-Average latency of deDup is: 0.00425067 ms.
-Average latency of LZW is: 14.7564 ms.
+Average latency of SHA is: 0.00486121 ms.
+Average latency of deDup is: 0.0115806 ms.
+Average latency of LZW is: 35.8621 ms.
 -----------------------------------Compress Ratio-----------------------------------
 input file with 187635B
 encode file with 154928B
