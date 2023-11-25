@@ -38,22 +38,34 @@ using namespace std;
 #include <sstream>
 #include <ap_int.h>
 #include "EventTimer.h"
+<<<<<<< HEAD
 // #include <CL/cl2.hpp>
+=======
+#include <CL/cl2.hpp>
+>>>>>>> 314965f16d086b39c2e58cfebd64e021f58dfd5d
 #include "../server.h"
 #include <pthread.h>
 #include <errno.h>
 #include <sys/mman.h>
 #include "../encoder.h"
+<<<<<<< HEAD
 #include <atomic>
 
 
+=======
+>>>>>>> 314965f16d086b39c2e58cfebd64e021f58dfd5d
 
 void Exit_with_error(const char *s);
 void send_data(unsigned char *Data, uint16_t Data_size);
 uint16_t swap_endian_16(uint16_t value);
 uint32_t swap_endian_32(uint32_t value);
+<<<<<<< HEAD
 // std::vector<cl::Device> get_xilinx_devices();
 // char* read_binary_file(const std::string &xclbin_file_name, unsigned &nb);
+=======
+std::vector<cl::Device> get_xilinx_devices();
+char* read_binary_file(const std::string &xclbin_file_name, unsigned &nb);
+>>>>>>> 314965f16d086b39c2e58cfebd64e021f58dfd5d
 
 #endif
 
