@@ -43,6 +43,7 @@ int main()
     total_timer.start();
     cdc_timer.start();
     int boundary_num = cdc("test.txt", ArrayOfChunks, chunk_size);   //boundary_num should use char?
+    // test_print_chunk(ArrayOfChunks, boundary_num);
     cdc_timer.stop();
     // int arr_offset = 0;
     std::cout << "-------------------------------Chunks Info-------------------------------------" << std::endl;
@@ -62,9 +63,10 @@ int main()
         }else{
             std::cout << "\n" << "LZW_header - boundary: " << i << std::endl;
             uint16_t in_length = chunk_size[i];
+            uint16_t LZW_output_length = 0;
             
             LZW_timer.start();
-            LZW_output_length = LZW_hybrid_hash_HW(ArrayOfChunks[i], in_length, LZW_send_data);
+            LZW_hybrid_hash_HW(ArrayOfChunks[i], &in_length, LZW_send_data, &LZW_output_length);
             LZW_timer.stop();
             std::cout << "LZW_output_length[" << i << "]: " << LZW_output_length << "\n" <<std::endl;
             if (fwrite(LZW_send_data, 1, LZW_output_length, File) != LZW_output_length)

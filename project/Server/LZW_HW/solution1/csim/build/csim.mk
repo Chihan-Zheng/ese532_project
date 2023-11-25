@@ -16,7 +16,7 @@ __SIM_DDS__ = 1
 
 ObjDir = obj
 
-HLS_SOURCES = ../../../../baseline.cpp ../../../../common/Utilities.cpp ../../../../LZW_hybrid_hash_HW.cpp ../../../../Dedup.cpp ../../../../Chunk.cpp
+HLS_SOURCES = ../../../../baseline.cpp ../../../../Chunk.cpp ../../../../Dedup.cpp ../../../../LZW_hybrid_hash_HW.cpp ../../../../common/Utilities.cpp
 
 override TARGET := csim.exe
 
@@ -73,17 +73,11 @@ $(ObjDir)/baseline.o: ../../../../baseline.cpp $(ObjDir)/.dir
 
 -include $(ObjDir)/baseline.d
 
-$(ObjDir)/Utilities.o: ../../../../common/Utilities.cpp $(ObjDir)/.dir
-	$(Echo) "   Compiling ../../../../common/Utilities.cpp in $(BuildMode) mode" $(AVE_DIR_DLOG)
+$(ObjDir)/Chunk.o: ../../../../Chunk.cpp $(ObjDir)/.dir
+	$(Echo) "   Compiling ../../../../Chunk.cpp in $(BuildMode) mode" $(AVE_DIR_DLOG)
 	$(Verb)  $(CC) ${CCFLAG} -c -MMD  $(IFLAG) $(DFLAG) $< -o $@ ; \
 
--include $(ObjDir)/Utilities.d
-
-$(ObjDir)/LZW_hybrid_hash_HW.o: ../../../../LZW_hybrid_hash_HW.cpp $(ObjDir)/.dir
-	$(Echo) "   Compiling ../../../../LZW_hybrid_hash_HW.cpp in $(BuildMode) mode" $(AVE_DIR_DLOG)
-	$(Verb)  $(CC) ${CCFLAG} -c -MMD  $(IFLAG) $(DFLAG) $< -o $@ ; \
-
--include $(ObjDir)/LZW_hybrid_hash_HW.d
+-include $(ObjDir)/Chunk.d
 
 $(ObjDir)/Dedup.o: ../../../../Dedup.cpp $(ObjDir)/.dir
 	$(Echo) "   Compiling ../../../../Dedup.cpp in $(BuildMode) mode" $(AVE_DIR_DLOG)
@@ -91,8 +85,14 @@ $(ObjDir)/Dedup.o: ../../../../Dedup.cpp $(ObjDir)/.dir
 
 -include $(ObjDir)/Dedup.d
 
-$(ObjDir)/Chunk.o: ../../../../Chunk.cpp $(ObjDir)/.dir
-	$(Echo) "   Compiling ../../../../Chunk.cpp in $(BuildMode) mode" $(AVE_DIR_DLOG)
+$(ObjDir)/LZW_hybrid_hash_HW.o: ../../../../LZW_hybrid_hash_HW.cpp $(ObjDir)/.dir
+	$(Echo) "   Compiling ../../../../LZW_hybrid_hash_HW.cpp in $(BuildMode) mode" $(AVE_DIR_DLOG)
 	$(Verb)  $(CC) ${CCFLAG} -c -MMD  $(IFLAG) $(DFLAG) $< -o $@ ; \
 
--include $(ObjDir)/Chunk.d
+-include $(ObjDir)/LZW_hybrid_hash_HW.d
+
+$(ObjDir)/Utilities.o: ../../../../common/Utilities.cpp $(ObjDir)/.dir
+	$(Echo) "   Compiling ../../../../common/Utilities.cpp in $(BuildMode) mode" $(AVE_DIR_DLOG)
+	$(Verb)  $(CC) ${CCFLAG} -c -MMD  $(IFLAG) $(DFLAG) $< -o $@ ; \
+
+-include $(ObjDir)/Utilities.d

@@ -9,7 +9,7 @@ VITIS_PLATFORM_DIR = ${PLATFORM_REPO_PATHS}
 VITIS_PLATFORM_PATH = $(VITIS_PLATFORM_DIR)/u96v2_sbc_base.xpfm
 
 # host compiler global settings
-CXXFLAGS += -O2 -march=armv8-a+simd -mtune=cortex-a53 -std=c++11 -DVITIS_PLATFORM=$(VITIS_PLATFORM) -D__USE_XOPEN2K8 -I$(XILINX_VIVADO)/include/ -I$(VITIS_PLATFORM_DIR)/sw/$(VITIS_PLATFORM)/PetaLinux/sysroot/aarch64-xilinx-linux/usr/include/xrt/ -O2 -g -Wall -c -fmessage-length=0 --sysroot=$(VITIS_PLATFORM_DIR)/sw/$(VITIS_PLATFORM)/PetaLinux/sysroot/aarch64-xilinx-linux
+CXXFLAGS += -march=armv8-a+simd -mtune=cortex-a53 -std=c++11 -DVITIS_PLATFORM=$(VITIS_PLATFORM) -D__USE_XOPEN2K8 -I$(XILINX_VIVADO)/include/ -I$(VITIS_PLATFORM_DIR)/sw/$(VITIS_PLATFORM)/PetaLinux/sysroot/aarch64-xilinx-linux/usr/include/xrt/ -O3 -g -Wall -c -fmessage-length=0 --sysroot=$(VITIS_PLATFORM_DIR)/sw/$(VITIS_PLATFORM)/PetaLinux/sysroot/aarch64-xilinx-linux
 LDFLAGS += -lxilinxopencl -lpthread -lrt -ldl -lcrypt -lstdc++ -L$(VITIS_PLATFORM_DIR)/sw/$(VITIS_PLATFORM)/PetaLinux/sysroot/aarch64-xilinx-linux/usr/lib/ --sysroot=$(VITIS_PLATFORM_DIR)/sw/$(VITIS_PLATFORM)/PetaLinux/sysroot/aarch64-xilinx-linux
 
 # hardware compiler shared settings
@@ -20,6 +20,7 @@ VPP_OPTS = --target hw
 #
 XO := LZW_hybrid_hash_HW.xo
 XCLBIN := LZW_hybrid_hash_HW.xclbin
+ALL_MESSAGE_FILES = $(subst .xo,.mdb,$(XO)) $(subst .xclbin,.mdb,$(XCLBIN))
 
 #
 # host files
@@ -65,10 +66,11 @@ all: package/sd_card.img
 	$(HOST_CXX) $(CXXFLAGS) -I./ -I./common/ -c -o "$@" "$<"
 
 	
-# $(XO): ./hls/MatrixMultiplication.cpp
-# 	$(VPP) $(VPP_OPTS) -k mmult --compile -I"$(<D)" --config --config ./u96_v2.cfg -o"$@" "$<"
+# $(XO): ./LZW_hybrid_hash_HW.cpp
+# 	$(VPP) $(VPP_OPTS) -k LZW_hybrid_hash_HW --compile -I"$(<D)"  --config ./u96_v2.cfg -o"$@" "$<"
 
 $(XCLBIN): $(XO)
+	-@$(RM) $@
 	$(VPP) $(VPP_OPTS) --link --config ./u96_v2.cfg -o"$@" $(+)
 
 package/sd_card.img: $(ENCODER_EXE) $(XCLBIN) xrt.ini
@@ -100,7 +102,9 @@ clean: clean-baseline clean-endian clean-decoder clean-encoder
 	-$(RM) *.bin decompressed
 	-$(RM) $(ENCODER_EXE) *.o *.xclbin *.xclbin.sh *.xclbin.info *.xclbin.link_summary* *.compile_summary *.str
 	-$(RM) *json *csv *log *summary *.json *.jou
+#-$(RM) $(XCLBIN) $(XO) $(ALL_MESSAGE_FILES)
 	-$(RMDIR) _x
 	-$(RMDIR) .Xil
 	-$(RMDIR) .ipcache
 	-$(RMDIR) package
+	

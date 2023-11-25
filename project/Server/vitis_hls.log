@@ -1,31 +1,33 @@
 INFO: Applying HLS Y2K22 patch v1.2 for IP revision
 INFO: [HLS 200-10] Running '/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'chihan' on host 'klick.seas.upenn.edu' (Linux_x86_64 version 5.14.21-150500.55.36-default) on Tue Nov 14 21:51:03 EST 2023
+INFO: [HLS 200-10] For user 'chihan' on host 'big24.seas.upenn.edu' (Linux_x86_64 version 5.14.21-150500.55.12-default) on Tue Nov 21 20:54:03 EST 2023
 INFO: [HLS 200-10] On os "openSUSE Leap 15.5"
 INFO: [HLS 200-10] In directory '/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server'
 Sourcing Tcl script '/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/LZW_HW/solution1/csim.tcl'
 INFO: [HLS 200-1510] Running: open_project LZW_HW 
 INFO: [HLS 200-10] Opening project '/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/LZW_HW'.
 INFO: [HLS 200-1510] Running: set_top LZW_hybrid_hash_HW 
-INFO: [HLS 200-1510] Running: add_files Chunk.cpp 
-INFO: [HLS 200-10] Adding design file 'Chunk.cpp' to the project
-INFO: [HLS 200-1510] Running: add_files Constants.h 
-INFO: [HLS 200-10] Adding design file 'Constants.h' to the project
-INFO: [HLS 200-1510] Running: add_files Dedup.cpp 
-INFO: [HLS 200-10] Adding design file 'Dedup.cpp' to the project
-INFO: [HLS 200-1510] Running: add_files LZW_hybrid_hash_HW.cpp 
-INFO: [HLS 200-10] Adding design file 'LZW_hybrid_hash_HW.cpp' to the project
-INFO: [HLS 200-1510] Running: add_files LittlePrince.txt 
-INFO: [HLS 200-10] Adding design file 'LittlePrince.txt' to the project
-INFO: [HLS 200-1510] Running: add_files common/Utilities.cpp 
-INFO: [HLS 200-10] Adding design file 'common/Utilities.cpp' to the project
-INFO: [HLS 200-1510] Running: add_files common/Utilities.h 
-INFO: [HLS 200-10] Adding design file 'common/Utilities.h' to the project
-INFO: [HLS 200-1510] Running: add_files stopwatch.h 
-INFO: [HLS 200-10] Adding design file 'stopwatch.h' to the project
+INFO: [HLS 200-1510] Running: add_files test_copy.txt 
+INFO: [HLS 200-10] Adding design file 'test_copy.txt' to the project
 INFO: [HLS 200-1510] Running: add_files test.txt 
 INFO: [HLS 200-10] Adding design file 'test.txt' to the project
-INFO: [HLS 200-1510] Running: add_files -tb baseline.cpp 
+INFO: [HLS 200-1510] Running: add_files stopwatch.h 
+INFO: [HLS 200-10] Adding design file 'stopwatch.h' to the project
+INFO: [HLS 200-1510] Running: add_files common/Utilities.h 
+INFO: [HLS 200-10] Adding design file 'common/Utilities.h' to the project
+INFO: [HLS 200-1510] Running: add_files common/Utilities.cpp 
+INFO: [HLS 200-10] Adding design file 'common/Utilities.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files LittlePrince.txt 
+INFO: [HLS 200-10] Adding design file 'LittlePrince.txt' to the project
+INFO: [HLS 200-1510] Running: add_files LZW_hybrid_hash_HW.cpp 
+INFO: [HLS 200-10] Adding design file 'LZW_hybrid_hash_HW.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files Dedup.cpp 
+INFO: [HLS 200-10] Adding design file 'Dedup.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files Constants.h 
+INFO: [HLS 200-10] Adding design file 'Constants.h' to the project
+INFO: [HLS 200-1510] Running: add_files Chunk.cpp 
+INFO: [HLS 200-10] Adding design file 'Chunk.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb baseline.cpp -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
 INFO: [HLS 200-10] Adding test bench file 'baseline.cpp' to the project
 INFO: [HLS 200-1510] Running: open_solution solution1 -flow_target vitis 
 INFO: [HLS 200-10] Opening solution '/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/LZW_HW/solution1'.
@@ -41,14 +43,11 @@ INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: co
 INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-i 
 INFO: [HLS 200-1510] Running: create_clock -period 150MHz -name default 
 INFO: [SYN 201-201] Setting up clock 'default' with a period of 6.667ns.
+INFO: [HLS 200-1510] Running: set_directive_top -name LZW_hybrid_hash_HW LZW_hybrid_hash_HW 
 INFO: [HLS 200-1510] Running: csim_design -quiet 
 INFO: [SIM 211-2] *************** CSIM start ***************
 INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
-   Compiling ../../../../baseline.cpp in debug mode
-   Compiling ../../../../common/Utilities.cpp in debug mode
    Compiling ../../../../LZW_hybrid_hash_HW.cpp in debug mode
-   Compiling ../../../../Dedup.cpp in debug mode
-   Compiling ../../../../Chunk.cpp in debug mode
    Generating csim.exe
 ---------------------------------Boundary Index--------------------------------------
 The index 2270 is a boundary
@@ -202,9 +201,11 @@ The index 172410 is a boundary
 The index 173329 is a boundary
 The index 175211 is a boundary
 The index 179307 is a boundary
-The index 179525 is a boundary
+The index 179533 is a boundary
+The index 183584 is a boundary
+The index 187626 is a boundary
 -------------------------------Chunks Info-------------------------------------
-chunk number: 152
+chunk number: 154
 
 LZW_header - boundary: 0
 
@@ -1115,25 +1116,32 @@ LZW_output_length[150]: 2999
 LZW_header - boundary: 151
 
 assoc mem entry count: 1
-LZW_output_length[151]: 289
+LZW_output_length[151]: 287
 
+
+LZW_header - boundary: 152
+
+assoc mem entry count: 41
+LZW_output_length[152]: 2973
+
+deDup_header - boundary: 153
 ------------------------------Function Execution Time-------------------------------
-Total latency of CDC is: 386.017 ms.
-Total latency of SHA is: 0.299358 ms.
-Total latency of deDup is: 0.51217 ms.
-Total latency of LZW is: 2180.46 ms.
-Total time taken from CDC to get output file is: 2568.43 ms.
+Total latency of CDC is: 699.537 ms.
+Total latency of SHA is: 0.748627 ms.
+Total latency of deDup is: 1.78342 ms.
+Total latency of LZW is: 5486.91 ms.
+Total time taken from CDC to get output file is: 6192.62 ms.
 ------------------------------------------------------------------------------------
-Average latency of SHA is: 0.00196946 ms.
-Average latency of deDup is: 0.00336954 ms.
-Average latency of LZW is: 14.3451 ms.
+Average latency of SHA is: 0.00486121 ms.
+Average latency of deDup is: 0.0115806 ms.
+Average latency of LZW is: 35.8621 ms.
 -----------------------------------Compress Ratio-----------------------------------
-input file with 14247B
-encode file with 151953B
-Compressed ratio: 1066.56%
-Compression Contribution of deDup: 120.03%
-Compression Contribution of LZW: -20.03%
+input file with 187635B
+encode file with 154928B
+Compressed ratio: 82.57%
+Compression Contribution of deDup: 12.37%
+Compression Contribution of LZW: 87.63%
 -----------------------------------------------------------------------------------
 INFO: [SIM 211-1] CSim done with 0 errors.
 INFO: [SIM 211-3] *************** CSIM finish ***************
-INFO: [HLS 200-111] Finished Command csim_design CPU user time: 5.25 seconds. CPU system time: 0.33 seconds. Elapsed time: 6.32 seconds; current allocated memory: 208.307 MB.
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 8.39 seconds. CPU system time: 0.56 seconds. Elapsed time: 11.3 seconds; current allocated memory: 208.400 MB.

@@ -4,7 +4,7 @@
 int main()
 {
     char *ArrayOfChunks[MAX_BOUNDARY];
-    std::unordered_map<uint64_t, uint32_t> chunkTable;
+    std::unordered_map<string, uint32_t> chunkTable;
     uint32_t deDup_header;     //output of deDup function
     // uint16_t *send_data_arr_total = (unsigned char *)malloc((sizeof(unsigned char) * file_size));  ///
     // char LZW_inChunk[MAX_CHUNK];
@@ -42,7 +42,7 @@ int main()
 
     total_timer.start();
     cdc_timer.start();
-    int boundary_num = cdc("test.txt", ArrayOfChunks, chunk_size);   //boundary_num should use char?
+    int boundary_num = cdc("test copy.txt", ArrayOfChunks, chunk_size);   //boundary_num should use char?
     cdc_timer.stop();
     // int arr_offset = 0;
     std::cout << "-------------------------------Chunks Info-------------------------------------" << std::endl;
@@ -62,9 +62,10 @@ int main()
         }else{
             std::cout << "\n" << "LZW_header - boundary: " << i << std::endl;
             uint16_t in_length = chunk_size[i];
+            uint16_t LZW_output_length = 0;
             
             LZW_timer.start();
-            LZW_output_length = LZW_hybrid_hash_HW(ArrayOfChunks[i], in_length, LZW_send_data);
+            LZW_hybrid_hash_HW(ArrayOfChunks[i], &in_length, LZW_send_data, &LZW_output_length);
             LZW_timer.stop();
             std::cout << "LZW_output_length[" << i << "]: " << LZW_output_length << "\n" <<std::endl;
             if (fwrite(LZW_send_data, 1, LZW_output_length, File) != LZW_output_length)
@@ -98,7 +99,7 @@ int main()
     std::cout << "Average latency of deDup is: " << deDup_timer.avg_latency() << " ms." << std::endl;
     std::cout << "Average latency of LZW is: " << LZW_timer.avg_latency() << " ms." << std::endl;
     std::cout << "-----------------------------------Compress Ratio-----------------------------------" << std::endl;
-    FILE* input_file = fopen("LittlePrince.txt","r");
+    FILE* input_file = fopen("test copy.txt","r");
 	if(input_file == NULL ){
 		perror("fopen error");
 		return 0;
