@@ -1,0 +1,70 @@
+INFO: [SIM 2] *************** CSIM start ***************
+INFO: [SIM 4] CSIM will launch GCC as the compiler.
+   Compiling ../../../../LZW_hybrid_hash_HW.cpp in debug mode
+   Compiling ../../../../Dedup.cpp in debug mode
+   Compiling ../../../../Chunk.cpp in debug mode
+   Generating csim.exe
+---------------------------------Boundary Index--------------------------------------
+The index 1072 is a boundary
+The index 2647 is a boundary
+The index 3916 is a boundary
+The index 5491 is a boundary
+The index 6760 is a boundary
+The index 8335 is a boundary
+The index 9604 is a boundary
+The index 11179 is a boundary
+The index 12448 is a boundary
+The index 14023 is a boundary
+The index 14238 is a boundary
+-------------------------------Chunks Info-------------------------------------
+chunk number: 11
+
+LZW_header - boundary: 0
+
+assoc mem entry count: 4
+LZW_output_length[0]: 962
+
+
+LZW_header - boundary: 1
+
+assoc mem entry count: 17
+LZW_output_length[1]: 1326
+
+
+LZW_header - boundary: 2
+
+assoc mem entry count: 11
+LZW_output_length[2]: 1098
+
+deDup_header - boundary: 3
+deDup_header - boundary: 4
+deDup_header - boundary: 5
+deDup_header - boundary: 6
+deDup_header - boundary: 7
+deDup_header - boundary: 8
+deDup_header - boundary: 9
+
+LZW_header - boundary: 10
+
+assoc mem entry count: 1
+LZW_output_length[10]: 271
+
+------------------------------Function Execution Time-------------------------------
+Total latency of CDC is: 42.7058 ms.
+Total latency of SHA is: 0.020816 ms.
+Total latency of deDup is: 0.056947 ms.
+Total latency of LZW is: 54.3899 ms.
+Total time taken from CDC to get output file is: 98.255 ms.
+------------------------------------------------------------------------------------
+Average latency of SHA is: 0.00189236 ms.
+Average latency of deDup is: 0.005177 ms.
+Average latency of LZW is: 13.5975 ms.
+-----------------------------------Compress Ratio-----------------------------------
+input file with 14247B
+encode file with 3685B
+Compressed ratio: 25.87%
+Compression Contribution of deDup: 95.43%
+Compression Contribution of LZW: 4.57%
+-----------------------------------------------------------------------------------
+INFO: [SIM 1] CSim done with 0 errors.
+INFO: [SIM 3] *************** CSIM finish ***************
