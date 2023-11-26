@@ -1,4 +1,5 @@
 #include "Constants.h"
+#include <CL/cl2.hpp>
 
 #define NUM_PACKETS 8
 #define pipe_depth 4
@@ -48,7 +49,7 @@ int main(int argc, char* argv[]) {
     // ------------------------------------------------------------------------------------
     timer2.add("OpenCL Initialization");
     cl_int err;
-    std::string binaryFile = "encoder.xclbin";
+    std::string binaryFile = "LZW_hybrid_hash_HW.xclbin";
     unsigned fileBufSize;
     std::vector<cl::Device> devices = get_xilinx_devices();
     devices.resize(1);
@@ -274,6 +275,7 @@ int main(int argc, char* argv[]) {
 				q.enqueueMigrateMemObjects({Input_buf, In_length_buf}, 0 /* 0 means from host*/, &write_waitlist, &write_done[i]);
 				write_waitlist.push_back(write_done[i]);
 			
+				q.enqueueWaitForEvents(read_waitlist);
 				execute_waitlist[i].push_back(write_done[i]);
 				q.enqueueTask(krnl_LZW, &execute_waitlist[i], &execute_done[i]);
 
@@ -281,7 +283,7 @@ int main(int argc, char* argv[]) {
 				q.enqueueMigrateMemObjects({Output_buf, Output_length_buf}, CL_MIGRATE_MEM_OBJECT_HOST, &read_waitlist, &read_done[i]);
 				read_waitlist.push_back(read_done[i]);
 				//--------------------------------kernel computation --------------------------------
-				read_done[i].wait();
+				// read_done[i].wait();
 				
 				// printf("after kernel\n");
 				LZW_timer.stop();
