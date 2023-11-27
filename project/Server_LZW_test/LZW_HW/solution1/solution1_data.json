@@ -44,18 +44,34 @@
         }
       ]
     },
-    "in_length": {
+    "input_length": {
       "index": "1",
-      "direction": "in",
-      "srcType": "unsigned short",
+      "direction": "inout",
+      "srcType": "unsigned short*",
       "srcSize": "16",
-      "hwRefs": [{
+      "hwRefs": [
+        {
+          "type": "interface",
+          "interface": "m_axi_gmem",
+          "name": "",
+          "usage": "data",
+          "direction": "out"
+        },
+        {
           "type": "register",
           "interface": "s_axi_control",
-          "name": "in_length",
-          "usage": "data",
+          "name": "input_length_1",
+          "usage": "address",
           "direction": "in"
-        }]
+        },
+        {
+          "type": "register",
+          "interface": "s_axi_control",
+          "name": "input_length_2",
+          "usage": "address",
+          "direction": "in"
+        }
+      ]
     },
     "send_data": {
       "index": "2",
@@ -85,18 +101,36 @@
           "direction": "in"
         }
       ]
+    },
+    "output_length": {
+      "index": "3",
+      "direction": "inout",
+      "srcType": "unsigned short*",
+      "srcSize": "16",
+      "hwRefs": [
+        {
+          "type": "interface",
+          "interface": "m_axi_gmem",
+          "name": "",
+          "usage": "data",
+          "direction": "out"
+        },
+        {
+          "type": "register",
+          "interface": "s_axi_control",
+          "name": "output_length_1",
+          "usage": "address",
+          "direction": "in"
+        },
+        {
+          "type": "register",
+          "interface": "s_axi_control",
+          "name": "output_length_2",
+          "usage": "address",
+          "direction": "in"
+        }
+      ]
     }
-  },
-  "ReturnValue": {
-    "srcType": "unsigned short",
-    "srcSize": "16",
-    "hwRefs": [{
-        "type": "register",
-        "interface": "s_axi_control",
-        "name": "ap_return",
-        "usage": "data",
-        "direction": "out"
-      }]
   },
   "HlsSolution": {
     "FlowTarget": "vitis",
@@ -109,6 +143,7 @@
       "config_rtl -register_reset_num=3"
     ],
     "DirectiveTcl": [
+      "set_directive_top LZW_hybrid_hash_HW -name LZW_hybrid_hash_HW",
       "set_directive_top LZW_hybrid_hash_HW -name LZW_hybrid_hash_HW",
       "set_directive_top LZW_hybrid_hash_HW -name LZW_hybrid_hash_HW",
       "set_directive_top LZW_hybrid_hash_HW -name LZW_hybrid_hash_HW",
@@ -177,7 +212,7 @@
     "IpMisc": ["impl\/misc\/logo.png"],
     "DesignXml": ".autopilot\/db\/LZW_hybrid_hash_HW.design.xml",
     "DebugDir": ".debug",
-    "ProtoInst": ["\/mnt\/castor\/seas_home\/c\/chihan\/chihan\/ese532_project\/project\/Server\/LZW_HW\/solution1\/.debug\/LZW_hybrid_hash_HW.protoinst"]
+    "ProtoInst": ["\/mnt\/castor\/seas_home\/c\/chihan\/chihan\/ese532_project\/project\/Server_LZW_test\/LZW_HW\/solution1\/.debug\/LZW_hybrid_hash_HW.protoinst"]
   },
   "SubcoreInfo": {
     "HasXpmMemory": false,
@@ -502,32 +537,6 @@
         },
         {
           "offset": "0x10",
-          "name": "ap_return",
-          "access": "R",
-          "resetValue": "0x0",
-          "description": "Data signal of ap_return",
-          "range": "32",
-          "fields": [
-            {
-              "offset": "0",
-              "width": "16",
-              "name": "ap_return",
-              "access": "R",
-              "resetValue": "0",
-              "description": "Bit 15 to 0 of ap_return"
-            },
-            {
-              "offset": "16",
-              "width": "16",
-              "name": "RESERVED",
-              "access": "R",
-              "resetValue": "0",
-              "description": "Reserved.  0s on read."
-            }
-          ]
-        },
-        {
-          "offset": "0x18",
           "name": "in_r_1",
           "access": "W",
           "resetValue": "0x0",
@@ -543,7 +552,7 @@
             }]
         },
         {
-          "offset": "0x1c",
+          "offset": "0x14",
           "name": "in_r_2",
           "access": "W",
           "resetValue": "0x0",
@@ -559,33 +568,39 @@
             }]
         },
         {
-          "offset": "0x24",
-          "name": "in_length",
+          "offset": "0x1c",
+          "name": "input_length_1",
           "access": "W",
           "resetValue": "0x0",
-          "description": "Data signal of in_length",
+          "description": "Data signal of input_length",
           "range": "32",
-          "fields": [
-            {
+          "fields": [{
               "offset": "0",
-              "width": "16",
-              "name": "in_length",
+              "width": "32",
+              "name": "input_length",
               "access": "W",
               "resetValue": "0",
-              "description": "Bit 15 to 0 of in_length"
-            },
-            {
-              "offset": "16",
-              "width": "16",
-              "name": "RESERVED",
-              "access": "R",
-              "resetValue": "0",
-              "description": "Reserved.  0s on read."
-            }
-          ]
+              "description": "Bit 31 to 0 of input_length"
+            }]
         },
         {
-          "offset": "0x2c",
+          "offset": "0x20",
+          "name": "input_length_2",
+          "access": "W",
+          "resetValue": "0x0",
+          "description": "Data signal of input_length",
+          "range": "32",
+          "fields": [{
+              "offset": "0",
+              "width": "32",
+              "name": "input_length",
+              "access": "W",
+              "resetValue": "0",
+              "description": "Bit 63 to 32 of input_length"
+            }]
+        },
+        {
+          "offset": "0x28",
           "name": "send_data_1",
           "access": "W",
           "resetValue": "0x0",
@@ -601,7 +616,7 @@
             }]
         },
         {
-          "offset": "0x30",
+          "offset": "0x2c",
           "name": "send_data_2",
           "access": "W",
           "resetValue": "0x0",
@@ -615,13 +630,45 @@
               "resetValue": "0",
               "description": "Bit 63 to 32 of send_data"
             }]
+        },
+        {
+          "offset": "0x34",
+          "name": "output_length_1",
+          "access": "W",
+          "resetValue": "0x0",
+          "description": "Data signal of output_length",
+          "range": "32",
+          "fields": [{
+              "offset": "0",
+              "width": "32",
+              "name": "output_length",
+              "access": "W",
+              "resetValue": "0",
+              "description": "Bit 31 to 0 of output_length"
+            }]
+        },
+        {
+          "offset": "0x38",
+          "name": "output_length_2",
+          "access": "W",
+          "resetValue": "0x0",
+          "description": "Data signal of output_length",
+          "range": "32",
+          "fields": [{
+              "offset": "0",
+              "width": "32",
+              "name": "output_length",
+              "access": "W",
+              "resetValue": "0",
+              "description": "Bit 63 to 32 of output_length"
+            }]
         }
       ],
       "constraints": [{
           "constraint_type": "pragma interface",
           "mode": "s_axilite",
           "register_option": "0",
-          "offset": "24",
+          "offset": "16",
           "argName": "in"
         }]
     }
@@ -923,21 +970,21 @@
         },
         "Loops": [
           {
-            "Name": "VITIS_LOOP_44_1",
+            "Name": "VITIS_LOOP_45_1",
             "TripCount": "32768",
             "Latency": "32768",
             "PipelineII": "1",
             "PipelineDepth": "1"
           },
           {
-            "Name": "VITIS_LOOP_51_3",
+            "Name": "VITIS_LOOP_52_3",
             "TripCount": "512",
             "Latency": "512",
             "PipelineII": "1",
             "PipelineDepth": "1"
           },
           {
-            "Name": "VITIS_LOOP_117_4",
+            "Name": "VITIS_LOOP_119_4",
             "TripCount": "",
             "Latency": "",
             "PipelineII": "",
@@ -953,7 +1000,7 @@
                 "PipelineDepth": "1"
               },
               {
-                "Name": "VITIS_LOOP_151_6",
+                "Name": "VITIS_LOOP_153_6",
                 "TripCount": "",
                 "LatencyMin": "1",
                 "LatencyMax": "72",
@@ -1000,12 +1047,12 @@
           "BRAM_18K": "76",
           "AVAIL_BRAM": "432",
           "UTIL_BRAM": "17",
-          "FF": "2663",
+          "FF": "3021",
           "AVAIL_FF": "141120",
-          "UTIL_FF": "1",
-          "LUT": "6456",
+          "UTIL_FF": "2",
+          "LUT": "7286",
           "AVAIL_LUT": "70560",
-          "UTIL_LUT": "9",
+          "UTIL_LUT": "10",
           "DSP": "0",
           "AVAIL_DSP": "360",
           "UTIL_DSP": "0",
@@ -1018,7 +1065,7 @@
   "GenerateBdFiles": "0",
   "GenData": {
     "DataVersion": "0.2",
-    "Time": "2023-11-14 20:57:20 EST",
+    "Time": "2023-11-26 15:39:21 EST",
     "ToolName": "vivado_hls",
     "ToolVersion": "2020.2"
   }
