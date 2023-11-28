@@ -285,11 +285,12 @@ int main(int argc, char* argv[]) {
 				read_done[i].wait();
 				
 				// printf("after kernel\n");
-				LZW_timer.stop();
+				// LZW_timer.stop();
 				// printf("after while loop i: %d\n", i);
 				// std::cout << "LZW_output_length[" << i << "]: " << LZW_output_length << "\n" << std::endl;
 				if (fwrite(LZW_send_data, 1, *LZW_output_length, File) != *LZW_output_length)
 					Exit_with_error("fwrite LZW output to compressed_data.bin failed");
+				LZW_timer.stop();    
 				// fwrite_flag[i] = true;
 				// std::cout << "fwrite_flag[" << i << "]: " << fwrite_flag[i] << std::endl;
 				// memset(LZW_send_data, 0, (Max_Chunk_Size + 2) * sizeof(uint16_t));

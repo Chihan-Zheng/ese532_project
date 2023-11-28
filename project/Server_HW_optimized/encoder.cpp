@@ -51,7 +51,7 @@ int main(int argc, char* argv[]) {
     cl_int err;
     std::string binaryFile = "LZW_hybrid_hash_HW.xclbin";
     unsigned fileBufSize;
-	auto constexpr num_cu = 3;
+	auto constexpr num_cu = 2;
 
     std::vector<cl::Device> devices = get_xilinx_devices();
     devices.resize(1);
@@ -60,7 +60,7 @@ int main(int argc, char* argv[]) {
     char *fileBuf = read_binary_file(binaryFile, fileBufSize);
     cl::Program::Binaries bins{{fileBuf, fileBufSize}};
     cl::Program program(context, devices, bins, NULL, &err);
-    cl::CommandQueue q(context, device, CL_QUEUE_PROFILING_ENABLE, &err);
+    cl::CommandQueue q(context, device, CL_QUEUE_PROFILING_ENABLE | CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE, &err);
 	std::vector<cl::Kernel> krnls(num_cu);
 	for (int i = 0; i < num_cu; i++) {
 		OCL_CHECK(err, krnls[i] = cl::Kernel(program, "LZW_hybrid_hash_HW", &err));
