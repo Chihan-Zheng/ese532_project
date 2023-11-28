@@ -6,6 +6,7 @@ unsigned int my_hash(ap_uint<KEY_LEN> key)
 
     for(int i = 0; i < KEY_LEN; i++)
     {
+        #pragma HLS unroll
         hashed += (key >> i)&0x01;
         hashed += hashed << 10;
         hashed ^= hashed >> 6;
@@ -36,6 +37,12 @@ typedef struct
 //****************************************************************************************************************
 void LZW_hybrid_hash_HW(char *in, uint16_t *input_length, uint16_t *send_data, uint16_t *output_length)
 {
+    #pragma HLS interface m_axi port=in bundle=aximm1
+    #pragma HLS interface m_axi port=input_length bundle=aximm1
+    #pragma HLS interface m_axi port=send_data bundle=aximm2
+    #pragma HLS interface m_axi port=output_length bundle=aximm2
+    // #pragma HLS dataflow
+
     uint16_t in_length = *input_length;
     // create hash table and assoc mem
     ap_uint<BUCKET_LEN> hash_table[CAPACITY][BUCKETS_NUM];
@@ -45,67 +52,18 @@ void LZW_hybrid_hash_HW(char *in, uint16_t *input_length, uint16_t *send_data, u
     for(int i = 0; i < CAPACITY; i++){
         for (int j = 0; j < BUCKETS_NUM; j++){
             hash_table[i][j] = 0;
-         }
+        }
     }
 
     my_assoc_mem.fill = 0;
     for(int i = 0; i < 512; i++)
     {
+        #pragma HLS unroll
         my_assoc_mem.upper_key_mem[i] = 0;
         my_assoc_mem.middle_key_mem[i] = 0;
         my_assoc_mem.lower_key_mem[i] = 0;
     }
 
-    // init the memories with the first 256 codes
- /*    for(unsigned long i = 0; i < 256; i++)
-    {
-        bool collision = 0;
-        ap_uint<KEY_LEN> key = (i << 8) + 0UL; // lower 8 bits are the next char, the upper bits are the prefix code
-
-        // insert(hash_table, &my_assoc_mem, key, i, &collision);
-        //-------------------------------------------insert------------------------------------------------------
-        // hash_insert(hash_table, key, value, collision);
-        //--------------------------hash_insert-----------------------
-        //std::cout << "hash_insert():" << std::endl;
-        ap_uint<CODE_LEN> value = i;
-
-        for (int i = 0; i < BUCKETS_NUM; i++){
-            ap_uint<BUCKET_LEN> lookup = hash_table[my_hash(key)][i];
-            ap_uint<1> valid = (lookup >> (KEY_LEN + CODE_LEN)) & 0x1;
-
-            if(!valid)
-            {   
-                hash_table[my_hash(key)][i] = (1UL << (KEY_LEN + CODE_LEN)) | (value.to_uint() << KEY_LEN) | key;
-                collision = 0;
-                break;
-            }
-            collision = 1;
-        }
-        //-----------------------end hash_insert-------------------------
-
-        if(collision)
-        {
-            // assoc_insert(mem, key, value, collision);
-            //------------------------assoc_insert------------------------------------
-            if(my_assoc_mem.fill < ASSOC_MEM_SIZE)
-            {
-                ap_int<ASSOC_MEM_SIZE> mask = 1;
-                my_assoc_mem.upper_key_mem[(key >> 18)%512] |= (mask << my_assoc_mem.fill);  // set the fill'th bit to 1, while preserving everything else
-                my_assoc_mem.middle_key_mem[(key >> 9)%512] |= (mask << my_assoc_mem.fill);  // set the fill'th bit to 1, while preserving everything else
-                my_assoc_mem.lower_key_mem[(key >> 0)%512] |= (mask << my_assoc_mem.fill);   // set the fill'th bit to 1, while preserving everything else
-                my_assoc_mem.value[my_assoc_mem.fill] = value;
-                my_assoc_mem.fill++;
-                collision = 0;
-            }
-            else
-            {
-                collision = 1;
-            }
-            //------------------------end assoc_insert-------------------------------
-        }
-        //------------------------------------------end insert-----------------------------------------------------------
-    } */
-    
     uint16_t store_array[MAX_CHUNK];
     ap_uint<CODE_LEN> next_code = 256;
     ap_uint<CODE_LEN> prefix_code = in[0];
@@ -125,6 +83,7 @@ void LZW_hybrid_hash_HW(char *in, uint16_t *input_length, uint16_t *send_data, u
         ap_uint<KEY_LEN> key = (prefix_code.to_uint() << 8) + next_char;
         //-------------------------------hash_lookup-----------------------------------
         for (int j = 0; j < BUCKETS_NUM; j++){
+            #pragma HLS unroll
             ap_uint<BUCKET_LEN> lookup = hash_table[my_hash(key)][j];
 
             // [valid][value][key]
@@ -181,6 +140,7 @@ void LZW_hybrid_hash_HW(char *in, uint16_t *input_length, uint16_t *send_data, u
             // hash_insert(hash_table, key, value, collision);
             //--------------------------hash_insert-----------------------
             for (int j = 0; j < BUCKETS_NUM; j++){
+                #pragma HLS unroll
                 ap_uint<BUCKET_LEN> lookup = hash_table[my_hash(key)][j];
                 ap_uint<1> valid = (lookup >> (KEY_LEN + CODE_LEN)) & 0x1;
                 if(!valid)
@@ -259,7 +219,7 @@ void LZW_hybrid_hash_HW(char *in, uint16_t *input_length, uint16_t *send_data, u
         store_array[j] = prefix_code.to_uint() << shift;
         store_array[j] = swap_endian_16(store_array[j]);
     }else{ 
-        if (shift < CODE_LEN){
+        if (shift < CODE_LEN){ 
             shift = shift + shift_offset;
             store_array[j] = prefix_code.to_uint() << shift;
             store_array[j] = swap_endian_16(store_array[j]);
@@ -293,4 +253,3 @@ void LZW_hybrid_hash_HW(char *in, uint16_t *input_length, uint16_t *send_data, u
     *output_length = compressed_length + 4;
     // return (compressed_length + 4);
 }
-

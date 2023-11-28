@@ -1,32 +1,32 @@
 INFO: Applying HLS Y2K22 patch v1.2 for IP revision
 INFO: [HLS 200-10] Running '/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'chihan' on host 'knock.seas.upenn.edu' (Linux_x86_64 version 5.14.21-150500.55.31-default) on Sun Nov 26 15:39:01 EST 2023
+INFO: [HLS 200-10] For user 'chihan' on host 'gemini.seas.upenn.edu' (Linux_x86_64 version 5.14.21-150500.55.36-default) on Mon Nov 27 18:59:39 EST 2023
 INFO: [HLS 200-10] On os "openSUSE Leap 15.5"
 INFO: [HLS 200-10] In directory '/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test'
-Sourcing Tcl script '/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/csynth.tcl'
+Sourcing Tcl script '/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/csim.tcl'
 INFO: [HLS 200-1510] Running: open_project LZW_HW 
 INFO: [HLS 200-10] Opening project '/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW'.
 INFO: [HLS 200-1510] Running: set_top LZW_hybrid_hash_HW 
-INFO: [HLS 200-1510] Running: add_files Chunk.cpp 
-INFO: [HLS 200-10] Adding design file 'Chunk.cpp' to the project
-INFO: [HLS 200-1510] Running: add_files Constants.h 
-INFO: [HLS 200-10] Adding design file 'Constants.h' to the project
-INFO: [HLS 200-1510] Running: add_files Dedup.cpp 
-INFO: [HLS 200-10] Adding design file 'Dedup.cpp' to the project
-INFO: [HLS 200-1510] Running: add_files LZW_hybrid_hash_HW.cpp 
-INFO: [HLS 200-10] Adding design file 'LZW_hybrid_hash_HW.cpp' to the project
-INFO: [HLS 200-1510] Running: add_files LittlePrince.txt 
-INFO: [HLS 200-10] Adding design file 'LittlePrince.txt' to the project
-INFO: [HLS 200-1510] Running: add_files common/Utilities.cpp 
-INFO: [HLS 200-10] Adding design file 'common/Utilities.cpp' to the project
-INFO: [HLS 200-1510] Running: add_files common/Utilities.h 
-INFO: [HLS 200-10] Adding design file 'common/Utilities.h' to the project
-INFO: [HLS 200-1510] Running: add_files stopwatch.h 
-INFO: [HLS 200-10] Adding design file 'stopwatch.h' to the project
-INFO: [HLS 200-1510] Running: add_files test.txt 
-INFO: [HLS 200-10] Adding design file 'test.txt' to the project
 INFO: [HLS 200-1510] Running: add_files test_copy.txt 
 INFO: [HLS 200-10] Adding design file 'test_copy.txt' to the project
+INFO: [HLS 200-1510] Running: add_files test.txt 
+INFO: [HLS 200-10] Adding design file 'test.txt' to the project
+INFO: [HLS 200-1510] Running: add_files stopwatch.h 
+INFO: [HLS 200-10] Adding design file 'stopwatch.h' to the project
+INFO: [HLS 200-1510] Running: add_files common/Utilities.h 
+INFO: [HLS 200-10] Adding design file 'common/Utilities.h' to the project
+INFO: [HLS 200-1510] Running: add_files common/Utilities.cpp 
+INFO: [HLS 200-10] Adding design file 'common/Utilities.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files LittlePrince.txt 
+INFO: [HLS 200-10] Adding design file 'LittlePrince.txt' to the project
+INFO: [HLS 200-1510] Running: add_files LZW_hybrid_hash_HW.cpp 
+INFO: [HLS 200-10] Adding design file 'LZW_hybrid_hash_HW.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files Dedup.cpp 
+INFO: [HLS 200-10] Adding design file 'Dedup.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files Constants.h 
+INFO: [HLS 200-10] Adding design file 'Constants.h' to the project
+INFO: [HLS 200-1510] Running: add_files Chunk.cpp 
+INFO: [HLS 200-10] Adding design file 'Chunk.cpp' to the project
 INFO: [HLS 200-1510] Running: add_files -tb baseline.cpp -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
 INFO: [HLS 200-10] Adding test bench file 'baseline.cpp' to the project
 INFO: [HLS 200-1510] Running: open_solution solution1 -flow_target vitis 
@@ -35,10 +35,10 @@ INFO: [SYN 201-201] Setting up clock 'default' with a period of 6.667ns.
 INFO: [HLS 200-10] Setting target device to 'xczu3eg-sbva484-1-i'
 INFO: [HLS 200-1505] Using flow_target 'vitis'
 Resolution: For help on HLS 200-1505 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-1505.html
-INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
-INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
-INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
 INFO: [HLS 200-1464] Running solution command: config_interface -default_interface=kernel
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
 INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_offset=slave
 INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
 INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-i 
@@ -46,105 +46,72 @@ INFO: [HLS 200-1510] Running: create_clock -period 150MHz -name default
 INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size 64 -m_axi_latency 64 -m_axi_max_widen_bitwidth 512 -m_axi_offset slave 
 INFO: [HLS 200-1510] Running: config_rtl -register_reset_num 3 
 INFO: [HLS 200-1510] Running: set_directive_top -name LZW_hybrid_hash_HW LZW_hybrid_hash_HW 
-INFO: [HLS 200-1510] Running: csynth_design 
-WARNING: [HLS 200-40] Skipped source file 'test_copy.txt'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
-WARNING: [HLS 200-40] Skipped source file 'test.txt'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
-WARNING: [HLS 200-40] Skipped source file 'LittlePrince.txt'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 208.329 MB.
-INFO: [HLS 200-10] Analyzing design file 'common/Utilities.cpp' ... 
-INFO: [HLS 200-10] Analyzing design file 'LZW_hybrid_hash_HW.cpp' ... 
-INFO: [HLS 200-10] Analyzing design file 'Dedup.cpp' ... 
-INFO: [HLS 200-10] Analyzing design file 'Chunk.cpp' ... 
-INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 8.53 seconds. CPU system time: 0.84 seconds. Elapsed time: 10.78 seconds; current allocated memory: 210.053 MB.
-INFO: [HLS 200-777] Using interface defaults for 'Vitis' flow target.
-INFO: [HLS 214-178] Inlining function 'my_hash(ap_uint<21>)' into 'LZW_hybrid_hash_HW(char*, unsigned short*, unsigned short*, unsigned short*)' (LZW_hybrid_hash_HW.cpp:38:0)
-INFO: [HLS 214-178] Inlining function 'swap_endian_16(unsigned short)' into 'LZW_hybrid_hash_HW(char*, unsigned short*, unsigned short*, unsigned short*)' (LZW_hybrid_hash_HW.cpp:38:0)
-INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 2.08 seconds. CPU system time: 0.18 seconds. Elapsed time: 2.64 seconds; current allocated memory: 212.213 MB.
-INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 212.214 MB.
-INFO: [HLS 200-10] Starting code transformations ...
-INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.05 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.1 seconds; current allocated memory: 221.478 MB.
-INFO: [HLS 200-10] Checking synthesizability ...
-INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.07 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.12 seconds; current allocated memory: 232.598 MB.
-INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_45_1' (LZW_hybrid_hash_HW.cpp:45) in function 'LZW_hybrid_hash_HW' automatically.
-INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_52_3' (LZW_hybrid_hash_HW.cpp:52) in function 'LZW_hybrid_hash_HW' automatically.
-INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_153_6' in function 'LZW_hybrid_hash_HW' automatically.
-INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_7_1' in function 'LZW_hybrid_hash_HW' automatically.
-INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_7_1' in function 'LZW_hybrid_hash_HW' automatically.
-INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_7_1' in function 'LZW_hybrid_hash_HW' automatically.
-INFO: [XFORM 203-510] Pipelining loop 'Loop-5' in function 'LZW_hybrid_hash_HW' automatically.
-INFO: [XFORM 203-510] Pipelining loop 'Loop-6' in function 'LZW_hybrid_hash_HW' automatically.
-INFO: [XFORM 203-102] Partitioning array 'hash_table.V' (LZW_hybrid_hash_HW.cpp:41) in dimension 2 automatically.
-INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.24 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.34 seconds; current allocated memory: 266.521 MB.
-WARNING: [HLS 200-960] Cannot flatten loop 'VITIS_LOOP_119_4' (LZW_hybrid_hash_HW.cpp:42:15) in function 'LZW_hybrid_hash_HW' more than one sub loop.
-Resolution: For help on HLS 200-960 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-960.html
-INFO: [HLS 200-472] Inferring partial write operation for 'hash_table.V[0]' (LZW_hybrid_hash_HW.cpp:47:30)
-INFO: [HLS 200-472] Inferring partial write operation for 'my_assoc_mem.upper_key_mem.V' (LZW_hybrid_hash_HW.cpp:54:39)
-INFO: [HLS 200-472] Inferring partial write operation for 'my_assoc_mem.middle_key_mem.V' (LZW_hybrid_hash_HW.cpp:55:40)
-INFO: [HLS 200-472] Inferring partial write operation for 'my_assoc_mem.lower_key_mem.V' (LZW_hybrid_hash_HW.cpp:56:39)
-INFO: [HLS 200-472] Inferring partial write operation for 'hash_table.V[0]' (LZW_hybrid_hash_HW.cpp:188:49)
-INFO: [HLS 200-472] Inferring partial write operation for 'my_assoc_mem.upper_key_mem.V' 
-INFO: [HLS 200-472] Inferring partial write operation for 'my_assoc_mem.value.V' (LZW_hybrid_hash_HW.cpp:206:59)
-INFO: [HLS 200-472] Inferring partial write operation for 'store_array' (LZW_hybrid_hash_HW.cpp:227:32)
-INFO: [HLS 200-472] Inferring partial write operation for 'store_array' (LZW_hybrid_hash_HW.cpp:232:36)
-INFO: [HLS 200-472] Inferring partial write operation for 'store_array' (LZW_hybrid_hash_HW.cpp:236:38)
-INFO: [HLS 200-472] Inferring partial write operation for 'store_array' (LZW_hybrid_hash_HW.cpp:240:38)
-INFO: [HLS 200-472] Inferring partial write operation for 'store_array' (LZW_hybrid_hash_HW.cpp:260:24)
-INFO: [HLS 200-472] Inferring partial write operation for 'store_array' (LZW_hybrid_hash_HW.cpp:265:28)
-INFO: [HLS 200-472] Inferring partial write operation for 'store_array' (LZW_hybrid_hash_HW.cpp:268:30)
-INFO: [HLS 200-472] Inferring partial write operation for 'store_array' (LZW_hybrid_hash_HW.cpp:273:30)
-INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.23 seconds. CPU system time: 0.03 seconds. Elapsed time: 0.48 seconds; current allocated memory: 267.766 MB.
-INFO: [HLS 200-10] Starting hardware synthesis ...
-INFO: [HLS 200-10] Synthesizing 'LZW_hybrid_hash_HW' ...
-WARNING: [SYN 201-107] Renaming port name 'LZW_hybrid_hash_HW/in' to 'LZW_hybrid_hash_HW/in_r' to avoid the conflict with HDL keywords or other object names.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'LZW_hybrid_hash_HW' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_45_1'.
-INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_45_1'
-INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_52_3'.
-INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_52_3'
-INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_7_1'.
-INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_7_1'
-INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_153_6'.
-INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_153_6'
-INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_7_1'.
-INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_7_1'
-INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_7_1'.
-INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_7_1'
-INFO: [SCHED 204-61] Pipelining loop 'Loop 4'.
-INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 71, loop 'Loop 4'
-INFO: [SCHED 204-61] Pipelining loop 'Loop 5'.
-INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 71, loop 'Loop 5'
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.37 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.47 seconds; current allocated memory: 270.329 MB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.78 seconds. CPU system time: 0.03 seconds. Elapsed time: 0.88 seconds; current allocated memory: 274.364 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'LZW_hybrid_hash_HW' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-WARNING: [RTGEN 206-101] Design contains AXI ports. Reset is fixed to synchronous and active low.
-INFO: [RTGEN 206-500] Setting interface mode on port 'LZW_hybrid_hash_HW/gmem' to 'm_axi'.
-INFO: [RTGEN 206-500] Setting interface mode on port 'LZW_hybrid_hash_HW/in_r' to 's_axilite & ap_none'.
-INFO: [RTGEN 206-500] Setting interface mode on port 'LZW_hybrid_hash_HW/input_length' to 's_axilite & ap_none'.
-INFO: [RTGEN 206-500] Setting interface mode on port 'LZW_hybrid_hash_HW/send_data' to 's_axilite & ap_none'.
-INFO: [RTGEN 206-500] Setting interface mode on port 'LZW_hybrid_hash_HW/output_length' to 's_axilite & ap_none'.
-INFO: [RTGEN 206-500] Setting interface mode on function 'LZW_hybrid_hash_HW' to 's_axilite & ap_ctrl_chain'.
-INFO: [RTGEN 206-100] Bundling port 'in_r', 'input_length', 'send_data', 'output_length' to AXI-Lite port control.
-INFO: [RTGEN 206-100] Finished creating RTL model for 'LZW_hybrid_hash_HW'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.37 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.48 seconds; current allocated memory: 281.622 MB.
-INFO: [RTMG 210-278] Implementing memory 'LZW_hybrid_hash_HW_store_array_ram (RAM)' using auto RAMs.
-INFO: [RTMG 210-278] Implementing memory 'LZW_hybrid_hash_HW_hash_table_V_0_ram (RAM)' using auto RAMs.
-INFO: [RTMG 210-278] Implementing memory 'LZW_hybrid_hash_HW_my_assoc_mem_upper_key_mem_V_ram (RAM)' using auto RAMs.
-INFO: [RTMG 210-278] Implementing memory 'LZW_hybrid_hash_HW_my_assoc_mem_value_V_ram (RAM)' using auto RAMs.
-INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 1.55 seconds. CPU system time: 0.14 seconds. Elapsed time: 3.03 seconds; current allocated memory: 299.031 MB.
-INFO: [VHDL 208-304] Generating VHDL RTL for LZW_hybrid_hash_HW.
-INFO: [VLOG 209-307] Generating Verilog RTL for LZW_hybrid_hash_HW.
-INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were satisfied.
-INFO: [HLS 200-789] **** Estimated Fmax: 205.47 MHz
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 14.36 seconds. CPU system time: 1.31 seconds. Elapsed time: 19.51 seconds; current allocated memory: 299.574 MB.
-INFO: [HLS 200-112] Total CPU user time: 16.4 seconds. Total CPU system time: 1.56 seconds. Total elapsed time: 21.55 seconds; peak allocated memory: 299.031 MB.
+INFO: [HLS 200-1510] Running: csim_design -quiet 
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+make: 'csim.exe' is up to date.
+---------------------------------Boundary Index--------------------------------------
+The index 1072 is a boundary
+The index 2647 is a boundary
+The index 3916 is a boundary
+The index 5491 is a boundary
+The index 6760 is a boundary
+The index 8335 is a boundary
+The index 9604 is a boundary
+The index 11179 is a boundary
+The index 12448 is a boundary
+The index 14023 is a boundary
+The index 14238 is a boundary
+-------------------------------Chunks Info-------------------------------------
+chunk number: 11
+
+LZW_header - boundary: 0
+
+assoc mem entry count: 2
+LZW_output_length[0]: 962
+
+
+LZW_header - boundary: 1
+
+assoc mem entry count: 12
+LZW_output_length[1]: 1326
+
+
+LZW_header - boundary: 2
+
+assoc mem entry count: 5
+LZW_output_length[2]: 1098
+
+deDup_header - boundary: 3
+deDup_header - boundary: 4
+deDup_header - boundary: 5
+deDup_header - boundary: 6
+deDup_header - boundary: 7
+deDup_header - boundary: 8
+deDup_header - boundary: 9
+
+LZW_header - boundary: 10
+
+assoc mem entry count: 0
+LZW_output_length[10]: 271
+
+------------------------------Function Execution Time-------------------------------
+Total latency of CDC is: 28.586 ms.
+Total latency of SHA is: 0.025978 ms.
+Total latency of deDup is: 0.047886 ms.
+Total latency of LZW is: 53.5025 ms.
+Total time taken from CDC to get output file is: 83.2273 ms.
+------------------------------------------------------------------------------------
+Average latency of SHA is: 0.00236164 ms.
+Average latency of deDup is: 0.00435327 ms.
+Average latency of LZW is: 13.3756 ms.
+-----------------------------------Compress Ratio-----------------------------------
+input file with 14247B
+encode file with 3685B
+Compressed ratio: 25.87%
+Compression Contribution of deDup: 95.43%
+Compression Contribution of LZW: 4.57%
+-----------------------------------------------------------------------------------
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 0.19 seconds. CPU system time: 0.04 seconds. Elapsed time: 0.31 seconds; current allocated memory: 208.462 MB.

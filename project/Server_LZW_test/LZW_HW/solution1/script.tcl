@@ -5,16 +5,16 @@
 ############################################################
 open_project LZW_HW
 set_top LZW_hybrid_hash_HW
-add_files Chunk.cpp
-add_files Constants.h
-add_files Dedup.cpp
-add_files LZW_hybrid_hash_HW.cpp
-add_files LittlePrince.txt
-add_files common/Utilities.cpp
-add_files common/Utilities.h
-add_files stopwatch.h
-add_files test.txt
 add_files test_copy.txt
+add_files test.txt
+add_files stopwatch.h
+add_files common/Utilities.h
+add_files common/Utilities.cpp
+add_files LittlePrince.txt
+add_files LZW_hybrid_hash_HW.cpp
+add_files Dedup.cpp
+add_files Constants.h
+add_files Chunk.cpp
 add_files -tb baseline.cpp -cflags "-Wno-unknown-pragmas" -csimflags "-Wno-unknown-pragmas"
 open_solution "solution1" -flow_target vitis
 set_part {xczu3eg-sbva484-1-i}
