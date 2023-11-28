@@ -6,7 +6,6 @@ unsigned int my_hash(ap_uint<KEY_LEN> key)
 
     for(int i = 0; i < KEY_LEN; i++)
     {
-        #pragma HLS unroll
         hashed += (key >> i)&0x01;
         hashed += hashed << 10;
         hashed ^= hashed >> 6;
@@ -30,6 +29,9 @@ typedef struct
     ap_int<ASSOC_MEM_SIZE> upper_key_mem[512]; // the output of these  will be 64 bits wide (size of unsigned long).
     ap_int<ASSOC_MEM_SIZE> middle_key_mem[512];
     ap_int<ASSOC_MEM_SIZE> lower_key_mem[512]; 
+    #pragma HLS array_partition variable=upper_key_mem complete
+    #pragma HLS array_partition variable=middle_key_mem complete
+    #pragma HLS array_partition variable=lower_key_mem complete
     ap_int<CODE_LEN> value[ASSOC_MEM_SIZE];    // value store is 64 deep, because the lookup mems are 64 bits wide
     unsigned int fill;         // tells us how many entries we've currently stored 
 } assoc_mem;
@@ -46,11 +48,13 @@ void LZW_hybrid_hash_HW(char *in, uint16_t *input_length, uint16_t *send_data, u
     uint16_t in_length = *input_length;
     // create hash table and assoc mem
     ap_uint<BUCKET_LEN> hash_table[CAPACITY][BUCKETS_NUM];
+    #pragma HLS array_partition variable=hash_table complete dim=1
     assoc_mem my_assoc_mem;
 
     // make sure the memories are clear
     for(int i = 0; i < CAPACITY; i++){
         for (int j = 0; j < BUCKETS_NUM; j++){
+            #pragma HLS unroll
             hash_table[i][j] = 0;
         }
     }
@@ -111,7 +115,8 @@ void LZW_hybrid_hash_HW(char *in, uint16_t *input_length, uint16_t *send_data, u
             unsigned int address = 0;
             for(; address < ASSOC_MEM_SIZE; address++)
             {
-                if((match >> address) & 0x1)
+                // if((match >> address) & 0x1)
+                if(match.test(address))
                 {   
                     break;
                 }

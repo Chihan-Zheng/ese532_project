@@ -286,7 +286,6 @@ int main(int argc, char* argv[]) {
 				read_done[i].wait();
 				
 				// printf("after kernel\n");
-				LZW_timer.stop();
 				// printf("after while loop i: %d\n", i);
 				// std::cout << "LZW_output_length[" << i << "]: " << LZW_output_length << "\n" << std::endl;
 				if (fwrite(LZW_send_data, 1, *LZW_output_length, File) != *LZW_output_length)
@@ -297,6 +296,7 @@ int main(int argc, char* argv[]) {
 				LZW_total_input_bytes += *LZW_input_length;
 				LZW_final_bytes += *LZW_output_length;
 				q.enqueueUnmapMemObject(Input_buf, ArrayOfChunks[i]);
+				LZW_timer.stop();
 			}
 		}
 		//---------------------------------------end encoding----------------------------------------------
