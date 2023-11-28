@@ -72,6 +72,7 @@ int main(int argc, char* argv[]) {
 	char *ArrayOfChunks[MAX_BOUNDARY];
 	char *ArrayOfChunks_LZW[num_cu];
 	uint16_t *ArrayOfCode[MAX_BOUNDARY];
+	uint16_t ArrayOfOutputLength_LZW[MAX_BOUNDARY];
     std::unordered_map<string, uint32_t> chunkTable;
     uint32_t deDup_header;     //output of deDup function
 	uint16_t *LZW_input_length[num_cu];
@@ -263,19 +264,22 @@ int main(int argc, char* argv[]) {
 		std::cout << "chunk number: " << boundary_num << std::endl;
 		char LZW_chunks_cnt = 0;
 		char LZW_chunks_idx[num_cu];
+		char num_used_krnls = 0;
 		for (int i = 0; i < boundary_num; i++){
 			// printf("for loop i: %d\n", i);
 			deDup_timer.start();
 			deDup_header = deDup(ArrayOfChunks_temp[i], chunk_size[i], chunkTable, std::ref(SHA_timer));
 			deDup_timer.stop();
-			if (deDup_header & 1u){
+			if ((deDup_header & 1u)){
 				std::cout << "deDup_header - boundary: " << i << std::endl;
 				// if (fwrite(&deDup_header, 1, sizeof(deDup_header), File) != sizeof(deDup_header))
 				// 	Exit_with_error("fwrite dedup header to compressed_data.bin failed");
 				memcpy(ArrayOfCode[i] + 1, &deDup_header, sizeof(deDup_header));
 				&ArrayOfCode[i] = 1;
 				deDup_final_bytes += sizeof(deDup_header);
-			}else{
+			}
+
+			if (!(deDup_header & 1u) || (i == boundary_num)){
 				//-----------------------map Input Buffer-----------------------------------
 				ArrayOfChunks_LZW[LZW_chunks_cnt] = (char*)q.enqueueMapBuffer(Input_buf[i], CL_TRUE, CL_MAP_WRITE, 0, chunk_size[i], NULL, NULL, &err);
 				if (err != CL_SUCCESS) 
@@ -285,48 +289,65 @@ int main(int argc, char* argv[]) {
 				LZW_chunks_idx[LZW_chunks_cnt] = i;
 				std::cout << "\n" << "LZW_header - boundary: " << i << std::endl;
 				//------------------------------------------------------------------------------
-				if (LZW_chunks_cnt < (num_cu - 1)){
+				if ((LZW_chunks_cnt < (num_cu - 1)) && (i != boundary_num)){
 					LZW_chunks_cnt++;
 				}else{
+					if (LZW_chunks_cnt == (num_cu - 1)){
+						num_used_krnls = num_cu;
+					}else if (deDup_header & 1u){
+						num_used_krnls = LZW_chunks_cnt;
+					}else{
+						num_used_krnls = LZW_chunks_cnt + 1;
+					}
 					LZW_chunks_cnt = 0;
 					LZW_timer.start();
 					// LZW_output_length = LZW_hybrid_hash_HW(ArrayOfChunks[i], in_length, LZW_send_data);
 					//--------------------------------kernel computation --------------------------------
-					for (int i = 0; i < num_cu; i++){
-						OCL_CHECK(err, err = krnls[i].setArg(0, Input_buf[i]));
-						OCL_CHECK(err, err = krnls[i].setArg(1, In_length_buf[i]));
-						OCL_CHECK(err, err = krnls[i].setArg(2, Output_buf[i]));
-						OCL_CHECK(err, err = krnls[i].setArg(3,Output_length_buf[i]));
+					for (int j = 0; j < num_used_krnls; j++){
+						OCL_CHECK(err, err = krnls[j].setArg(0, Input_buf[j]));
+						OCL_CHECK(err, err = krnls[j].setArg(1, In_length_buf[j]));
+						OCL_CHECK(err, err = krnls[j].setArg(2, Output_buf[j]));
+						OCL_CHECK(err, err = krnls[j].setArg(3,Output_length_buf[j]));
 
-						OCL_CHECK(err, err = q.enqueueMigrateMemObjects({Input_buf[i], In_length_buf[i]}, 0 /* 0 means from host*/, 
-																		&write_waitlist[i], &write_done[i]));
-						write_waitlist[i].push_back(write_done[i]);
-						execute_waitlist[i].push_back(write_done[i]);
+						OCL_CHECK(err, err = q.enqueueMigrateMemObjects({Input_buf[j], In_length_buf[j]}, 0 /* 0 means from host*/, 
+																		&write_waitlist[j], &write_done[j]));
+						write_waitlist[j].push_back(write_done[j]);
+						execute_waitlist[j].push_back(write_done[j]);
 	
-						OCL_CHECK(err, err = q.enqueueTask(krnls[i], &execute_waitlist[i], &execute_done[i]));
-						read_waitlist[i].push_back(execute_done[i]);
-						OCL_CHECK(err, err = q.enqueueMigrateMemObjects({Output_buf[i], Output_length_buf[i]}, 
-																		CL_MIGRATE_MEM_OBJECT_HOST, &read_waitlist[i], &read_done[i]));
-						read_waitlist[i].push_back(read_done[i]);
+						OCL_CHECK(err, err = q.enqueueTask(krnls[i], &execute_waitlist[j], &execute_done[j]));
+						read_waitlist[j].push_back(execute_done[j]);
+						OCL_CHECK(err, err = q.enqueueMigrateMemObjects({Output_buf[j], Output_length_buf[j]}, 
+																		CL_MIGRATE_MEM_OBJECT_HOST, &read_waitlist[j], &read_done[j]));
+						read_waitlist[j].push_back(read_done[j]);
 					}
 					q.enqueueWaitForEvents(read_waitlist);
+					// read_done[i].wait();
 
-					for (int i = 0; i < num_cu; i++){
-						memcpy(ArrayOfCode[LZW_chunks_idx[i]] + 1, LZW_send_data[i], *LZW_output_length[i]);
-						q.enqueueUnmapMemObject(Input_buf[i], ArrayOfChunks_LZW[i]);
+					for (int j = 0; j < num_used_krnls; j++){
+						memcpy(ArrayOfCode[LZW_chunks_idx[j]] + 1, LZW_send_data[j], *LZW_output_length[j]);
+						ArrayOfOutputLength_LZW[LZW_chunks_idx[j]] = *LZW_output_length[j];
+						q.enqueueUnmapMemObject(Input_buf[j], ArrayOfChunks_LZW[j]);
+						LZW_total_input_bytes += *LZW_input_length[j];
+						LZW_final_bytes += *LZW_output_length[j];
 					}
+					LZW_timer.stop();
 				}
-				//--------------------------------kernel computation --------------------------------
 			}
-			// read_done[i].wait();
-			if (fwrite(LZW_send_data, 1, *LZW_output_length, File) != *LZW_output_length)
-				Exit_with_error("fwrite LZW output to compressed_data.bin failed");
-			LZW_total_input_bytes += *LZW_input_length;
-			LZW_final_bytes += *LZW_output_length;
-			LZW_timer.stop();
+				//--------------------------------kernel computation --------------------------------
 		}
-		//---------------------------------------end encoding----------------------------------------------
+		//------ writing output code:
+		for (int i = 0; i < boundary_num; i++){
+			if (*ArrayOfCode[i] && 1){
+				if (fwrite(ArrayOfCode[i] + 1, 1, sizeof(uint32_t), File) != sizeof(uint32_t))
+					Exit_with_error("fwrite dedup header to compressed_data.bin failed");
+			}else{
+				if (fwrite(ArrayOfCode[i] + 1, 1, ArrayOfOutputLength_LZW[i], File) != ArrayOfOutputLength_LZW[i])
+					Exit_with_error("fwrite LZW output to compressed_data.bin failed");
+			}
+		}
 	}
+		//---------------------------------------end encoding----------------------------------------------
+	
 	q.finish();
 	printf("q finished\n");
 
@@ -363,9 +384,11 @@ int main(int argc, char* argv[]) {
     << std::endl;
     timer2.print();
 
- 	q.enqueueUnmapMemObject(Output_buf, LZW_send_data);
-	q.enqueueUnmapMemObject(In_length_buf, LZW_input_length);
-	q.enqueueUnmapMemObject(Output_length_buf, LZW_output_length);
+	for (int j = 0; j < num_cu; j++){
+		q.enqueueUnmapMemObject(Output_buf[j], LZW_send_data[j]);
+		q.enqueueUnmapMemObject(In_length_buf[j], LZW_input_length[j]);
+		q.enqueueUnmapMemObject(Output_length_buf[j], LZW_output_length[j]);
+	}
 	
 	 //---------------------------------print functions execution time---------------------------------------------------------
     std::cout << "------------------------------Functions Execution Time-------------------------------" << std::endl;
