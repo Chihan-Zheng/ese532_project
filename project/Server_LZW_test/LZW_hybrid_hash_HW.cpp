@@ -6,7 +6,6 @@ unsigned int my_hash(ap_uint<KEY_LEN> key)
 
     for(int i = 0; i < KEY_LEN; i++)
     {
-        #pragma HLS unroll
         hashed += (key >> i)&0x01;
         hashed += hashed << 10;
         hashed ^= hashed >> 6;
@@ -46,10 +45,15 @@ void LZW_hybrid_hash_HW(char *in, uint16_t *input_length, uint16_t *send_data, u
     uint16_t in_length = *input_length;
     // create hash table and assoc mem
     ap_uint<BUCKET_LEN> hash_table[CAPACITY][BUCKETS_NUM];
+    #pragma HLS array_partition variable=hash_table block factor=128 dim=1
     assoc_mem my_assoc_mem;
+    #pragma HLS array_partition variable=my_assoc_mem.upper_key_mem complete
+    #pragma HLS array_partition variable=my_assoc_mem.middle_key_mem complete
+    #pragma HLS array_partition variable=my_assoc_mem.lower_key_mem complete
 
     // make sure the memories are clear
     for(int i = 0; i < CAPACITY; i++){
+        #pragma HLS unroll factor=128
         for (int j = 0; j < BUCKETS_NUM; j++){
             hash_table[i][j] = 0;
         }
@@ -108,10 +112,13 @@ void LZW_hybrid_hash_HW(char *in, uint16_t *input_length, uint16_t *send_data, u
 
             ap_int<ASSOC_MEM_SIZE> match = match_high & match_middle & match_low;
 
-            unsigned int address = 0;
-            for(; address < ASSOC_MEM_SIZE; address++)
+            unsigned int address;
+            for(address = 0; address < ASSOC_MEM_SIZE; address++)
             {
-                if((match >> address) & 0x1)
+                // #pragma HLS unroll
+                #pragma HLS pipeline
+                // if((match >> address) & 0x1)
+                if(match.test(address))
                 {   
                     break;
                 }
