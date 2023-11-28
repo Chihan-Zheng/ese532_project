@@ -51,6 +51,8 @@ int main(int argc, char* argv[]) {
     cl_int err;
     std::string binaryFile = "LZW_hybrid_hash_HW.xclbin";
     unsigned fileBufSize;
+	auto constexpr num_cu = 3;
+
     std::vector<cl::Device> devices = get_xilinx_devices();
     devices.resize(1);
     cl::Device device = devices[0];
@@ -59,61 +61,77 @@ int main(int argc, char* argv[]) {
     cl::Program::Binaries bins{{fileBuf, fileBufSize}};
     cl::Program program(context, devices, bins, NULL, &err);
     cl::CommandQueue q(context, device, CL_QUEUE_PROFILING_ENABLE, &err);
-    cl::Kernel krnl_LZW(program, "LZW_hybrid_hash_HW", &err);
+	std::vector<cl::Kernel> krnls(num_cu);
+	for (int i = 0; i < num_cu; i++) {
+		OCL_CHECK(err, krnls[i] = cl::Kernel(program, "LZW_hybrid_hash_HW", &err));
+	}
 
 	 // ------------------------------------------------------------------------------------
     // Step 2: Create buffers and initialize test values
     // ------------------------------------------------------------------------------------
 	char *ArrayOfChunks[MAX_BOUNDARY];
-	char *ArrayOfChunks_temp[MAX_BOUNDARY];
+	char *ArrayOfChunks_LZW[num_cu];
+	uint16_t *ArrayOfCode[MAX_BOUNDARY];
+	uint16_t ArrayOfOutputLength_LZW[MAX_BOUNDARY];
     std::unordered_map<string, uint32_t> chunkTable;
     uint32_t deDup_header;     //output of deDup function
-	uint16_t *LZW_input_length;
-    uint16_t *LZW_output_length;   
-	uint16_t *LZW_send_data;     
+	uint16_t *LZW_input_length[num_cu];
+    uint16_t *LZW_output_length[num_cu];   
+	uint16_t *LZW_send_data[num_cu];     
     // uint16_t *LZW_send_data = (uint16_t *)calloc(Max_Chunk_Size + 2, sizeof(uint16_t));     //Max_Chunk_Size + 32bits header -> unit is 16bits
+
+	for (int i = 0; i < MAX_BOUNDARY; i++){
+		ArrayOfChunks[i] = (char *)malloc(sizeof(uint16_t) * Max_Chunk_Size);
+		ArrayOfCode[i] = (uint16_t *)calloc(Max_Chunk_Size + 1, sizeof(uint16_t));
+		if (ArrayOfChunks[i] == NULL){
+			std::cerr << "Could not malloc ArrayOfChunks[" << i << "]." << std::endl;
+			exit (EXIT_FAILURE);
+		}
+		if (ArrayOfCode[i] == NULL){
+			std::cerr << "Could not malloc ArrayOfCode[" << i << "]." << std::endl;
+			exit (EXIT_FAILURE);
+		}
+	}
 
     timer2.add("Allocate contiguous OpenCL buffers");
 
-    cl::Buffer Input_buf;
-	cl::Buffer In_length_buf;
-    cl::Buffer Output_buf;
-	cl::Buffer Output_length_buf;
+	std::vector<cl::Buffer> Input_buf(num_cu);
+	std::vector<cl::Buffer> Output_buf(num_cu);
+	std::vector<cl::Buffer> In_length_buf(num_cu);
+	std::vector<cl::Buffer> Output_length_buf(num_cu);
 
 	std::vector<cl::Event> write_done(MAX_BOUNDARY);
-	std::vector<cl::Event> write_waitlist;
+	// std::vector<cl::Event> write_waitlist;
+	std::vector<std::vector<cl::Event>> write_waitlist(num_cu);
 	std::vector<std::vector<cl::Event>> execute_waitlist(MAX_BOUNDARY);
 	std::vector<cl::Event> execute_done(MAX_BOUNDARY);
-	std::vector<cl::Event> read_waitlist;
+	// std::vector<cl::Event> read_waitlist;
+	std::vector<std::vector<cl::Event>> read_waitlist(num_cu);
 	std::vector<cl::Event> read_done(MAX_BOUNDARY);
-	std::atomic<bool> fwrite_flag[MAX_BOUNDARY];
 
 	uint16_t Input_buf_size = Max_Chunk_Size;
 	uint16_t Output_buf_size = (Max_Chunk_Size + 2) * sizeof(uint16_t);
- 
-	Input_buf = cl::Buffer(context, CL_MEM_READ_ONLY, Input_buf_size, NULL, &err);
-	Output_buf = cl::Buffer(context, CL_MEM_WRITE_ONLY, Output_buf_size, NULL, &err);
-	In_length_buf = cl::Buffer(context, CL_MEM_READ_ONLY, sizeof(uint16_t), NULL, &err);
-	Output_length_buf = cl::Buffer(context, CL_MEM_WRITE_ONLY, sizeof(uint16_t), NULL, &err);
 
-	//--------------map buffers----------
-/* 	for (int i = 0; i < MAX_BOUNDARY; i++){
-		ArrayOfChunks[i] = (char*)q.enqueueMapBuffer(Input_buf[i], CL_TRUE, CL_MAP_WRITE, 0, Input_buf_size, NULL, NULL, &err);
+	for (int i = 0; i < num_cu; i++){
+		OCL_CHECK(err,
+				Input_buf[i] = cl::Buffer(context, CL_MEM_READ_ONLY, Input_buf_size, NULL, &err));
+		OCL_CHECK(err,
+				Output_buf[i] = cl::Buffer(context, CL_MEM_WRITE_ONLY, Output_buf_size, NULL, &err));
+		OCL_CHECK(err,
+				In_length_buf[i] = cl::Buffer(context, CL_MEM_READ_ONLY, sizeof(uint16_t), NULL, &err));
+		OCL_CHECK(err,
+				Output_length_buf[i] = cl::Buffer(context, CL_MEM_WRITE_ONLY, sizeof(uint16_t), NULL, &err));
+		
+		LZW_send_data[i] = (uint16_t*)q.enqueueMapBuffer(Output_buf[i], CL_TRUE, CL_MAP_READ, 0, Output_buf_size, NULL, NULL, &err);
 		if (err != CL_SUCCESS) 
-			printf("map ArrayOfChunks failed\n");
-	} */
-	
-	LZW_send_data = (uint16_t*)q.enqueueMapBuffer(Output_buf, CL_TRUE, CL_MAP_READ, 0, Output_buf_size, NULL, NULL, &err);
-	if (err != CL_SUCCESS) 
-		printf("map LZW_send_data failed\n");
-
-	LZW_input_length = (uint16_t*)q.enqueueMapBuffer(In_length_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(uint16_t), NULL, NULL, &err);
-	if (err != CL_SUCCESS) 
-		printf("map LZW_input_length failed\n");
-	LZW_output_length = (uint16_t*)q.enqueueMapBuffer(Output_length_buf, CL_TRUE, CL_MAP_READ, 0, sizeof(uint16_t), NULL, NULL, &err);
-
-	if (err != CL_SUCCESS) 
-		printf("map LZW_output_length failed\n");
+			printf("map LZW_send_data failed\n");
+		LZW_input_length[i] = (uint16_t*)q.enqueueMapBuffer(In_length_buf[i], CL_TRUE, CL_MAP_WRITE, 0, sizeof(uint16_t), NULL, NULL, &err);
+		if (err != CL_SUCCESS) 
+			printf("map LZW_input_length failed\n");
+		LZW_output_length[i] = (uint16_t*)q.enqueueMapBuffer(Output_length_buf[i], CL_TRUE, CL_MAP_READ, 0, sizeof(uint16_t), NULL, NULL, &err);
+		if (err != CL_SUCCESS) 
+			printf("map LZW_output_length failed\n");
+	}
 	//-----------------------------------------
 	//--------------------------------------encode define--------------------------------------------
     FILE *File = fopen(argv[1], "wb");
@@ -209,11 +227,11 @@ int main(int argc, char* argv[]) {
 		// ------------------------------------------------------------------------------------
 		// Step 3: Start encoding
 		// ------------------------------------------------------------------------------------
-
+/* 
 		//refresh fwrite_flag[MAX_BOUNDARY]
 		for (int i = 0; i < MAX_BOUNDARY; i++){
 			fwrite_flag[i].store(false);
-		}
+		} */
 
 		//--- define flags for kernel
 		timer2.add("Running the encoding");
@@ -228,7 +246,7 @@ int main(int argc, char* argv[]) {
 			// if (fread(buffer, 1, offset, &file[0]) != offset)
  			// 	Exit_with_error("fread for first two packets failed");
     		cdc_timer.start();
-    		boundary_num = cdc(file, offset, ArrayOfChunks_temp, chunk_size);   //boundary_num should use char?
+    		boundary_num = cdc(file, offset, ArrayOfChunks, chunk_size);   //boundary_num should use char?
    			cdc_timer.stop();
 			// printf("reach first cdc\n");
 			FILE *outfd = fopen("test_chunks.bin", "wb");
@@ -237,70 +255,104 @@ int main(int argc, char* argv[]) {
 			//--- 1 packet:
 			offset += length;
 			cdc_timer.start();
-			boundary_num = cdc(&buffer[2], length, ArrayOfChunks_temp, chunk_size);   //boundary_num should use char?
+			boundary_num = cdc(&buffer[2], length, ArrayOfChunks, chunk_size);   //boundary_num should use char?
 			cdc_timer.stop();
 		}
 		// printf("after cdc\n");
 
 		std::cout << "-------------------------------Chunks Info-------------------------------------" << std::endl;
 		std::cout << "chunk number: " << boundary_num << std::endl;
+		char LZW_chunks_cnt = 0;
+		char LZW_chunks_idx[num_cu];
+		char num_used_krnls = 0;
 		for (int i = 0; i < boundary_num; i++){
 			// printf("for loop i: %d\n", i);
 			deDup_timer.start();
-			deDup_header = deDup(ArrayOfChunks_temp[i], chunk_size[i], chunkTable, std::ref(SHA_timer));
+			deDup_header = deDup(ArrayOfChunks[i], chunk_size[i], chunkTable, std::ref(SHA_timer));
 			deDup_timer.stop();
-			if (deDup_header & 1u){
+			if ((deDup_header & 1u)){
 				std::cout << "deDup_header - boundary: " << i << std::endl;
-				if (fwrite(&deDup_header, 1, sizeof(deDup_header), File) != sizeof(deDup_header))
-					Exit_with_error("fwrite dedup header to compressed_data.bin failed");
+				// if (fwrite(&deDup_header, 1, sizeof(deDup_header), File) != sizeof(deDup_header))
+				// 	Exit_with_error("fwrite dedup header to compressed_data.bin failed");
+				memcpy(ArrayOfCode[i] + 1, &deDup_header, sizeof(deDup_header));
+				*ArrayOfCode[i] = 1;
 				deDup_final_bytes += sizeof(deDup_header);
-			}else{
+			}
+
+			if (!(deDup_header & 1u) || (i == boundary_num)){
 				//-----------------------map Input Buffer-----------------------------------
-				ArrayOfChunks[i] = (char*)q.enqueueMapBuffer(Input_buf, CL_TRUE, CL_MAP_WRITE, 0, chunk_size[i], NULL, NULL, &err);
-				memcpy(ArrayOfChunks[i], ArrayOfChunks_temp[i], chunk_size[i]);
-				//------------------------------------------------------------------------------
+				ArrayOfChunks_LZW[LZW_chunks_cnt] = (char*)q.enqueueMapBuffer(Input_buf[i], CL_TRUE, CL_MAP_WRITE, 0, chunk_size[i], NULL, NULL, &err);
 				if (err != CL_SUCCESS) 
-					printf("map ArrayOfChunks failed\n");
+					printf("map ArrayOfChunks_LZW failed\n");
+				memcpy(ArrayOfChunks_LZW[LZW_chunks_cnt], ArrayOfChunks[i], chunk_size[i]);
+				*LZW_input_length[LZW_chunks_cnt] = chunk_size[i];
+				LZW_chunks_idx[LZW_chunks_cnt] = i;
 				std::cout << "\n" << "LZW_header - boundary: " << i << std::endl;
-				*LZW_input_length = chunk_size[i];
-				LZW_timer.start();
-				// LZW_output_length = LZW_hybrid_hash_HW(ArrayOfChunks[i], in_length, LZW_send_data);
-				// printf("before kernel\n");
-				//--------------------------------kernel computation --------------------------------
-				krnl_LZW.setArg(0, Input_buf);
-				krnl_LZW.setArg(1, In_length_buf);
-				krnl_LZW.setArg(2, Output_buf);
-				krnl_LZW.setArg(3, Output_length_buf);
+				//------------------------------------------------------------------------------
+				if ((LZW_chunks_cnt < (num_cu - 1)) && (i != boundary_num)){
+					LZW_chunks_cnt++;
+				}else{
+					if (LZW_chunks_cnt == (num_cu - 1)){
+						num_used_krnls = num_cu;
+					}else if (deDup_header & 1u){
+						num_used_krnls = LZW_chunks_cnt;
+					}else{
+						num_used_krnls = LZW_chunks_cnt + 1;
+					}
+					LZW_chunks_cnt = 0;
+					LZW_timer.start();
+					// LZW_output_length = LZW_hybrid_hash_HW(ArrayOfChunks[i], in_length, LZW_send_data);
+					//--------------------------------kernel computation --------------------------------
+					for (int j = 0; j < num_used_krnls; j++){
+						OCL_CHECK(err, err = krnls[j].setArg(0, Input_buf[j]));
+						OCL_CHECK(err, err = krnls[j].setArg(1, In_length_buf[j]));
+						OCL_CHECK(err, err = krnls[j].setArg(2, Output_buf[j]));
+						OCL_CHECK(err, err = krnls[j].setArg(3,Output_length_buf[j]));
 
-				q.enqueueMigrateMemObjects({Input_buf, In_length_buf}, 0 /* 0 means from host*/, &write_waitlist, &write_done[i]);
-				write_waitlist.push_back(write_done[i]);
-			
-				q.enqueueWaitForEvents(read_waitlist);
-				execute_waitlist[i].push_back(write_done[i]);
-				q.enqueueTask(krnl_LZW, &execute_waitlist[i], &execute_done[i]);
+						OCL_CHECK(err, err = q.enqueueMigrateMemObjects({Input_buf[j], In_length_buf[j]}, 0 /* 0 means from host*/, 
+																		&write_waitlist[j], &write_done[j]));
+						write_waitlist[j].push_back(write_done[j]);
+						execute_waitlist[j].push_back(write_done[j]);
+	
+						OCL_CHECK(err, err = q.enqueueTask(krnls[i], &execute_waitlist[j], &execute_done[j]));
+						read_waitlist[j].push_back(execute_done[j]);
+						OCL_CHECK(err, err = q.enqueueMigrateMemObjects({Output_buf[j], Output_length_buf[j]}, 
+																		CL_MIGRATE_MEM_OBJECT_HOST, &read_waitlist[j], &read_done[j]));
+						read_waitlist[j].push_back(read_done[j]);
+					}
+					// q.enqueueWaitForEvents(read_waitlist);
+					for (auto& innerList : read_waitlist) {
+						if (!innerList.empty()) {
+							q.enqueueWaitForEvents(innerList);
+						}
+					}
+					// read_done[i].wait();
 
-				read_waitlist.push_back(execute_done[i]);
-				q.enqueueMigrateMemObjects({Output_buf, Output_length_buf}, CL_MIGRATE_MEM_OBJECT_HOST, &read_waitlist, &read_done[i]);
-				read_waitlist.push_back(read_done[i]);
+					for (int j = 0; j < num_used_krnls; j++){
+						memcpy(ArrayOfCode[LZW_chunks_idx[j]] + 1, LZW_send_data[j], *LZW_output_length[j]);
+						ArrayOfOutputLength_LZW[LZW_chunks_idx[j]] = *LZW_output_length[j];
+						q.enqueueUnmapMemObject(Input_buf[j], ArrayOfChunks_LZW[j]);
+						LZW_total_input_bytes += *LZW_input_length[j];
+						LZW_final_bytes += *LZW_output_length[j];
+					}
+					LZW_timer.stop();
+				}
+			}
 				//--------------------------------kernel computation --------------------------------
-				// read_done[i].wait();
-				
-				// printf("after kernel\n");
-				// printf("after while loop i: %d\n", i);
-				// std::cout << "LZW_output_length[" << i << "]: " << LZW_output_length << "\n" << std::endl;
-				if (fwrite(LZW_send_data, 1, *LZW_output_length, File) != *LZW_output_length)
+		}
+		//------ writing output code:
+		for (int i = 0; i < boundary_num; i++){
+			if (*ArrayOfCode[i] && 1){
+				if (fwrite(ArrayOfCode[i] + 1, 1, sizeof(uint32_t), File) != sizeof(uint32_t))
+					Exit_with_error("fwrite dedup header to compressed_data.bin failed");
+			}else{
+				if (fwrite(ArrayOfCode[i] + 1, 1, ArrayOfOutputLength_LZW[i], File) != ArrayOfOutputLength_LZW[i])
 					Exit_with_error("fwrite LZW output to compressed_data.bin failed");
-				// fwrite_flag[i] = true;
-				// std::cout << "fwrite_flag[" << i << "]: " << fwrite_flag[i] << std::endl;
-				// memset(LZW_send_data, 0, (Max_Chunk_Size + 2) * sizeof(uint16_t));
-				LZW_total_input_bytes += *LZW_input_length;
-				LZW_final_bytes += *LZW_output_length;
-				q.enqueueUnmapMemObject(Input_buf, ArrayOfChunks[i]);
-				LZW_timer.stop();
 			}
 		}
-		//---------------------------------------end encoding----------------------------------------------
 	}
+		//---------------------------------------end encoding----------------------------------------------
+	
 	q.finish();
 	printf("q finished\n");
 
@@ -324,8 +376,12 @@ int main(int argc, char* argv[]) {
 		free(input[i]);
 	}
 	// printf("after free input\n");
-
+	
 	free(file);
+	for (int i = 0; i < MAX_BOUNDARY; i++){
+		free(ArrayOfChunks[i]);
+		free(ArrayOfCode[i]);
+	}
 	// ------------------------------------------------------------------------------------
     // Step 5: Release Allocated Resources
     // ------------------------------------------------------------------------------------
@@ -333,9 +389,11 @@ int main(int argc, char* argv[]) {
     << std::endl;
     timer2.print();
 
- 	q.enqueueUnmapMemObject(Output_buf, LZW_send_data);
-	q.enqueueUnmapMemObject(In_length_buf, LZW_input_length);
-	q.enqueueUnmapMemObject(Output_length_buf, LZW_output_length);
+	for (int j = 0; j < num_cu; j++){
+		q.enqueueUnmapMemObject(Output_buf[j], LZW_send_data[j]);
+		q.enqueueUnmapMemObject(In_length_buf[j], LZW_input_length[j]);
+		q.enqueueUnmapMemObject(Output_length_buf[j], LZW_output_length[j]);
+	}
 	
 	 //---------------------------------print functions execution time---------------------------------------------------------
     std::cout << "------------------------------Functions Execution Time-------------------------------" << std::endl;

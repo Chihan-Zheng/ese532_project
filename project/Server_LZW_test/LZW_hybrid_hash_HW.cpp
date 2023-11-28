@@ -36,10 +36,10 @@ typedef struct
 //****************************************************************************************************************
 void LZW_hybrid_hash_HW(char *in, uint16_t *input_length, uint16_t *send_data, uint16_t *output_length)
 {
-    #pragma HLS interface m_axi port=in bundle=aximm1
-    #pragma HLS interface m_axi port=input_length bundle=aximm1
-    #pragma HLS interface m_axi port=send_data bundle=aximm2
-    #pragma HLS interface m_axi port=output_length bundle=aximm2
+    // #pragma HLS interface m_axi port=in bundle=aximm1
+    // #pragma HLS interface m_axi port=input_length bundle=aximm1
+    // #pragma HLS interface m_axi port=send_data bundle=aximm2
+    // #pragma HLS interface m_axi port=output_length bundle=aximm2
     // #pragma HLS dataflow
 
     uint16_t in_length = *input_length;
