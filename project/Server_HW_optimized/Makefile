@@ -60,27 +60,27 @@ $(ENCODER_EXE): $(ENCODER_OBJECTS)
 $(ENDIAN_EXE): $(ENDIAN_OBJECTS)
 	$(HOST_CXX) -o "$@" $(+) $(LDFLAGS)
 
-all: package/sd_card.img
+fpga: package/sd_card.img
 
 .cpp.o:
 	$(HOST_CXX) $(CXXFLAGS) -I./ -I./common/ -c -o "$@" "$<"
 
 	
-# $(XO): ./LZW_hybrid_hash_HW.cpp
-# 	$(VPP) $(VPP_OPTS) -k LZW_hybrid_hash_HW --compile -I"$(<D)"  --config ./u96_v2.cfg -o"$@" "$<"
+$(XO): ./LZW_hybrid_hash_HW.cpp
+	$(VPP) $(VPP_OPTS) -k LZW_hybrid_hash_HW --compile -I"$(<D)"  --config ./u96_v2.cfg -o"$@" "$<"
 
 $(XCLBIN): $(XO)
 	-@$(RM) $@
 	$(VPP) $(VPP_OPTS) --link --config ./u96_v2.cfg -o"$@" $(+)
 
-package/sd_card.img: $(ENCODER_EXE) $(XCLBIN) xrt.ini
+package/sd_card.img: $(XCLBIN) xrt.ini 
 	$(VPP) --package $(VPP_OPTS) --config ./u96_v2.cfg $(XCLBIN) \
 	       --package.out_dir package \
-	       --package.sd_file $(ENCODER_EXE)\
 	       --package.kernel_image $(PLATFORM_REPO_PATHS)/sw/u96v2_sbc_base/PetaLinux/image/image.ub \
 	       --package.rootfs ${PLATFORM_REPO_PATHS}/sw/u96v2_sbc_base/PetaLinux/rootfs/rootfs.ext4 \
 	       --package.sd_file $(XCLBIN) \
-	       --package.sd_file xrt.ini
+	       --package.sd_file xrt.ini \
+		#    --package.sd_file $(ENCODER_EXE)\
 
 
 clean-baseline:
