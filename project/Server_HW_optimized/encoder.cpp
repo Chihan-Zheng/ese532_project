@@ -49,9 +49,10 @@ int main(int argc, char* argv[]) {
     // ------------------------------------------------------------------------------------
     timer2.add("OpenCL Initialization");
     cl_int err;
-    std::string binaryFile = "LZW_hybrid_hash_HW.xclbin";
+    // std::string binaryFile = "LZW_hybrid_hash_HW.xclbin";
+	std::string binaryFile = "krnl_LZW.xclbin";
     unsigned fileBufSize;
-	auto constexpr num_cu = 2;
+	auto constexpr num_cu = 4;
 
     std::vector<cl::Device> devices = get_xilinx_devices();
     devices.resize(1);
@@ -63,7 +64,8 @@ int main(int argc, char* argv[]) {
     cl::CommandQueue q(context, device, CL_QUEUE_PROFILING_ENABLE | CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE, &err);
 	std::vector<cl::Kernel> krnls(num_cu);
 	for (int i = 0; i < num_cu; i++) {
-		OCL_CHECK(err, krnls[i] = cl::Kernel(program, "LZW_hybrid_hash_HW", &err));
+		// OCL_CHECK(err, krnls[i] = cl::Kernel(program, "LZW_hybrid_hash_HW", &err));
+		OCL_CHECK(err, krnls[i] = cl::Kernel(program, "krnl_LZW", &err));
 	}
 
 	 // ------------------------------------------------------------------------------------
@@ -81,7 +83,7 @@ int main(int argc, char* argv[]) {
     // uint16_t *LZW_send_data = (uint16_t *)calloc(Max_Chunk_Size + 2, sizeof(uint16_t));     //Max_Chunk_Size + 32bits header -> unit is 16bits
 
 	for (int i = 0; i < MAX_BOUNDARY; i++){
-		ArrayOfChunks[i] = (char *)malloc(sizeof(uint16_t) * Max_Chunk_Size);
+		ArrayOfChunks[i] = (char *)malloc(sizeof(char) * Max_Chunk_Size);
 		ArrayOfCode[i] = (uint16_t *)calloc(Max_Chunk_Size + 1, sizeof(uint16_t));
 		if (ArrayOfChunks[i] == NULL){
 			std::cerr << "Could not malloc ArrayOfChunks[" << i << "]." << std::endl;
@@ -112,23 +114,23 @@ int main(int argc, char* argv[]) {
 	uint16_t Input_buf_size = Max_Chunk_Size;
 	uint16_t Output_buf_size = (Max_Chunk_Size + 2) * sizeof(uint16_t);
 
-	for (int i = 0; i < num_cu; i++){
+	for (int j = 0; j < num_cu; j++){
 		OCL_CHECK(err,
-				Input_buf[i] = cl::Buffer(context, CL_MEM_READ_ONLY, Input_buf_size, NULL, &err));
+				Input_buf[j] = cl::Buffer(context, CL_MEM_READ_ONLY, Input_buf_size, NULL, &err));
 		OCL_CHECK(err,
-				Output_buf[i] = cl::Buffer(context, CL_MEM_WRITE_ONLY, Output_buf_size, NULL, &err));
+				Output_buf[j] = cl::Buffer(context, CL_MEM_WRITE_ONLY, Output_buf_size, NULL, &err));
 		OCL_CHECK(err,
-				In_length_buf[i] = cl::Buffer(context, CL_MEM_READ_ONLY, sizeof(uint16_t), NULL, &err));
+				In_length_buf[j] = cl::Buffer(context, CL_MEM_READ_ONLY, sizeof(uint16_t), NULL, &err));
 		OCL_CHECK(err,
-				Output_length_buf[i] = cl::Buffer(context, CL_MEM_WRITE_ONLY, sizeof(uint16_t), NULL, &err));
+				Output_length_buf[j] = cl::Buffer(context, CL_MEM_WRITE_ONLY, sizeof(uint16_t), NULL, &err));
 		
-		LZW_send_data[i] = (uint16_t*)q.enqueueMapBuffer(Output_buf[i], CL_TRUE, CL_MAP_READ, 0, Output_buf_size, NULL, NULL, &err);
+		LZW_send_data[j] = (uint16_t*)q.enqueueMapBuffer(Output_buf[j], CL_TRUE, CL_MAP_READ, 0, Output_buf_size, NULL, NULL, &err);
 		if (err != CL_SUCCESS) 
 			printf("map LZW_send_data failed\n");
-		LZW_input_length[i] = (uint16_t*)q.enqueueMapBuffer(In_length_buf[i], CL_TRUE, CL_MAP_WRITE, 0, sizeof(uint16_t), NULL, NULL, &err);
+		LZW_input_length[j] = (uint16_t*)q.enqueueMapBuffer(In_length_buf[j], CL_TRUE, CL_MAP_WRITE, 0, sizeof(uint16_t), NULL, NULL, &err);
 		if (err != CL_SUCCESS) 
 			printf("map LZW_input_length failed\n");
-		LZW_output_length[i] = (uint16_t*)q.enqueueMapBuffer(Output_length_buf[i], CL_TRUE, CL_MAP_READ, 0, sizeof(uint16_t), NULL, NULL, &err);
+		LZW_output_length[j] = (uint16_t*)q.enqueueMapBuffer(Output_length_buf[j], CL_TRUE, CL_MAP_READ, 0, sizeof(uint16_t), NULL, NULL, &err);
 		if (err != CL_SUCCESS) 
 			printf("map LZW_output_length failed\n");
 	}
@@ -249,8 +251,8 @@ int main(int argc, char* argv[]) {
     		boundary_num = cdc(file, offset, ArrayOfChunks, chunk_size);   //boundary_num should use char?
    			cdc_timer.stop();
 			// printf("reach first cdc\n");
-			FILE *outfd = fopen("test_chunks.bin", "wb");
-			int bytes_written = fwrite(&file[0], 1, offset, outfd);
+			/* FILE *outfd = fopen("test_chunks.bin", "wb");
+			int bytes_written = fwrite(&file[0], 1, offset, outfd); */
 		}else{
 			//--- 1 packet:
 			offset += length;
@@ -281,13 +283,15 @@ int main(int argc, char* argv[]) {
 
 			if (!(deDup_header & 1u) || (i == boundary_num)){
 				//-----------------------map Input Buffer-----------------------------------
-				ArrayOfChunks_LZW[LZW_chunks_cnt] = (char*)q.enqueueMapBuffer(Input_buf[i], CL_TRUE, CL_MAP_WRITE, 0, chunk_size[i], NULL, NULL, &err);
-				if (err != CL_SUCCESS) 
-					printf("map ArrayOfChunks_LZW failed\n");
-				memcpy(ArrayOfChunks_LZW[LZW_chunks_cnt], ArrayOfChunks[i], chunk_size[i]);
-				*LZW_input_length[LZW_chunks_cnt] = chunk_size[i];
-				LZW_chunks_idx[LZW_chunks_cnt] = i;
-				std::cout << "\n" << "LZW_header - boundary: " << i << std::endl;
+				if (!(deDup_header & 1u)){
+					ArrayOfChunks_LZW[LZW_chunks_cnt] = (char*)q.enqueueMapBuffer(Input_buf[LZW_chunks_cnt], CL_TRUE, CL_MAP_WRITE, 0, chunk_size[i], NULL, NULL, &err);
+					if (err != CL_SUCCESS) 
+						printf("map ArrayOfChunks_LZW failed\n");
+					memcpy(ArrayOfChunks_LZW[LZW_chunks_cnt], ArrayOfChunks[i], chunk_size[i]);
+					*LZW_input_length[LZW_chunks_cnt] = chunk_size[i];
+					LZW_chunks_idx[LZW_chunks_cnt] = i;
+					std::cout << "\n" << "LZW_header - boundary: " << i << std::endl;
+				}
 				//------------------------------------------------------------------------------
 				if ((LZW_chunks_cnt < (num_cu - 1)) && (i != boundary_num)){
 					LZW_chunks_cnt++;
@@ -313,19 +317,21 @@ int main(int argc, char* argv[]) {
 																		&write_waitlist[j], &write_done[j]));
 						write_waitlist[j].push_back(write_done[j]);
 						execute_waitlist[j].push_back(write_done[j]);
-	
-						OCL_CHECK(err, err = q.enqueueTask(krnls[i], &execute_waitlist[j], &execute_done[j]));
+						
+						OCL_CHECK(err, err = q.enqueueTask(krnls[j], &execute_waitlist[j], &execute_done[j]));
 						read_waitlist[j].push_back(execute_done[j]);
 						OCL_CHECK(err, err = q.enqueueMigrateMemObjects({Output_buf[j], Output_length_buf[j]}, 
 																		CL_MIGRATE_MEM_OBJECT_HOST, &read_waitlist[j], &read_done[j]));
 						read_waitlist[j].push_back(read_done[j]);
 					}
 					// q.enqueueWaitForEvents(read_waitlist);
-					for (auto& innerList : read_waitlist) {
+				/* 	for (auto& innerList : read_waitlist) {
 						if (!innerList.empty()) {
-							q.enqueueWaitForEvents(innerList);
+							for (int j = 0; j < num_used_krnls; j++){
+								q[j].enqueueWaitForEvents(innerList);
+							}
 						}
-					}
+					} */
 					// read_done[i].wait();
 
 					for (int j = 0; j < num_used_krnls; j++){
@@ -352,8 +358,8 @@ int main(int argc, char* argv[]) {
 		}
 	}
 		//---------------------------------------end encoding----------------------------------------------
-	
-	q.finish();
+		q.finish();
+
 	printf("q finished\n");
 
 	//----------------------------------File of codes-------------------------------------------
