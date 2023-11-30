@@ -1,10 +1,10 @@
 #include "Constants.h"
 #include <hls_stream.h>
 
-// uint16_t swap_endian_16(uint16_t value) {
-//     return (value >> 8) | (value << 8);
-// }
-
+/* uint16_t swap_endian_16(uint16_t value) {
+    return (value >> 8) | (value << 8);
+}
+ */
 unsigned int my_hash(ap_uint<KEY_LEN> key)
 {
     unsigned int hashed = 0;

@@ -18,8 +18,10 @@ VPP_OPTS = --target hw
 #
 # OpenCL kernel files
 #
-XO := LZW_hybrid_hash_HW.xo
-XCLBIN := LZW_hybrid_hash_HW.xclbin
+# XO := LZW_hybrid_hash_HW.xo
+# XCLBIN := LZW_hybrid_hash_HW.xclbin
+XO := krnl_LZW.xo
+XCLBIN := krnl_LZW.xclbin
 ALL_MESSAGE_FILES = $(subst .xo,.mdb,$(XO)) $(subst .xclbin,.mdb,$(XCLBIN))
 
 #
@@ -66,12 +68,13 @@ fpga: package/sd_card.img
 	$(HOST_CXX) $(CXXFLAGS) -I./ -I./common/ -c -o "$@" "$<"
 
 	
-$(XO): ./LZW_hybrid_hash_HW.cpp
-	$(VPP) $(VPP_OPTS) -k LZW_hybrid_hash_HW --compile -I"$(<D)" --config ./u96_v2.cfg -o"$@" "$<"
+# $(XO): ./LZW_hybrid_hash_HW.cpp
+# 	$(VPP) $(VPP_OPTS) -k krnl_LZW --compile -I"$(<D)" --config ./u96_v2.cfg -o"$@" "$<"
 
 $(XCLBIN): $(XO) 
 	-@$(RM) $@
-	$(VPP) $(VPP_OPTS) --link --config ./u96_v2.cfg -o"$@" $(+)
+	$(VPP) $(VPP_OPTS) --link -Icommon/ --config ./u96_v2.cfg --nk krnl_LZW:4 -o"$@" $(+)
+# $(VPP) $(VPP_OPTS) --compile -Icommon/ --config ./u96_v2.cfg --nk krnl_LZW:4 -o"$@" $(+)
 
 package/sd_card.img: $(XCLBIN) ./xrt.ini 
 	$(VPP) --package $(VPP_OPTS) --config ./u96_v2.cfg $(XCLBIN) \
