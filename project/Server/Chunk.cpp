@@ -65,7 +65,7 @@ void cdc_window(unsigned char *buff, unsigned int buff_size, char* chunk, uint16
 }
 //read the input file and call the rolling hash function.
 // int cdc( const char* file, char** chunk, uint16_t *chunk_size)
-void cdc( unsigned char* buff, int buff_size,char** chunk, uint16_t *chunk_size)
+void cdc( unsigned char* buff, int buff_size,char** chunk, uint16_t *chunk_size, int *offset_buff, int *pipeline_drained)
 {
 	// FILE* fp = fopen(file,"r" );
 	// if(fp == NULL ){
@@ -87,7 +87,7 @@ void cdc( unsigned char* buff, int buff_size,char** chunk, uint16_t *chunk_size)
 
 	// int bytes_read = fread(&buff[0],sizeof(unsigned char),file_size,fp);
 	
-	cdc_window(buff,  buff_size, chunk, chunk_size);
+	cdc_window(buff,  buff_size, chunk, chunk_size, offset_buff, pipeline_drained);
 
     // free(buff);
 }
