@@ -71,7 +71,7 @@ int main(int argc, char* argv[]) {
 	 // ------------------------------------------------------------------------------------
     // Step 2: Create buffers and initialize test values
     // ------------------------------------------------------------------------------------
-	char *ArrayOfChunks[MAX_BOUNDARY];
+	// char *ArrayOfChunks[MAX_BOUNDARY];
 	char *ArrayOfChunks_LZW[num_cu];
 	uint16_t *cdc_offset;
 	uint16_t *chunk_size;
@@ -81,6 +81,9 @@ int main(int argc, char* argv[]) {
 	uint16_t ArrayOfOutputLength_LZW[MAX_BOUNDARY];
     std::unordered_map<string, uint32_t> chunkTable;
     uint32_t deDup_header;     //output of deDup function
+	uint32_t deDup_header_LZW;
+	std::promise<uint32_t> deDup_header_promise;
+    std::future<uint32_t> deDup_header_future = deDup_header_promise.get_future();
 	uint16_t *LZW_input_length[num_cu];
     uint16_t *LZW_output_length[num_cu];   
 	uint16_t *LZW_send_data[num_cu];     
@@ -299,13 +302,16 @@ int main(int argc, char* argv[]) {
 			char LZW_chunks_cnt = 0;
 			char LZW_chunks_idx[num_cu];
 			char num_used_krnls = 0;
-			
+		
 			// printf("for loop i: %d\n", i);
 			if (loop_cnt > 0){
+
 				deDup_timer.start();
-				auto future = std::async(std::launch::async, deDup, 
-										chunk_dedup, chunk_size, chunkTable, std::ref(SHA_timer));
-				deDup_header = future.get();
+				core_2_thread = std::thread(&deDup, 
+											chunk_dedup, chunk_size, chunkTable, std::ref(SHA_timer), 
+											std::move(deDup_header_promise));
+				pin_thread_to_cpu(core_2_thread, 2);
+				deDup_header = deDup_header_future.get();
 				// deDup_header = deDup(chunk_dedup, chunk_size, chunkTable, std::ref(SHA_timer));
 				deDup_timer.stop();
 				if ((deDup_header & 1u)){
@@ -318,9 +324,9 @@ int main(int argc, char* argv[]) {
 				}
 			}
 
-			if ((!(deDup_header & 1u) || (pipeline_drained == 2)) && (loop_cnt > 1)){
+			if ((!(deDup_header_LZW & 1u) || (pipeline_drained == 2)) && (loop_cnt > 1)){
 				//-----------------------map Input Buffer-----------------------------------
-				if (!(deDup_header & 1u)){
+				if (!(deDup_header_LZW & 1u)){
 					ArrayOfChunks_LZW[LZW_chunks_cnt] = (char*)q.enqueueMapBuffer(Input_buf[LZW_chunks_cnt], CL_TRUE, CL_MAP_WRITE, 0, chunk_size, NULL, NULL, &err);
 					if (err != CL_SUCCESS) 
 						printf("map ArrayOfChunks_LZW failed\n");
@@ -343,7 +349,7 @@ int main(int argc, char* argv[]) {
 				}else{
 					if (LZW_chunks_cnt == (num_cu - 1)){
 						num_used_krnls = num_cu;
-					}else if (deDup_header & 1u){
+					}else if (deDup_header_LZW & 1u){
 						num_used_krnls = LZW_chunks_cnt;
 					}else{
 						num_used_krnls = LZW_chunks_cnt + 1;
@@ -404,6 +410,8 @@ int main(int argc, char* argv[]) {
 			chunk_temp = chunk_cdc;
 			chunk_cdc = chunk_dedup;
 			chunk_dedup = chunk_temp;
+
+			deDup_header_LZW = deDup_header;
 			
 			loop_cnt++;
 			if (!cdc_finished){

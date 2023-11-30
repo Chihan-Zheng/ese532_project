@@ -67,7 +67,7 @@ void cdc_window(unsigned char *buff, unsigned int buff_size, char* chunk, uint16
 // int cdc( const char* file, char** chunk, uint16_t *chunk_size)
 void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size, uint16_t *offset_buff, char *pipeline_drained)
 {
-	// FILE* fp = fopen(file,"r" );
+/* 	// FILE* fp = fopen(file,"r" );
 	// if(fp == NULL ){
 	// 	perror("fopen error");
 	// 	return 0;
@@ -89,7 +89,42 @@ void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size,
 	
 	cdc_window(buff,  buff_size, chunk, chunk_size, offset_buff, pipeline_drained);
 
-    // free(buff);
+    // free(buff); */
+	 unsigned char *buff_new = buff + *offset_buff;
+    unsigned int buff_size_new = buff_size - *offset_buff;
+    
+	uint64_t *hash = (uint64_t *)malloc(sizeof(uint64_t) * (buff_size_new - WIN_SIZE));
+    
+	//std::cout << "---------------------------------Boundary Index--------------------------------------" << std::endl;
+    for(unsigned int i = WIN_SIZE; i<buff_size_new - WIN_SIZE; i++){
+		if(i == WIN_SIZE)
+		hash[i] = hash_func(buff_new, WIN_SIZE);
+		else
+		hash[i] = hash[i-1] * PRIME - buff_new[i-1]*pow(PRIME, WIN_SIZE+1) + buff_new[i+WIN_SIZE-1]*PRIME;
+		if((((hash[i] % MODULUS) == TARGET)&&(i>=MIN_CHUNK))||(i>=MAX_CHUNK)||(i==buff_size_new-WIN_SIZE-1)) {
+		// if((((hash[i] % MODULUS) == TARGET)&&(i-previous_boundary>=MIN_CHUNK))||(i-previous_boundary>=MAX_CHUNK)||(i==buff_size_new-WIN_SIZE)) {
+
+			//printf("The index %d is a boundary\n", i + *offset_buff + 1); //Print out the boundary we found.
+			chunk = (char*)malloc(sizeof(char)*MAX_CHUNK);
+			if(i<buff_size_new-WIN_SIZE-1){
+				memcpy(chunk, buff_new, i);
+				*chunk_size = i;
+			}else{
+				memcpy(chunk, buff_new, buff_size_new);  //because the hash cannot calculate after buff_size_new-win_size, the last chunk copy will be different.
+				*chunk_size = i + WIN_SIZE + 1;
+                *pipeline_drained = 1;
+			}
+            
+            *offset_buff += i;
+			//printf("we find a chunk:\n");
+			printf("%s",chunk);
+			return;
+			//printf("The hash calculated at this index is %d\n",hash[i]); //Print out the hash value calculated at this char.
+			// printf("The calculated 8 bytes are: %c%c%c%c%c%c%c%c\n",buff[i],buff[i+1],buff[i+2],buff[i+3],buff[i+4],buff[i+5],buff[i+6],buff[i+7]); //print out the 8 characters that hash based on.
+        }
+		
+	}
+	free(hash);
 }
 
 /* void test_print_chunk(char** chunk, int boundary_num){
