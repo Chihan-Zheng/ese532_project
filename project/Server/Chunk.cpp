@@ -44,7 +44,7 @@ void cdc_window(unsigned char *buff, unsigned int buff_size, char* chunk, uint16
 		if((((hash[i] % MODULUS) == TARGET)&&(i>=MIN_CHUNK))||(i>=MAX_CHUNK)||(i==buff_size_new-WIN_SIZE-1)) {
 		// if((((hash[i] % MODULUS) == TARGET)&&(i-previous_boundary>=MIN_CHUNK))||(i-previous_boundary>=MAX_CHUNK)||(i==buff_size_new-WIN_SIZE)) {
 
-			printf("The index %d is a boundary\n", i); //Print out the boundary we found.
+			printf("The index %d is a boundary\n", i + &offset_buff); //Print out the boundary we found.
 			chunk = (char*)malloc(sizeof(char)*MAX_CHUNK);
 			if(i<buff_size_new-WIN_SIZE-1){
 				memcpy(chunk, buff_new, i);
