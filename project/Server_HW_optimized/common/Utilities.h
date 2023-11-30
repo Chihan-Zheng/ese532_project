@@ -45,6 +45,8 @@ using namespace std;
 #include <sys/mman.h>
 #include "../encoder.h"
 #include <atomic>
+#include <thread>
+#include <future>
 
 
 

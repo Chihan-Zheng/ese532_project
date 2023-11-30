@@ -32,8 +32,8 @@ uint64_t basicHash(char* input, size_t length);
 /* uint32_t deDup(char* inputChunk, uint16_t chunk_size, 
                std::unordered_map<string, uint32_t>& chunkTable, stopwatch& stopwatch); */
 void deDup(char* inputChunk, uint16_t chunk_size,
-            std::unordered_map<string, uint32_t>& chunkTable,
-            stopwatch& stopwatch, std::promise<int>&& deDup_header);
+    std::unordered_map<string, uint32_t>& chunkTable,
+    stopwatch& stopwatch, uint32_t &deDup_header);
 unsigned int my_hash(ap_uint<KEY_LEN> key);
 void LZW_hybrid_hash_HW(char *in, uint16_t *input_length, 
                         uint16_t *send_data, uint16_t *output_length);

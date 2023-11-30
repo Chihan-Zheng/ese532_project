@@ -181,7 +181,7 @@ string hexconvert(unsigned char* bytes, int size) {
 
 void deDup(char* inputChunk, uint16_t chunk_size,
     std::unordered_map<string, uint32_t>& chunkTable,
-    stopwatch& stopwatch, std::promise<int>&& deDup_header) {
+    stopwatch& stopwatch, uint32_t &deDup_header) {
     unsigned char uinputChunk[static_cast<int>(chunk_size)];
     for (size_t i = 0; i < chunk_size; i++) {
             uinputChunk[i] = static_cast<unsigned char>(inputChunk[i]);
@@ -200,10 +200,12 @@ void deDup(char* inputChunk, uint16_t chunk_size,
         if (it == chunkTable.end()) {
             uint32_t newIndex = static_cast<uint32_t>(chunkTable.size());
             chunkTable[hash] = newIndex;
-			deDup_header.set_value(newIndex << 1);
+			// deDup_header.set_value(newIndex << 1);
+			deDup_header = newIndex << 1;
             // return (newIndex << 1);
         } else {
-			deDup_header.set_value((it->second << 1) | 1u);
+			deDup_header = (it->second << 1) | 1u;
+			// deDup_header.set_value((it->second << 1) | 1u);
             // return (it->second << 1) | 1u;
         }
 

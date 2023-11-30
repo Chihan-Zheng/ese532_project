@@ -83,17 +83,35 @@ int main(int argc, char* argv[]) {
     std::unordered_map<string, uint32_t> chunkTable;
     uint32_t deDup_header;     //output of deDup function
 	uint32_t deDup_header_LZW;
-	std::promise<uint32_t> deDup_header_promise;
-    std::future<uint32_t> deDup_header_future = deDup_header_promise.get_future();
 	uint16_t *LZW_input_length[num_cu];
     uint16_t *LZW_output_length[num_cu];   
 	uint16_t *LZW_send_data[num_cu];     
     // uint16_t *LZW_send_data = (uint16_t *)calloc(Max_Chunk_Size + 2, sizeof(uint16_t));     //Max_Chunk_Size + 32bits header -> unit is 16bits
 
+	cdc_offset = (uint16_t *)malloc(sizeof(uint16_t));
+	cdc_finished = (char *)malloc(sizeof(char));
+	pipeline_drained = (char *)malloc(sizeof(char));
+
 	char *chunk_cdc = (char *)malloc(Max_Chunk_Size);
 	char *chunk_dedup = (char *)malloc(Max_Chunk_Size);
 	char *chunk_LZW = (char *)malloc(Max_Chunk_Size);
 	char *chunk_temp = (char *)malloc(Max_Chunk_Size);
+
+	if (cdc_offset == NULL){
+		std::cerr << "Could not malloc cdc_offset  ." << std::endl;
+		exit (EXIT_FAILURE);
+	}
+
+	if (cdc_finished   == NULL){
+		std::cerr << "Could not malloc cdc_finished  ." << std::endl;
+		exit (EXIT_FAILURE);
+	}
+
+	if (pipeline_drained  == NULL){
+		std::cerr << "Could not malloc pipeline_drained ." << std::endl;
+		exit (EXIT_FAILURE);
+	}
+
 	if (chunk_cdc  == NULL){
 		std::cerr << "Could not malloc chunk_cdc ." << std::endl;
 		exit (EXIT_FAILURE);
@@ -113,6 +131,7 @@ int main(int argc, char* argv[]) {
 		std::cerr << "Could not malloc chunk_temp ." << std::endl;
 		exit (EXIT_FAILURE);
 	}
+	*cdc_offset = 0;
 
 	for (int i = 0; i < MAX_BOUNDARY; i++){
 		// ArrayOfChunks[i] = (char *)malloc(sizeof(char) * Max_Chunk_Size);
@@ -166,6 +185,7 @@ int main(int argc, char* argv[]) {
 		if (err != CL_SUCCESS) 
 			printf("map LZW_output_length failed\n");
 	}
+	printf("before encode define\n");
 	//-----------------------------------------
 	//--------------------------------------encode define--------------------------------------------
     FILE *File = fopen(argv[1], "wb");
@@ -189,6 +209,7 @@ int main(int argc, char* argv[]) {
 
 	std::thread core_1_thread;
 	std::thread core_2_thread;
+	printf("after encode define\n");
 	//--------------------------------end encode define----------------------------------
 
 	// default is 2k
@@ -210,12 +231,14 @@ int main(int argc, char* argv[]) {
 			return 1;
 		}
 	}
-
+	printf("before get first packet\n");
 	server.setup_server(blocksize);
 
 	writer = pipe_depth;
 	server.get_packet(input[writer]);
+	printf("after get first packet\n");
 	count++;
+	
 
 	// get packet
 	unsigned char* buffer = input[writer];
@@ -230,20 +253,22 @@ int main(int argc, char* argv[]) {
 	// we are just memcpy'ing here, but you should call your
 	// top function here.
 	memcpy(&file[offset], &buffer[HEADER], length);
+	printf("after memcpy\n");
 
 	offset += length;
 	writer++;
 	printf("First packet length is: %d\n", length);
-
 	total_timer.start();
 	//last message
 	while (!done) {
+		printf("enter large while loop\n");
 
 		// reset ring buffer
 		if (writer == NUM_PACKETS) {
 			writer = 0;
 		}
 
+		printf("before getting more packet\n");
 		ethernet_timer.start();
 		server.get_packet(input[writer]);
 		ethernet_timer.stop();
@@ -252,7 +277,6 @@ int main(int argc, char* argv[]) {
 
 		// get packet
 		unsigned char* buffer = input[writer];
-
 		// decode
 		done = buffer[1] & DONE_BIT_L;
 		length = buffer[0] | (buffer[1] << 8);
@@ -261,20 +285,26 @@ int main(int argc, char* argv[]) {
 		/* memcpy(&file[offset], &buffer[HEADER], length);
 		offset += length; */
 		writer++;
+		printf("after getting more packet\n");
+		
 		// ------------------------------------------------------------------------------------
 		// Step 3: Start encoding
 		// ------------------------------------------------------------------------------------
 
 		//--- define flags for kernel
-		timer2.add("Running the encoding");
+		timer2.add("Running the encoding\n");
+		printf("before encoding\n");
 		//-------------------------------------start encoding-----------------------------------------------
 		int boundary_idx = 0;
 		int loop_cnt = 0;
 		*cdc_finished = 0;
 		*pipeline_drained = 0;   //refresh pipeline_drained flag to 0
-		while (pipeline_drained < 3){
-			if(!cdc_finished){
+		printf("before reaching pipeline while loop\n");
+		while (*pipeline_drained < 3){
+			printf("loop_cnt:	%d\n", loop_cnt);
+			if(!(*cdc_finished)){
 				if (count == 2) {
+					printf("enter cdc, loop: %d\n", loop_cnt);
 					//--- 2 packet:
 					memcpy(&file[offset], &buffer[HEADER], length);
 					offset += length;
@@ -282,7 +312,9 @@ int main(int argc, char* argv[]) {
 					/* if (fread(buffer, 1, offset, &file[0]) != offset)
 						Exit_with_error("fread for first two packets failed"); */
 					cdc_timer.start();
+					printf("before cdc, loop: %d\n", loop_cnt);
 					core_1_thread = std::thread(&cdc, file, offset, chunk_cdc, chunk_size, cdc_offset, cdc_finished);
+					printf("after cdc, loop: %d\n", loop_cnt);
 					pin_thread_to_cpu(core_1_thread, 1);
 					// cdc(file, offset, chunk, chunk_size, cdc_offset, cdc_finished);   //boundary_num should use char?
 					cdc_timer.stop();
@@ -290,29 +322,35 @@ int main(int argc, char* argv[]) {
 					/* FILE *outfd = fopen("test_chunks.bin", "wb");
 					int bytes_written = fwrite(&file[0], 1, offset, outfd); */
 				}else{
+					printf("enter cdc, loop: %d\n", loop_cnt);
 					//--- 1 packet:
 					offset += length;
 					cdc_timer.start();
+					printf("before cdc, loop: %d\n", loop_cnt);
 					core_1_thread = std::thread(&cdc, &buffer[2], length, chunk_cdc, chunk_size, cdc_offset, cdc_finished);
+					printf("after cdc, loop: %d\n", loop_cnt);
 					pin_thread_to_cpu(core_1_thread, 1);
 					// cdc(&buffer[2], length, chunk, chunk_size, cdc_offset, cdc_finished);   //boundary_num should use char?
 					cdc_timer.stop();
 				}
 			}
 			
+			
 			char LZW_chunks_cnt = 0;
 			char LZW_chunks_idx[num_cu];
 			char num_used_krnls = 0;
+			// std::promise<uint32_t> deDup_header_promise;
+    		// std::future<uint32_t> deDup_header_future = deDup_header_promise.get_future();
 		
 			// printf("for loop i: %d\n", i);
 			if (loop_cnt > 0){
-
+				printf("enter deDup, loop: %d\n", loop_cnt);
 				deDup_timer.start();
 				core_2_thread = std::thread(&deDup, 
-											chunk_dedup, chunk_size, chunkTable, std::ref(SHA_timer), 
-											std::move(deDup_header_promise));
+											chunk_dedup, *chunk_size, std::ref(chunkTable), std::ref(SHA_timer), 
+											std::ref(deDup_header));
 				pin_thread_to_cpu(core_2_thread, 2);
-				deDup_header = deDup_header_future.get();
+				// deDup_header = deDup_header_future.get();
 				// deDup_header = deDup(chunk_dedup, chunk_size, chunkTable, std::ref(SHA_timer));
 				deDup_timer.stop();
 				if ((deDup_header & 1u)){
@@ -324,15 +362,15 @@ int main(int argc, char* argv[]) {
 					deDup_final_bytes += sizeof(deDup_header);
 				}
 			}
-
-			if ((!(deDup_header_LZW & 1u) || (pipeline_drained == 2)) && (loop_cnt > 1)){
+			printf("before enter LZW, loop: %d\n", loop_cnt);
+			if ((!(deDup_header_LZW & 1u) || (*pipeline_drained == 2)) && (loop_cnt > 1)){
 				//-----------------------map Input Buffer-----------------------------------
 				if (!(deDup_header_LZW & 1u)){
-					ArrayOfChunks_LZW[LZW_chunks_cnt] = (char*)q.enqueueMapBuffer(Input_buf[LZW_chunks_cnt], CL_TRUE, CL_MAP_WRITE, 0, chunk_size, NULL, NULL, &err);
+					ArrayOfChunks_LZW[LZW_chunks_cnt] = (char*)q.enqueueMapBuffer(Input_buf[LZW_chunks_cnt], CL_TRUE, CL_MAP_WRITE, 0, *chunk_size, NULL, NULL, &err);
 					if (err != CL_SUCCESS) 
 						printf("map ArrayOfChunks_LZW failed\n");
-					memcpy(ArrayOfChunks_LZW[LZW_chunks_cnt], chunk_LZW, chunk_size);
-					*LZW_input_length[LZW_chunks_cnt] = chunk_size;
+					memcpy(ArrayOfChunks_LZW[LZW_chunks_cnt], chunk_LZW, *chunk_size);
+					*LZW_input_length[LZW_chunks_cnt] = *chunk_size;
 					LZW_chunks_idx[LZW_chunks_cnt] = loop_cnt - 2;
 					/* if (pipeline_drained == 0){
 						LZW_chunks_idx[LZW_chunks_cnt] = boundary_idx - 2;
@@ -345,7 +383,7 @@ int main(int argc, char* argv[]) {
 					std::cout << "\n" << "LZW_header - boundary: " << LZW_chunks_idx[LZW_chunks_cnt] << std::endl;
 				}
 				//------------------------------------------------------------------------------
-				if ((LZW_chunks_cnt < (num_cu - 1)) && (pipeline_drained < 2)){
+				if ((LZW_chunks_cnt < (num_cu - 1)) && (*pipeline_drained < 2)){
 					LZW_chunks_cnt++;
 				}else{
 					if (LZW_chunks_cnt == (num_cu - 1)){
@@ -397,12 +435,19 @@ int main(int argc, char* argv[]) {
 				}
 			}
 			//--------------------------------kernel computation --------------------------------
-			if (pipeline_drained < 1){
+			printf("after LZW, loop: %d\n", loop_cnt);
+			if (*pipeline_drained < 1){
+				printf("before join pipeline < 1, loop: %d\n", loop_cnt);
 				core_1_thread.join();
+				printf("after join pipeline < 1 000, loop: %d\n", loop_cnt);
 				core_2_thread.join();
-			}else if(pipeline_drained < 2){
+				printf("after join pipeline < 1 111, loop: %d\n", loop_cnt);
+			}else if(*pipeline_drained < 2){
+				printf("join pipeline < 2, loop: %d\n", loop_cnt);
 				core_2_thread.join();
+				printf("after join pipeline < 2, loop: %d\n", loop_cnt);
 			}
+			printf("after thread join: %d\n", loop_cnt);
 
 			chunk_temp = chunk_dedup;
 			chunk_dedup = chunk_LZW;
@@ -415,12 +460,12 @@ int main(int argc, char* argv[]) {
 			deDup_header_LZW = deDup_header;
 			
 			loop_cnt++;
-			if (!cdc_finished){
+			if (!(*cdc_finished)){
 				boundary_idx++;
 			}
 			
-			if (cdc_finished){
-				pipeline_drained++;
+			if (*cdc_finished){
+				*pipeline_drained++;
 			}
 		}
 		
@@ -434,9 +479,10 @@ int main(int argc, char* argv[]) {
 					Exit_with_error("fwrite LZW output to compressed_data.bin failed");
 			}
 		}
+		std::cout << "-------------------------------Chunks Info-------------------------------------" << std::endl;
+		std::cout << "chunk number: " << (boundary_idx + 1) << std::endl;
 	}
-	std::cout << "-------------------------------Chunks Info-------------------------------------" << std::endl;
-	std::cout << "chunk number: " << boundary_num << std::endl;
+	
 	//---------------------------------------end encoding----------------------------------------------
 	q.finish();
 
@@ -464,6 +510,9 @@ int main(int argc, char* argv[]) {
 	// printf("after free input\n");
 	
 	free(file);
+	free(cdc_offset);
+	free(cdc_finished);
+	free(pipeline_drained);
 	free(chunk_cdc);
 	free(chunk_dedup);
 	free(chunk_LZW);
