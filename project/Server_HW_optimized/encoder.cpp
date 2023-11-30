@@ -75,6 +75,7 @@ int main(int argc, char* argv[]) {
 	char *ArrayOfChunks_LZW[num_cu];
 	uint16_t *cdc_offset;
 	uint16_t *chunk_size;
+	char *cdc_finished;
 	char *pipeline_drained;
 	uint16_t *ArrayOfCode[MAX_BOUNDARY];
 	uint16_t ArrayOfOutputLength_LZW[MAX_BOUNDARY];
@@ -85,13 +86,37 @@ int main(int argc, char* argv[]) {
 	uint16_t *LZW_send_data[num_cu];     
     // uint16_t *LZW_send_data = (uint16_t *)calloc(Max_Chunk_Size + 2, sizeof(uint16_t));     //Max_Chunk_Size + 32bits header -> unit is 16bits
 
+	char *chunk_cdc = (char *)malloc(Max_Chunk_Size);
+	char *chunk_dedup = (char *)malloc(Max_Chunk_Size);
+	char *chunk_LZW = (char *)malloc(Max_Chunk_Size);
+	char *chunk_temp = (char *)malloc(Max_Chunk_Size);
+	if (chunk_cdc  == NULL){
+		std::cerr << "Could not malloc chunk_cdc ." << std::endl;
+		exit (EXIT_FAILURE);
+	}
+
+	if (chunk_dedup == NULL){
+		std::cerr << "Could not malloc chunk_dedup ." << std::endl;
+		exit (EXIT_FAILURE);
+	}
+
+	if (chunk_LZW  == NULL){
+		std::cerr << "Could not malloc chunk_LZW ." << std::endl;
+		exit (EXIT_FAILURE);
+	}
+
+	if (chunk_temp == NULL){
+		std::cerr << "Could not malloc chunk_temp ." << std::endl;
+		exit (EXIT_FAILURE);
+	}
+
 	for (int i = 0; i < MAX_BOUNDARY; i++){
-		ArrayOfChunks[i] = (char *)malloc(sizeof(char) * Max_Chunk_Size);
+		// ArrayOfChunks[i] = (char *)malloc(sizeof(char) * Max_Chunk_Size);
 		ArrayOfCode[i] = (uint16_t *)calloc(Max_Chunk_Size + 1, sizeof(uint16_t));
-		if (ArrayOfChunks[i] == NULL){
-			std::cerr << "Could not malloc ArrayOfChunks[" << i << "]." << std::endl;
-			exit (EXIT_FAILURE);
-		}
+		// if (ArrayOfChunks[i] == NULL){
+		// 	std::cerr << "Could not malloc ArrayOfChunks[" << i << "]." << std::endl;
+		// 	exit (EXIT_FAILURE);
+		// }
 		if (ArrayOfCode[i] == NULL){
 			std::cerr << "Could not malloc ArrayOfCode[" << i << "]." << std::endl;
 			exit (EXIT_FAILURE);
@@ -157,6 +182,9 @@ int main(int argc, char* argv[]) {
 	int deDup_final_bytes = 0;
 	int LZW_final_bytes = 0;
 	int LZW_total_input_bytes = 0;
+
+	std::thread core_1_thread;
+	std::thread core_2_thread;
 	//--------------------------------end encode define----------------------------------
 
 	// default is 2k
@@ -232,72 +260,85 @@ int main(int argc, char* argv[]) {
 		// ------------------------------------------------------------------------------------
 		// Step 3: Start encoding
 		// ------------------------------------------------------------------------------------
-/* 
-		//refresh fwrite_flag[MAX_BOUNDARY]
-		for (int i = 0; i < MAX_BOUNDARY; i++){
-			fwrite_flag[i].store(false);
-		} */
 
 		//--- define flags for kernel
 		timer2.add("Running the encoding");
 		//-------------------------------------start encoding-----------------------------------------------
-		int boundary_num = 0;
+		int boundary_idx = 0;
+		int loop_cnt = 0;
+		*cdc_finished = 0;
 		*pipeline_drained = 0;   //refresh pipeline_drained flag to 0
-		// printf("before cdc\n");
-		if (count == 2) {
-			//--- 2 packet:
-			memcpy(&file[offset], &buffer[HEADER], length);
-			offset += length;
-			// printf("Second packet length is: %d\n", length);
-			/* if (fread(buffer, 1, offset, &file[0]) != offset)
- 				Exit_with_error("fread for first two packets failed"); */
-    		cdc_timer.start();
-    		boundary_num = cdc(file, offset, ArrayOfChunks, chunk_size);   //boundary_num should use char?
-   			cdc_timer.stop();
-			// printf("reach first cdc\n");
-			/* FILE *outfd = fopen("test_chunks.bin", "wb");
-			int bytes_written = fwrite(&file[0], 1, offset, outfd); */
-		}else{
-			//--- 1 packet:
-			offset += length;
-			cdc_timer.start();
-			boundary_num = cdc(&buffer[2], length, ArrayOfChunks, chunk_size);   //boundary_num should use char?
-			cdc_timer.stop();
-		}
-		// printf("after cdc\n");
-
-		std::cout << "-------------------------------Chunks Info-------------------------------------" << std::endl;
-		std::cout << "chunk number: " << boundary_num << std::endl;
-		char LZW_chunks_cnt = 0;
-		char LZW_chunks_idx[num_cu];
-		char num_used_krnls = 0;
-		for (int i = 0; i < boundary_num; i++){
+		while (pipeline_drained < 3){
+			if(!cdc_finished){
+				if (count == 2) {
+					//--- 2 packet:
+					memcpy(&file[offset], &buffer[HEADER], length);
+					offset += length;
+					// printf("Second packet length is: %d\n", length);
+					/* if (fread(buffer, 1, offset, &file[0]) != offset)
+						Exit_with_error("fread for first two packets failed"); */
+					cdc_timer.start();
+					core_1_thread = std::thread(&cdc, file, offset, chunk_cdc, chunk_size, cdc_offset, cdc_finished);
+					pin_thread_to_cpu(core_1_thread, 1);
+					// cdc(file, offset, chunk, chunk_size, cdc_offset, cdc_finished);   //boundary_num should use char?
+					cdc_timer.stop();
+					// printf("reach first cdc\n");
+					/* FILE *outfd = fopen("test_chunks.bin", "wb");
+					int bytes_written = fwrite(&file[0], 1, offset, outfd); */
+				}else{
+					//--- 1 packet:
+					offset += length;
+					cdc_timer.start();
+					core_1_thread = std::thread(&cdc, &buffer[2], length, chunk_cdc, chunk_size, cdc_offset, cdc_finished);
+					pin_thread_to_cpu(core_1_thread, 1);
+					// cdc(&buffer[2], length, chunk, chunk_size, cdc_offset, cdc_finished);   //boundary_num should use char?
+					cdc_timer.stop();
+				}
+			}
+			
+			char LZW_chunks_cnt = 0;
+			char LZW_chunks_idx[num_cu];
+			char num_used_krnls = 0;
+			
 			// printf("for loop i: %d\n", i);
-			deDup_timer.start();
-			deDup_header = deDup(ArrayOfChunks[i], chunk_size[i], chunkTable, std::ref(SHA_timer));
-			deDup_timer.stop();
-			if ((deDup_header & 1u)){
-				std::cout << "deDup_header - boundary: " << i << std::endl;
-				// if (fwrite(&deDup_header, 1, sizeof(deDup_header), File) != sizeof(deDup_header))
-				// 	Exit_with_error("fwrite dedup header to compressed_data.bin failed");
-				memcpy(ArrayOfCode[i] + 1, &deDup_header, sizeof(deDup_header));
-				*ArrayOfCode[i] = 1;
-				deDup_final_bytes += sizeof(deDup_header);
+			if (loop_cnt > 0){
+				deDup_timer.start();
+				auto future = std::async(std::launch::async, deDup, 
+										chunk_dedup, chunk_size, chunkTable, std::ref(SHA_timer));
+				deDup_header = future.get();
+				// deDup_header = deDup(chunk_dedup, chunk_size, chunkTable, std::ref(SHA_timer));
+				deDup_timer.stop();
+				if ((deDup_header & 1u)){
+					std::cout << "deDup_header - boundary: " << boundary_idx << std::endl;
+					// if (fwrite(&deDup_header, 1, sizeof(deDup_header), File) != sizeof(deDup_header))
+					// 	Exit_with_error("fwrite dedup header to compressed_data.bin failed");
+					memcpy(ArrayOfCode[loop_cnt - 1] + 1, &deDup_header, sizeof(deDup_header));
+					*ArrayOfCode[loop_cnt - 1] = 1;
+					deDup_final_bytes += sizeof(deDup_header);
+				}
 			}
 
-			if (!(deDup_header & 1u) || (i == boundary_num)){
+			if ((!(deDup_header & 1u) || (pipeline_drained == 2)) && (loop_cnt > 1)){
 				//-----------------------map Input Buffer-----------------------------------
 				if (!(deDup_header & 1u)){
-					ArrayOfChunks_LZW[LZW_chunks_cnt] = (char*)q.enqueueMapBuffer(Input_buf[LZW_chunks_cnt], CL_TRUE, CL_MAP_WRITE, 0, chunk_size[i], NULL, NULL, &err);
+					ArrayOfChunks_LZW[LZW_chunks_cnt] = (char*)q.enqueueMapBuffer(Input_buf[LZW_chunks_cnt], CL_TRUE, CL_MAP_WRITE, 0, chunk_size, NULL, NULL, &err);
 					if (err != CL_SUCCESS) 
 						printf("map ArrayOfChunks_LZW failed\n");
-					memcpy(ArrayOfChunks_LZW[LZW_chunks_cnt], ArrayOfChunks[i], chunk_size[i]);
-					*LZW_input_length[LZW_chunks_cnt] = chunk_size[i];
-					LZW_chunks_idx[LZW_chunks_cnt] = i;
-					std::cout << "\n" << "LZW_header - boundary: " << i << std::endl;
+					memcpy(ArrayOfChunks_LZW[LZW_chunks_cnt], chunk_LZW, chunk_size);
+					*LZW_input_length[LZW_chunks_cnt] = chunk_size;
+					LZW_chunks_idx[LZW_chunks_cnt] = loop_cnt - 2;
+					/* if (pipeline_drained == 0){
+						LZW_chunks_idx[LZW_chunks_cnt] = boundary_idx - 2;
+					}else if(pipeline_drained == 1){
+						LZW_chunks_idx[LZW_chunks_cnt] = boundary_idx - 1;
+					}else{
+						LZW_chunks_idx[LZW_chunks_cnt] = boundary_idx;
+					} */
+
+					std::cout << "\n" << "LZW_header - boundary: " << LZW_chunks_idx[LZW_chunks_cnt] << std::endl;
 				}
 				//------------------------------------------------------------------------------
-				if ((LZW_chunks_cnt < (num_cu - 1)) && (i != boundary_num)){
+				if ((LZW_chunks_cnt < (num_cu - 1)) && (pipeline_drained < 2)){
 					LZW_chunks_cnt++;
 				}else{
 					if (LZW_chunks_cnt == (num_cu - 1)){
@@ -348,10 +389,34 @@ int main(int argc, char* argv[]) {
 					LZW_timer.stop();
 				}
 			}
-				//--------------------------------kernel computation --------------------------------
+			//--------------------------------kernel computation --------------------------------
+			if (pipeline_drained < 1){
+				core_1_thread.join();
+				core_2_thread.join();
+			}else if(pipeline_drained < 2){
+				core_2_thread.join();
+			}
+
+			chunk_temp = chunk_dedup;
+			chunk_dedup = chunk_LZW;
+			chunk_LZW = chunk_temp;
+
+			chunk_temp = chunk_cdc;
+			chunk_cdc = chunk_dedup;
+			chunk_dedup = chunk_temp;
+			
+			loop_cnt++;
+			if (!cdc_finished){
+				boundary_idx++;
+			}
+			
+			if (cdc_finished){
+				pipeline_drained++;
+			}
 		}
+		
 		//------ writing output code:
-		for (int i = 0; i < boundary_num; i++){
+		for (int i = 0; i <= boundary_idx; i++){
 			if (*ArrayOfCode[i] && 1){
 				if (fwrite(ArrayOfCode[i] + 1, 1, sizeof(uint32_t), File) != sizeof(uint32_t))
 					Exit_with_error("fwrite dedup header to compressed_data.bin failed");
@@ -361,8 +426,10 @@ int main(int argc, char* argv[]) {
 			}
 		}
 	}
-		//---------------------------------------end encoding----------------------------------------------
-		q.finish();
+	std::cout << "-------------------------------Chunks Info-------------------------------------" << std::endl;
+	std::cout << "chunk number: " << boundary_num << std::endl;
+	//---------------------------------------end encoding----------------------------------------------
+	q.finish();
 
 	printf("q finished\n");
 
@@ -388,8 +455,12 @@ int main(int argc, char* argv[]) {
 	// printf("after free input\n");
 	
 	free(file);
+	free(chunk_cdc);
+	free(chunk_dedup);
+	free(chunk_LZW);
+	free(chunk_temp);
 	for (int i = 0; i < MAX_BOUNDARY; i++){
-		free(ArrayOfChunks[i]);
+		// free(ArrayOfChunks[i]);
 		free(ArrayOfCode[i]);
 	}
 	// ------------------------------------------------------------------------------------
