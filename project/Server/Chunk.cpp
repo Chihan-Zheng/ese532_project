@@ -28,10 +28,10 @@ uint64_t hash_func(unsigned char *input, unsigned int pos)
 
 //Calculating rolling hash for the input. Once the hash at some point modulus to some number equals
 //target 0, or it hits the maximum chunk size, we call it a boundary.
-void cdc_window(unsigned char *buff, unsigned int buff_size, char* chunk, uint16_t chunk_size, int *offset_buff, int *pipeline_drained)
+void cdc_window(unsigned char *buff, unsigned int buff_size, char* chunk, uint16_t *chunk_size, uint16_t *offset_buff, char *pipeline_drained)
 {
-    unsigned char *buff_new = buff + &offset_buff;
-    unsigned int buff_size_new = buff_size - &offset_buff;
+    unsigned char *buff_new = buff + *offset_buff;
+    unsigned int buff_size_new = buff_size - *offset_buff;
     
 	uint64_t *hash = (uint64_t *)malloc(sizeof(uint64_t) * (buff_size_new - WIN_SIZE));
     
@@ -44,18 +44,18 @@ void cdc_window(unsigned char *buff, unsigned int buff_size, char* chunk, uint16
 		if((((hash[i] % MODULUS) == TARGET)&&(i>=MIN_CHUNK))||(i>=MAX_CHUNK)||(i==buff_size_new-WIN_SIZE-1)) {
 		// if((((hash[i] % MODULUS) == TARGET)&&(i-previous_boundary>=MIN_CHUNK))||(i-previous_boundary>=MAX_CHUNK)||(i==buff_size_new-WIN_SIZE)) {
 
-			printf("The index %d is a boundary\n", i + &offset_buff); //Print out the boundary we found.
+			printf("The index %d is a boundary\n", i + *offset_buff + 1); //Print out the boundary we found.
 			chunk = (char*)malloc(sizeof(char)*MAX_CHUNK);
 			if(i<buff_size_new-WIN_SIZE-1){
 				memcpy(chunk, buff_new, i);
-				chunk_size = i;
+				*chunk_size = i;
 			}else{
 				memcpy(chunk, buff_new, buff_size_new);  //because the hash cannot calculate after buff_size_new-win_size, the last chunk copy will be different.
-				chunk_size = i + WIN_SIZE + 1;
-                &pipeline_drained = 1;
+				*chunk_size = i + WIN_SIZE + 1;
+                *pipeline_drained = 1;
 			}
             
-            &offset_buff += i;
+            *offset_buff += i;
 			//printf("The hash calculated at this index is %d\n",hash[i]); //Print out the hash value calculated at this char.
 			// printf("The calculated 8 bytes are: %c%c%c%c%c%c%c%c\n",buff[i],buff[i+1],buff[i+2],buff[i+3],buff[i+4],buff[i+5],buff[i+6],buff[i+7]); //print out the 8 characters that hash based on.
         }
@@ -65,7 +65,7 @@ void cdc_window(unsigned char *buff, unsigned int buff_size, char* chunk, uint16
 }
 //read the input file and call the rolling hash function.
 // int cdc( const char* file, char** chunk, uint16_t *chunk_size)
-void cdc( unsigned char* buff, int buff_size,char** chunk, uint16_t *chunk_size, int *offset_buff, int *pipeline_drained)
+void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size, uint16_t *offset_buff, char *pipeline_drained)
 {
 	// FILE* fp = fopen(file,"r" );
 	// if(fp == NULL ){
@@ -91,13 +91,14 @@ void cdc( unsigned char* buff, int buff_size,char** chunk, uint16_t *chunk_size,
 
     // free(buff);
 }
-void test_print_chunk(char** chunk, int boundary_num){
+
+/* void test_print_chunk(char** chunk, int boundary_num){
 	for(int i=0;i<boundary_num;i++){
       printf("The chunk %d has content of:\n",i);
 	  printf("%s\n",chunk[i]);
 	}
 	
-}
+} */
 //main function for testing. Shouldn't be included in the final interface.
 /* int main()
 {
