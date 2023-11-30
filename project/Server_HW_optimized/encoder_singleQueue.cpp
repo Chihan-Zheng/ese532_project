@@ -73,9 +73,6 @@ int main(int argc, char* argv[]) {
     // ------------------------------------------------------------------------------------
 	char *ArrayOfChunks[MAX_BOUNDARY];
 	char *ArrayOfChunks_LZW[num_cu];
-	uint16_t *cdc_offset;
-	uint16_t *chunk_size;
-	char *pipeline_drained;
 	uint16_t *ArrayOfCode[MAX_BOUNDARY];
 	uint16_t ArrayOfOutputLength_LZW[MAX_BOUNDARY];
     std::unordered_map<string, uint32_t> chunkTable;
@@ -143,11 +140,11 @@ int main(int argc, char* argv[]) {
     if (File == NULL)
         Exit_with_error("fopen for send_data failed");
 
-/*     uint16_t *chunk_size = (uint16_t *)malloc(sizeof(uint16_t) * MAX_BOUNDARY);
+    uint16_t *chunk_size = (uint16_t *)malloc(sizeof(uint16_t) * MAX_BOUNDARY);
     if (chunk_size == NULL){
         std::cerr << "Could not calloc chunk_size." << std::endl;
         exit (EXIT_FAILURE);
-    } */
+    }
 	
 	stopwatch cdc_timer;
     stopwatch SHA_timer;
@@ -242,15 +239,14 @@ int main(int argc, char* argv[]) {
 		timer2.add("Running the encoding");
 		//-------------------------------------start encoding-----------------------------------------------
 		int boundary_num = 0;
-		*pipeline_drained = 0;   //refresh pipeline_drained flag to 0
 		// printf("before cdc\n");
 		if (count == 2) {
 			//--- 2 packet:
 			memcpy(&file[offset], &buffer[HEADER], length);
 			offset += length;
-			// printf("Second packet length is: %d\n", length);
-			/* if (fread(buffer, 1, offset, &file[0]) != offset)
- 				Exit_with_error("fread for first two packets failed"); */
+			printf("Second packet length is: %d\n", length);
+			// if (fread(buffer, 1, offset, &file[0]) != offset)
+ 			// 	Exit_with_error("fread for first two packets failed");
     		cdc_timer.start();
     		boundary_num = cdc(file, offset, ArrayOfChunks, chunk_size);   //boundary_num should use char?
    			cdc_timer.stop();

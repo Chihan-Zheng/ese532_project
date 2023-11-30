@@ -54,6 +54,8 @@ uint16_t swap_endian_16(uint16_t value);
 uint32_t swap_endian_32(uint32_t value);
 std::vector<cl::Device> get_xilinx_devices();
 char* read_binary_file(const std::string &xclbin_file_name, unsigned &nb);
+void pin_thread_to_cpu(std::thread &t, int cpu_num);
+void pin_main_thread_to_cpu0();
 
 #endif
 

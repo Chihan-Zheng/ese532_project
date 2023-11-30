@@ -28,7 +28,7 @@ uint64_t hash_func(unsigned char *input, unsigned int pos)
 
 //Calculating rolling hash for the input. Once the hash at some point modulus to some number equals
 //target 0, or it hits the maximum chunk size, we call it a boundary.
-void cdc_window(unsigned char *buff, unsigned int buff_size, char* chunk, uint16_t chunk_size, int *offset_buff, int *pipeline_drained)
+void cdc_window(unsigned char *buff, unsigned int buff_size, char* chunk, uint16_t *chunk_size, uint16_t *offset_buff, char *pipeline_drained)
 {
     unsigned char *buff_new = buff + &offset_buff;
     unsigned int buff_size_new = buff_size - &offset_buff;
@@ -48,10 +48,10 @@ void cdc_window(unsigned char *buff, unsigned int buff_size, char* chunk, uint16
 			chunk = (char*)malloc(sizeof(char)*MAX_CHUNK);
 			if(i<buff_size_new-WIN_SIZE-1){
 				memcpy(chunk, buff_new, i);
-				chunk_size = i;
+				*chunk_size = i;
 			}else{
 				memcpy(chunk, buff_new, buff_size_new);  //because the hash cannot calculate after buff_size_new-win_size, the last chunk copy will be different.
-				chunk_size = i + WIN_SIZE + 1;
+				*chunk_size = i + WIN_SIZE + 1;
                 &pipeline_drained = 1;
 			}
             
@@ -65,7 +65,7 @@ void cdc_window(unsigned char *buff, unsigned int buff_size, char* chunk, uint16
 }
 //read the input file and call the rolling hash function.
 // int cdc( const char* file, char** chunk, uint16_t *chunk_size)
-void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size, int *offset_buff, int *pipeline_drained)
+void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size, uint16_t *offset_buff, char *pipeline_drained)
 {
 	// FILE* fp = fopen(file,"r" );
 	// if(fp == NULL ){

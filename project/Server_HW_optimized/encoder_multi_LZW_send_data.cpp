@@ -1,3 +1,9 @@
+/*
+	This version has multi-thread by default, so has sync error.
+	Ignore this version for now.
+*/
+
+
 #include "Constants.h"
 
 #define NUM_PACKETS 8
