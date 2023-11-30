@@ -27,6 +27,7 @@ void handle_input(int argc, char* argv[], int* blocksize) {
 }
 
 int main(int argc, char* argv[]) {
+	pin_main_thread_to_cpu0();
 	if (argc < 2)
 	{
 		std::cout << "No compressed file defined\n";
