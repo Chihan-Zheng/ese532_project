@@ -17,7 +17,7 @@
 #include <functional>
 #include <fstream>
 #include <sstream>
-#include <ap_int.h>
+//#include <ap_int.h>
 
 void Exit_with_error(const char *s);
 void send_data(unsigned char *Data, uint16_t Data_size);

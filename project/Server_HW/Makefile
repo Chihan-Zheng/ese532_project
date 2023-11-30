@@ -56,4 +56,7 @@ clean-endian:
 	-$(RM) $(ENDIAN_EXE) $(ENDIAN_OBJECTS) 
 
 clean: clean-baseline clean-endian clean-decoder clean-encoder 
-	-$(RM) *.bin decompressed
+	-$(RM) *.bin decompressed output_cpu.txt chunk
+
+chunk:
+	g++ -g -o chunk Chunk_test.cpp
