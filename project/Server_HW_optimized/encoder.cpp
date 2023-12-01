@@ -87,7 +87,10 @@ int main(int argc, char* argv[]) {
 	uint32_t deDup_header_LZW;
 	uint16_t *LZW_input_length[num_cu];
     uint16_t *LZW_output_length[num_cu];   
-	uint16_t *LZW_send_data[num_cu];     
+	uint16_t *LZW_send_data[num_cu];
+	char LZW_chunks_cnt = 0;
+	char LZW_chunks_idx[num_cu];
+	char num_used_krnls = 0;     
     // uint16_t *LZW_send_data = (uint16_t *)calloc(Max_Chunk_Size + 2, sizeof(uint16_t));     //Max_Chunk_Size + 32bits header -> unit is 16bits
 
 	*chunk_size = 0;
@@ -309,7 +312,7 @@ int main(int argc, char* argv[]) {
 		printf("before reaching pipeline while loop\n");
 		while (*pipeline_drained < 3){
 // printf("\nchunk idx:\t%d:\nchunk for deDup:\n%s\n", boundary_idx - 1,chunk_dedup);
-			// printf("loop_cnt:	%d\n", loop_cnt);
+// printf("loop_cnt:\t%d\n", loop_cnt);
 			if(!(*cdc_finished)){
 				if (count == 2) {
 					// printf("enter cdc, loop: %d\n", loop_cnt);
@@ -335,15 +338,11 @@ int main(int argc, char* argv[]) {
 				}
 			}
 			
-			
-			char LZW_chunks_cnt = 0;
-			char LZW_chunks_idx[num_cu];
-			char num_used_krnls = 0;
 			// std::promise<uint32_t> deDup_header_promise;
     		// std::future<uint32_t> deDup_header_future = deDup_header_promise.get_future();
 		
 			// printf("for loop i: %d\n", i);
-			if (loop_cnt > 0){
+			if ((loop_cnt > 0) && (*pipeline_drained < 2)){
 				// printf("enter deDup, loop: %d\n", loop_cnt);
 				deDup_timer.start();
 				// printf("dedup chunk_size: %d, loop: %d\n", *chunk_size_dedup, loop_cnt);
@@ -356,15 +355,15 @@ int main(int argc, char* argv[]) {
 				// deDup_header = deDup_header_future.get();
 				// deDup_header = deDup(chunk_dedup, chunk_size, chunkTable, std::ref(SHA_timer));
 				deDup_timer.stop();
-				if ((deDup_header & 1u)){
-					std::cout << "deDup_header - boundary: " << (loop_cnt - 1) << std::endl;
-					printf("-----------------------------------------------\n");
+				/* if ((deDup_header & 1u)){
+					// std::cout << "deDup_header - boundary: " << (loop_cnt - 1) << std::endl;
+					// printf("-----------------------------------------------\n"); 
 					// if (fwrite(&deDup_header, 1, sizeof(deDup_header), File) != sizeof(deDup_header))
 					// 	Exit_with_error("fwrite dedup header to compressed_data.bin failed");
 					memcpy(ArrayOfCode[loop_cnt - 1] + 1, &deDup_header, sizeof(deDup_header));
 					*ArrayOfCode[loop_cnt - 1] = 1;
 					deDup_final_bytes += sizeof(deDup_header);
-				}
+				} */
 			}
 			// printf("before enter LZW, loop: %d\n", loop_cnt);
 			if ((!(deDup_header_LZW & 1u) || (*pipeline_drained == 2)) && (loop_cnt > 1)){
@@ -376,8 +375,8 @@ int main(int argc, char* argv[]) {
 					memcpy(ArrayOfChunks_LZW[LZW_chunks_cnt], chunk_LZW, *chunk_size_LZW);
 					*LZW_input_length[LZW_chunks_cnt] = *chunk_size_LZW;
 					LZW_chunks_idx[LZW_chunks_cnt] = loop_cnt - 2;
-					printf("\nLZW_header - boundary:%d\n", LZW_chunks_idx[LZW_chunks_cnt]);
-					printf("-----------------------------------------------\n");
+				/* 	printf("\nLZW_header - boundary:%d\n", LZW_chunks_idx[LZW_chunks_cnt]);
+					printf("-----------------------------------------------\n"); */
 					// printf("LZW chunk size: %d\n", *chunk_size_LZW);
 					/* if (pipeline_drained == 0){
 						LZW_chunks_idx[LZW_chunks_cnt] = boundary_idx - 2;
@@ -430,8 +429,9 @@ int main(int argc, char* argv[]) {
 						}
 					} */
 					// read_done[i].wait();
-
+// printf("debug------------num_used_krnls:\t%d\n", num_used_krnls);
 					for (int j = 0; j < num_used_krnls; j++){
+// printf("debug------------LZW_output_length[%d]:\t%d\n", j, *LZW_output_length[j]);
 						memcpy(ArrayOfCode[LZW_chunks_idx[j]] + 1, LZW_send_data[j], *LZW_output_length[j]);
 						ArrayOfOutputLength_LZW[LZW_chunks_idx[j]] = *LZW_output_length[j];
 						q.enqueueUnmapMemObject(Input_buf[j], ArrayOfChunks_LZW[j]);
@@ -442,6 +442,7 @@ int main(int argc, char* argv[]) {
 				}
 			}
 			//--------------------------------kernel computation --------------------------------
+// printf("after-------------------------------------------------------------------------LZW_header - boundary:%d\n", LZW_chunks_idx[LZW_chunks_cnt]);
 			if (!loop_cnt){
 				core_1_thread.join();
 			}else if((*pipeline_drained < 1) && (loop_cnt >0)){
@@ -458,8 +459,21 @@ int main(int argc, char* argv[]) {
 				// printf("after join pipeline < 2, loop: %d\n", loop_cnt);
 
 			}
+			
 			// printf("after thread join: %d\n", loop_cnt);
 // printf("\nchunk idx:\t%d:\nchunk from cdc:\n%s\n", boundary_idx,chunk_cdc);
+			// std::cout << "--------------------------Header Types for this Iteration------------------------------------" << std::endl;
+			if ((deDup_header & 1u) && (loop_cnt > 0) && (*pipeline_drained < 2)){
+				// std::cout << "deDup_header - boundary: " << (loop_cnt - 1) << std::endl;
+				memcpy(ArrayOfCode[loop_cnt - 1] + 1, &deDup_header, sizeof(deDup_header));
+				*ArrayOfCode[loop_cnt - 1] = 1;
+				deDup_final_bytes += sizeof(deDup_header);
+			}
+			
+			if (!(deDup_header_LZW & 1u) && (loop_cnt > 1)){
+				printf("LZW_header - boundary:%d\n", (loop_cnt - 2));
+			}
+			// std::cout << "-----------------------------------------------------------------------------------\n" << std::endl;
 			*chunk_size_LZW = *chunk_size_dedup;
 			*chunk_size_dedup = *chunk_size;
 			

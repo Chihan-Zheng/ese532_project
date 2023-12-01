@@ -100,10 +100,10 @@ void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size,
 		// printf("loop num: %d\n", i);
 		if((((hash[i] % MODULUS) == TARGET)&&(i>=MIN_CHUNK))||(i>=MAX_CHUNK)||(i==buff_size_new-WIN_SIZE-1)) {
 		// if((((hash[i] % MODULUS) == TARGET)&&(i-previous_boundary>=MIN_CHUNK))||(i-previous_boundary>=MAX_CHUNK)||(i==buff_size_new-WIN_SIZE)) {
-			printf("The index %d is a boundary\n", i + *offset_buff); //Print out the boundary we found.
+			// printf("The index %d is a boundary\n", i + *offset_buff); //Print out the boundary we found.
 			if(i<buff_size_new-WIN_SIZE-1){
 				memcpy(chunk, buff_new, i);
-				// printf("cdc chunk size:%d\n", i);
+				printf("cdc chunk size:%d\n", i);
 				*chunk_size = i;
 			}else{
 				memcpy(chunk, buff_new, buff_size_new);  //because the hash cannot calculate after buff_size_new-win_size, the last chunk copy will be different.
