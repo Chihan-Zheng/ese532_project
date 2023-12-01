@@ -190,7 +190,6 @@ int main(int argc, char* argv[]) {
 		if (err != CL_SUCCESS) 
 			printf("map LZW_output_length failed\n");
 	}
-	printf("before encode define\n");
 	//-----------------------------------------
 	//--------------------------------------encode define--------------------------------------------
     FILE *File = fopen(argv[1], "wb");
@@ -213,8 +212,6 @@ int main(int argc, char* argv[]) {
 	int LZW_total_input_bytes = 0;
 	std::thread core_1_thread;
 	std::thread core_2_thread;
-
-	printf("after encode define\n");
 	//--------------------------------end encode define----------------------------------
 
 	// default is 2k
@@ -236,12 +233,10 @@ int main(int argc, char* argv[]) {
 			return 1;
 		}
 	}
-	printf("before get first packet\n");
 	server.setup_server(blocksize);
 
 	writer = pipe_depth;
 	server.get_packet(input[writer]);
-	printf("after get first packet\n");
 	count++;
 	
 
@@ -258,11 +253,10 @@ int main(int argc, char* argv[]) {
 	// we are just memcpy'ing here, but you should call your
 	// top function here.
 	memcpy(&file[offset], &buffer[HEADER], length);
-	printf("after memcpy\n");
 
 	offset += length;
 	writer++;
-	printf("First packet length is: %d\n", length);
+	// printf("First packet length is: %d\n", length);
 	total_timer.start();
 	//last message
 	while (!done) {
@@ -273,7 +267,6 @@ int main(int argc, char* argv[]) {
 			writer = 0;
 		}
 
-		printf("before getting more packet\n");
 		ethernet_timer.start();
 		server.get_packet(input[writer]);
 		ethernet_timer.stop();
@@ -290,7 +283,6 @@ int main(int argc, char* argv[]) {
 		/* memcpy(&file[offset], &buffer[HEADER], length);
 		offset += length; */
 		writer++;
-		printf("after getting more packet\n");
 		
 		// ------------------------------------------------------------------------------------
 		// Step 3: Start encoding
@@ -298,15 +290,12 @@ int main(int argc, char* argv[]) {
 
 		//--- define flags for kernel
 		timer2.add("Running the encoding\n");
-		printf("before encoding\n");
 		//-------------------------------------start encoding-----------------------------------------------
 		int boundary_idx = 0;
 		int loop_cnt = 0;
 		*cdc_offset = 0;
 		*cdc_finished = 0;
 		*pipeline_drained = 0;   //refresh pipeline_drained flag to 0
-	
-		printf("before reaching pipeline while loop\n");
 		
 		if (count == 2) {
 			//--- 2 packet:
@@ -316,8 +305,10 @@ int main(int argc, char* argv[]) {
 			//--- 1 packet:
 			offset += length;
 		}
-
+		
+		printf("before reaching pipeline while loop\n");
 		while (*pipeline_drained < 3){
+// printf("\nchunk idx:\t%d:\nchunk for deDup:\n%s\n", boundary_idx - 1,chunk_dedup);
 			// printf("loop_cnt:	%d\n", loop_cnt);
 			if(!(*cdc_finished)){
 				if (count == 2) {
@@ -366,7 +357,8 @@ int main(int argc, char* argv[]) {
 				// deDup_header = deDup(chunk_dedup, chunk_size, chunkTable, std::ref(SHA_timer));
 				deDup_timer.stop();
 				if ((deDup_header & 1u)){
-					std::cout << "deDup_header - boundary: " << boundary_idx << std::endl;
+					std::cout << "deDup_header - boundary: " << (loop_cnt - 1) << std::endl;
+					printf("-----------------------------------------------\n");
 					// if (fwrite(&deDup_header, 1, sizeof(deDup_header), File) != sizeof(deDup_header))
 					// 	Exit_with_error("fwrite dedup header to compressed_data.bin failed");
 					memcpy(ArrayOfCode[loop_cnt - 1] + 1, &deDup_header, sizeof(deDup_header));
@@ -385,6 +377,7 @@ int main(int argc, char* argv[]) {
 					*LZW_input_length[LZW_chunks_cnt] = *chunk_size_LZW;
 					LZW_chunks_idx[LZW_chunks_cnt] = loop_cnt - 2;
 					printf("\nLZW_header - boundary:%d\n", LZW_chunks_idx[LZW_chunks_cnt]);
+					printf("-----------------------------------------------\n");
 					// printf("LZW chunk size: %d\n", *chunk_size_LZW);
 					/* if (pipeline_drained == 0){
 						LZW_chunks_idx[LZW_chunks_cnt] = boundary_idx - 2;
@@ -466,7 +459,7 @@ int main(int argc, char* argv[]) {
 
 			}
 			// printf("after thread join: %d\n", loop_cnt);
-
+// printf("\nchunk idx:\t%d:\nchunk from cdc:\n%s\n", boundary_idx,chunk_cdc);
 			*chunk_size_LZW = *chunk_size_dedup;
 			*chunk_size_dedup = *chunk_size;
 			

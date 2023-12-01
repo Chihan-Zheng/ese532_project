@@ -198,7 +198,6 @@ void deDup(char* inputChunk, uint16_t chunk_size,
         auto it = chunkTable.find(hash);
 
         if (it == chunkTable.end()) {
-			printf("--------------------------------\n");
             uint32_t newIndex = static_cast<uint32_t>(chunkTable.size());
             chunkTable[hash] = newIndex;
 			// deDup_header.set_value(newIndex << 1);
