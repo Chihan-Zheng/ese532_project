@@ -249,6 +249,7 @@ int main(int argc, char* argv[]) {
 			deDup_header = deDup(ArrayOfChunks_temp[i], chunk_size[i], chunkTable, std::ref(SHA_timer));
 			deDup_timer.stop();
 			if (deDup_header & 1u){
+				// printf("deDup_header inside: %x\n", deDup_header);
 				std::cout << "deDup_header - boundary: " << i << std::endl;
 				if (fwrite(&deDup_header, 1, sizeof(deDup_header), File) != sizeof(deDup_header))
 					Exit_with_error("fwrite dedup header to compressed_data.bin failed");

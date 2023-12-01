@@ -198,15 +198,17 @@ void deDup(char* inputChunk, uint16_t chunk_size,
         auto it = chunkTable.find(hash);
 
         if (it == chunkTable.end()) {
+			printf("--------------------------------\n");
             uint32_t newIndex = static_cast<uint32_t>(chunkTable.size());
             chunkTable[hash] = newIndex;
 			// deDup_header.set_value(newIndex << 1);
-			deDup_header = newIndex << 1;
+			deDup_header = (newIndex << 1);
             // return (newIndex << 1);
         } else {
 			deDup_header = (it->second << 1) | 1u;
 			// deDup_header.set_value((it->second << 1) | 1u);
             // return (it->second << 1) | 1u;
         }
+		// printf("deDup_header inside: %x\n", deDup_header);
 
 }

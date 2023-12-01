@@ -71,8 +71,8 @@ void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size,
 	// unsigned char *buff_new = (unsigned char *)malloc(70000000 + sizeof(uint16_t));
 	// unsigned char *buff_new;
 	// printf("after define buff_new\n");
-	printf("buffer_size: %d\n", buff_size);
-	printf("offset: %d\n", *offset_buff);
+	// printf("buffer_size: %d\n", buff_size);
+	// printf("offset: %d\n", *offset_buff);
 	unsigned char *buff_new;
     unsigned int buff_size_new = buff_size - *offset_buff;
     // printf("after define buff_new_size\n");
@@ -100,23 +100,25 @@ void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size,
 		// printf("loop num: %d\n", i);
 		if((((hash[i] % MODULUS) == TARGET)&&(i>=MIN_CHUNK))||(i>=MAX_CHUNK)||(i==buff_size_new-WIN_SIZE-1)) {
 		// if((((hash[i] % MODULUS) == TARGET)&&(i-previous_boundary>=MIN_CHUNK))||(i-previous_boundary>=MAX_CHUNK)||(i==buff_size_new-WIN_SIZE)) {
-			// printf("The index %d is a boundary\n", i + *offset_buff + 1); //Print out the boundary we found.
+			printf("The index %d is a boundary\n", i + *offset_buff + 1); //Print out the boundary we found.
 			chunk = (char*)malloc(sizeof(char)*MAX_CHUNK);
 			if(i<buff_size_new-WIN_SIZE-1){
 				memcpy(chunk, buff_new, i);
+				printf("cdc chunk size:%d\n", i);
 				*chunk_size = i;
 			}else{
 				memcpy(chunk, buff_new, buff_size_new);  //because the hash cannot calculate after buff_size_new-win_size, the last chunk copy will be different.
 				*chunk_size = i + WIN_SIZE + 1;
                 *pipeline_drained = 1;
+				printf("last chunk\n");
 			}
-            
+            // printf("i is %d\n", i);
             *offset_buff += i;
 			// printf("we find a chunk:\n");
 			// printf("%s\n",chunk);
 			free(chunk);
 			free(hash);
-			printf("finished innner cdc\n");
+			// printf("finished innner cdc\n");
 			return;
 			//printf("The hash calculated at this index is %d\n",hash[i]); //Print out the hash value calculated at this char.
 			// printf("The calculated 8 bytes are: %c%c%c%c%c%c%c%c\n",buff[i],buff[i+1],buff[i+2],buff[i+3],buff[i+4],buff[i+5],buff[i+6],buff[i+7]); //print out the 8 characters that hash based on.
