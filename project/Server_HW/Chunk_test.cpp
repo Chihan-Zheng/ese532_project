@@ -28,7 +28,7 @@ uint64_t hash_func(unsigned char *input, unsigned int pos)
 
 //Calculating rolling hash for the input. Once the hash at some point modulus to some number equals
 //target 0, or it hits the maximum chunk size, we call it a boundary.
-void cdc_window(unsigned char *buff, unsigned int buff_size, char* chunk, uint16_t *chunk_size, uint16_t *offset_buff, char *pipeline_drained)
+void cdc_window(unsigned char *buff, unsigned int buff_size, char* chunk, uint16_t *chunk_size, uint32_t *offset_buff, char *pipeline_drained)
 {
     unsigned char *buff_new = buff + *offset_buff;
     unsigned int buff_size_new = buff_size - *offset_buff;
@@ -58,17 +58,27 @@ void cdc_window(unsigned char *buff, unsigned int buff_size, char* chunk, uint16
             *offset_buff += i;
 			//printf("we find a chunk:\n");
 			printf("%s",chunk);
+			//printf("cdc chunk size is: %d\n",*chunk_size);
 			return;
 			//printf("The hash calculated at this index is %d\n",hash[i]); //Print out the hash value calculated at this char.
 			// printf("The calculated 8 bytes are: %c%c%c%c%c%c%c%c\n",buff[i],buff[i+1],buff[i+2],buff[i+3],buff[i+4],buff[i+5],buff[i+6],buff[i+7]); //print out the 8 characters that hash based on.
         }
-		
 	}
+		if(buff_size_new < ((WIN_SIZE * 2)+1)){
+			chunk = (char*)malloc(sizeof(char)*MAX_CHUNK);
+			memcpy(chunk, buff_new, buff_size_new);
+			*chunk_size = buff_size_new;
+			*pipeline_drained = 1;
+			*offset_buff += buff_size_new;
+			//printf("we find a chunk:\n");
+			printf("%s",chunk);
+			//printf("cdc chunk size is: %d\n",*chunk_size);
+		}
 	free(hash);
 }
 //read the input file and call the rolling hash function.
 // int cdc( const char* file, char** chunk, uint16_t *chunk_size)
-void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size, uint16_t *offset_buff, char *pipeline_drained)
+void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size, uint32_t *offset_buff, char *pipeline_drained)
 {
 	
 	cdc_window(buff,  buff_size, chunk, chunk_size, offset_buff, pipeline_drained);
@@ -92,8 +102,8 @@ int create_packet(unsigned char* const buff, unsigned char* packet, int* current
 		strncpy((char*)(packet), (char*)(buff)+current_position,(file_size-current_position));
 		*current_position_p = file_size;
 		*packet_length_p = (file_size-current_position);
-		//printf("Random packet generated:\n");
-		//printf("%s\n",packet);
+		//printf("last Random packet generated:\n");
+	    //printf("%s\n",packet);
 		return 1;
 	}
 
@@ -109,7 +119,7 @@ int main()
 {
 	
 	// packet simulation
-	FILE* fp = fopen("LittlePrince.txt","r" );
+	FILE* fp = fopen("test.txt","r" );
 	if(fp == NULL ){
 		perror("fopen error");
 		return 0;
@@ -140,6 +150,7 @@ int main()
 		//printf("random number: %d\n", rand_num);
 		int packet_length = (rand_num % 1024) + 1;
 		//printf("packet length: %d\n", packet_length);
+		//int packet_length = 1024;
      	packet = (unsigned char *)malloc((sizeof(unsigned char) * (packet_length+1)));
 		int is_last_packet = create_packet(buff, packet, &current_position, &packet_length, file_size);
 		// if already have packet, just call cdc as below, need to supply:
@@ -148,7 +159,7 @@ int main()
 		// the boundary_num which is also 0 at beginning.
 		uint16_t chunk_size;
 		char* chunk;
-		uint16_t offset_buff = 0;
+		uint32_t offset_buff = 0;
 		char pipeline_drained = 0;
 
 		while(pipeline_drained == 0){
@@ -158,10 +169,16 @@ int main()
 				free(packet);
 			}
 		}
-
-	
-	
 	
 	//test_print_chunk(ArrayOfChunks, boundary_num);
+
+	//uint16_t chunk_size;
+	//char* chunk;
+	//uint32_t offset_buff = 0;
+	//char pipeline_drained = 0;
+	//while(pipeline_drained == 0){
+	//	cdc(buff, file_size, chunk, &chunk_size, &offset_buff, &pipeline_drained);
+	//}
+	
 	return 0;
 } 
