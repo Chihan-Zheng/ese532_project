@@ -175,7 +175,7 @@ set ID 3
 set hasByteEnable 0
 set MemName LZW_hybrid_hash_HW_my_assoc_mem_upper_key_mem_V
 set CoreName ap_simcore_mem
-set PortList { 2 3 }
+set PortList { 2 0 }
 set DataWd 72
 set AddrRange 512
 set AddrWd 9

@@ -1078,15 +1078,15 @@ LZW_output_length[152]: 2973
 
 deDup_header - boundary: 153
 ------------------------------Function Execution Time-------------------------------
-Total latency of CDC is: 383.64 ms.
-Total latency of SHA is: 0.308336 ms.
-Total latency of deDup is: 0.48715 ms.
-Total latency of LZW is: 1264.08 ms.
-Total time taken from CDC to get output file is: 1650.01 ms.
+Total latency of CDC is: 392.561 ms.
+Total latency of SHA is: 0.316496 ms.
+Total latency of deDup is: 0.546498 ms.
+Total latency of LZW is: 1269.45 ms.
+Total time taken from CDC to get output file is: 1664.98 ms.
 ------------------------------------------------------------------------------------
-Average latency of SHA is: 0.00200218 ms.
-Average latency of deDup is: 0.00316331 ms.
-Average latency of LZW is: 8.26197 ms.
+Average latency of SHA is: 0.00205517 ms.
+Average latency of deDup is: 0.00354869 ms.
+Average latency of LZW is: 8.29706 ms.
 -----------------------------------Compress Ratio-----------------------------------
 input file with 187635B
 encode file with 154928B

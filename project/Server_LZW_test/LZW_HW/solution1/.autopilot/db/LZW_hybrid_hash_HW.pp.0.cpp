@@ -57473,26 +57473,38 @@ __attribute__((sdx_kernel("LZW_hybrid_hash_HW", 0))) void LZW_hybrid_hash_HW(cha
 #pragma HLS TOP name=LZW_hybrid_hash_HW
 # 38 "LZW_hybrid_hash_HW.cpp"
 
+
+
+
+
+
+
     uint16_t in_length = *input_length;
 
     ap_uint<((13 + 8) + 13 + 1)> hash_table[(1 << 15)][1];
+
     assoc_mem my_assoc_mem;
 
 
-    VITIS_LOOP_45_1: for(int i = 0; i < (1 << 15); i++){
-        VITIS_LOOP_46_2: for (int j = 0; j < 1; j++){
+
+
+
+    VITIS_LOOP_55_1: for(int i = 0; i < (1 << 15); i++){
+
+        VITIS_LOOP_57_2: for (int j = 0; j < 1; j++){
             hash_table[i][j] = 0;
-         }
+        }
     }
 
     my_assoc_mem.fill = 0;
-    VITIS_LOOP_52_3: for(int i = 0; i < 512; i++)
+    VITIS_LOOP_63_3: for(int i = 0; i < 512; i++)
     {
-        my_assoc_mem.upper_key_mem[i] = 0;
+#pragma HLS unroll
+ my_assoc_mem.upper_key_mem[i] = 0;
         my_assoc_mem.middle_key_mem[i] = 0;
         my_assoc_mem.lower_key_mem[i] = 0;
     }
-# 109 "LZW_hybrid_hash_HW.cpp"
+
     uint16_t store_array[4096];
     ap_uint<13> next_code = 256;
     ap_uint<13> prefix_code = in[0];
@@ -57503,7 +57515,7 @@ __attribute__((sdx_kernel("LZW_hybrid_hash_HW", 0))) void LZW_hybrid_hash_HW(cha
     unsigned char shift_offset = 16 - 13;
     ap_uint<13> i = 0;
 
-    VITIS_LOOP_119_4: for (int i = 0; i < (in_length - 1); i++)
+    VITIS_LOOP_81_4: for (int i = 0; i < (in_length - 1); i++)
     {
         next_char = in[i + 1];
 
@@ -57511,7 +57523,8 @@ __attribute__((sdx_kernel("LZW_hybrid_hash_HW", 0))) void LZW_hybrid_hash_HW(cha
 
         ap_uint<(13 + 8)> key = (prefix_code.to_uint() << 8) + next_char;
 
-        VITIS_LOOP_127_5: for (int j = 0; j < 1; j++){
+        VITIS_LOOP_89_5: for (int j = 0; j < 1; j++){
+
             ap_uint<((13 + 8) + 13 + 1)> lookup = hash_table[my_hash(key)][j];
 
 
@@ -57536,10 +57549,13 @@ __attribute__((sdx_kernel("LZW_hybrid_hash_HW", 0))) void LZW_hybrid_hash_HW(cha
 
             ap_int<(72 * 1)> match = match_high & match_middle & match_low;
 
-            unsigned int address = 0;
-            VITIS_LOOP_153_6: for(; address < (72 * 1); address++)
+            unsigned int address;
+            VITIS_LOOP_116_6: for(address = 0; address < (72 * 1); address++)
             {
-                if((match >> address) & 0x1)
+
+#pragma HLS pipeline
+
+ if(match.test(address))
                 {
                     break;
                 }
@@ -57567,8 +57583,9 @@ __attribute__((sdx_kernel("LZW_hybrid_hash_HW", 0))) void LZW_hybrid_hash_HW(cha
 
 
 
-            VITIS_LOOP_183_7: for (int j = 0; j < 1; j++){
-                ap_uint<((13 + 8) + 13 + 1)> lookup = hash_table[my_hash(key)][j];
+            VITIS_LOOP_149_7: for (int j = 0; j < 1; j++){
+#pragma HLS unroll
+ ap_uint<((13 + 8) + 13 + 1)> lookup = hash_table[my_hash(key)][j];
                 ap_uint<1> valid = (lookup >> ((13 + 8) + 13)) & 0x1;
                 if(!valid)
                 {

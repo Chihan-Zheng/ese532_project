@@ -45,15 +45,15 @@ void LZW_hybrid_hash_HW(char *in, uint16_t *input_length, uint16_t *send_data, u
     uint16_t in_length = *input_length;
     // create hash table and assoc mem
     ap_uint<BUCKET_LEN> hash_table[CAPACITY][BUCKETS_NUM];
-    #pragma HLS array_partition variable=hash_table block factor=128 dim=1
+    // #pragma HLS array_partition variable=hash_table block factor=128 dim=1
     assoc_mem my_assoc_mem;
-    #pragma HLS array_partition variable=my_assoc_mem.upper_key_mem complete
+    /* #pragma HLS array_partition variable=my_assoc_mem.upper_key_mem complete
     #pragma HLS array_partition variable=my_assoc_mem.middle_key_mem complete
-    #pragma HLS array_partition variable=my_assoc_mem.lower_key_mem complete
+    #pragma HLS array_partition variable=my_assoc_mem.lower_key_mem complete */
 
     // make sure the memories are clear
     for(int i = 0; i < CAPACITY; i++){
-        #pragma HLS unroll factor=128
+        // #pragma HLS unroll factor=128
         for (int j = 0; j < BUCKETS_NUM; j++){
             hash_table[i][j] = 0;
         }
@@ -87,7 +87,7 @@ void LZW_hybrid_hash_HW(char *in, uint16_t *input_length, uint16_t *send_data, u
         ap_uint<KEY_LEN> key = (prefix_code.to_uint() << 8) + next_char;
         //-------------------------------hash_lookup-----------------------------------
         for (int j = 0; j < BUCKETS_NUM; j++){
-            #pragma HLS unroll
+            // #pragma HLS unroll
             ap_uint<BUCKET_LEN> lookup = hash_table[my_hash(key)][j];
 
             // [valid][value][key]

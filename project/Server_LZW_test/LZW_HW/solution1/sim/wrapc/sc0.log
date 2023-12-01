@@ -1,0 +1,9 @@
+   Build using "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/bin/g++"
+   Compiling Utilities.cpp_pre.cpp.tb.cpp
+   Compiling LZW_hybrid_hash_HW.cpp_pre.cpp.tb.cpp
+   Compiling Dedup.cpp_pre.cpp.tb.cpp
+   Compiling Chunk.cpp_pre.cpp.tb.cpp
+   Compiling baseline.cpp_pre.cpp.tb.cpp
+   Compiling apatb_LZW_hybrid_hash_HW.cpp
+   Compiling apatb_LZW_hybrid_hash_HW_ir.ll
+   Generating cosim.tv.exe

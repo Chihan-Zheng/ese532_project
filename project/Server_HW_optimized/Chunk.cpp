@@ -65,7 +65,7 @@ uint64_t hash_func(unsigned char *input, unsigned int pos)
 } */
 //read the input file and call the rolling hash function.
 // int cdc( const char* file, char** chunk, uint16_t *chunk_size)
-void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size, uint16_t *offset_buff, char *pipeline_drained)
+void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size, uint32_t *offset_buff, char *pipeline_drained)
 {
 	// printf("before define buff_new\n");
 	// unsigned char *buff_new = (unsigned char *)malloc(70000000 + sizeof(uint16_t));
@@ -103,15 +103,15 @@ void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size,
 			// printf("The index %d is a boundary\n", i + *offset_buff); //Print out the boundary we found.
 			if(i<buff_size_new-WIN_SIZE-1){
 				memcpy(chunk, buff_new, i);
-				printf("cdc chunk size:%d\n", i);
+				// printf("cdc chunk size:%d\n", i);
 				*chunk_size = i;
 			}else{
 				memcpy(chunk, buff_new, buff_size_new);  //because the hash cannot calculate after buff_size_new-win_size, the last chunk copy will be different.
 				*chunk_size = i + WIN_SIZE + 1;
                 *pipeline_drained = 1;
-				printf("last chunk\n");
+				// printf("last chunk\n");
 			}
-            // printf("i is %d\n", i);
+// printf("i is %d\n", i);
             *offset_buff += i;
 			// printf("\nwe find a chunk:\n");
 			// printf("%s\n",chunk);
@@ -121,7 +121,16 @@ void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size,
 			//printf("The hash calculated at this index is %d\n",hash[i]); //Print out the hash value calculated at this char.
 			// printf("The calculated 8 bytes are: %c%c%c%c%c%c%c%c\n",buff[i],buff[i+1],buff[i+2],buff[i+3],buff[i+4],buff[i+5],buff[i+6],buff[i+7]); //print out the 8 characters that hash based on.
         }
-		
+		if(buff_size_new < ((WIN_SIZE * 2)+1)){
+			chunk = (char*)malloc(sizeof(char)*MAX_CHUNK);
+			memcpy(chunk, buff_new, buff_size_new);
+			*chunk_size = buff_size_new;
+			*pipeline_drained = 1;
+			*offset_buff += buff_size_new;
+			//printf("we find a chunk:\n");
+			// printf("%s",chunk);
+			//printf("cdc chunk size is: %d\n",*chunk_size);
+		}
 	}
 	// printf("before free hash\n");
 	// free(buff_new);

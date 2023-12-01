@@ -198,7 +198,7 @@ set RtlHierarchyInfo {[
 
 set ArgLastReadFirstWriteLatency {
 	LZW_hybrid_hash_HW {
-		gmem {Type IO LastRead 224 FirstWrite 149}
+		gmem {Type IO LastRead 406 FirstWrite 331}
 		in_r {Type I LastRead 71 FirstWrite -1}
 		input_length {Type I LastRead 0 FirstWrite -1}
 		send_data {Type I LastRead 71 FirstWrite -1}
@@ -212,8 +212,8 @@ set PerformanceInfo {[
 ]}
 
 set PipelineEnableSignalInfo {[
+	{"Pipeline" : "5", "EnableSignal" : "ap_enable_pp5"}
 	{"Pipeline" : "6", "EnableSignal" : "ap_enable_pp6"}
-	{"Pipeline" : "7", "EnableSignal" : "ap_enable_pp7"}
 ]}
 
 set Spec2ImplPortList { 

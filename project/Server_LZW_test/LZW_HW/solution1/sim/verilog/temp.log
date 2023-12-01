@@ -1,0 +1,122 @@
+Vivado Simulator 2020.2
+Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
+Running: /mnt/pollux/software/xilinx/2020.2/Vivado/2020.2/bin/unwrapped/lnx64.o/xelab xil_defaultlib.apatb_LZW_hybrid_hash_HW_top glbl -prj LZW_hybrid_hash_HW.prj -L smartconnect_v1_0 -L axi_protocol_checker_v1_1_12 -L axi_protocol_checker_v1_1_13 -L axis_protocol_checker_v1_1_11 -L axis_protocol_checker_v1_1_12 -L xil_defaultlib -L unisims_ver -L xpm -L floating_point_v7_0_18 -L floating_point_v7_1_11 --lib ieee_proposed=./ieee_proposed -s LZW_hybrid_hash_HW 
+Multi-threading is on. Using 18 slave threads.
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/sim/verilog/glbl.v" into library work
+INFO: [VRFC 10-311] analyzing module glbl
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/sim/verilog/LZW_hybrid_hash_HW.autotb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module apatb_LZW_hybrid_hash_HW_top
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/sim/verilog/AESL_axi_master_gmem.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AESL_axi_master_gmem
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/sim/verilog/AESL_axi_slave_control.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AESL_axi_slave_control
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/sim/verilog/LZW_hybrid_hash_HW.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module LZW_hybrid_hash_HW
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/sim/verilog/LZW_hybrid_hash_HW_store_array.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module LZW_hybrid_hash_HW_store_array_ram
+INFO: [VRFC 10-311] analyzing module LZW_hybrid_hash_HW_store_array
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/sim/verilog/LZW_hybrid_hash_HW_hash_table_V_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module LZW_hybrid_hash_HW_hash_table_V_0_ram
+INFO: [VRFC 10-311] analyzing module LZW_hybrid_hash_HW_hash_table_V_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/sim/verilog/LZW_hybrid_hash_HW_my_assoc_mem_upper_key_mem_V.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module LZW_hybrid_hash_HW_my_assoc_mem_upper_key_mem_V_ram
+INFO: [VRFC 10-311] analyzing module LZW_hybrid_hash_HW_my_assoc_mem_upper_key_mem_V
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/sim/verilog/LZW_hybrid_hash_HW_my_assoc_mem_value_V.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module LZW_hybrid_hash_HW_my_assoc_mem_value_V_ram
+INFO: [VRFC 10-311] analyzing module LZW_hybrid_hash_HW_my_assoc_mem_value_V
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/sim/verilog/LZW_hybrid_hash_HW_control_s_axi.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module LZW_hybrid_hash_HW_control_s_axi
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/sim/verilog/LZW_hybrid_hash_HW_gmem_m_axi.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module LZW_hybrid_hash_HW_gmem_m_axi
+INFO: [VRFC 10-311] analyzing module LZW_hybrid_hash_HW_gmem_m_axi_reg_slice
+INFO: [VRFC 10-311] analyzing module LZW_hybrid_hash_HW_gmem_m_axi_fifo
+INFO: [VRFC 10-311] analyzing module LZW_hybrid_hash_HW_gmem_m_axi_buffer
+INFO: [VRFC 10-311] analyzing module LZW_hybrid_hash_HW_gmem_m_axi_decoder
+INFO: [VRFC 10-311] analyzing module LZW_hybrid_hash_HW_gmem_m_axi_throttle
+INFO: [VRFC 10-311] analyzing module LZW_hybrid_hash_HW_gmem_m_axi_read
+INFO: [VRFC 10-311] analyzing module LZW_hybrid_hash_HW_gmem_m_axi_write
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/sim/verilog/df_fifo_interface.sv" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/sim/verilog/df_process_interface.sv" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/sim/verilog/nodf_module_interface.sv" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/sim/verilog/dump_file_agent.sv" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/sim/verilog/csv_file_dump.sv" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/sim/verilog/sample_agent.sv" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/sim/verilog/df_fifo_monitor.sv" into library xil_defaultlib
+WARNING: [VRFC 10-3609] overwriting previous definition of interface 'df_fifo_intf' [df_fifo_interface.sv:4]
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/sim/verilog/df_process_monitor.sv" into library xil_defaultlib
+WARNING: [VRFC 10-3609] overwriting previous definition of interface 'df_process_intf' [df_process_interface.sv:4]
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/sim/verilog/nodf_module_monitor.sv" into library xil_defaultlib
+WARNING: [VRFC 10-3609] overwriting previous definition of interface 'nodf_module_intf' [nodf_module_interface.sv:4]
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/sim/verilog/sample_manager.sv" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/sim/verilog/dataflow_monitor.sv" into library xil_defaultlib
+WARNING: [VRFC 10-3609] overwriting previous definition of interface 'df_fifo_intf' [df_fifo_interface.sv:4]
+WARNING: [VRFC 10-3609] overwriting previous definition of interface 'df_process_intf' [df_process_interface.sv:4]
+WARNING: [VRFC 10-3609] overwriting previous definition of interface 'nodf_module_intf' [nodf_module_interface.sv:4]
+INFO: [VRFC 10-311] analyzing module dataflow_monitor
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package xil_defaultlib.$unit_dataflow_monitor_sv
+Compiling module xil_defaultlib.LZW_hybrid_hash_HW_control_s_axi
+Compiling module xil_defaultlib.LZW_hybrid_hash_HW_gmem_m_axi_re...
+Compiling module xil_defaultlib.LZW_hybrid_hash_HW_gmem_m_axi_fi...
+Compiling module xil_defaultlib.LZW_hybrid_hash_HW_gmem_m_axi_bu...
+Compiling module xil_defaultlib.LZW_hybrid_hash_HW_gmem_m_axi_fi...
+Compiling module xil_defaultlib.LZW_hybrid_hash_HW_gmem_m_axi_fi...
+Compiling module xil_defaultlib.LZW_hybrid_hash_HW_gmem_m_axi_fi...
+Compiling module xil_defaultlib.LZW_hybrid_hash_HW_gmem_m_axi_wr...
+Compiling module xil_defaultlib.LZW_hybrid_hash_HW_gmem_m_axi_bu...
+Compiling module xil_defaultlib.LZW_hybrid_hash_HW_gmem_m_axi_re...
+Compiling module xil_defaultlib.LZW_hybrid_hash_HW_gmem_m_axi_re...
+Compiling module xil_defaultlib.LZW_hybrid_hash_HW_gmem_m_axi_th...
+Compiling module xil_defaultlib.LZW_hybrid_hash_HW_gmem_m_axi(NU...
+Compiling module xil_defaultlib.LZW_hybrid_hash_HW_store_array_r...
+Compiling module xil_defaultlib.LZW_hybrid_hash_HW_store_array(D...
+Compiling module xil_defaultlib.LZW_hybrid_hash_HW_hash_table_V_...
+Compiling module xil_defaultlib.LZW_hybrid_hash_HW_hash_table_V_...
+Compiling module xil_defaultlib.LZW_hybrid_hash_HW_my_assoc_mem_...
+Compiling module xil_defaultlib.LZW_hybrid_hash_HW_my_assoc_mem_...
+Compiling module xil_defaultlib.LZW_hybrid_hash_HW_my_assoc_mem_...
+Compiling module xil_defaultlib.LZW_hybrid_hash_HW_my_assoc_mem_...
+Compiling module xil_defaultlib.LZW_hybrid_hash_HW
+Compiling module xil_defaultlib.AESL_axi_master_gmem
+Compiling module xil_defaultlib.AESL_axi_slave_control
+Compiling module xil_defaultlib.nodf_module_intf
+Compiling module xil_defaultlib.dataflow_monitor_1
+Compiling module xil_defaultlib.apatb_LZW_hybrid_hash_HW_top
+Compiling module work.glbl
+Built simulation snapshot LZW_hybrid_hash_HW
+
+****** Webtalk v2020.2 (64-bit)
+  **** SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+  **** IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/sim/verilog/xsim.dir/LZW_hybrid_hash_HW/webtalk/xsim_webtalk.tcl -notrace
+INFO: [Common 17-206] Exiting Webtalk at Fri Dec  1 15:18:01 2023...
+
+****** xsim v2020.2 (64-bit)
+  **** SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+  **** IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+source xsim.dir/LZW_hybrid_hash_HW/xsim_script.tcl
+# xsim {LZW_hybrid_hash_HW} -autoloadwcfg -tclbatch {LZW_hybrid_hash_HW.tcl}
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+source LZW_hybrid_hash_HW.tcl
+## run all
+////////////////////////////////////////////////////////////////////////////////////
+// Inter-Transaction Progress: Completed Transaction / Total Transaction
+// Intra-Transaction Progress: Measured Latency / Latency Estimation * 100%
+//
+// RTL Simulation : "Inter-Transaction Progress" ["Intra-Transaction Progress"] @ "Simulation Time"
+////////////////////////////////////////////////////////////////////////////////////
+// RTL Simulation : 0 / 4 [n/a] @ "137000"
+/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/sim/verilog/AESL_axi_master_gmem.v: Read request address                    5 exceed AXI master gmem array depth:          4
+$finish called at time : 246303450 ps : File "/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/sim/verilog/AESL_axi_master_gmem.v" Line 687
+## quit
+INFO: [Common 17-206] Exiting xsim at Fri Dec  1 15:18:25 2023...

@@ -1,0 +1,7 @@
+Running: xsim.dir/LZW_hybrid_hash_HW/xsimk -simmode gui -wdb LZW_hybrid_hash_HW.wdb -simrunnum 0 -socket 40075
+Design successfully loaded
+Design Loading Memory Usage: 30440 KB (Peak: 30448 KB)
+Design Loading CPU Usage: 10 ms
+Simulation completed
+Simulation Memory Usage: 117244 KB (Peak: 169708 KB)
+Simulation CPU Usage: 580 ms

@@ -135,10 +135,10 @@
   "HlsSolution": {
     "FlowTarget": "vitis",
     "ConfigTcl": [
-      "config_interface -m_axi_latency=64",
-      "config_interface -m_axi_alignment_byte_size=64",
-      "config_interface -m_axi_max_widen_bitwidth=512",
       "config_interface -default_interface=kernel",
+      "config_interface -m_axi_alignment_byte_size=64",
+      "config_interface -m_axi_latency=64",
+      "config_interface -m_axi_max_widen_bitwidth=512",
       "config_interface -m_axi_offset=slave",
       "config_rtl -register_reset_num=3"
     ],
@@ -970,21 +970,14 @@
         },
         "Loops": [
           {
-            "Name": "VITIS_LOOP_45_1",
+            "Name": "VITIS_LOOP_55_1",
             "TripCount": "32768",
             "Latency": "32768",
             "PipelineII": "1",
             "PipelineDepth": "1"
           },
           {
-            "Name": "VITIS_LOOP_52_3",
-            "TripCount": "512",
-            "Latency": "512",
-            "PipelineII": "1",
-            "PipelineDepth": "1"
-          },
-          {
-            "Name": "VITIS_LOOP_119_4",
+            "Name": "VITIS_LOOP_81_4",
             "TripCount": "",
             "Latency": "",
             "PipelineII": "",
@@ -1000,7 +993,7 @@
                 "PipelineDepth": "1"
               },
               {
-                "Name": "VITIS_LOOP_153_6",
+                "Name": "VITIS_LOOP_116_6",
                 "TripCount": "",
                 "LatencyMin": "1",
                 "LatencyMax": "72",
@@ -1025,7 +1018,7 @@
             ]
           },
           {
-            "Name": "Loop 4",
+            "Name": "Loop 3",
             "TripCount": "",
             "LatencyMin": "0",
             "LatencyMax": "32836",
@@ -1034,7 +1027,7 @@
             "PipelineDepth": "71"
           },
           {
-            "Name": "Loop 5",
+            "Name": "Loop 4",
             "TripCount": "",
             "LatencyMin": "0",
             "LatencyMax": "70",
@@ -1044,15 +1037,15 @@
           }
         ],
         "Area": {
-          "BRAM_18K": "76",
+          "BRAM_18K": "82",
           "AVAIL_BRAM": "432",
-          "UTIL_BRAM": "17",
-          "FF": "3021",
+          "UTIL_BRAM": "18",
+          "FF": "3201",
           "AVAIL_FF": "141120",
           "UTIL_FF": "2",
-          "LUT": "7286",
+          "LUT": "16235",
           "AVAIL_LUT": "70560",
-          "UTIL_LUT": "10",
+          "UTIL_LUT": "23",
           "DSP": "0",
           "AVAIL_DSP": "360",
           "UTIL_DSP": "0",
@@ -1065,7 +1058,7 @@
   "GenerateBdFiles": "0",
   "GenData": {
     "DataVersion": "0.2",
-    "Time": "2023-11-26 15:39:21 EST",
+    "Time": "2023-12-01 15:17:25 EST",
     "ToolName": "vivado_hls",
     "ToolVersion": "2020.2"
   }

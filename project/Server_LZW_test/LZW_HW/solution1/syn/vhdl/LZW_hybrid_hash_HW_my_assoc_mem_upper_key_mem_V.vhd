@@ -19,6 +19,10 @@ entity LZW_hybrid_hash_HW_my_assoc_mem_upper_key_mem_V_ram is
           d0        : in std_logic_vector(DWIDTH-1 downto 0); 
           we0       : in std_logic; 
           q0        : out std_logic_vector(DWIDTH-1 downto 0);
+          addr1     : in std_logic_vector(AWIDTH-1 downto 0); 
+          ce1       : in std_logic; 
+          d1        : in std_logic_vector(DWIDTH-1 downto 0); 
+          we1       : in std_logic; 
           clk        : in std_logic 
     ); 
 end entity; 
@@ -59,6 +63,18 @@ begin
 end process;
 
 
+p_memory_access_1: process (clk)  
+begin 
+    if (clk'event and clk = '1') then
+        if (ce1 = '1') then 
+            if (we1 = '1') then 
+                ram(CONV_INTEGER(addr1)) := d1; 
+            end if;
+        end if;
+    end if;
+end process;
+
+
 end rtl;
 
 Library IEEE;
@@ -76,7 +92,11 @@ entity LZW_hybrid_hash_HW_my_assoc_mem_upper_key_mem_V is
         ce0 : IN STD_LOGIC;
         we0 : IN STD_LOGIC;
         d0 : IN STD_LOGIC_VECTOR(DataWidth - 1 DOWNTO 0);
-        q0 : OUT STD_LOGIC_VECTOR(DataWidth - 1 DOWNTO 0));
+        q0 : OUT STD_LOGIC_VECTOR(DataWidth - 1 DOWNTO 0);
+        address1 : IN STD_LOGIC_VECTOR(AddressWidth - 1 DOWNTO 0);
+        ce1 : IN STD_LOGIC;
+        we1 : IN STD_LOGIC;
+        d1 : IN STD_LOGIC_VECTOR(DataWidth - 1 DOWNTO 0));
 end entity;
 
 architecture arch of LZW_hybrid_hash_HW_my_assoc_mem_upper_key_mem_V is
@@ -87,7 +107,11 @@ architecture arch of LZW_hybrid_hash_HW_my_assoc_mem_upper_key_mem_V is
             ce0 : IN STD_LOGIC;
             we0 : IN STD_LOGIC;
             d0 : IN STD_LOGIC_VECTOR;
-            q0 : OUT STD_LOGIC_VECTOR);
+            q0 : OUT STD_LOGIC_VECTOR;
+            addr1 : IN STD_LOGIC_VECTOR;
+            ce1 : IN STD_LOGIC;
+            we1 : IN STD_LOGIC;
+            d1 : IN STD_LOGIC_VECTOR);
     end component;
 
 
@@ -100,7 +124,11 @@ begin
         ce0 => ce0,
         we0 => we0,
         d0 => d0,
-        q0 => q0);
+        q0 => q0,
+        addr1 => address1,
+        ce1 => ce1,
+        we1 => we1,
+        d1 => d1);
 
 end architecture;
 
