@@ -122,7 +122,7 @@ int main(int argc, char* argv[]) {
 	}
 
 	if (chunk_cdc  == NULL){
-		std::cerr << "Could not malloc chunk_cdc ." << std::endl;
+		std::cerr << "Could nLZW_chunks_cntot malloc chunk_cdc ." << std::endl;
 		exit (EXIT_FAILURE);
 	}
 
@@ -137,7 +137,7 @@ int main(int argc, char* argv[]) {
 	}
 
 	if (chunk_temp == NULL){
-		std::cerr << "Could not malloc chunk_temp ." << std::endl;
+		std::cerr << "Cototal_timer.stop();uld not malloc chunk_temp ." << std::endl;
 		exit (EXIT_FAILURE);
 	}
 
@@ -192,6 +192,12 @@ int main(int argc, char* argv[]) {
 		LZW_output_length[j] = (uint16_t*)q.enqueueMapBuffer(Output_length_buf[j], CL_TRUE, CL_MAP_READ, 0, sizeof(uint16_t), NULL, NULL, &err);
 		if (err != CL_SUCCESS) 
 			printf("map LZW_output_length failed\n");
+	}
+
+	for (int j = 0; j < num_cu; j++){
+		ArrayOfChunks_LZW[j] = (char*)q.enqueueMapBuffer(Input_buf[j], CL_TRUE, CL_MAP_WRITE, 0, Max_Chunk_Size, NULL, NULL, &err);
+		if (err != CL_SUCCESS) 
+			printf("map ArrayOfChunks_LZW failed\n");
 	}
 	//-----------------------------------------
 	//--------------------------------------encode define--------------------------------------------
@@ -369,9 +375,9 @@ int main(int argc, char* argv[]) {
 			if ((!(deDup_header_LZW & 1u) || (*pipeline_drained == 2)) && (loop_cnt > 1)){
 				//-----------------------map Input Buffer-----------------------------------
 				if (!(deDup_header_LZW & 1u)){
-					ArrayOfChunks_LZW[LZW_chunks_cnt] = (char*)q.enqueueMapBuffer(Input_buf[LZW_chunks_cnt], CL_TRUE, CL_MAP_WRITE, 0, *chunk_size_LZW, NULL, NULL, &err);
+					/* ArrayOfChunks_LZW[LZW_chunks_cnt] = (char*)q.enqueueMapBuffer(Input_buf[LZW_chunks_cnt], CL_TRUE, CL_MAP_WRITE, 0, *chunk_size_LZW, NULL, NULL, &err);
 					if (err != CL_SUCCESS) 
-						printf("map ArrayOfChunks_LZW failed\n");
+						printf("map ArrayOfChunks_LZW failed\n"); */
 					memcpy(ArrayOfChunks_LZW[LZW_chunks_cnt], chunk_LZW, *chunk_size_LZW);
 					*LZW_input_length[LZW_chunks_cnt] = *chunk_size_LZW;
 					LZW_chunks_idx[LZW_chunks_cnt] = loop_cnt - 2;
@@ -439,12 +445,12 @@ int main(int argc, char* argv[]) {
 						OCL_CHECK(err, err = q.enqueueMigrateMemObjects({Output_buf[j], Output_length_buf[j]}, CL_MIGRATE_MEM_OBJECT_HOST));
 					}
 
-					for (int j = 0; j < num_used_krnls; j++){
+				/* 	for (int j = 0; j < num_used_krnls; j++){
 						q.enqueueUnmapMemObject(Input_buf[j], ArrayOfChunks_LZW[j]);
-					}
+					} */
 
 					OCL_CHECK(err, err = q.finish());
-
+					LZW_timer.stop();
 				/* 	for (int j = 0; j < num_used_krnls; j++){
 						read_done[j].wait();
 					} */
@@ -458,7 +464,7 @@ int main(int argc, char* argv[]) {
 						LZW_total_input_bytes += *LZW_input_length[j];
 						LZW_final_bytes += *LZW_output_length[j];
 					}
-					LZW_timer.stop();
+					// LZW_timer.stop();
 				}
 			}
 			//--------------------------------kernel computation --------------------------------
@@ -529,6 +535,10 @@ int main(int argc, char* argv[]) {
 		}			
 	}					
 	//---------------------------------------end encoding----------------------------------------------
+	total_timer.stop();
+	for (int j = 0; j < num_used_krnls; j++){
+		q.enqueueUnmapMemObject(Input_buf[j], ArrayOfChunks_LZW[j]);
+	}
 	q.finish();
 
 	printf("q finished\n");
@@ -540,7 +550,6 @@ int main(int argc, char* argv[]) {
 
     if (fclose(File) != 0)
     	Exit_with_error("fclose for send_data failed");
-	total_timer.stop();
 	//----------------------------------end of encode-------------------------------------------
 	// printf("after end of encoder\n");
 	// // write file to root and you can use diff tool on board
