@@ -65,7 +65,8 @@ uint64_t hash_func(unsigned char *input, unsigned int pos)
 } */
 //read the input file and call the rolling hash function.
 // int cdc( const char* file, char** chunk, uint16_t *chunk_size)
-void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size, uint32_t *offset_buff, char *pipeline_drained)
+void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size, uint32_t *offset_buff, char *pipeline_drained,
+		stopwatch &stopwatch)
 {
 	// printf("before define buff_new\n");
 	// unsigned char *buff_new = (unsigned char *)malloc(70000000 + sizeof(uint16_t));
@@ -73,6 +74,7 @@ void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size,
 	// printf("after define buff_new\n");
 	// printf("buffer_size: %d\n", buff_size);
 	// printf("offset: %d\n", *offset_buff);
+	stopwatch.start();
 	unsigned char *buff_new;
     unsigned int buff_size_new = buff_size - *offset_buff;
     // printf("after define buff_new_size\n");
@@ -117,6 +119,7 @@ void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size,
 			// printf("%s\n",chunk);
 			free(hash);
 			// printf("finished innner cdc\n");
+			stopwatch.stop();
 			return;
 			//printf("The hash calculated at this index is %d\n",hash[i]); //Print out the hash value calculated at this char.
 			// printf("The calculated 8 bytes are: %c%c%c%c%c%c%c%c\n",buff[i],buff[i+1],buff[i+2],buff[i+3],buff[i+4],buff[i+5],buff[i+6],buff[i+7]); //print out the 8 characters that hash based on.

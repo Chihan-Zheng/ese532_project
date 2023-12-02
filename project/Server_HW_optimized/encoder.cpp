@@ -316,6 +316,7 @@ int main(int argc, char* argv[]) {
 		}
 		
 		// printf("before reaching pipeline while loop\n");
+		total_timer.start();
 		while (*pipeline_drained < 3){
 // printf("\nchunk idx:\t%d:\nchunk for deDup:\n%s\n", boundary_idx - 1,chunk_dedup);
 // printf("loop_cnt:\t%d\n", loop_cnt);
@@ -325,24 +326,18 @@ int main(int argc, char* argv[]) {
 					//--- 2 packet:
 					/* if (fread(buffer, 1, offset, &file[0]) != offset)
 						Exit_with_error("fread for first two packets failed"); */
-					total_timer.start();
-					cdc_timer.start();
 					// printf("before cdc, loop: %d\n", loop_cnt);
-					core_1_thread = std::thread(&cdc, file, offset, chunk_cdc, chunk_size, cdc_offset, cdc_finished);
+					core_1_thread = std::thread(&cdc, file, offset, chunk_cdc, chunk_size, cdc_offset, cdc_finished, std::ref(cdc_timer));
 					// printf("after cdc, loop: %d\n", loop_cnt);
 					pin_thread_to_cpu(core_1_thread, 1);
 					// cdc(file, offset, chunk, chunk_size, cdc_offset, cdc_finished);   //boundary_num should use char?
-					cdc_timer.stop();
 					/* FILE *outfd = fopen("test_chunks.bin", "wb");
 					int bytes_written = fwrite(&file[0], 1, offset, outfd); */
 				}else{
 					//--- 1 packet:
-					cdc_timer.start();
-					total_timer.start();
-					core_1_thread = std::thread(&cdc, &buffer[2], length, chunk_cdc, chunk_size, cdc_offset, cdc_finished);
+					core_1_thread = std::thread(&cdc, &buffer[2], length, chunk_cdc, chunk_size, cdc_offset, cdc_finished,std::ref(cdc_timer));
 					pin_thread_to_cpu(core_1_thread, 1);
 					// cdc(&buffer[2], length, chunk, chunk_size, cdc_offset, cdc_finished);   //boundary_num should use char?
-					cdc_timer.stop();
 				}
 			}
 			
@@ -352,17 +347,15 @@ int main(int argc, char* argv[]) {
 			// printf("for loop i: %d\n", i);
 			if ((loop_cnt > 0) && (*pipeline_drained < 2)){
 				// printf("enter deDup, loop: %d\n", loop_cnt);
-				deDup_timer.start();
 				// printf("dedup chunk_size: %d, loop: %d\n", *chunk_size_dedup, loop_cnt);
 				// printf("chunk dedup:\n%s\n", chunk_cdc);
 				core_2_thread = std::thread(&deDup, 
-											chunk_dedup, *chunk_size_dedup, std::ref(chunkTable), std::ref(SHA_timer), 
+											chunk_dedup, *chunk_size_dedup, std::ref(chunkTable), std::ref(SHA_timer), std::ref(deDup_timer),
 											std::ref(deDup_header));
 				// printf(" deDup header: %x\n", deDup_header);
 				pin_thread_to_cpu(core_2_thread, 2);
 				// deDup_header = deDup_header_future.get();
 				// deDup_header = deDup(chunk_dedup, chunk_size, chunkTable, std::ref(SHA_timer));
-				deDup_timer.stop();
 				/* if ((deDup_header & 1u)){
 					// std::cout << "deDup_header - boundary: " << (loop_cnt - 1) << std::endl;
 					// printf("-----------------------------------------------\n"); 
@@ -437,7 +430,12 @@ int main(int argc, char* argv[]) {
 						OCL_CHECK(err, err = krnls[j].setArg(3,Output_length_buf[j]));
 
 						OCL_CHECK(err, err = q.enqueueMigrateMemObjects({Input_buf[j], In_length_buf[j]}, 0));
-						
+
+						// OCL_CHECK(err, err = q.enqueueTask(krnls[j]));
+					}
+
+					OCL_CHECK(err, err = q.finish());
+					for (int j = 0; j < num_used_krnls; j++){
 						OCL_CHECK(err, err = q.enqueueTask(krnls[j]));
 					}
 
@@ -451,11 +449,11 @@ int main(int argc, char* argv[]) {
 						q.enqueueUnmapMemObject(Input_buf[j], ArrayOfChunks_LZW[j]);
 					} */
 
-					// OCL_CHECK(err, err = q.finish());
+					OCL_CHECK(err, err = q.finish());
 					
-					for (int j = 0; j < num_used_krnls; j++){
+					/* for (int j = 0; j < num_used_krnls; j++){
 						read_done[j].wait();
-					}
+					} */
 					LZW_timer.stop();
 // printf("debug------------num_used_krnls:\t%d\n", num_used_krnls);
 					for (int j = 0; j < num_used_krnls; j++){
@@ -596,8 +594,8 @@ int main(int argc, char* argv[]) {
     std::cout << "Total latency of LZW is: " << LZW_timer.latency() << " ms.\n" << std::endl;
     std::cout << "Total time taken from CDC to get output file is: " << total_timer.latency() << " ms." << std::endl;
 	float total_latency = total_timer.latency() / 1000.0;
-	float overall_throughput = (offset * 8 / 1000000000.0) / total_latency;
-	std::cout << "Overall throughput: " << overall_throughput << " Gb/s." << std::endl;
+	float overall_throughput = (offset * 8 / 1000000.0) / total_latency;
+	std::cout << "Overall throughput: " << overall_throughput << " Mb/s." << std::endl;
     std::cout << "------------------------------------------------------------------------------------" << std::endl;
     std::cout << "Average latency of SHA is: " << SHA_timer.avg_latency() << " ms." << std::endl;
     std::cout << "Average latency of deDup is: " << deDup_timer.avg_latency() << " ms." << std::endl;

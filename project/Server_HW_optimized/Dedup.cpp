@@ -181,7 +181,9 @@ string hexconvert(unsigned char* bytes, int size) {
 
 void deDup(char* inputChunk, uint16_t chunk_size,
     std::unordered_map<string, uint32_t>& chunkTable,
-    stopwatch& stopwatch, uint32_t &deDup_header) {
+    stopwatch& sha_timer, stopwatch& dedup_timer, uint32_t &deDup_header) {
+	
+	dedup_timer.start();
     unsigned char uinputChunk[static_cast<int>(chunk_size)];
     for (size_t i = 0; i < chunk_size; i++) {
             uinputChunk[i] = static_cast<unsigned char>(inputChunk[i]);
@@ -191,10 +193,10 @@ void deDup(char* inputChunk, uint16_t chunk_size,
         //size_t length = chunk_size;
     BYTE buf[SHA256_BLOCK_SIZE];
     SHA256_CTX ctx;
-        stopwatch.start();
+        sha_timer.start();
     sha256_hash(&ctx, uinputChunk, buf, 1, chunk_size);
     string hash = hexconvert(buf, SHA256_BLOCK_SIZE);
-        stopwatch.stop();
+        sha_timer.stop();
         auto it = chunkTable.find(hash);
 
         if (it == chunkTable.end()) {
@@ -208,6 +210,8 @@ void deDup(char* inputChunk, uint16_t chunk_size,
 			// deDup_header.set_value((it->second << 1) | 1u);
             // return (it->second << 1) | 1u;
         }
+		dedup_timer.stop();
+		return;
 		// printf("deDup_header inside: %x\n", deDup_header);
 
 }
