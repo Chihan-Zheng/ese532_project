@@ -290,3 +290,5 @@ void krnl_LZW(char *in, uint16_t *input_length, uint16_t *send_data, uint16_t *o
     read_input(in, in_len, inStream_in);
     compute_LZW(inStream_in, in_len, send_data, output_length);
 }
+
+

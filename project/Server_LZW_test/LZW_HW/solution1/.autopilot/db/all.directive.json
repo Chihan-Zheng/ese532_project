@@ -2,50 +2,50 @@
       "name": "",
       "directive": [
         {
-          "functionName": "krnl_LZW",
+          "functionName": "LZW_hybrid_hash_HW",
           "label": "",
           "functionLabel": "",
           "pragma": {
             "name": "TOP",
             "option": [{
                 "name": "name",
-                "value": "krnl_LZW"
+                "value": "LZW_hybrid_hash_HW"
               }]
           }
         },
         {
-          "functionName": "krnl_LZW",
+          "functionName": "LZW_hybrid_hash_HW",
           "label": "",
           "functionLabel": "",
           "pragma": {
             "name": "TOP",
             "option": [{
                 "name": "name",
-                "value": "krnl_LZW"
+                "value": "LZW_hybrid_hash_HW"
               }]
           }
         },
         {
-          "functionName": "krnl_LZW",
+          "functionName": "LZW_hybrid_hash_HW",
           "label": "",
           "functionLabel": "",
           "pragma": {
             "name": "TOP",
             "option": [{
                 "name": "name",
-                "value": "krnl_LZW"
+                "value": "LZW_hybrid_hash_HW"
               }]
           }
         },
         {
-          "functionName": "krnl_LZW",
+          "functionName": "LZW_hybrid_hash_HW",
           "label": "",
           "functionLabel": "",
           "pragma": {
             "name": "TOP",
             "option": [{
                 "name": "name",
-                "value": "krnl_LZW"
+                "value": "LZW_hybrid_hash_HW"
               }]
           }
         }

@@ -151,6 +151,7 @@ extern "C" {
 }
 # 2 "<built-in>" 2
 # 1 "LZW_hybrid_hash_HW.cpp" 2
+# 295 "LZW_hybrid_hash_HW.cpp"
 # 1 "./Constants.h" 1
 
 
@@ -57430,217 +57431,15 @@ uint64_t basicHash(char* input, size_t length);
 uint32_t deDup(char* inputChunk, uint16_t chunk_size,
                std::unordered_map<uint64_t, uint32_t>& chunkTable, stopwatch& stopwatch);
 unsigned int my_hash(ap_uint<(13 + 8)> key);
-void LZW_hybrid_hash_HW(char *in, uint16_t *input_length,
+__attribute__((sdx_kernel("LZW_hybrid_hash_HW", 0))) void LZW_hybrid_hash_HW(char *in, uint16_t *input_length,
                         uint16_t *send_data, uint16_t *output_length);
-# 2 "LZW_hybrid_hash_HW.cpp" 2
-# 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream.h" 1
-# 61 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream.h"
-# 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" 1
-# 67 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h"
-# 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/etc/autopilot_enum.h" 1
-# 59 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/etc/autopilot_enum.h"
-enum SsdmDataTypes {
-    _ssdm_sc_int = 0,
-    _ssdm_c_int = _ssdm_sc_int,
-    _ssdm_sc_uint = 1,
-    _ssdm_c_uint = _ssdm_sc_uint,
-    _ssdm_sc_bigint = 2,
-    _ssdm_sc_biguint = 3,
-};
-
-
-
-enum SsdmPortTypes {
-    _ssdm_sc_in = 0,
-    _ssdm_sc_out = 1,
-    _ssdm_sc_inout = 2,
-    _ssdm_sc_in_clk,
-
-    _ssdm_fifo_in,
-    _ssdm_sc_fifo_in = _ssdm_fifo_in,
-    _ssdm_tlm_fifo_in = _ssdm_fifo_in,
-    _ssdm_fifo_out,
-    _ssdm_sc_fifo_out = _ssdm_fifo_out,
-    _ssdm_tlm_fifo_out = _ssdm_fifo_out,
-    _ssdm_fifo_inout,
-    _ssdm_sc_fifo_inout = _ssdm_fifo_inout,
-    _ssdm_tlm_fifo_inout = _ssdm_fifo_inout,
-    _ssdm_sc_bus,
-    _ssdm_hls_bus_port = _ssdm_sc_bus,
-    _ssdm_AXI4M_bus_port = _ssdm_sc_bus,
-    _ssdm_port_end,
-};
-
-
-
-enum SsdmProcessTypes {
-    _ssdm_method = 0,
-    _ssdm_sc_method = _ssdm_method,
-    _ssdm_thread = 1,
-    _ssdm_sc_thread = _ssdm_thread,
-    _ssdm_cthread = 2,
-    _ssdm_sc_cthread = _ssdm_cthread,
-    _ssdm_process_end,
-};
-
-
-
-enum SsdmSensitiveTypes {
-    _ssdm_sensitive = 0,
-    _ssdm_sensitive_pos,
-    _ssdm_sensitive_neg,
-    _ssdm_sensitive_reset0,
-    _ssdm_sensitive_reset1,
-    _ssdm_sensitive_end,
-};
-
-
-
-enum SsdmChannelTypes {
-    _ssdm_sc_sig,
-    _ssdm_fifo,
-    _ssdm_sc_fifo = _ssdm_fifo,
-    _ssdm_mem_fifo,
-    _ssdm_sc_mem_fifo = _ssdm_mem_fifo,
-};
-
-
-enum SsdmRegionTypes {
-    _ssdm_region_reset,
-    _ssdm_region_protocol,
-    _ssdm_region_pipeline,
-    _ssdm_region_parallel,
-};
-# 68 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" 2
-
-
-
-
-
-namespace hls {
-# 95 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h"
-template<typename __STREAM_T__, int DEPTH=0>
-class stream;
-
-template<typename __STREAM_T__>
-class stream<__STREAM_T__, 0>
-{
-  public:
-
-    inline __attribute__((always_inline)) stream() {
-      __fpga_set_stream_depth(&this->V, 0);
-    }
-
-    inline __attribute__((always_inline)) stream(const char* name) {
-      (void)(name);
-      __fpga_set_stream_depth(&this->V, 0);
-    }
-
-
-  private:
-    inline __attribute__((always_inline)) stream(const stream< __STREAM_T__ >& chn):V(chn.V) {
-    }
-
-    inline __attribute__((always_inline)) stream& operator= (const stream< __STREAM_T__ >& chn) {
-        V = chn.V;
-        return *this;
-    }
-
-  public:
-
-    inline __attribute__((always_inline)) void operator >> (__STREAM_T__& rdata) {
-        read(rdata);
-    }
-
-    inline __attribute__((always_inline)) void operator << (const __STREAM_T__& wdata) {
-        write(wdata);
-    }
-
-
-  public:
-
-    inline __attribute__((always_inline)) bool empty() const {
-        return !__fpga_fifo_not_empty(&V);
-    }
-
-    inline __attribute__((always_inline)) bool full() const {
-        return !__fpga_fifo_not_full(&V);
-    }
-
-
-    inline __attribute__((always_inline)) void read(__STREAM_T__& dout) {
-        __fpga_fifo_pop(&V, &dout);
-    }
-
-
-    inline __attribute__((noinline)) bool read_dep(__STREAM_T__& dout, volatile bool flag) {
-        __fpga_fifo_pop(&V, &dout);
-        return flag;
-    }
-
-    inline __attribute__((always_inline)) __STREAM_T__ read() {
-        __STREAM_T__ tmp;
-        read(tmp);
-        return tmp;
-    }
-
-
-    inline __attribute__((always_inline)) bool read_nb(__STREAM_T__& dout) {
-        __STREAM_T__ tmp;
-
-        if (__fpga_fifo_nb_pop(&V, &tmp)) {
-            dout = tmp;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-
-    inline __attribute__((always_inline)) void write(const __STREAM_T__& din) {
-        __fpga_fifo_push(&V, &din);
-    }
-
-
-    inline __attribute__((noinline)) bool write_dep(const __STREAM_T__& din, volatile bool flag) {
-        __fpga_fifo_push(&V, &din);
-        return flag;
-    }
-
-
-    inline __attribute__((always_inline)) bool write_nb(const __STREAM_T__& din) {
-        return __fpga_fifo_nb_push(&V, &din);
-    }
-
-  public:
-    __STREAM_T__ V __attribute__((no_ctor));
-};
-
-template<typename __STREAM_T__, int DEPTH>
-class stream : public stream<__STREAM_T__, 0> {
-  public:
-    inline __attribute__((always_inline)) stream() {
-      __fpga_set_stream_depth(&this->V, DEPTH);
-    }
-
-    inline __attribute__((always_inline)) stream(const char* name) {
-      (void)(name);
-      __fpga_set_stream_depth(&this->V, DEPTH);
-    }
-};
-}
-# 62 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream.h" 2
-# 3 "LZW_hybrid_hash_HW.cpp" 2
-
-
-
-
+# 296 "LZW_hybrid_hash_HW.cpp" 2
 
 unsigned int my_hash(ap_uint<(13 + 8)> key)
 {
     unsigned int hashed = 0;
 
-    VITIS_LOOP_12_1: for(int i = 0; i < (13 + 8); i++)
+    VITIS_LOOP_301_1: for(int i = 0; i < (13 + 8); i++)
     {
         hashed += (key >> i)&0x01;
         hashed += hashed << 10;
@@ -57669,52 +57468,35 @@ typedef struct
     unsigned int fill;
 } assoc_mem;
 
-static void read_input(char *in, uint16_t input_length,
-                        hls::stream<char>& inStream_in){
-    mem_rd:
-        for (int i = 0; i < input_length; i++){
 
-            inStream_in << in[i];
-        }
-}
+__attribute__((sdx_kernel("LZW_hybrid_hash_HW", 0))) void LZW_hybrid_hash_HW(char *in, uint16_t *input_length, uint16_t *send_data, uint16_t *output_length)
+{
+#pragma HLS TOP name=LZW_hybrid_hash_HW
+# 332 "LZW_hybrid_hash_HW.cpp"
 
-void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
-                uint16_t *send_data, uint16_t *output_length){
-
-
-
-
-
-
-    uint16_t in_length = input_length;
+    uint16_t in_length = *input_length;
 
     ap_uint<((13 + 8) + 13 + 1)> hash_table[(1 << 15)][1];
-
     assoc_mem my_assoc_mem;
-#pragma HLS array_partition variable=my_assoc_mem.upper_key_mem complete
-#pragma HLS array_partition variable=my_assoc_mem.middle_key_mem complete
-#pragma HLS array_partition variable=my_assoc_mem.lower_key_mem complete
 
 
- VITIS_LOOP_68_1: for(int i = 0; i < (1 << 15); i++){
-
-        VITIS_LOOP_70_2: for (int j = 0; j < 1; j++){
+    VITIS_LOOP_339_1: for(int i = 0; i < (1 << 15); i++){
+        VITIS_LOOP_340_2: for (int j = 0; j < 1; j++){
             hash_table[i][j] = 0;
         }
     }
 
     my_assoc_mem.fill = 0;
-    VITIS_LOOP_76_3: for(int i = 0; i < 512; i++)
+    VITIS_LOOP_346_3: for(int i = 0; i < 512; i++)
     {
-#pragma HLS unroll
- my_assoc_mem.upper_key_mem[i] = 0;
+        my_assoc_mem.upper_key_mem[i] = 0;
         my_assoc_mem.middle_key_mem[i] = 0;
         my_assoc_mem.lower_key_mem[i] = 0;
     }
-
+# 403 "LZW_hybrid_hash_HW.cpp"
     uint16_t store_array[4096];
     ap_uint<13> next_code = 256;
-    ap_uint<13> prefix_code = inStream_in.read();
+    ap_uint<13> prefix_code = in[0];
     ap_uint<13> code = 0;
     unsigned char next_char = 0;
     uint16_t j = 0;
@@ -57722,17 +57504,15 @@ void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
     unsigned char shift_offset = 16 - 13;
     ap_uint<13> i = 0;
 
-    VITIS_LOOP_94_4: for (int i = 0; i < (in_length - 1); i++)
+    VITIS_LOOP_413_4: for (int i = 0; i < (in_length - 1); i++)
     {
-
-        next_char = inStream_in.read();
+        next_char = in[i + 1];
 
         bool hit = 0;
 
         ap_uint<(13 + 8)> key = (prefix_code.to_uint() << 8) + next_char;
 
-        VITIS_LOOP_103_5: for (int j = 0; j < 1; j++){
-
+        VITIS_LOOP_421_5: for (int j = 0; j < 1; j++){
             ap_uint<((13 + 8) + 13 + 1)> lookup = hash_table[my_hash(key)][j];
 
 
@@ -57757,13 +57537,10 @@ void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
 
             ap_int<(72 * 1)> match = match_high & match_middle & match_low;
 
-            unsigned int address;
-            VITIS_LOOP_130_6: for(address = 0; address < (72 * 1); address++)
+            unsigned int address = 0;
+            VITIS_LOOP_447_6: for(; address < (72 * 1); address++)
             {
-
-
-
-                if(match.test(address))
+                if((match >> address) & 0x1)
                 {
                     break;
                 }
@@ -57791,9 +57568,8 @@ void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
 
 
 
-            VITIS_LOOP_163_7: for (int j = 0; j < 1; j++){
-#pragma HLS unroll
- ap_uint<((13 + 8) + 13 + 1)> lookup = hash_table[my_hash(key)][j];
+            VITIS_LOOP_477_7: for (int j = 0; j < 1; j++){
+                ap_uint<((13 + 8) + 13 + 1)> lookup = hash_table[my_hash(key)][j];
                 ap_uint<1> valid = (lookup >> ((13 + 8) + 13)) & 0x1;
                 if(!valid)
                 {
@@ -57904,23 +57680,4 @@ void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
     std::cout << std::endl << "assoc mem entry count: " << my_assoc_mem.fill << std::endl;
     *output_length = compressed_length + 4;
 
-}
-
-
-__attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *in, uint16_t *input_length, uint16_t *send_data, uint16_t *output_length)
-{
-#pragma HLS TOP name=krnl_LZW
-# 280 "LZW_hybrid_hash_HW.cpp"
-
-    static hls::stream<char> inStream_in("in_stream");
-#pragma HLS interface m_axi port=in bundle=aximm1
-#pragma HLS interface m_axi port=input_length bundle=aximm2
-#pragma HLS interface m_axi port=send_data bundle=aximm3
-#pragma HLS interface m_axi port=output_length bundle=aximm4
-#pragma HLS stream variable = inStream_in
-#pragma HLS dataflow
-
- ap_uint<13> in_len = *input_length;
-    read_input(in, in_len, inStream_in);
-    compute_LZW(inStream_in, in_len, send_data, output_length);
 }

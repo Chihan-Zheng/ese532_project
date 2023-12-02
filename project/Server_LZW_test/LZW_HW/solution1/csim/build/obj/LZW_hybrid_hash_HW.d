@@ -22,6 +22,4 @@ obj/LZW_hybrid_hash_HW.o: ../../../../LZW_hybrid_hash_HW.cpp \
  /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/include/ap_fixed_base.h \
  /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/include/ap_fixed_ref.h \
  /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/include/ap_fixed_special.h \
- ../../../.././common/../server.h ../../../.././common/../encoder.h \
- /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/include/hls_stream.h \
- /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/include/hls_stream_thread_unsafe.h
+ ../../../.././common/../server.h ../../../.././common/../encoder.h
