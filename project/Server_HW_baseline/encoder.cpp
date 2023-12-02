@@ -179,7 +179,6 @@ int main(int argc, char* argv[]) {
 	writer++;
 	printf("First packet length is: %d\n", length);
 
-	total_timer.start();
 	//last message
 	while (!done) {
 
@@ -226,6 +225,7 @@ int main(int argc, char* argv[]) {
 			printf("Second packet length is: %d\n", length);
 			// if (fread(buffer, 1, offset, &file[0]) != offset)
  			// 	Exit_with_error("fread for first two packets failed");
+			total_timer.start();
     		cdc_timer.start();
     		boundary_num = cdc(file, offset, ArrayOfChunks_temp, chunk_size);   //boundary_num should use char?
    			cdc_timer.stop();
@@ -235,6 +235,7 @@ int main(int argc, char* argv[]) {
 		}else{
 			//--- 1 packet:
 			offset += length;
+			total_timer.start();
 			cdc_timer.start();
 			boundary_num = cdc(&buffer[2], length, ArrayOfChunks_temp, chunk_size);   //boundary_num should use char?
 			cdc_timer.stop();
@@ -290,16 +291,17 @@ int main(int argc, char* argv[]) {
 				// printf("after while loop i: %d\n", i);
 				// std::cout << "LZW_output_length[" << i << "]: " << LZW_output_length << "\n" << std::endl;
 				if (fwrite(LZW_send_data, 1, *LZW_output_length, File) != *LZW_output_length)
-					Exit_with_error("fwrite LZW output to compressed_data.bin failed");
-				LZW_timer.stop();    
+					Exit_with_error("fwrite LZW output to compressed_data.bin failed"); 
 				// fwrite_flag[i] = true;
 				// std::cout << "fwrite_flag[" << i << "]: " << fwrite_flag[i] << std::endl;
 				// memset(LZW_send_data, 0, (Max_Chunk_Size + 2) * sizeof(uint16_t));
 				LZW_total_input_bytes += *LZW_input_length;
 				LZW_final_bytes += *LZW_output_length;
 				q.enqueueUnmapMemObject(Input_buf, ArrayOfChunks[i]);
+				LZW_timer.stop();   
 			}
 		}
+		total_timer.stop();
 		//---------------------------------------end encoding----------------------------------------------
 	}
 	q.finish();
@@ -312,7 +314,7 @@ int main(int argc, char* argv[]) {
 
     if (fclose(File) != 0)
     	Exit_with_error("fclose for send_data failed");
-	total_timer.stop();
+	
 	//----------------------------------end of encode-------------------------------------------
 	// printf("after end of encoder\n");
 	// // write file to root and you can use diff tool on board

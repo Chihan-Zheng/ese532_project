@@ -452,11 +452,11 @@ int main(int argc, char* argv[]) {
 					} */
 
 					// OCL_CHECK(err, err = q.finish());
-					LZW_timer.stop();
+					
 					for (int j = 0; j < num_used_krnls; j++){
 						read_done[j].wait();
 					}
-
+					// LZW_timer.stop();
 // printf("debug------------num_used_krnls:\t%d\n", num_used_krnls);
 					for (int j = 0; j < num_used_krnls; j++){
 // printf("debug------------LZW_output_length[%d]:\t%d\n", j, *LZW_output_length[j]);
@@ -466,7 +466,7 @@ int main(int argc, char* argv[]) {
 						LZW_total_input_bytes += *LZW_input_length[j];
 						LZW_final_bytes += *LZW_output_length[j];
 					}
-					// LZW_timer.stop();
+					LZW_timer.stop();
 				}
 			}
 			//--------------------------------kernel computation --------------------------------
