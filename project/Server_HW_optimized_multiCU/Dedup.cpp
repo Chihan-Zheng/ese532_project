@@ -160,7 +160,6 @@ void sha256_hash(SHA256_CTX* ctx, const BYTE data[], BYTE hash[], size_t runLen,
     sha256_final(ctx, hash);
 }
 
-
 void sha256_hash_file(SHA256_CTX* ctx, const BYTE data[], BYTE hash[], size_t dataLen)
 {
 	size_t idx;

@@ -79,8 +79,8 @@ package/sd_card.img: $(XCLBIN) xrt.ini
 	       --package.kernel_image $(PLATFORM_REPO_PATHS)/sw/u96v2_sbc_base/PetaLinux/image/image.ub \
 	       --package.rootfs ${PLATFORM_REPO_PATHS}/sw/u96v2_sbc_base/PetaLinux/rootfs/rootfs.ext4 \
 	       --package.sd_file $(XCLBIN) \
-	       --package.sd_file xrt.ini \
-		#    --package.sd_file $(ENCODER_EXE)\
+	       --package.sd_file xrt.ini 
+           --#package.sd_file $(ENCODER_EXE)\
 
 
 clean-baseline:

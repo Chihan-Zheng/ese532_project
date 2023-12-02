@@ -1,5 +1,10 @@
 #include "Constants.h"
+#include <hls_stream.h>
 
+/* uint16_t swap_endian_16(uint16_t value) {
+    return (value >> 8) | (value << 8);
+}
+ */
 unsigned int my_hash(ap_uint<KEY_LEN> key)
 {
     unsigned int hashed = 0;
@@ -33,23 +38,31 @@ typedef struct
     unsigned int fill;         // tells us how many entries we've currently stored 
 } assoc_mem;
 
-//****************************************************************************************************************
-void LZW_hybrid_hash_HW(char *in, uint16_t *input_length, uint16_t *send_data, uint16_t *output_length)
-{
+static void read_input(char *in, uint16_t input_length, 
+                        hls::stream<char>& inStream_in){
+    mem_rd:
+        for (int i = 0; i < input_length; i++){
+            // #pragma HLS loop_tripcount min = input_length max = input_length
+            inStream_in << in[i];
+        }
+}
+
+void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
+                uint16_t *send_data, uint16_t *output_length){
     // #pragma HLS interface m_axi port=in bundle=aximm1
     // #pragma HLS interface m_axi port=input_length bundle=aximm1
     // #pragma HLS interface m_axi port=send_data bundle=aximm2
     // #pragma HLS interface m_axi port=output_length bundle=aximm2
     // #pragma HLS dataflow
 
-    uint16_t in_length = *input_length;
+    uint16_t in_length = input_length;
     // create hash table and assoc mem
     ap_uint<BUCKET_LEN> hash_table[CAPACITY][BUCKETS_NUM];
     // #pragma HLS array_partition variable=hash_table block factor=128 dim=1
     assoc_mem my_assoc_mem;
-    /* #pragma HLS array_partition variable=my_assoc_mem.upper_key_mem complete
+    #pragma HLS array_partition variable=my_assoc_mem.upper_key_mem complete
     #pragma HLS array_partition variable=my_assoc_mem.middle_key_mem complete
-    #pragma HLS array_partition variable=my_assoc_mem.lower_key_mem complete */
+    #pragma HLS array_partition variable=my_assoc_mem.lower_key_mem complete
 
     // make sure the memories are clear
     for(int i = 0; i < CAPACITY; i++){
@@ -70,7 +83,7 @@ void LZW_hybrid_hash_HW(char *in, uint16_t *input_length, uint16_t *send_data, u
 
     uint16_t store_array[MAX_CHUNK];
     ap_uint<CODE_LEN> next_code = 256;
-    ap_uint<CODE_LEN> prefix_code = in[0];
+    ap_uint<CODE_LEN> prefix_code = inStream_in.read();
     ap_uint<CODE_LEN> code = 0;
     unsigned char next_char = 0;
     uint16_t j = 0;                   //index of store array (should j++ every time after store)
@@ -80,7 +93,8 @@ void LZW_hybrid_hash_HW(char *in, uint16_t *input_length, uint16_t *send_data, u
 
     for (int i = 0; i < (in_length - 1); i++)
     {   
-        next_char = in[i + 1];
+        // #pragma HLS loop_tripcount min = (in_length - 1) max = (in_length - 1)
+        next_char = inStream_in.read();
 
         bool hit = 0;
         //--------------------------------------------------------------lookup--------------------------------------------------------------------------------
@@ -116,7 +130,7 @@ void LZW_hybrid_hash_HW(char *in, uint16_t *input_length, uint16_t *send_data, u
             for(address = 0; address < ASSOC_MEM_SIZE; address++)
             {
                 // #pragma HLS unroll
-                #pragma HLS pipeline
+                // #pragma HLS pipeline
                 // if((match >> address) & 0x1)
                 if(match.test(address))
                 {   
@@ -259,4 +273,20 @@ void LZW_hybrid_hash_HW(char *in, uint16_t *input_length, uint16_t *send_data, u
     std::cout << std::endl << "assoc mem entry count: " << my_assoc_mem.fill << std::endl;
     *output_length = compressed_length + 4;
     // return (compressed_length + 4);
+}
+
+//****************************************************************************************************************
+void krnl_LZW(char *in, uint16_t *input_length, uint16_t *send_data, uint16_t *output_length)
+{
+    static hls::stream<char> inStream_in("in_stream");
+    #pragma HLS interface m_axi port=in bundle=aximm1
+    #pragma HLS interface m_axi port=input_length bundle=aximm2
+    #pragma HLS interface m_axi port=send_data bundle=aximm3
+    #pragma HLS interface m_axi port=output_length bundle=aximm4
+    #pragma HLS stream variable = inStream_in
+    #pragma HLS dataflow
+
+    ap_uint<CODE_LEN> in_len = *input_length;
+    read_input(in, in_len, inStream_in);
+    compute_LZW(inStream_in, in_len, send_data, output_length);
 }

@@ -1,10 +1,10 @@
 
-set TopModule "LZW_hybrid_hash_HW"
+set TopModule "krnl_LZW"
 set ClockPeriod 6.667
 set ClockList ap_clk
 set HasVivadoClockPeriod 0
 set CombLogicFlag 0
-set PipelineFlag 0
+set PipelineFlag 1
 set DataflowTaskPipelineFlag 1
 set TrivialPipelineFlag 0
 set noPortSwitchingFlag 0
@@ -23,7 +23,7 @@ set ResetRegisterNum 3
 set FsmEncStyle onehot
 set MaxFanout 0
 set RtlPrefix {}
-set RtlSubPrefix LZW_hybrid_hash_HW_
+set RtlSubPrefix krnl_LZW_
 set ExtraCCFlags {}
 set ExtraCLdFlags {}
 set SynCheckOptions {}
@@ -42,7 +42,7 @@ set SCTraceFileName mytrace
 set SCTraceFileFormat vcd
 set SCTraceOption all
 set TargetInfo xczu3eg:-sbva484:-1-i
-set SourceFiles {sc {} c {../../common/Utilities.cpp ../../LZW_hybrid_hash_HW.cpp ../../Dedup.cpp ../../Chunk.cpp}}
+set SourceFiles {sc {} c {../../Chunk.cpp ../../Dedup.cpp ../../LZW_hybrid_hash_HW.cpp ../../common/Utilities.cpp}}
 set SourceFlags {sc {} c {{} {} {} {}}}
 set DirectiveFile /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/solution1.directive
 set TBFiles {verilog ../../baseline.cpp bc ../../baseline.cpp vhdl ../../baseline.cpp sc ../../baseline.cpp cas ../../baseline.cpp c {}}

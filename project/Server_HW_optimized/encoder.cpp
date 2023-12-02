@@ -266,10 +266,10 @@ int main(int argc, char* argv[]) {
 	offset += length;
 	writer++;
 	// printf("First packet length is: %d\n", length);
-	total_timer.start();
+	// total_timer.start();
 	//last message
 	while (!done) {
-		printf("enter large while loop\n");
+		// printf("enter large while loop\n");
 
 		// reset ring buffer
 		if (writer == NUM_PACKETS) {
@@ -325,6 +325,7 @@ int main(int argc, char* argv[]) {
 					//--- 2 packet:
 					/* if (fread(buffer, 1, offset, &file[0]) != offset)
 						Exit_with_error("fread for first two packets failed"); */
+					total_timer.start();
 					cdc_timer.start();
 					// printf("before cdc, loop: %d\n", loop_cnt);
 					core_1_thread = std::thread(&cdc, file, offset, chunk_cdc, chunk_size, cdc_offset, cdc_finished);
@@ -337,6 +338,7 @@ int main(int argc, char* argv[]) {
 				}else{
 					//--- 1 packet:
 					cdc_timer.start();
+					total_timer.start();
 					core_1_thread = std::thread(&cdc, &buffer[2], length, chunk_cdc, chunk_size, cdc_offset, cdc_finished);
 					pin_thread_to_cpu(core_1_thread, 1);
 					// cdc(&buffer[2], length, chunk, chunk_size, cdc_offset, cdc_finished);   //boundary_num should use char?
@@ -442,18 +444,18 @@ int main(int argc, char* argv[]) {
 					OCL_CHECK(err, err = q.finish());
 
 					for (int j = 0; j < num_used_krnls; j++){
-						OCL_CHECK(err, err = q.enqueueMigrateMemObjects({Output_buf[j], Output_length_buf[j]}, CL_MIGRATE_MEM_OBJECT_HOST));
+						OCL_CHECK(err, err = q.enqueueMigrateMemObjects({Output_buf[j], Output_length_buf[j]}, CL_MIGRATE_MEM_OBJECT_HOST,&read_waitlist[j], &read_done[j]));
 					}
 
 				/* 	for (int j = 0; j < num_used_krnls; j++){
 						q.enqueueUnmapMemObject(Input_buf[j], ArrayOfChunks_LZW[j]);
 					} */
 
-					OCL_CHECK(err, err = q.finish());
+					// OCL_CHECK(err, err = q.finish());
 					LZW_timer.stop();
-				/* 	for (int j = 0; j < num_used_krnls; j++){
+					for (int j = 0; j < num_used_krnls; j++){
 						read_done[j].wait();
-					} */
+					}
 
 // printf("debug------------num_used_krnls:\t%d\n", num_used_krnls);
 					for (int j = 0; j < num_used_krnls; j++){
@@ -532,15 +534,19 @@ int main(int argc, char* argv[]) {
 				if (fwrite(ArrayOfCode[i] + 1, 1, ArrayOfOutputLength_LZW[i], File) != ArrayOfOutputLength_LZW[i])
 					Exit_with_error("fwrite LZW output to compressed_data.bin failed");
 			}			
-		}			
+		}		
+		total_timer.stop();
 	}					
 	//---------------------------------------end encoding----------------------------------------------
-	total_timer.stop();
-	for (int j = 0; j < num_used_krnls; j++){
+	// total_timer.stop();
+
+	for (int j = 0; j < num_cu; j++){
 		q.enqueueUnmapMemObject(Input_buf[j], ArrayOfChunks_LZW[j]);
+		q.enqueueUnmapMemObject(Output_buf[j], LZW_send_data[j]);
+		q.enqueueUnmapMemObject(In_length_buf[j], LZW_input_length[j]);
+		q.enqueueUnmapMemObject(Output_length_buf[j], LZW_output_length[j]);
 	}
 	q.finish();
-
 	printf("q finished\n");
 
 	//----------------------------------File of codes-------------------------------------------
@@ -581,12 +587,6 @@ int main(int argc, char* argv[]) {
     std::cout << "--------------- Key execution times ---------------"
     << std::endl;
     timer2.print();
-
-	for (int j = 0; j < num_cu; j++){
-		q.enqueueUnmapMemObject(Output_buf[j], LZW_send_data[j]);
-		q.enqueueUnmapMemObject(In_length_buf[j], LZW_input_length[j]);
-		q.enqueueUnmapMemObject(Output_length_buf[j], LZW_output_length[j]);
-	}
 	
 	 //---------------------------------print functions execution time---------------------------------------------------------
     std::cout << "------------------------------Functions Execution Time-------------------------------" << std::endl;
