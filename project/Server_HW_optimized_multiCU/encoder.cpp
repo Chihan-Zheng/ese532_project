@@ -340,17 +340,21 @@ int main(int argc, char* argv[]) {
 					OCL_CHECK(err, err = krnls[j].setArg(3,Output_length_buf[j]));
 
 					OCL_CHECK(err, err = q[j].enqueueMigrateMemObjects({Input_buf[j], In_length_buf[j]}, 0));
-					
-					OCL_CHECK(err, err = q[j].enqueueTask(krnls[j]));
 					}
 
 					for (int j = 0; j < num_cu; j++){
 						q[j].finish();
+						OCL_CHECK(err, err = q[j].enqueueTask(krnls[j]));
 					}
 
-					for (int j = 0; j < num_used_krnls; j++){
+					for (int j = 0; j < num_cu; j++){
+						q[j].finish();
 						OCL_CHECK(err, err = q[j].enqueueMigrateMemObjects({Output_buf[j], Output_length_buf[j]}, CL_MIGRATE_MEM_OBJECT_HOST));
 					}
+
+				/* 	for (int j = 0; j < num_used_krnls; j++){
+						OCL_CHECK(err, err = q[j].enqueueMigrateMemObjects({Output_buf[j], Output_length_buf[j]}, CL_MIGRATE_MEM_OBJECT_HOST));
+					} */
 					
 					for (int j = 0; j < num_cu; j++){
 						q[j].finish();
@@ -455,8 +459,8 @@ int main(int argc, char* argv[]) {
     std::cout << "Total latency of LZW is: " << LZW_timer.latency() << " ms.\n" << std::endl;
     std::cout << "Total time taken from CDC to get output file is: " << total_timer.latency() << " ms." << std::endl;
 	float total_latency = total_timer.latency() / 1000.0;
-	float overall_throughput = (offset * 8 / 1000000000.0) / total_latency;
-	std::cout << "Overall throughput: " << overall_throughput << " Gb/s." << std::endl;
+	float overall_throughput = (offset * 8 / 1000000.0) / total_latency;
+	std::cout << "Overall throughput: " << overall_throughput << " Mb/s." << std::endl;
     std::cout << "------------------------------------------------------------------------------------" << std::endl;
     std::cout << "Average latency of SHA is: " << SHA_timer.avg_latency() << " ms." << std::endl;
     std::cout << "Average latency of deDup is: " << deDup_timer.avg_latency() << " ms." << std::endl;
