@@ -62,13 +62,11 @@ int main(int argc, char* argv[]) {
     char *fileBuf = read_binary_file(binaryFile, fileBufSize);
     cl::Program::Binaries bins{{fileBuf, fileBufSize}};
     cl::Program program(context, devices, bins, NULL, &err);
-    std::vector<cl::CommandQueue> q(num_cu);
+    cl::CommandQueue q(context, device, CL_QUEUE_PROFILING_ENABLE | CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE, &err);
 	std::vector<cl::Kernel> krnls(num_cu);
 	for (int i = 0; i < num_cu; i++) {
 		// OCL_CHECK(err, krnls[i] = cl::Kernel(program, "LZW_hybrid_hash_HW", &err));
 		OCL_CHECK(err, krnls[i] = cl::Kernel(program, "krnl_LZW", &err));
-		OCL_CHECK(err, q[i] = cl::CommandQueue(context, device, CL_QUEUE_PROFILING_ENABLE 
-																| CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE, &err));
 	}
 
 	 // ------------------------------------------------------------------------------------
@@ -185,19 +183,19 @@ int main(int argc, char* argv[]) {
 		OCL_CHECK(err,
 				Output_length_buf[j] = cl::Buffer(context, CL_MEM_WRITE_ONLY, sizeof(uint16_t), NULL, &err));
 		
-		LZW_send_data[j] = (uint16_t*)q[j].enqueueMapBuffer(Output_buf[j], CL_TRUE, CL_MAP_READ, 0, Output_buf_size, NULL, NULL, &err);
+		LZW_send_data[j] = (uint16_t*)q.enqueueMapBuffer(Output_buf[j], CL_TRUE, CL_MAP_READ, 0, Output_buf_size, NULL, NULL, &err);
 		if (err != CL_SUCCESS) 
 			printf("map LZW_send_data failed\n");
-		LZW_input_length[j] = (uint16_t*)q[j].enqueueMapBuffer(In_length_buf[j], CL_TRUE, CL_MAP_WRITE, 0, sizeof(uint16_t), NULL, NULL, &err);
+		LZW_input_length[j] = (uint16_t*)q.enqueueMapBuffer(In_length_buf[j], CL_TRUE, CL_MAP_WRITE, 0, sizeof(uint16_t), NULL, NULL, &err);
 		if (err != CL_SUCCESS) 
 			printf("map LZW_input_length failed\n");
-		LZW_output_length[j] = (uint16_t*)q[j].enqueueMapBuffer(Output_length_buf[j], CL_TRUE, CL_MAP_READ, 0, sizeof(uint16_t), NULL, NULL, &err);
+		LZW_output_length[j] = (uint16_t*)q.enqueueMapBuffer(Output_length_buf[j], CL_TRUE, CL_MAP_READ, 0, sizeof(uint16_t), NULL, NULL, &err);
 		if (err != CL_SUCCESS) 
 			printf("map LZW_output_length failed\n");
 	}
 
 	for (int j = 0; j < num_cu; j++){
-		ArrayOfChunks_LZW[j] = (char*)q[j].enqueueMapBuffer(Input_buf[j], CL_TRUE, CL_MAP_WRITE, 0, Max_Chunk_Size, NULL, NULL, &err);
+		ArrayOfChunks_LZW[j] = (char*)q.enqueueMapBuffer(Input_buf[j], CL_TRUE, CL_MAP_WRITE, 0, Max_Chunk_Size, NULL, NULL, &err);
 		if (err != CL_SUCCESS) 
 			printf("map ArrayOfChunks_LZW failed\n");
 	}
@@ -431,26 +429,27 @@ int main(int argc, char* argv[]) {
 						OCL_CHECK(err, err = krnls[j].setArg(2, Output_buf[j]));
 						OCL_CHECK(err, err = krnls[j].setArg(3,Output_length_buf[j]));
 
-						OCL_CHECK(err, err = q[j].enqueueMigrateMemObjects({Input_buf[j], In_length_buf[j]}, 0));
+						OCL_CHECK(err, err = q.enqueueMigrateMemObjects({Input_buf[j], In_length_buf[j]}, 0));
+
+						// OCL_CHECK(err, err = q.enqueueTask(krnls[j]));
 					}
 
+					OCL_CHECK(err, err = q.finish());
 					for (int j = 0; j < num_used_krnls; j++){
-						OCL_CHECK(err, err = q[j].finish());
-						OCL_CHECK(err, err = q[j].enqueueTask(krnls[j]));
+						OCL_CHECK(err, err = q.enqueueTask(krnls[j]));
 					}
 
+					OCL_CHECK(err, err = q.finish());
+
 					for (int j = 0; j < num_used_krnls; j++){
-						OCL_CHECK(err, err = q[j].finish());
-						OCL_CHECK(err, err = q[j].enqueueMigrateMemObjects({Output_buf[j], Output_length_buf[j]}, CL_MIGRATE_MEM_OBJECT_HOST,&read_waitlist[j], &read_done[j]));
+						OCL_CHECK(err, err = q.enqueueMigrateMemObjects({Output_buf[j], Output_length_buf[j]}, CL_MIGRATE_MEM_OBJECT_HOST,&read_waitlist[j], &read_done[j]));
 					}
 
 				/* 	for (int j = 0; j < num_used_krnls; j++){
 						q.enqueueUnmapMemObject(Input_buf[j], ArrayOfChunks_LZW[j]);
 					} */
 
-					for (int j = 0; j < num_cu; j++){
-						OCL_CHECK(err, err = q[j].finish());
-					}
+					OCL_CHECK(err, err = q.finish());
 					
 					/* for (int j = 0; j < num_used_krnls; j++){
 						read_done[j].wait();
@@ -540,14 +539,12 @@ int main(int argc, char* argv[]) {
 	// total_timer.stop();
 
 	for (int j = 0; j < num_cu; j++){
-		q[j].enqueueUnmapMemObject(Input_buf[j], ArrayOfChunks_LZW[j]);
-		q[j].enqueueUnmapMemObject(Output_buf[j], LZW_send_data[j]);
-		q[j].enqueueUnmapMemObject(In_length_buf[j], LZW_input_length[j]);
-		q[j].enqueueUnmapMemObject(Output_length_buf[j], LZW_output_length[j]);
+		q.enqueueUnmapMemObject(Input_buf[j], ArrayOfChunks_LZW[j]);
+		q.enqueueUnmapMemObject(Output_buf[j], LZW_send_data[j]);
+		q.enqueueUnmapMemObject(In_length_buf[j], LZW_input_length[j]);
+		q.enqueueUnmapMemObject(Output_length_buf[j], LZW_output_length[j]);
 	}
-	for (int j = 0; j < num_cu; j++){
-		OCL_CHECK(err, err = q[j].finish());
-	}
+	q.finish();
 	printf("q finished\n");
 
 	//----------------------------------File of codes-------------------------------------------
