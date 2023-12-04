@@ -287,6 +287,20 @@ void LZW_hybrid_hash_HW(char *in, uint16_t *input_length, uint16_t *send_data, u
     #pragma HLS dataflow
 
     ap_uint<CODE_LEN> in_len = *input_length;
-    read_input(in, in_len, inStream_in);
-    compute_LZW(inStream_in, in_len, send_data, output_length);
+    char num_chunks = 0;
+    uint32_t input_offset = 0;
+    uint32_t output_offset = 0;
+    for (int i = 0; i < num_chunks_krnl; i++){
+        if (input_length[i]){
+            num_chunks++;
+        }
+    }
+
+    for (int i = 0; i < num_chunks; i++){
+        read_input((in + input_offset), input_length[i], inStream_in);
+        compute_LZW(inStream_in, input_length[i], (send_data + output_offset), output_length[i]);
+
+        input_offset += input_length[i];
+        output_offset += output_length[i];
+    }
 }

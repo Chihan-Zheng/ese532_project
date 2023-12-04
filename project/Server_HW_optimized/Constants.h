@@ -24,6 +24,8 @@
 #define MATCH_UNITS_COLUMN_NUM 1
 #define ASSOC_MEM_SIZE (72 * MATCH_UNITS_COLUMN_NUM)
 
+#define num_chunks_krnl (4)
+
 uint64_t hash_func(unsigned char *input, unsigned int pos);
 // int cdc( unsigned char* buff, int buff_size,char** chunk, uint16_t *chunk_size);
 void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size, 
