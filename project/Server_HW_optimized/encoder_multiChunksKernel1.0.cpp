@@ -315,9 +315,8 @@ int main(int argc, char* argv[]) {
 		*cdc_offset = 0;         //refresh value before encoding the next packet   
 		*cdc_finished = 0;
 		*pipeline_drained = 0;   //refresh pipeline_drained flag to 0
-		uint32_t krnl_in_offset[num_cu] = {0};    //offset for chunk size of a single kernel: used when store input chunks of one kernel
+		uint32_t krnl_in_offset = 0;    //offset for chunk size of a single kernel: used when store input chunks of one kernel
 		char krnl_idx = 0;              //index for each kernel
-		char krnl_chunks_cnt[num_chunks_krnl] = {0};      //count how many chunk a kernel has
 		char num_krnl_loop_wr = 0;      //the number of iteration when writing the codes to file of one kernel
 		uint32_t krnl_wr_offset = 0;    //offset for output code size of a single kernel: used when writing output codes to file
 		
@@ -378,54 +377,61 @@ int main(int argc, char* argv[]) {
 					deDup_final_bytes += sizeof(deDup_header);
 				} */
 			}
-			// printf("before enter LZW, loop: %d\n", loop_cnt);
-			//---: if (the chunk is LZW chunk or the last stage of pipeline) and loop_cnt >= 2  ---> go to LZW part (doesn't mean execute LZW)
+			printf("before enter LZW, loop: %d\n", loop_cnt);
+			//if (the chunk is LZW chunk or the last stage of pipeline) and loop_cnt >= 2  ---> go to LZW part (doesn't mean execute LZW)
 			if ((!(deDup_header_LZW & 1u) || (*pipeline_drained == 2)) && (loop_cnt > 1)){
 				//-----------------------map Input Buffer-----------------------------------
 				if (!(deDup_header_LZW & 1u)){
-					memcpy(ArrayOfChunks_LZW[krnl_idx] + krnl_in_offset[krnl_idx], chunk_LZW, *chunk_size_LZW);   //store chunk to LZW in ArrayOfChunks_LZW
+					memcpy(ArrayOfChunks_LZW[krnl_idx] + krnl_in_offset, chunk_LZW, *chunk_size_LZW);   //store chunk to LZW in ArrayOfChunks_LZW
 																										//krnl_idx declare which kernel the chunk should be sent to
-					krnl_in_offset[krnl_idx] += *chunk_size_LZW;      //used to move the pointer of ArrayOfChunks_LZW[krnl_idx]
+					krnl_in_offset += *chunk_size_LZW;      //used to move the pointer of ArrayOfChunks_LZW[krnl_idx]
 					LZW_input_length[krnl_idx][LZW_chunks_cnt] = *chunk_size_LZW;       //store LZW input chunk length for all kernels
 					LZW_chunks_idx[krnl_idx][LZW_chunks_cnt] = loop_cnt - 2;            //store the LZW chunk index among all chunks
-					/* printf("\nLZW_header - boundary:%d\n", LZW_chunks_idx[krnl_idx][LZW_chunks_cnt]);
-					printf("-----------------------------------------------\n"); */
+					printf("\nLZW_header - boundary:%d\n", LZW_chunks_idx[krnl_idx][LZW_chunks_cnt]);
+					printf("-----------------------------------------------\n");
 					// printf("LZW chunk size: %d\n", *chunk_size_LZW);
 					// std::cout << "\n" << "LZW_header - boundary: " << LZW_chunks_idx[LZW_chunks_cnt] << "" << std::endl;
 				}
 				//------------------------------------------------------------------------------
 // printf("enter LZW loop\n");
-// printf("debug----------pipeline_drained:\t%d\n", *pipeline_drained);
+printf("debug----------pipeline_drained:\t%d\n", *pipeline_drained);
 				if (((LZW_chunks_cnt < (num_chunks_krnl - 1)) || (krnl_idx < (num_cu - 1))) && (*pipeline_drained < 2)){
-					krnl_chunks_cnt[krnl_idx]++;
-					if (krnl_idx == (num_cu - 1)){
-						LZW_chunks_cnt++;
-						krnl_idx = 0;
+					if (LZW_chunks_cnt == (num_chunks_krnl - 1)){
+						krnl_idx++;
+						LZW_chunks_cnt = 0;
+						krnl_in_offset = 0;
 // printf("pipeline drain = %d\n", *pipeline_drained);
-// printf("kernel ++\n");
+printf("kernel ++\n");
 					}
-					krnl_idx++;
+					LZW_chunks_cnt++;
 				}else{
-					if (!LZW_chunks_cnt){
+					if (!(*pipeline_drained < 2)){
 						if (deDup_header_LZW & 1u){
-							num_used_krnls = krnl_idx;
+							if (!LZW_chunks_cnt){
+								num_used_krnls = krnl_idx;
+								LZW_chunks_cnt = num_chunks_krnl - 1;
+							}else{
+								num_used_krnls = krnl_idx + 1;
+								LZW_chunks_cnt--;
+							}
 						}else{
 							num_used_krnls = krnl_idx + 1;
-							krnl_chunks_cnt[krnl_idx]++;
 						}
 					}else{
 						num_used_krnls = num_cu;
-						if (!(deDup_header_LZW & 1u)){
-							krnl_chunks_cnt[krnl_idx]++;
-						}
 					}
 
-					for (int i = 0; i < num_used_krnls; i++){
-						for (int j = krnl_chunks_cnt[i]; j < num_chunks_krnl; j++){
-							LZW_input_length[i][j] = 0;
-						}
+					for (int j = LZW_chunks_cnt + 1; j < num_chunks_krnl; j++){
+						LZW_input_length[num_used_krnls - 1][j] = 0;
 					}
 
+				/* 	if (LZW_chunks_cnt == (num_cu - 1)){
+						num_used_krnls = num_cu;
+					}else if (deDup_header_LZW & 1u){
+						num_used_krnls = LZW_chunks_cnt;
+					}else{
+						num_used_krnls = LZW_chunks_cnt + 1;
+					} */
 					LZW_timer.start();
 					// LZW_output_length = LZW_hybrid_hash_HW(ArrayOfChunks[i], in_length, LZW_send_data);
 					//--------------------------------kernel computation --------------------------------
@@ -459,10 +465,14 @@ int main(int argc, char* argv[]) {
 						read_done[j].wait();
 					} */
 					LZW_timer.stop();
-// printf("debug------------num_used_krnls:\t%d\n", num_used_krnls);
+printf("debug------------num_used_krnls:\t%d\n", num_used_krnls);
 					for (int j = 0; j < num_used_krnls; j++){
 // printf("debug------------LZW_output_length[%d]:\t%d\n", j, *LZW_output_length[j]);
-						num_krnl_loop_wr = krnl_chunks_cnt[j];
+						if (j < (num_used_krnls - 1)){
+							num_krnl_loop_wr = num_chunks_krnl;
+						}else{
+							num_krnl_loop_wr = LZW_chunks_cnt + 1;
+						}
 						for (int i = 0; i < num_krnl_loop_wr; i++){
 							memcpy(ArrayOfCode[LZW_chunks_idx[j][i]] + 1, (LZW_send_data[j] + krnl_wr_offset), 
 								LZW_output_length[j][i]);
@@ -476,10 +486,6 @@ int main(int argc, char* argv[]) {
 						krnl_wr_offset = 0;
 					}
 
-					for (int i = 0; i < num_cu; i++){
-						krnl_in_offset[i] = 0;
-						krnl_chunks_cnt[i] = 0;
-					}
 					LZW_chunks_cnt = 0;
 					krnl_idx = 0;
 					// LZW_timer.stop();
@@ -514,9 +520,9 @@ int main(int argc, char* argv[]) {
 				deDup_final_bytes += sizeof(deDup_header);
 			}
 			
-/* 			if (!(deDup_header_LZW & 1u) && (loop_cnt > 1)){
+			if (!(deDup_header_LZW & 1u) && (loop_cnt > 1)){
 				// printf("LZW_header - boundary:%d\n", (loop_cnt - 2));
-			} */
+			}
 			// std::cout << "-----------------------------------------------------------------------------------\n" << std::endl;
 			*chunk_size_LZW = *chunk_size_dedup;
 			*chunk_size_dedup = *chunk_size;
