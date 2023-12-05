@@ -37,8 +37,10 @@ void deDup(char* inputChunk, uint16_t chunk_size,
     std::unordered_map<string, uint32_t>& chunkTable,
     stopwatch& sha_timer, stopwatch& dedup_timer, uint32_t &deDup_header);
 unsigned int my_hash(ap_uint<KEY_LEN> key);
-void LZW_hybrid_hash_HW(char *in, uint16_t *input_length, 
-                        uint16_t *send_data, uint16_t *output_length);
+/* void LZW_hybrid_hash_HW(char *in, uint16_t *input_length, 
+                        uint16_t *send_data, uint16_t *output_length); */
+void krnl_LZW(char *input, uint16_t *input_length, 
+                uint16_t *send_data, uint16_t *output_length);  //multiChunks
 
 #endif
 

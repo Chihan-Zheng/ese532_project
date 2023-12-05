@@ -62,6 +62,8 @@ int main(int argc, char* argv[]) {
     char *fileBuf = read_binary_file(binaryFile, fileBufSize);
     cl::Program::Binaries bins{{fileBuf, fileBufSize}};
     cl::Program program(context, devices, bins, NULL, &err);
+	cl_ulong maxAllocSize = device.getInfo<CL_DEVICE_MAX_MEM_ALLOC_SIZE>();
+	std::cout << "Max CL::buffer size: " << maxAllocSize << " bytes" << std::endl;
     std::vector<cl::CommandQueue> q(num_cu);
 	std::vector<cl::Kernel> krnls(num_cu);
 	for (int i = 0; i < num_cu; i++) {

@@ -1,0 +1,15 @@
+<AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
+    <sourceFile name="">
+        <directive functionName="krnl_LZW" label="" functionLabel="">
+            <pragma name="TOP">
+                <option name="name" value="krnl_LZW"/>
+            </pragma>
+        </directive>
+        <directive functionName="krnl_LZW" label="" functionLabel="">
+            <pragma name="TOP">
+                <option name="name" value="krnl_LZW"/>
+            </pragma>
+        </directive>
+    </sourceFile>
+</AutoPilot:ProjectResources>
+
