@@ -310,7 +310,7 @@ int main(int argc, char* argv[]) {
 
 		//-------------------------------------start encoding-----------------------------------------------
 		//--- define flags for kernel
-		uint boundary_idx = 0;      //used to record boundary number of a packet
+		uint boundary_idx = 0;      //used to record boundary number of a packet: 0, 1, 2, ...
 		uint loop_cnt = 0;          //pipeline while loop's loop index
 		*cdc_offset = 0;         //refresh value before encoding the next packet   
 		*cdc_finished = 0;
