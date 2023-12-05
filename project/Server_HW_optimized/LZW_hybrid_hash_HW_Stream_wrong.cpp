@@ -48,7 +48,7 @@ static void read_input(char *in, uint16_t input_length,
 }
 
 void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
-                uint16_t *send_data, uint16_t *output_length){
+                 hls::stream<ap_uint<CODE_LEN>>& outStream_code, hls::stream<char>& outStream_code_flg){
     // #pragma HLS interface m_axi port=in bundle=aximm1
     // #pragma HLS interface m_axi port=input_length bundle=aximm1
     // #pragma HLS interface m_axi port=send_data bundle=aximm2
@@ -203,26 +203,8 @@ void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
             }
 
             //-------------------------------------insert code to store_array------------------------------------------
-            if (j == 0){   //the first code
-                shift = shift_offset;
-                store_array[0] = prefix_code.to_uint() << shift;
-                j++;
-            }else{       
-                if (shift < CODE_LEN){      //check whether empty space of store_array[j-1] is greater than 13
-                    shift = shift + shift_offset;
-                    store_array[j] = prefix_code.to_uint() << shift;     //xxxxx00 yyyyyyyy -> xxxxx|yy yyyyyy00 (shift here is 2)
-                    shift = 16 - shift;      
-                    store_array[j-1] = store_array[j-1] | (prefix_code.to_uint() >> shift);
-                    shift = 16 - shift;
-                    store_array[j-1] = swap_endian_16(store_array[j-1]);
-                    j++;
-                }else{
-                    char vacant_bit_number = shift - CODE_LEN;      //the rest bits number after code is written to store_array[j-1]
-                    store_array[j-1] = store_array[j-1] | (prefix_code.to_uint() << vacant_bit_number);
-                    shift = vacant_bit_number;     
-                    //do not j++ here 
-                }
-            }
+            outStream_code << prefix_code;
+            outStream_code_flg << 1;
             //-------------------------------------end insert code to store_array------------------------------------------
 
             next_code += 1;
@@ -233,8 +215,43 @@ void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
             prefix_code = code;
         }
     }
+    outStream_code << prefix_code;
+    outStream_code_flg << 0;
 
+}
+
+static void write_result(hls::stream<ap_uint<CODE_LEN>>& outStream_code, hls::stream<ap_uint<CODE_LEN>>& outStream_code_flg, 
+                        uint16_t *send_data, uint16_t *output_length){
+    
+    uint16_t j = 0;                   //index of store array (should j++ every time after store)
+    unsigned char shift = 0;
+    unsigned char shift_offset = 16 - CODE_LEN;
+    ap_uint<CODE_LEN> prefix_code;
+    while(outStream_code_flg.read()){
+        prefix_code = outStream_code.read();
+        if (j == 0){   //the first code
+            shift = shift_offset;
+            store_array[0] = prefix_code.to_uint() << shift;
+            j++;
+        }else{       
+            if (shift < CODE_LEN){      //check whether empty space of store_array[j-1] is greater than 13
+                shift = shift + shift_offset;
+                store_array[j] = prefix_code.to_uint() << shift;     //xxxxx00 yyyyyyyy -> xxxxx|yy yyyyyy00 (shift here is 2)
+                shift = 16 - shift;      
+                store_array[j-1] = store_array[j-1] | (prefix_code.to_uint() >> shift);
+                shift = 16 - shift;
+                store_array[j-1] = swap_endian_16(store_array[j-1]);
+                j++;
+            }else{
+                char vacant_bit_number = shift - CODE_LEN;      //the rest bits number after code is written to store_array[j-1]
+                store_array[j-1] = store_array[j-1] | (prefix_code.to_uint() << vacant_bit_number);
+                shift = vacant_bit_number;     
+                //do not j++ here 
+            }
+        }
+    }
     //deal with the last part of chunk or if there is only one character in chunk
+    prefix_code = outStream_code.read();
     if (in_length == 1) {      //if chunk length is 1: a single character
         shift = shift + shift_offset;
         store_array[j] = prefix_code.to_uint() << shift;
@@ -273,17 +290,22 @@ void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
     std::cout << std::endl << "assoc mem entry count: " << my_assoc_mem.fill << std::endl;
     *output_length = compressed_length + 4;
     // return (compressed_length + 4);
+
 }
 
 //****************************************************************************************************************
 void krnl_LZW(char *in, uint16_t *input_length, uint16_t *send_data, uint16_t *output_length)
 {
     static hls::stream<char> inStream_in("in_stream");
+    static hls::stream<ap_uint<CODE_LEN>> outStream_code("outStream_code");
+    static hls::stream<char> outStream_code_flg("outStream_code_flg");
     #pragma HLS interface m_axi port=in bundle=aximm0
     #pragma HLS interface m_axi port=input_length bundle=aximm1
     #pragma HLS interface m_axi port=send_data bundle=aximm1
     #pragma HLS interface m_axi port=output_length bundle=aximm0
     #pragma HLS stream variable = inStream_in
+    #pragma HLS stream variable = outStream_code
+    #pragma HLS stream variable = outStream_code_flg
     #pragma HLS dataflow
 
     char num_chunks = 0;
@@ -300,7 +322,8 @@ void krnl_LZW(char *in, uint16_t *input_length, uint16_t *send_data, uint16_t *o
 
     for (int i = 0; i < num_chunks; i++){
         read_input((in + input_offset), input_length_temp[i], inStream_in);
-        compute_LZW(inStream_in, input_length_temp[i], (send_data + output_offset), &output_length[i]);
+        compute_LZW(inStream_in, input_length_temp[i], outStream_code, outStream_code_flg);
+        write_result(outStream_code, outStream_code_flg, (send_data + output_offset), &output_length[i])
 
         input_offset += input_length_temp[i];
         output_offset += output_length[i];
