@@ -84,6 +84,10 @@ void krnl_LZW(char *input, uint16_t *input_length, uint16_t *send_data, uint16_t
             my_assoc_mem.lower_key_mem[i] = 0;
         }
 
+        for (int i = 0; i < ASSOC_MEM_SIZE; i++){
+            my_assoc_mem.value[i] = 0;
+        }
+
         uint16_t store_array[MAX_CHUNK];
         ap_uint<CODE_LEN> next_code = 256;
         ap_uint<CODE_LEN> prefix_code = in[0];
@@ -275,7 +279,7 @@ void krnl_LZW(char *input, uint16_t *input_length, uint16_t *send_data, uint16_t
         std::cout << std::endl << "assoc mem entry count: " << my_assoc_mem.fill << std::endl;
         output_length[n] = compressed_length + 4;
         printf("output length: %d\n", output_length[n]);
-        output_offset += output_length[n];
+        output_offset += (output_length[n] / sizeof(uint16_t));
         // return (compressed_length + 4);
     }
 

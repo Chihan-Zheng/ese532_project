@@ -44,7 +44,7 @@ int main(int argc, char* argv[]) {
 
 	//-----------------------------------------Host Start------------------------------------------------
 	EventTimer timer2;
-    std::cout << "Running Encoding Task" << std::endl;
+    // std::cout << "Running Encoding Task" << std::endl;
     // ------------------------------------------------------------------------------------
     // Step 1: Initialize the OpenCL environment
     // ------------------------------------------------------------------------------------
@@ -103,7 +103,7 @@ int main(int argc, char* argv[]) {
 	*chunk_size_dedup = 0;
 	*chunk_size_LZW = 0;
 
-	cdc_offset = (uint32_t *)malloc(sizeof(uint32_t *));
+	cdc_offset = (uint32_t *)malloc(sizeof(uint32_t));
 	cdc_finished = (char *)malloc(sizeof(char));
 	pipeline_drained = (char *)malloc(sizeof(char));
 
@@ -299,7 +299,7 @@ int main(int argc, char* argv[]) {
 		done = buffer[1] & DONE_BIT_L;
 		length = buffer[0] | (buffer[1] << 8);
 		length &= ~DONE_BIT_H;
-		//printf("length: %d offset %d\n",length,offset);
+		// printf("length: %d offset %d\n",length,offset);
 		/* memcpy(&file[offset], &buffer[HEADER], length);
 		offset += length; */
 		writer++;
@@ -320,7 +320,7 @@ int main(int argc, char* argv[]) {
 		char krnl_chunks_cnt[num_chunks_krnl] = {0};      //count how many chunk a kernel has
 		char num_krnl_loop_wr = 0;      //the number of iteration when writing the codes to file of one kernel
 		uint32_t krnl_wr_offset = 0;    //offset for output code size of a single kernel: used when writing output codes to file
-		
+// printf("after define variable\n");
 		if (count == 2) {
 			//--- 2 packet:
 			memcpy(&file[offset], &buffer[HEADER], length);
@@ -351,12 +351,19 @@ int main(int argc, char* argv[]) {
 					int bytes_written = fwrite(&file[0], 1, offset, outfd); */
 				}else{    //other packets go into here
 					//--- 1 packet:
-					core_1_thread = std::thread(&cdc, &buffer[2], length, chunk_cdc, chunk_size, cdc_offset, cdc_finished,std::ref(cdc_timer));
+
+// printf("buffer:%p\n", &buffer[2]);
+// printf("length: %d\n", length);
+// printf("chunk_cdc:\n%s\n\n", chunk_cdc);
+// printf("chunk_size: %d\n", *chunk_size);
+// printf("cdc_offset: %d\n", *cdc_offset);
+// printf("cdc_finished: %d\n", *cdc_finished);
+					core_1_thread = std::thread(&cdc, &buffer[2], length, chunk_cdc, chunk_size, cdc_offset, cdc_finished, std::ref(cdc_timer));
 					pin_thread_to_cpu(core_1_thread, 1);
 					// cdc(&buffer[2], length, chunk, chunk_size, cdc_offset, cdc_finished);   //boundary_num should use char?
 				}
 			}
-		
+
 			// printf("for loop i: %d\n", i);
 			if ((loop_cnt > 0) && (*pipeline_drained < 2)){    //dedup start from the second iteration and stop when *pipeline_drain == 1
 				// printf("enter deDup, loop: %d\n", loop_cnt);
@@ -365,7 +372,7 @@ int main(int argc, char* argv[]) {
 				core_2_thread = std::thread(&deDup, 
 											chunk_dedup, *chunk_size_dedup, std::ref(chunkTable), std::ref(SHA_timer), std::ref(deDup_timer),
 											std::ref(deDup_header));
-				printf(" deDup header: %x\n", deDup_header);
+				// printf(" deDup header: %x\n", deDup_header);
 				pin_thread_to_cpu(core_2_thread, 2);
 				// deDup_header = deDup(chunk_dedup, chunk_size, chunkTable, std::ref(SHA_timer));
 				/* if ((deDup_header & 1u)){dd
@@ -378,6 +385,7 @@ int main(int argc, char* argv[]) {
 					deDup_final_bytes += sizeof(deDup_header);
 				} */
 			}
+
 			// printf("before enter LZW, loop: %d\n", loop_cnt);
 			//---: if (the chunk is LZW chunk or the last stage of pipeline) and loop_cnt >= 2  ---> go to LZW part (doesn't mean execute LZW)
 			if ((!(deDup_header_LZW & 1u) || (*pipeline_drained == 2)) && (loop_cnt > 1)){
@@ -398,13 +406,13 @@ int main(int argc, char* argv[]) {
 // printf("debug----------pipeline_drained:\t%d\n", *pipeline_drained);
 				if (((LZW_chunks_cnt < (num_chunks_krnl - 1)) || (krnl_idx < (num_cu - 1))) && (*pipeline_drained < 2)){
 					krnl_chunks_cnt[krnl_idx]++;
-					if (krnl_idx == (num_cu - 1)){
+					krnl_idx++;
+					if (krnl_idx == num_cu){
 						LZW_chunks_cnt++;
 						krnl_idx = 0;
 // printf("pipeline drain = %d\n", *pipeline_drained);
 // printf("kernel ++\n");
 					}
-					krnl_idx++;
 				}else{
 					if (!LZW_chunks_cnt){
 						if (deDup_header_LZW & 1u){
@@ -432,7 +440,7 @@ int main(int argc, char* argv[]) {
 					for (int j = 0; j < num_used_krnls; j++){
 						krnl_LZW(ArrayOfChunks_LZW[j], LZW_input_length[j], LZW_send_data[j], LZW_output_length[j]);}
 					
-			/* 			OCL_CHECK(err, err = krnls[j].setArg(0, Input_buf[j]));
+						/* OCL_CHECK(err, err = krnls[j].setArg(0, Input_buf[j]));
 						OCL_CHECK(err, err = krnls[j].setArg(1, In_length_buf[j]));
 						OCL_CHECK(err, err = krnls[j].setArg(2, Output_buf[j]));
 						OCL_CHECK(err, err = krnls[j].setArg(3,Output_length_buf[j]));
@@ -453,7 +461,7 @@ int main(int argc, char* argv[]) {
 
 					for (int j = 0; j < num_cu; j++){
 						OCL_CHECK(err, err = q[j].finish());
-					} */
+					}  */
 					 
 					/* for (int j = 0; j < num_used_krnls; j++){
 						read_done[j].wait();
@@ -461,12 +469,13 @@ int main(int argc, char* argv[]) {
 					LZW_timer.stop();
 // printf("debug------------num_used_krnls:\t%d\n", num_used_krnls);
 					for (int j = 0; j < num_used_krnls; j++){
-// printf("debug------------LZW_output_length[%d]:\t%d\n", j, *LZW_output_length[j]);
 						num_krnl_loop_wr = krnl_chunks_cnt[j];
+// printf("debug------------krnl_chunks_cnt[%d]:\t%d\n", j, num_chunks_krnl);
 						for (int i = 0; i < num_krnl_loop_wr; i++){
 							memcpy(ArrayOfCode[LZW_chunks_idx[j][i]] + 1, (LZW_send_data[j] + krnl_wr_offset), 
 								LZW_output_length[j][i]);
-							krnl_wr_offset += LZW_output_length[j][i];
+							krnl_wr_offset += (LZW_output_length[j][i] / sizeof(uint16_t));
+// printf("LZW_chunks_idx[%d][%d]: %d\n", j, i, LZW_chunks_idx[j][i]);
 							ArrayOfOutputLength_LZW[LZW_chunks_idx[j][i]] = LZW_output_length[j][i];
 // printf("LZW_output_length[%d][%d]: %d\n", j, i, LZW_output_length[j][i]);
 							/* q.enqueueUnmapMemObject(Input_buf[j], ArrayOfChunks_LZW[j]); */
@@ -484,6 +493,7 @@ int main(int argc, char* argv[]) {
 					krnl_idx = 0;
 					// LZW_timer.stop();
 				}
+// printf("after LZW\n");
 			}
 			//--------------------------------kernel computation --------------------------------
 // printf("after-------------------------------------------------------------------------LZW_header - boundary:%d\n", LZW_chunks_idx[LZW_chunks_cnt]);
@@ -503,7 +513,7 @@ int main(int argc, char* argv[]) {
 				// printf("after join pipeline < 2, loop: %d\n", loop_cnt);
 
 			}
-			
+	
 			// printf("after thread join: %d\n", loop_cnt);
 // printf("\nchunk idx:\t%d:\nchunk from cdc:\n%s\n", boundary_idx,chunk_cdc);
 			// std::cout << "--------------------------Header Types for this Iteration------------------------------------" << std::endl;
@@ -553,10 +563,12 @@ int main(int argc, char* argv[]) {
 			}			
 		}		
 		total_timer.stop();
+// printf("after a packet\n");
+// printf("done: %d\n", done);
 	}					
 	//---------------------------------------end encoding----------------------------------------------
 	// total_timer.stop();
-
+// printf("outside while loop\n");
 	for (int j = 0; j < num_cu; j++){
 		q[j].enqueueUnmapMemObject(Input_buf[j], ArrayOfChunks_LZW[j]);
 		q[j].enqueueUnmapMemObject(Output_buf[j], LZW_send_data[j]);
@@ -583,13 +595,13 @@ int main(int argc, char* argv[]) {
 	// int bytes_written = fwrite(&file[0], 1, offset, outfd);
 	// printf("write file with %d\n", bytes_written);
 	// fclose(outfd);
+
 	for (int i = 0; i < NUM_PACKETS; i++) {
 		free(input[i]);
 	}
 	// printf("after free input\n");
-	
 	free(file);
-	free(cdc_offset);
+	free(cdc_offset);	
 	free(cdc_finished);
 	free(pipeline_drained);
 	// free(chunk_cdc);

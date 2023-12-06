@@ -120,16 +120,22 @@ void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size,
 			free(hash);
 			// printf("finished innner cdc\n");
 			stopwatch.stop();
+// printf("cdc_finished: %d\n", *pipeline_drained);
+// printf("offset_buf: %d\n", *offset_buff);
 			return;
 			//printf("The hash calculated at this index is %d\n",hash[i]); //Print out the hash value calculated at this char.
 			// printf("The calculated 8 bytes are: %c%c%c%c%c%c%c%c\n",buff[i],buff[i+1],buff[i+2],buff[i+3],buff[i+4],buff[i+5],buff[i+6],buff[i+7]); //print out the 8 characters that hash based on.
         }
+
 		if(buff_size_new < ((WIN_SIZE * 2)+1)){
-			chunk = (char*)malloc(sizeof(char)*MAX_CHUNK);
+// printf("reach special case of cdc\n");
+			// chunk = (char*)malloc(sizeof(char)*MAX_CHUNK);
 			memcpy(chunk, buff_new, buff_size_new);
 			*chunk_size = buff_size_new;
 			*pipeline_drained = 1;
 			*offset_buff += buff_size_new;
+			stopwatch.stop();
+			return;
 			//printf("we find a chunk:\n");
 			// printf("%s",chunk);
 			//printf("cdc chunk size is: %d\n",*chunk_size);
@@ -138,7 +144,6 @@ void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size,
 	// printf("before free hash\n");
 	// free(buff_new);
 	// free(hash);
-	
 }
 
 /* void test_print_chunk(char** chunk, int boundary_num){
