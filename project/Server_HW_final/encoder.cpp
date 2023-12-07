@@ -440,12 +440,12 @@ for (int i = 0; i < Max_Chunk_Size; i++){
 					}
 
 					LZW_timer.start();
-					// LZW_output_length = LZW_hybrid_hash_HW(ArrayOfChunks[i], in_length, LZW_send_data);
+					// LZW_output_length = krnl_LZW(ArrayOfChunks[i], in_length, LZW_send_data);
 					//--------------------------------kernel computation --------------------------------
 					for (int j = 0; j < num_used_krnls; j++){
-						// krnl_LZW(ArrayOfChunks_LZW[j], LZW_input_length[j], LZW_send_data[j], LZW_output_length[j]);}
+						krnl_LZW(ArrayOfChunks_LZW[j], LZW_input_length[j], LZW_send_data[j], LZW_output_length[j]);}
 					
-						OCL_CHECK(err, err = krnls[j].setArg(0, Input_buf[j]));
+					/* 	OCL_CHECK(err, err = krnls[j].setArg(0, Input_buf[j]));
 						OCL_CHECK(err, err = krnls[j].setArg(1, In_length_buf[j]));
 						OCL_CHECK(err, err = krnls[j].setArg(2, Output_buf[j]));
 						OCL_CHECK(err, err = krnls[j].setArg(3,Output_length_buf[j]));
@@ -466,7 +466,7 @@ for (int i = 0; i < Max_Chunk_Size; i++){
 
 					for (int j = 0; j < num_cu; j++){
 						OCL_CHECK(err, err = q[j].finish());
-					}    
+					}     */
 					 
 					/* for (int j = 0; j < num_used_krnls; j++){
 						read_done[j].wait();
