@@ -54410,7 +54410,6 @@ inline bool operator!=(
 # 396 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/ap_fixed.h" 2
 # 365 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/ap_int.h" 2
 # 40 "././common/Utilities.h" 2
-
 # 1 "././common/EventTimer.h" 1
 # 39 "././common/EventTimer.h"
 # 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/vector" 1 3
@@ -58040,7 +58039,7 @@ public:
 
     void print(int id = -1);
 };
-# 42 "././common/Utilities.h" 2
+# 41 "././common/Utilities.h" 2
 # 1 "././common/../server.h" 1
 
 
@@ -58979,7 +58978,7 @@ protected:
  int packets_read;
 
 };
-# 43 "././common/Utilities.h" 2
+# 42 "././common/Utilities.h" 2
 
 
 # 1 "/usr/include/sys/mman.h" 1 3 4
@@ -59115,9 +59114,10 @@ extern int shm_open (const char *__name, int __oflag, mode_t __mode);
 extern int shm_unlink (const char *__name);
 
 }
-# 46 "././common/Utilities.h" 2
+# 45 "././common/Utilities.h" 2
 # 1 "././common/../encoder.h" 1
-# 47 "././common/Utilities.h" 2
+# 46 "././common/Utilities.h" 2
+
 
 
 
@@ -59198,14 +59198,14 @@ __attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *input, uint16_t *
     uint16_t in_length;
 
     char *in;
-
-    VITIS_LOOP_52_1: for (int i = 0; i < (4); i++){
+# 65 "LZW_hybrid_hash_HW.cpp"
+    VITIS_LOOP_65_1: for (int i = 0; i < (4); i++){
         if (input_length[i]){
             num_chunks++;
         }
     }
 
-    VITIS_LOOP_58_2: for(int n = 0; n < num_chunks; n++){
+    VITIS_LOOP_71_2: for(int n = 0; n < num_chunks; n++){
         in = input + input_offset;
         in_length = input_length[n];
         input_offset += in_length;
@@ -59218,20 +59218,25 @@ __attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *input, uint16_t *
 
 
 
-        VITIS_LOOP_71_3: for(int i = 0; i < (1 << 15); i++){
+        VITIS_LOOP_84_3: for(int i = 0; i < (1 << 15); i++){
 
-            VITIS_LOOP_73_4: for (int j = 0; j < 1; j++){
+            VITIS_LOOP_86_4: for (int j = 0; j < 1; j++){
                 hash_table[i][j] = 0;
             }
         }
 
         my_assoc_mem.fill = 0;
-        VITIS_LOOP_79_5: for(int i = 0; i < 512; i++)
+        VITIS_LOOP_92_5: for(int i = 0; i < 512; i++)
         {
 #pragma HLS unroll
  my_assoc_mem.upper_key_mem[i] = 0;
             my_assoc_mem.middle_key_mem[i] = 0;
             my_assoc_mem.lower_key_mem[i] = 0;
+        }
+
+        VITIS_LOOP_100_6: for (int i = 0; i < (72 * 1); i++){
+#pragma HLS unroll
+ my_assoc_mem.value[i] = 0;
         }
 
         uint16_t store_array[4096];
@@ -59243,8 +59248,8 @@ __attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *input, uint16_t *
         unsigned char shift = 0;
         unsigned char shift_offset = 16 - 13;
         ap_uint<13> i = 0;
-
-        VITIS_LOOP_97_6: for (int i = 0; i < (in_length - 1); i++)
+# 124 "LZW_hybrid_hash_HW.cpp"
+        VITIS_LOOP_124_7: for (int i = 0; i < (in_length - 1); i++)
         {
             next_char = in[i + 1];
 
@@ -59252,9 +59257,9 @@ __attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *input, uint16_t *
 
             ap_uint<(13 + 8)> key = (prefix_code.to_uint() << 8) + next_char;
 
-            VITIS_LOOP_105_7: for (int j = 0; j < 1; j++){
-
-                ap_uint<((13 + 8) + 13 + 1)> lookup = hash_table[my_hash(key)][j];
+            VITIS_LOOP_132_8: for (int j = 0; j < 1; j++){
+#pragma HLS unroll
+ ap_uint<((13 + 8) + 13 + 1)> lookup = hash_table[my_hash(key)][j];
 
 
                 ap_uint<(13 + 8)> stored_key = lookup & ((1<<(13 + 8)) - 1);
@@ -59279,7 +59284,7 @@ __attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *input, uint16_t *
                 ap_int<(72 * 1)> match = match_high & match_middle & match_low;
 
                 unsigned int address;
-                VITIS_LOOP_132_8: for(address = 0; address < (72 * 1); address++)
+                VITIS_LOOP_159_9: for(address = 0; address < (72 * 1); address++)
                 {
 
 
@@ -59312,7 +59317,7 @@ __attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *input, uint16_t *
 
 
 
-                VITIS_LOOP_165_9: for (int j = 0; j < 1; j++){
+                VITIS_LOOP_192_10: for (int j = 0; j < 1; j++){
 #pragma HLS unroll
  ap_uint<((13 + 8) + 13 + 1)> lookup = hash_table[my_hash(key)][j];
                     ap_uint<1> valid = (lookup >> ((13 + 8) + 13)) & 0x1;
@@ -59424,7 +59429,8 @@ __attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *input, uint16_t *
 
         std::cout << std::endl << "assoc mem entry count: " << my_assoc_mem.fill << std::endl;
         output_length[n] = compressed_length + 4;
-        output_offset += output_length[n];
+        printf("output length: %d\n", output_length[n]);
+        output_offset += ((output_length[n] + sizeof(uint16_t) - 1) / sizeof(uint16_t));
 
     }
 

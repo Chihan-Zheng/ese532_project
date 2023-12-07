@@ -13,7 +13,7 @@ open_solution "solution1" -flow_target vitis
 set_part {xczu3eg-sbva484-1-i}
 create_clock -period 150MHz -name default
 config_export -format xo -output /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_optimized/krnl_LZW.xo -rtl verilog
-#source "./LZW_Stream_multiChunks/solution1/directives.tcl"
+source "./LZW_Stream_multiChunks/solution1/directives.tcl"
 #csim_design
 csynth_design
 #cosim_design

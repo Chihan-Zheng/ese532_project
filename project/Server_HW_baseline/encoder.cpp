@@ -48,7 +48,7 @@ int main(int argc, char* argv[]) {
     // ------------------------------------------------------------------------------------
     timer2.add("OpenCL Initialization");
     cl_int err;
-    std::string binaryFile = "encoder.xclbin";
+    std::string binaryFile = "krnl_LZW.xclbin";
     unsigned fileBufSize;
     std::vector<cl::Device> devices = get_xilinx_devices();
     devices.resize(1);

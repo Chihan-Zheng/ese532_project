@@ -260,7 +260,7 @@ set ID 4
 set hasByteEnable 0
 set MemName krnl_LZW_my_assoc_mem_value_V
 set CoreName ap_simcore_mem
-set PortList { 2 3 }
+set PortList { 2 0 }
 set DataWd 13
 set AddrRange 72
 set AddrWd 7

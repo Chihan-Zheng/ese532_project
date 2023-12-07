@@ -344,7 +344,7 @@ int main()
 
     // std::string s = "WYS*WYGWYS*WYSWYSG";
 
-    std::ifstream file("../test.txt");
+    std::ifstream file("LittlePrince.txt");
     std::stringstream buffer;
     buffer << file.rdbuf();
     std::string s = buffer.str();

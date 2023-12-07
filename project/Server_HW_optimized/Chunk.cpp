@@ -118,7 +118,7 @@ void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size,
 			// printf("\nwe find a chunk:\n");
 			// printf("%s\n",chunk);
 			free(hash);
-			// printf("finished innner cdc\n");
+			// printf("\nfinished innner cdc\n");
 			stopwatch.stop();
 // printf("cdc_finished: %d\n", *pipeline_drained);
 // printf("offset_buf: %d\n", *offset_buff);
@@ -135,9 +135,10 @@ void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size,
 			*pipeline_drained = 1;
 			*offset_buff += buff_size_new;
 			stopwatch.stop();
-			return;
-			//printf("we find a chunk:\n");
+			
+			// printf("we find a chunk:\n");
 			// printf("%s",chunk);
+			return;
 			//printf("cdc chunk size is: %d\n",*chunk_size);
 		}
 	}

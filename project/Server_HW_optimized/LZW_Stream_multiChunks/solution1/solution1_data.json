@@ -147,6 +147,7 @@
     ],
     "DirectiveTcl": [
       "set_directive_top krnl_LZW -name krnl_LZW",
+      "set_directive_top krnl_LZW -name krnl_LZW",
       "set_directive_top krnl_LZW -name krnl_LZW"
     ],
     "ProfileOption": "0",
@@ -969,28 +970,28 @@
         },
         "Loops": [
           {
-            "Name": "VITIS_LOOP_52_1",
+            "Name": "VITIS_LOOP_65_1",
             "TripCount": "4",
             "Latency": "4",
             "PipelineII": "1",
             "PipelineDepth": "1"
           },
           {
-            "Name": "VITIS_LOOP_58_2",
+            "Name": "VITIS_LOOP_71_2",
             "TripCount": "",
             "Latency": "",
             "PipelineII": "",
             "PipelineDepth": "",
             "Loops": [
               {
-                "Name": "VITIS_LOOP_71_3",
+                "Name": "VITIS_LOOP_84_3",
                 "TripCount": "32768",
                 "Latency": "32768",
                 "PipelineII": "1",
                 "PipelineDepth": "1"
               },
               {
-                "Name": "VITIS_LOOP_97_6",
+                "Name": "VITIS_LOOP_124_7",
                 "TripCount": "",
                 "Latency": "",
                 "PipelineII": "",
@@ -1006,7 +1007,7 @@
                     "PipelineDepth": "1"
                   },
                   {
-                    "Name": "VITIS_LOOP_132_8",
+                    "Name": "VITIS_LOOP_159_9",
                     "TripCount": "",
                     "LatencyMin": "1",
                     "LatencyMax": "72",
@@ -1031,14 +1032,14 @@
                 ]
               },
               {
-                "Name": "VITIS_LOOP_58_2.3",
+                "Name": "VITIS_LOOP_71_2.3",
                 "TripCount": "2",
                 "Latency": "71",
                 "PipelineII": "1",
                 "PipelineDepth": "71"
               },
               {
-                "Name": "VITIS_LOOP_58_2.4",
+                "Name": "VITIS_LOOP_71_2.4",
                 "TripCount": "",
                 "LatencyMin": "0",
                 "LatencyMax": "32836",
@@ -1047,7 +1048,7 @@
                 "PipelineDepth": "71"
               },
               {
-                "Name": "VITIS_LOOP_58_2.5",
+                "Name": "VITIS_LOOP_71_2.5",
                 "TripCount": "",
                 "LatencyMin": "0",
                 "LatencyMax": "70",
@@ -1065,7 +1066,7 @@
           "FF": "4674",
           "AVAIL_FF": "141120",
           "UTIL_FF": "3",
-          "LUT": "18410",
+          "LUT": "18772",
           "AVAIL_LUT": "70560",
           "UTIL_LUT": "26",
           "DSP": "0",
@@ -1080,7 +1081,7 @@
   "GenerateBdFiles": "0",
   "GenData": {
     "DataVersion": "0.2",
-    "Time": "2023-12-04 22:36:10 EST",
+    "Time": "2023-12-07 10:55:56 EST",
     "ToolName": "vivado_hls",
     "ToolVersion": "2020.2"
   }

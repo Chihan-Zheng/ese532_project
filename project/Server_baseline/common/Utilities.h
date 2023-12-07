@@ -13,7 +13,7 @@
 #include <fcntl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include "stopwatch.h"
+#include "../stopwatch.h"
 #include <functional>
 
 void Exit_with_error(const char *s);

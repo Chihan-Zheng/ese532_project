@@ -3,7 +3,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // ==============================================================
 `timescale 1 ns / 1 ps
-module krnl_LZW_my_assoc_mem_value_V_ram (addr0, ce0, d0, we0, q0,  clk);
+module krnl_LZW_my_assoc_mem_value_V_ram (addr0, ce0, d0, we0, q0, addr1, ce1, d1, we1,  clk);
 
 parameter DWIDTH = 13;
 parameter AWIDTH = 7;
@@ -14,6 +14,10 @@ input ce0;
 input[DWIDTH-1:0] d0;
 input we0;
 output reg[DWIDTH-1:0] q0;
+input[AWIDTH-1:0] addr1;
+input ce1;
+input[DWIDTH-1:0] d1;
+input we1;
 input clk;
 
 reg [DWIDTH-1:0] ram[0:MEM_SIZE-1];
@@ -31,6 +35,15 @@ begin
 end
 
 
+always @(posedge clk)  
+begin 
+    if (ce1) begin
+        if (we1) 
+            ram[addr1] <= d1; 
+    end
+end
+
+
 endmodule
 
 `timescale 1 ns / 1 ps
@@ -41,7 +54,11 @@ module krnl_LZW_my_assoc_mem_value_V(
     ce0,
     we0,
     d0,
-    q0);
+    q0,
+    address1,
+    ce1,
+    we1,
+    d1);
 
 parameter DataWidth = 32'd13;
 parameter AddressRange = 32'd72;
@@ -53,6 +70,10 @@ input ce0;
 input we0;
 input[DataWidth - 1:0] d0;
 output[DataWidth - 1:0] q0;
+input[AddressWidth - 1:0] address1;
+input ce1;
+input we1;
+input[DataWidth - 1:0] d1;
 
 
 
@@ -62,7 +83,11 @@ krnl_LZW_my_assoc_mem_value_V_ram krnl_LZW_my_assoc_mem_value_V_ram_U(
     .ce0( ce0 ),
     .we0( we0 ),
     .d0( d0 ),
-    .q0( q0 ));
+    .q0( q0 ),
+    .addr1( address1 ),
+    .ce1( ce1 ),
+    .we1( we1 ),
+    .d1( d1 ));
 
 endmodule
 

@@ -10,5 +10,5 @@
   <xd:arg xd:name="send_data" xd:originalName="send_data" xd:direction="in" xd:interfaceRef="s_axi_control" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_gmem" xd:dataWidth="64" xd:offset="0x28" xd:handshakeRef="ap_none"/>
   <xd:arg xd:name="output_length" xd:originalName="output_length" xd:direction="in" xd:interfaceRef="s_axi_control" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_gmem" xd:dataWidth="64" xd:offset="0x34" xd:handshakeRef="ap_none"/>
   <xd:latencyEstimates xd:best-case="undef" xd:worst-case="undef" xd:average-case="undef"/>
-  <xd:resourceEstimates xd:LUT="18410" xd:FF="4674" xd:BRAM="84" xd:DSP="0"/>
+  <xd:resourceEstimates xd:LUT="18772" xd:FF="4674" xd:BRAM="84" xd:DSP="0"/>
 </xd:acceleratorMap>

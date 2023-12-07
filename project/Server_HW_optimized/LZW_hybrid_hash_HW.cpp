@@ -49,6 +49,19 @@ void krnl_LZW(char *input, uint16_t *input_length, uint16_t *send_data, uint16_t
 
     char *in;
 
+/*     ap_uint<BUCKET_LEN> hash_table[CAPACITY][BUCKETS_NUM];
+    // #pragma HLS array_partition variable=hash_table block factor=128 dim=1
+    assoc_mem my_assoc_mem;
+    uint16_t store_array[MAX_CHUNK];
+    ap_uint<CODE_LEN> next_code = 256;
+    ap_uint<CODE_LEN> prefix_code;
+    ap_uint<CODE_LEN> code = 0;
+    unsigned char next_char = 0;
+    uint16_t j = 0;                   //index of store array (should j++ every time after store)
+    unsigned char shift = 0;
+    unsigned char shift_offset = 16 - CODE_LEN;
+    ap_uint<CODE_LEN> i = 0; */
+
     for (int i = 0; i < num_chunks_krnl; i++){
         if (input_length[i]){
             num_chunks++;
@@ -85,6 +98,7 @@ void krnl_LZW(char *input, uint16_t *input_length, uint16_t *send_data, uint16_t
         }
 
         for (int i = 0; i < ASSOC_MEM_SIZE; i++){
+            #pragma HLS unroll
             my_assoc_mem.value[i] = 0;
         }
 
@@ -98,6 +112,15 @@ void krnl_LZW(char *input, uint16_t *input_length, uint16_t *send_data, uint16_t
         unsigned char shift_offset = 16 - CODE_LEN;
         ap_uint<CODE_LEN> i = 0;
 
+/*         next_code = 256;
+        prefix_code = in[0];
+        code = 0;
+        next_char = 0;
+        j = 0;                   //index of store array (should j++ every time after store)
+        shift = 0;
+        shift_offset = 16 - CODE_LEN;
+        i = 0;
+ */
         for (int i = 0; i < (in_length - 1); i++)
         {   
             next_char = in[i + 1];
@@ -107,7 +130,7 @@ void krnl_LZW(char *input, uint16_t *input_length, uint16_t *send_data, uint16_t
             ap_uint<KEY_LEN> key = (prefix_code.to_uint() << 8) + next_char;
             //-------------------------------hash_lookup-----------------------------------
             for (int j = 0; j < BUCKETS_NUM; j++){
-                // #pragma HLS unroll
+                #pragma HLS unroll
                 ap_uint<BUCKET_LEN> lookup = hash_table[my_hash(key)][j];
 
                 // [valid][value][key]
@@ -279,7 +302,7 @@ void krnl_LZW(char *input, uint16_t *input_length, uint16_t *send_data, uint16_t
         std::cout << std::endl << "assoc mem entry count: " << my_assoc_mem.fill << std::endl;
         output_length[n] = compressed_length + 4;
         printf("output length: %d\n", output_length[n]);
-        output_offset += (output_length[n] / sizeof(uint16_t));
+        output_offset += ((output_length[n] + sizeof(uint16_t) - 1) / sizeof(uint16_t));    //ceil(output_length / 2)
         // return (compressed_length + 4);
     }
 

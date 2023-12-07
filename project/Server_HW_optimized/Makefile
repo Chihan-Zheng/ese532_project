@@ -101,7 +101,8 @@ clean-endian:
 	-$(RM) $(ENDIAN_EXE) $(ENDIAN_OBJECTS) 
 
 clean: clean-baseline clean-endian clean-decoder clean-encoder 
-	-$(RM) *.bin decompressed
+# -$(RM) *.bin decompressed
+	-$(RM) decompressed
 	-$(RM) $(ENCODER_EXE) *.o *.xclbin *.xclbin.sh *.xclbin.info *.xclbin.link_summary* *.compile_summary *.str
 	-$(RM) *json *csv *log *summary *.json *.jou
 #-$(RM) $(XCLBIN) $(XO) $(ALL_MESSAGE_FILES)

@@ -1,4 +1,4 @@
-<project xmlns="com.autoesl.autopilot.project" top="krnl_LZW" name="LZW_Stream_multiChunks">
+<project xmlns="com.autoesl.autopilot.project" name="LZW_Stream_multiChunks" top="krnl_LZW">
     <includePaths/>
     <libraryPaths/>
     <Simulation>
