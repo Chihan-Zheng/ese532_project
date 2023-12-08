@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vitis Analyzer v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+# 
+# Start of session at: Sun Nov 26 16:50:51 2023
+# Process ID: 25721
+# Current directory: /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_baseline/Encoder_FPGA_results
+# Command line: vitis_analyzer LZW_hybrid_hash_HW.xclbin.run_summary
+# Log file: /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_baseline/Encoder_FPGA_results/vitis_analyzer.log
+# Journal file: /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_baseline/Encoder_FPGA_results/vitis_analyzer.jou
+#-----------------------------------------------------------
+start_gui
+create_project dummy

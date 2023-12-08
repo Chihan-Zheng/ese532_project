@@ -102,7 +102,7 @@ void test_print_chunk(char** chunk, int boundary_num){
 /* int main()
 {
     char *ArrayOfChunks[MAX_BOUNDARY];
-	int boundary_num = cdc("LittlePrince.txt", ArrayOfChunks);
+	int boundary_num = cdc("test_2.txt", ArrayOfChunks);
 	test_print_chunk(ArrayOfChunks, boundary_num);
 	return 0;
 } */

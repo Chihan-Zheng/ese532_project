@@ -1,0 +1,1354 @@
+INFO-FLOW: Workspace /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1 opened at Thu Dec 07 19:35:57 EST 2023
+Execute     ap_set_clock -name default -period 6.667 -unit ns -default=false 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 6.667ns.
+Execute     import_lib /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/zynquplus/zynquplus 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.hlp 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.hlp 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.hlp 
+Execute     source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/common/xilinx.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/plb46.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/axi4.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/util.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
+Execute     import_lib /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/zynquplus/zynquplus_fpv7 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.hlp 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.hlp 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.hlp 
+Execute     source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/common/xilinx.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/plb46.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/axi4.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/util.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
+Execute     import_lib /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/zynquplus/zynquplus 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.hlp 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.hlp 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.hlp 
+Execute     source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/common/xilinx.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/plb46.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/axi4.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/util.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
+Execute     set_part xczu3eg-sbva484-1-i 
+INFO-FLOW: DBG:set_part: XILINX_VIVADO=/mnt/pollux/software/xilinx/2020.2/Vivado/2020.2
+INFO-FLOW: DBG:set_part: RDI_DATADIR=/mnt/pollux/software/xilinx/2020.2/Vivado/2020.2/data:/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/data
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data single -quiet 
+DBG:HLSDevice: Trying to load device library: /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lib/lnx64.o/librdi_hlsvwrap.so
+DBG:HLSDevice: first parts/arch.xml in RDI_DATADIR: /mnt/pollux/software/xilinx/2020.2/Vivado/2020.2/data/parts/arch.xml
+Command       ap_part_info done; 0.88 sec.
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data info 
+Execute       add_library xilinx/zynquplus/zynquplus:xczu3eg:-sbva484:-1-i 
+Execute         get_default_platform 
+Execute         open_platform DefaultPlatform 
+Execute         ap_part_info -data single -name xczu3eg-sbva484-1-i 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data resources 
+Execute         config_chip_info -resource {SLICE 8820} {LUT 70560} {FF 141120} {DSP 360} {BRAM 432} {URAM 0} 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info 
+Execute         config_chip_info -speed slow 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info 
+Execute         config_library_info -library zynquplus_slow 
+Execute         config_library_info -family zynquplus 
+Execute         config_library_info -part xczu3eg:-sbva484:-1-i 
+Execute         import_lib /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/zynquplus/zynquplus 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute             source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.hlp 
+Execute             source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.hlp 
+Command           ap_source done; 0.19 sec.
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.hlp 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/zynquplus_dsp48e2.hlp 
+Command         import_lib done; 0.4 sec.
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/common/xilinx.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/plb46.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/axi4.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute             source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.gen 
+Execute             source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/util.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
+Command         ap_source done; 0.11 sec.
+Command       add_library done; 0.54 sec.
+INFO: [HLS 200-10] Setting target device to 'xczu3eg-sbva484-1-i'
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data info 
+Execute       config_compile -quiet -complex-mul-dsp=0 
+Command     set_part done; 1.45 sec.
+Execute     ap_part_info -data single -name xczu3eg-sbva484-1-i 
+Execute     ap_part_info -name xczu3eg-sbva484-1-i -data resources 
+Execute     config_chip_info -resource {SLICE 8820} {LUT 70560} {FF 141120} {DSP 360} {BRAM 432} {URAM 0} 
+Execute     ap_part_info -name xczu3eg-sbva484-1-i -data info 
+Execute     config_chip_info -speed slow 
+Execute     send_msg_by_id INFO @200-1505@%s%s  vitis 
+INFO: [HLS 200-1505] Using flow_target 'vitis'
+Execute     get_config_interface -m_axi_latency 
+Execute     get_config_interface -m_axi_alignment_byte_size 
+Execute     get_config_interface -m_axi_max_widen_bitwidth 
+Execute     get_config_interface -default_interface 
+Execute     get_config_interface -m_axi_offset 
+Execute     get_config_rtl -register_reset_num 
+Execute     send_msg_by_id INFO @200-1464@%s config_interface -m_axi_latency=64 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+Execute     config_interface -m_axi_latency=64 
+Execute     send_msg_by_id INFO @200-1464@%s config_interface -m_axi_alignment_byte_size=64 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+Execute     config_interface -m_axi_alignment_byte_size=64 
+Execute     send_msg_by_id INFO @200-1464@%s config_interface -m_axi_max_widen_bitwidth=512 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
+Execute     config_interface -m_axi_max_widen_bitwidth=512 
+Execute     send_msg_by_id INFO @200-1464@%s config_interface -default_interface=kernel 
+INFO: [HLS 200-1464] Running solution command: config_interface -default_interface=kernel
+Execute     config_interface -default_interface=kernel 
+Execute     send_msg_by_id INFO @200-1464@%s config_interface -m_axi_offset=slave 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_offset=slave
+Execute     config_interface -m_axi_offset=slave 
+Execute     send_msg_by_id INFO @200-1464@%s config_rtl -register_reset_num=3 
+INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
+Execute     config_rtl -register_reset_num=3 
+Command   open_solution done; 1.76 sec.
+Execute   set_part xczu3eg-sbva484-1-i 
+INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-i 
+INFO-FLOW: DBG:set_part: XILINX_VIVADO=/mnt/pollux/software/xilinx/2020.2/Vivado/2020.2
+INFO-FLOW: DBG:set_part: RDI_DATADIR=/mnt/pollux/software/xilinx/2020.2/Vivado/2020.2/data:/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/data
+Execute     ap_part_info -name xczu3eg-sbva484-1-i -data single -quiet 
+Execute     ap_part_info -name xczu3eg-sbva484-1-i -data info 
+Execute     add_library xilinx/zynquplus/zynquplus:xczu3eg:-sbva484:-1-i 
+Execute       get_default_platform 
+Execute       open_platform DefaultPlatform 
+Execute       ap_part_info -data single -name xczu3eg-sbva484-1-i 
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data resources 
+Execute       config_chip_info -resource {SLICE 8820} {LUT 70560} {FF 141120} {DSP 360} {BRAM 432} {URAM 0} 
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data info 
+Execute       config_chip_info -speed slow 
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data info 
+Execute       config_library_info -library zynquplus_slow 
+Execute       config_library_info -family zynquplus 
+Execute       config_library_info -part xczu3eg:-sbva484:-1-i 
+Execute       import_lib /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/zynquplus/zynquplus 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.hlp 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.hlp 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.hlp 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/zynquplus_dsp48e2.hlp 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/common/xilinx.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/plb46.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/axi4.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/util.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
+Execute     ap_part_info -name xczu3eg-sbva484-1-i -data info 
+Execute     config_compile -quiet -complex-mul-dsp=0 
+Command   set_part done; 0.13 sec.
+Execute   create_clock -period 150MHz -name default 
+INFO: [HLS 200-1510] Running: create_clock -period 150MHz -name default 
+Execute   config_interface -m_axi_alignment_byte_size 64 -m_axi_latency 64 -m_axi_max_widen_bitwidth 512 -m_axi_offset slave 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size 64 -m_axi_latency 64 -m_axi_max_widen_bitwidth 512 -m_axi_offset slave 
+Execute   config_rtl -register_reset_num 3 
+INFO: [HLS 200-1510] Running: config_rtl -register_reset_num 3 
+Execute   csynth_design 
+INFO: [HLS 200-1510] Running: csynth_design 
+Execute     get_config_compile -effort 
+Execute     get_config_compile -enable_clang39 
+Execute     get_config_compile -g 
+Execute     get_config_compile -ng 
+Execute     get_config_compile -opt_fp 
+Execute     get_config_compile -skip_cdt 
+Execute     get_config_compile -skip_syncheck 
+Execute     get_config_compile -skip_transform 
+Execute     get_config_compile -keep_printf 
+Execute     elaborate -effort=medium -skip_syncheck=0 -keep_printf=0 -skip_cdt=0 -skip_transform=0 -ng=0 -g=0 -opt_fp=0 -from_csynth_design=1 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 208.132 MB.
+INFO: [HLS 200-10] Analyzing design file 'common/check_endian.cpp' ... 
+INFO-FLOW: Compiling one TU...
+Execute       get_config_compile -pragma_strict_mode 
+INFO-FLOW: Handling common/check_endian.cpp as C++
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data info 
+INFO-FLOW: Running: GCC PP 39
+INFO-FLOW: Source preprocessing
+Execute       ap_eval exec -ignorestderr /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang common/check_endian.cpp -foptimization-record-file=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang.check_endian.cpp.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fno-limit-debug-info -gcc-toolchain /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0 -fhls -fno-exceptions -E -fno-math-errno -c -emit-llvm -mllvm -disable-llvm-optzns -Werror=implicit-function-declaration -Werror=implicit-hls-streams -Werror=return-type -Wpragmas -Wunused-parameter -fno-threadsafe-statics -fno-use-cxa-atexit -std=gnu++14 -target fpga64-xilinx-linux-gnu -fno-threadsafe-statics -fno-use-cxa-atexit -I /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/39 -D__VITIS_HLS__ -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot -I /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/check_endian.pp.0.cpp > /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang.check_endian.cpp.out.log 2> /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang.check_endian.cpp.err.log 
+Command       ap_eval done; 0.22 sec.
+INFO-FLOW: Done: GCC PP 39 time: 0.2 seconds per iteration
+Execute       set_directive_top krnl_LZW -name=krnl_LZW 
+INFO-FLOW: Setting directive 'TOP' name=krnl_LZW 
+INFO-FLOW: Setting directive 'TOP' name=krnl_LZW 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/tcl/tcllib1.11.1/yaml/huddle.tcl 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/tcl/tcllib1.11.1/yaml/json2huddle.tcl 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/tcl/tcllib1.11.1/try/try.tcl 
+INFO-FLOW: Setting directive 'TOP' name=krnl_LZW 
+Execute       list_core -type functional_unit 
+Execute       clang_tidy xilinx-systemc-detector /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/check_endian.pp.0.cpp std=gnu++14 -target fpga  -directive=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/.systemc_flag 
+INFO-FLOW: exec /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-systemc-detector -import-directive=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/.systemc_flag -fix-errors /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/check_endian.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0
+Command       clang_tidy done; 0.38 sec.
+INFO-FLOW: Running: clang-tidy CDT preprocess 39
+Execute       clang_tidy xilinx-directive2pragma /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/check_endian.pp.0.cpp std=gnu++14 -target fpga  -directive=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/all.directive.json 
+INFO-FLOW: exec /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-directive2pragma -import-directive=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/all.directive.json -fix-errors /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/check_endian.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0
+Command       clang_tidy done; 0.31 sec.
+Execute       clang_tidy xilinx-constantarray-param,xilinx-remove-assert /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/check_endian.pp.0.cpp std=gnu++14 -target fpga  
+INFO-FLOW: exec /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-constantarray-param,xilinx-remove-assert -fix-errors /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/check_endian.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0
+Command       clang_tidy done; 0.38 sec.
+INFO-FLOW: Done: clang-tidy CDT preprocess 39 time: 0.7 seconds per iteration
+INFO-FLOW: Calling xilinx-label-all-loops ... 
+Execute       clang_tidy -errorcheck xilinx-label-all-loops,xilinx-top-parameters,xilinx-array-stream-check,xilinx-warn-mayneed-no-ctor-attribute /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/check_endian.pp.0.cpp std=gnu++14 -target fpga  
+Execute         ap_eval exec -ignorestderr /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -export-fixes=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang-tidy.check_endian.pp.0.cpp.diag.yml -header-filter=.* --checks=-*,xilinx-label-all-loops,xilinx-top-parameters,xilinx-array-stream-check,xilinx-warn-mayneed-no-ctor-attribute -fix-errors /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/check_endian.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0 > /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang-tidy.check_endian.pp.0.cpp.out.log 2> /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang-tidy.check_endian.pp.0.cpp.err.log 
+Command         ap_eval done; 0.66 sec.
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/tcl/tcllib1.11.1/yaml/yaml.tcl 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/tcl/tcllib1.11.1/cmdline/cmdline.tcl 
+Command       clang_tidy done; 0.69 sec.
+Execute       get_config_dataflow -strict_mode 
+Execute       ap_eval exec -ignorestderr /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/xilinx-dataflow-lawyer -export-fixes=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/xilinx-dataflow-lawyer.check_endian.pp.0.cpp.diag.yml /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/check_endian.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0 -fstrict-dataflow > /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/xilinx-dataflow-lawyer.check_endian.pp.0.cpp.out.log 2> /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/xilinx-dataflow-lawyer.check_endian.pp.0.cpp.err.log 
+Command       ap_eval done; 0.33 sec.
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data info 
+INFO-FLOW: compiling source code to llvm bc
+Execute       ap_eval exec -ignorestderr /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang -foptimization-record-file=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang.check_endian.pp.0.cpp.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fno-limit-debug-info -fhls -flto -fno-exceptions -Wno-error=c++11-narrowing /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/check_endian.pp.0.cpp -fno-math-errno -c -emit-llvm -mllvm -disable-llvm-optzns -Werror=implicit-function-declaration -Werror=implicit-hls-streams -Werror=return-type -Wpragmas -Wunused-parameter -fno-threadsafe-statics -fno-use-cxa-atexit -std=gnu++14 -target fpga64-xilinx-linux-gnu -D__VITIS_HLS__ -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot -I /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -g -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/check_endian.bc > /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang.check_endian.pp.0.cpp.out.log 2> /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang.check_endian.pp.0.cpp.err.log 
+Command       ap_eval done; 0.33 sec.
+INFO: [HLS 200-10] Analyzing design file 'common/Utilities.cpp' ... 
+INFO-FLOW: Compiling one TU...
+Execute       get_config_compile -pragma_strict_mode 
+INFO-FLOW: Handling common/Utilities.cpp as C++
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data info 
+INFO-FLOW: Running: GCC PP 39
+INFO-FLOW: Source preprocessing
+Execute       ap_eval exec -ignorestderr /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang common/Utilities.cpp -foptimization-record-file=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang.Utilities.cpp.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fno-limit-debug-info -gcc-toolchain /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0 -fhls -fno-exceptions -E -fno-math-errno -c -emit-llvm -mllvm -disable-llvm-optzns -Werror=implicit-function-declaration -Werror=implicit-hls-streams -Werror=return-type -Wpragmas -Wunused-parameter -fno-threadsafe-statics -fno-use-cxa-atexit -std=gnu++14 -target fpga64-xilinx-linux-gnu -fno-threadsafe-statics -fno-use-cxa-atexit -I /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/39 -D__VITIS_HLS__ -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot -I /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Utilities.pp.0.cpp > /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang.Utilities.cpp.out.log 2> /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang.Utilities.cpp.err.log 
+Command       ap_eval done; 0.19 sec.
+INFO-FLOW: Done: GCC PP 39 time: 0.2 seconds per iteration
+Execute       set_directive_top krnl_LZW -name=krnl_LZW 
+INFO-FLOW: Setting directive 'TOP' name=krnl_LZW 
+INFO-FLOW: Setting directive 'TOP' name=krnl_LZW 
+INFO-FLOW: Setting directive 'TOP' name=krnl_LZW 
+INFO-FLOW: Setting directive 'TOP' name=krnl_LZW 
+INFO-FLOW: Setting directive 'TOP' name=krnl_LZW 
+INFO-FLOW: Setting directive 'TOP' name=krnl_LZW 
+Execute       list_core -type functional_unit 
+Execute       clang_tidy xilinx-systemc-detector /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Utilities.pp.0.cpp std=gnu++14 -target fpga  -directive=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/.systemc_flag 
+INFO-FLOW: exec /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-systemc-detector -import-directive=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/.systemc_flag -fix-errors /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Utilities.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0
+Command       clang_tidy done; 0.36 sec.
+INFO-FLOW: Running: clang-tidy CDT preprocess 39
+Execute       clang_tidy xilinx-directive2pragma /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Utilities.pp.0.cpp std=gnu++14 -target fpga  -directive=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/all.directive.json 
+INFO-FLOW: exec /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-directive2pragma -import-directive=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/all.directive.json -fix-errors /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Utilities.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0
+Command       clang_tidy done; 0.33 sec.
+Execute       clang_tidy xilinx-constantarray-param,xilinx-remove-assert /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Utilities.pp.0.cpp std=gnu++14 -target fpga  
+INFO-FLOW: exec /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-constantarray-param,xilinx-remove-assert -fix-errors /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Utilities.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0
+Command       clang_tidy done; 0.37 sec.
+INFO-FLOW: Done: clang-tidy CDT preprocess 39 time: 0.7 seconds per iteration
+INFO-FLOW: Calling xilinx-label-all-loops ... 
+Execute       clang_tidy -errorcheck xilinx-label-all-loops,xilinx-top-parameters,xilinx-array-stream-check,xilinx-warn-mayneed-no-ctor-attribute /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Utilities.pp.0.cpp std=gnu++14 -target fpga  
+Execute         ap_eval exec -ignorestderr /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -export-fixes=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang-tidy.Utilities.pp.0.cpp.diag.yml -header-filter=.* --checks=-*,xilinx-label-all-loops,xilinx-top-parameters,xilinx-array-stream-check,xilinx-warn-mayneed-no-ctor-attribute -fix-errors /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Utilities.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0 > /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang-tidy.Utilities.pp.0.cpp.out.log 2> /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang-tidy.Utilities.pp.0.cpp.err.log 
+Command         ap_eval done; 0.7 sec.
+Command       clang_tidy done; 0.72 sec.
+Execute       get_config_dataflow -strict_mode 
+Execute       ap_eval exec -ignorestderr /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/xilinx-dataflow-lawyer -export-fixes=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/xilinx-dataflow-lawyer.Utilities.pp.0.cpp.diag.yml /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Utilities.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0 -fstrict-dataflow > /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/xilinx-dataflow-lawyer.Utilities.pp.0.cpp.out.log 2> /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/xilinx-dataflow-lawyer.Utilities.pp.0.cpp.err.log 
+Command       ap_eval done; 0.33 sec.
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data info 
+INFO-FLOW: compiling source code to llvm bc
+Execute       ap_eval exec -ignorestderr /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang -foptimization-record-file=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang.Utilities.pp.0.cpp.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fno-limit-debug-info -fhls -flto -fno-exceptions -Wno-error=c++11-narrowing /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Utilities.pp.0.cpp -fno-math-errno -c -emit-llvm -mllvm -disable-llvm-optzns -Werror=implicit-function-declaration -Werror=implicit-hls-streams -Werror=return-type -Wpragmas -Wunused-parameter -fno-threadsafe-statics -fno-use-cxa-atexit -std=gnu++14 -target fpga64-xilinx-linux-gnu -D__VITIS_HLS__ -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot -I /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -g -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Utilities.bc > /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang.Utilities.pp.0.cpp.out.log 2> /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang.Utilities.pp.0.cpp.err.log 
+Command       ap_eval done; 0.33 sec.
+INFO: [HLS 200-10] Analyzing design file 'LZW_hybrid_hash_HW.cpp' ... 
+INFO-FLOW: Compiling one TU...
+Execute       get_config_compile -pragma_strict_mode 
+INFO-FLOW: Handling LZW_hybrid_hash_HW.cpp as C++
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data info 
+INFO-FLOW: Running: GCC PP 39
+INFO-FLOW: Source preprocessing
+Execute       ap_eval exec -ignorestderr /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang LZW_hybrid_hash_HW.cpp -foptimization-record-file=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang.LZW_hybrid_hash_HW.cpp.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fno-limit-debug-info -gcc-toolchain /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0 -fhls -fno-exceptions -E -fno-math-errno -c -emit-llvm -mllvm -disable-llvm-optzns -Werror=implicit-function-declaration -Werror=implicit-hls-streams -Werror=return-type -Wpragmas -Wunused-parameter -fno-threadsafe-statics -fno-use-cxa-atexit -std=gnu++14 -target fpga64-xilinx-linux-gnu -fno-threadsafe-statics -fno-use-cxa-atexit -I /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/39 -D__VITIS_HLS__ -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot -I /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/LZW_hybrid_hash_HW.pp.0.cpp > /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang.LZW_hybrid_hash_HW.cpp.out.log 2> /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang.LZW_hybrid_hash_HW.cpp.err.log 
+Command       ap_eval done; 0.25 sec.
+INFO-FLOW: Done: GCC PP 39 time: 0.3 seconds per iteration
+Execute       set_directive_top krnl_LZW -name=krnl_LZW 
+INFO-FLOW: Setting directive 'TOP' name=krnl_LZW 
+INFO-FLOW: Setting directive 'TOP' name=krnl_LZW 
+INFO-FLOW: Setting directive 'TOP' name=krnl_LZW 
+INFO-FLOW: Setting directive 'TOP' name=krnl_LZW 
+INFO-FLOW: Setting directive 'TOP' name=krnl_LZW 
+INFO-FLOW: Setting directive 'TOP' name=krnl_LZW 
+INFO-FLOW: Setting directive 'TOP' name=krnl_LZW 
+INFO-FLOW: Setting directive 'TOP' name=krnl_LZW 
+INFO-FLOW: Setting directive 'TOP' name=krnl_LZW 
+Execute       list_core -type functional_unit 
+Execute       clang_tidy xilinx-systemc-detector /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/LZW_hybrid_hash_HW.pp.0.cpp std=gnu++14 -target fpga  -directive=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/.systemc_flag 
+INFO-FLOW: exec /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-systemc-detector -import-directive=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/.systemc_flag -fix-errors /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/LZW_hybrid_hash_HW.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0
+Command       clang_tidy done; 0.4 sec.
+INFO-FLOW: Running: clang-tidy CDT preprocess 39
+Execute       clang_tidy xilinx-directive2pragma /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/LZW_hybrid_hash_HW.pp.0.cpp std=gnu++14 -target fpga  -directive=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/all.directive.json 
+INFO-FLOW: exec /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-directive2pragma -import-directive=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/all.directive.json -fix-errors /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/LZW_hybrid_hash_HW.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0
+Command       clang_tidy done; 0.66 sec.
+Execute       clang_tidy xilinx-constantarray-param,xilinx-remove-assert /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/LZW_hybrid_hash_HW.pp.0.cpp std=gnu++14 -target fpga  
+INFO-FLOW: exec /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-constantarray-param,xilinx-remove-assert -fix-errors /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/LZW_hybrid_hash_HW.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0
+Command       clang_tidy done; 0.44 sec.
+INFO-FLOW: Done: clang-tidy CDT preprocess 39 time: 1.1 seconds per iteration
+INFO-FLOW: Calling xilinx-label-all-loops ... 
+Execute       clang_tidy -errorcheck xilinx-label-all-loops,xilinx-top-parameters,xilinx-array-stream-check,xilinx-warn-mayneed-no-ctor-attribute /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/LZW_hybrid_hash_HW.pp.0.cpp std=gnu++14 -target fpga  
+Execute         ap_eval exec -ignorestderr /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -export-fixes=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang-tidy.LZW_hybrid_hash_HW.pp.0.cpp.diag.yml -header-filter=.* --checks=-*,xilinx-label-all-loops,xilinx-top-parameters,xilinx-array-stream-check,xilinx-warn-mayneed-no-ctor-attribute -fix-errors /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/LZW_hybrid_hash_HW.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0 > /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang-tidy.LZW_hybrid_hash_HW.pp.0.cpp.out.log 2> /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang-tidy.LZW_hybrid_hash_HW.pp.0.cpp.err.log 
+Command         ap_eval done; 0.75 sec.
+Command       clang_tidy done; 0.79 sec.
+Execute       get_config_dataflow -strict_mode 
+Execute       ap_eval exec -ignorestderr /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/xilinx-dataflow-lawyer -export-fixes=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/xilinx-dataflow-lawyer.LZW_hybrid_hash_HW.pp.0.cpp.diag.yml /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/LZW_hybrid_hash_HW.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0 -fstrict-dataflow > /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/xilinx-dataflow-lawyer.LZW_hybrid_hash_HW.pp.0.cpp.out.log 2> /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/xilinx-dataflow-lawyer.LZW_hybrid_hash_HW.pp.0.cpp.err.log 
+Command       ap_eval done; 0.39 sec.
+WARNING: [HLS 214-114] Since the only kind of statements allowed in a canonical dataflow region are variable declarations and function calls, the compiler may not be able to correctly handle the region: LZW_hybrid_hash_HW.cpp:318:5
+WARNING: [HLS 214-114] Since the only kind of statements allowed in a canonical dataflow region are variable declarations and function calls, the compiler may not be able to correctly handle the region: LZW_hybrid_hash_HW.cpp:325:5
+Execute       send_msg_by_id WARNING @200-471@%s%s 2 LZW_hybrid_hash_HW.cpp 
+WARNING: [HLS 200-471] Dataflow form checks found 2 issue(s) in file LZW_hybrid_hash_HW.cpp
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data info 
+INFO-FLOW: compiling source code to llvm bc
+Execute       ap_eval exec -ignorestderr /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang -foptimization-record-file=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang.LZW_hybrid_hash_HW.pp.0.cpp.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fno-limit-debug-info -fhls -flto -fno-exceptions -Wno-error=c++11-narrowing /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/LZW_hybrid_hash_HW.pp.0.cpp -fno-math-errno -c -emit-llvm -mllvm -disable-llvm-optzns -Werror=implicit-function-declaration -Werror=implicit-hls-streams -Werror=return-type -Wpragmas -Wunused-parameter -fno-threadsafe-statics -fno-use-cxa-atexit -std=gnu++14 -target fpga64-xilinx-linux-gnu -D__VITIS_HLS__ -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot -I /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -g -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/LZW_hybrid_hash_HW.bc > /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang.LZW_hybrid_hash_HW.pp.0.cpp.out.log 2> /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang.LZW_hybrid_hash_HW.pp.0.cpp.err.log 
+Command       ap_eval done; 0.38 sec.
+INFO: [HLS 200-10] Analyzing design file 'common/EventTimer.cpp' ... 
+INFO-FLOW: Compiling one TU...
+Execute       get_config_compile -pragma_strict_mode 
+INFO-FLOW: Handling common/EventTimer.cpp as C++
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data info 
+INFO-FLOW: Running: GCC PP 39
+INFO-FLOW: Source preprocessing
+Execute       ap_eval exec -ignorestderr /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang common/EventTimer.cpp -foptimization-record-file=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang.EventTimer.cpp.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fno-limit-debug-info -gcc-toolchain /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0 -fhls -fno-exceptions -E -fno-math-errno -c -emit-llvm -mllvm -disable-llvm-optzns -Werror=implicit-function-declaration -Werror=implicit-hls-streams -Werror=return-type -Wpragmas -Wunused-parameter -fno-threadsafe-statics -fno-use-cxa-atexit -std=gnu++14 -target fpga64-xilinx-linux-gnu -fno-threadsafe-statics -fno-use-cxa-atexit -I /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/39 -D__VITIS_HLS__ -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot -I /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/EventTimer.pp.0.cpp > /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang.EventTimer.cpp.out.log 2> /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang.EventTimer.cpp.err.log 
+Command       ap_eval done; 0.18 sec.
+INFO-FLOW: Done: GCC PP 39 time: 0.2 seconds per iteration
+Execute       set_directive_top krnl_LZW -name=krnl_LZW 
+INFO-FLOW: Setting directive 'TOP' name=krnl_LZW 
+INFO-FLOW: Setting directive 'TOP' name=krnl_LZW 
+INFO-FLOW: Setting directive 'TOP' name=krnl_LZW 
+INFO-FLOW: Setting directive 'TOP' name=krnl_LZW 
+INFO-FLOW: Setting directive 'TOP' name=krnl_LZW 
+INFO-FLOW: Setting directive 'TOP' name=krnl_LZW 
+INFO-FLOW: Setting directive 'TOP' name=krnl_LZW 
+INFO-FLOW: Setting directive 'TOP' name=krnl_LZW 
+INFO-FLOW: Setting directive 'TOP' name=krnl_LZW 
+INFO-FLOW: Setting directive 'TOP' name=krnl_LZW 
+INFO-FLOW: Setting directive 'TOP' name=krnl_LZW 
+INFO-FLOW: Setting directive 'TOP' name=krnl_LZW 
+Execute       list_core -type functional_unit 
+Execute       clang_tidy xilinx-systemc-detector /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/EventTimer.pp.0.cpp std=gnu++14 -target fpga  -directive=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/.systemc_flag 
+INFO-FLOW: exec /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-systemc-detector -import-directive=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/.systemc_flag -fix-errors /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/EventTimer.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0
+Command       clang_tidy done; 0.16 sec.
+INFO-FLOW: Running: clang-tidy CDT preprocess 39
+Execute       clang_tidy xilinx-directive2pragma /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/EventTimer.pp.0.cpp std=gnu++14 -target fpga  -directive=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/all.directive.json 
+INFO-FLOW: exec /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-directive2pragma -import-directive=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/all.directive.json -fix-errors /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/EventTimer.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0
+Command       clang_tidy done; 0.12 sec.
+Execute       clang_tidy xilinx-constantarray-param,xilinx-remove-assert /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/EventTimer.pp.0.cpp std=gnu++14 -target fpga  
+INFO-FLOW: exec /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-constantarray-param,xilinx-remove-assert -fix-errors /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/EventTimer.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0
+Command       clang_tidy done; 0.15 sec.
+INFO-FLOW: Done: clang-tidy CDT preprocess 39 time: 0.3 seconds per iteration
+INFO-FLOW: Calling xilinx-label-all-loops ... 
+Execute       clang_tidy -errorcheck xilinx-label-all-loops,xilinx-top-parameters,xilinx-array-stream-check,xilinx-warn-mayneed-no-ctor-attribute /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/EventTimer.pp.0.cpp std=gnu++14 -target fpga  
+Execute         ap_eval exec -ignorestderr /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -export-fixes=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang-tidy.EventTimer.pp.0.cpp.diag.yml -header-filter=.* --checks=-*,xilinx-label-all-loops,xilinx-top-parameters,xilinx-array-stream-check,xilinx-warn-mayneed-no-ctor-attribute -fix-errors /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/EventTimer.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0 > /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang-tidy.EventTimer.pp.0.cpp.out.log 2> /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang-tidy.EventTimer.pp.0.cpp.err.log 
+Command         ap_eval done; 0.3 sec.
+Command       clang_tidy done; 0.31 sec.
+Execute       get_config_dataflow -strict_mode 
+Execute       ap_eval exec -ignorestderr /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/xilinx-dataflow-lawyer -export-fixes=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/xilinx-dataflow-lawyer.EventTimer.pp.0.cpp.diag.yml /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/EventTimer.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0 -fstrict-dataflow > /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/xilinx-dataflow-lawyer.EventTimer.pp.0.cpp.out.log 2> /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/xilinx-dataflow-lawyer.EventTimer.pp.0.cpp.err.log 
+Command       ap_eval done; 0.13 sec.
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data info 
+INFO-FLOW: compiling source code to llvm bc
+Execute       ap_eval exec -ignorestderr /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang -foptimization-record-file=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang.EventTimer.pp.0.cpp.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fno-limit-debug-info -fhls -flto -fno-exceptions -Wno-error=c++11-narrowing /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/EventTimer.pp.0.cpp -fno-math-errno -c -emit-llvm -mllvm -disable-llvm-optzns -Werror=implicit-function-declaration -Werror=implicit-hls-streams -Werror=return-type -Wpragmas -Wunused-parameter -fno-threadsafe-statics -fno-use-cxa-atexit -std=gnu++14 -target fpga64-xilinx-linux-gnu -D__VITIS_HLS__ -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot -I /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -g -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/EventTimer.bc > /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang.EventTimer.pp.0.cpp.out.log 2> /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang.EventTimer.pp.0.cpp.err.log 
+Command       ap_eval done; 0.16 sec.
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 8.02 seconds. CPU system time: 0.89 seconds. Elapsed time: 10.28 seconds; current allocated memory: 209.833 MB.
+INFO-FLOW: Linking Debug ...
+INFO-FLOW: Linking dut bc code.
+Execute       run_link_or_opt -out /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.ld.0.bc -args  "/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/check_endian.g.bc" "/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Utilities.g.bc" "/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/LZW_hybrid_hash_HW.g.bc" "/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/EventTimer.g.bc"  
+Execute         ap_eval exec -ignorestderr /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/llvm-link /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/check_endian.g.bc /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Utilities.g.bc /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/LZW_hybrid_hash_HW.g.bc /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/EventTimer.g.bc -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.ld.0.bc > /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/llvm-link.a.g.ld.0.bc.out.log 2> /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/llvm-link.a.g.ld.0.bc.err.log 
+INFO-FLOW: 
+Execute       run_link_or_opt -opt -out /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.ld.1.lower.bc -args /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.ld.0.bc -reflow-lower-math-intrinsics 
+Execute         ap_eval exec -ignorestderr /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/opt -pass-remarks-missed=reflow|pasta|unroll -pass-remarks=reflow|pasta|unroll|inline -pass-remarks-output=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/opt.a.g.ld.1.lower.bc.diag.yml /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.ld.0.bc -reflow-lower-math-intrinsics -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.ld.1.lower.bc > /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/opt.a.g.ld.1.lower.bc.out.log 2> /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/opt.a.g.ld.1.lower.bc.err.log 
+INFO-FLOW: 
+INFO-FLOW: Linking math bc lib
+Execute       run_link_or_opt -out /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.ld.2.m1.bc -args /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.ld.1.lower.bc -only-needed /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/lib/libhlsm_39.bc /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/lib/libhlsmc++_39.bc 
+Execute         ap_eval exec -ignorestderr /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/llvm-link /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.ld.1.lower.bc -only-needed /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/lib/libhlsm_39.bc /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/lib/libhlsmc++_39.bc -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.ld.2.m1.bc > /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/llvm-link.a.g.ld.2.m1.bc.out.log 2> /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/llvm-link.a.g.ld.2.m1.bc.err.log 
+Command         ap_eval done; 1.46 sec.
+INFO-FLOW: 
+Command       run_link_or_opt done; 1.47 sec.
+Execute       run_link_or_opt -opt -out /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.ld.3.fpc.bc -args /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.ld.2.m1.bc -reflow-globaldce -hls-top-function-name=krnl_LZW -reflow-float-conversion 
+Execute         ap_eval exec -ignorestderr /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/opt -pass-remarks-missed=reflow|pasta|unroll -pass-remarks=reflow|pasta|unroll|inline -pass-remarks-output=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/opt.a.g.ld.3.fpc.bc.diag.yml /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.ld.2.m1.bc -reflow-globaldce -hls-top-function-name=krnl_LZW -reflow-float-conversion -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.ld.3.fpc.bc > /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/opt.a.g.ld.3.fpc.bc.out.log 2> /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/opt.a.g.ld.3.fpc.bc.err.log 
+Command         ap_eval done; 0.47 sec.
+INFO-FLOW: 
+Command       run_link_or_opt done; 0.48 sec.
+Execute       run_link_or_opt -out /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.ld.4.m2.bc -args /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.ld.3.fpc.bc -only-needed /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/lib/libfloatconversion_39.bc 
+Execute         ap_eval exec -ignorestderr /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/llvm-link /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.ld.3.fpc.bc -only-needed /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/lib/libfloatconversion_39.bc -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.ld.4.m2.bc > /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/llvm-link.a.g.ld.4.m2.bc.out.log 2> /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/llvm-link.a.g.ld.4.m2.bc.err.log 
+INFO-FLOW: 
+Execute       run_link_or_opt -opt -out /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.ld.5.gdce.bc -args /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.ld.4.m2.bc -reflow-globaldce -hls-top-function-name=krnl_LZW 
+Execute         ap_eval exec -ignorestderr /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/opt -pass-remarks-missed=reflow|pasta|unroll -pass-remarks=reflow|pasta|unroll|inline -pass-remarks-output=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/opt.a.g.ld.5.gdce.bc.diag.yml /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.ld.4.m2.bc -reflow-globaldce -hls-top-function-name=krnl_LZW -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.ld.5.gdce.bc > /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/opt.a.g.ld.5.gdce.bc.out.log 2> /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/opt.a.g.ld.5.gdce.bc.err.log 
+INFO-FLOW: 
+Execute       get_solution -flow_target 
+Execute       get_config_rtl -module_prefix 
+Execute       get_config_interface -default_slave_interface 
+Execute       get_solution -flow_target 
+Execute       get_config_interface -m_axi_offset 
+Execute       get_config_interface -m_axi_latency 
+Execute       get_config_interface -m_axi_alignment_byte_size 
+Execute       get_config_interface -m_axi_min_bitwidth 
+Execute       get_config_interface -m_axi_max_bitwidth 
+Execute       get_config_interface -m_axi_max_widen_bitwidth 
+Execute       get_config_interface -m_axi_num_read_outstanding 
+Execute       get_config_interface -m_axi_num_write_outstanding 
+Execute       get_config_interface -m_axi_max_read_burst_length 
+Execute       get_config_interface -m_axi_max_write_burst_length 
+Execute       get_config_interface -m_axi_min_bitwidth 
+Execute       get_config_interface -m_axi_max_bitwidth 
+Execute       get_config_interface -m_axi_latency 
+Execute       get_config_interface -m_axi_min_bitwidth 
+Execute       get_config_interface -m_axi_max_bitwidth 
+Execute       get_config_interface -m_axi_max_widen_bitwidth 
+Execute       get_config_interface -m_axi_auto_max_ports 
+Execute       get_config_interface -m_axi_num_read_outstanding 
+Execute       get_config_interface -m_axi_num_write_outstanding 
+Execute       get_config_interface -m_axi_max_read_burst_length 
+Execute       get_config_interface -m_axi_max_write_burst_length 
+Execute       get_config_interface -s_axilite_data64 
+Execute       get_config_interface -m_axi_alignment_byte_size 
+Execute       get_config_compile -pragma_strict_mode 
+Execute       get_config_compile -pipeline_style 
+Execute       send_msg_by_id INFO @200-777@%s Vitis 
+INFO: [HLS 200-777] Using interface defaults for 'Vitis' flow target.
+Execute       is_m_axi_addr64 
+INFO-FLOW: Doing LTO.
+Execute       ap_eval exec -ignorestderr /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang -foptimization-record-file=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang.a.g.ld.0.bc.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fhls -mllvm -hls-top-function-name=krnl_LZW -mllvm -hls-db-dir -mllvm /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db -emit-llvm -c -target fpga64-xilinx-none -mllvm -xcl-xmlinfo=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/../../../kernel.xml -mllvm -top-io-mapping-info=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/top-io-fe.xml -mllvm -hls-bitcode-version=3.1 -mllvm -reflow-enable-slave-interface-default-setting=true -mllvm -gen-kernel-xml=true -mllvm -default-maxi-offset=slave -mllvm -maxi-latency=64 -mllvm -hls-maxi-data-size-in-bits=8 -mllvm -hls-maxi-max-data-size-in-bits=1024 -mllvm -hls-max-widen-size-in-bits=512 -mllvm -xcl-kernel-max-mem-ports=0 -mllvm -maxi-read-trans=16 -mllvm -maxi-write-trans=16 -mllvm -maxi-read-burst-len=16 -mllvm -maxi-write-burst-len=16 -mllvm -reflow-enable-saxi-64bits=0 -mllvm -assume-maxi-align=64 -mllvm -no-unaligned-maxi-accesses=false -mllvm -reflow-pipeline-style-llvm-setting=0 -mllvm -disable-inlined-alloca-merging=true -mllvm -enable-reflow-vitis-flow-setting=true -x ir /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.ld.5.gdce.bc -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.lto.bc > /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang.a.g.ld.0.bc.out.log 2> /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/clang.a.g.ld.0.bc.err.log 
+Command       ap_eval done; 2.77 sec.
+INFO: [HLS 214-131] Inlining function 'hls::stream<char, 0>::write(char const&)' into 'hls::stream<char, 0>::operator<<(char const&)' (/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:129:9)
+INFO: [HLS 214-131] Inlining function 'hls::stream<char, 0>::operator<<(char const&)' into 'read_input(char*, unsigned short, hls::stream<char, 0>&)' (LZW_hybrid_hash_HW.cpp:45:25)
+INFO: [HLS 214-131] Inlining function 'hls::stream<char, 0>::read(char&)' into 'hls::stream<char, 0>::read()' (/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:156:9)
+INFO: [HLS 214-131] Inlining function 'hls::stream<ap_uint<13>, 0>::write(ap_uint<13> const&)' into 'hls::stream<ap_uint<13>, 0>::operator<<(ap_uint<13> const&)' (/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:129:9)
+INFO: [HLS 214-131] Inlining function 'hls::stream<char, 0>::operator<<(char const&)' into 'compute_LZW(hls::stream<char, 0>&, unsigned short, hls::stream<ap_uint<13>, 0>&, hls::stream<char, 0>&)' (LZW_hybrid_hash_HW.cpp:218:24)
+INFO: [HLS 214-131] Inlining function 'hls::stream<ap_uint<13>, 0>::operator<<(ap_uint<13> const&)' into 'compute_LZW(hls::stream<char, 0>&, unsigned short, hls::stream<ap_uint<13>, 0>&, hls::stream<char, 0>&)' (LZW_hybrid_hash_HW.cpp:217:20)
+INFO: [HLS 214-131] Inlining function 'hls::stream<char, 0>::operator<<(char const&)' into 'compute_LZW(hls::stream<char, 0>&, unsigned short, hls::stream<ap_uint<13>, 0>&, hls::stream<char, 0>&)' (LZW_hybrid_hash_HW.cpp:206:32)
+INFO: [HLS 214-131] Inlining function 'hls::stream<ap_uint<13>, 0>::operator<<(ap_uint<13> const&)' into 'compute_LZW(hls::stream<char, 0>&, unsigned short, hls::stream<ap_uint<13>, 0>&, hls::stream<char, 0>&)' (LZW_hybrid_hash_HW.cpp:205:28)
+INFO: [HLS 214-131] Inlining function 'hls::stream<char, 0>::read()' into 'compute_LZW(hls::stream<char, 0>&, unsigned short, hls::stream<ap_uint<13>, 0>&, hls::stream<char, 0>&)' (LZW_hybrid_hash_HW.cpp:96:33)
+INFO: [HLS 214-131] Inlining function 'hls::stream<char, 0>::read()' into 'compute_LZW(hls::stream<char, 0>&, unsigned short, hls::stream<ap_uint<13>, 0>&, hls::stream<char, 0>&)' (LZW_hybrid_hash_HW.cpp:85:43)
+INFO: [HLS 214-131] Inlining function 'hls::stream<ap_uint<13>, 0>::read(ap_uint<13>&)' into 'hls::stream<ap_uint<13>, 0>::read()' (/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:156:9)
+INFO: [HLS 214-131] Inlining function 'hls::stream<char, 0>::read()' into 'write_result(unsigned short, hls::stream<ap_uint<13>, 0>&, hls::stream<char, 0>&, unsigned short*, unsigned short*)' (LZW_hybrid_hash_HW.cpp:232:48)
+INFO: [HLS 214-131] Inlining function 'hls::stream<ap_uint<13>, 0>::read()' into 'write_result(unsigned short, hls::stream<ap_uint<13>, 0>&, hls::stream<char, 0>&, unsigned short*, unsigned short*)' (LZW_hybrid_hash_HW.cpp:233:38)
+INFO: [HLS 214-131] Inlining function 'hls::stream<ap_uint<13>, 0>::read()' into 'write_result(unsigned short, hls::stream<ap_uint<13>, 0>&, hls::stream<char, 0>&, unsigned short*, unsigned short*)' (LZW_hybrid_hash_HW.cpp:256:34)
+INFO: [HLS 214-131] Inlining function 'hls::stream<char, 0>::stream(char const*)' into 'krnl_LZW(char*, unsigned short*, unsigned short*, unsigned short*)' (LZW_hybrid_hash_HW.cpp:301:30)
+INFO: [HLS 214-131] Inlining function 'hls::stream<ap_uint<13>, 0>::stream(char const*)' into 'krnl_LZW(char*, unsigned short*, unsigned short*, unsigned short*)' (LZW_hybrid_hash_HW.cpp:302:37)
+INFO: [HLS 214-131] Inlining function 'hls::stream<char, 0>::stream(char const*)' into 'krnl_LZW(char*, unsigned short*, unsigned short*, unsigned short*)' (LZW_hybrid_hash_HW.cpp:303:30)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_162_7' (LZW_hybrid_hash_HW.cpp:162:31) in function 'compute_LZW' completely with a factor of 1 (LZW_hybrid_hash_HW.cpp:162:31)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_75_3' (LZW_hybrid_hash_HW.cpp:75:22) in function 'compute_LZW' completely with a factor of 512 (LZW_hybrid_hash_HW.cpp:75:22)
+INFO: [HLS 214-178] Inlining function 'my_hash(ap_uint<21>)' into 'compute_LZW(hls::stream<char, 0>&, unsigned short, hls::stream<ap_uint<13>, 0>&, hls::stream<char, 0>&)' (LZW_hybrid_hash_HW.cpp:50:0)
+INFO: [HLS 214-178] Inlining function 'swap_endian_16(unsigned short)' into 'write_result(unsigned short, hls::stream<ap_uint<13>, 0>&, hls::stream<char, 0>&, unsigned short*, unsigned short*)' (LZW_hybrid_hash_HW.cpp:224:0)
+INFO: [HLS 214-178] Inlining function 'read_input(char*, unsigned short, hls::stream<char, 0>&)' into 'krnl_LZW(char*, unsigned short*, unsigned short*, unsigned short*)' (LZW_hybrid_hash_HW.cpp:300:0)
+INFO: [HLS 214-178] Inlining function 'write_result(unsigned short, hls::stream<ap_uint<13>, 0>&, hls::stream<char, 0>&, unsigned short*, unsigned short*)' into 'krnl_LZW(char*, unsigned short*, unsigned short*, unsigned short*)' (LZW_hybrid_hash_HW.cpp:300:0)
+INFO: [HLS 214-115] Multiple burst writes of variable length and bit width 16 in loop 'anonymous'() has been inferred on port 'aximm1'
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.none.i13.s_struct.ap_uint.3s' into 'compute_LZW(hls::stream<char, 0>&, unsigned short, hls::stream<ap_uint<13>, 0>&, hls::stream<char, 0>&) (.1)' (/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:174:9)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.none.i13.s_struct.ap_uint.3s' into 'compute_LZW(hls::stream<char, 0>&, unsigned short, hls::stream<ap_uint<13>, 0>&, hls::stream<char, 0>&) (.1)' (/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:174:9)
+INFO-FLOW: DBG:CMD: copy_raw_kernel_xml ap_link_39: copying raw kernel.xml: /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/../../../kernel.xml -> /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/kernel.internal.xml
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 7.63 seconds. CPU system time: 0.25 seconds. Elapsed time: 9.22 seconds; current allocated memory: 227.048 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.01 seconds; current allocated memory: 227.052 MB.
+Execute       opt_and_import_c a -opt_level=2 -skip_syncheck=0 -ng=0 -keep_printf=0 
+Execute         cleanup_all_models 
+INFO: [HLS 200-10] Starting code transformations ...
+INFO-FLOW: Running Standard Transforms...
+Execute         transform -hls -share-std-xform -demangle-name -inline-byval-memcpy -always-inline -promote-dbg-pointer -interface-preproc -mem2reg -scalarrepl -mem2reg -keep-read-access -instcombine -dce -promote-dbg-pointer -bitop-raise -loop-simplify -indvarspre -indvars -loop-simplify -xunroll -constprop -instcombine -simplifycfg -indvars -simplifycfg -dce -globaldce -basicaa -simplifycfg -mem2reg -globalopt -global-constprop -deadargelim -instcombine -simplifycfg -scalarrepl -instcombine -reassociate -licm -simplifycfg -loop-simplify -indvars -instcombine -simplifycfg -mem2reg -loop-simplify -indvars -instcombine -gvn -gvn -instcombine -adce -break-crit-edges -simplifycfg -loop-delete -global-array-opt -dce -dse -adce -find-syn-modules -top krnl_LZW -deadargelim -mem2reg -instcombine -dce -presyn-prepare -auto-rom-infer -interface-preproc -syn-check -check-rec-only -find-region -simplifycfg -func-extr -function-inline -globaldce -mem2reg -instcombine -dce -gvn -globaldce -adce -adse -constprop -instcombine -bit-constprop -instcombine -dce -simplifycfg -bitop-raise -simplifycfg -dce -loop-delete -reassociate -globalopt -global-privatize -mem2reg -dce -global-constprop -pointer-simplify -constprop -dce -func-inst -deadargelim -auto-shift-reg-idiom -promote-dbg-pointer -norm-name /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.0.bc -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.1.bc -f -phase std-opt 
+Command         transform done; 0.22 sec.
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.19 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.28 seconds; current allocated memory: 239.987 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO-FLOW: Checking Synthesizability 1/2..
+Execute         transform -hls -syn-check -check-rec-only -disaggr -scalarrepl -norm-name -dce -mem2reg -instcombine -function-uniquify -directive-preproc -mem2reg -dse -dce -auto-rom-infer -dce -pag -array-normalize -instcombine -dce -array-seg-normalize -instcombine -dce -data-pack -instcombine -dce -inst-simplify -array-flatten -instcombine -dce -array-burst -dce -deadargelim -promote-global-argument -simplifycfg -mem2reg -globaldce -dce -deadargelim -dce -instcombine -function-inline -globaldce -dce -doublePtrSimplify -doublePtrElim -dce -doublePtrSimplify -promote-dbg-pointer -dce -scalarrepl -dse -adse -instcombine -ptrLegalization -simplifycfg -dce -instcombine -pointer-simplify -ptrArgReplace -dce -instcombine -resolve-double-ptr -disaggr -scalarrepl -norm-name -dce -mem2reg -instcombine -ptrLegalization -simplifycfg -deadargelim -instcombine -dce -inst-simplify -function-uniquify -directive-preproc -mem2reg -dse -dce -globaldce -check-dspbuiltin /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.1.bc -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.2.prechk.bc -f 
+Command         transform done; 0.18 sec.
+INFO-FLOW: Checking Synthesizability 2/2..
+Execute         transform -syn-check /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.2.prechk.bc -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.2.bc -f -phase syn-check 
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.2 seconds. CPU system time: 0 seconds. Elapsed time: 0.24 seconds; current allocated memory: 249.333 MB.
+INFO-FLOW: Compiler optimizing ...
+INFO-FLOW: Share syncheck's 1.bc for syn flow: copy /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.g.1.bc to /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.o.1.bc
+INFO-FLOW: Presyn 1...
+Execute         transform -hls -tmp /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db -interface-port-rename -function-uniquify -directive-preproc -mem2reg -dse -dce -disaggr -scalarrepl -norm-name -deadargelim -mem2reg -instcombine -dce -simplifycfg -auto-rom-infer -dce -function-uniquify -resource-proc -clib-intrinsic-prepare -dce -func-buffer -dce -pag -array-normalize -func-legal -instcombine -gvn -constprop -dce -simplifycfg -mem2reg -globaldce -resolve-double-ptr -dce -deadargelim -dce -instcombine -ptrArgReplace -mem2reg -dce -array-seg-normalize -deadargelim -instcombine -dce -function-uniquify -directive-preproc -mem2reg -dse -dce -pointer-simplify -dce -port-alignment -dce -interface-preproc -data-pack -instcombine -dce -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -gvn -gvn -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -adse -adce -loop-simplify -indvars -instcombine -gvn -loop-simplify -mem2reg -dce -find-region -instcombine -auto-loop-pipeline -inst-simplify -interface-preproc -cfgopt -instcombine -indvars -auto-loop-unroll -loop-simplify -loop-bound -xunroll -constprop -instcombine -simplifycfg -indvars -simplifycfg -dce -globaldce -clean-region -attach-range -gvn -inst-simplify -constprop -simplifycfg -dce -pointer-simplify -dce -globalopt -constprop -dce -array-promote -constprop -dce -ptrArgReplace -mem2reg -simplifycfg -dce -instcombine -dce -array-transform-check -array-reshape -instcombine -simplifycfg -dce -ptrArgReplace -deadargelim -mem2reg -instcombine -simplifycfg -dce -indvars -loop-simplify -loop-bound -xunroll -constprop -instcombine -simplifycfg -indvars -simplifycfg -dce -globaldce -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -duplicate-dataflow-processes -globaldce -instcombine -array-partition -instcombine -simplifycfg -dce -ptrArgReplace -global-constprop -deadargelim -mem2reg -func-legal -dce -global-constprop -deadargelim -mem2reg -simplifycfg -dce -merge-param -deadargelim -globalopt -constprop -dce -array-promote -constprop -dce -ptrArgReplace -mem2reg -simplifycfg -dce -mem-intrinsic-preproc -dce -global-internalize -global-privatize -mem2reg -globaldce -promote-global-argument -ptrArgReplace -mem2reg -dce -globalopt -mergereturn -simplify-global-access -mem2reg -dce -pointer-simplify -dce -functionattrs -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -gvn -gvn -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -adse -adce -dce -norm-name -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -accesses-merge -function-inline -complex-op-raise -inst-simplify -globaldce -func-inst -constprop -instcombine -simplifycfg -dce -func-legal -dce -loop-bound -arraycheck -bitwidthmin2 -bitwidthmin2 -on-by-dataflow -loop-delete -instcombine -simplifycfg -globaldce -dce -gvn -deadargelim -dce -loop-simplify -clean-region -simplifycfg -propagate-stable-arguments -loop-stream -instcombine -simplifycfg -dce -globaldce -duplicate-dataflow-processes -stream-intrinsic-preproc -dce -check-ap-stream -loop-simplify -eliminate-keepreads -extract-dataflow-in-loop -loop-simplify -dce -gvn -deadargelim -dse -check-dataflow-syntax -legalize-stream-variable -legalize-global -extract-subproc -dce -dead-channel-elimination -canonicalize-gep -globaldce -dce -gvn -hls-dead-arg-elim -deadargelim -directive-preproc -annotate-dataflow-channels -scalar-propagation -deadargelim -globaldce -mem2reg -check-dataflow-channels -function-stream -dce -globaldce -prop-fifo-spec -internal-stream-gen -canonicalize-gep -globaldce -dce -gvn -deadargelim -mergereturn -indvars -loop-simplify -instcombine -array-stream -array-seg-normalize -array-partition -func-legal -instcombine -simplifycfg -dce -bundle-memfifo-ops -deadargelim -function-uniquify -directive-preproc -mem2reg -dse -dce -group-axi-access -licm -simplifycfg -dce -loop-delete -norm-name /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.o.1.bc -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.o.1.tmp.bc -f 
+INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_67_1' (LZW_hybrid_hash_HW.cpp:67) in function 'compute_LZW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_129_6' in function 'compute_LZW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_11_1' in function 'compute_LZW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_11_1' in function 'compute_LZW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_11_1' in function 'compute_LZW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_318_1' (LZW_hybrid_hash_HW.cpp:319) in function 'krnl_LZW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'mem_rd' (LZW_hybrid_hash_HW.cpp:43) in function 'krnl_LZW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_232_1' (LZW_hybrid_hash_HW.cpp:234) in function 'krnl_LZW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-3.3' in function 'krnl_LZW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-3.4' in function 'krnl_LZW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-3.5' in function 'krnl_LZW' automatically.
+INFO: [XFORM 203-102] Partitioning array 'hash_table.V' (LZW_hybrid_hash_HW.cpp:59) in dimension 2 automatically.
+INFO: [XFORM 203-721] Changing loop 'Loop_VITIS_LOOP_318_1_proc' (LZW_hybrid_hash_HW.cpp:319) to a process function for dataflow in function 'krnl_LZW'.
+INFO: [XFORM 203-721] Changing loop 'Loop_VITIS_LOOP_325_2_proc' (LZW_hybrid_hash_HW.cpp:326) to a process function for dataflow in function 'krnl_LZW'.
+WARNING: [HLS 200-805] An internal stream 'outStream_code_flg' with default size can result in deadlock. Please consider resizing the stream using the directive 'set_directive_stream' or the 'HLS stream' pragma.
+WARNING: [HLS 200-805] An internal stream 'outStream_code' with default size can result in deadlock. Please consider resizing the stream using the directive 'set_directive_stream' or the 'HLS stream' pragma.
+WARNING: [HLS 200-805] An internal stream 'inStream_in' with default size can result in deadlock. Please consider resizing the stream using the directive 'set_directive_stream' or the 'HLS stream' pragma.
+INFO: [XFORM 203-712] Applying dataflow to function 'krnl_LZW' (LZW_hybrid_hash_HW.cpp:299), detected/extracted 4 process function(s): 
+	 'krnl_LZW.entry4'
+	 'Loop_VITIS_LOOP_318_1_proc'
+	 'Block_krnl_LZW_.exit1_proc'
+	 'Loop_VITIS_LOOP_325_2_proc'.
+Command         transform done; 0.56 sec.
+INFO-FLOW: Presyn 2...
+Execute         transform -hls -keep-callgraph -scalarrepl -mem2reg -port-alignment -attach-range -dce -pipe-mux-gen -indvars -loop-bound -inst-simplify -instcombine -dce -merge-array-access -mem2reg -dce -clean-region -mergereturn -if-conv -instcombine -dce -constprop -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -gvn -gvn -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -adse -adce -scalarrepl -mem2reg -global-constprop -deadargelim -deadargelim -instcombine -dce -simplifycfg -ptrArgReplace -mem2reg -function-inline -globaldce -mem2reg -instcombine -dce -expr-balance -instcombine -dce -bitwidthmin2 -bitwidthmin2 -interface-preproc -directive-preproc -inst-rectify -instcombine -dce -functionattrs -constprop -instcombine -bit-constprop -simplify-global-access -globalopt -globaldce -inst-simplify -instcombine -elimdeaddata -dce -loop-delete -simplifycfg -loop-simplify -auto-burst -barrier -norm-name /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.o.1.tmp.bc -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.o.2.bc -f -phase presyn 
+INFO: [XFORM 203-11] Balancing expressions in function 'compute_LZW' (LZW_hybrid_hash_HW.cpp:7:52)...3 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'Loop_VITIS_LOOP_325_2_proc' (LZW_hybrid_hash_HW.cpp:43:23)...3 expression(s) balanced.
+Command         transform done; 0.32 sec.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.72 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.9 seconds; current allocated memory: 285.989 MB.
+Execute         get_config_compile -enable_loop_extract 
+Execute         get_config_compile -disable_auto_rewind 
+Execute         get_config_compile -enable_auto_rewind 
+INFO-FLOW: Building ssdm...
+Execute         transform -hls -function-uniquify -auto-function-inline -globaldce -ptrArgReplace -mem2reg -dce -reset-lda -loop-simplify -indvars -aggr-aa -licm -loop-dep -loop-bound -licm -loop-simplify -flattenloopnest -array-flatten -gvn -instcombine -dce -array-map -dce -func-legal -gvn -adce -instcombine -cfgopt -simplifycfg -loop-simplify -array-burst -promote-global-argument -dce -array-seg-normalize -basicaa -aggrmodref-aa -globalsmodref-aa -aggr-aa -gvn -gvn -basicaa -aggrmodref-aa -globalsmodref-aa -aggr-aa -dse -adse -adce -licm -inst-simplify -dce -globaldce -instcombine -array-stream -eliminate-keepreads -instcombine -dce -deadargelim -doublePtrSimplify -doublePtrElim -dce -doublePtrSimplify -promote-dbg-pointer -dce -scalarrepl -mem2reg -disaggr -norm-name -mem2reg -instcombine -dse -adse -adce -ptrLegalization -dce -auto-rom-infer -array-flatten -dce -instcombine -check-doubleptr -loop-rot -constprop -cfgopt -simplifycfg -loop-simplify -indvars -pointer-simplify -dce -loop-bound -loop-simplify -loop-preproc -constprop -global-constprop -gvn -mem2reg -instcombine -dce -loop-bound -loop-merge -dce -bitwidthmin2 -bitwidthmin2 -deadargelim -dce -canonicalize-dataflow -dce -scalar-propagation -deadargelim -globaldce -mem2reg -read-loop-dep -interface-preproc -directive-preproc -interface-gen -bram-byte-enable -deadargelim -inst-simplify -dce -gvn -mem2reg -instcombine -dce -adse -loop-bound -instcombine -cfgopt -simplifycfg -loop-simplify -clean-region -io-protocol -find-region -mem2reg -bitop-raise -complex-op-raise -inst-simplify -inst-rectify -instcombine -adce -deadargelim -loop-simplify -phi-opt -bitop-raise -cfgopt -simplifycfg -strip-dead-prototypes -interface-lower -bitop-lower -intrinsic-lower -auto-function-inline -basicaa -aggrmodref-aa -globalsmodref-aa -aggr-aa -inst-simplify -simplifycfg -loop-simplify -mergereturn -inst-simplify -inst-rectify -dce -load-elim -bitop-lower -float-op-raise -loop-rewind -pointer-simplify -dce -cfgopt -dce -loop-bound -loop-dep -read-loop-dep -dce -dyn-mem-reuse -dce -check-stream -norm-name -legalize -validate-dataflow -inst-clarity -bitwidth -dump-loop-dep-to-ir -check-all-ssdm -cdfg-build /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.o.2.bc -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/a.o.3.bc -f -phase build-ssdm 
+WARNING: [HLS 200-960] Cannot flatten loop 'VITIS_LOOP_93_4' (LZW_hybrid_hash_HW.cpp:61:15) in function 'compute_LZW' more than one sub loop.
+WARNING: [HLS 200-960] Cannot flatten loop 'VITIS_LOOP_325_2' (LZW_hybrid_hash_HW.cpp:326:24) in function 'Loop_VITIS_LOOP_325_2_proc' more than one sub loop.
+INFO: [HLS 200-444] Inferring multiple bus burst write of a total cumulative length 2 on port 'aximm1'. These data requests might be further partitioned to multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.
+INFO: [HLS 200-444] Inferring multiple bus burst read of a total cumulative length 4 on port 'aximm1' (LZW_hybrid_hash_HW.cpp:319:13). These data requests might be further partitioned to multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.
+INFO: [HLS 200-472] Inferring partial write operation for 'hash_table.V[0]' (LZW_hybrid_hash_HW.cpp:70:30)
+INFO: [HLS 200-472] Inferring partial write operation for 'my_assoc_mem.upper_key_mem.V' (LZW_hybrid_hash_HW.cpp:78:32)
+INFO: [HLS 200-472] Inferring partial write operation for 'my_assoc_mem.middle_key_mem.V' (LZW_hybrid_hash_HW.cpp:79:40)
+INFO: [HLS 200-472] Inferring partial write operation for 'my_assoc_mem.lower_key_mem.V' (LZW_hybrid_hash_HW.cpp:80:39)
+INFO: [HLS 200-472] Inferring partial write operation for 'hash_table.V[0]' (LZW_hybrid_hash_HW.cpp:168:49)
+INFO: [HLS 200-472] Inferring partial write operation for 'my_assoc_mem.upper_key_mem.V' 
+INFO: [HLS 200-472] Inferring partial write operation for 'my_assoc_mem.value.V' (LZW_hybrid_hash_HW.cpp:186:59)
+INFO: [HLS 200-472] Inferring partial write operation for 'store_array.i' (LZW_hybrid_hash_HW.cpp:260:24)
+INFO: [HLS 200-472] Inferring partial write operation for 'store_array.i' (LZW_hybrid_hash_HW.cpp:236:28)
+INFO: [HLS 200-472] Inferring partial write operation for 'store_array.i' (LZW_hybrid_hash_HW.cpp:241:32)
+INFO: [HLS 200-472] Inferring partial write operation for 'store_array.i' (LZW_hybrid_hash_HW.cpp:245:34)
+INFO: [HLS 200-472] Inferring partial write operation for 'store_array.i' (LZW_hybrid_hash_HW.cpp:249:34)
+INFO: [HLS 200-472] Inferring partial write operation for 'store_array.i' (LZW_hybrid_hash_HW.cpp:265:28)
+INFO: [HLS 200-472] Inferring partial write operation for 'store_array.i' (LZW_hybrid_hash_HW.cpp:268:30)
+INFO: [HLS 200-472] Inferring partial write operation for 'store_array.i' (LZW_hybrid_hash_HW.cpp:273:30)
+INFO: [HLS 200-472] Inferring partial write operation for 'input_length_temp' (LZW_hybrid_hash_HW.cpp:321:34)
+WARNING: [HLS 200-1449] Process Loop_VITIS_LOOP_318_1_proc has both a predecessor and reads an input from its caller (see the GUI dataflow viewer). This may lead to lower throughput. Consider copying this input via a predecessor process.
+WARNING: [HLS 200-1449] Process Loop_VITIS_LOOP_325_2_proc has both a predecessor and reads an input from its caller (see the GUI dataflow viewer). This may lead to lower throughput. Consider copying this input via a predecessor process.
+WARNING: [HLS 200-1450] Process Loop_VITIS_LOOP_325_2_proc has both a successor and writes an output to its caller (see the GUI dataflow viewer). This may lead to lower throughput. Consider copying this output via a successor process.
+Command         transform done; 2.23 sec.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 2.08 seconds. CPU system time: 0.05 seconds. Elapsed time: 2.24 seconds; current allocated memory: 348.478 MB.
+INFO-FLOW: Finish building internal data model.
+Command       opt_and_import_c done; 3.66 sec.
+Command     elaborate done; 23.2 sec.
+Execute     autosyn -from_csynth_design=1 
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO-FLOW: Synthesizing C/C++ design ...
+INFO: [HLS 200-10] Synthesizing 'krnl_LZW' ...
+Execute       ap_set_top_model krnl_LZW 
+WARNING: [SYN 201-103] Legalizing function name 'krnl_LZW.entry4' to 'krnl_LZW_entry4'.
+WARNING: [SYN 201-103] Legalizing function name 'Block_krnl_LZW_.exit1_proc' to 'Block_krnl_LZW_exit1_proc'.
+Execute       get_model_list krnl_LZW -filter all-wo-channel -topdown 
+Execute       preproc_iomode -model krnl_LZW 
+Execute       preproc_iomode -model Loop_VITIS_LOOP_325_2_proc 
+Execute       preproc_iomode -model compute_LZW 
+Execute       preproc_iomode -model Block_krnl_LZW_.exit1_proc 
+Execute       preproc_iomode -model Loop_VITIS_LOOP_318_1_proc 
+Execute       preproc_iomode -model krnl_LZW.entry4 
+Execute       get_model_list krnl_LZW -filter all-wo-channel 
+INFO-FLOW: Model list for configure: krnl_LZW.entry4 Loop_VITIS_LOOP_318_1_proc Block_krnl_LZW_.exit1_proc compute_LZW Loop_VITIS_LOOP_325_2_proc krnl_LZW
+INFO-FLOW: Configuring Module : krnl_LZW.entry4 ...
+Execute       set_default_model krnl_LZW.entry4 
+Execute       apply_spec_resource_limit krnl_LZW.entry4 
+INFO-FLOW: Configuring Module : Loop_VITIS_LOOP_318_1_proc ...
+Execute       set_default_model Loop_VITIS_LOOP_318_1_proc 
+Execute       apply_spec_resource_limit Loop_VITIS_LOOP_318_1_proc 
+INFO-FLOW: Configuring Module : Block_krnl_LZW_.exit1_proc ...
+Execute       set_default_model Block_krnl_LZW_.exit1_proc 
+Execute       apply_spec_resource_limit Block_krnl_LZW_.exit1_proc 
+INFO-FLOW: Configuring Module : compute_LZW ...
+Execute       set_default_model compute_LZW 
+Execute       apply_spec_resource_limit compute_LZW 
+INFO-FLOW: Configuring Module : Loop_VITIS_LOOP_325_2_proc ...
+Execute       set_default_model Loop_VITIS_LOOP_325_2_proc 
+Execute       apply_spec_resource_limit Loop_VITIS_LOOP_325_2_proc 
+INFO-FLOW: Configuring Module : krnl_LZW ...
+Execute       set_default_model krnl_LZW 
+Execute       apply_spec_resource_limit krnl_LZW 
+INFO-FLOW: Model list for preprocess: krnl_LZW.entry4 Loop_VITIS_LOOP_318_1_proc Block_krnl_LZW_.exit1_proc compute_LZW Loop_VITIS_LOOP_325_2_proc krnl_LZW
+INFO-FLOW: Preprocessing Module: krnl_LZW.entry4 ...
+Execute       set_default_model krnl_LZW.entry4 
+Execute       cdfg_preprocess -model krnl_LZW.entry4 
+Execute       rtl_gen_preprocess krnl_LZW.entry4 
+INFO-FLOW: Preprocessing Module: Loop_VITIS_LOOP_318_1_proc ...
+Execute       set_default_model Loop_VITIS_LOOP_318_1_proc 
+Execute       cdfg_preprocess -model Loop_VITIS_LOOP_318_1_proc 
+Execute       rtl_gen_preprocess Loop_VITIS_LOOP_318_1_proc 
+INFO-FLOW: Preprocessing Module: Block_krnl_LZW_.exit1_proc ...
+Execute       set_default_model Block_krnl_LZW_.exit1_proc 
+Execute       cdfg_preprocess -model Block_krnl_LZW_.exit1_proc 
+Execute       rtl_gen_preprocess Block_krnl_LZW_.exit1_proc 
+INFO-FLOW: Preprocessing Module: compute_LZW ...
+Execute       set_default_model compute_LZW 
+Execute       cdfg_preprocess -model compute_LZW 
+Command       cdfg_preprocess done; 0.46 sec.
+Execute       rtl_gen_preprocess compute_LZW 
+INFO-FLOW: Preprocessing Module: Loop_VITIS_LOOP_325_2_proc ...
+Execute       set_default_model Loop_VITIS_LOOP_325_2_proc 
+Execute       cdfg_preprocess -model Loop_VITIS_LOOP_325_2_proc 
+Execute       rtl_gen_preprocess Loop_VITIS_LOOP_325_2_proc 
+INFO-FLOW: Preprocessing Module: krnl_LZW ...
+Execute       set_default_model krnl_LZW 
+Execute       cdfg_preprocess -model krnl_LZW 
+Execute       rtl_gen_preprocess krnl_LZW 
+WARNING: [SYN 201-107] Renaming port name 'krnl_LZW/in' to 'krnl_LZW/in_r' to avoid the conflict with HDL keywords or other object names.
+INFO-FLOW: Model list for synthesis: krnl_LZW.entry4 Loop_VITIS_LOOP_318_1_proc Block_krnl_LZW_.exit1_proc compute_LZW Loop_VITIS_LOOP_325_2_proc krnl_LZW
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'krnl_LZW_entry4' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute       set_default_model krnl_LZW.entry4 
+Execute       schedule -model krnl_LZW.entry4 
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.49 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.55 seconds; current allocated memory: 349.919 MB.
+Execute       syn_report -verbosereport -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW_entry4.verbose.sched.rpt 
+Execute         AP::get_flow_target_display_name
+Execute           get_solution -flow_target 
+Execute       db_write -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW_entry4.sched.adb -f 
+INFO-FLOW: Finish scheduling krnl_LZW.entry4.
+Execute       set_default_model krnl_LZW.entry4 
+Execute       bind -model krnl_LZW.entry4 
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 350.055 MB.
+Execute       syn_report -verbosereport -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW_entry4.verbose.bind.rpt 
+Execute         AP::get_flow_target_display_name
+Execute           get_solution -flow_target 
+Execute       db_write -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW_entry4.bind.adb -f 
+INFO-FLOW: Finish binding krnl_LZW.entry4.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'Loop_VITIS_LOOP_318_1_proc' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute       set_default_model Loop_VITIS_LOOP_318_1_proc 
+Execute       schedule -model Loop_VITIS_LOOP_318_1_proc 
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_318_1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'VITIS_LOOP_318_1'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.08 seconds. CPU system time: 0 seconds. Elapsed time: 0.13 seconds; current allocated memory: 350.343 MB.
+Execute       syn_report -verbosereport -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Loop_VITIS_LOOP_318_1_proc.verbose.sched.rpt 
+Execute         AP::get_flow_target_display_name
+Execute           get_solution -flow_target 
+Execute       db_write -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Loop_VITIS_LOOP_318_1_proc.sched.adb -f 
+INFO-FLOW: Finish scheduling Loop_VITIS_LOOP_318_1_proc.
+Execute       set_default_model Loop_VITIS_LOOP_318_1_proc 
+Execute       bind -model Loop_VITIS_LOOP_318_1_proc 
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.13 seconds. CPU system time: 0 seconds. Elapsed time: 0.2 seconds; current allocated memory: 350.666 MB.
+Execute       syn_report -verbosereport -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Loop_VITIS_LOOP_318_1_proc.verbose.bind.rpt 
+Execute         AP::get_flow_target_display_name
+Execute           get_solution -flow_target 
+Execute       db_write -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Loop_VITIS_LOOP_318_1_proc.bind.adb -f 
+INFO-FLOW: Finish binding Loop_VITIS_LOOP_318_1_proc.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'Block_krnl_LZW_exit1_proc' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute       set_default_model Block_krnl_LZW_.exit1_proc 
+Execute       schedule -model Block_krnl_LZW_.exit1_proc 
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.08 seconds; current allocated memory: 350.706 MB.
+Execute       syn_report -verbosereport -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Block_krnl_LZW_exit1_proc.verbose.sched.rpt 
+Execute         AP::get_flow_target_display_name
+Execute           get_solution -flow_target 
+Execute       db_write -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Block_krnl_LZW_exit1_proc.sched.adb -f 
+INFO-FLOW: Finish scheduling Block_krnl_LZW_.exit1_proc.
+Execute       set_default_model Block_krnl_LZW_.exit1_proc 
+Execute       bind -model Block_krnl_LZW_.exit1_proc 
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 350.764 MB.
+Execute       syn_report -verbosereport -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Block_krnl_LZW_exit1_proc.verbose.bind.rpt 
+Execute         AP::get_flow_target_display_name
+Execute           get_solution -flow_target 
+Execute       db_write -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Block_krnl_LZW_exit1_proc.bind.adb -f 
+INFO-FLOW: Finish binding Block_krnl_LZW_.exit1_proc.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'compute_LZW' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute       set_default_model compute_LZW 
+Execute       schedule -model compute_LZW 
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_67_1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_67_1'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_11_1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_11_1'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_129_6'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_129_6'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_11_1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_11_1'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_11_1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_11_1'
+INFO: [SCHED 204-11] Finished scheduling.
+Command       schedule done; 1.52 sec.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.46 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.57 seconds; current allocated memory: 359.269 MB.
+Execute       syn_report -verbosereport -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/compute_LZW.verbose.sched.rpt 
+Execute         AP::get_flow_target_display_name
+Execute           get_solution -flow_target 
+Command       syn_report done; 0.42 sec.
+Execute       db_write -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/compute_LZW.sched.adb -f 
+Command       db_write done; 0.91 sec.
+INFO-FLOW: Finish scheduling compute_LZW.
+Execute       set_default_model compute_LZW 
+Execute       bind -model compute_LZW 
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+Command       bind done; 0.51 sec.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 1.17 seconds. CPU system time: 0.05 seconds. Elapsed time: 1.84 seconds; current allocated memory: 369.174 MB.
+Execute       syn_report -verbosereport -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/compute_LZW.verbose.bind.rpt 
+Execute         AP::get_flow_target_display_name
+Execute           get_solution -flow_target 
+Command       syn_report done; 0.25 sec.
+Execute       db_write -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/compute_LZW.bind.adb -f 
+Command       db_write done; 0.88 sec.
+INFO-FLOW: Finish binding compute_LZW.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'Loop_VITIS_LOOP_325_2_proc' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute       set_default_model Loop_VITIS_LOOP_325_2_proc 
+Execute       schedule -model Loop_VITIS_LOOP_325_2_proc 
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'mem_rd'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 73, loop 'mem_rd'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_232_1'.
+WARNING: [HLS 200-880] The II Violation in module 'Loop_VITIS_LOOP_325_2_proc' (loop 'VITIS_LOOP_232_1'): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1) between 'store' operation ('store_array_i_addr_7_write_ln249', LZW_hybrid_hash_HW.cpp:249) of variable 'or_ln249', LZW_hybrid_hash_HW.cpp:249 on array 'store_array_i' and 'load' operation ('store_array_i_load_3', LZW_hybrid_hash_HW.cpp:249) on array 'store_array_i'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 2, Depth = 2, loop 'VITIS_LOOP_232_1'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_325_2.3'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 2, loop 'VITIS_LOOP_325_2.3'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_325_2.4'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'VITIS_LOOP_325_2.4'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_325_2.5'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 71, loop 'VITIS_LOOP_325_2.5'
+INFO: [SCHED 204-11] Finished scheduling.
+Command       schedule done; 0.41 sec.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.97 seconds. CPU system time: 0.03 seconds. Elapsed time: 1.57 seconds; current allocated memory: 370.673 MB.
+Execute       syn_report -verbosereport -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Loop_VITIS_LOOP_325_2_proc.verbose.sched.rpt 
+Execute         AP::get_flow_target_display_name
+Execute           get_solution -flow_target 
+Command       syn_report done; 0.33 sec.
+Execute       db_write -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Loop_VITIS_LOOP_325_2_proc.sched.adb -f 
+INFO-FLOW: Finish scheduling Loop_VITIS_LOOP_325_2_proc.
+Execute       set_default_model Loop_VITIS_LOOP_325_2_proc 
+Execute       bind -model Loop_VITIS_LOOP_325_2_proc 
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+Command       bind done; 0.34 sec.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.61 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.7 seconds; current allocated memory: 373.097 MB.
+Execute       syn_report -verbosereport -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Loop_VITIS_LOOP_325_2_proc.verbose.bind.rpt 
+Execute         AP::get_flow_target_display_name
+Execute           get_solution -flow_target 
+Command       syn_report done; 0.24 sec.
+Execute       db_write -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Loop_VITIS_LOOP_325_2_proc.bind.adb -f 
+INFO-FLOW: Finish binding Loop_VITIS_LOOP_325_2_proc.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'krnl_LZW' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute       set_default_model krnl_LZW 
+Execute       schedule -model krnl_LZW 
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.31 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.48 seconds; current allocated memory: 373.222 MB.
+Execute       syn_report -verbosereport -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.verbose.sched.rpt 
+Execute         AP::get_flow_target_display_name
+Execute           get_solution -flow_target 
+Execute       db_write -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.sched.adb -f 
+INFO-FLOW: Finish scheduling krnl_LZW.
+Execute       set_default_model krnl_LZW 
+Execute       bind -model krnl_LZW 
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+Command       bind done; 0.2 sec.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.17 seconds. CPU system time: 0 seconds. Elapsed time: 0.24 seconds; current allocated memory: 373.542 MB.
+Execute       syn_report -verbosereport -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.verbose.bind.rpt 
+Execute         AP::get_flow_target_display_name
+Execute           get_solution -flow_target 
+Command       syn_report done; 0.15 sec.
+Execute       db_write -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.bind.adb -f 
+INFO-FLOW: Finish binding krnl_LZW.
+Execute       get_model_list krnl_LZW -filter all-wo-channel 
+INFO-FLOW: Preprocessing for RTLGen ...
+Execute       rtl_gen_preprocess krnl_LZW.entry4 
+Execute       rtl_gen_preprocess Loop_VITIS_LOOP_318_1_proc 
+Execute       rtl_gen_preprocess Block_krnl_LZW_.exit1_proc 
+Execute       rtl_gen_preprocess compute_LZW 
+Execute       rtl_gen_preprocess Loop_VITIS_LOOP_325_2_proc 
+Execute       rtl_gen_preprocess krnl_LZW 
+INFO-FLOW: Model list for RTL generation: krnl_LZW.entry4 Loop_VITIS_LOOP_318_1_proc Block_krnl_LZW_.exit1_proc compute_LZW Loop_VITIS_LOOP_325_2_proc krnl_LZW
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'krnl_LZW_entry4' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute       get_config_rtl -module_prefix 
+Execute       get_config_rtl -module_auto_prefix 
+Execute       get_config_rtl -module_prefix 
+Execute       get_config_rtl -module_auto_prefix 
+Execute       create_rtl_model krnl_LZW.entry4 -top_prefix krnl_LZW_ -sub_prefix krnl_LZW_ -mg_file /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW_entry4.compgen.tcl 
+INFO: [RTGEN 206-100] Finished creating RTL model for 'krnl_LZW_entry4'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.16 seconds. CPU system time: 0 seconds. Elapsed time: 0.26 seconds; current allocated memory: 373.809 MB.
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.rtl_wrap.cfg.tcl 
+Execute       gen_rtl krnl_LZW.entry4 -style xilinx -f -lang vhdl -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/syn/vhdl/krnl_LZW_krnl_LZW_entry4 
+Execute       gen_rtl krnl_LZW.entry4 -style xilinx -f -lang vlog -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/syn/verilog/krnl_LZW_krnl_LZW_entry4 
+Execute       syn_report -csynth -model krnl_LZW.entry4 -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/syn/report/krnl_LZW_entry4_csynth.rpt 
+Execute         AP::get_flow_target_display_name
+Execute           get_solution -flow_target 
+Execute       syn_report -rtlxml -model krnl_LZW.entry4 -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/syn/report/krnl_LZW_entry4_csynth.xml 
+Execute         get_solution -flow_target
+Execute           get_solution -flow_target 
+Execute       syn_report -verbosereport -model krnl_LZW.entry4 -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW_entry4.verbose.rpt 
+Execute         AP::get_flow_target_display_name
+Execute           get_solution -flow_target 
+Execute       db_write -model krnl_LZW.entry4 -f -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW_entry4.adb 
+Execute       gen_tb_info krnl_LZW.entry4 -p /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW_entry4 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'Loop_VITIS_LOOP_318_1_proc' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute       get_config_rtl -module_prefix 
+Execute       get_config_rtl -module_auto_prefix 
+Execute       get_config_rtl -module_prefix 
+Execute       get_config_rtl -module_auto_prefix 
+Execute       create_rtl_model Loop_VITIS_LOOP_318_1_proc -top_prefix krnl_LZW_ -sub_prefix krnl_LZW_ -mg_file /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Loop_VITIS_LOOP_318_1_proc.compgen.tcl 
+INFO: [RTGEN 206-100] Finished creating RTL model for 'Loop_VITIS_LOOP_318_1_proc'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.06 seconds. CPU system time: 0 seconds. Elapsed time: 0.18 seconds; current allocated memory: 375.022 MB.
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.rtl_wrap.cfg.tcl 
+Execute       gen_rtl Loop_VITIS_LOOP_318_1_proc -style xilinx -f -lang vhdl -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/syn/vhdl/krnl_LZW_Loop_VITIS_LOOP_318_1_proc 
+Execute       gen_rtl Loop_VITIS_LOOP_318_1_proc -style xilinx -f -lang vlog -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/syn/verilog/krnl_LZW_Loop_VITIS_LOOP_318_1_proc 
+Execute       syn_report -csynth -model Loop_VITIS_LOOP_318_1_proc -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/syn/report/Loop_VITIS_LOOP_318_1_proc_csynth.rpt 
+Execute         AP::get_flow_target_display_name
+Execute           get_solution -flow_target 
+Execute       syn_report -rtlxml -model Loop_VITIS_LOOP_318_1_proc -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/syn/report/Loop_VITIS_LOOP_318_1_proc_csynth.xml 
+Execute         get_solution -flow_target
+Execute           get_solution -flow_target 
+Execute       syn_report -verbosereport -model Loop_VITIS_LOOP_318_1_proc -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Loop_VITIS_LOOP_318_1_proc.verbose.rpt 
+Execute         AP::get_flow_target_display_name
+Execute           get_solution -flow_target 
+Execute       db_write -model Loop_VITIS_LOOP_318_1_proc -f -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Loop_VITIS_LOOP_318_1_proc.adb 
+Execute       gen_tb_info Loop_VITIS_LOOP_318_1_proc -p /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Loop_VITIS_LOOP_318_1_proc 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'Block_krnl_LZW_exit1_proc' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute       get_config_rtl -module_prefix 
+Execute       get_config_rtl -module_auto_prefix 
+Execute       get_config_rtl -module_prefix 
+Execute       get_config_rtl -module_auto_prefix 
+Execute       create_rtl_model Block_krnl_LZW_.exit1_proc -top_prefix krnl_LZW_ -sub_prefix krnl_LZW_ -mg_file /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Block_krnl_LZW_exit1_proc.compgen.tcl 
+INFO: [RTGEN 206-100] Finished creating RTL model for 'Block_krnl_LZW_exit1_proc'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.08 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.17 seconds; current allocated memory: 375.950 MB.
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.rtl_wrap.cfg.tcl 
+Execute       gen_rtl Block_krnl_LZW_.exit1_proc -style xilinx -f -lang vhdl -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/syn/vhdl/krnl_LZW_Block_krnl_LZW_exit1_proc 
+Execute       gen_rtl Block_krnl_LZW_.exit1_proc -style xilinx -f -lang vlog -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/syn/verilog/krnl_LZW_Block_krnl_LZW_exit1_proc 
+Execute       syn_report -csynth -model Block_krnl_LZW_.exit1_proc -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/syn/report/Block_krnl_LZW_exit1_proc_csynth.rpt 
+Execute         AP::get_flow_target_display_name
+Execute           get_solution -flow_target 
+Execute       syn_report -rtlxml -model Block_krnl_LZW_.exit1_proc -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/syn/report/Block_krnl_LZW_exit1_proc_csynth.xml 
+Execute         get_solution -flow_target
+Execute           get_solution -flow_target 
+Execute       syn_report -verbosereport -model Block_krnl_LZW_.exit1_proc -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Block_krnl_LZW_exit1_proc.verbose.rpt 
+Execute         AP::get_flow_target_display_name
+Execute           get_solution -flow_target 
+Execute       db_write -model Block_krnl_LZW_.exit1_proc -f -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Block_krnl_LZW_exit1_proc.adb 
+Execute       gen_tb_info Block_krnl_LZW_.exit1_proc -p /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Block_krnl_LZW_exit1_proc 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'compute_LZW' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute       get_config_rtl -module_prefix 
+Execute       get_config_rtl -module_auto_prefix 
+Execute       get_config_rtl -module_prefix 
+Execute       get_config_rtl -module_auto_prefix 
+Execute       create_rtl_model compute_LZW -top_prefix krnl_LZW_ -sub_prefix krnl_LZW_ -mg_file /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/compute_LZW.compgen.tcl 
+INFO: [RTGEN 206-100] Finished creating RTL model for 'compute_LZW'.
+Command       create_rtl_model done; 0.69 sec.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.72 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.8 seconds; current allocated memory: 387.601 MB.
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.rtl_wrap.cfg.tcl 
+Execute       gen_rtl compute_LZW -style xilinx -f -lang vhdl -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/syn/vhdl/krnl_LZW_compute_LZW 
+Execute       gen_rtl compute_LZW -style xilinx -f -lang vlog -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/syn/verilog/krnl_LZW_compute_LZW 
+Execute       syn_report -csynth -model compute_LZW -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/syn/report/compute_LZW_csynth.rpt 
+Execute         AP::get_flow_target_display_name
+Execute           get_solution -flow_target 
+Execute       syn_report -rtlxml -model compute_LZW -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/syn/report/compute_LZW_csynth.xml 
+Execute         get_solution -flow_target
+Execute           get_solution -flow_target 
+Execute       syn_report -verbosereport -model compute_LZW -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/compute_LZW.verbose.rpt 
+Execute         AP::get_flow_target_display_name
+Execute           get_solution -flow_target 
+Command       syn_report done; 0.27 sec.
+Execute       db_write -model compute_LZW -f -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/compute_LZW.adb 
+Command       db_write done; 0.17 sec.
+Execute       gen_tb_info compute_LZW -p /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/compute_LZW 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'Loop_VITIS_LOOP_325_2_proc' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute       get_config_rtl -module_prefix 
+Execute       get_config_rtl -module_auto_prefix 
+Execute       get_config_rtl -module_prefix 
+Execute       get_config_rtl -module_auto_prefix 
+Execute       create_rtl_model Loop_VITIS_LOOP_325_2_proc -top_prefix krnl_LZW_ -sub_prefix krnl_LZW_ -mg_file /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Loop_VITIS_LOOP_325_2_proc.compgen.tcl 
+INFO: [RTGEN 206-100] Finished creating RTL model for 'Loop_VITIS_LOOP_325_2_proc'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.81 seconds. CPU system time: 0.05 seconds. Elapsed time: 1 seconds; current allocated memory: 434.038 MB.
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.rtl_wrap.cfg.tcl 
+Execute       gen_rtl Loop_VITIS_LOOP_325_2_proc -style xilinx -f -lang vhdl -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/syn/vhdl/krnl_LZW_Loop_VITIS_LOOP_325_2_proc 
+Execute       gen_rtl Loop_VITIS_LOOP_325_2_proc -style xilinx -f -lang vlog -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/syn/verilog/krnl_LZW_Loop_VITIS_LOOP_325_2_proc 
+Execute       syn_report -csynth -model Loop_VITIS_LOOP_325_2_proc -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/syn/report/Loop_VITIS_LOOP_325_2_proc_csynth.rpt 
+Execute         AP::get_flow_target_display_name
+Execute           get_solution -flow_target 
+Execute       syn_report -rtlxml -model Loop_VITIS_LOOP_325_2_proc -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/syn/report/Loop_VITIS_LOOP_325_2_proc_csynth.xml 
+Execute         get_solution -flow_target
+Execute           get_solution -flow_target 
+Execute       syn_report -verbosereport -model Loop_VITIS_LOOP_325_2_proc -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Loop_VITIS_LOOP_325_2_proc.verbose.rpt 
+Execute         AP::get_flow_target_display_name
+Execute           get_solution -flow_target 
+Command       syn_report done; 0.28 sec.
+Execute       db_write -model Loop_VITIS_LOOP_325_2_proc -f -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Loop_VITIS_LOOP_325_2_proc.adb 
+Execute       gen_tb_info Loop_VITIS_LOOP_325_2_proc -p /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Loop_VITIS_LOOP_325_2_proc 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'krnl_LZW' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute       get_config_rtl -module_prefix 
+Execute       get_config_rtl -module_prefix 
+Execute       get_config_rtl -module_auto_prefix 
+Execute       create_rtl_model krnl_LZW -top_prefix  -sub_prefix krnl_LZW_ -mg_file /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.compgen.tcl 
+WARNING: [RTGEN 206-101] Design contains AXI ports. Reset is fixed to synchronous and active low.
+INFO: [RTGEN 206-500] Setting interface mode on port 'krnl_LZW/aximm0' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'krnl_LZW/aximm1' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'krnl_LZW/in_r' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'krnl_LZW/input_length' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'krnl_LZW/send_data' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'krnl_LZW/output_length' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'krnl_LZW' to 's_axilite & ap_ctrl_chain'.
+INFO: [RTGEN 206-100] Bundling port 'in_r', 'input_length', 'send_data', 'output_length' and 'return' to AXI-Lite port control.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'krnl_LZW'.
+Command       create_rtl_model done; 0.16 sec.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.56 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.75 seconds; current allocated memory: 441.674 MB.
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.rtl_wrap.cfg.tcl 
+Execute       gen_rtl krnl_LZW -istop -style xilinx -f -lang vhdl -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/syn/vhdl/krnl_LZW 
+Execute       gen_rtl krnl_LZW -istop -style xilinx -f -lang vlog -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/syn/verilog/krnl_LZW 
+Execute       syn_report -csynth -model krnl_LZW -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/syn/report/krnl_LZW_csynth.rpt 
+Execute         AP::get_flow_target_display_name
+Execute           get_solution -flow_target 
+Execute       syn_report -rtlxml -model krnl_LZW -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/syn/report/krnl_LZW_csynth.xml 
+Execute         get_solution -flow_target
+Execute           get_solution -flow_target 
+Execute       syn_report -verbosereport -model krnl_LZW -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.verbose.rpt 
+Execute         AP::get_flow_target_display_name
+Execute           get_solution -flow_target 
+Command       syn_report done; 0.22 sec.
+Execute       db_write -model krnl_LZW -f -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.adb 
+Execute       gen_tb_info krnl_LZW -p /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW 
+Execute       export_constraint_db -f -tool general -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.constraint.tcl 
+Execute       syn_report -designview -model krnl_LZW -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.design.xml 
+Command       syn_report done; 0.16 sec.
+Execute       syn_report -csynthDesign -model krnl_LZW -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/syn/report/csynth.rpt 
+Execute         AP::get_flow_target_display_name
+Execute           get_solution -flow_target 
+Execute       get_config_rtl -disable_wave_debug 
+Execute       syn_report -wcfg -model krnl_LZW -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW_dataflow_ana.wcfg 
+Execute       syn_report -protoinst -model krnl_LZW -o /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.protoinst 
+Execute       get_config_debug -directory 
+Execute       sc_get_clocks krnl_LZW 
+Execute       get_config_export -vivado_clock 
+Execute       get_config_rtl -module_prefix 
+Execute       get_config_rtl -module_prefix 
+Execute       get_config_rtl -module_auto_prefix 
+Execute       sc_get_portdomain krnl_LZW 
+INFO-FLOW: Model list for RTL component generation: krnl_LZW.entry4 Loop_VITIS_LOOP_318_1_proc Block_krnl_LZW_.exit1_proc compute_LZW Loop_VITIS_LOOP_325_2_proc krnl_LZW
+INFO-FLOW: Handling components in module [krnl_LZW_entry4] ... 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW_entry4.compgen.tcl 
+INFO-FLOW: Handling components in module [Loop_VITIS_LOOP_318_1_proc] ... 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Loop_VITIS_LOOP_318_1_proc.compgen.tcl 
+INFO-FLOW: Handling components in module [Block_krnl_LZW_exit1_proc] ... 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Block_krnl_LZW_exit1_proc.compgen.tcl 
+INFO-FLOW: Handling components in module [compute_LZW] ... 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/compute_LZW.compgen.tcl 
+INFO-FLOW: Found component krnl_LZW_compute_LZW_hash_table_V_0.
+INFO-FLOW: Append model krnl_LZW_compute_LZW_hash_table_V_0
+INFO-FLOW: Found component krnl_LZW_compute_LZW_my_assoc_mem_upper_key_mem_V.
+INFO-FLOW: Append model krnl_LZW_compute_LZW_my_assoc_mem_upper_key_mem_V
+INFO-FLOW: Found component krnl_LZW_compute_LZW_my_assoc_mem_value_V.
+INFO-FLOW: Append model krnl_LZW_compute_LZW_my_assoc_mem_value_V
+INFO-FLOW: Handling components in module [Loop_VITIS_LOOP_325_2_proc] ... 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Loop_VITIS_LOOP_325_2_proc.compgen.tcl 
+INFO-FLOW: Handling components in module [krnl_LZW] ... 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.compgen.tcl 
+INFO-FLOW: Found component krnl_LZW_store_array_i.
+INFO-FLOW: Append model krnl_LZW_store_array_i
+INFO-FLOW: Found component krnl_LZW_fifo_w64_d3_S.
+INFO-FLOW: Append model krnl_LZW_fifo_w64_d3_S
+INFO-FLOW: Found component krnl_LZW_fifo_w64_d2_S.
+INFO-FLOW: Append model krnl_LZW_fifo_w64_d2_S
+INFO-FLOW: Found component krnl_LZW_fifo_w64_d2_S.
+INFO-FLOW: Append model krnl_LZW_fifo_w64_d2_S
+INFO-FLOW: Found component krnl_LZW_fifo_w64_d3_S.
+INFO-FLOW: Append model krnl_LZW_fifo_w64_d3_S
+INFO-FLOW: Found component krnl_LZW_fifo_w64_d3_S.
+INFO-FLOW: Append model krnl_LZW_fifo_w64_d3_S
+INFO-FLOW: Found component krnl_LZW_fifo_w8_d2_S.
+INFO-FLOW: Append model krnl_LZW_fifo_w8_d2_S
+INFO-FLOW: Found component krnl_LZW_fifo_w1_d2_S.
+INFO-FLOW: Append model krnl_LZW_fifo_w1_d2_S
+INFO-FLOW: Found component krnl_LZW_fifo_w64_d2_S.
+INFO-FLOW: Append model krnl_LZW_fifo_w64_d2_S
+INFO-FLOW: Found component krnl_LZW_fifo_w8_d2_S.
+INFO-FLOW: Append model krnl_LZW_fifo_w8_d2_S
+INFO-FLOW: Found component krnl_LZW_fifo_w13_d2_S.
+INFO-FLOW: Append model krnl_LZW_fifo_w13_d2_S
+INFO-FLOW: Found component krnl_LZW_fifo_w8_d2_S.
+INFO-FLOW: Append model krnl_LZW_fifo_w8_d2_S
+INFO-FLOW: Found component krnl_LZW_start_for_Block_krnl_LZW_exit1_proc_U0.
+INFO-FLOW: Append model krnl_LZW_start_for_Block_krnl_LZW_exit1_proc_U0
+INFO-FLOW: Found component krnl_LZW_control_s_axi.
+INFO-FLOW: Append model krnl_LZW_control_s_axi
+INFO-FLOW: Found component krnl_LZW_aximm0_m_axi.
+INFO-FLOW: Append model krnl_LZW_aximm0_m_axi
+INFO-FLOW: Found component krnl_LZW_aximm1_m_axi.
+INFO-FLOW: Append model krnl_LZW_aximm1_m_axi
+INFO-FLOW: Append model krnl_LZW_entry4
+INFO-FLOW: Append model Loop_VITIS_LOOP_318_1_proc
+INFO-FLOW: Append model Block_krnl_LZW_exit1_proc
+INFO-FLOW: Append model compute_LZW
+INFO-FLOW: Append model Loop_VITIS_LOOP_325_2_proc
+INFO-FLOW: Append model krnl_LZW
+INFO-FLOW: Generating RTL model list ...
+INFO-FLOW: All models in this session: krnl_LZW_compute_LZW_hash_table_V_0 krnl_LZW_compute_LZW_my_assoc_mem_upper_key_mem_V krnl_LZW_compute_LZW_my_assoc_mem_value_V krnl_LZW_store_array_i krnl_LZW_fifo_w64_d3_S krnl_LZW_fifo_w64_d2_S krnl_LZW_fifo_w64_d2_S krnl_LZW_fifo_w64_d3_S krnl_LZW_fifo_w64_d3_S krnl_LZW_fifo_w8_d2_S krnl_LZW_fifo_w1_d2_S krnl_LZW_fifo_w64_d2_S krnl_LZW_fifo_w8_d2_S krnl_LZW_fifo_w13_d2_S krnl_LZW_fifo_w8_d2_S krnl_LZW_start_for_Block_krnl_LZW_exit1_proc_U0 krnl_LZW_control_s_axi krnl_LZW_aximm0_m_axi krnl_LZW_aximm1_m_axi krnl_LZW_entry4 Loop_VITIS_LOOP_318_1_proc Block_krnl_LZW_exit1_proc compute_LZW Loop_VITIS_LOOP_325_2_proc krnl_LZW
+INFO-FLOW: To file: write model krnl_LZW_compute_LZW_hash_table_V_0
+INFO-FLOW: To file: write model krnl_LZW_compute_LZW_my_assoc_mem_upper_key_mem_V
+INFO-FLOW: To file: write model krnl_LZW_compute_LZW_my_assoc_mem_value_V
+INFO-FLOW: To file: write model krnl_LZW_store_array_i
+INFO-FLOW: To file: write model krnl_LZW_fifo_w64_d3_S
+INFO-FLOW: To file: write model krnl_LZW_fifo_w64_d2_S
+INFO-FLOW: To file: write model krnl_LZW_fifo_w64_d2_S
+INFO-FLOW: To file: write model krnl_LZW_fifo_w64_d3_S
+INFO-FLOW: To file: write model krnl_LZW_fifo_w64_d3_S
+INFO-FLOW: To file: write model krnl_LZW_fifo_w8_d2_S
+INFO-FLOW: To file: write model krnl_LZW_fifo_w1_d2_S
+INFO-FLOW: To file: write model krnl_LZW_fifo_w64_d2_S
+INFO-FLOW: To file: write model krnl_LZW_fifo_w8_d2_S
+INFO-FLOW: To file: write model krnl_LZW_fifo_w13_d2_S
+INFO-FLOW: To file: write model krnl_LZW_fifo_w8_d2_S
+INFO-FLOW: To file: write model krnl_LZW_start_for_Block_krnl_LZW_exit1_proc_U0
+INFO-FLOW: To file: write model krnl_LZW_control_s_axi
+INFO-FLOW: To file: write model krnl_LZW_aximm0_m_axi
+INFO-FLOW: To file: write model krnl_LZW_aximm1_m_axi
+INFO-FLOW: To file: write model krnl_LZW_entry4
+INFO-FLOW: To file: write model Loop_VITIS_LOOP_318_1_proc
+INFO-FLOW: To file: write model Block_krnl_LZW_exit1_proc
+INFO-FLOW: To file: write model compute_LZW
+INFO-FLOW: To file: write model Loop_VITIS_LOOP_325_2_proc
+INFO-FLOW: To file: write model krnl_LZW
+INFO-FLOW: Finished generating RTL model list.
+
+
+INFO-FLOW: RTL Generation done.
+INFO-FLOW: CAS Generation done.
+INFO-FLOW: CBC Generation done.
+Execute       get_top 
+Execute       get_config_export -ipname 
+Execute       get_config_export -xo 
+Execute       get_config_export -format 
+Execute       get_config_rtl -module_auto_prefix 
+INFO-FLOW: DBG:CMD:   auto_impl: set ipname to top (module_auto_prefix): krnl_LZW
+INFO-FLOW: DBG:CMD: auto_generate_csynth_design
+INFO-FLOW: DBG:CMD:     auto_generate --sim-model -phase csynth_design -d /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1
+Execute       get_solution -flow_target 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/global.setting.tcl 
+INFO-FLOW: DBG:CMD: read_platform_lib /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/global.setting.tcl
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/generic/autopilot/common.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/generic/autopilot/APCoreGen.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/generic/autopilot/op.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/generic/autopilot/op_simcore.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/generic/autopilot/interface.gen 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/global.setting.tcl 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/common/xilinx.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/plb46.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/axi4.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/util.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/common/xilinx.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/plb46.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/axi4.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/util.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
+INFO-FLOW: DBG:CMD:   using AESL_AUTOCG::g_clock_period=6.667 (was NA)
+INFO-FLOW: DBG:CMD:       generate_ip_cores sim=1 export=0 expOnly=0 dstVlogDir=syn/verilog
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/global.setting.tcl 
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/global.setting.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/global.setting.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW_entry4.compgen.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Loop_VITIS_LOOP_318_1_proc.compgen.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Block_krnl_LZW_exit1_proc.compgen.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/compute_LZW.compgen.tcl 
+INFO: [RTMG 210-278] Implementing memory 'krnl_LZW_compute_LZW_hash_table_V_0_ram (RAM)' using auto RAMs.
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+INFO: [RTMG 210-278] Implementing memory 'krnl_LZW_compute_LZW_my_assoc_mem_upper_key_mem_V_ram (RAM)' using auto RAMs.
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+INFO: [RTMG 210-278] Implementing memory 'krnl_LZW_compute_LZW_my_assoc_mem_value_V_ram (RAM)' using auto RAMs.
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+Command       ap_source done; 0.13 sec.
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Loop_VITIS_LOOP_325_2_proc.compgen.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.compgen.tcl 
+INFO: [RTMG 210-278] Implementing memory 'krnl_LZW_store_array_i_ram (RAM)' using auto RAMs.
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+Execute         send_msg_by_id INFO @200-741@%s krnl_LZW_input_length_temp_memcore 
+INFO: [HLS 200-741] Implementing PIPO krnl_LZW_input_length_temp_memcore using a single memory for all blocks
+INFO: [RTMG 210-278] Implementing memory 'krnl_LZW_input_length_temp_memcore_ram (RAM)' using auto RAMs.
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+INFO: [RTMG 210-285] Implementing FIFO 'in_c_U(krnl_LZW_fifo_w64_d3_S)' using Shift Registers.
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+INFO: [RTMG 210-285] Implementing FIFO 'input_length_c_U(krnl_LZW_fifo_w64_d2_S)' using Shift Registers.
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+INFO: [RTMG 210-285] Implementing FIFO 'send_data_c_U(krnl_LZW_fifo_w64_d2_S)' using Shift Registers.
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+INFO: [RTMG 210-285] Implementing FIFO 'send_data_c115_U(krnl_LZW_fifo_w64_d3_S)' using Shift Registers.
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+INFO: [RTMG 210-285] Implementing FIFO 'output_length_c_U(krnl_LZW_fifo_w64_d3_S)' using Shift Registers.
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+INFO: [RTMG 210-285] Implementing FIFO 'num_chunks_loc_channel_U(krnl_LZW_fifo_w8_d2_S)' using Shift Registers.
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+INFO: [RTMG 210-285] Implementing FIFO 'send_data_cast_loc_channel_U(krnl_LZW_fifo_w1_d2_S)' using Shift Registers.
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+INFO: [RTMG 210-285] Implementing FIFO 'p_loc_channel_U(krnl_LZW_fifo_w64_d2_S)' using Shift Registers.
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+INFO: [RTMG 210-285] Implementing FIFO 'outStream_code_flg_U(krnl_LZW_fifo_w8_d2_S)' using Shift Registers.
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+INFO: [RTMG 210-285] Implementing FIFO 'outStream_code_U(krnl_LZW_fifo_w13_d2_S)' using Shift Registers.
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+INFO: [RTMG 210-285] Implementing FIFO 'inStream_in_U(krnl_LZW_fifo_w8_d2_S)' using Shift Registers.
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_Block_krnl_LZW_exit1_proc_U0_U(krnl_LZW_start_for_Block_krnl_LZW_exit1_proc_U0)' using Shift Registers.
+Execute         source ./control.slave.tcl 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+Command       ap_source done; 0.77 sec.
+Execute       get_solution -flow_target 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/global.setting.tcl 
+INFO-FLOW: DBG:CMD:       kernel.xml check internal_kernel_xml(1)=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/kernel.internal.xml srclang=c top=krnl_LZW
+INFO-FLOW: DBG:CMD:       kernel.xml check proj_kernel_xml    (1)=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/../../../kernel.xml use_proj_kernel_xml=false
+INFO-FLOW: DBG:CMD:       copy internal kernel.xml to project: /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/../../../kernel.xml
+INFO-FLOW: DBG:CMD:       update_final_kernel_xml /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/../../../kernel.xml
+Execute       get_config_debug -enable 
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+INFO-FLOW: DBG:CMD: Updating /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/../../../kernel.xml with values: interrupt true debug false compileOptions {} name krnl_LZW vlnv xilinx.com:hls:krnl_LZW:1.0
+INFO-FLOW: DBG:CMD:     auto_generate -export -impltomg_flag -rtl both -tool Vivado -pcore_version 1.00.a -phase csynth_design -d /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1
+Execute       get_solution -flow_target 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/global.setting.tcl 
+INFO-FLOW: DBG:CMD: read_platform_lib /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/global.setting.tcl
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/generic/autopilot/common.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/generic/autopilot/APCoreGen.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/generic/autopilot/op.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/generic/autopilot/op_simcore.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/generic/autopilot/interface.gen 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/global.setting.tcl 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/common/xilinx.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/plb46.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/axi4.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/util.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/common/xilinx.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/plb46.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/axi4.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/util.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
+INFO-FLOW: DBG:CMD:       initCTypeInfo top_module=krnl_LZW xml_exists=0
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.rtl_wrap.cfg.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.rtl_wrap.cfg.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.rtl_wrap.cfg.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.tbgen.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.tbgen.tcl 
+INFO-FLOW: DBG:CMD:       export_impl_rtl
+INFO-FLOW: DBG:CMD:       generate_ip_cores sim=0 export=0 expOnly=0 dstVlogDir=impl/.verilog
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/global.setting.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW_entry4.compgen.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Loop_VITIS_LOOP_318_1_proc.compgen.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Block_krnl_LZW_exit1_proc.compgen.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/compute_LZW.compgen.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Loop_VITIS_LOOP_325_2_proc.compgen.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.compgen.tcl 
+Execute         send_msg_by_id INFO @200-741@%s krnl_LZW_input_length_temp_memcore 
+INFO: [HLS 200-741] Implementing PIPO krnl_LZW_input_length_temp_memcore using a single memory for all blocks
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+INFO-FLOW: DBG:CMD:       generate_ip_cores sim=0 export=1 expOnly=1 dstVlogDir=impl/.pcores/verilog
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/global.setting.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW_entry4.compgen.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Loop_VITIS_LOOP_318_1_proc.compgen.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Block_krnl_LZW_exit1_proc.compgen.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/compute_LZW.compgen.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Loop_VITIS_LOOP_325_2_proc.compgen.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.compgen.tcl 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+INFO-FLOW: DBG:CMD:       generate_ip_cores sim=0 export=0 expOnly=0 dstVlogDir=impl/.pcores/verilog_sim
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/global.setting.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW_entry4.compgen.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Loop_VITIS_LOOP_318_1_proc.compgen.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Block_krnl_LZW_exit1_proc.compgen.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/compute_LZW.compgen.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Loop_VITIS_LOOP_325_2_proc.compgen.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.compgen.tcl 
+Execute         send_msg_by_id INFO @200-741@%s krnl_LZW_input_length_temp_memcore 
+INFO: [HLS 200-741] Implementing PIPO krnl_LZW_input_length_temp_memcore using a single memory for all blocks
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/global.setting.tcl 
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.constraint.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.tbgen.tcl 
+INFO-FLOW: DBG:CMD:       hasPcoreIpAdapter=false #gSsdmPorts=0
+Execute       get_solution -flow_target 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/global.setting.tcl 
+INFO-FLOW: DBG:CMD:       kernel.xml check internal_kernel_xml(1)=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/kernel.internal.xml srclang=c top=krnl_LZW
+INFO-FLOW: DBG:CMD:       kernel.xml check proj_kernel_xml    (1)=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/../../../kernel.xml use_proj_kernel_xml=false
+INFO-FLOW: DBG:CMD:       copy internal kernel.xml to project: /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/../../../kernel.xml
+INFO-FLOW: DBG:CMD:       update_final_kernel_xml /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/../../../kernel.xml
+Execute       get_config_debug -enable 
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+INFO-FLOW: DBG:CMD: Updating /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/../../../kernel.xml with values: interrupt true debug false compileOptions {} name krnl_LZW vlnv xilinx.com:hls:krnl_LZW:1.0
+INFO-FLOW: DBG:CMD: Skipping loadAnalyze_DB, #g_database=6
+INFO-FLOW: DBG:CMD:       generate_json is_phase_csynth=1 g_has_adaptors=false generate_bd_files=0 #modelList=25 #gSsdmPorts=0
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/tcl/tcllib1.11.1/fileutil/fileutil.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/global.setting.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/global.setting.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/top-io-be.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.tbgen.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.compgen.dataonly.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.compgen.dataonly.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.tbgen.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.tbgen.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.rtl_wrap.cfg.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.compgen.dataonly.tcl 
+Execute       get_config_export -format 
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW_entry4.tbgen.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Loop_VITIS_LOOP_318_1_proc.tbgen.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Block_krnl_LZW_exit1_proc.tbgen.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/compute_LZW.tbgen.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/Loop_VITIS_LOOP_325_2_proc.tbgen.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.tbgen.tcl 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/global.setting.tcl 
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+Execute       get_solution -flow_target 
+Execute       get_config_rtl -kernel_profile 
+Execute       get_config_rtl -kernel_profile 
+Execute       get_config_rtl -stall_sig_gen 
+Execute       get_config_rtl -profile 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.constraint.tcl 
+Execute       sc_get_clocks krnl_LZW 
+Execute       source /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/global.setting.tcl 
+Execute       get_config_debug -directory 
+INFO-FLOW: DBG:CMD:       delete-temp-dirs (skipped for debug)
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 2.21 seconds. CPU system time: 0.19 seconds. Elapsed time: 6.34 seconds; current allocated memory: 448.408 MB.
+INFO: [VHDL 208-304] Generating VHDL RTL for krnl_LZW.
+INFO: [VLOG 209-307] Generating Verilog RTL for krnl_LZW.
+INFO-FLOW: DBG:CMD:       update_csynth_xml_report append design.xml content design_xml=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Final_Optimization/solution1/.autopilot/db/krnl_LZW.design.xml
+INFO-FLOW: DBG:CMD:       update_csynth_xml_report json2reportxml
+INFO-FLOW: DBG:CMD:       update_csynth_xml_report done
+Execute       syn_report -model krnl_LZW -printsummary 
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were NOT satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 205.47 MHz
+Command     autosyn done; 17.4 sec.
+Command   csynth_design done; 40.61 sec.
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 29.14 seconds. CPU system time: 1.64 seconds. Elapsed time: 40.61 seconds; current allocated memory: 451.261 MB.
+Command ap_source done; 42.62 sec.
+Execute cleanup_all 

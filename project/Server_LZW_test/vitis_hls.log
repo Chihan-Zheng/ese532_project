@@ -1,0 +1,67 @@
+INFO: Applying HLS Y2K22 patch v1.2 for IP revision
+INFO: [HLS 200-10] Running '/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/bin/unwrapped/lnx64.o/vitis_hls'
+INFO: [HLS 200-10] For user 'chihan' on host 'bunnyhop.seas.upenn.edu' (Linux_x86_64 version 5.14.21-150500.55.36-default) on Sat Dec 02 10:42:51 EST 2023
+INFO: [HLS 200-10] On os "openSUSE Leap 15.5"
+INFO: [HLS 200-10] In directory '/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test'
+Sourcing Tcl script '/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/export.tcl'
+INFO: [HLS 200-1510] Running: open_project LZW_HW 
+INFO: [HLS 200-10] Opening project '/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW'.
+INFO: [HLS 200-1510] Running: set_top LZW_hybrid_hash_HW 
+INFO: [HLS 200-1510] Running: add_files Chunk.cpp 
+INFO: [HLS 200-10] Adding design file 'Chunk.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files Constants.h 
+INFO: [HLS 200-10] Adding design file 'Constants.h' to the project
+INFO: [HLS 200-1510] Running: add_files Dedup.cpp 
+INFO: [HLS 200-10] Adding design file 'Dedup.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files LZW_hybrid_hash_HW.cpp 
+INFO: [HLS 200-10] Adding design file 'LZW_hybrid_hash_HW.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files LittlePrince.txt 
+INFO: [HLS 200-10] Adding design file 'LittlePrince.txt' to the project
+INFO: [HLS 200-1510] Running: add_files common/Utilities.cpp 
+INFO: [HLS 200-10] Adding design file 'common/Utilities.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files common/Utilities.h 
+INFO: [HLS 200-10] Adding design file 'common/Utilities.h' to the project
+INFO: [HLS 200-1510] Running: add_files stopwatch.h 
+INFO: [HLS 200-10] Adding design file 'stopwatch.h' to the project
+INFO: [HLS 200-1510] Running: add_files test.txt 
+INFO: [HLS 200-10] Adding design file 'test.txt' to the project
+INFO: [HLS 200-1510] Running: add_files test_copy.txt 
+INFO: [HLS 200-10] Adding design file 'test_copy.txt' to the project
+INFO: [HLS 200-1510] Running: add_files -tb baseline.cpp -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
+INFO: [HLS 200-10] Adding test bench file 'baseline.cpp' to the project
+INFO: [HLS 200-1510] Running: open_solution solution1 -flow_target vitis 
+INFO: [HLS 200-10] Opening solution '/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 6.667ns.
+INFO: [HLS 200-10] Setting target device to 'xczu3eg-sbva484-1-i'
+INFO: [HLS 200-1505] Using flow_target 'vitis'
+Resolution: For help on HLS 200-1505 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-1505.html
+INFO: [HLS 200-1464] Running solution command: config_interface -default_interface=kernel
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_offset=slave
+INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
+INFO: [HLS 200-1464] Running solution command: config_export -format=xo
+INFO: [HLS 200-1464] Running solution command: config_export -output=/home1/c/chihan/chihan/ese532_project/project/Server_LZW_test/krnl_LZW.xo
+INFO: [HLS 200-1464] Running solution command: config_export -rtl=verilog
+INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-i 
+INFO: [HLS 200-1510] Running: create_clock -period 150MHz -name default 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size 64 -m_axi_latency 64 -m_axi_max_widen_bitwidth 512 -m_axi_offset slave 
+INFO: [HLS 200-1510] Running: config_rtl -register_reset_num 3 
+INFO: [HLS 200-1510] Running: config_export -format xo -output /home1/c/chihan/chihan/ese532_project/project/Server_LZW_test/krnl_LZW.xo -rtl verilog 
+INFO: [HLS 200-1510] Running: export_design -rtl verilog -format xo -output /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_baseline/LZW_hybrid_hash_HW.xo 
+INFO: [IMPL 213-8] Exporting RTL as a Vivado IP.
+
+****** Vivado v2020.2 (64-bit)
+  **** SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+  **** IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+source run_ippack.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/mnt/pollux/software/xilinx/2020.2/Vivado/2020.2/data/ip'.
+Running package_xo -xo_path /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_baseline/LZW_hybrid_hash_HW.xo -kernel_name LZW_hybrid_hash_HW -kernel_xml /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/impl/ip/../kernel/kernel.xml -kernel_files {/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/common/Utilities.cpp /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_hybrid_hash_HW.cpp /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/Dedup.cpp /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/Chunk.cpp} -ip_directory /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/impl/ip/ip_unzip_dir -design_xml /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/.autopilot/db/LZW_hybrid_hash_HW.design.xml -debug_directory /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/.debug -hls_directory /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_LZW_test/LZW_HW/solution1/impl/ip/hls_files
+INFO: [Common 17-206] Exiting Vivado at Sat Dec  2 10:43:58 2023...
+INFO: [HLS 200-802] Generated output file /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_baseline/LZW_hybrid_hash_HW.xo
+INFO: [HLS 200-111] Finished Command export_design CPU user time: 10.85 seconds. CPU system time: 1.08 seconds. Elapsed time: 74.75 seconds; current allocated memory: 217.708 MB.
