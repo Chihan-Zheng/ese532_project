@@ -1,5 +1,4 @@
 #include "Constants.h"
-#include <hls_stream.h>
 
 /* uint16_t swap_endian_16(uint16_t value) {
     return (value >> 8) | (value << 8);
@@ -81,7 +80,7 @@ void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
         my_assoc_mem.lower_key_mem[i] = 0;
     }
 
-    uint16_t store_array[MAX_CHUNK];
+    // uint16_t store_array[MAX_CHUNK];
     ap_uint<CODE_LEN> next_code = 256;
     ap_uint<CODE_LEN> prefix_code = inStream_in.read();
     ap_uint<CODE_LEN> code = 0;
@@ -217,16 +216,19 @@ void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
     }
     outStream_code << prefix_code;
     outStream_code_flg << 0;
+    std::cout << std::endl << "assoc mem entry count: " << my_assoc_mem.fill << std::endl;
 
 }
 
-static void write_result(hls::stream<ap_uint<CODE_LEN>>& outStream_code, hls::stream<ap_uint<CODE_LEN>>& outStream_code_flg, 
+static void write_result(uint16_t in_length, hls::stream<ap_uint<CODE_LEN>>& outStream_code, hls::stream<char>& outStream_code_flg, 
                         uint16_t *send_data, uint16_t *output_length){
     
     uint16_t j = 0;                   //index of store array (should j++ every time after store)
     unsigned char shift = 0;
     unsigned char shift_offset = 16 - CODE_LEN;
     ap_uint<CODE_LEN> prefix_code;
+    uint16_t store_array[MAX_CHUNK];
+
     while(outStream_code_flg.read()){
         prefix_code = outStream_code.read();
         if (j == 0){   //the first code
@@ -287,7 +289,7 @@ static void write_result(hls::stream<ap_uint<CODE_LEN>>& outStream_code, hls::st
     memcpy(send_data + 2, store_array, compressed_length);
     //-----------------------------------------------------------------------------
 
-    std::cout << std::endl << "assoc mem entry count: " << my_assoc_mem.fill << std::endl;
+    // std::cout << std::endl << "assoc mem entry count: " << my_assoc_mem.fill << std::endl;
     *output_length = compressed_length + 4;
     // return (compressed_length + 4);
 
@@ -323,7 +325,7 @@ void krnl_LZW(char *in, uint16_t *input_length, uint16_t *send_data, uint16_t *o
     for (int i = 0; i < num_chunks; i++){
         read_input((in + input_offset), input_length_temp[i], inStream_in);
         compute_LZW(inStream_in, input_length_temp[i], outStream_code, outStream_code_flg);
-        write_result(outStream_code, outStream_code_flg, (send_data + output_offset), &output_length[i])
+        write_result(input_length_temp[i], outStream_code, outStream_code_flg, (send_data + output_offset), &output_length[i]);
 
         input_offset += input_length_temp[i];
         output_offset += (output_length[i] + sizeof(uint16_t) - 1) / sizeof(uint16_t);   //ceil(a/b) = (a+b-1)/b

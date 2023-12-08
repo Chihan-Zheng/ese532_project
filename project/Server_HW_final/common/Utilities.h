@@ -43,10 +43,11 @@ using namespace std;
 #include <errno.h>
 #include <sys/mman.h>
 #include "../encoder.h"
-#include <atomic>
-#include <thread>
-#include <future>
-#include <CL/cl2.hpp>
+#include <hls_stream.h>
+// #include <atomic>
+// #include <thread>
+// #include <future>
+// #include <CL/cl2.hpp>
 
 
 
@@ -54,10 +55,10 @@ void Exit_with_error(const char *s);
 void send_data(unsigned char *Data, uint16_t Data_size);
 uint16_t swap_endian_16(uint16_t value);
 uint32_t swap_endian_32(uint32_t value);
-std::vector<cl::Device> get_xilinx_devices();
-char* read_binary_file(const std::string &xclbin_file_name, unsigned &nb);
-void pin_thread_to_cpu(std::thread &t, int cpu_num);
-void pin_main_thread_to_cpu0();
+// std::vector<cl::Device> get_xilinx_devices();
+// char* read_binary_file(const std::string &xclbin_file_name, unsigned &nb);
+// void pin_thread_to_cpu(std::thread &t, int cpu_num);
+// void pin_main_thread_to_cpu0();
 
 #endif
 

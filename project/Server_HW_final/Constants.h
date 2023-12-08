@@ -41,6 +41,12 @@ unsigned int my_hash(ap_uint<KEY_LEN> key);
                         uint16_t *send_data, uint16_t *output_length); */
 void krnl_LZW(char *input, uint16_t *input_length, 
                 uint16_t *send_data, uint16_t *output_length);  //multiChunks
+static void read_input(char *in, uint16_t input_length, 
+                        hls::stream<char>& inStream_in);
+void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
+                 hls::stream<ap_uint<CODE_LEN>>& outStream_code, hls::stream<char>& outStream_code_flg);
+static void write_result(uint16_t in_length, hls::stream<ap_uint<CODE_LEN>>& outStream_code,  hls::stream<char>& outStream_code_flg, 
+                        uint16_t *send_data, uint16_t *output_length);
 
 #endif
 
