@@ -7,29 +7,11 @@
 
 `timescale 1 ns / 1 ps 
 
-(* CORE_GENERATION_INFO="krnl_LZW_krnl_LZW,hls_ip_2020_2,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xczu3eg-sbva484-1-i,HLS_INPUT_CLOCK=6.667000,HLS_INPUT_ARCH=dataflow,HLS_SYN_CLOCK=4.866910,HLS_SYN_LAT=-1,HLS_SYN_TPT=-1,HLS_SYN_MEM=84,HLS_SYN_DSP=0,HLS_SYN_FF=5450,HLS_SYN_LUT=18967,HLS_VERSION=2020_2}" *)
+(* CORE_GENERATION_INFO="krnl_LZW_krnl_LZW,hls_ip_2020_2,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xczu3eg-sbva484-1-i,HLS_INPUT_CLOCK=6.667000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=4.866910,HLS_SYN_LAT=-1,HLS_SYN_TPT=none,HLS_SYN_MEM=84,HLS_SYN_DSP=0,HLS_SYN_FF=5723,HLS_SYN_LUT=19089,HLS_VERSION=2020_2}" *)
 
 module krnl_LZW (
-        s_axi_control_AWVALID,
-        s_axi_control_AWREADY,
-        s_axi_control_AWADDR,
-        s_axi_control_WVALID,
-        s_axi_control_WREADY,
-        s_axi_control_WDATA,
-        s_axi_control_WSTRB,
-        s_axi_control_ARVALID,
-        s_axi_control_ARREADY,
-        s_axi_control_ARADDR,
-        s_axi_control_RVALID,
-        s_axi_control_RREADY,
-        s_axi_control_RDATA,
-        s_axi_control_RRESP,
-        s_axi_control_BVALID,
-        s_axi_control_BREADY,
-        s_axi_control_BRESP,
         ap_clk,
         ap_rst_n,
-        interrupt,
         m_axi_aximm0_AWVALID,
         m_axi_aximm0_AWREADY,
         m_axi_aximm0_AWADDR,
@@ -75,60 +57,108 @@ module krnl_LZW (
         m_axi_aximm0_BRESP,
         m_axi_aximm0_BID,
         m_axi_aximm0_BUSER,
-        m_axi_aximm1_AWVALID,
-        m_axi_aximm1_AWREADY,
-        m_axi_aximm1_AWADDR,
-        m_axi_aximm1_AWID,
-        m_axi_aximm1_AWLEN,
-        m_axi_aximm1_AWSIZE,
-        m_axi_aximm1_AWBURST,
-        m_axi_aximm1_AWLOCK,
-        m_axi_aximm1_AWCACHE,
-        m_axi_aximm1_AWPROT,
-        m_axi_aximm1_AWQOS,
-        m_axi_aximm1_AWREGION,
-        m_axi_aximm1_AWUSER,
-        m_axi_aximm1_WVALID,
-        m_axi_aximm1_WREADY,
-        m_axi_aximm1_WDATA,
-        m_axi_aximm1_WSTRB,
-        m_axi_aximm1_WLAST,
-        m_axi_aximm1_WID,
-        m_axi_aximm1_WUSER,
-        m_axi_aximm1_ARVALID,
-        m_axi_aximm1_ARREADY,
-        m_axi_aximm1_ARADDR,
-        m_axi_aximm1_ARID,
-        m_axi_aximm1_ARLEN,
-        m_axi_aximm1_ARSIZE,
-        m_axi_aximm1_ARBURST,
-        m_axi_aximm1_ARLOCK,
-        m_axi_aximm1_ARCACHE,
-        m_axi_aximm1_ARPROT,
-        m_axi_aximm1_ARQOS,
-        m_axi_aximm1_ARREGION,
-        m_axi_aximm1_ARUSER,
-        m_axi_aximm1_RVALID,
-        m_axi_aximm1_RREADY,
-        m_axi_aximm1_RDATA,
-        m_axi_aximm1_RLAST,
-        m_axi_aximm1_RID,
-        m_axi_aximm1_RUSER,
-        m_axi_aximm1_RRESP,
-        m_axi_aximm1_BVALID,
-        m_axi_aximm1_BREADY,
-        m_axi_aximm1_BRESP,
-        m_axi_aximm1_BID,
-        m_axi_aximm1_BUSER
+        s_axi_control_AWVALID,
+        s_axi_control_AWREADY,
+        s_axi_control_AWADDR,
+        s_axi_control_WVALID,
+        s_axi_control_WREADY,
+        s_axi_control_WDATA,
+        s_axi_control_WSTRB,
+        s_axi_control_ARVALID,
+        s_axi_control_ARREADY,
+        s_axi_control_ARADDR,
+        s_axi_control_RVALID,
+        s_axi_control_RREADY,
+        s_axi_control_RDATA,
+        s_axi_control_RRESP,
+        s_axi_control_BVALID,
+        s_axi_control_BREADY,
+        s_axi_control_BRESP,
+        interrupt
 );
 
+parameter    ap_ST_fsm_state1 = 76'd1;
+parameter    ap_ST_fsm_state2 = 76'd2;
+parameter    ap_ST_fsm_state3 = 76'd4;
+parameter    ap_ST_fsm_state4 = 76'd8;
+parameter    ap_ST_fsm_state5 = 76'd16;
+parameter    ap_ST_fsm_state6 = 76'd32;
+parameter    ap_ST_fsm_state7 = 76'd64;
+parameter    ap_ST_fsm_state8 = 76'd128;
+parameter    ap_ST_fsm_state9 = 76'd256;
+parameter    ap_ST_fsm_state10 = 76'd512;
+parameter    ap_ST_fsm_state11 = 76'd1024;
+parameter    ap_ST_fsm_state12 = 76'd2048;
+parameter    ap_ST_fsm_state13 = 76'd4096;
+parameter    ap_ST_fsm_state14 = 76'd8192;
+parameter    ap_ST_fsm_state15 = 76'd16384;
+parameter    ap_ST_fsm_state16 = 76'd32768;
+parameter    ap_ST_fsm_state17 = 76'd65536;
+parameter    ap_ST_fsm_state18 = 76'd131072;
+parameter    ap_ST_fsm_state19 = 76'd262144;
+parameter    ap_ST_fsm_state20 = 76'd524288;
+parameter    ap_ST_fsm_state21 = 76'd1048576;
+parameter    ap_ST_fsm_state22 = 76'd2097152;
+parameter    ap_ST_fsm_state23 = 76'd4194304;
+parameter    ap_ST_fsm_state24 = 76'd8388608;
+parameter    ap_ST_fsm_state25 = 76'd16777216;
+parameter    ap_ST_fsm_state26 = 76'd33554432;
+parameter    ap_ST_fsm_state27 = 76'd67108864;
+parameter    ap_ST_fsm_state28 = 76'd134217728;
+parameter    ap_ST_fsm_state29 = 76'd268435456;
+parameter    ap_ST_fsm_state30 = 76'd536870912;
+parameter    ap_ST_fsm_state31 = 76'd1073741824;
+parameter    ap_ST_fsm_state32 = 76'd2147483648;
+parameter    ap_ST_fsm_state33 = 76'd4294967296;
+parameter    ap_ST_fsm_state34 = 76'd8589934592;
+parameter    ap_ST_fsm_state35 = 76'd17179869184;
+parameter    ap_ST_fsm_state36 = 76'd34359738368;
+parameter    ap_ST_fsm_state37 = 76'd68719476736;
+parameter    ap_ST_fsm_state38 = 76'd137438953472;
+parameter    ap_ST_fsm_state39 = 76'd274877906944;
+parameter    ap_ST_fsm_state40 = 76'd549755813888;
+parameter    ap_ST_fsm_state41 = 76'd1099511627776;
+parameter    ap_ST_fsm_state42 = 76'd2199023255552;
+parameter    ap_ST_fsm_state43 = 76'd4398046511104;
+parameter    ap_ST_fsm_state44 = 76'd8796093022208;
+parameter    ap_ST_fsm_state45 = 76'd17592186044416;
+parameter    ap_ST_fsm_state46 = 76'd35184372088832;
+parameter    ap_ST_fsm_state47 = 76'd70368744177664;
+parameter    ap_ST_fsm_state48 = 76'd140737488355328;
+parameter    ap_ST_fsm_state49 = 76'd281474976710656;
+parameter    ap_ST_fsm_state50 = 76'd562949953421312;
+parameter    ap_ST_fsm_state51 = 76'd1125899906842624;
+parameter    ap_ST_fsm_state52 = 76'd2251799813685248;
+parameter    ap_ST_fsm_state53 = 76'd4503599627370496;
+parameter    ap_ST_fsm_state54 = 76'd9007199254740992;
+parameter    ap_ST_fsm_state55 = 76'd18014398509481984;
+parameter    ap_ST_fsm_state56 = 76'd36028797018963968;
+parameter    ap_ST_fsm_state57 = 76'd72057594037927936;
+parameter    ap_ST_fsm_state58 = 76'd144115188075855872;
+parameter    ap_ST_fsm_state59 = 76'd288230376151711744;
+parameter    ap_ST_fsm_state60 = 76'd576460752303423488;
+parameter    ap_ST_fsm_state61 = 76'd1152921504606846976;
+parameter    ap_ST_fsm_state62 = 76'd2305843009213693952;
+parameter    ap_ST_fsm_state63 = 76'd4611686018427387904;
+parameter    ap_ST_fsm_state64 = 76'd9223372036854775808;
+parameter    ap_ST_fsm_state65 = 76'd18446744073709551616;
+parameter    ap_ST_fsm_state66 = 76'd36893488147419103232;
+parameter    ap_ST_fsm_state67 = 76'd73786976294838206464;
+parameter    ap_ST_fsm_state68 = 76'd147573952589676412928;
+parameter    ap_ST_fsm_state69 = 76'd295147905179352825856;
+parameter    ap_ST_fsm_state70 = 76'd590295810358705651712;
+parameter    ap_ST_fsm_state71 = 76'd1180591620717411303424;
+parameter    ap_ST_fsm_state72 = 76'd2361183241434822606848;
+parameter    ap_ST_fsm_state73 = 76'd4722366482869645213696;
+parameter    ap_ST_fsm_pp0_stage0 = 76'd9444732965739290427392;
+parameter    ap_ST_fsm_state76 = 76'd18889465931478580854784;
+parameter    ap_ST_fsm_state77 = 76'd37778931862957161709568;
 parameter    C_S_AXI_CONTROL_DATA_WIDTH = 32;
 parameter    C_S_AXI_CONTROL_ADDR_WIDTH = 6;
 parameter    C_S_AXI_DATA_WIDTH = 32;
-parameter    C_S_AXI_ADDR_WIDTH = 32;
 parameter    C_M_AXI_AXIMM0_ID_WIDTH = 1;
 parameter    C_M_AXI_AXIMM0_ADDR_WIDTH = 64;
-parameter    C_M_AXI_AXIMM0_DATA_WIDTH = 32;
+parameter    C_M_AXI_AXIMM0_DATA_WIDTH = 64;
 parameter    C_M_AXI_AXIMM0_AWUSER_WIDTH = 1;
 parameter    C_M_AXI_AXIMM0_ARUSER_WIDTH = 1;
 parameter    C_M_AXI_AXIMM0_WUSER_WIDTH = 1;
@@ -137,52 +167,15 @@ parameter    C_M_AXI_AXIMM0_BUSER_WIDTH = 1;
 parameter    C_M_AXI_AXIMM0_USER_VALUE = 0;
 parameter    C_M_AXI_AXIMM0_PROT_VALUE = 0;
 parameter    C_M_AXI_AXIMM0_CACHE_VALUE = 3;
-parameter    C_M_AXI_ID_WIDTH = 1;
-parameter    C_M_AXI_ADDR_WIDTH = 64;
 parameter    C_M_AXI_DATA_WIDTH = 32;
-parameter    C_M_AXI_AWUSER_WIDTH = 1;
-parameter    C_M_AXI_ARUSER_WIDTH = 1;
-parameter    C_M_AXI_WUSER_WIDTH = 1;
-parameter    C_M_AXI_RUSER_WIDTH = 1;
-parameter    C_M_AXI_BUSER_WIDTH = 1;
-parameter    C_M_AXI_AXIMM1_ID_WIDTH = 1;
-parameter    C_M_AXI_AXIMM1_ADDR_WIDTH = 64;
-parameter    C_M_AXI_AXIMM1_DATA_WIDTH = 32;
-parameter    C_M_AXI_AXIMM1_AWUSER_WIDTH = 1;
-parameter    C_M_AXI_AXIMM1_ARUSER_WIDTH = 1;
-parameter    C_M_AXI_AXIMM1_WUSER_WIDTH = 1;
-parameter    C_M_AXI_AXIMM1_RUSER_WIDTH = 1;
-parameter    C_M_AXI_AXIMM1_BUSER_WIDTH = 1;
-parameter    C_M_AXI_AXIMM1_USER_VALUE = 0;
-parameter    C_M_AXI_AXIMM1_PROT_VALUE = 0;
-parameter    C_M_AXI_AXIMM1_CACHE_VALUE = 3;
 
 parameter C_S_AXI_CONTROL_WSTRB_WIDTH = (32 / 8);
 parameter C_S_AXI_WSTRB_WIDTH = (32 / 8);
-parameter C_M_AXI_AXIMM0_WSTRB_WIDTH = (32 / 8);
+parameter C_M_AXI_AXIMM0_WSTRB_WIDTH = (64 / 8);
 parameter C_M_AXI_WSTRB_WIDTH = (32 / 8);
-parameter C_M_AXI_AXIMM1_WSTRB_WIDTH = (32 / 8);
 
-input   s_axi_control_AWVALID;
-output   s_axi_control_AWREADY;
-input  [C_S_AXI_CONTROL_ADDR_WIDTH - 1:0] s_axi_control_AWADDR;
-input   s_axi_control_WVALID;
-output   s_axi_control_WREADY;
-input  [C_S_AXI_CONTROL_DATA_WIDTH - 1:0] s_axi_control_WDATA;
-input  [C_S_AXI_CONTROL_WSTRB_WIDTH - 1:0] s_axi_control_WSTRB;
-input   s_axi_control_ARVALID;
-output   s_axi_control_ARREADY;
-input  [C_S_AXI_CONTROL_ADDR_WIDTH - 1:0] s_axi_control_ARADDR;
-output   s_axi_control_RVALID;
-input   s_axi_control_RREADY;
-output  [C_S_AXI_CONTROL_DATA_WIDTH - 1:0] s_axi_control_RDATA;
-output  [1:0] s_axi_control_RRESP;
-output   s_axi_control_BVALID;
-input   s_axi_control_BREADY;
-output  [1:0] s_axi_control_BRESP;
 input   ap_clk;
 input   ap_rst_n;
-output   interrupt;
 output   m_axi_aximm0_AWVALID;
 input   m_axi_aximm0_AWREADY;
 output  [C_M_AXI_AXIMM0_ADDR_WIDTH - 1:0] m_axi_aximm0_AWADDR;
@@ -228,320 +221,164 @@ output   m_axi_aximm0_BREADY;
 input  [1:0] m_axi_aximm0_BRESP;
 input  [C_M_AXI_AXIMM0_ID_WIDTH - 1:0] m_axi_aximm0_BID;
 input  [C_M_AXI_AXIMM0_BUSER_WIDTH - 1:0] m_axi_aximm0_BUSER;
-output   m_axi_aximm1_AWVALID;
-input   m_axi_aximm1_AWREADY;
-output  [C_M_AXI_AXIMM1_ADDR_WIDTH - 1:0] m_axi_aximm1_AWADDR;
-output  [C_M_AXI_AXIMM1_ID_WIDTH - 1:0] m_axi_aximm1_AWID;
-output  [7:0] m_axi_aximm1_AWLEN;
-output  [2:0] m_axi_aximm1_AWSIZE;
-output  [1:0] m_axi_aximm1_AWBURST;
-output  [1:0] m_axi_aximm1_AWLOCK;
-output  [3:0] m_axi_aximm1_AWCACHE;
-output  [2:0] m_axi_aximm1_AWPROT;
-output  [3:0] m_axi_aximm1_AWQOS;
-output  [3:0] m_axi_aximm1_AWREGION;
-output  [C_M_AXI_AXIMM1_AWUSER_WIDTH - 1:0] m_axi_aximm1_AWUSER;
-output   m_axi_aximm1_WVALID;
-input   m_axi_aximm1_WREADY;
-output  [C_M_AXI_AXIMM1_DATA_WIDTH - 1:0] m_axi_aximm1_WDATA;
-output  [C_M_AXI_AXIMM1_WSTRB_WIDTH - 1:0] m_axi_aximm1_WSTRB;
-output   m_axi_aximm1_WLAST;
-output  [C_M_AXI_AXIMM1_ID_WIDTH - 1:0] m_axi_aximm1_WID;
-output  [C_M_AXI_AXIMM1_WUSER_WIDTH - 1:0] m_axi_aximm1_WUSER;
-output   m_axi_aximm1_ARVALID;
-input   m_axi_aximm1_ARREADY;
-output  [C_M_AXI_AXIMM1_ADDR_WIDTH - 1:0] m_axi_aximm1_ARADDR;
-output  [C_M_AXI_AXIMM1_ID_WIDTH - 1:0] m_axi_aximm1_ARID;
-output  [7:0] m_axi_aximm1_ARLEN;
-output  [2:0] m_axi_aximm1_ARSIZE;
-output  [1:0] m_axi_aximm1_ARBURST;
-output  [1:0] m_axi_aximm1_ARLOCK;
-output  [3:0] m_axi_aximm1_ARCACHE;
-output  [2:0] m_axi_aximm1_ARPROT;
-output  [3:0] m_axi_aximm1_ARQOS;
-output  [3:0] m_axi_aximm1_ARREGION;
-output  [C_M_AXI_AXIMM1_ARUSER_WIDTH - 1:0] m_axi_aximm1_ARUSER;
-input   m_axi_aximm1_RVALID;
-output   m_axi_aximm1_RREADY;
-input  [C_M_AXI_AXIMM1_DATA_WIDTH - 1:0] m_axi_aximm1_RDATA;
-input   m_axi_aximm1_RLAST;
-input  [C_M_AXI_AXIMM1_ID_WIDTH - 1:0] m_axi_aximm1_RID;
-input  [C_M_AXI_AXIMM1_RUSER_WIDTH - 1:0] m_axi_aximm1_RUSER;
-input  [1:0] m_axi_aximm1_RRESP;
-input   m_axi_aximm1_BVALID;
-output   m_axi_aximm1_BREADY;
-input  [1:0] m_axi_aximm1_BRESP;
-input  [C_M_AXI_AXIMM1_ID_WIDTH - 1:0] m_axi_aximm1_BID;
-input  [C_M_AXI_AXIMM1_BUSER_WIDTH - 1:0] m_axi_aximm1_BUSER;
+input   s_axi_control_AWVALID;
+output   s_axi_control_AWREADY;
+input  [C_S_AXI_CONTROL_ADDR_WIDTH - 1:0] s_axi_control_AWADDR;
+input   s_axi_control_WVALID;
+output   s_axi_control_WREADY;
+input  [C_S_AXI_CONTROL_DATA_WIDTH - 1:0] s_axi_control_WDATA;
+input  [C_S_AXI_CONTROL_WSTRB_WIDTH - 1:0] s_axi_control_WSTRB;
+input   s_axi_control_ARVALID;
+output   s_axi_control_ARREADY;
+input  [C_S_AXI_CONTROL_ADDR_WIDTH - 1:0] s_axi_control_ARADDR;
+output   s_axi_control_RVALID;
+input   s_axi_control_RREADY;
+output  [C_S_AXI_CONTROL_DATA_WIDTH - 1:0] s_axi_control_RDATA;
+output  [1:0] s_axi_control_RRESP;
+output   s_axi_control_BVALID;
+input   s_axi_control_BREADY;
+output  [1:0] s_axi_control_BRESP;
+output   interrupt;
 
 (* shreg_extract = "no" *) reg    ap_rst_reg_2;
 (* shreg_extract = "no" *) reg    ap_rst_reg_1;
 (* shreg_extract = "no" *) reg    ap_rst_n_inv;
+wire    ap_start;
+reg    ap_done;
+wire    ap_continue;
+reg    ap_done_reg;
+reg    ap_idle;
+(* fsm_encoding = "none" *) reg   [75:0] ap_CS_fsm;
+wire    ap_CS_fsm_state1;
+reg    ap_ready;
 wire   [63:0] input_r;
 wire   [63:0] input_length;
 wire   [63:0] send_data;
 wire   [63:0] output_length;
-wire    ap_start;
-wire    ap_ready;
-wire    ap_done;
-wire    ap_continue;
-wire    ap_idle;
+reg   [31:0] input_offset_constprop;
+reg   [31:0] output_offset_constprop;
+reg    aximm0_blk_n_AR;
+wire    ap_CS_fsm_state2;
+reg    aximm0_blk_n_R;
+wire    ap_CS_fsm_state72;
+reg    aximm0_AWVALID;
 wire    aximm0_AWREADY;
+reg    aximm0_WVALID;
 wire    aximm0_WREADY;
+reg    aximm0_ARVALID;
 wire    aximm0_ARREADY;
+reg   [63:0] aximm0_ARADDR;
+reg   [0:0] aximm0_ARID;
+reg   [31:0] aximm0_ARLEN;
+reg   [2:0] aximm0_ARSIZE;
+reg   [1:0] aximm0_ARBURST;
+reg   [1:0] aximm0_ARLOCK;
+reg   [3:0] aximm0_ARCACHE;
+reg   [2:0] aximm0_ARPROT;
+reg   [3:0] aximm0_ARQOS;
+reg   [3:0] aximm0_ARREGION;
+reg   [0:0] aximm0_ARUSER;
 wire    aximm0_RVALID;
-wire   [15:0] aximm0_RDATA;
+reg    aximm0_RREADY;
+wire   [63:0] aximm0_RDATA;
 wire    aximm0_RLAST;
 wire   [0:0] aximm0_RID;
 wire   [0:0] aximm0_RUSER;
 wire   [1:0] aximm0_RRESP;
 wire    aximm0_BVALID;
+reg    aximm0_BREADY;
 wire   [1:0] aximm0_BRESP;
 wire   [0:0] aximm0_BID;
 wire   [0:0] aximm0_BUSER;
-wire    aximm1_AWREADY;
-wire    aximm1_WREADY;
-wire    aximm1_ARREADY;
-wire    aximm1_RVALID;
-wire   [15:0] aximm1_RDATA;
-wire    aximm1_RLAST;
-wire   [0:0] aximm1_RID;
-wire   [0:0] aximm1_RUSER;
-wire   [1:0] aximm1_RRESP;
-wire    aximm1_BVALID;
-wire   [1:0] aximm1_BRESP;
-wire   [0:0] aximm1_BID;
-wire   [0:0] aximm1_BUSER;
-wire   [15:0] store_array_i_q0;
-wire   [15:0] store_array_i_q1;
-wire   [15:0] input_length_temp_i_q0;
-wire   [15:0] input_length_temp_t_q0;
-wire    krnl_LZW_entry4_U0_ap_start;
-wire    krnl_LZW_entry4_U0_ap_done;
-wire    krnl_LZW_entry4_U0_ap_continue;
-wire    krnl_LZW_entry4_U0_ap_idle;
-wire    krnl_LZW_entry4_U0_ap_ready;
-wire    krnl_LZW_entry4_U0_start_out;
-wire    krnl_LZW_entry4_U0_start_write;
-wire   [63:0] krnl_LZW_entry4_U0_input_out_din;
-wire    krnl_LZW_entry4_U0_input_out_write;
-wire   [63:0] krnl_LZW_entry4_U0_input_length_out_din;
-wire    krnl_LZW_entry4_U0_input_length_out_write;
-wire   [63:0] krnl_LZW_entry4_U0_send_data_out_din;
-wire    krnl_LZW_entry4_U0_send_data_out_write;
-wire   [63:0] krnl_LZW_entry4_U0_send_data_out1_din;
-wire    krnl_LZW_entry4_U0_send_data_out1_write;
-wire   [63:0] krnl_LZW_entry4_U0_output_length_out_din;
-wire    krnl_LZW_entry4_U0_output_length_out_write;
-wire    Loop_VITIS_LOOP_318_1_proc_U0_ap_start;
-wire    Loop_VITIS_LOOP_318_1_proc_U0_ap_done;
-wire    Loop_VITIS_LOOP_318_1_proc_U0_ap_continue;
-wire    Loop_VITIS_LOOP_318_1_proc_U0_ap_idle;
-wire    Loop_VITIS_LOOP_318_1_proc_U0_ap_ready;
-wire   [1:0] Loop_VITIS_LOOP_318_1_proc_U0_input_length_temp_address0;
-wire    Loop_VITIS_LOOP_318_1_proc_U0_input_length_temp_ce0;
-wire    Loop_VITIS_LOOP_318_1_proc_U0_input_length_temp_we0;
-wire   [15:0] Loop_VITIS_LOOP_318_1_proc_U0_input_length_temp_d0;
-wire    Loop_VITIS_LOOP_318_1_proc_U0_input_length_read;
-wire    Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_AWVALID;
-wire   [63:0] Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_AWADDR;
-wire   [0:0] Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_AWID;
-wire   [31:0] Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_AWLEN;
-wire   [2:0] Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_AWSIZE;
-wire   [1:0] Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_AWBURST;
-wire   [1:0] Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_AWLOCK;
-wire   [3:0] Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_AWCACHE;
-wire   [2:0] Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_AWPROT;
-wire   [3:0] Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_AWQOS;
-wire   [3:0] Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_AWREGION;
-wire   [0:0] Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_AWUSER;
-wire    Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_WVALID;
-wire   [15:0] Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_WDATA;
-wire   [1:0] Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_WSTRB;
-wire    Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_WLAST;
-wire   [0:0] Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_WID;
-wire   [0:0] Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_WUSER;
-wire    Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARVALID;
-wire   [63:0] Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARADDR;
-wire   [0:0] Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARID;
-wire   [31:0] Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARLEN;
-wire   [2:0] Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARSIZE;
-wire   [1:0] Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARBURST;
-wire   [1:0] Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARLOCK;
-wire   [3:0] Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARCACHE;
-wire   [2:0] Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARPROT;
-wire   [3:0] Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARQOS;
-wire   [3:0] Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARREGION;
-wire   [0:0] Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARUSER;
-wire    Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_RREADY;
-wire    Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_BREADY;
-wire   [7:0] Loop_VITIS_LOOP_318_1_proc_U0_ap_return;
-wire    ap_channel_done_num_chunks_loc_channel;
-wire    num_chunks_loc_channel_full_n;
-reg    ap_sync_reg_channel_write_num_chunks_loc_channel;
-wire    ap_sync_channel_write_num_chunks_loc_channel;
-wire    ap_channel_done_input_length_temp;
-wire    Loop_VITIS_LOOP_318_1_proc_U0_input_length_temp_full_n;
-reg    ap_sync_reg_channel_write_input_length_temp;
-wire    ap_sync_channel_write_input_length_temp;
-wire    Block_krnl_LZW_exit1_proc_U0_ap_start;
-wire    Block_krnl_LZW_exit1_proc_U0_ap_done;
-wire    Block_krnl_LZW_exit1_proc_U0_ap_continue;
-wire    Block_krnl_LZW_exit1_proc_U0_ap_idle;
-wire    Block_krnl_LZW_exit1_proc_U0_ap_ready;
-wire    Block_krnl_LZW_exit1_proc_U0_send_data_read;
-wire   [0:0] Block_krnl_LZW_exit1_proc_U0_ap_return_0;
-wire   [63:0] Block_krnl_LZW_exit1_proc_U0_ap_return_1;
-wire    ap_channel_done_p_loc_channel;
-wire    p_loc_channel_full_n;
-reg    ap_sync_reg_channel_write_p_loc_channel;
-wire    ap_sync_channel_write_p_loc_channel;
-wire    ap_channel_done_send_data_cast_loc_channel;
-wire    send_data_cast_loc_channel_full_n;
-reg    ap_sync_reg_channel_write_send_data_cast_loc_channel;
-wire    ap_sync_channel_write_send_data_cast_loc_channel;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_ap_start;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_ap_done;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_ap_continue;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_ap_idle;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_ap_ready;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWVALID;
-wire   [63:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWADDR;
-wire   [0:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWID;
-wire   [31:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWLEN;
-wire   [2:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWSIZE;
-wire   [1:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWBURST;
-wire   [1:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWLOCK;
-wire   [3:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWCACHE;
-wire   [2:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWPROT;
-wire   [3:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWQOS;
-wire   [3:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWREGION;
-wire   [0:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWUSER;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_WVALID;
-wire   [15:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_WDATA;
-wire   [1:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_WSTRB;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_WLAST;
-wire   [0:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_WID;
-wire   [0:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_WUSER;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARVALID;
-wire   [63:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARADDR;
-wire   [0:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARID;
-wire   [31:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARLEN;
-wire   [2:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARSIZE;
-wire   [1:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARBURST;
-wire   [1:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARLOCK;
-wire   [3:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARCACHE;
-wire   [2:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARPROT;
-wire   [3:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARQOS;
-wire   [3:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARREGION;
-wire   [0:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARUSER;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_RREADY;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_BREADY;
-wire   [11:0] Loop_VITIS_LOOP_325_2_proc_U0_store_array_i_address0;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_store_array_i_ce0;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_store_array_i_we0;
-wire   [15:0] Loop_VITIS_LOOP_325_2_proc_U0_store_array_i_d0;
-wire   [11:0] Loop_VITIS_LOOP_325_2_proc_U0_store_array_i_address1;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_store_array_i_ce1;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_store_array_i_we1;
-wire   [15:0] Loop_VITIS_LOOP_325_2_proc_U0_store_array_i_d1;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWVALID;
-wire   [63:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWADDR;
-wire   [0:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWID;
-wire   [31:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWLEN;
-wire   [2:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWSIZE;
-wire   [1:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWBURST;
-wire   [1:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWLOCK;
-wire   [3:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWCACHE;
-wire   [2:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWPROT;
-wire   [3:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWQOS;
-wire   [3:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWREGION;
-wire   [0:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWUSER;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_WVALID;
-wire   [15:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_WDATA;
-wire   [1:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_WSTRB;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_WLAST;
-wire   [0:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_WID;
-wire   [0:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_WUSER;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_ARVALID;
-wire   [63:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_ARADDR;
-wire   [0:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_ARID;
-wire   [31:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_ARLEN;
-wire   [2:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_ARSIZE;
-wire   [1:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_ARBURST;
-wire   [1:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_ARLOCK;
-wire   [3:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_ARCACHE;
-wire   [2:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_ARPROT;
-wire   [3:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_ARQOS;
-wire   [3:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_ARREGION;
-wire   [0:0] Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_ARUSER;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_RREADY;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_BREADY;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_output_length_read;
-wire   [1:0] Loop_VITIS_LOOP_325_2_proc_U0_input_length_temp_address0;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_input_length_temp_ce0;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_input_r_read;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_send_data_read;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_outStream_code_flg_read;
-wire   [7:0] Loop_VITIS_LOOP_325_2_proc_U0_outStream_code_flg_din;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_outStream_code_flg_write;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_outStream_code_read;
-wire   [12:0] Loop_VITIS_LOOP_325_2_proc_U0_outStream_code_din;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_outStream_code_write;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_inStream_in_read;
-wire   [7:0] Loop_VITIS_LOOP_325_2_proc_U0_inStream_in_din;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_inStream_in_write;
-wire    ap_sync_continue;
-wire    input_length_temp_i_full_n;
-wire    input_length_temp_t_empty_n;
-wire    input_c_full_n;
-wire   [63:0] input_c_dout;
-wire    input_c_empty_n;
-wire    input_length_c_full_n;
-wire   [63:0] input_length_c_dout;
-wire    input_length_c_empty_n;
-wire    send_data_c_full_n;
-wire   [63:0] send_data_c_dout;
-wire    send_data_c_empty_n;
-wire    send_data_c115_full_n;
-wire   [63:0] send_data_c115_dout;
-wire    send_data_c115_empty_n;
-wire    output_length_c_full_n;
-wire   [63:0] output_length_c_dout;
-wire    output_length_c_empty_n;
-wire   [7:0] num_chunks_loc_channel_dout;
-wire    num_chunks_loc_channel_empty_n;
-wire   [0:0] send_data_cast_loc_channel_dout;
-wire    send_data_cast_loc_channel_empty_n;
-wire   [63:0] p_loc_channel_dout;
-wire    p_loc_channel_empty_n;
-wire    outStream_code_flg_full_n;
-wire   [7:0] outStream_code_flg_dout;
-wire    outStream_code_flg_empty_n;
-wire    outStream_code_full_n;
-wire   [12:0] outStream_code_dout;
-wire    outStream_code_empty_n;
-wire    inStream_in_full_n;
-wire   [7:0] inStream_in_dout;
-wire    inStream_in_empty_n;
-wire    ap_sync_done;
-wire    ap_sync_ready;
-reg    ap_sync_reg_krnl_LZW_entry4_U0_ap_ready;
-wire    ap_sync_krnl_LZW_entry4_U0_ap_ready;
-reg    ap_sync_reg_Loop_VITIS_LOOP_318_1_proc_U0_ap_ready;
-wire    ap_sync_Loop_VITIS_LOOP_318_1_proc_U0_ap_ready;
-reg    ap_sync_reg_Loop_VITIS_LOOP_325_2_proc_U0_ap_ready;
-wire    ap_sync_Loop_VITIS_LOOP_325_2_proc_U0_ap_ready;
-wire   [0:0] start_for_Block_krnl_LZW_exit1_proc_U0_din;
-wire    start_for_Block_krnl_LZW_exit1_proc_U0_full_n;
-wire   [0:0] start_for_Block_krnl_LZW_exit1_proc_U0_dout;
-wire    start_for_Block_krnl_LZW_exit1_proc_U0_empty_n;
-wire    Loop_VITIS_LOOP_318_1_proc_U0_start_full_n;
-wire    Loop_VITIS_LOOP_318_1_proc_U0_start_write;
-wire    Block_krnl_LZW_exit1_proc_U0_start_full_n;
-wire    Block_krnl_LZW_exit1_proc_U0_start_write;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_start_full_n;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_start_write;
+reg   [2:0] i_reg_163;
+reg   [63:0] shiftreg_i_i_reg_174;
+reg   [63:0] output_length_read_reg_300;
+reg   [63:0] send_data_read_reg_305;
+reg   [63:0] input_read_reg_310;
+reg   [60:0] trunc_ln_reg_315;
+reg   [63:0] aximm0_addr_read_reg_326;
+wire   [2:0] add_ln336_fu_246_p2;
+wire    ap_CS_fsm_pp0_stage0;
+reg    ap_enable_reg_pp0_iter0;
+wire    ap_block_state74_pp0_stage0_iter0;
+wire    inStream_in_length_full_n;
+reg    inStream_in_length_write;
+reg   [0:0] icmp_ln338_reg_350;
+reg    ap_block_state75_pp0_stage0_iter1;
+reg    ap_enable_reg_pp0_iter1;
+reg    ap_block_pp0_stage0_11001;
+wire   [0:0] icmp_ln336_fu_252_p2;
+wire   [15:0] trunc_ln338_fu_258_p1;
+reg   [15:0] trunc_ln338_reg_340;
+wire   [63:0] zext_ln338_fu_272_p1;
+wire   [0:0] icmp_ln338_fu_276_p2;
+reg   [7:0] num_chunks_load_1_reg_354;
+wire    ap_CS_fsm_state76;
+wire    ap_CS_fsm_state73;
+reg    ap_block_pp0_stage0_subdone;
+reg    ap_condition_pp0_exit_iter0_state74;
+wire    grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWVALID;
+wire   [63:0] grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWADDR;
+wire   [0:0] grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWID;
+wire   [31:0] grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWLEN;
+wire   [2:0] grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWSIZE;
+wire   [1:0] grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWBURST;
+wire   [1:0] grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWLOCK;
+wire   [3:0] grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWCACHE;
+wire   [2:0] grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWPROT;
+wire   [3:0] grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWQOS;
+wire   [3:0] grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWREGION;
+wire   [0:0] grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWUSER;
+wire    grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_WVALID;
+wire   [63:0] grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_WDATA;
+wire   [7:0] grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_WSTRB;
+wire    grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_WLAST;
+wire   [0:0] grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_WID;
+wire   [0:0] grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_WUSER;
+wire    grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARVALID;
+wire   [63:0] grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARADDR;
+wire   [0:0] grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARID;
+wire   [31:0] grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARLEN;
+wire   [2:0] grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARSIZE;
+wire   [1:0] grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARBURST;
+wire   [1:0] grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARLOCK;
+wire   [3:0] grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARCACHE;
+wire   [2:0] grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARPROT;
+wire   [3:0] grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARQOS;
+wire   [3:0] grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARREGION;
+wire   [0:0] grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARUSER;
+wire    grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_RREADY;
+wire    grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_BREADY;
+wire    grp_dataflow_parent_loop_proc_fu_183_inStream_in_length_read;
+wire   [31:0] grp_dataflow_parent_loop_proc_fu_183_input_offset_constprop_o;
+wire   [31:0] grp_dataflow_parent_loop_proc_fu_183_output_offset_constprop_o;
+wire    grp_dataflow_parent_loop_proc_fu_183_input_offset_constprop_o_ap_vld;
+wire    grp_dataflow_parent_loop_proc_fu_183_output_offset_constprop_o_ap_vld;
+wire    grp_dataflow_parent_loop_proc_fu_183_ap_start;
+wire    grp_dataflow_parent_loop_proc_fu_183_ap_done;
+wire    grp_dataflow_parent_loop_proc_fu_183_ap_ready;
+wire    grp_dataflow_parent_loop_proc_fu_183_ap_idle;
+reg    grp_dataflow_parent_loop_proc_fu_183_ap_continue;
+reg    grp_dataflow_parent_loop_proc_fu_183_ap_start_reg;
+wire    ap_CS_fsm_state77;
+wire    ap_sync_grp_dataflow_parent_loop_proc_fu_183_ap_ready;
+wire    ap_sync_grp_dataflow_parent_loop_proc_fu_183_ap_done;
+reg    ap_block_state77_on_subcall_done;
+reg    ap_sync_reg_grp_dataflow_parent_loop_proc_fu_183_ap_ready;
+reg    ap_sync_reg_grp_dataflow_parent_loop_proc_fu_183_ap_done;
+wire   [15:0] inStream_in_length_dout;
+wire    inStream_in_length_empty_n;
+reg    inStream_in_length_read;
+wire  signed [63:0] sext_ln336_fu_236_p1;
+reg    ap_block_state1;
+reg   [7:0] num_chunks_fu_116;
+wire   [7:0] num_chunks_1_fu_282_p2;
+wire    ap_block_pp0_stage0;
+reg    ap_block_pp0_stage0_01001;
+wire   [47:0] lshr_ln_fu_262_p4;
+reg   [75:0] ap_NS_fsm;
+reg    ap_idle_pp0;
+wire    ap_enable_pp0;
 wire    ap_ce_reg;
 
 // power-on initialization
@@ -549,13 +386,15 @@ initial begin
 #0 ap_rst_reg_2 = 1'b1;
 #0 ap_rst_reg_1 = 1'b1;
 #0 ap_rst_n_inv = 1'b1;
-#0 ap_sync_reg_channel_write_num_chunks_loc_channel = 1'b0;
-#0 ap_sync_reg_channel_write_input_length_temp = 1'b0;
-#0 ap_sync_reg_channel_write_p_loc_channel = 1'b0;
-#0 ap_sync_reg_channel_write_send_data_cast_loc_channel = 1'b0;
-#0 ap_sync_reg_krnl_LZW_entry4_U0_ap_ready = 1'b0;
-#0 ap_sync_reg_Loop_VITIS_LOOP_318_1_proc_U0_ap_ready = 1'b0;
-#0 ap_sync_reg_Loop_VITIS_LOOP_325_2_proc_U0_ap_ready = 1'b0;
+#0 ap_done_reg = 1'b0;
+#0 ap_CS_fsm = 76'd1;
+#0 input_offset_constprop = 32'd0;
+#0 output_offset_constprop = 32'd0;
+#0 ap_enable_reg_pp0_iter0 = 1'b0;
+#0 ap_enable_reg_pp0_iter1 = 1'b0;
+#0 grp_dataflow_parent_loop_proc_fu_183_ap_start_reg = 1'b0;
+#0 ap_sync_reg_grp_dataflow_parent_loop_proc_fu_183_ap_ready = 1'b0;
+#0 ap_sync_reg_grp_dataflow_parent_loop_proc_fu_183_ap_done = 1'b0;
 end
 
 krnl_LZW_control_s_axi #(
@@ -596,7 +435,7 @@ control_s_axi_U(
 
 krnl_LZW_aximm0_m_axi #(
     .CONSERVATIVE( 0 ),
-    .USER_DW( 16 ),
+    .USER_DW( 64 ),
     .USER_AW( 64 ),
     .USER_MAXREQS( 69 ),
     .NUM_READ_OUTSTANDING( 16 ),
@@ -663,702 +502,217 @@ aximm0_m_axi_U(
     .ACLK(ap_clk),
     .ARESET(ap_rst_n_inv),
     .ACLK_EN(1'b1),
-    .I_ARVALID(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARVALID),
+    .I_ARVALID(aximm0_ARVALID),
     .I_ARREADY(aximm0_ARREADY),
-    .I_ARADDR(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARADDR),
-    .I_ARID(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARID),
-    .I_ARLEN(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARLEN),
-    .I_ARSIZE(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARSIZE),
-    .I_ARLOCK(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARLOCK),
-    .I_ARCACHE(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARCACHE),
-    .I_ARQOS(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARQOS),
-    .I_ARPROT(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARPROT),
-    .I_ARUSER(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARUSER),
-    .I_ARBURST(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARBURST),
-    .I_ARREGION(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARREGION),
+    .I_ARADDR(aximm0_ARADDR),
+    .I_ARID(aximm0_ARID),
+    .I_ARLEN(aximm0_ARLEN),
+    .I_ARSIZE(aximm0_ARSIZE),
+    .I_ARLOCK(aximm0_ARLOCK),
+    .I_ARCACHE(aximm0_ARCACHE),
+    .I_ARQOS(aximm0_ARQOS),
+    .I_ARPROT(aximm0_ARPROT),
+    .I_ARUSER(aximm0_ARUSER),
+    .I_ARBURST(aximm0_ARBURST),
+    .I_ARREGION(aximm0_ARREGION),
     .I_RVALID(aximm0_RVALID),
-    .I_RREADY(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_RREADY),
+    .I_RREADY(aximm0_RREADY),
     .I_RDATA(aximm0_RDATA),
     .I_RID(aximm0_RID),
     .I_RUSER(aximm0_RUSER),
     .I_RRESP(aximm0_RRESP),
     .I_RLAST(aximm0_RLAST),
-    .I_AWVALID(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWVALID),
+    .I_AWVALID(aximm0_AWVALID),
     .I_AWREADY(aximm0_AWREADY),
-    .I_AWADDR(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWADDR),
-    .I_AWID(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWID),
-    .I_AWLEN(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWLEN),
-    .I_AWSIZE(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWSIZE),
-    .I_AWLOCK(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWLOCK),
-    .I_AWCACHE(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWCACHE),
-    .I_AWQOS(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWQOS),
-    .I_AWPROT(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWPROT),
-    .I_AWUSER(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWUSER),
-    .I_AWBURST(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWBURST),
-    .I_AWREGION(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWREGION),
-    .I_WVALID(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_WVALID),
+    .I_AWADDR(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWADDR),
+    .I_AWID(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWID),
+    .I_AWLEN(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWLEN),
+    .I_AWSIZE(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWSIZE),
+    .I_AWLOCK(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWLOCK),
+    .I_AWCACHE(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWCACHE),
+    .I_AWQOS(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWQOS),
+    .I_AWPROT(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWPROT),
+    .I_AWUSER(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWUSER),
+    .I_AWBURST(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWBURST),
+    .I_AWREGION(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWREGION),
+    .I_WVALID(aximm0_WVALID),
     .I_WREADY(aximm0_WREADY),
-    .I_WDATA(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_WDATA),
-    .I_WID(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_WID),
-    .I_WUSER(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_WUSER),
-    .I_WLAST(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_WLAST),
-    .I_WSTRB(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_WSTRB),
+    .I_WDATA(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_WDATA),
+    .I_WID(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_WID),
+    .I_WUSER(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_WUSER),
+    .I_WLAST(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_WLAST),
+    .I_WSTRB(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_WSTRB),
     .I_BVALID(aximm0_BVALID),
-    .I_BREADY(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_BREADY),
+    .I_BREADY(aximm0_BREADY),
     .I_BRESP(aximm0_BRESP),
     .I_BID(aximm0_BID),
     .I_BUSER(aximm0_BUSER)
 );
 
-krnl_LZW_aximm1_m_axi #(
-    .CONSERVATIVE( 0 ),
-    .USER_DW( 16 ),
-    .USER_AW( 64 ),
-    .USER_MAXREQS( 69 ),
-    .NUM_READ_OUTSTANDING( 16 ),
-    .NUM_WRITE_OUTSTANDING( 16 ),
-    .MAX_READ_BURST_LENGTH( 16 ),
-    .MAX_WRITE_BURST_LENGTH( 16 ),
-    .C_M_AXI_ID_WIDTH( C_M_AXI_AXIMM1_ID_WIDTH ),
-    .C_M_AXI_ADDR_WIDTH( C_M_AXI_AXIMM1_ADDR_WIDTH ),
-    .C_M_AXI_DATA_WIDTH( C_M_AXI_AXIMM1_DATA_WIDTH ),
-    .C_M_AXI_AWUSER_WIDTH( C_M_AXI_AXIMM1_AWUSER_WIDTH ),
-    .C_M_AXI_ARUSER_WIDTH( C_M_AXI_AXIMM1_ARUSER_WIDTH ),
-    .C_M_AXI_WUSER_WIDTH( C_M_AXI_AXIMM1_WUSER_WIDTH ),
-    .C_M_AXI_RUSER_WIDTH( C_M_AXI_AXIMM1_RUSER_WIDTH ),
-    .C_M_AXI_BUSER_WIDTH( C_M_AXI_AXIMM1_BUSER_WIDTH ),
-    .C_USER_VALUE( C_M_AXI_AXIMM1_USER_VALUE ),
-    .C_PROT_VALUE( C_M_AXI_AXIMM1_PROT_VALUE ),
-    .C_CACHE_VALUE( C_M_AXI_AXIMM1_CACHE_VALUE ))
-aximm1_m_axi_U(
-    .AWVALID(m_axi_aximm1_AWVALID),
-    .AWREADY(m_axi_aximm1_AWREADY),
-    .AWADDR(m_axi_aximm1_AWADDR),
-    .AWID(m_axi_aximm1_AWID),
-    .AWLEN(m_axi_aximm1_AWLEN),
-    .AWSIZE(m_axi_aximm1_AWSIZE),
-    .AWBURST(m_axi_aximm1_AWBURST),
-    .AWLOCK(m_axi_aximm1_AWLOCK),
-    .AWCACHE(m_axi_aximm1_AWCACHE),
-    .AWPROT(m_axi_aximm1_AWPROT),
-    .AWQOS(m_axi_aximm1_AWQOS),
-    .AWREGION(m_axi_aximm1_AWREGION),
-    .AWUSER(m_axi_aximm1_AWUSER),
-    .WVALID(m_axi_aximm1_WVALID),
-    .WREADY(m_axi_aximm1_WREADY),
-    .WDATA(m_axi_aximm1_WDATA),
-    .WSTRB(m_axi_aximm1_WSTRB),
-    .WLAST(m_axi_aximm1_WLAST),
-    .WID(m_axi_aximm1_WID),
-    .WUSER(m_axi_aximm1_WUSER),
-    .ARVALID(m_axi_aximm1_ARVALID),
-    .ARREADY(m_axi_aximm1_ARREADY),
-    .ARADDR(m_axi_aximm1_ARADDR),
-    .ARID(m_axi_aximm1_ARID),
-    .ARLEN(m_axi_aximm1_ARLEN),
-    .ARSIZE(m_axi_aximm1_ARSIZE),
-    .ARBURST(m_axi_aximm1_ARBURST),
-    .ARLOCK(m_axi_aximm1_ARLOCK),
-    .ARCACHE(m_axi_aximm1_ARCACHE),
-    .ARPROT(m_axi_aximm1_ARPROT),
-    .ARQOS(m_axi_aximm1_ARQOS),
-    .ARREGION(m_axi_aximm1_ARREGION),
-    .ARUSER(m_axi_aximm1_ARUSER),
-    .RVALID(m_axi_aximm1_RVALID),
-    .RREADY(m_axi_aximm1_RREADY),
-    .RDATA(m_axi_aximm1_RDATA),
-    .RLAST(m_axi_aximm1_RLAST),
-    .RID(m_axi_aximm1_RID),
-    .RUSER(m_axi_aximm1_RUSER),
-    .RRESP(m_axi_aximm1_RRESP),
-    .BVALID(m_axi_aximm1_BVALID),
-    .BREADY(m_axi_aximm1_BREADY),
-    .BRESP(m_axi_aximm1_BRESP),
-    .BID(m_axi_aximm1_BID),
-    .BUSER(m_axi_aximm1_BUSER),
-    .ACLK(ap_clk),
-    .ARESET(ap_rst_n_inv),
-    .ACLK_EN(1'b1),
-    .I_ARVALID(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARVALID),
-    .I_ARREADY(aximm1_ARREADY),
-    .I_ARADDR(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARADDR),
-    .I_ARID(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARID),
-    .I_ARLEN(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARLEN),
-    .I_ARSIZE(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARSIZE),
-    .I_ARLOCK(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARLOCK),
-    .I_ARCACHE(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARCACHE),
-    .I_ARQOS(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARQOS),
-    .I_ARPROT(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARPROT),
-    .I_ARUSER(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARUSER),
-    .I_ARBURST(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARBURST),
-    .I_ARREGION(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARREGION),
-    .I_RVALID(aximm1_RVALID),
-    .I_RREADY(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_RREADY),
-    .I_RDATA(aximm1_RDATA),
-    .I_RID(aximm1_RID),
-    .I_RUSER(aximm1_RUSER),
-    .I_RRESP(aximm1_RRESP),
-    .I_RLAST(aximm1_RLAST),
-    .I_AWVALID(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWVALID),
-    .I_AWREADY(aximm1_AWREADY),
-    .I_AWADDR(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWADDR),
-    .I_AWID(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWID),
-    .I_AWLEN(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWLEN),
-    .I_AWSIZE(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWSIZE),
-    .I_AWLOCK(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWLOCK),
-    .I_AWCACHE(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWCACHE),
-    .I_AWQOS(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWQOS),
-    .I_AWPROT(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWPROT),
-    .I_AWUSER(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWUSER),
-    .I_AWBURST(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWBURST),
-    .I_AWREGION(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWREGION),
-    .I_WVALID(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_WVALID),
-    .I_WREADY(aximm1_WREADY),
-    .I_WDATA(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_WDATA),
-    .I_WID(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_WID),
-    .I_WUSER(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_WUSER),
-    .I_WLAST(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_WLAST),
-    .I_WSTRB(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_WSTRB),
-    .I_BVALID(aximm1_BVALID),
-    .I_BREADY(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_BREADY),
-    .I_BRESP(aximm1_BRESP),
-    .I_BID(aximm1_BID),
-    .I_BUSER(aximm1_BUSER)
-);
-
-krnl_LZW_store_array_i #(
-    .DataWidth( 16 ),
-    .AddressRange( 4096 ),
-    .AddressWidth( 12 ))
-store_array_i_U(
-    .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .address0(Loop_VITIS_LOOP_325_2_proc_U0_store_array_i_address0),
-    .ce0(Loop_VITIS_LOOP_325_2_proc_U0_store_array_i_ce0),
-    .we0(Loop_VITIS_LOOP_325_2_proc_U0_store_array_i_we0),
-    .d0(Loop_VITIS_LOOP_325_2_proc_U0_store_array_i_d0),
-    .q0(store_array_i_q0),
-    .address1(Loop_VITIS_LOOP_325_2_proc_U0_store_array_i_address1),
-    .ce1(Loop_VITIS_LOOP_325_2_proc_U0_store_array_i_ce1),
-    .we1(Loop_VITIS_LOOP_325_2_proc_U0_store_array_i_we1),
-    .d1(Loop_VITIS_LOOP_325_2_proc_U0_store_array_i_d1),
-    .q1(store_array_i_q1)
-);
-
-krnl_LZW_input_length_temp #(
-    .DataWidth( 16 ),
-    .AddressRange( 4 ),
-    .AddressWidth( 2 ))
-input_length_temp_U(
-    .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .i_address0(Loop_VITIS_LOOP_318_1_proc_U0_input_length_temp_address0),
-    .i_ce0(Loop_VITIS_LOOP_318_1_proc_U0_input_length_temp_ce0),
-    .i_we0(Loop_VITIS_LOOP_318_1_proc_U0_input_length_temp_we0),
-    .i_d0(Loop_VITIS_LOOP_318_1_proc_U0_input_length_temp_d0),
-    .i_q0(input_length_temp_i_q0),
-    .t_address0(Loop_VITIS_LOOP_325_2_proc_U0_input_length_temp_address0),
-    .t_ce0(Loop_VITIS_LOOP_325_2_proc_U0_input_length_temp_ce0),
-    .t_we0(1'b0),
-    .t_d0(16'd0),
-    .t_q0(input_length_temp_t_q0),
-    .i_ce(1'b1),
-    .t_ce(1'b1),
-    .i_full_n(input_length_temp_i_full_n),
-    .i_write(ap_channel_done_input_length_temp),
-    .t_empty_n(input_length_temp_t_empty_n),
-    .t_read(Loop_VITIS_LOOP_325_2_proc_U0_ap_ready)
-);
-
-krnl_LZW_krnl_LZW_entry4 krnl_LZW_entry4_U0(
-    .ap_clk(ap_clk),
-    .ap_rst(ap_rst_n_inv),
-    .ap_start(krnl_LZW_entry4_U0_ap_start),
-    .start_full_n(start_for_Block_krnl_LZW_exit1_proc_U0_full_n),
-    .ap_done(krnl_LZW_entry4_U0_ap_done),
-    .ap_continue(krnl_LZW_entry4_U0_ap_continue),
-    .ap_idle(krnl_LZW_entry4_U0_ap_idle),
-    .ap_ready(krnl_LZW_entry4_U0_ap_ready),
-    .start_out(krnl_LZW_entry4_U0_start_out),
-    .start_write(krnl_LZW_entry4_U0_start_write),
-    .input_r(input_r),
-    .input_length(input_length),
-    .send_data(send_data),
-    .output_length(output_length),
-    .input_out_din(krnl_LZW_entry4_U0_input_out_din),
-    .input_out_full_n(input_c_full_n),
-    .input_out_write(krnl_LZW_entry4_U0_input_out_write),
-    .input_length_out_din(krnl_LZW_entry4_U0_input_length_out_din),
-    .input_length_out_full_n(input_length_c_full_n),
-    .input_length_out_write(krnl_LZW_entry4_U0_input_length_out_write),
-    .send_data_out_din(krnl_LZW_entry4_U0_send_data_out_din),
-    .send_data_out_full_n(send_data_c_full_n),
-    .send_data_out_write(krnl_LZW_entry4_U0_send_data_out_write),
-    .send_data_out1_din(krnl_LZW_entry4_U0_send_data_out1_din),
-    .send_data_out1_full_n(send_data_c115_full_n),
-    .send_data_out1_write(krnl_LZW_entry4_U0_send_data_out1_write),
-    .output_length_out_din(krnl_LZW_entry4_U0_output_length_out_din),
-    .output_length_out_full_n(output_length_c_full_n),
-    .output_length_out_write(krnl_LZW_entry4_U0_output_length_out_write)
-);
-
-krnl_LZW_Loop_VITIS_LOOP_318_1_proc Loop_VITIS_LOOP_318_1_proc_U0(
-    .ap_clk(ap_clk),
-    .ap_rst(ap_rst_n_inv),
-    .ap_start(Loop_VITIS_LOOP_318_1_proc_U0_ap_start),
-    .ap_done(Loop_VITIS_LOOP_318_1_proc_U0_ap_done),
-    .ap_continue(Loop_VITIS_LOOP_318_1_proc_U0_ap_continue),
-    .ap_idle(Loop_VITIS_LOOP_318_1_proc_U0_ap_idle),
-    .ap_ready(Loop_VITIS_LOOP_318_1_proc_U0_ap_ready),
-    .input_length_temp_address0(Loop_VITIS_LOOP_318_1_proc_U0_input_length_temp_address0),
-    .input_length_temp_ce0(Loop_VITIS_LOOP_318_1_proc_U0_input_length_temp_ce0),
-    .input_length_temp_we0(Loop_VITIS_LOOP_318_1_proc_U0_input_length_temp_we0),
-    .input_length_temp_d0(Loop_VITIS_LOOP_318_1_proc_U0_input_length_temp_d0),
-    .input_length_dout(input_length_c_dout),
-    .input_length_empty_n(input_length_c_empty_n),
-    .input_length_read(Loop_VITIS_LOOP_318_1_proc_U0_input_length_read),
-    .m_axi_aximm1_AWVALID(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_AWVALID),
-    .m_axi_aximm1_AWREADY(1'b0),
-    .m_axi_aximm1_AWADDR(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_AWADDR),
-    .m_axi_aximm1_AWID(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_AWID),
-    .m_axi_aximm1_AWLEN(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_AWLEN),
-    .m_axi_aximm1_AWSIZE(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_AWSIZE),
-    .m_axi_aximm1_AWBURST(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_AWBURST),
-    .m_axi_aximm1_AWLOCK(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_AWLOCK),
-    .m_axi_aximm1_AWCACHE(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_AWCACHE),
-    .m_axi_aximm1_AWPROT(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_AWPROT),
-    .m_axi_aximm1_AWQOS(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_AWQOS),
-    .m_axi_aximm1_AWREGION(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_AWREGION),
-    .m_axi_aximm1_AWUSER(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_AWUSER),
-    .m_axi_aximm1_WVALID(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_WVALID),
-    .m_axi_aximm1_WREADY(1'b0),
-    .m_axi_aximm1_WDATA(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_WDATA),
-    .m_axi_aximm1_WSTRB(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_WSTRB),
-    .m_axi_aximm1_WLAST(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_WLAST),
-    .m_axi_aximm1_WID(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_WID),
-    .m_axi_aximm1_WUSER(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_WUSER),
-    .m_axi_aximm1_ARVALID(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARVALID),
-    .m_axi_aximm1_ARREADY(aximm1_ARREADY),
-    .m_axi_aximm1_ARADDR(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARADDR),
-    .m_axi_aximm1_ARID(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARID),
-    .m_axi_aximm1_ARLEN(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARLEN),
-    .m_axi_aximm1_ARSIZE(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARSIZE),
-    .m_axi_aximm1_ARBURST(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARBURST),
-    .m_axi_aximm1_ARLOCK(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARLOCK),
-    .m_axi_aximm1_ARCACHE(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARCACHE),
-    .m_axi_aximm1_ARPROT(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARPROT),
-    .m_axi_aximm1_ARQOS(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARQOS),
-    .m_axi_aximm1_ARREGION(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARREGION),
-    .m_axi_aximm1_ARUSER(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_ARUSER),
-    .m_axi_aximm1_RVALID(aximm1_RVALID),
-    .m_axi_aximm1_RREADY(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_RREADY),
-    .m_axi_aximm1_RDATA(aximm1_RDATA),
-    .m_axi_aximm1_RLAST(aximm1_RLAST),
-    .m_axi_aximm1_RID(aximm1_RID),
-    .m_axi_aximm1_RUSER(aximm1_RUSER),
-    .m_axi_aximm1_RRESP(aximm1_RRESP),
-    .m_axi_aximm1_BVALID(1'b0),
-    .m_axi_aximm1_BREADY(Loop_VITIS_LOOP_318_1_proc_U0_m_axi_aximm1_BREADY),
-    .m_axi_aximm1_BRESP(2'd0),
-    .m_axi_aximm1_BID(1'd0),
-    .m_axi_aximm1_BUSER(1'd0),
-    .ap_return(Loop_VITIS_LOOP_318_1_proc_U0_ap_return)
-);
-
-krnl_LZW_Block_krnl_LZW_exit1_proc Block_krnl_LZW_exit1_proc_U0(
-    .ap_clk(ap_clk),
-    .ap_rst(ap_rst_n_inv),
-    .ap_start(Block_krnl_LZW_exit1_proc_U0_ap_start),
-    .ap_done(Block_krnl_LZW_exit1_proc_U0_ap_done),
-    .ap_continue(Block_krnl_LZW_exit1_proc_U0_ap_continue),
-    .ap_idle(Block_krnl_LZW_exit1_proc_U0_ap_idle),
-    .ap_ready(Block_krnl_LZW_exit1_proc_U0_ap_ready),
-    .send_data_dout(send_data_c_dout),
-    .send_data_empty_n(send_data_c_empty_n),
-    .send_data_read(Block_krnl_LZW_exit1_proc_U0_send_data_read),
-    .ap_return_0(Block_krnl_LZW_exit1_proc_U0_ap_return_0),
-    .ap_return_1(Block_krnl_LZW_exit1_proc_U0_ap_return_1)
-);
-
-krnl_LZW_Loop_VITIS_LOOP_325_2_proc Loop_VITIS_LOOP_325_2_proc_U0(
-    .ap_clk(ap_clk),
-    .ap_rst(ap_rst_n_inv),
-    .ap_start(Loop_VITIS_LOOP_325_2_proc_U0_ap_start),
-    .ap_done(Loop_VITIS_LOOP_325_2_proc_U0_ap_done),
-    .ap_continue(Loop_VITIS_LOOP_325_2_proc_U0_ap_continue),
-    .ap_idle(Loop_VITIS_LOOP_325_2_proc_U0_ap_idle),
-    .ap_ready(Loop_VITIS_LOOP_325_2_proc_U0_ap_ready),
-    .p_read(num_chunks_loc_channel_dout),
-    .m_axi_aximm0_AWVALID(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWVALID),
+krnl_LZW_dataflow_parent_loop_proc grp_dataflow_parent_loop_proc_fu_183(
+    .num_chunks(num_chunks_load_1_reg_354),
+    .m_axi_aximm0_AWVALID(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWVALID),
     .m_axi_aximm0_AWREADY(aximm0_AWREADY),
-    .m_axi_aximm0_AWADDR(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWADDR),
-    .m_axi_aximm0_AWID(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWID),
-    .m_axi_aximm0_AWLEN(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWLEN),
-    .m_axi_aximm0_AWSIZE(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWSIZE),
-    .m_axi_aximm0_AWBURST(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWBURST),
-    .m_axi_aximm0_AWLOCK(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWLOCK),
-    .m_axi_aximm0_AWCACHE(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWCACHE),
-    .m_axi_aximm0_AWPROT(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWPROT),
-    .m_axi_aximm0_AWQOS(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWQOS),
-    .m_axi_aximm0_AWREGION(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWREGION),
-    .m_axi_aximm0_AWUSER(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_AWUSER),
-    .m_axi_aximm0_WVALID(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_WVALID),
+    .m_axi_aximm0_AWADDR(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWADDR),
+    .m_axi_aximm0_AWID(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWID),
+    .m_axi_aximm0_AWLEN(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWLEN),
+    .m_axi_aximm0_AWSIZE(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWSIZE),
+    .m_axi_aximm0_AWBURST(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWBURST),
+    .m_axi_aximm0_AWLOCK(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWLOCK),
+    .m_axi_aximm0_AWCACHE(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWCACHE),
+    .m_axi_aximm0_AWPROT(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWPROT),
+    .m_axi_aximm0_AWQOS(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWQOS),
+    .m_axi_aximm0_AWREGION(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWREGION),
+    .m_axi_aximm0_AWUSER(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWUSER),
+    .m_axi_aximm0_WVALID(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_WVALID),
     .m_axi_aximm0_WREADY(aximm0_WREADY),
-    .m_axi_aximm0_WDATA(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_WDATA),
-    .m_axi_aximm0_WSTRB(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_WSTRB),
-    .m_axi_aximm0_WLAST(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_WLAST),
-    .m_axi_aximm0_WID(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_WID),
-    .m_axi_aximm0_WUSER(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_WUSER),
-    .m_axi_aximm0_ARVALID(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARVALID),
+    .m_axi_aximm0_WDATA(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_WDATA),
+    .m_axi_aximm0_WSTRB(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_WSTRB),
+    .m_axi_aximm0_WLAST(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_WLAST),
+    .m_axi_aximm0_WID(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_WID),
+    .m_axi_aximm0_WUSER(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_WUSER),
+    .m_axi_aximm0_ARVALID(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARVALID),
     .m_axi_aximm0_ARREADY(aximm0_ARREADY),
-    .m_axi_aximm0_ARADDR(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARADDR),
-    .m_axi_aximm0_ARID(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARID),
-    .m_axi_aximm0_ARLEN(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARLEN),
-    .m_axi_aximm0_ARSIZE(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARSIZE),
-    .m_axi_aximm0_ARBURST(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARBURST),
-    .m_axi_aximm0_ARLOCK(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARLOCK),
-    .m_axi_aximm0_ARCACHE(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARCACHE),
-    .m_axi_aximm0_ARPROT(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARPROT),
-    .m_axi_aximm0_ARQOS(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARQOS),
-    .m_axi_aximm0_ARREGION(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARREGION),
-    .m_axi_aximm0_ARUSER(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_ARUSER),
+    .m_axi_aximm0_ARADDR(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARADDR),
+    .m_axi_aximm0_ARID(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARID),
+    .m_axi_aximm0_ARLEN(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARLEN),
+    .m_axi_aximm0_ARSIZE(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARSIZE),
+    .m_axi_aximm0_ARBURST(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARBURST),
+    .m_axi_aximm0_ARLOCK(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARLOCK),
+    .m_axi_aximm0_ARCACHE(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARCACHE),
+    .m_axi_aximm0_ARPROT(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARPROT),
+    .m_axi_aximm0_ARQOS(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARQOS),
+    .m_axi_aximm0_ARREGION(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARREGION),
+    .m_axi_aximm0_ARUSER(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARUSER),
     .m_axi_aximm0_RVALID(aximm0_RVALID),
-    .m_axi_aximm0_RREADY(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_RREADY),
+    .m_axi_aximm0_RREADY(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_RREADY),
     .m_axi_aximm0_RDATA(aximm0_RDATA),
     .m_axi_aximm0_RLAST(aximm0_RLAST),
     .m_axi_aximm0_RID(aximm0_RID),
     .m_axi_aximm0_RUSER(aximm0_RUSER),
     .m_axi_aximm0_RRESP(aximm0_RRESP),
     .m_axi_aximm0_BVALID(aximm0_BVALID),
-    .m_axi_aximm0_BREADY(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm0_BREADY),
+    .m_axi_aximm0_BREADY(grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_BREADY),
     .m_axi_aximm0_BRESP(aximm0_BRESP),
     .m_axi_aximm0_BID(aximm0_BID),
     .m_axi_aximm0_BUSER(aximm0_BUSER),
-    .store_array_i_address0(Loop_VITIS_LOOP_325_2_proc_U0_store_array_i_address0),
-    .store_array_i_ce0(Loop_VITIS_LOOP_325_2_proc_U0_store_array_i_ce0),
-    .store_array_i_we0(Loop_VITIS_LOOP_325_2_proc_U0_store_array_i_we0),
-    .store_array_i_d0(Loop_VITIS_LOOP_325_2_proc_U0_store_array_i_d0),
-    .store_array_i_q0(store_array_i_q0),
-    .store_array_i_address1(Loop_VITIS_LOOP_325_2_proc_U0_store_array_i_address1),
-    .store_array_i_ce1(Loop_VITIS_LOOP_325_2_proc_U0_store_array_i_ce1),
-    .store_array_i_we1(Loop_VITIS_LOOP_325_2_proc_U0_store_array_i_we1),
-    .store_array_i_d1(Loop_VITIS_LOOP_325_2_proc_U0_store_array_i_d1),
-    .store_array_i_q1(store_array_i_q1),
-    .p_read1(p_loc_channel_dout),
-    .p_read2(send_data_cast_loc_channel_dout),
-    .m_axi_aximm1_AWVALID(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWVALID),
-    .m_axi_aximm1_AWREADY(aximm1_AWREADY),
-    .m_axi_aximm1_AWADDR(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWADDR),
-    .m_axi_aximm1_AWID(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWID),
-    .m_axi_aximm1_AWLEN(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWLEN),
-    .m_axi_aximm1_AWSIZE(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWSIZE),
-    .m_axi_aximm1_AWBURST(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWBURST),
-    .m_axi_aximm1_AWLOCK(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWLOCK),
-    .m_axi_aximm1_AWCACHE(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWCACHE),
-    .m_axi_aximm1_AWPROT(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWPROT),
-    .m_axi_aximm1_AWQOS(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWQOS),
-    .m_axi_aximm1_AWREGION(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWREGION),
-    .m_axi_aximm1_AWUSER(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_AWUSER),
-    .m_axi_aximm1_WVALID(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_WVALID),
-    .m_axi_aximm1_WREADY(aximm1_WREADY),
-    .m_axi_aximm1_WDATA(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_WDATA),
-    .m_axi_aximm1_WSTRB(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_WSTRB),
-    .m_axi_aximm1_WLAST(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_WLAST),
-    .m_axi_aximm1_WID(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_WID),
-    .m_axi_aximm1_WUSER(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_WUSER),
-    .m_axi_aximm1_ARVALID(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_ARVALID),
-    .m_axi_aximm1_ARREADY(1'b0),
-    .m_axi_aximm1_ARADDR(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_ARADDR),
-    .m_axi_aximm1_ARID(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_ARID),
-    .m_axi_aximm1_ARLEN(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_ARLEN),
-    .m_axi_aximm1_ARSIZE(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_ARSIZE),
-    .m_axi_aximm1_ARBURST(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_ARBURST),
-    .m_axi_aximm1_ARLOCK(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_ARLOCK),
-    .m_axi_aximm1_ARCACHE(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_ARCACHE),
-    .m_axi_aximm1_ARPROT(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_ARPROT),
-    .m_axi_aximm1_ARQOS(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_ARQOS),
-    .m_axi_aximm1_ARREGION(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_ARREGION),
-    .m_axi_aximm1_ARUSER(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_ARUSER),
-    .m_axi_aximm1_RVALID(1'b0),
-    .m_axi_aximm1_RREADY(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_RREADY),
-    .m_axi_aximm1_RDATA(16'd0),
-    .m_axi_aximm1_RLAST(1'b0),
-    .m_axi_aximm1_RID(1'd0),
-    .m_axi_aximm1_RUSER(1'd0),
-    .m_axi_aximm1_RRESP(2'd0),
-    .m_axi_aximm1_BVALID(aximm1_BVALID),
-    .m_axi_aximm1_BREADY(Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_BREADY),
-    .m_axi_aximm1_BRESP(aximm1_BRESP),
-    .m_axi_aximm1_BID(aximm1_BID),
-    .m_axi_aximm1_BUSER(aximm1_BUSER),
-    .output_length_dout(output_length_c_dout),
-    .output_length_empty_n(output_length_c_empty_n),
-    .output_length_read(Loop_VITIS_LOOP_325_2_proc_U0_output_length_read),
-    .input_length_temp_address0(Loop_VITIS_LOOP_325_2_proc_U0_input_length_temp_address0),
-    .input_length_temp_ce0(Loop_VITIS_LOOP_325_2_proc_U0_input_length_temp_ce0),
-    .input_length_temp_q0(input_length_temp_t_q0),
-    .input_r_dout(input_c_dout),
-    .input_r_empty_n(input_c_empty_n),
-    .input_r_read(Loop_VITIS_LOOP_325_2_proc_U0_input_r_read),
-    .send_data_dout(send_data_c115_dout),
-    .send_data_empty_n(send_data_c115_empty_n),
-    .send_data_read(Loop_VITIS_LOOP_325_2_proc_U0_send_data_read),
-    .outStream_code_flg_dout(outStream_code_flg_dout),
-    .outStream_code_flg_empty_n(outStream_code_flg_empty_n),
-    .outStream_code_flg_read(Loop_VITIS_LOOP_325_2_proc_U0_outStream_code_flg_read),
-    .outStream_code_flg_din(Loop_VITIS_LOOP_325_2_proc_U0_outStream_code_flg_din),
-    .outStream_code_flg_full_n(outStream_code_flg_full_n),
-    .outStream_code_flg_write(Loop_VITIS_LOOP_325_2_proc_U0_outStream_code_flg_write),
-    .outStream_code_dout(outStream_code_dout),
-    .outStream_code_empty_n(outStream_code_empty_n),
-    .outStream_code_read(Loop_VITIS_LOOP_325_2_proc_U0_outStream_code_read),
-    .outStream_code_din(Loop_VITIS_LOOP_325_2_proc_U0_outStream_code_din),
-    .outStream_code_full_n(outStream_code_full_n),
-    .outStream_code_write(Loop_VITIS_LOOP_325_2_proc_U0_outStream_code_write),
-    .inStream_in_dout(inStream_in_dout),
-    .inStream_in_empty_n(inStream_in_empty_n),
-    .inStream_in_read(Loop_VITIS_LOOP_325_2_proc_U0_inStream_in_read),
-    .inStream_in_din(Loop_VITIS_LOOP_325_2_proc_U0_inStream_in_din),
-    .inStream_in_full_n(inStream_in_full_n),
-    .inStream_in_write(Loop_VITIS_LOOP_325_2_proc_U0_inStream_in_write)
+    .input_r(input_read_reg_310),
+    .send_data(send_data_read_reg_305),
+    .output_length(output_length_read_reg_300),
+    .inStream_in_length_dout(inStream_in_length_dout),
+    .inStream_in_length_empty_n(inStream_in_length_empty_n),
+    .inStream_in_length_read(grp_dataflow_parent_loop_proc_fu_183_inStream_in_length_read),
+    .input_offset_constprop_i(input_offset_constprop),
+    .input_offset_constprop_o(grp_dataflow_parent_loop_proc_fu_183_input_offset_constprop_o),
+    .output_offset_constprop_i(output_offset_constprop),
+    .output_offset_constprop_o(grp_dataflow_parent_loop_proc_fu_183_output_offset_constprop_o),
+    .ap_clk(ap_clk),
+    .ap_rst(ap_rst_n_inv),
+    .input_r_ap_vld(1'b1),
+    .send_data_ap_vld(1'b1),
+    .output_length_ap_vld(1'b1),
+    .input_offset_constprop_i_ap_vld(1'b1),
+    .input_offset_constprop_o_ap_vld(grp_dataflow_parent_loop_proc_fu_183_input_offset_constprop_o_ap_vld),
+    .output_offset_constprop_i_ap_vld(1'b1),
+    .output_offset_constprop_o_ap_vld(grp_dataflow_parent_loop_proc_fu_183_output_offset_constprop_o_ap_vld),
+    .ap_start(grp_dataflow_parent_loop_proc_fu_183_ap_start),
+    .ap_done(grp_dataflow_parent_loop_proc_fu_183_ap_done),
+    .ap_ready(grp_dataflow_parent_loop_proc_fu_183_ap_ready),
+    .ap_idle(grp_dataflow_parent_loop_proc_fu_183_ap_idle),
+    .ap_continue(grp_dataflow_parent_loop_proc_fu_183_ap_continue)
 );
 
-krnl_LZW_fifo_w64_d3_S input_c_U(
+krnl_LZW_fifo_w16_d4_S inStream_in_length_fifo_U(
     .clk(ap_clk),
     .reset(ap_rst_n_inv),
     .if_read_ce(1'b1),
     .if_write_ce(1'b1),
-    .if_din(krnl_LZW_entry4_U0_input_out_din),
-    .if_full_n(input_c_full_n),
-    .if_write(krnl_LZW_entry4_U0_input_out_write),
-    .if_dout(input_c_dout),
-    .if_empty_n(input_c_empty_n),
-    .if_read(Loop_VITIS_LOOP_325_2_proc_U0_input_r_read)
-);
-
-krnl_LZW_fifo_w64_d2_S input_length_c_U(
-    .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .if_read_ce(1'b1),
-    .if_write_ce(1'b1),
-    .if_din(krnl_LZW_entry4_U0_input_length_out_din),
-    .if_full_n(input_length_c_full_n),
-    .if_write(krnl_LZW_entry4_U0_input_length_out_write),
-    .if_dout(input_length_c_dout),
-    .if_empty_n(input_length_c_empty_n),
-    .if_read(Loop_VITIS_LOOP_318_1_proc_U0_input_length_read)
-);
-
-krnl_LZW_fifo_w64_d2_S send_data_c_U(
-    .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .if_read_ce(1'b1),
-    .if_write_ce(1'b1),
-    .if_din(krnl_LZW_entry4_U0_send_data_out_din),
-    .if_full_n(send_data_c_full_n),
-    .if_write(krnl_LZW_entry4_U0_send_data_out_write),
-    .if_dout(send_data_c_dout),
-    .if_empty_n(send_data_c_empty_n),
-    .if_read(Block_krnl_LZW_exit1_proc_U0_send_data_read)
-);
-
-krnl_LZW_fifo_w64_d3_S send_data_c115_U(
-    .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .if_read_ce(1'b1),
-    .if_write_ce(1'b1),
-    .if_din(krnl_LZW_entry4_U0_send_data_out1_din),
-    .if_full_n(send_data_c115_full_n),
-    .if_write(krnl_LZW_entry4_U0_send_data_out1_write),
-    .if_dout(send_data_c115_dout),
-    .if_empty_n(send_data_c115_empty_n),
-    .if_read(Loop_VITIS_LOOP_325_2_proc_U0_send_data_read)
-);
-
-krnl_LZW_fifo_w64_d3_S output_length_c_U(
-    .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .if_read_ce(1'b1),
-    .if_write_ce(1'b1),
-    .if_din(krnl_LZW_entry4_U0_output_length_out_din),
-    .if_full_n(output_length_c_full_n),
-    .if_write(krnl_LZW_entry4_U0_output_length_out_write),
-    .if_dout(output_length_c_dout),
-    .if_empty_n(output_length_c_empty_n),
-    .if_read(Loop_VITIS_LOOP_325_2_proc_U0_output_length_read)
-);
-
-krnl_LZW_fifo_w8_d2_S num_chunks_loc_channel_U(
-    .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .if_read_ce(1'b1),
-    .if_write_ce(1'b1),
-    .if_din(Loop_VITIS_LOOP_318_1_proc_U0_ap_return),
-    .if_full_n(num_chunks_loc_channel_full_n),
-    .if_write(ap_channel_done_num_chunks_loc_channel),
-    .if_dout(num_chunks_loc_channel_dout),
-    .if_empty_n(num_chunks_loc_channel_empty_n),
-    .if_read(Loop_VITIS_LOOP_325_2_proc_U0_ap_ready)
-);
-
-krnl_LZW_fifo_w1_d2_S send_data_cast_loc_channel_U(
-    .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .if_read_ce(1'b1),
-    .if_write_ce(1'b1),
-    .if_din(Block_krnl_LZW_exit1_proc_U0_ap_return_0),
-    .if_full_n(send_data_cast_loc_channel_full_n),
-    .if_write(ap_channel_done_send_data_cast_loc_channel),
-    .if_dout(send_data_cast_loc_channel_dout),
-    .if_empty_n(send_data_cast_loc_channel_empty_n),
-    .if_read(Loop_VITIS_LOOP_325_2_proc_U0_ap_ready)
-);
-
-krnl_LZW_fifo_w64_d2_S p_loc_channel_U(
-    .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .if_read_ce(1'b1),
-    .if_write_ce(1'b1),
-    .if_din(Block_krnl_LZW_exit1_proc_U0_ap_return_1),
-    .if_full_n(p_loc_channel_full_n),
-    .if_write(ap_channel_done_p_loc_channel),
-    .if_dout(p_loc_channel_dout),
-    .if_empty_n(p_loc_channel_empty_n),
-    .if_read(Loop_VITIS_LOOP_325_2_proc_U0_ap_ready)
-);
-
-krnl_LZW_fifo_w8_d2_S outStream_code_flg_U(
-    .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .if_read_ce(1'b1),
-    .if_write_ce(1'b1),
-    .if_din(Loop_VITIS_LOOP_325_2_proc_U0_outStream_code_flg_din),
-    .if_full_n(outStream_code_flg_full_n),
-    .if_write(Loop_VITIS_LOOP_325_2_proc_U0_outStream_code_flg_write),
-    .if_dout(outStream_code_flg_dout),
-    .if_empty_n(outStream_code_flg_empty_n),
-    .if_read(Loop_VITIS_LOOP_325_2_proc_U0_outStream_code_flg_read)
-);
-
-krnl_LZW_fifo_w13_d2_S outStream_code_U(
-    .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .if_read_ce(1'b1),
-    .if_write_ce(1'b1),
-    .if_din(Loop_VITIS_LOOP_325_2_proc_U0_outStream_code_din),
-    .if_full_n(outStream_code_full_n),
-    .if_write(Loop_VITIS_LOOP_325_2_proc_U0_outStream_code_write),
-    .if_dout(outStream_code_dout),
-    .if_empty_n(outStream_code_empty_n),
-    .if_read(Loop_VITIS_LOOP_325_2_proc_U0_outStream_code_read)
-);
-
-krnl_LZW_fifo_w8_d2_S inStream_in_U(
-    .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .if_read_ce(1'b1),
-    .if_write_ce(1'b1),
-    .if_din(Loop_VITIS_LOOP_325_2_proc_U0_inStream_in_din),
-    .if_full_n(inStream_in_full_n),
-    .if_write(Loop_VITIS_LOOP_325_2_proc_U0_inStream_in_write),
-    .if_dout(inStream_in_dout),
-    .if_empty_n(inStream_in_empty_n),
-    .if_read(Loop_VITIS_LOOP_325_2_proc_U0_inStream_in_read)
-);
-
-krnl_LZW_start_for_Block_krnl_LZW_exit1_proc_U0 start_for_Block_krnl_LZW_exit1_proc_U0_U(
-    .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .if_read_ce(1'b1),
-    .if_write_ce(1'b1),
-    .if_din(start_for_Block_krnl_LZW_exit1_proc_U0_din),
-    .if_full_n(start_for_Block_krnl_LZW_exit1_proc_U0_full_n),
-    .if_write(krnl_LZW_entry4_U0_start_write),
-    .if_dout(start_for_Block_krnl_LZW_exit1_proc_U0_dout),
-    .if_empty_n(start_for_Block_krnl_LZW_exit1_proc_U0_empty_n),
-    .if_read(Block_krnl_LZW_exit1_proc_U0_ap_ready)
+    .if_din(trunc_ln338_reg_340),
+    .if_full_n(inStream_in_length_full_n),
+    .if_write(inStream_in_length_write),
+    .if_dout(inStream_in_length_dout),
+    .if_empty_n(inStream_in_length_empty_n),
+    .if_read(inStream_in_length_read)
 );
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_Loop_VITIS_LOOP_318_1_proc_U0_ap_ready <= 1'b0;
+        ap_CS_fsm <= ap_ST_fsm_state1;
     end else begin
-        if (((ap_sync_ready & ap_start) == 1'b1)) begin
-            ap_sync_reg_Loop_VITIS_LOOP_318_1_proc_U0_ap_ready <= 1'b0;
-        end else begin
-            ap_sync_reg_Loop_VITIS_LOOP_318_1_proc_U0_ap_ready <= ap_sync_Loop_VITIS_LOOP_318_1_proc_U0_ap_ready;
+        ap_CS_fsm <= ap_NS_fsm;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (ap_rst_n_inv == 1'b1) begin
+        ap_done_reg <= 1'b0;
+    end else begin
+        if ((ap_continue == 1'b1)) begin
+            ap_done_reg <= 1'b0;
+        end else if (((1'b0 == ap_block_state77_on_subcall_done) & (1'b1 == ap_CS_fsm_state77))) begin
+            ap_done_reg <= 1'b1;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_Loop_VITIS_LOOP_325_2_proc_U0_ap_ready <= 1'b0;
+        ap_enable_reg_pp0_iter0 <= 1'b0;
     end else begin
-        if (((ap_sync_ready & ap_start) == 1'b1)) begin
-            ap_sync_reg_Loop_VITIS_LOOP_325_2_proc_U0_ap_ready <= 1'b0;
-        end else begin
-            ap_sync_reg_Loop_VITIS_LOOP_325_2_proc_U0_ap_ready <= ap_sync_Loop_VITIS_LOOP_325_2_proc_U0_ap_ready;
+        if (((1'b0 == ap_block_pp0_stage0_subdone) & (1'b1 == ap_condition_pp0_exit_iter0_state74) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+            ap_enable_reg_pp0_iter0 <= 1'b0;
+        end else if ((1'b1 == ap_CS_fsm_state73)) begin
+            ap_enable_reg_pp0_iter0 <= 1'b1;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_input_length_temp <= 1'b0;
+        ap_enable_reg_pp0_iter1 <= 1'b0;
     end else begin
-        if (((Loop_VITIS_LOOP_318_1_proc_U0_ap_done & Loop_VITIS_LOOP_318_1_proc_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_input_length_temp <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_input_length_temp <= ap_sync_channel_write_input_length_temp;
+        if (((1'b0 == ap_block_pp0_stage0_subdone) & (1'b1 == ap_condition_pp0_exit_iter0_state74))) begin
+            ap_enable_reg_pp0_iter1 <= (1'b1 ^ ap_condition_pp0_exit_iter0_state74);
+        end else if ((1'b0 == ap_block_pp0_stage0_subdone)) begin
+            ap_enable_reg_pp0_iter1 <= ap_enable_reg_pp0_iter0;
+        end else if ((1'b1 == ap_CS_fsm_state73)) begin
+            ap_enable_reg_pp0_iter1 <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_num_chunks_loc_channel <= 1'b0;
+        ap_sync_reg_grp_dataflow_parent_loop_proc_fu_183_ap_done <= 1'b0;
     end else begin
-        if (((Loop_VITIS_LOOP_318_1_proc_U0_ap_done & Loop_VITIS_LOOP_318_1_proc_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_num_chunks_loc_channel <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_num_chunks_loc_channel <= ap_sync_channel_write_num_chunks_loc_channel;
+        if (((1'b0 == ap_block_state77_on_subcall_done) & (1'b1 == ap_CS_fsm_state77))) begin
+            ap_sync_reg_grp_dataflow_parent_loop_proc_fu_183_ap_done <= 1'b0;
+        end else if ((grp_dataflow_parent_loop_proc_fu_183_ap_done == 1'b1)) begin
+            ap_sync_reg_grp_dataflow_parent_loop_proc_fu_183_ap_done <= 1'b1;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_p_loc_channel <= 1'b0;
+        ap_sync_reg_grp_dataflow_parent_loop_proc_fu_183_ap_ready <= 1'b0;
     end else begin
-        if (((Block_krnl_LZW_exit1_proc_U0_ap_done & Block_krnl_LZW_exit1_proc_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_p_loc_channel <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_p_loc_channel <= ap_sync_channel_write_p_loc_channel;
+        if (((1'b0 == ap_block_state77_on_subcall_done) & (1'b1 == ap_CS_fsm_state77))) begin
+            ap_sync_reg_grp_dataflow_parent_loop_proc_fu_183_ap_ready <= 1'b0;
+        end else if ((grp_dataflow_parent_loop_proc_fu_183_ap_ready == 1'b1)) begin
+            ap_sync_reg_grp_dataflow_parent_loop_proc_fu_183_ap_ready <= 1'b1;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_send_data_cast_loc_channel <= 1'b0;
+        grp_dataflow_parent_loop_proc_fu_183_ap_start_reg <= 1'b0;
     end else begin
-        if (((Block_krnl_LZW_exit1_proc_U0_ap_done & Block_krnl_LZW_exit1_proc_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_send_data_cast_loc_channel <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_send_data_cast_loc_channel <= ap_sync_channel_write_send_data_cast_loc_channel;
-        end
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_krnl_LZW_entry4_U0_ap_ready <= 1'b0;
-    end else begin
-        if (((ap_sync_ready & ap_start) == 1'b1)) begin
-            ap_sync_reg_krnl_LZW_entry4_U0_ap_ready <= 1'b0;
-        end else begin
-            ap_sync_reg_krnl_LZW_entry4_U0_ap_ready <= ap_sync_krnl_LZW_entry4_U0_ap_ready;
+        if (((1'b1 == ap_CS_fsm_state76) | ((ap_sync_grp_dataflow_parent_loop_proc_fu_183_ap_ready == 1'b0) & (1'b1 == ap_CS_fsm_state77)))) begin
+            grp_dataflow_parent_loop_proc_fu_183_ap_start_reg <= 1'b1;
+        end else if ((grp_dataflow_parent_loop_proc_fu_183_ap_ready == 1'b1)) begin
+            grp_dataflow_parent_loop_proc_fu_183_ap_start_reg <= 1'b0;
         end
     end
 end
@@ -1375,70 +729,612 @@ always @ (posedge ap_clk) begin
     ap_rst_reg_2 <= ~ap_rst_n;
 end
 
-assign Block_krnl_LZW_exit1_proc_U0_ap_continue = (ap_sync_channel_write_send_data_cast_loc_channel & ap_sync_channel_write_p_loc_channel);
+always @ (posedge ap_clk) begin
+    if (((icmp_ln336_fu_252_p2 == 1'd0) & (1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter0 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+        i_reg_163 <= add_ln336_fu_246_p2;
+    end else if ((1'b1 == ap_CS_fsm_state73)) begin
+        i_reg_163 <= 3'd0;
+    end
+end
 
-assign Block_krnl_LZW_exit1_proc_U0_ap_start = start_for_Block_krnl_LZW_exit1_proc_U0_empty_n;
+always @ (posedge ap_clk) begin
+    if ((~((ap_done_reg == 1'b1) | (ap_start == 1'b0)) & (1'b1 == ap_CS_fsm_state1))) begin
+        input_offset_constprop <= 32'd0;
+    end else if (((grp_dataflow_parent_loop_proc_fu_183_input_offset_constprop_o_ap_vld == 1'b1) & (1'b1 == ap_CS_fsm_state77))) begin
+        input_offset_constprop <= grp_dataflow_parent_loop_proc_fu_183_input_offset_constprop_o;
+    end
+end
 
-assign Block_krnl_LZW_exit1_proc_U0_start_full_n = 1'b1;
+always @ (posedge ap_clk) begin
+    if ((~((ap_done_reg == 1'b1) | (ap_start == 1'b0)) & (1'b1 == ap_CS_fsm_state1))) begin
+        num_chunks_fu_116 <= 8'd0;
+    end else if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter1 == 1'b1) & (icmp_ln338_reg_350 == 1'd0) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+        num_chunks_fu_116 <= num_chunks_1_fu_282_p2;
+    end
+end
 
-assign Block_krnl_LZW_exit1_proc_U0_start_write = 1'b0;
+always @ (posedge ap_clk) begin
+    if ((~((ap_done_reg == 1'b1) | (ap_start == 1'b0)) & (1'b1 == ap_CS_fsm_state1))) begin
+        output_offset_constprop <= 32'd0;
+    end else if (((grp_dataflow_parent_loop_proc_fu_183_output_offset_constprop_o_ap_vld == 1'b1) & (1'b1 == ap_CS_fsm_state77))) begin
+        output_offset_constprop <= grp_dataflow_parent_loop_proc_fu_183_output_offset_constprop_o;
+    end
+end
 
-assign Loop_VITIS_LOOP_318_1_proc_U0_ap_continue = (ap_sync_channel_write_num_chunks_loc_channel & ap_sync_channel_write_input_length_temp);
+always @ (posedge ap_clk) begin
+    if (((icmp_ln336_fu_252_p2 == 1'd0) & (1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter0 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+        shiftreg_i_i_reg_174 <= zext_ln338_fu_272_p1;
+    end else if ((1'b1 == ap_CS_fsm_state73)) begin
+        shiftreg_i_i_reg_174 <= aximm0_addr_read_reg_326;
+    end
+end
 
-assign Loop_VITIS_LOOP_318_1_proc_U0_ap_start = ((ap_sync_reg_Loop_VITIS_LOOP_318_1_proc_U0_ap_ready ^ 1'b1) & ap_start);
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_CS_fsm_state72)) begin
+        aximm0_addr_read_reg_326 <= aximm0_RDATA;
+    end
+end
 
-assign Loop_VITIS_LOOP_318_1_proc_U0_input_length_temp_full_n = input_length_temp_i_full_n;
+always @ (posedge ap_clk) begin
+    if (((icmp_ln336_fu_252_p2 == 1'd0) & (1'b0 == ap_block_pp0_stage0_11001) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+        icmp_ln338_reg_350 <= icmp_ln338_fu_276_p2;
+        trunc_ln338_reg_340 <= trunc_ln338_fu_258_p1;
+    end
+end
 
-assign Loop_VITIS_LOOP_318_1_proc_U0_start_full_n = 1'b1;
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_CS_fsm_state1)) begin
+        input_read_reg_310 <= input_r;
+        output_length_read_reg_300 <= output_length;
+        send_data_read_reg_305 <= send_data;
+        trunc_ln_reg_315 <= {{input_length[63:3]}};
+    end
+end
 
-assign Loop_VITIS_LOOP_318_1_proc_U0_start_write = 1'b0;
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_CS_fsm_state76)) begin
+        num_chunks_load_1_reg_354 <= num_chunks_fu_116;
+    end
+end
 
-assign Loop_VITIS_LOOP_325_2_proc_U0_ap_continue = ap_continue;
+always @ (*) begin
+    if ((icmp_ln336_fu_252_p2 == 1'd1)) begin
+        ap_condition_pp0_exit_iter0_state74 = 1'b1;
+    end else begin
+        ap_condition_pp0_exit_iter0_state74 = 1'b0;
+    end
+end
 
-assign Loop_VITIS_LOOP_325_2_proc_U0_ap_start = (send_data_cast_loc_channel_empty_n & p_loc_channel_empty_n & num_chunks_loc_channel_empty_n & input_length_temp_t_empty_n & (ap_sync_reg_Loop_VITIS_LOOP_325_2_proc_U0_ap_ready ^ 1'b1) & ap_start);
+always @ (*) begin
+    if (((1'b0 == ap_block_state77_on_subcall_done) & (1'b1 == ap_CS_fsm_state77))) begin
+        ap_done = 1'b1;
+    end else begin
+        ap_done = ap_done_reg;
+    end
+end
 
-assign Loop_VITIS_LOOP_325_2_proc_U0_start_full_n = 1'b1;
+always @ (*) begin
+    if (((ap_start == 1'b0) & (1'b1 == ap_CS_fsm_state1))) begin
+        ap_idle = 1'b1;
+    end else begin
+        ap_idle = 1'b0;
+    end
+end
 
-assign Loop_VITIS_LOOP_325_2_proc_U0_start_write = 1'b0;
+always @ (*) begin
+    if (((ap_enable_reg_pp0_iter1 == 1'b0) & (ap_enable_reg_pp0_iter0 == 1'b0))) begin
+        ap_idle_pp0 = 1'b1;
+    end else begin
+        ap_idle_pp0 = 1'b0;
+    end
+end
 
-assign ap_channel_done_input_length_temp = ((ap_sync_reg_channel_write_input_length_temp ^ 1'b1) & Loop_VITIS_LOOP_318_1_proc_U0_ap_done);
+always @ (*) begin
+    if (((1'b0 == ap_block_state77_on_subcall_done) & (1'b1 == ap_CS_fsm_state77))) begin
+        ap_ready = 1'b1;
+    end else begin
+        ap_ready = 1'b0;
+    end
+end
 
-assign ap_channel_done_num_chunks_loc_channel = ((ap_sync_reg_channel_write_num_chunks_loc_channel ^ 1'b1) & Loop_VITIS_LOOP_318_1_proc_U0_ap_done);
+always @ (*) begin
+    if (((aximm0_ARREADY == 1'b1) & (1'b1 == ap_CS_fsm_state2))) begin
+        aximm0_ARADDR = sext_ln336_fu_236_p1;
+    end else if (((1'b1 == ap_CS_fsm_state77) | (1'b1 == ap_CS_fsm_state76))) begin
+        aximm0_ARADDR = grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARADDR;
+    end else begin
+        aximm0_ARADDR = 'bx;
+    end
+end
 
-assign ap_channel_done_p_loc_channel = ((ap_sync_reg_channel_write_p_loc_channel ^ 1'b1) & Block_krnl_LZW_exit1_proc_U0_ap_done);
+always @ (*) begin
+    if (((1'b1 == ap_CS_fsm_state77) | (1'b1 == ap_CS_fsm_state76))) begin
+        aximm0_ARBURST = grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARBURST;
+    end else begin
+        aximm0_ARBURST = 2'd0;
+    end
+end
 
-assign ap_channel_done_send_data_cast_loc_channel = ((ap_sync_reg_channel_write_send_data_cast_loc_channel ^ 1'b1) & Block_krnl_LZW_exit1_proc_U0_ap_done);
+always @ (*) begin
+    if (((1'b1 == ap_CS_fsm_state77) | (1'b1 == ap_CS_fsm_state76))) begin
+        aximm0_ARCACHE = grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARCACHE;
+    end else begin
+        aximm0_ARCACHE = 4'd0;
+    end
+end
 
-assign ap_done = Loop_VITIS_LOOP_325_2_proc_U0_ap_done;
+always @ (*) begin
+    if (((1'b1 == ap_CS_fsm_state77) | (1'b1 == ap_CS_fsm_state76))) begin
+        aximm0_ARID = grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARID;
+    end else begin
+        aximm0_ARID = 1'd0;
+    end
+end
 
-assign ap_idle = (krnl_LZW_entry4_U0_ap_idle & (p_loc_channel_empty_n ^ 1'b1) & (send_data_cast_loc_channel_empty_n ^ 1'b1) & (num_chunks_loc_channel_empty_n ^ 1'b1) & (input_length_temp_t_empty_n ^ 1'b1) & Loop_VITIS_LOOP_325_2_proc_U0_ap_idle & Loop_VITIS_LOOP_318_1_proc_U0_ap_idle & Block_krnl_LZW_exit1_proc_U0_ap_idle);
+always @ (*) begin
+    if (((aximm0_ARREADY == 1'b1) & (1'b1 == ap_CS_fsm_state2))) begin
+        aximm0_ARLEN = 32'd1;
+    end else if (((1'b1 == ap_CS_fsm_state77) | (1'b1 == ap_CS_fsm_state76))) begin
+        aximm0_ARLEN = grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARLEN;
+    end else begin
+        aximm0_ARLEN = 'bx;
+    end
+end
 
-assign ap_ready = ap_sync_ready;
+always @ (*) begin
+    if (((1'b1 == ap_CS_fsm_state77) | (1'b1 == ap_CS_fsm_state76))) begin
+        aximm0_ARLOCK = grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARLOCK;
+    end else begin
+        aximm0_ARLOCK = 2'd0;
+    end
+end
 
-assign ap_sync_Loop_VITIS_LOOP_318_1_proc_U0_ap_ready = (ap_sync_reg_Loop_VITIS_LOOP_318_1_proc_U0_ap_ready | Loop_VITIS_LOOP_318_1_proc_U0_ap_ready);
+always @ (*) begin
+    if (((1'b1 == ap_CS_fsm_state77) | (1'b1 == ap_CS_fsm_state76))) begin
+        aximm0_ARPROT = grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARPROT;
+    end else begin
+        aximm0_ARPROT = 3'd0;
+    end
+end
 
-assign ap_sync_Loop_VITIS_LOOP_325_2_proc_U0_ap_ready = (ap_sync_reg_Loop_VITIS_LOOP_325_2_proc_U0_ap_ready | Loop_VITIS_LOOP_325_2_proc_U0_ap_ready);
+always @ (*) begin
+    if (((1'b1 == ap_CS_fsm_state77) | (1'b1 == ap_CS_fsm_state76))) begin
+        aximm0_ARQOS = grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARQOS;
+    end else begin
+        aximm0_ARQOS = 4'd0;
+    end
+end
 
-assign ap_sync_channel_write_input_length_temp = ((ap_channel_done_input_length_temp & Loop_VITIS_LOOP_318_1_proc_U0_input_length_temp_full_n) | ap_sync_reg_channel_write_input_length_temp);
+always @ (*) begin
+    if (((1'b1 == ap_CS_fsm_state77) | (1'b1 == ap_CS_fsm_state76))) begin
+        aximm0_ARREGION = grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARREGION;
+    end else begin
+        aximm0_ARREGION = 4'd0;
+    end
+end
 
-assign ap_sync_channel_write_num_chunks_loc_channel = ((num_chunks_loc_channel_full_n & ap_channel_done_num_chunks_loc_channel) | ap_sync_reg_channel_write_num_chunks_loc_channel);
+always @ (*) begin
+    if (((1'b1 == ap_CS_fsm_state77) | (1'b1 == ap_CS_fsm_state76))) begin
+        aximm0_ARSIZE = grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARSIZE;
+    end else begin
+        aximm0_ARSIZE = 3'd0;
+    end
+end
 
-assign ap_sync_channel_write_p_loc_channel = ((p_loc_channel_full_n & ap_channel_done_p_loc_channel) | ap_sync_reg_channel_write_p_loc_channel);
+always @ (*) begin
+    if (((1'b1 == ap_CS_fsm_state77) | (1'b1 == ap_CS_fsm_state76))) begin
+        aximm0_ARUSER = grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARUSER;
+    end else begin
+        aximm0_ARUSER = 1'd0;
+    end
+end
 
-assign ap_sync_channel_write_send_data_cast_loc_channel = ((send_data_cast_loc_channel_full_n & ap_channel_done_send_data_cast_loc_channel) | ap_sync_reg_channel_write_send_data_cast_loc_channel);
+always @ (*) begin
+    if (((aximm0_ARREADY == 1'b1) & (1'b1 == ap_CS_fsm_state2))) begin
+        aximm0_ARVALID = 1'b1;
+    end else if (((1'b1 == ap_CS_fsm_state77) | (1'b1 == ap_CS_fsm_state76))) begin
+        aximm0_ARVALID = grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_ARVALID;
+    end else begin
+        aximm0_ARVALID = 1'b0;
+    end
+end
 
-assign ap_sync_continue = ap_continue;
+always @ (*) begin
+    if (((1'b1 == ap_CS_fsm_state77) | (1'b1 == ap_CS_fsm_state76))) begin
+        aximm0_AWVALID = grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_AWVALID;
+    end else begin
+        aximm0_AWVALID = 1'b0;
+    end
+end
 
-assign ap_sync_done = Loop_VITIS_LOOP_325_2_proc_U0_ap_done;
+always @ (*) begin
+    if (((1'b1 == ap_CS_fsm_state77) | (1'b1 == ap_CS_fsm_state76))) begin
+        aximm0_BREADY = grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_BREADY;
+    end else begin
+        aximm0_BREADY = 1'b0;
+    end
+end
 
-assign ap_sync_krnl_LZW_entry4_U0_ap_ready = (krnl_LZW_entry4_U0_ap_ready | ap_sync_reg_krnl_LZW_entry4_U0_ap_ready);
+always @ (*) begin
+    if (((aximm0_RVALID == 1'b1) & (1'b1 == ap_CS_fsm_state72))) begin
+        aximm0_RREADY = 1'b1;
+    end else if (((1'b1 == ap_CS_fsm_state77) | (1'b1 == ap_CS_fsm_state76))) begin
+        aximm0_RREADY = grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_RREADY;
+    end else begin
+        aximm0_RREADY = 1'b0;
+    end
+end
 
-assign ap_sync_ready = (ap_sync_krnl_LZW_entry4_U0_ap_ready & ap_sync_Loop_VITIS_LOOP_325_2_proc_U0_ap_ready & ap_sync_Loop_VITIS_LOOP_318_1_proc_U0_ap_ready);
+always @ (*) begin
+    if (((1'b1 == ap_CS_fsm_state77) | (1'b1 == ap_CS_fsm_state76))) begin
+        aximm0_WVALID = grp_dataflow_parent_loop_proc_fu_183_m_axi_aximm0_WVALID;
+    end else begin
+        aximm0_WVALID = 1'b0;
+    end
+end
 
-assign krnl_LZW_entry4_U0_ap_continue = 1'b1;
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state2)) begin
+        aximm0_blk_n_AR = m_axi_aximm0_ARREADY;
+    end else begin
+        aximm0_blk_n_AR = 1'b1;
+    end
+end
 
-assign krnl_LZW_entry4_U0_ap_start = ((ap_sync_reg_krnl_LZW_entry4_U0_ap_ready ^ 1'b1) & ap_start);
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state72)) begin
+        aximm0_blk_n_R = m_axi_aximm0_RVALID;
+    end else begin
+        aximm0_blk_n_R = 1'b1;
+    end
+end
 
-assign start_for_Block_krnl_LZW_exit1_proc_U0_din = 1'b1;
+always @ (*) begin
+    if (((1'b0 == ap_block_state77_on_subcall_done) & (1'b1 == ap_CS_fsm_state77))) begin
+        grp_dataflow_parent_loop_proc_fu_183_ap_continue = 1'b1;
+    end else begin
+        grp_dataflow_parent_loop_proc_fu_183_ap_continue = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state77)) begin
+        inStream_in_length_read = grp_dataflow_parent_loop_proc_fu_183_inStream_in_length_read;
+    end else begin
+        inStream_in_length_read = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter1 == 1'b1) & (icmp_ln338_reg_350 == 1'd0) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+        inStream_in_length_write = 1'b1;
+    end else begin
+        inStream_in_length_write = 1'b0;
+    end
+end
+
+always @ (*) begin
+    case (ap_CS_fsm)
+        ap_ST_fsm_state1 : begin
+            if ((~((ap_done_reg == 1'b1) | (ap_start == 1'b0)) & (1'b1 == ap_CS_fsm_state1))) begin
+                ap_NS_fsm = ap_ST_fsm_state2;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state1;
+            end
+        end
+        ap_ST_fsm_state2 : begin
+            if (((aximm0_ARREADY == 1'b1) & (1'b1 == ap_CS_fsm_state2))) begin
+                ap_NS_fsm = ap_ST_fsm_state3;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state2;
+            end
+        end
+        ap_ST_fsm_state3 : begin
+            ap_NS_fsm = ap_ST_fsm_state4;
+        end
+        ap_ST_fsm_state4 : begin
+            ap_NS_fsm = ap_ST_fsm_state5;
+        end
+        ap_ST_fsm_state5 : begin
+            ap_NS_fsm = ap_ST_fsm_state6;
+        end
+        ap_ST_fsm_state6 : begin
+            ap_NS_fsm = ap_ST_fsm_state7;
+        end
+        ap_ST_fsm_state7 : begin
+            ap_NS_fsm = ap_ST_fsm_state8;
+        end
+        ap_ST_fsm_state8 : begin
+            ap_NS_fsm = ap_ST_fsm_state9;
+        end
+        ap_ST_fsm_state9 : begin
+            ap_NS_fsm = ap_ST_fsm_state10;
+        end
+        ap_ST_fsm_state10 : begin
+            ap_NS_fsm = ap_ST_fsm_state11;
+        end
+        ap_ST_fsm_state11 : begin
+            ap_NS_fsm = ap_ST_fsm_state12;
+        end
+        ap_ST_fsm_state12 : begin
+            ap_NS_fsm = ap_ST_fsm_state13;
+        end
+        ap_ST_fsm_state13 : begin
+            ap_NS_fsm = ap_ST_fsm_state14;
+        end
+        ap_ST_fsm_state14 : begin
+            ap_NS_fsm = ap_ST_fsm_state15;
+        end
+        ap_ST_fsm_state15 : begin
+            ap_NS_fsm = ap_ST_fsm_state16;
+        end
+        ap_ST_fsm_state16 : begin
+            ap_NS_fsm = ap_ST_fsm_state17;
+        end
+        ap_ST_fsm_state17 : begin
+            ap_NS_fsm = ap_ST_fsm_state18;
+        end
+        ap_ST_fsm_state18 : begin
+            ap_NS_fsm = ap_ST_fsm_state19;
+        end
+        ap_ST_fsm_state19 : begin
+            ap_NS_fsm = ap_ST_fsm_state20;
+        end
+        ap_ST_fsm_state20 : begin
+            ap_NS_fsm = ap_ST_fsm_state21;
+        end
+        ap_ST_fsm_state21 : begin
+            ap_NS_fsm = ap_ST_fsm_state22;
+        end
+        ap_ST_fsm_state22 : begin
+            ap_NS_fsm = ap_ST_fsm_state23;
+        end
+        ap_ST_fsm_state23 : begin
+            ap_NS_fsm = ap_ST_fsm_state24;
+        end
+        ap_ST_fsm_state24 : begin
+            ap_NS_fsm = ap_ST_fsm_state25;
+        end
+        ap_ST_fsm_state25 : begin
+            ap_NS_fsm = ap_ST_fsm_state26;
+        end
+        ap_ST_fsm_state26 : begin
+            ap_NS_fsm = ap_ST_fsm_state27;
+        end
+        ap_ST_fsm_state27 : begin
+            ap_NS_fsm = ap_ST_fsm_state28;
+        end
+        ap_ST_fsm_state28 : begin
+            ap_NS_fsm = ap_ST_fsm_state29;
+        end
+        ap_ST_fsm_state29 : begin
+            ap_NS_fsm = ap_ST_fsm_state30;
+        end
+        ap_ST_fsm_state30 : begin
+            ap_NS_fsm = ap_ST_fsm_state31;
+        end
+        ap_ST_fsm_state31 : begin
+            ap_NS_fsm = ap_ST_fsm_state32;
+        end
+        ap_ST_fsm_state32 : begin
+            ap_NS_fsm = ap_ST_fsm_state33;
+        end
+        ap_ST_fsm_state33 : begin
+            ap_NS_fsm = ap_ST_fsm_state34;
+        end
+        ap_ST_fsm_state34 : begin
+            ap_NS_fsm = ap_ST_fsm_state35;
+        end
+        ap_ST_fsm_state35 : begin
+            ap_NS_fsm = ap_ST_fsm_state36;
+        end
+        ap_ST_fsm_state36 : begin
+            ap_NS_fsm = ap_ST_fsm_state37;
+        end
+        ap_ST_fsm_state37 : begin
+            ap_NS_fsm = ap_ST_fsm_state38;
+        end
+        ap_ST_fsm_state38 : begin
+            ap_NS_fsm = ap_ST_fsm_state39;
+        end
+        ap_ST_fsm_state39 : begin
+            ap_NS_fsm = ap_ST_fsm_state40;
+        end
+        ap_ST_fsm_state40 : begin
+            ap_NS_fsm = ap_ST_fsm_state41;
+        end
+        ap_ST_fsm_state41 : begin
+            ap_NS_fsm = ap_ST_fsm_state42;
+        end
+        ap_ST_fsm_state42 : begin
+            ap_NS_fsm = ap_ST_fsm_state43;
+        end
+        ap_ST_fsm_state43 : begin
+            ap_NS_fsm = ap_ST_fsm_state44;
+        end
+        ap_ST_fsm_state44 : begin
+            ap_NS_fsm = ap_ST_fsm_state45;
+        end
+        ap_ST_fsm_state45 : begin
+            ap_NS_fsm = ap_ST_fsm_state46;
+        end
+        ap_ST_fsm_state46 : begin
+            ap_NS_fsm = ap_ST_fsm_state47;
+        end
+        ap_ST_fsm_state47 : begin
+            ap_NS_fsm = ap_ST_fsm_state48;
+        end
+        ap_ST_fsm_state48 : begin
+            ap_NS_fsm = ap_ST_fsm_state49;
+        end
+        ap_ST_fsm_state49 : begin
+            ap_NS_fsm = ap_ST_fsm_state50;
+        end
+        ap_ST_fsm_state50 : begin
+            ap_NS_fsm = ap_ST_fsm_state51;
+        end
+        ap_ST_fsm_state51 : begin
+            ap_NS_fsm = ap_ST_fsm_state52;
+        end
+        ap_ST_fsm_state52 : begin
+            ap_NS_fsm = ap_ST_fsm_state53;
+        end
+        ap_ST_fsm_state53 : begin
+            ap_NS_fsm = ap_ST_fsm_state54;
+        end
+        ap_ST_fsm_state54 : begin
+            ap_NS_fsm = ap_ST_fsm_state55;
+        end
+        ap_ST_fsm_state55 : begin
+            ap_NS_fsm = ap_ST_fsm_state56;
+        end
+        ap_ST_fsm_state56 : begin
+            ap_NS_fsm = ap_ST_fsm_state57;
+        end
+        ap_ST_fsm_state57 : begin
+            ap_NS_fsm = ap_ST_fsm_state58;
+        end
+        ap_ST_fsm_state58 : begin
+            ap_NS_fsm = ap_ST_fsm_state59;
+        end
+        ap_ST_fsm_state59 : begin
+            ap_NS_fsm = ap_ST_fsm_state60;
+        end
+        ap_ST_fsm_state60 : begin
+            ap_NS_fsm = ap_ST_fsm_state61;
+        end
+        ap_ST_fsm_state61 : begin
+            ap_NS_fsm = ap_ST_fsm_state62;
+        end
+        ap_ST_fsm_state62 : begin
+            ap_NS_fsm = ap_ST_fsm_state63;
+        end
+        ap_ST_fsm_state63 : begin
+            ap_NS_fsm = ap_ST_fsm_state64;
+        end
+        ap_ST_fsm_state64 : begin
+            ap_NS_fsm = ap_ST_fsm_state65;
+        end
+        ap_ST_fsm_state65 : begin
+            ap_NS_fsm = ap_ST_fsm_state66;
+        end
+        ap_ST_fsm_state66 : begin
+            ap_NS_fsm = ap_ST_fsm_state67;
+        end
+        ap_ST_fsm_state67 : begin
+            ap_NS_fsm = ap_ST_fsm_state68;
+        end
+        ap_ST_fsm_state68 : begin
+            ap_NS_fsm = ap_ST_fsm_state69;
+        end
+        ap_ST_fsm_state69 : begin
+            ap_NS_fsm = ap_ST_fsm_state70;
+        end
+        ap_ST_fsm_state70 : begin
+            ap_NS_fsm = ap_ST_fsm_state71;
+        end
+        ap_ST_fsm_state71 : begin
+            ap_NS_fsm = ap_ST_fsm_state72;
+        end
+        ap_ST_fsm_state72 : begin
+            if (((aximm0_RVALID == 1'b1) & (1'b1 == ap_CS_fsm_state72))) begin
+                ap_NS_fsm = ap_ST_fsm_state73;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state72;
+            end
+        end
+        ap_ST_fsm_state73 : begin
+            ap_NS_fsm = ap_ST_fsm_pp0_stage0;
+        end
+        ap_ST_fsm_pp0_stage0 : begin
+            if (~((icmp_ln336_fu_252_p2 == 1'd1) & (1'b0 == ap_block_pp0_stage0_subdone) & (ap_enable_reg_pp0_iter0 == 1'b1))) begin
+                ap_NS_fsm = ap_ST_fsm_pp0_stage0;
+            end else if (((icmp_ln336_fu_252_p2 == 1'd1) & (1'b0 == ap_block_pp0_stage0_subdone) & (ap_enable_reg_pp0_iter0 == 1'b1))) begin
+                ap_NS_fsm = ap_ST_fsm_state76;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_pp0_stage0;
+            end
+        end
+        ap_ST_fsm_state76 : begin
+            ap_NS_fsm = ap_ST_fsm_state77;
+        end
+        ap_ST_fsm_state77 : begin
+            if (((1'b0 == ap_block_state77_on_subcall_done) & (1'b1 == ap_CS_fsm_state77))) begin
+                ap_NS_fsm = ap_ST_fsm_state1;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state77;
+            end
+        end
+        default : begin
+            ap_NS_fsm = 'bx;
+        end
+    endcase
+end
+
+assign add_ln336_fu_246_p2 = (i_reg_163 + 3'd1);
+
+assign ap_CS_fsm_pp0_stage0 = ap_CS_fsm[32'd73];
+
+assign ap_CS_fsm_state1 = ap_CS_fsm[32'd0];
+
+assign ap_CS_fsm_state2 = ap_CS_fsm[32'd1];
+
+assign ap_CS_fsm_state72 = ap_CS_fsm[32'd71];
+
+assign ap_CS_fsm_state73 = ap_CS_fsm[32'd72];
+
+assign ap_CS_fsm_state76 = ap_CS_fsm[32'd74];
+
+assign ap_CS_fsm_state77 = ap_CS_fsm[32'd75];
+
+assign ap_block_pp0_stage0 = ~(1'b1 == 1'b1);
+
+always @ (*) begin
+    ap_block_pp0_stage0_01001 = ((ap_enable_reg_pp0_iter1 == 1'b1) & (icmp_ln338_reg_350 == 1'd0) & (inStream_in_length_full_n == 1'b0));
+end
+
+always @ (*) begin
+    ap_block_pp0_stage0_11001 = ((ap_enable_reg_pp0_iter1 == 1'b1) & (icmp_ln338_reg_350 == 1'd0) & (inStream_in_length_full_n == 1'b0));
+end
+
+always @ (*) begin
+    ap_block_pp0_stage0_subdone = ((ap_enable_reg_pp0_iter1 == 1'b1) & (icmp_ln338_reg_350 == 1'd0) & (inStream_in_length_full_n == 1'b0));
+end
+
+always @ (*) begin
+    ap_block_state1 = ((ap_done_reg == 1'b1) | (ap_start == 1'b0));
+end
+
+assign ap_block_state74_pp0_stage0_iter0 = ~(1'b1 == 1'b1);
+
+always @ (*) begin
+    ap_block_state75_pp0_stage0_iter1 = ((icmp_ln338_reg_350 == 1'd0) & (inStream_in_length_full_n == 1'b0));
+end
+
+always @ (*) begin
+    ap_block_state77_on_subcall_done = ((ap_sync_grp_dataflow_parent_loop_proc_fu_183_ap_ready & ap_sync_grp_dataflow_parent_loop_proc_fu_183_ap_done) == 1'b0);
+end
+
+assign ap_enable_pp0 = (ap_idle_pp0 ^ 1'b1);
+
+assign ap_sync_grp_dataflow_parent_loop_proc_fu_183_ap_done = (grp_dataflow_parent_loop_proc_fu_183_ap_done | ap_sync_reg_grp_dataflow_parent_loop_proc_fu_183_ap_done);
+
+assign ap_sync_grp_dataflow_parent_loop_proc_fu_183_ap_ready = (grp_dataflow_parent_loop_proc_fu_183_ap_ready | ap_sync_reg_grp_dataflow_parent_loop_proc_fu_183_ap_ready);
+
+assign grp_dataflow_parent_loop_proc_fu_183_ap_start = grp_dataflow_parent_loop_proc_fu_183_ap_start_reg;
+
+assign icmp_ln336_fu_252_p2 = ((i_reg_163 == 3'd4) ? 1'b1 : 1'b0);
+
+assign icmp_ln338_fu_276_p2 = ((trunc_ln338_fu_258_p1 == 16'd0) ? 1'b1 : 1'b0);
+
+assign lshr_ln_fu_262_p4 = {{shiftreg_i_i_reg_174[63:16]}};
+
+assign num_chunks_1_fu_282_p2 = (num_chunks_fu_116 + 8'd1);
+
+assign sext_ln336_fu_236_p1 = $signed(trunc_ln_reg_315);
+
+assign trunc_ln338_fu_258_p1 = shiftreg_i_i_reg_174[15:0];
+
+assign zext_ln338_fu_272_p1 = lshr_ln_fu_262_p4;
 
 endmodule //krnl_LZW

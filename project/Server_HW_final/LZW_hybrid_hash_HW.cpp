@@ -37,13 +37,18 @@ typedef struct
     unsigned int fill;         // tells us how many entries we've currently stored 
 } assoc_mem;
 
-static void read_input(char *in, uint16_t input_length, 
+/* static void read_input(char *in, uint16_t input_length, 
+                        hls::stream<char>& inStream_in){ */
+static void read_input(char *in, uint32_t *input_offset, uint16_t input_length, 
                         hls::stream<char>& inStream_in){
+    
     mem_rd:
         for (int i = 0; i < input_length; i++){
             // #pragma HLS loop_tripcount min = input_length max = input_length
-            inStream_in << in[i];
+            inStream_in << (in + *input_offset)[i];
         }
+
+        *input_offset += input_length;
 }
 
 void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
@@ -82,9 +87,10 @@ void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
 
     // uint16_t store_array[MAX_CHUNK];
     ap_uint<CODE_LEN> next_code = 256;
-    ap_uint<CODE_LEN> prefix_code = inStream_in.read();
+    char first_in = inStream_in.read();
+    ap_uint<CODE_LEN> prefix_code = first_in;
     ap_uint<CODE_LEN> code = 0;
-    unsigned char next_char = 0;
+    char next_char = 0;
     uint16_t j = 0;                   //index of store array (should j++ every time after store)
     unsigned char shift = 0;
     unsigned char shift_offset = 16 - CODE_LEN;
@@ -152,7 +158,7 @@ void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
 
         if(!hit)
         {
-            uint32_t written_code = prefix_code.to_uint();
+            // uint32_t written_code = prefix_code.to_uint();
 
             bool collision = 0;
             // insert(hash_table, &my_assoc_mem, (prefix_code << 8) + next_char, next_code, &collision);
@@ -202,8 +208,8 @@ void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
             }
 
             //-------------------------------------insert code to store_array------------------------------------------
-            outStream_code << prefix_code;
             outStream_code_flg << 1;
+            outStream_code << prefix_code;
             //-------------------------------------end insert code to store_array------------------------------------------
 
             next_code += 1;
@@ -214,22 +220,28 @@ void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
             prefix_code = code;
         }
     }
-    outStream_code << prefix_code;
+
     outStream_code_flg << 0;
+    outStream_code << prefix_code;
+   
     std::cout << std::endl << "assoc mem entry count: " << my_assoc_mem.fill << std::endl;
 
 }
 
+/* static void write_result(uint16_t in_length, hls::stream<ap_uint<CODE_LEN>>& outStream_code, hls::stream<char>& outStream_code_flg, 
+                        uint16_t *send_data, uint16_t *output_length){ */
 static void write_result(uint16_t in_length, hls::stream<ap_uint<CODE_LEN>>& outStream_code, hls::stream<char>& outStream_code_flg, 
-                        uint16_t *send_data, uint16_t *output_length){
+                        uint16_t *send_data, uint16_t *output_length, uint32_t *output_offset){
     
     uint16_t j = 0;                   //index of store array (should j++ every time after store)
     unsigned char shift = 0;
     unsigned char shift_offset = 16 - CODE_LEN;
     ap_uint<CODE_LEN> prefix_code;
     uint16_t store_array[MAX_CHUNK];
+    char stop_flg = outStream_code_flg.read();
 
-    while(outStream_code_flg.read()){
+
+    while(stop_flg){
         prefix_code = outStream_code.read();
         if (j == 0){   //the first code
             shift = shift_offset;
@@ -251,6 +263,7 @@ static void write_result(uint16_t in_length, hls::stream<ap_uint<CODE_LEN>>& out
                 //do not j++ here 
             }
         }
+        stop_flg = outStream_code_flg.read();
     }
     //deal with the last part of chunk or if there is only one character in chunk
     prefix_code = outStream_code.read();
@@ -285,13 +298,14 @@ static void write_result(uint16_t in_length, hls::stream<ap_uint<CODE_LEN>>& out
     }
     header = compressed_length << 1;
     // header = swap_endian_32(header);    //do not swap endian for header
-    memcpy(send_data, &header, 4);
-    memcpy(send_data + 2, store_array, compressed_length);
+    memcpy(send_data + *output_offset, &header, 4);
+    memcpy(send_data + *output_offset + 2, store_array, compressed_length);
     //-----------------------------------------------------------------------------
 
     // std::cout << std::endl << "assoc mem entry count: " << my_assoc_mem.fill << std::endl;
     *output_length = compressed_length + 4;
     // return (compressed_length + 4);
+    *output_offset += (*output_length + sizeof(uint16_t) - 1) / sizeof(uint16_t);   //ceil(a/b) = (a+b-1)/b
 
 }
 
@@ -299,35 +313,48 @@ static void write_result(uint16_t in_length, hls::stream<ap_uint<CODE_LEN>>& out
 void krnl_LZW(char *input, uint16_t *input_length, uint16_t *send_data, uint16_t *output_length)
 {
     static hls::stream<char> inStream_in("in_stream");
+    static hls::stream<uint16_t> inStream_in_length("in_length_stream");
     static hls::stream<ap_uint<CODE_LEN>> outStream_code("outStream_code");
     static hls::stream<char> outStream_code_flg("outStream_code_flg");
     #pragma HLS interface m_axi port=input bundle=aximm0
-    #pragma HLS interface m_axi port=input_length bundle=aximm1
-    #pragma HLS interface m_axi port=send_data bundle=aximm1
+    #pragma HLS interface m_axi port=input_length bundle=aximm0
+    #pragma HLS interface m_axi port=send_data bundle=aximm0
     #pragma HLS interface m_axi port=output_length bundle=aximm0
-    #pragma HLS stream variable = inStream_in
-    #pragma HLS stream variable = outStream_code
-    #pragma HLS stream variable = outStream_code_flg
-    #pragma HLS dataflow
+    #pragma HLS stream variable = inStream_in depth=2
+    #pragma HLS stream variable = inStream_in_length depth=4
+    #pragma HLS stream variable = outStream_code depth=4
+    #pragma HLS stream variable = outStream_code_flg depth=4
+ 
+
 
     char num_chunks = 0;
     uint32_t input_offset = 0;
     uint32_t output_offset = 0;
-    uint16_t input_length_temp[num_chunks_krnl];
+    // uint16_t input_length_temp[num_chunks_krnl];
+    uint16_t input_length_temp;
 
     for (int i = 0; i < num_chunks_krnl; i++){
+        // #pragma HLS pipeline
         if (input_length[i]){
             num_chunks++;
-            input_length_temp[i] = input_length[i];
+            // input_length_temp[i] = input_length[i];
+            #pragma HLS dataflow
+            inStream_in_length << input_length[i];
         }
     }
-
+    
     for (int i = 0; i < num_chunks; i++){
-        read_input((input + input_offset), input_length_temp[i], inStream_in);
-        compute_LZW(inStream_in, input_length_temp[i], outStream_code, outStream_code_flg);
-        write_result(input_length_temp[i], outStream_code, outStream_code_flg, (send_data + output_offset), &output_length[i]);
+        #pragma HLS dataflow
+        /* read_input((input + input_offset), input_length[i], inStream_in);
+        compute_LZW(inStream_in, input_length[i], outStream_code, outStream_code_flg);
+        write_result(input_length[i], outStream_code, outStream_code_flg, (send_data + output_offset), &output_length[i]); */
 
-        input_offset += input_length_temp[i];
-        output_offset += (output_length[i] + sizeof(uint16_t) - 1) / sizeof(uint16_t);   //ceil(a/b) = (a+b-1)/b
+        input_length_temp = inStream_in_length.read();
+        read_input(input, &input_offset, input_length_temp, inStream_in);
+        compute_LZW(inStream_in, input_length_temp, outStream_code, outStream_code_flg);
+        write_result(input_length_temp, outStream_code, outStream_code_flg, send_data, &output_length[i], &output_offset);
+
+        // input_offset += input_length[i];
+        // output_offset += (output_length[i] + sizeof(uint16_t) - 1) / sizeof(uint16_t);   //ceil(a/b) = (a+b-1)/b
     }
 }

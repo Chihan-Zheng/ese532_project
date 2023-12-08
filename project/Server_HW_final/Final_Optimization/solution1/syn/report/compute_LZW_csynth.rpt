@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'compute_LZW'
 ================================================================
-* Date:           Thu Dec  7 21:19:16 2023
+* Date:           Fri Dec  8 11:43:55 2023
 
 * Version:        2020.2 (Build 3064766 on Wed Nov 18 09:12:47 MST 2020)
 * Project:        Final_Optimization
@@ -41,10 +41,10 @@
         |                     |  Latency (cycles) | Iteration|  Initiation Interval  |    Trip   |          |
         |      Loop Name      |   min   |   max   |  Latency |  achieved |   target  |   Count   | Pipelined|
         +---------------------+---------+---------+----------+-----------+-----------+-----------+----------+
-        |- VITIS_LOOP_67_1    |    32768|    32768|         1|          1|          1|      32768|       yes|
-        |- VITIS_LOOP_93_4    |        0|  9633498|  26 ~ 147|          -|          -|  0 ~ 65534|        no|
+        |- VITIS_LOOP_72_1    |    32768|    32768|         1|          1|          1|      32768|       yes|
+        |- VITIS_LOOP_99_4    |        0|  9633498|  26 ~ 147|          -|          -|  0 ~ 65534|        no|
         | + VITIS_LOOP_11_1   |       21|       21|         1|          1|          1|         21|       yes|
-        | + VITIS_LOOP_129_6  |        1|       72|         1|          1|          1|     1 ~ 72|       yes|
+        | + VITIS_LOOP_135_6  |        1|       72|         1|          1|          1|     1 ~ 72|       yes|
         | + VITIS_LOOP_11_1   |       21|       21|         1|          1|          1|         21|       yes|
         | + VITIS_LOOP_11_1   |       21|       21|         1|          1|          1|         21|       yes|
         +---------------------+---------+---------+----------+-----------+-----------+-----------+----------+
@@ -59,14 +59,14 @@
 |       Name      | BRAM_18K| DSP |   FF   |  LUT  | URAM|
 +-----------------+---------+-----+--------+-------+-----+
 |DSP              |        -|    -|       -|      -|    -|
-|Expression       |        -|    -|       0|   1890|    -|
+|Expression       |        -|    -|       0|   1961|    -|
 |FIFO             |        -|    -|       -|      -|    -|
 |Instance         |        -|    -|       -|      -|    -|
 |Memory           |       76|    -|      26|     15|    -|
-|Multiplexer      |        -|    -|       -|   9972|    -|
-|Register         |        -|    -|     889|      -|    -|
+|Multiplexer      |        -|    -|       -|   9967|    -|
+|Register         |        -|    -|     908|      -|    -|
 +-----------------+---------+-----+--------+-------+-----+
-|Total            |       76|    0|     915|  11877|    0|
+|Total            |       76|    0|     934|  11943|    0|
 +-----------------+---------+-----+--------+-------+-----+
 |Available        |      432|  360|  141120|  70560|    0|
 +-----------------+---------+-----+--------+-------+-----+
@@ -100,81 +100,86 @@
     +------------------------------------+----------+----+---+-----+------------+------------+
     |            Variable Name           | Operation| DSP| FF| LUT | Bitwidth P0| Bitwidth P1|
     +------------------------------------+----------+----+---+-----+------------+------------+
-    |add_ln67_fu_13738_p2                |         +|   0|  0|   23|          16|           1|
-    |add_ln93_fu_13788_p2                |         +|   0|  0|   23|          16|           1|
-    |add_ln9_1_fu_14195_p2               |         +|   0|  0|   22|          15|          15|
-    |add_ln9_2_fu_14392_p2               |         +|   0|  0|   22|          15|          15|
-    |add_ln9_fu_13928_p2                 |         +|   0|  0|   22|          15|          15|
-    |address_1_fu_14043_p2               |         +|   0|  0|   14|           7|           1|
-    |hashed_10_fu_14131_p2               |         +|   0|  0|   39|          32|          32|
-    |hashed_12_fu_14386_p2               |         +|   0|  0|   33|          26|          26|
-    |hashed_15_fu_14304_p2               |         +|   0|  0|   39|          32|          32|
-    |hashed_16_fu_14316_p2               |         +|   0|  0|   39|          32|          32|
-    |hashed_3_fu_13852_p2                |         +|   0|  0|   39|          32|          32|
-    |hashed_4_fu_13864_p2                |         +|   0|  0|   39|          32|          32|
-    |hashed_6_fu_14189_p2                |         +|   0|  0|   33|          26|          26|
-    |hashed_9_fu_14119_p2                |         +|   0|  0|   39|          32|          32|
-    |hashed_fu_13922_p2                  |         +|   0|  0|   33|          26|          26|
-    |i_3_fu_13823_p2                     |         +|   0|  0|   12|           5|           1|
-    |i_5_fu_14090_p2                     |         +|   0|  0|   12|           5|           1|
-    |i_7_fu_14275_p2                     |         +|   0|  0|   12|           5|           1|
-    |my_assoc_mem_fill_fu_14264_p2       |         +|   0|  0|   39|          32|           1|
-    |next_code_V_1_fu_14426_p2           |         +|   0|  0|   20|          13|           1|
-    |sub_i_fu_13782_p2                   |         +|   0|  0|   24|          17|           2|
-    |and_ln612_1_fu_14031_p2             |       and|   0|  0|   72|          72|          72|
-    |and_ln612_2_fu_14059_p2             |       and|   0|  0|   72|          72|          72|
-    |and_ln612_fu_14064_p2               |       and|   0|  0|   72|          72|          72|
-    |ap_predicate_op3577_write_state272  |       and|   0|  0|    2|           1|           1|
-    |hit_fu_13967_p2                     |       and|   0|  0|    2|           1|           1|
-    |icmp_ln11_1_fu_14096_p2             |      icmp|   0|  0|    9|           5|           5|
-    |icmp_ln11_2_fu_14281_p2             |      icmp|   0|  0|    9|           5|           5|
-    |icmp_ln11_fu_13829_p2               |      icmp|   0|  0|    9|           5|           5|
-    |icmp_ln129_fu_14037_p2              |      icmp|   0|  0|   10|           7|           7|
-    |icmp_ln180_fu_14225_p2              |      icmp|   0|  0|   20|          32|           7|
-    |icmp_ln67_fu_13744_p2               |      icmp|   0|  0|   13|          16|          17|
-    |icmp_ln870_fu_13962_p2              |      icmp|   0|  0|   15|          21|          21|
-    |icmp_ln93_fu_13798_p2               |      icmp|   0|  0|   13|          17|          17|
-    |p_Result_s_fu_14069_p2              |      icmp|   0|  0|   31|          72|           1|
-    |lshr_ln1497_1_fu_14106_p2           |      lshr|   0|  0|   55|          21|          21|
-    |lshr_ln1497_2_fu_14291_p2           |      lshr|   0|  0|   55|          21|          21|
-    |lshr_ln1497_fu_13839_p2             |      lshr|   0|  0|   55|          21|          21|
+    |add_ln72_fu_13744_p2                |         +|   0|  0|   23|          16|           1|
+    |add_ln7_1_fu_13865_p2               |         +|   0|  0|   25|          18|          18|
+    |add_ln99_fu_13794_p2                |         +|   0|  0|   23|          16|           1|
+    |add_ln9_1_fu_14241_p2               |         +|   0|  0|   22|          15|          15|
+    |add_ln9_2_fu_14436_p2               |         +|   0|  0|   22|          15|          15|
+    |add_ln9_fu_13976_p2                 |         +|   0|  0|   22|          15|          15|
+    |address_1_fu_14089_p2               |         +|   0|  0|   14|           7|           1|
+    |hashed_10_fu_14177_p2               |         +|   0|  0|   39|          32|          32|
+    |hashed_12_fu_14430_p2               |         +|   0|  0|   33|          26|          26|
+    |hashed_15_fu_14350_p2               |         +|   0|  0|   39|          32|          32|
+    |hashed_16_fu_14362_p2               |         +|   0|  0|   39|          32|          32|
+    |hashed_3_fu_13900_p2                |         +|   0|  0|   39|          32|          32|
+    |hashed_4_fu_13912_p2                |         +|   0|  0|   39|          32|          32|
+    |hashed_6_fu_14235_p2                |         +|   0|  0|   33|          26|          26|
+    |hashed_9_fu_14165_p2                |         +|   0|  0|   39|          32|          32|
+    |hashed_fu_13970_p2                  |         +|   0|  0|   33|          26|          26|
+    |i_3_fu_13871_p2                     |         +|   0|  0|   12|           5|           1|
+    |i_5_fu_14136_p2                     |         +|   0|  0|   12|           5|           1|
+    |i_7_fu_14321_p2                     |         +|   0|  0|   12|           5|           1|
+    |key_V_fu_13853_p2                   |         +|   0|  0|   28|          21|          21|
+    |my_assoc_mem_fill_fu_14310_p2       |         +|   0|  0|   39|          32|           1|
+    |next_code_V_1_fu_14466_p2           |         +|   0|  0|   20|          13|           1|
+    |ret_1_fu_13859_p2                   |         +|   0|  0|   16|           9|           9|
+    |sub_i_i_fu_13788_p2                 |         +|   0|  0|   24|          17|           2|
+    |and_ln612_1_fu_14077_p2             |       and|   0|  0|   72|          72|          72|
+    |and_ln612_2_fu_14105_p2             |       and|   0|  0|   72|          72|          72|
+    |and_ln612_fu_14110_p2               |       and|   0|  0|   72|          72|          72|
+    |ap_predicate_op3586_write_state272  |       and|   0|  0|    2|           1|           1|
+    |hit_fu_14015_p2                     |       and|   0|  0|    2|           1|           1|
+    |icmp_ln11_1_fu_14142_p2             |      icmp|   0|  0|    9|           5|           5|
+    |icmp_ln11_2_fu_14327_p2             |      icmp|   0|  0|    9|           5|           5|
+    |icmp_ln11_fu_13877_p2               |      icmp|   0|  0|    9|           5|           5|
+    |icmp_ln135_fu_14083_p2              |      icmp|   0|  0|   10|           7|           7|
+    |icmp_ln186_fu_14271_p2              |      icmp|   0|  0|   20|          32|           7|
+    |icmp_ln72_fu_13750_p2               |      icmp|   0|  0|   13|          16|          17|
+    |icmp_ln870_fu_14010_p2              |      icmp|   0|  0|   15|          21|          21|
+    |icmp_ln99_fu_13804_p2               |      icmp|   0|  0|   13|          17|          17|
+    |p_Result_s_fu_14115_p2              |      icmp|   0|  0|   31|          72|           1|
+    |lshr_ln1497_1_fu_14152_p2           |      lshr|   0|  0|   55|          21|          21|
+    |lshr_ln1497_2_fu_14337_p2           |      lshr|   0|  0|   55|          21|          21|
+    |lshr_ln1497_fu_13887_p2             |      lshr|   0|  0|   55|          21|          21|
+    |ap_block_state1                     |        or|   0|  0|    2|           1|           1|
     |ap_block_state259                   |        or|   0|  0|    2|           1|           1|
     |ap_block_state272                   |        or|   0|  0|    2|           1|           1|
-    |or_ln709_1_fu_14247_p2              |        or|   0|  0|   72|          72|          72|
-    |or_ln709_2_fu_14253_p2              |        or|   0|  0|   72|          72|          72|
-    |or_ln709_fu_14241_p2                |        or|   0|  0|   72|          72|          72|
-    |code_V_1_fu_13983_p3                |    select|   0|  0|   13|           1|          13|
-    |r_3_fu_14235_p2                     |       shl|   0|  0|  212|           1|          72|
-    |shl_ln612_fu_14053_p2               |       shl|   0|  0|  212|           1|          72|
-    |hashed_11_fu_14151_p2               |       xor|   0|  0|   32|          32|          32|
-    |hashed_13_fu_14408_p2               |       xor|   0|  0|   15|          15|          15|
-    |hashed_17_fu_14336_p2               |       xor|   0|  0|   32|          32|          32|
-    |hashed_1_fu_13944_p2                |       xor|   0|  0|   15|          15|          15|
-    |hashed_5_fu_13884_p2                |       xor|   0|  0|   32|          32|          32|
-    |hashed_7_fu_14211_p2                |       xor|   0|  0|   15|          15|          15|
+    |or_ln709_1_fu_14293_p2              |        or|   0|  0|   72|          72|          72|
+    |or_ln709_2_fu_14299_p2              |        or|   0|  0|   72|          72|          72|
+    |or_ln709_fu_14287_p2                |        or|   0|  0|   72|          72|          72|
+    |code_V_1_fu_14031_p3                |    select|   0|  0|   13|           1|          13|
+    |r_3_fu_14281_p2                     |       shl|   0|  0|  212|           1|          72|
+    |shl_ln612_fu_14099_p2               |       shl|   0|  0|  212|           1|          72|
+    |hashed_11_fu_14197_p2               |       xor|   0|  0|   32|          32|          32|
+    |hashed_13_fu_14452_p2               |       xor|   0|  0|   15|          15|          15|
+    |hashed_17_fu_14382_p2               |       xor|   0|  0|   32|          32|          32|
+    |hashed_1_fu_13992_p2                |       xor|   0|  0|   15|          15|          15|
+    |hashed_5_fu_13932_p2                |       xor|   0|  0|   32|          32|          32|
+    |hashed_7_fu_14257_p2                |       xor|   0|  0|   15|          15|          15|
     +------------------------------------+----------+----+---+-----+------------+------------+
-    |Total                               |          |   0|  0| 1890|        1254|        1207|
+    |Total                               |          |   0|  0| 1961|        1303|        1256|
     +------------------------------------+----------+----+---+-----+------------+------------+
 
     * Multiplexer: 
     +----------------------------------------+------+-----------+-----+-----------+
     |                  Name                  |  LUT | Input Size| Bits| Total Bits|
     +----------------------------------------+------+-----------+-----+-----------+
-    |address_reg_13660                       |     9|          2|    7|         14|
+    |address_reg_13666                       |     9|          2|    7|         14|
     |ap_NS_fsm                               |  1450|        273|    1|        273|
-    |code_V_fu_1180                          |    20|          4|   13|         52|
+    |ap_done                                 |     9|          2|    1|          2|
+    |code_V_fu_1186                          |    20|          4|   13|         52|
     |hash_table_V_0_address0                 |    26|          5|   15|         75|
     |hash_table_V_0_d0                       |    14|          3|   35|        105|
-    |hashed_14_reg_13695                     |     9|          2|   32|         64|
-    |hashed_2_reg_13637                      |     9|          2|   32|         64|
-    |hashed_8_reg_13672                      |     9|          2|   32|         64|
-    |i_1_reg_13626                           |     9|          2|   16|         32|
-    |i_2_reg_13649                           |     9|          2|    5|         10|
-    |i_4_reg_13684                           |     9|          2|    5|         10|
-    |i_6_reg_13707                           |     9|          2|    5|         10|
-    |i_reg_13615                             |     9|          2|   16|         32|
+    |hashed_14_reg_13701                     |     9|          2|   32|         64|
+    |hashed_2_reg_13643                      |     9|          2|   32|         64|
+    |hashed_8_reg_13678                      |     9|          2|   32|         64|
+    |i_1_reg_13632                           |     9|          2|   16|         32|
+    |i_2_reg_13655                           |     9|          2|    5|         10|
+    |i_4_reg_13690                           |     9|          2|    5|         10|
+    |i_6_reg_13713                           |     9|          2|    5|         10|
+    |i_reg_13621                             |     9|          2|   16|         32|
     |inStream_in_blk_n                       |     9|          2|    1|          2|
-    |my_assoc_mem_fill_3_fu_1184             |     9|          2|   32|         64|
+    |my_assoc_mem_fill_3_fu_1190             |     9|          2|   32|         64|
     |my_assoc_mem_lower_key_mem_V_address0   |  1372|        258|    9|       2322|
     |my_assoc_mem_lower_key_mem_V_address1   |  1372|        258|    9|       2322|
     |my_assoc_mem_lower_key_mem_V_d1         |    14|          3|   72|        216|
@@ -185,52 +190,53 @@
     |my_assoc_mem_upper_key_mem_V_address1   |  1372|        258|    9|       2322|
     |my_assoc_mem_upper_key_mem_V_d1         |    14|          3|   72|        216|
     |my_assoc_mem_value_V_address0           |    14|          3|    7|         21|
-    |next_code_V_fu_1188                     |     9|          2|   13|         26|
+    |next_code_V_fu_1194                     |     9|          2|   13|         26|
     |outStream_code_blk_n                    |     9|          2|    1|          2|
-    |outStream_code_din                      |    14|          3|   13|         39|
     |outStream_code_flg_blk_n                |     9|          2|    1|          2|
     |outStream_code_flg_din                  |    14|          3|    8|         24|
-    |prefix_code_V_fu_1176                   |    20|          4|   13|         52|
+    |prefix_code_V_fu_1182                   |    20|          4|   13|         52|
     +----------------------------------------+------+-----------+-----+-----------+
-    |Total                                   |  9972|       1883|  573|      15617|
+    |Total                                   |  9967|       1882|  561|      15580|
     +----------------------------------------+------+-----------+-----+-----------+
 
     * Register: 
     +--------------------------------------------------+-----+----+-----+-----------+
     |                       Name                       |  FF | LUT| Bits| Const Bits|
     +--------------------------------------------------+-----+----+-----+-----------+
-    |add_ln93_reg_14496                                |   16|   0|   16|          0|
-    |address_reg_13660                                 |    7|   0|    7|          0|
-    |and_ln612_1_reg_14585                             |   72|   0|   72|          0|
+    |add_ln7_1_reg_14564                               |   18|   0|   18|          0|
+    |add_ln99_reg_14535                                |   16|   0|   16|          0|
+    |address_reg_13666                                 |    7|   0|    7|          0|
+    |and_ln612_1_reg_14630                             |   72|   0|   72|          0|
     |ap_CS_fsm                                         |  272|   0|  272|          0|
-    |code_V_1_reg_14546                                |   13|   0|   13|          0|
-    |code_V_fu_1180                                    |   13|   0|   13|          0|
-    |hashed_14_reg_13695                               |   32|   0|   32|          0|
-    |hashed_2_reg_13637                                |   32|   0|   32|          0|
-    |hashed_8_reg_13672                                |   32|   0|   32|          0|
-    |hit_reg_14542                                     |    1|   0|    1|          0|
-    |i_1_reg_13626                                     |   16|   0|   16|          0|
-    |i_2_reg_13649                                     |    5|   0|    5|          0|
-    |i_4_reg_13684                                     |    5|   0|    5|          0|
-    |i_6_reg_13707                                     |    5|   0|    5|          0|
-    |i_reg_13615                                       |   16|   0|   16|          0|
-    |icmp_ln129_reg_14590                              |    1|   0|    1|          0|
-    |key_V_reg_14511                                   |   21|   0|   21|          0|
-    |match_high_V_reg_14569                            |   72|   0|   72|          0|
-    |match_low_V_reg_14579                             |   72|   0|   72|          0|
-    |match_middle_V_reg_14574                          |   72|   0|   72|          0|
-    |my_assoc_mem_fill_3_fu_1184                       |   32|   0|   32|          0|
-    |my_assoc_mem_lower_key_mem_V_addr_512_reg_14563   |    9|   0|    9|          0|
-    |my_assoc_mem_middle_key_mem_V_addr_512_reg_14557  |    9|   0|    9|          0|
-    |my_assoc_mem_upper_key_mem_V_addr_512_reg_14551   |    3|   0|    9|          6|
-    |next_code_V_fu_1188                               |   13|   0|   13|          0|
-    |prefix_code_V_fu_1176                             |   13|   0|   13|          0|
-    |ret_1_reg_14519                                   |    9|   0|    9|          0|
-    |sub_i_reg_14491                                   |   17|   0|   17|          0|
-    |tmp_1_reg_14505                                   |    8|   0|    8|          0|
-    |valid_1_reg_14625                                 |    1|   0|    1|          0|
+    |ap_done_reg                                       |    1|   0|    1|          0|
+    |code_V_1_reg_14591                                |   13|   0|   13|          0|
+    |code_V_fu_1186                                    |   13|   0|   13|          0|
+    |hashed_14_reg_13701                               |   32|   0|   32|          0|
+    |hashed_2_reg_13643                                |   32|   0|   32|          0|
+    |hashed_8_reg_13678                                |   32|   0|   32|          0|
+    |hit_reg_14587                                     |    1|   0|    1|          0|
+    |i_1_reg_13632                                     |   16|   0|   16|          0|
+    |i_2_reg_13655                                     |    5|   0|    5|          0|
+    |i_4_reg_13690                                     |    5|   0|    5|          0|
+    |i_6_reg_13713                                     |    5|   0|    5|          0|
+    |i_reg_13621                                       |   16|   0|   16|          0|
+    |icmp_ln135_reg_14635                              |    1|   0|    1|          0|
+    |key_V_reg_14549                                   |   21|   0|   21|          0|
+    |match_high_V_reg_14614                            |   72|   0|   72|          0|
+    |match_low_V_reg_14624                             |   72|   0|   72|          0|
+    |match_middle_V_reg_14619                          |   72|   0|   72|          0|
+    |my_assoc_mem_fill_3_fu_1190                       |   32|   0|   32|          0|
+    |my_assoc_mem_lower_key_mem_V_addr_512_reg_14608   |    9|   0|    9|          0|
+    |my_assoc_mem_middle_key_mem_V_addr_512_reg_14602  |    9|   0|    9|          0|
+    |my_assoc_mem_upper_key_mem_V_addr_512_reg_14596   |    3|   0|    9|          6|
+    |next_code_V_fu_1194                               |   13|   0|   13|          0|
+    |prefix_code_V_fu_1182                             |   13|   0|   13|          0|
+    |ret_1_reg_14559                                   |    9|   0|    9|          0|
+    |sub_i_i_reg_14530                                 |   17|   0|   17|          0|
+    |tmp_20_reg_14544                                  |    8|   0|    8|          0|
+    |valid_1_reg_14670                                 |    1|   0|    1|          0|
     +--------------------------------------------------+-----+----+-----+-----------+
-    |Total                                             |  889|   0|  895|          6|
+    |Total                                             |  908|   0|  914|          6|
     +--------------------------------------------------+-----+----+-----+-----------+
 
 
@@ -246,17 +252,18 @@
 |ap_rst                     |   in|    1|  ap_ctrl_hs|         compute_LZW|  return value|
 |ap_start                   |   in|    1|  ap_ctrl_hs|         compute_LZW|  return value|
 |ap_done                    |  out|    1|  ap_ctrl_hs|         compute_LZW|  return value|
+|ap_continue                |   in|    1|  ap_ctrl_hs|         compute_LZW|  return value|
 |ap_idle                    |  out|    1|  ap_ctrl_hs|         compute_LZW|  return value|
 |ap_ready                   |  out|    1|  ap_ctrl_hs|         compute_LZW|  return value|
-|input_length               |   in|   16|     ap_none|        input_length|        scalar|
+|empty                      |   in|   16|     ap_none|               empty|       pointer|
 |inStream_in_dout           |   in|    8|     ap_fifo|         inStream_in|       pointer|
 |inStream_in_empty_n        |   in|    1|     ap_fifo|         inStream_in|       pointer|
 |inStream_in_read           |  out|    1|     ap_fifo|         inStream_in|       pointer|
-|outStream_code_din         |  out|   13|     ap_fifo|      outStream_code|       pointer|
-|outStream_code_full_n      |   in|    1|     ap_fifo|      outStream_code|       pointer|
-|outStream_code_write       |  out|    1|     ap_fifo|      outStream_code|       pointer|
 |outStream_code_flg_din     |  out|    8|     ap_fifo|  outStream_code_flg|       pointer|
 |outStream_code_flg_full_n  |   in|    1|     ap_fifo|  outStream_code_flg|       pointer|
 |outStream_code_flg_write   |  out|    1|     ap_fifo|  outStream_code_flg|       pointer|
+|outStream_code_din         |  out|   13|     ap_fifo|      outStream_code|       pointer|
+|outStream_code_full_n      |   in|    1|     ap_fifo|      outStream_code|       pointer|
+|outStream_code_write       |  out|    1|     ap_fifo|      outStream_code|       pointer|
 +---------------------------+-----+-----+------------+--------------------+--------------+
 

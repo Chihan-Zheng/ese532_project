@@ -1,5 +1,5 @@
    
-    parameter PROC_NUM = 4;
+    parameter PROC_NUM = 6;
     parameter ST_IDLE = 2'b0;
     parameter ST_DL_DETECTED = 2'b1;
     parameter ST_DL_REPORT = 2'b10;
@@ -130,22 +130,28 @@
     endfunction
 
     // get the proc path based on dl vector
-    function [416:0] proc_path(input [PROC_NUM - 1:0] dl_vec);
+    function [1120:0] proc_path(input [PROC_NUM - 1:0] dl_vec);
         integer index;
         begin
             index = proc_index(dl_vec);
             case (index)
                 0 : begin
-                    proc_path = "krnl_LZW_krnl_LZW.krnl_LZW_entry4_U0";
+                    proc_path = "krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry3_U0";
                 end
                 1 : begin
-                    proc_path = "krnl_LZW_krnl_LZW.Loop_VITIS_LOOP_318_1_proc_U0";
+                    proc_path = "krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0";
                 end
                 2 : begin
-                    proc_path = "krnl_LZW_krnl_LZW.Block_krnl_LZW_exit1_proc_U0";
+                    proc_path = "krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.Block_entry_proc_proc_U0";
                 end
                 3 : begin
-                    proc_path = "krnl_LZW_krnl_LZW.Loop_VITIS_LOOP_325_2_proc_U0";
+                    proc_path = "krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.read_input_U0";
+                end
+                4 : begin
+                    proc_path = "krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.compute_LZW_U0";
+                end
+                5 : begin
+                    proc_path = "krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.write_result_U0";
                 end
                 default : begin
                     proc_path = "unknown";
@@ -165,7 +171,7 @@
     endtask
 
     // print the start of a cycle
-    task print_cycle_start(input reg [416:0] proc_path, input integer cycle_id);
+    task print_cycle_start(input reg [1120:0] proc_path, input integer cycle_id);
         begin
             $display("/////////////////////////");
             $display("// Dependence cycle %0d:", cycle_id);
@@ -190,7 +196,7 @@
     endtask
 
     // print one proc component in the cycle
-    task print_cycle_proc_comp(input reg [416:0] proc_path, input integer cycle_comp_id);
+    task print_cycle_proc_comp(input reg [1120:0] proc_path, input integer cycle_comp_id);
         begin
             $display("// (%0d): Process: %0s", cycle_comp_id, proc_path);
             $fdisplay(fp, "Dependence_Process_ID %0d", cycle_comp_id);
@@ -200,7 +206,7 @@
 
     // print one channel component in the cycle
     task print_cycle_chan_comp(input [PROC_NUM - 1:0] dl_vec1, input [PROC_NUM - 1:0] dl_vec2);
-        reg [504:0] chan_path;
+        reg [1216:0] chan_path;
         integer index1;
         integer index2;
         begin
@@ -209,117 +215,181 @@
             case (index1)
                 0 : begin
                     case(index2)
-                    3: begin
-                        if (~krnl_LZW_entry4_U0.input_out_blk_n) begin
-                            if (~input_c_U.if_empty_n) begin
-                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.input_c_U' written by process 'krnl_LZW_krnl_LZW.Loop_VITIS_LOOP_325_2_proc_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.input_c_U");
-                                $fdisplay(fp, "Dependence_Channel_status EMPTY");
-                            end
-                            else if (~input_c_U.if_full_n) begin
-                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.input_c_U' read by process 'krnl_LZW_krnl_LZW.Loop_VITIS_LOOP_325_2_proc_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.input_c_U");
-                                $fdisplay(fp, "Dependence_Channel_status FULL");
-                            end
-                        end
-                        if (~krnl_LZW_entry4_U0.send_data_out1_blk_n) begin
-                            if (~send_data_c115_U.if_empty_n) begin
-                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.send_data_c115_U' written by process 'krnl_LZW_krnl_LZW.Loop_VITIS_LOOP_325_2_proc_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.send_data_c115_U");
-                                $fdisplay(fp, "Dependence_Channel_status EMPTY");
-                            end
-                            else if (~send_data_c115_U.if_full_n) begin
-                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.send_data_c115_U' read by process 'krnl_LZW_krnl_LZW.Loop_VITIS_LOOP_325_2_proc_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.send_data_c115_U");
-                                $fdisplay(fp, "Dependence_Channel_status FULL");
-                            end
-                        end
-                        if (~krnl_LZW_entry4_U0.output_length_out_blk_n) begin
-                            if (~output_length_c_U.if_empty_n) begin
-                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.output_length_c_U' written by process 'krnl_LZW_krnl_LZW.Loop_VITIS_LOOP_325_2_proc_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.output_length_c_U");
-                                $fdisplay(fp, "Dependence_Channel_status EMPTY");
-                            end
-                            else if (~output_length_c_U.if_full_n) begin
-                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.output_length_c_U' read by process 'krnl_LZW_krnl_LZW.Loop_VITIS_LOOP_325_2_proc_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.output_length_c_U");
-                                $fdisplay(fp, "Dependence_Channel_status FULL");
-                            end
-                        end
-                        if (ap_sync_krnl_LZW_entry4_U0_ap_ready & krnl_LZW_entry4_U0.ap_idle & ~ap_sync_Loop_VITIS_LOOP_325_2_proc_U0_ap_ready) begin
-                            $display("//      Blocked by input sync logic with process : 'krnl_LZW_krnl_LZW.Loop_VITIS_LOOP_325_2_proc_U0'");
-                        end
-                    end
                     1: begin
-                        if (~krnl_LZW_entry4_U0.input_length_out_blk_n) begin
-                            if (~input_length_c_U.if_empty_n) begin
-                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.input_length_c_U' written by process 'krnl_LZW_krnl_LZW.Loop_VITIS_LOOP_318_1_proc_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.input_length_c_U");
+                        if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry3_U0.input_out_blk_n) begin
+                            if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.input_c1_U.if_empty_n) begin
+                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.input_c1_U' written by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.input_c1_U");
                                 $fdisplay(fp, "Dependence_Channel_status EMPTY");
                             end
-                            else if (~input_length_c_U.if_full_n) begin
-                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.input_length_c_U' read by process 'krnl_LZW_krnl_LZW.Loop_VITIS_LOOP_318_1_proc_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.input_length_c_U");
+                            else if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.input_c1_U.if_full_n) begin
+                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.input_c1_U' read by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.input_c1_U");
                                 $fdisplay(fp, "Dependence_Channel_status FULL");
                             end
                         end
-                        if (ap_sync_krnl_LZW_entry4_U0_ap_ready & krnl_LZW_entry4_U0.ap_idle & ~ap_sync_Loop_VITIS_LOOP_318_1_proc_U0_ap_ready) begin
-                            $display("//      Blocked by input sync logic with process : 'krnl_LZW_krnl_LZW.Loop_VITIS_LOOP_318_1_proc_U0'");
+                        if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry3_U0.send_data_out_blk_n) begin
+                            if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.send_data_c2_U.if_empty_n) begin
+                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.send_data_c2_U' written by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.send_data_c2_U");
+                                $fdisplay(fp, "Dependence_Channel_status EMPTY");
+                            end
+                            else if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.send_data_c2_U.if_full_n) begin
+                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.send_data_c2_U' read by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.send_data_c2_U");
+                                $fdisplay(fp, "Dependence_Channel_status FULL");
+                            end
+                        end
+                        if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry3_U0.i_1_out_blk_n) begin
+                            if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.i_1_c3_U.if_empty_n) begin
+                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.i_1_c3_U' written by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.i_1_c3_U");
+                                $fdisplay(fp, "Dependence_Channel_status EMPTY");
+                            end
+                            else if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.i_1_c3_U.if_full_n) begin
+                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.i_1_c3_U' read by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.i_1_c3_U");
+                                $fdisplay(fp, "Dependence_Channel_status FULL");
+                            end
+                        end
+                        if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry3_U0.output_length_out_blk_n) begin
+                            if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.output_length_c4_U.if_empty_n) begin
+                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.output_length_c4_U' written by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.output_length_c4_U");
+                                $fdisplay(fp, "Dependence_Channel_status EMPTY");
+                            end
+                            else if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.output_length_c4_U.if_full_n) begin
+                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.output_length_c4_U' read by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.output_length_c4_U");
+                                $fdisplay(fp, "Dependence_Channel_status FULL");
+                            end
+                        end
+                        if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.start_for_dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0_U.if_full_n & grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry3_U0.ap_start & ~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry3_U0.real_start & (trans_in_cnt_0 == trans_out_cnt_0) & ~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.start_for_dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0_U.if_read) begin
+                            $display("//      Blocked by full output start propagation FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.start_for_dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0_U' read by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0',");
                         end
                     end
                     2: begin
-                        if (~krnl_LZW_entry4_U0.send_data_out_blk_n) begin
-                            if (~send_data_c_U.if_empty_n) begin
-                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.send_data_c_U' written by process 'krnl_LZW_krnl_LZW.Block_krnl_LZW_exit1_proc_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.send_data_c_U");
-                                $fdisplay(fp, "Dependence_Channel_status EMPTY");
-                            end
-                            else if (~send_data_c_U.if_full_n) begin
-                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.send_data_c_U' read by process 'krnl_LZW_krnl_LZW.Block_krnl_LZW_exit1_proc_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.send_data_c_U");
-                                $fdisplay(fp, "Dependence_Channel_status FULL");
-                            end
+                        if (grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.ap_sync_dataflow_in_loop_VITIS_LOOP_346_2_entry3_U0_ap_ready & grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry3_U0.ap_idle & ~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.ap_sync_Block_entry_proc_proc_U0_ap_ready) begin
+                            $display("//      Blocked by input sync logic with process : 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.Block_entry_proc_proc_U0'");
                         end
-                        if (~start_for_Block_krnl_LZW_exit1_proc_U0_U.if_full_n & krnl_LZW_entry4_U0.ap_start & ~krnl_LZW_entry4_U0.real_start & (trans_in_cnt_0 == trans_out_cnt_0) & ~start_for_Block_krnl_LZW_exit1_proc_U0_U.if_read) begin
-                            $display("//      Blocked by full output start propagation FIFO 'krnl_LZW_krnl_LZW.start_for_Block_krnl_LZW_exit1_proc_U0_U' read by process 'krnl_LZW_krnl_LZW.Block_krnl_LZW_exit1_proc_U0',");
+                    end
+                    3: begin
+                        if (grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.ap_sync_dataflow_in_loop_VITIS_LOOP_346_2_entry3_U0_ap_ready & grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry3_U0.ap_idle & ~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.ap_sync_read_input_U0_ap_ready) begin
+                            $display("//      Blocked by input sync logic with process : 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.read_input_U0'");
+                        end
+                    end
+                    5: begin
+                        if (grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.ap_sync_dataflow_in_loop_VITIS_LOOP_346_2_entry3_U0_ap_ready & grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry3_U0.ap_idle & ~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.ap_sync_write_result_U0_ap_ready) begin
+                            $display("//      Blocked by input sync logic with process : 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.write_result_U0'");
                         end
                     end
                     endcase
                 end
                 1 : begin
                     case(index2)
-                    3: begin
-                        if (~input_length_temp_U.i_full_n & Loop_VITIS_LOOP_318_1_proc_U0.ap_done & ap_done_reg_0 & ~input_length_temp_U.t_read) begin
-                            if (~input_length_temp_U.t_empty_n) begin
-                                $display("//      Blocked by empty input PIPO 'krnl_LZW_krnl_LZW.input_length_temp_U' written by process 'krnl_LZW_krnl_LZW.Loop_VITIS_LOOP_325_2_proc_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.input_length_temp_U");
+                    0: begin
+                        if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0.input_r_blk_n) begin
+                            if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.input_c1_U.if_empty_n) begin
+                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.input_c1_U' written by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry3_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.input_c1_U");
                                 $fdisplay(fp, "Dependence_Channel_status EMPTY");
                             end
-                            else if (~input_length_temp_U.i_full_n) begin
-                                $display("//      Blocked by full output PIPO 'krnl_LZW_krnl_LZW.input_length_temp_U' read by process 'krnl_LZW_krnl_LZW.Loop_VITIS_LOOP_325_2_proc_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.input_length_temp_U");
+                            else if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.input_c1_U.if_full_n) begin
+                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.input_c1_U' read by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry3_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.input_c1_U");
                                 $fdisplay(fp, "Dependence_Channel_status FULL");
                             end
                         end
-                        if (ap_sync_Loop_VITIS_LOOP_318_1_proc_U0_ap_ready & Loop_VITIS_LOOP_318_1_proc_U0.ap_idle & ~ap_sync_Loop_VITIS_LOOP_325_2_proc_U0_ap_ready) begin
-                            $display("//      Blocked by input sync logic with process : 'krnl_LZW_krnl_LZW.Loop_VITIS_LOOP_325_2_proc_U0'");
+                        if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0.send_data_blk_n) begin
+                            if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.send_data_c2_U.if_empty_n) begin
+                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.send_data_c2_U' written by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry3_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.send_data_c2_U");
+                                $fdisplay(fp, "Dependence_Channel_status EMPTY");
+                            end
+                            else if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.send_data_c2_U.if_full_n) begin
+                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.send_data_c2_U' read by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry3_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.send_data_c2_U");
+                                $fdisplay(fp, "Dependence_Channel_status FULL");
+                            end
+                        end
+                        if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0.i_1_blk_n) begin
+                            if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.i_1_c3_U.if_empty_n) begin
+                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.i_1_c3_U' written by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry3_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.i_1_c3_U");
+                                $fdisplay(fp, "Dependence_Channel_status EMPTY");
+                            end
+                            else if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.i_1_c3_U.if_full_n) begin
+                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.i_1_c3_U' read by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry3_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.i_1_c3_U");
+                                $fdisplay(fp, "Dependence_Channel_status FULL");
+                            end
+                        end
+                        if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0.output_length_blk_n) begin
+                            if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.output_length_c4_U.if_empty_n) begin
+                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.output_length_c4_U' written by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry3_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.output_length_c4_U");
+                                $fdisplay(fp, "Dependence_Channel_status EMPTY");
+                            end
+                            else if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.output_length_c4_U.if_full_n) begin
+                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.output_length_c4_U' read by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry3_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.output_length_c4_U");
+                                $fdisplay(fp, "Dependence_Channel_status FULL");
+                            end
+                        end
+                        if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.start_for_dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0_U.if_empty_n & grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0.ap_idle & ~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.start_for_dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0_U.if_write) begin
+                            $display("//      Blocked by missing 'ap_start' from start propagation FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.start_for_dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0_U' written by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry3_U0',");
                         end
                     end
-                    0: begin
-                        if (~Loop_VITIS_LOOP_318_1_proc_U0.input_length_blk_n) begin
-                            if (~input_length_c_U.if_empty_n) begin
-                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.input_length_c_U' written by process 'krnl_LZW_krnl_LZW.krnl_LZW_entry4_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.input_length_c_U");
+                    3: begin
+                        if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0.input_out_blk_n) begin
+                            if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.input_c_U.if_empty_n) begin
+                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.input_c_U' written by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.read_input_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.input_c_U");
                                 $fdisplay(fp, "Dependence_Channel_status EMPTY");
                             end
-                            else if (~input_length_c_U.if_full_n) begin
-                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.input_length_c_U' read by process 'krnl_LZW_krnl_LZW.krnl_LZW_entry4_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.input_length_c_U");
+                            else if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.input_c_U.if_full_n) begin
+                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.input_c_U' read by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.read_input_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.input_c_U");
                                 $fdisplay(fp, "Dependence_Channel_status FULL");
                             end
                         end
-                        if (ap_sync_Loop_VITIS_LOOP_318_1_proc_U0_ap_ready & Loop_VITIS_LOOP_318_1_proc_U0.ap_idle & ~ap_sync_krnl_LZW_entry4_U0_ap_ready) begin
-                            $display("//      Blocked by input sync logic with process : 'krnl_LZW_krnl_LZW.krnl_LZW_entry4_U0'");
+                    end
+                    5: begin
+                        if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0.send_data_out_blk_n) begin
+                            if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.send_data_c_U.if_empty_n) begin
+                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.send_data_c_U' written by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.write_result_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.send_data_c_U");
+                                $fdisplay(fp, "Dependence_Channel_status EMPTY");
+                            end
+                            else if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.send_data_c_U.if_full_n) begin
+                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.send_data_c_U' read by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.write_result_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.send_data_c_U");
+                                $fdisplay(fp, "Dependence_Channel_status FULL");
+                            end
+                        end
+                        if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0.i_1_out_blk_n) begin
+                            if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.i_1_c_U.if_empty_n) begin
+                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.i_1_c_U' written by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.write_result_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.i_1_c_U");
+                                $fdisplay(fp, "Dependence_Channel_status EMPTY");
+                            end
+                            else if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.i_1_c_U.if_full_n) begin
+                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.i_1_c_U' read by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.write_result_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.i_1_c_U");
+                                $fdisplay(fp, "Dependence_Channel_status FULL");
+                            end
+                        end
+                        if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0.output_length_out_blk_n) begin
+                            if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.output_length_c_U.if_empty_n) begin
+                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.output_length_c_U' written by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.write_result_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.output_length_c_U");
+                                $fdisplay(fp, "Dependence_Channel_status EMPTY");
+                            end
+                            else if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.output_length_c_U.if_full_n) begin
+                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.output_length_c_U' read by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.write_result_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.output_length_c_U");
+                                $fdisplay(fp, "Dependence_Channel_status FULL");
+                            end
                         end
                     end
                     endcase
@@ -327,20 +397,18 @@
                 2 : begin
                     case(index2)
                     0: begin
-                        if (~Block_krnl_LZW_exit1_proc_U0.send_data_blk_n) begin
-                            if (~send_data_c_U.if_empty_n) begin
-                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.send_data_c_U' written by process 'krnl_LZW_krnl_LZW.krnl_LZW_entry4_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.send_data_c_U");
-                                $fdisplay(fp, "Dependence_Channel_status EMPTY");
-                            end
-                            else if (~send_data_c_U.if_full_n) begin
-                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.send_data_c_U' read by process 'krnl_LZW_krnl_LZW.krnl_LZW_entry4_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.send_data_c_U");
-                                $fdisplay(fp, "Dependence_Channel_status FULL");
-                            end
+                        if (grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.ap_sync_Block_entry_proc_proc_U0_ap_ready & grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.Block_entry_proc_proc_U0.ap_idle & ~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.ap_sync_dataflow_in_loop_VITIS_LOOP_346_2_entry3_U0_ap_ready) begin
+                            $display("//      Blocked by input sync logic with process : 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry3_U0'");
                         end
-                        if (~start_for_Block_krnl_LZW_exit1_proc_U0_U.if_empty_n & Block_krnl_LZW_exit1_proc_U0.ap_idle & ~start_for_Block_krnl_LZW_exit1_proc_U0_U.if_write) begin
-                            $display("//      Blocked by missing 'ap_start' from start propagation FIFO 'krnl_LZW_krnl_LZW.start_for_Block_krnl_LZW_exit1_proc_U0_U' written by process 'krnl_LZW_krnl_LZW.krnl_LZW_entry4_U0',");
+                    end
+                    3: begin
+                        if (grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.ap_sync_Block_entry_proc_proc_U0_ap_ready & grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.Block_entry_proc_proc_U0.ap_idle & ~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.ap_sync_read_input_U0_ap_ready) begin
+                            $display("//      Blocked by input sync logic with process : 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.read_input_U0'");
+                        end
+                    end
+                    5: begin
+                        if (grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.ap_sync_Block_entry_proc_proc_U0_ap_ready & grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.Block_entry_proc_proc_U0.ap_idle & ~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.ap_sync_write_result_U0_ap_ready) begin
+                            $display("//      Blocked by input sync logic with process : 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.write_result_U0'");
                         end
                     end
                     endcase
@@ -348,137 +416,179 @@
                 3 : begin
                     case(index2)
                     1: begin
-                        if (~num_chunks_loc_channel_U.if_empty_n & Loop_VITIS_LOOP_325_2_proc_U0.ap_idle & ~num_chunks_loc_channel_U.if_write) begin
-                            if (~num_chunks_loc_channel_U.if_empty_n) begin
-                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.num_chunks_loc_channel_U' written by process 'krnl_LZW_krnl_LZW.Loop_VITIS_LOOP_318_1_proc_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.num_chunks_loc_channel_U");
+                        if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.read_input_U0.input_r_blk_n) begin
+                            if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.input_c_U.if_empty_n) begin
+                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.input_c_U' written by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.input_c_U");
                                 $fdisplay(fp, "Dependence_Channel_status EMPTY");
                             end
-                            else if (~num_chunks_loc_channel_U.if_full_n) begin
-                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.num_chunks_loc_channel_U' read by process 'krnl_LZW_krnl_LZW.Loop_VITIS_LOOP_318_1_proc_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.num_chunks_loc_channel_U");
+                            else if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.input_c_U.if_full_n) begin
+                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.input_c_U' read by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.input_c_U");
                                 $fdisplay(fp, "Dependence_Channel_status FULL");
                             end
                         end
-                        if (~input_length_temp_U.t_empty_n & Loop_VITIS_LOOP_325_2_proc_U0.ap_idle & ~input_length_temp_U.i_write) begin
-                            if (~input_length_temp_U.t_empty_n) begin
-                                $display("//      Blocked by empty input PIPO 'krnl_LZW_krnl_LZW.input_length_temp_U' written by process 'krnl_LZW_krnl_LZW.Loop_VITIS_LOOP_318_1_proc_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.input_length_temp_U");
+                    end
+                    4: begin
+                        if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.read_input_U0.inStream_in_blk_n) begin
+                            if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.inStream_in_U.if_empty_n) begin
+                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.inStream_in_U' written by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.compute_LZW_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.inStream_in_U");
                                 $fdisplay(fp, "Dependence_Channel_status EMPTY");
                             end
-                            else if (~input_length_temp_U.i_full_n) begin
-                                $display("//      Blocked by full output PIPO 'krnl_LZW_krnl_LZW.input_length_temp_U' read by process 'krnl_LZW_krnl_LZW.Loop_VITIS_LOOP_318_1_proc_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.input_length_temp_U");
+                            else if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.inStream_in_U.if_full_n) begin
+                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.inStream_in_U' read by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.compute_LZW_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.inStream_in_U");
                                 $fdisplay(fp, "Dependence_Channel_status FULL");
                             end
                         end
-                        if (ap_sync_Loop_VITIS_LOOP_325_2_proc_U0_ap_ready & Loop_VITIS_LOOP_325_2_proc_U0.ap_idle & ~ap_sync_Loop_VITIS_LOOP_318_1_proc_U0_ap_ready) begin
-                            $display("//      Blocked by input sync logic with process : 'krnl_LZW_krnl_LZW.Loop_VITIS_LOOP_318_1_proc_U0'");
+                        if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.start_for_compute_LZW_U0_U.if_full_n & grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.read_input_U0.ap_start & ~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.read_input_U0.real_start & (trans_in_cnt_1 == trans_out_cnt_1) & ~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.start_for_compute_LZW_U0_U.if_read) begin
+                            $display("//      Blocked by full output start propagation FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.start_for_compute_LZW_U0_U' read by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.compute_LZW_U0',");
+                        end
+                    end
+                    0: begin
+                        if (grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.ap_sync_read_input_U0_ap_ready & grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.read_input_U0.ap_idle & ~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.ap_sync_dataflow_in_loop_VITIS_LOOP_346_2_entry3_U0_ap_ready) begin
+                            $display("//      Blocked by input sync logic with process : 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry3_U0'");
                         end
                     end
                     2: begin
-                        if (~p_loc_channel_U.if_empty_n & Loop_VITIS_LOOP_325_2_proc_U0.ap_idle & ~p_loc_channel_U.if_write) begin
-                            if (~p_loc_channel_U.if_empty_n) begin
-                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.p_loc_channel_U' written by process 'krnl_LZW_krnl_LZW.Block_krnl_LZW_exit1_proc_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.p_loc_channel_U");
+                        if (grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.ap_sync_read_input_U0_ap_ready & grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.read_input_U0.ap_idle & ~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.ap_sync_Block_entry_proc_proc_U0_ap_ready) begin
+                            $display("//      Blocked by input sync logic with process : 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.Block_entry_proc_proc_U0'");
+                        end
+                    end
+                    5: begin
+                        if (grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.ap_sync_read_input_U0_ap_ready & grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.read_input_U0.ap_idle & ~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.ap_sync_write_result_U0_ap_ready) begin
+                            $display("//      Blocked by input sync logic with process : 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.write_result_U0'");
+                        end
+                    end
+                    endcase
+                end
+                4 : begin
+                    case(index2)
+                    3: begin
+                        if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.compute_LZW_U0.inStream_in_blk_n) begin
+                            if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.inStream_in_U.if_empty_n) begin
+                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.inStream_in_U' written by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.read_input_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.inStream_in_U");
                                 $fdisplay(fp, "Dependence_Channel_status EMPTY");
                             end
-                            else if (~p_loc_channel_U.if_full_n) begin
-                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.p_loc_channel_U' read by process 'krnl_LZW_krnl_LZW.Block_krnl_LZW_exit1_proc_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.p_loc_channel_U");
+                            else if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.inStream_in_U.if_full_n) begin
+                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.inStream_in_U' read by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.read_input_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.inStream_in_U");
                                 $fdisplay(fp, "Dependence_Channel_status FULL");
                             end
                         end
-                        if (~send_data_cast_loc_channel_U.if_empty_n & Loop_VITIS_LOOP_325_2_proc_U0.ap_idle & ~send_data_cast_loc_channel_U.if_write) begin
-                            if (~send_data_cast_loc_channel_U.if_empty_n) begin
-                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.send_data_cast_loc_channel_U' written by process 'krnl_LZW_krnl_LZW.Block_krnl_LZW_exit1_proc_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.send_data_cast_loc_channel_U");
+                        if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.start_for_compute_LZW_U0_U.if_empty_n & grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.compute_LZW_U0.ap_idle & ~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.start_for_compute_LZW_U0_U.if_write) begin
+                            $display("//      Blocked by missing 'ap_start' from start propagation FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.start_for_compute_LZW_U0_U' written by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.read_input_U0',");
+                        end
+                    end
+                    5: begin
+                        if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.compute_LZW_U0.outStream_code_flg_blk_n) begin
+                            if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.outStream_code_flg_U.if_empty_n) begin
+                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.outStream_code_flg_U' written by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.write_result_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.outStream_code_flg_U");
                                 $fdisplay(fp, "Dependence_Channel_status EMPTY");
                             end
-                            else if (~send_data_cast_loc_channel_U.if_full_n) begin
-                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.send_data_cast_loc_channel_U' read by process 'krnl_LZW_krnl_LZW.Block_krnl_LZW_exit1_proc_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.send_data_cast_loc_channel_U");
+                            else if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.outStream_code_flg_U.if_full_n) begin
+                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.outStream_code_flg_U' read by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.write_result_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.outStream_code_flg_U");
+                                $fdisplay(fp, "Dependence_Channel_status FULL");
+                            end
+                        end
+                        if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.compute_LZW_U0.outStream_code_blk_n) begin
+                            if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.outStream_code_U.if_empty_n) begin
+                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.outStream_code_U' written by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.write_result_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.outStream_code_U");
+                                $fdisplay(fp, "Dependence_Channel_status EMPTY");
+                            end
+                            else if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.outStream_code_U.if_full_n) begin
+                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.outStream_code_U' read by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.write_result_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.outStream_code_U");
+                                $fdisplay(fp, "Dependence_Channel_status FULL");
+                            end
+                        end
+                    end
+                    endcase
+                end
+                5 : begin
+                    case(index2)
+                    1: begin
+                        if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.write_result_U0.send_data_blk_n) begin
+                            if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.send_data_c_U.if_empty_n) begin
+                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.send_data_c_U' written by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.send_data_c_U");
+                                $fdisplay(fp, "Dependence_Channel_status EMPTY");
+                            end
+                            else if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.send_data_c_U.if_full_n) begin
+                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.send_data_c_U' read by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.send_data_c_U");
+                                $fdisplay(fp, "Dependence_Channel_status FULL");
+                            end
+                        end
+                        if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.write_result_U0.i_1_blk_n) begin
+                            if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.i_1_c_U.if_empty_n) begin
+                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.i_1_c_U' written by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.i_1_c_U");
+                                $fdisplay(fp, "Dependence_Channel_status EMPTY");
+                            end
+                            else if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.i_1_c_U.if_full_n) begin
+                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.i_1_c_U' read by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.i_1_c_U");
+                                $fdisplay(fp, "Dependence_Channel_status FULL");
+                            end
+                        end
+                        if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.write_result_U0.output_length_blk_n) begin
+                            if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.output_length_c_U.if_empty_n) begin
+                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.output_length_c_U' written by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.output_length_c_U");
+                                $fdisplay(fp, "Dependence_Channel_status EMPTY");
+                            end
+                            else if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.output_length_c_U.if_full_n) begin
+                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.output_length_c_U' read by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry6_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.output_length_c_U");
+                                $fdisplay(fp, "Dependence_Channel_status FULL");
+                            end
+                        end
+                    end
+                    4: begin
+                        if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.write_result_U0.outStream_code_flg_blk_n) begin
+                            if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.outStream_code_flg_U.if_empty_n) begin
+                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.outStream_code_flg_U' written by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.compute_LZW_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.outStream_code_flg_U");
+                                $fdisplay(fp, "Dependence_Channel_status EMPTY");
+                            end
+                            else if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.outStream_code_flg_U.if_full_n) begin
+                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.outStream_code_flg_U' read by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.compute_LZW_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.outStream_code_flg_U");
+                                $fdisplay(fp, "Dependence_Channel_status FULL");
+                            end
+                        end
+                        if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.write_result_U0.outStream_code_blk_n) begin
+                            if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.outStream_code_U.if_empty_n) begin
+                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.outStream_code_U' written by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.compute_LZW_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.outStream_code_U");
+                                $fdisplay(fp, "Dependence_Channel_status EMPTY");
+                            end
+                            else if (~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.outStream_code_U.if_full_n) begin
+                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.outStream_code_U' read by process 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.compute_LZW_U0'");
+                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.outStream_code_U");
                                 $fdisplay(fp, "Dependence_Channel_status FULL");
                             end
                         end
                     end
                     0: begin
-                        if (~Loop_VITIS_LOOP_325_2_proc_U0.output_length_blk_n) begin
-                            if (~output_length_c_U.if_empty_n) begin
-                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.output_length_c_U' written by process 'krnl_LZW_krnl_LZW.krnl_LZW_entry4_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.output_length_c_U");
-                                $fdisplay(fp, "Dependence_Channel_status EMPTY");
-                            end
-                            else if (~output_length_c_U.if_full_n) begin
-                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.output_length_c_U' read by process 'krnl_LZW_krnl_LZW.krnl_LZW_entry4_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.output_length_c_U");
-                                $fdisplay(fp, "Dependence_Channel_status FULL");
-                            end
+                        if (grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.ap_sync_write_result_U0_ap_ready & grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.write_result_U0.ap_idle & ~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.ap_sync_dataflow_in_loop_VITIS_LOOP_346_2_entry3_U0_ap_ready) begin
+                            $display("//      Blocked by input sync logic with process : 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.dataflow_in_loop_VITIS_LOOP_346_2_entry3_U0'");
                         end
-                        if (~Loop_VITIS_LOOP_325_2_proc_U0.input_r_blk_n) begin
-                            if (~input_c_U.if_empty_n) begin
-                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.input_c_U' written by process 'krnl_LZW_krnl_LZW.krnl_LZW_entry4_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.input_c_U");
-                                $fdisplay(fp, "Dependence_Channel_status EMPTY");
-                            end
-                            else if (~input_c_U.if_full_n) begin
-                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.input_c_U' read by process 'krnl_LZW_krnl_LZW.krnl_LZW_entry4_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.input_c_U");
-                                $fdisplay(fp, "Dependence_Channel_status FULL");
-                            end
-                        end
-                        if (~Loop_VITIS_LOOP_325_2_proc_U0.send_data_blk_n) begin
-                            if (~send_data_c115_U.if_empty_n) begin
-                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.send_data_c115_U' written by process 'krnl_LZW_krnl_LZW.krnl_LZW_entry4_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.send_data_c115_U");
-                                $fdisplay(fp, "Dependence_Channel_status EMPTY");
-                            end
-                            else if (~send_data_c115_U.if_full_n) begin
-                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.send_data_c115_U' read by process 'krnl_LZW_krnl_LZW.krnl_LZW_entry4_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.send_data_c115_U");
-                                $fdisplay(fp, "Dependence_Channel_status FULL");
-                            end
-                        end
-                        if (ap_sync_Loop_VITIS_LOOP_325_2_proc_U0_ap_ready & Loop_VITIS_LOOP_325_2_proc_U0.ap_idle & ~ap_sync_krnl_LZW_entry4_U0_ap_ready) begin
-                            $display("//      Blocked by input sync logic with process : 'krnl_LZW_krnl_LZW.krnl_LZW_entry4_U0'");
+                    end
+                    2: begin
+                        if (grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.ap_sync_write_result_U0_ap_ready & grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.write_result_U0.ap_idle & ~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.ap_sync_Block_entry_proc_proc_U0_ap_ready) begin
+                            $display("//      Blocked by input sync logic with process : 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.Block_entry_proc_proc_U0'");
                         end
                     end
                     3: begin
-                        if (~Loop_VITIS_LOOP_325_2_proc_U0.grp_compute_LZW_fu_612.outStream_code_flg_blk_n) begin
-                            if (~outStream_code_flg_U.if_empty_n) begin
-                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.outStream_code_flg_U' written by process 'krnl_LZW_krnl_LZW.Loop_VITIS_LOOP_325_2_proc_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.outStream_code_flg_U");
-                                $fdisplay(fp, "Dependence_Channel_status EMPTY");
-                            end
-                            else if (~outStream_code_flg_U.if_full_n) begin
-                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.outStream_code_flg_U' read by process 'krnl_LZW_krnl_LZW.Loop_VITIS_LOOP_325_2_proc_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.outStream_code_flg_U");
-                                $fdisplay(fp, "Dependence_Channel_status FULL");
-                            end
-                        end
-                        if (~Loop_VITIS_LOOP_325_2_proc_U0.grp_compute_LZW_fu_612.outStream_code_blk_n) begin
-                            if (~outStream_code_U.if_empty_n) begin
-                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.outStream_code_U' written by process 'krnl_LZW_krnl_LZW.Loop_VITIS_LOOP_325_2_proc_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.outStream_code_U");
-                                $fdisplay(fp, "Dependence_Channel_status EMPTY");
-                            end
-                            else if (~outStream_code_U.if_full_n) begin
-                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.outStream_code_U' read by process 'krnl_LZW_krnl_LZW.Loop_VITIS_LOOP_325_2_proc_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.outStream_code_U");
-                                $fdisplay(fp, "Dependence_Channel_status FULL");
-                            end
-                        end
-                        if (~Loop_VITIS_LOOP_325_2_proc_U0.grp_compute_LZW_fu_612.inStream_in_blk_n) begin
-                            if (~inStream_in_U.if_empty_n) begin
-                                $display("//      Blocked by empty input FIFO 'krnl_LZW_krnl_LZW.inStream_in_U' written by process 'krnl_LZW_krnl_LZW.Loop_VITIS_LOOP_325_2_proc_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.inStream_in_U");
-                                $fdisplay(fp, "Dependence_Channel_status EMPTY");
-                            end
-                            else if (~inStream_in_U.if_full_n) begin
-                                $display("//      Blocked by full output FIFO 'krnl_LZW_krnl_LZW.inStream_in_U' read by process 'krnl_LZW_krnl_LZW.Loop_VITIS_LOOP_325_2_proc_U0'");
-                                $fdisplay(fp, "Dependence_Channel_path krnl_LZW_krnl_LZW.inStream_in_U");
-                                $fdisplay(fp, "Dependence_Channel_status FULL");
-                            end
+                        if (grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.ap_sync_write_result_U0_ap_ready & grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.write_result_U0.ap_idle & ~grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.ap_sync_read_input_U0_ap_ready) begin
+                            $display("//      Blocked by input sync logic with process : 'krnl_LZW_krnl_LZW.grp_dataflow_parent_loop_proc_fu_183.dataflow_in_loop_VITIS_LOOP_346_2_U0.read_input_U0'");
                         end
                     end
                     endcase

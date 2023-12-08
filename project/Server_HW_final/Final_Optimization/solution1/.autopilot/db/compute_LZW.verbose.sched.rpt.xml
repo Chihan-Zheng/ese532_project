@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'compute_LZW'" level="0">
-<item name = "Date">Thu Dec  7 21:19:10 2023
+<item name = "Date">Fri Dec  8 11:43:49 2023
 </item>
 <item name = "Version">2020.2 (Build 3064766 on Wed Nov 18 09:12:47 MST 2020)</item>
 <item name = "Project">Final_Optimization</item>
@@ -35,10 +35,10 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- VITIS_LOOP_67_1">32768, 32768, 1, 1, 1, 32768, yes</column>
-<column name="- VITIS_LOOP_93_4">0, 9633498, 26 ~ 147, -, -, 0 ~ 65534, no</column>
+<column name="- VITIS_LOOP_72_1">32768, 32768, 1, 1, 1, 32768, yes</column>
+<column name="- VITIS_LOOP_99_4">0, 9633498, 26 ~ 147, -, -, 0 ~ 65534, no</column>
 <column name=" + VITIS_LOOP_11_1">21, 21, 1, 1, 1, 21, yes</column>
-<column name=" + VITIS_LOOP_129_6">1, 72, 1, 1, 1, 1 ~ 72, yes</column>
+<column name=" + VITIS_LOOP_135_6">1, 72, 1, 1, 1, 1 ~ 72, yes</column>
 <column name=" + VITIS_LOOP_11_1">21, 21, 1, 1, 1, 21, yes</column>
 <column name=" + VITIS_LOOP_11_1">21, 21, 1, 1, 1, 21, yes</column>
 </table>

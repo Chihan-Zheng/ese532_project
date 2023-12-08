@@ -411,7 +411,7 @@ int main(int argc, char* argv[]) {
 // printf("enter LZW loop\n");
 // printf("debug----------pipeline_drained:\t%d\n", *pipeline_drained);
 
-// printf("debug: kernel idx: %d\n", krnl_idx);
+printf("debug: kernel idx: %d\n", krnl_idx);
 				if (((LZW_chunks_cnt < (num_chunks_krnl - 1)) || (krnl_idx < (num_cu - 1))) && (*pipeline_drained < 2)){
 					krnl_chunks_cnt[krnl_idx]++;
 					krnl_idx++;
@@ -448,7 +448,7 @@ int main(int argc, char* argv[]) {
 					for (int j = 0; j < num_used_krnls; j++){
 						// krnl_LZW(ArrayOfChunks_LZW[j], LZW_input_length[j], LZW_send_data[j], LZW_output_length[j]);}
 					
-					 	OCL_CHECK(err, err = krnls[j].setArg(0, Input_buf[j]));
+			 			OCL_CHECK(err, err = krnls[j].setArg(0, Input_buf[j]));
 						OCL_CHECK(err, err = krnls[j].setArg(1, In_length_buf[j]));
 						OCL_CHECK(err, err = krnls[j].setArg(2, Output_buf[j]));
 						OCL_CHECK(err, err = krnls[j].setArg(3,Output_length_buf[j]));
@@ -456,26 +456,26 @@ int main(int argc, char* argv[]) {
 						OCL_CHECK(err, err = q[j].enqueueMigrateMemObjects({In_length_buf[j]}, 0));
 						OCL_CHECK(err, err = q[j].enqueueMigrateMemObjects({Input_buf[j]}, 0));
 					}
-
+printf("before kernel\n");
 					for (int j = 0; j < num_used_krnls; j++){
 						OCL_CHECK(err, err = q[j].finish());
 						OCL_CHECK(err, err = q[j].enqueueTask(krnls[j]));
 					}
-
+printf("after input\n");
 					for (int j = 0; j < num_used_krnls; j++){
 						OCL_CHECK(err, err = q[j].finish());
 						OCL_CHECK(err, err = q[j].enqueueMigrateMemObjects({Output_buf[j], Output_length_buf[j]}, CL_MIGRATE_MEM_OBJECT_HOST));
 					}
-
+printf("after task\n");
 					for (int j = 0; j < num_cu; j++){
 						OCL_CHECK(err, err = q[j].finish());
-					}     
+					}       
 					 
 					/* for (int j = 0; j < num_used_krnls; j++){
 						read_done[j].wait();
 					} */
 					LZW_timer.stop();
-// printf("debug------------num_used_krnls:\t%d\n", num_used_krnls);
+printf("debug------------num_used_krnls:\t%d\n", num_used_krnls);
 					for (int j = 0; j < num_used_krnls; j++){
 						num_krnl_loop_wr = krnl_chunks_cnt[j];
 // printf("debug------------krnl_chunks_cnt[%d]:\t%d\n", j, krnl_chunks_cnt[j]);

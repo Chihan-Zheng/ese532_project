@@ -1,193 +1,334 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<cdfg:DBCdfg xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdfg="http://www.autoesl.com/DBCdfg" timeStamp="1702001960554">
-  <ports id="1" name="aximm0" type="PortType" coreId="0" bitwidth="16" direction="DirInOut" iftype="IfTypeFifo">
+<cdfg:DBCdfg xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdfg="http://www.autoesl.com/DBCdfg" timeStamp="1702053839019">
+  <ports id="1" name="aximm0" type="PortType" coreId="0" bitwidth="64" direction="DirInOut" iftype="IfTypeFifo">
+    <dataInputObjs>getelementptr</dataInputObjs>
     <dataInputObjs>call</dataInputObjs>
+    <dataOutputObjs>getelementptr</dataOutputObjs>
     <dataOutputObjs>call</dataOutputObjs>
   </ports>
-  <ports id="2" name="aximm1" type="PortType" coreId="2021571912" bitwidth="16" direction="DirInOut" iftype="IfTypeFifo">
-    <dataInputObjs>call</dataInputObjs>
-    <dataInputObjs>call</dataInputObjs>
-    <dataOutputObjs>call</dataOutputObjs>
-    <dataOutputObjs>call</dataOutputObjs>
-  </ports>
-  <ports id="3" name="input_r" type="PortType" originalName="input" coreId="321" bitwidth="64">
+  <ports id="2" name="input_r" type="PortType" originalName="input" coreId="0" bitwidth="64">
     <dataOutputObjs>read</dataOutputObjs>
   </ports>
-  <ports id="4" name="input_length" type="PortType" originalName="input_length" coreId="49" bitwidth="64">
+  <ports id="3" name="input_length" type="PortType" originalName="input_length" coreId="65" bitwidth="64">
     <dataOutputObjs>read</dataOutputObjs>
   </ports>
-  <ports id="5" name="send_data" type="PortType" originalName="send_data" coreId="2021955040" bitwidth="64">
+  <ports id="4" name="send_data" type="PortType" originalName="send_data" coreId="0" bitwidth="64">
     <dataOutputObjs>read</dataOutputObjs>
   </ports>
-  <ports id="6" name="output_length" type="PortType" originalName="output_length" coreId="2021418096" bitwidth="64">
+  <ports id="5" name="output_length" type="PortType" originalName="output_length" coreId="2007878040" bitwidth="64">
     <dataOutputObjs>read</dataOutputObjs>
   </ports>
-  <edges id="65" source_obj="//@ports.5" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.0"/>
-  <edges id="67" source_obj="//@ports.4" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.1"/>
-  <edges id="69" source_obj="//@ports.3" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.2"/>
-  <edges id="71" source_obj="//@ports.2" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.3"/>
-  <edges id="82" source_obj="//@regions.0/@basic_blocks.0/@node_objs.3" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.11"/>
-  <edges id="83" source_obj="//@regions.0/@basic_blocks.0/@node_objs.2" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.11"/>
-  <edges id="84" source_obj="//@regions.0/@basic_blocks.0/@node_objs.1" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.11"/>
-  <edges id="85" source_obj="//@regions.0/@basic_blocks.0/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.11"/>
-  <edges id="86" source_obj="//@regions.0/@basic_blocks.0/@node_objs.8" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.11"/>
-  <edges id="87" source_obj="//@regions.0/@basic_blocks.0/@node_objs.7" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.11"/>
-  <edges id="88" source_obj="//@regions.0/@basic_blocks.0/@node_objs.6" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.11"/>
-  <edges id="89" source_obj="//@regions.0/@basic_blocks.0/@node_objs.5" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.11"/>
-  <edges id="90" source_obj="//@regions.0/@basic_blocks.0/@node_objs.4" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.11"/>
-  <edges id="93" source_obj="//@regions.0/@basic_blocks.0/@node_objs.10" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.12"/>
-  <edges id="94" source_obj="//@regions.0/@basic_blocks.0/@node_objs.7" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.12"/>
-  <edges id="95" source_obj="//@ports.1" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.12"/>
-  <edges id="98" source_obj="//@regions.0/@basic_blocks.0/@node_objs.6" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.13"/>
-  <edges id="99" source_obj="//@regions.0/@basic_blocks.0/@node_objs.13" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.14"/>
-  <edges id="100" source_obj="//@regions.0/@basic_blocks.0/@node_objs.13" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.15"/>
-  <edges id="103" source_obj="//@regions.0/@basic_blocks.0/@node_objs.12" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.16"/>
-  <edges id="104" source_obj="//@ports.0" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.16"/>
-  <edges id="105" source_obj="//@regions.0/@basic_blocks.0/@node_objs.9" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.16"/>
-  <edges id="106" source_obj="//@regions.0/@basic_blocks.0/@node_objs.15" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.16"/>
-  <edges id="107" source_obj="//@regions.0/@basic_blocks.0/@node_objs.14" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.16"/>
-  <edges id="108" source_obj="//@ports.1" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.16"/>
-  <edges id="109" source_obj="//@regions.0/@basic_blocks.0/@node_objs.4" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.16"/>
-  <edges id="110" source_obj="//@regions.0/@basic_blocks.0/@node_objs.10" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.16"/>
-  <edges id="111" source_obj="//@regions.0/@basic_blocks.0/@node_objs.8" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.16"/>
-  <edges id="112" source_obj="//@regions.0/@basic_blocks.0/@node_objs.5" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.16"/>
-  <edges id="113" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.16"/>
-  <edges id="114" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.16"/>
-  <edges id="115" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.16"/>
-  <edges id="600" edge_type="VirtEdge" source_obj="//@regions.0/@basic_blocks.0/@node_objs.12" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.16"/>
-  <edges id="601" edge_type="VirtEdge" source_obj="//@regions.0/@basic_blocks.0/@node_objs.12" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.16"/>
-  <edges id="602" edge_type="VirtEdge" source_obj="//@regions.0/@basic_blocks.0/@node_objs.11" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.12"/>
-  <edges id="603" edge_type="VirtEdge" source_obj="//@regions.0/@basic_blocks.0/@node_objs.11" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.13"/>
-  <edges id="604" edge_type="VirtEdge" source_obj="//@regions.0/@basic_blocks.0/@node_objs.11" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.12"/>
-  <edges id="605" edge_type="VirtEdge" source_obj="//@regions.0/@basic_blocks.0/@node_objs.12" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.16"/>
-  <edges id="-95" source_obj="//@regions.0/@basic_blocks.0/@node_objs.12" sink_obj="//@ports.1"/>
-  <edges id="-104" source_obj="//@regions.0/@basic_blocks.0/@node_objs.16" sink_obj="//@ports.0"/>
-  <edges id="-108" source_obj="//@regions.0/@basic_blocks.0/@node_objs.16" sink_obj="//@ports.1"/>
-  <regions anchor_node="-1" region_type="16" typeName="Dataflow" id="236" RegionName="krnl_LZW">
-    <basic_blocks id="62" name="krnl_LZW" type="BlockType">
-      <node_objs xsi:type="cdfg:CdfgNode" id="12" name="output_length_read" lineNumber="299" originalName="output_length" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreName="s_axilite" implIndex="UNSUPPORTED" control="auto" coreId="122" contextFuncName="krnl_LZW" bitwidth="64" opcode="read" m_display="0" m_delay="1.0" m_topoIndex="1" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="299" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
-        <dataInputObjs>output_length</dataInputObjs>
-        <dataOutputObjs>call</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="13" name="send_data_read" lineNumber="299" originalName="send_data" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreName="s_axilite" implIndex="UNSUPPORTED" control="auto" coreId="122" contextFuncName="krnl_LZW" bitwidth="64" opcode="read" m_display="0" m_delay="1.0" m_topoIndex="2" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="299" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
-        <dataInputObjs>send_data</dataInputObjs>
-        <dataOutputObjs>call</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="14" name="input_length_read" lineNumber="299" originalName="input_length" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreName="s_axilite" implIndex="UNSUPPORTED" control="auto" coreId="122" contextFuncName="krnl_LZW" bitwidth="64" opcode="read" m_display="0" m_delay="1.0" m_topoIndex="3" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="299" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
-        <dataInputObjs>input_length</dataInputObjs>
-        <dataOutputObjs>call</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="15" name="input_read" lineNumber="299" originalName="input" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreName="s_axilite" implIndex="UNSUPPORTED" control="auto" coreId="122" contextFuncName="krnl_LZW" bitwidth="64" opcode="read" m_display="0" m_delay="1.0" m_topoIndex="4" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="299" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
-        <dataInputObjs>input_r</dataInputObjs>
-        <dataOutputObjs>call</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="16" name="output_length_c" lineNumber="299" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="output_length_c_U" coreName="FIFO_SRL" implIndex="srl" control="auto" opType="fifo" coreId="81" contextFuncName="krnl_LZW" bitwidth="64" opcode="alloca" m_display="0" m_topoIndex="5" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="299" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
-        <dataOutputObjs>call</dataOutputObjs>
-        <dataOutputObjs>call</dataOutputObjs>
+  <edges id="80" source_obj="//@ports.4" sink_obj="//@blocks.0/@node_objs.1"/>
+  <edges id="82" source_obj="//@ports.3" sink_obj="//@blocks.0/@node_objs.2"/>
+  <edges id="84" source_obj="//@ports.2" sink_obj="//@blocks.0/@node_objs.3"/>
+  <edges id="86" source_obj="//@ports.1" sink_obj="//@blocks.0/@node_objs.4"/>
+  <edges id="88" sink_obj="//@blocks.0/@node_objs.5"/>
+  <edges id="90" sink_obj="//@blocks.0/@node_objs.6"/>
+  <edges id="93" source_obj="//@blocks.0/@node_objs.3" sink_obj="//@blocks.0/@node_objs.7"/>
+  <edges id="98" source_obj="//@blocks.0/@node_objs.7" sink_obj="//@blocks.0/@node_objs.8"/>
+  <edges id="99" source_obj="//@ports.0" sink_obj="//@blocks.0/@node_objs.9"/>
+  <edges id="100" source_obj="//@blocks.0/@node_objs.8" sink_obj="//@blocks.0/@node_objs.9"/>
+  <edges id="103" source_obj="//@blocks.0/@node_objs.9" sink_obj="//@blocks.0/@node_objs.10"/>
+  <edges id="107" source_obj="//@blocks.0/@node_objs.9" sink_obj="//@blocks.0/@node_objs.11"/>
+  <edges id="109" source_obj="//@blocks.0/@node_objs.0" sink_obj="//@blocks.0/@node_objs.12"/>
+  <edges id="110" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.0" sink_obj="//@blocks.0/@node_objs.13"/>
+  <edges id="113" edge_type="CtrlEdge" source_obj="//@blocks.0" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.0"/>
+  <edges id="114" source_obj="//@regions.0/@basic_blocks.0/@node_objs.2" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.0" is_back_edge="1"/>
+  <edges id="115" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.3" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.0" is_back_edge="1"/>
+  <edges id="116" source_obj="//@blocks.0/@node_objs.11" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.1"/>
+  <edges id="117" edge_type="CtrlEdge" source_obj="//@blocks.0" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.1"/>
+  <edges id="118" source_obj="//@regions.0/@basic_blocks.1/@node_objs.2" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.1" is_back_edge="1"/>
+  <edges id="119" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.3" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.1" is_back_edge="1"/>
+  <edges id="120" source_obj="//@regions.0/@basic_blocks.0/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.2"/>
+  <edges id="123" source_obj="//@regions.0/@basic_blocks.0/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.3"/>
+  <edges id="126" source_obj="//@regions.0/@basic_blocks.0/@node_objs.3" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.4"/>
+  <edges id="127" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.1" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.4"/>
+  <edges id="128" edge_type="CtrlEdge" source_obj="//@blocks.1" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.4"/>
+  <edges id="129" source_obj="//@blocks.0/@node_objs.0" sink_obj="//@blocks.1/@node_objs.0"/>
+  <edges id="132" source_obj="//@blocks.1/@node_objs.0" sink_obj="//@blocks.1/@node_objs.1"/>
+  <edges id="133" source_obj="//@ports.0" sink_obj="//@blocks.1/@node_objs.1"/>
+  <edges id="134" source_obj="//@blocks.0/@node_objs.4" sink_obj="//@blocks.1/@node_objs.1"/>
+  <edges id="135" source_obj="//@blocks.0/@node_objs.2" sink_obj="//@blocks.1/@node_objs.1"/>
+  <edges id="136" source_obj="//@blocks.0/@node_objs.1" sink_obj="//@blocks.1/@node_objs.1"/>
+  <edges id="137" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.0" sink_obj="//@regions.0/@basic_blocks.3/@node_objs.0"/>
+  <edges id="138" source_obj="//@blocks.0/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.2/@node_objs.0"/>
+  <edges id="139" source_obj="//@regions.0/@basic_blocks.2/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.2/@node_objs.1"/>
+  <edges id="144" sink_obj="//@regions.0/@basic_blocks.2/@node_objs.2"/>
+  <edges id="145" source_obj="//@regions.0/@basic_blocks.1/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.2/@node_objs.2"/>
+  <edges id="146" source_obj="//@regions.0/@basic_blocks.2/@node_objs.1" sink_obj="//@regions.0/@basic_blocks.2/@node_objs.3"/>
+  <edges id="147" source_obj="//@blocks.0/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.2/@node_objs.3"/>
+  <edges id="148" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.3" sink_obj="//@regions.0/@basic_blocks.2/@node_objs.4"/>
+  <edges id="149" source_obj="//@regions.0/@basic_blocks.0/@node_objs.1" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.0"/>
+  <edges id="152" source_obj="//@regions.0/@basic_blocks.0/@node_objs.1" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.1"/>
+  <edges id="156" source_obj="//@regions.0/@basic_blocks.1/@node_objs.1" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.2"/>
+  <edges id="157" source_obj="//@regions.0/@basic_blocks.1/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.3"/>
+  <edges id="159" source_obj="//@regions.0/@basic_blocks.1/@node_objs.3" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.4"/>
+  <edges id="160" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.2" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.4"/>
+  <edges id="161" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.3" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.4"/>
+  <edges id="162" sink_obj="//@blocks.1/@node_objs.1"/>
+  <edges id="163" sink_obj="//@blocks.1/@node_objs.1"/>
+  <edges id="164" sink_obj="//@blocks.1/@node_objs.1"/>
+  <edges id="165" sink_obj="//@blocks.1/@node_objs.1"/>
+  <edges id="166" sink_obj="//@blocks.1/@node_objs.1"/>
+  <edges id="167" sink_obj="//@blocks.1/@node_objs.1"/>
+  <edges id="494" edge_type="CtrlEdge" source_obj="//@blocks.0" sink_obj="//@regions.0/@basic_blocks.0"/>
+  <edges id="495" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.0" sink_obj="//@blocks.1"/>
+  <edges id="496" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.0" sink_obj="//@regions.0/@basic_blocks.1"/>
+  <edges id="497" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.1" sink_obj="//@regions.0/@basic_blocks.3"/>
+  <edges id="498" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.1" sink_obj="//@regions.0/@basic_blocks.2"/>
+  <edges id="499" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.2" sink_obj="//@regions.0/@basic_blocks.3"/>
+  <edges id="500" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.3" sink_obj="//@regions.0/@basic_blocks.0" is_back_edge="1"/>
+  <edges id="501" edge_type="VirtEdge" source_obj="//@blocks.0/@node_objs.10" sink_obj="//@blocks.0/@node_objs.11"/>
+  <edges id="502" edge_type="VirtEdge" source_obj="//@regions.0/@basic_blocks.2/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.2/@node_objs.3"/>
+  <edges id="503" edge_type="VirtEdge" source_obj="//@blocks.0/@node_objs.5" sink_obj="//@blocks.1/@node_objs.1"/>
+  <edges id="504" edge_type="VirtEdge" source_obj="//@blocks.0/@node_objs.6" sink_obj="//@blocks.1/@node_objs.1"/>
+  <edges id="505" edge_type="VirtEdge" source_obj="//@blocks.0/@node_objs.10" sink_obj="//@blocks.1/@node_objs.1"/>
+  <edges id="506" edge_type="VirtEdge" source_obj="//@blocks.0/@node_objs.11" sink_obj="//@blocks.1/@node_objs.1"/>
+  <edges id="507" edge_type="VirtEdge" source_obj="//@blocks.0/@node_objs.12" sink_obj="//@blocks.1/@node_objs.0"/>
+  <edges id="508" edge_type="VirtEdge" source_obj="//@blocks.0/@node_objs.12" sink_obj="//@regions.0/@basic_blocks.2/@node_objs.0"/>
+  <edges id="509" edge_type="VirtEdge" source_obj="//@blocks.0/@node_objs.12" sink_obj="//@regions.0/@basic_blocks.2/@node_objs.3"/>
+  <edges id="-99" source_obj="//@blocks.0/@node_objs.9" sink_obj="//@ports.0"/>
+  <edges id="-133" source_obj="//@blocks.1/@node_objs.1" sink_obj="//@ports.0"/>
+  <blocks id="48" name="codeRepl" type="BlockType">
+    <controlOutputObjs>phi</controlOutputObjs>
+    <controlOutputObjs>phi</controlOutputObjs>
+    <controlOutputObjs>block_56</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="16" name="num_chunks" originalName="num_chunks" coreId="1634038388" bitwidth="8" opcode="alloca" m_display="0" m_topoIndex="1" m_clusterGroupNumber="-1">
+      <dataOutputObjs>store</dataOutputObjs>
+      <dataOutputObjs>load</dataOutputObjs>
+      <dataOutputObjs>load</dataOutputObjs>
+      <dataOutputObjs>store</dataOutputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="35" name="output_length_read" lineNumber="313" originalName="output_length" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreName="s_axilite" implIndex="UNSUPPORTED" control="auto" coreId="122" contextFuncName="krnl_LZW" bitwidth="64" opcode="read" m_display="0" m_delay="1.0" m_topoIndex="2" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="313" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
+      <dataInputObjs>output_length</dataInputObjs>
+      <dataOutputObjs>call</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="36" name="send_data_read" lineNumber="313" originalName="send_data" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreName="s_axilite" implIndex="UNSUPPORTED" control="auto" coreId="122" contextFuncName="krnl_LZW" bitwidth="64" opcode="read" m_display="0" m_delay="1.0" m_topoIndex="3" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="313" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
+      <dataInputObjs>send_data</dataInputObjs>
+      <dataOutputObjs>call</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="37" name="input_length_read" lineNumber="313" originalName="input_length" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreName="s_axilite" implIndex="UNSUPPORTED" control="auto" coreId="122" contextFuncName="krnl_LZW" bitwidth="64" opcode="read" m_display="0" m_delay="1.0" m_topoIndex="4" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="313" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
+      <dataInputObjs>input_length</dataInputObjs>
+      <dataOutputObjs>partselect</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="38" name="input_read" lineNumber="313" originalName="input" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreName="s_axilite" implIndex="UNSUPPORTED" control="auto" coreId="122" contextFuncName="krnl_LZW" bitwidth="64" opcode="read" m_display="0" m_delay="1.0" m_topoIndex="5" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="313" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
+      <dataInputObjs>input_r</dataInputObjs>
+      <dataOutputObjs>call</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="39" name="input_offset_constprop_write_ln331" lineNumber="331" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="161" contextFuncName="krnl_LZW" opcode="store" m_display="0" m_topoIndex="6" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="331" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="40" name="output_offset_constprop_write_ln332" lineNumber="332" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="49" contextFuncName="krnl_LZW" opcode="store" m_display="0" m_topoIndex="7" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="332" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="41" name="trunc_ln" lineNumber="336" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="trunc_ln_reg_315" coreId="0" contextFuncName="krnl_LZW" bitwidth="61" opcode="partselect" m_display="0" m_topoIndex="8" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="336" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
+      <dataInputObjs>read</dataInputObjs>
+      <dataOutputObjs>sext</dataOutputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="42" name="sext_ln336" lineNumber="336" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="sext_ln336_fu_236_p1" coreId="49" contextFuncName="krnl_LZW" bitwidth="64" opcode="sext" nodeLabel="1.0" m_display="0" m_topoIndex="10" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="336" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
+      <dataInputObjs>partselect</dataInputObjs>
+      <dataOutputObjs>getelementptr</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="43" name="aximm0_addr" lineNumber="336" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="49" contextFuncName="krnl_LZW" bitwidth="64" opcode="getelementptr" nodeLabel="1.0" m_display="0" m_topoIndex="11" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="336" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
+      <dataInputObjs>aximm0</dataInputObjs>
+      <dataInputObjs>sext</dataInputObjs>
+      <dataOutputObjs>readreq</dataOutputObjs>
+      <dataOutputObjs>read</dataOutputObjs>
+      <dataOutputObjs>aximm0</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="44" name="aximm0_load_req" lineNumber="336" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreName="m_axi" implIndex="m_axi" control="auto" opType="readreq" coreId="121" contextFuncName="krnl_LZW" bitwidth="1" opcode="readreq" nodeLabel="1.0" nodeLatency="69" m_display="0" m_delay="4.86" m_topoIndex="12" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="336" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
+      <dataInputObjs>getelementptr</dataInputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="45" name="aximm0_addr_read" lineNumber="336" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreName="m_axi" implIndex="UNSUPPORTED" control="auto" coreId="121" contextFuncName="krnl_LZW" bitwidth="64" opcode="read" nodeLabel="71.0" m_display="0" m_delay="4.86" m_topoIndex="13" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="336" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
+      <dataInputObjs>getelementptr</dataInputObjs>
+      <dataOutputObjs>phi</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="46" name="num_chunks_write_ln0" coreId="497" opcode="store" m_display="0" m_delay="0.48" m_topoIndex="9" m_clusterGroupNumber="-1">
+      <dataInputObjs>alloca</dataInputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="47" name="br_ln0" coreId="497" opcode="br" nodeLabel="72.0" m_display="0" m_delay="0.48" m_topoIndex="14" m_clusterGroupNumber="-1">
+      <controlInputObjs>block_56</controlInputObjs>
+    </node_objs>
+    <fileValidLineNumbers fileName="LZW_hybrid_hash_HW.cpp">
+      <validLinenumbers>313</validLinenumbers>
+      <validLinenumbers>331</validLinenumbers>
+      <validLinenumbers>332</validLinenumbers>
+      <validLinenumbers>336</validLinenumbers>
+    </fileValidLineNumbers>
+  </blocks>
+  <blocks id="75" name="krnl_LZW_.exit2.preheader" type="BlockType">
+    <controlInputObjs>block_56</controlInputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="72" name="num_chunks_load_1" coreId="0" bitwidth="8" opcode="load" nodeLabel="75.0" m_display="0" m_topoIndex="31" m_clusterGroupNumber="-1">
+      <dataInputObjs>alloca</dataInputObjs>
+      <dataOutputObjs>call</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="73" name="_ln313" lineNumber="313" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="grp_dataflow_parent_loop_proc_fu_183" coreId="2008109456" contextFuncName="krnl_LZW" opcode="call" nodeLabel="75.0" nodeLatency="1" m_display="0" m_topoIndex="32" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="313" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
+      <dataInputObjs>load</dataInputObjs>
+      <dataInputObjs>aximm0</dataInputObjs>
+      <dataInputObjs>read</dataInputObjs>
+      <dataInputObjs>read</dataInputObjs>
+      <dataInputObjs>read</dataInputObjs>
+      <dataOutputObjs>aximm0</dataOutputObjs>
+      <constName>dataflow_parent_loop_proc</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="74" name="_ln360" lineNumber="360" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="825438509" contextFuncName="krnl_LZW" opcode="ret" nodeLabel="76.0" m_display="0" m_topoIndex="33" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="360" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
+    </node_objs>
+    <fileValidLineNumbers fileName="LZW_hybrid_hash_HW.cpp">
+      <validLinenumbers>313</validLinenumbers>
+      <validLinenumbers>360</validLinenumbers>
+    </fileValidLineNumbers>
+  </blocks>
+  <regions anchor_node="-1" region_type="8" interval="1" typeName="Pipeline" id="425" pipe_depth="2" RegionName="VITIS_LOOP_336_1">
+    <basic_blocks id="56" name="block_56" type="BlockType">
+      <controlInputObjs>codeRepl</controlInputObjs>
+      <controlInputObjs>.split1._crit_edge.i.i</controlInputObjs>
+      <controlOutputObjs>br</controlOutputObjs>
+      <controlOutputObjs>br</controlOutputObjs>
+      <controlOutputObjs>krnl_LZW_.exit2.preheader</controlOutputObjs>
+      <controlOutputObjs>.split1.i.i</controlOutputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="49" name="i" lineNumber="336" originalName="i" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="132" contextFuncName="krnl_LZW" bitwidth="3" opcode="phi" nodeLabel="73.0" m_display="0" m_topoIndex="15" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="336" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
+        <dataInputObjs>add</dataInputObjs>
+        <dataOutputObjs>add</dataOutputObjs>
+        <dataOutputObjs>icmp</dataOutputObjs>
+        <controlInputObjs>codeRepl</controlInputObjs>
+        <controlInputObjs>.split1._crit_edge.i.i</controlInputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="17" name="send_data_c115" lineNumber="299" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="send_data_c115_U" coreName="FIFO_SRL" implIndex="srl" control="auto" opType="fifo" coreId="81" contextFuncName="krnl_LZW" bitwidth="64" opcode="alloca" m_display="0" m_topoIndex="6" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="299" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
-        <dataOutputObjs>call</dataOutputObjs>
-        <dataOutputObjs>call</dataOutputObjs>
-        <constName>empty</constName>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="18" name="send_data_c" lineNumber="299" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="send_data_c_U" coreName="FIFO_SRL" implIndex="srl" control="auto" opType="fifo" coreId="81" contextFuncName="krnl_LZW" bitwidth="64" opcode="alloca" m_display="0" m_topoIndex="7" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="299" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
-        <dataOutputObjs>call</dataOutputObjs>
-        <dataOutputObjs>call</dataOutputObjs>
-        <constName>empty</constName>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="19" name="input_length_c" lineNumber="299" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="input_length_c_U" coreName="FIFO_SRL" implIndex="srl" control="auto" opType="fifo" coreId="81" contextFuncName="krnl_LZW" bitwidth="64" opcode="alloca" m_display="0" m_topoIndex="8" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="299" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
-        <dataOutputObjs>call</dataOutputObjs>
-        <dataOutputObjs>call</dataOutputObjs>
-        <constName>empty</constName>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="20" name="input_c" lineNumber="299" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="input_c_U" coreName="FIFO_SRL" implIndex="srl" control="auto" opType="fifo" coreId="81" contextFuncName="krnl_LZW" bitwidth="64" opcode="alloca" m_display="0" m_topoIndex="9" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="299" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
-        <dataOutputObjs>call</dataOutputObjs>
-        <dataOutputObjs>call</dataOutputObjs>
-        <constName>empty</constName>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="40" name="store_array_i" rtlName="store_array_i_U" coreId="0" bitwidth="16" opcode="alloca" m_display="0" m_topoIndex="10" m_clusterGroupNumber="-1">
-        <dataOutputObjs>call</dataOutputObjs>
-        <constName>empty</constName>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="44" name="input_length_temp" lineNumber="316" originalName="input_length_temp" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="input_length_temp_U" coreId="0" contextFuncName="krnl_LZW" bitwidth="16" opcode="alloca" m_display="0" m_topoIndex="11" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="316" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
-        <dataOutputObjs>call</dataOutputObjs>
-        <dataOutputObjs>call</dataOutputObjs>
-        <constName>empty</constName>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="55" name="_ln299" lineNumber="299" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="krnl_LZW_entry4_U0" coreId="0" contextFuncName="krnl_LZW" opcode="call" m_display="0" m_delay="2.16" m_topoIndex="12" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="299" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
+      <node_objs xsi:type="cdfg:CdfgNode" id="50" name="shiftreg_i_i" lineNumber="336" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="497" contextFuncName="krnl_LZW" bitwidth="64" opcode="phi" nodeLabel="73.0" m_display="0" m_topoIndex="16" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="336" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
         <dataInputObjs>read</dataInputObjs>
-        <dataInputObjs>read</dataInputObjs>
-        <dataInputObjs>read</dataInputObjs>
-        <dataInputObjs>read</dataInputObjs>
-        <dataInputObjs>alloca</dataInputObjs>
-        <dataInputObjs>alloca</dataInputObjs>
-        <dataInputObjs>alloca</dataInputObjs>
-        <dataInputObjs>alloca</dataInputObjs>
-        <dataInputObjs>alloca</dataInputObjs>
-        <constName>krnl_LZW_entry4</constName>
+        <dataInputObjs>zext</dataInputObjs>
+        <dataOutputObjs>trunc</dataOutputObjs>
+        <dataOutputObjs>partselect</dataOutputObjs>
+        <controlInputObjs>codeRepl</controlInputObjs>
+        <controlInputObjs>.split1._crit_edge.i.i</controlInputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="56" name="num_chunks_loc_channel" lineNumber="299" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="num_chunks_loc_channel_U" coreName="FIFO_SRL" implIndex="srl" control="auto" opType="fifo" coreId="81" contextFuncName="krnl_LZW" bitwidth="8" opcode="call" nodeLabel="1.0" nodeLatency="1" m_display="0" m_topoIndex="13" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="299" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
-        <dataInputObjs>alloca</dataInputObjs>
-        <dataInputObjs>alloca</dataInputObjs>
-        <dataInputObjs>aximm1</dataInputObjs>
-        <dataOutputObjs>call</dataOutputObjs>
-        <dataOutputObjs>aximm1</dataOutputObjs>
-        <constName>Loop_VITIS_LOOP_318_1_proc</constName>
+      <node_objs xsi:type="cdfg:CdfgNode" id="51" name="add_ln336" lineNumber="336" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="add_ln336_fu_246_p2" coreName="Adder" implIndex="fabric" control="auto" opType="add" coreId="1" contextFuncName="krnl_LZW" bitwidth="3" opcode="add" nodeLabel="73.0" m_display="0" m_delay="0.74" m_topoIndex="17" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="336" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
+        <dataInputObjs>phi</dataInputObjs>
+        <dataOutputObjs>phi</dataOutputObjs>
+        <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="57" name="call_ret8" lineNumber="299" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="Block_krnl_LZW_exit1_proc_U0" coreId="2021565929" contextFuncName="krnl_LZW" bitwidth="65" opcode="call" nodeLabel="3.0" m_display="0" m_topoIndex="14" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="299" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
-        <dataInputObjs>alloca</dataInputObjs>
-        <dataOutputObjs>extractvalue</dataOutputObjs>
-        <dataOutputObjs>extractvalue</dataOutputObjs>
-        <constName>Block_krnl_LZW_exit1_proc</constName>
+      <node_objs xsi:type="cdfg:CdfgNode" id="53" name="icmp_ln336" lineNumber="336" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="icmp_ln336_fu_252_p2" opType="icmp" coreId="0" contextFuncName="krnl_LZW" bitwidth="1" opcode="icmp" nodeLabel="73.0" m_display="0" m_delay="0.69" m_topoIndex="18" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="336" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
+        <dataInputObjs>phi</dataInputObjs>
+        <dataOutputObjs>br</dataOutputObjs>
+        <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="58" name="send_data_cast_loc_channel" lineNumber="299" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="send_data_cast_loc_channel_U" coreName="FIFO_SRL" implIndex="srl" control="auto" opType="fifo" coreId="81" contextFuncName="krnl_LZW" bitwidth="1" opcode="extractvalue" nodeLabel="3.0" m_display="0" m_topoIndex="15" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="299" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
-        <dataInputObjs>call</dataInputObjs>
-        <dataOutputObjs>call</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="59" name="p_loc_channel" lineNumber="299" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="p_loc_channel_U" coreName="FIFO_SRL" implIndex="srl" control="auto" opType="fifo" coreId="81" contextFuncName="krnl_LZW" bitwidth="64" opcode="extractvalue" nodeLabel="3.0" m_display="0" m_topoIndex="16" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="299" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
-        <dataInputObjs>call</dataInputObjs>
-        <dataOutputObjs>call</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="60" name="_ln299" lineNumber="299" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="Loop_VITIS_LOOP_325_2_proc_U0" coreId="539107901" contextFuncName="krnl_LZW" opcode="call" nodeLabel="3.0" nodeLatency="1" m_display="0" m_topoIndex="17" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="299" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
-        <dataInputObjs>call</dataInputObjs>
-        <dataInputObjs>aximm0</dataInputObjs>
-        <dataInputObjs>alloca</dataInputObjs>
-        <dataInputObjs>extractvalue</dataInputObjs>
-        <dataInputObjs>extractvalue</dataInputObjs>
-        <dataInputObjs>aximm1</dataInputObjs>
-        <dataInputObjs>alloca</dataInputObjs>
-        <dataInputObjs>alloca</dataInputObjs>
-        <dataInputObjs>alloca</dataInputObjs>
-        <dataInputObjs>alloca</dataInputObjs>
-        <dataOutputObjs>aximm0</dataOutputObjs>
-        <dataOutputObjs>aximm1</dataOutputObjs>
-        <constName>Loop_VITIS_LOOP_325_2_proc</constName>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="61" name="_ln333" lineNumber="333" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="1187080264" contextFuncName="krnl_LZW" opcode="ret" nodeLabel="4.0" m_display="0" m_topoIndex="18" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="333" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
+      <node_objs xsi:type="cdfg:CdfgNode" id="55" name="br_ln336" lineNumber="336" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="0" contextFuncName="krnl_LZW" opcode="br" nodeLabel="73.0" m_display="0" m_topoIndex="19" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="336" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
+        <dataInputObjs>icmp</dataInputObjs>
+        <controlInputObjs>.split1.i.i</controlInputObjs>
+        <controlInputObjs>krnl_LZW_.exit2.preheader</controlInputObjs>
       </node_objs>
       <fileValidLineNumbers fileName="LZW_hybrid_hash_HW.cpp">
-        <validLinenumbers>299</validLinenumbers>
-        <validLinenumbers>316</validLinenumbers>
-        <validLinenumbers>333</validLinenumbers>
+        <validLinenumbers>336</validLinenumbers>
       </fileValidLineNumbers>
+    </basic_blocks>
+    <basic_blocks id="63" name=".split1.i.i" type="BlockType">
+      <controlInputObjs>block_56</controlInputObjs>
+      <controlOutputObjs>br</controlOutputObjs>
+      <controlOutputObjs>.split1._crit_edge.i.i</controlOutputObjs>
+      <controlOutputObjs>block_69</controlOutputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="58" name="trunc_ln338" lineNumber="338" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="trunc_ln338_fu_258_p1" coreId="0" contextFuncName="krnl_LZW" bitwidth="16" opcode="trunc" nodeLabel="73.0" m_display="0" m_topoIndex="20" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="338" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
+        <dataInputObjs>phi</dataInputObjs>
+        <dataOutputObjs>write</dataOutputObjs>
+        <dataOutputObjs>icmp</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="59" name="lshr_ln" lineNumber="338" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="lshr_ln_fu_262_p4" coreId="0" contextFuncName="krnl_LZW" bitwidth="48" opcode="partselect" nodeLabel="73.0" m_display="0" m_topoIndex="21" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="338" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
+        <dataInputObjs>phi</dataInputObjs>
+        <dataOutputObjs>zext</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="60" name="zext_ln338" lineNumber="338" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln338_fu_272_p1" coreId="49" contextFuncName="krnl_LZW" bitwidth="64" opcode="zext" nodeLabel="73.0" m_display="0" m_topoIndex="22" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="338" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
+        <dataInputObjs>partselect</dataInputObjs>
+        <dataOutputObjs>phi</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="61" name="icmp_ln338" lineNumber="338" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="icmp_ln338_fu_276_p2" opType="icmp" coreId="132" contextFuncName="krnl_LZW" bitwidth="1" opcode="icmp" nodeLabel="73.0" m_display="0" m_delay="0.86" m_topoIndex="23" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="338" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
+        <dataInputObjs>trunc</dataInputObjs>
+        <dataOutputObjs>br</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="62" name="br_ln338" lineNumber="338" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="0" contextFuncName="krnl_LZW" opcode="br" nodeLabel="73.0" m_display="0" m_topoIndex="24" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="338" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
+        <dataInputObjs>icmp</dataInputObjs>
+        <controlInputObjs>block_69</controlInputObjs>
+        <controlInputObjs>.split1._crit_edge.i.i</controlInputObjs>
+      </node_objs>
+      <fileValidLineNumbers fileName="LZW_hybrid_hash_HW.cpp">
+        <validLinenumbers>338</validLinenumbers>
+      </fileValidLineNumbers>
+    </basic_blocks>
+    <basic_blocks id="69" name="block_69" type="BlockType">
+      <controlInputObjs>.split1.i.i</controlInputObjs>
+      <controlOutputObjs>br</controlOutputObjs>
+      <controlOutputObjs>.split1._crit_edge.i.i</controlOutputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="64" name="num_chunks_load" lineNumber="339" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="49" contextFuncName="krnl_LZW" bitwidth="8" opcode="load" nodeLabel="74.0" m_display="0" m_topoIndex="26" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="339" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataOutputObjs>add</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="65" name="num_chunks_1" lineNumber="339" originalName="num_chunks" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="num_chunks_1_fu_282_p2" coreName="Adder" implIndex="fabric" control="auto" opType="add" coreId="1" contextFuncName="krnl_LZW" bitwidth="8" opcode="add" nodeLabel="74.0" m_display="0" m_delay="0.9" m_topoIndex="27" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="339" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
+        <dataInputObjs>load</dataInputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="66" name="inStream_in_length_write_ln174" lineNumber="174" fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" fileDirectory=".." coreName="FIFO_SRL" implIndex="srl" control="auto" opType="fifo" coreId="81" contextFuncName="write" opcode="write" nodeLabel="74.0" m_display="0" m_delay="2.16" m_topoIndex="28" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" linenumber="174" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write"/>
+        <dataInputObjs>trunc</dataInputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="67" name="num_chunks_write_ln343" lineNumber="343" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="0" contextFuncName="krnl_LZW" opcode="store" nodeLabel="74.0" m_display="0" m_delay="0.48" m_topoIndex="29" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="343" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
+        <dataInputObjs>add</dataInputObjs>
+        <dataInputObjs>alloca</dataInputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="68" name="br_ln343" lineNumber="343" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="0" contextFuncName="krnl_LZW" opcode="br" nodeLabel="74.0" m_display="0" m_topoIndex="30" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="343" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
+        <controlInputObjs>.split1._crit_edge.i.i</controlInputObjs>
+      </node_objs>
+      <fileValidLineNumbers fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h">
+        <validLinenumbers>174</validLinenumbers>
+      </fileValidLineNumbers>
+      <fileValidLineNumbers fileName="LZW_hybrid_hash_HW.cpp">
+        <validLinenumbers>339</validLinenumbers>
+        <validLinenumbers>343</validLinenumbers>
+      </fileValidLineNumbers>
+    </basic_blocks>
+    <basic_blocks id="71" name=".split1._crit_edge.i.i" type="BlockType">
+      <controlInputObjs>.split1.i.i</controlInputObjs>
+      <controlInputObjs>block_69</controlInputObjs>
+      <controlOutputObjs>phi</controlOutputObjs>
+      <controlOutputObjs>phi</controlOutputObjs>
+      <controlOutputObjs>br</controlOutputObjs>
+      <controlOutputObjs>br</controlOutputObjs>
+      <controlOutputObjs>block_56</controlOutputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="70" name="br_ln0" coreId="49" opcode="br" nodeLabel="73.0" m_display="0" m_topoIndex="25" m_clusterGroupNumber="-1">
+        <controlInputObjs>block_56</controlInputObjs>
+      </node_objs>
     </basic_blocks>
   </regions>
   <ScheduleInfo time="0"/>
@@ -195,140 +336,459 @@
   <ScheduleInfo time="2"/>
   <ScheduleInfo time="3"/>
   <ScheduleInfo time="4"/>
-  <regnodes realName="input_length_c_reg_238">
-    <nodeIds>19</nodeIds>
+  <ScheduleInfo time="5"/>
+  <ScheduleInfo time="6"/>
+  <ScheduleInfo time="7"/>
+  <ScheduleInfo time="8"/>
+  <ScheduleInfo time="9"/>
+  <ScheduleInfo time="10"/>
+  <ScheduleInfo time="11"/>
+  <ScheduleInfo time="12"/>
+  <ScheduleInfo time="13"/>
+  <ScheduleInfo time="14"/>
+  <ScheduleInfo time="15"/>
+  <ScheduleInfo time="16"/>
+  <ScheduleInfo time="17"/>
+  <ScheduleInfo time="18"/>
+  <ScheduleInfo time="19"/>
+  <ScheduleInfo time="20"/>
+  <ScheduleInfo time="21"/>
+  <ScheduleInfo time="22"/>
+  <ScheduleInfo time="23"/>
+  <ScheduleInfo time="24"/>
+  <ScheduleInfo time="25"/>
+  <ScheduleInfo time="26"/>
+  <ScheduleInfo time="27"/>
+  <ScheduleInfo time="28"/>
+  <ScheduleInfo time="29"/>
+  <ScheduleInfo time="30"/>
+  <ScheduleInfo time="31"/>
+  <ScheduleInfo time="32"/>
+  <ScheduleInfo time="33"/>
+  <ScheduleInfo time="34"/>
+  <ScheduleInfo time="35"/>
+  <ScheduleInfo time="36"/>
+  <ScheduleInfo time="37"/>
+  <ScheduleInfo time="38"/>
+  <ScheduleInfo time="39"/>
+  <ScheduleInfo time="40"/>
+  <ScheduleInfo time="41"/>
+  <ScheduleInfo time="42"/>
+  <ScheduleInfo time="43"/>
+  <ScheduleInfo time="44"/>
+  <ScheduleInfo time="45"/>
+  <ScheduleInfo time="46"/>
+  <ScheduleInfo time="47"/>
+  <ScheduleInfo time="48"/>
+  <ScheduleInfo time="49"/>
+  <ScheduleInfo time="50"/>
+  <ScheduleInfo time="51"/>
+  <ScheduleInfo time="52"/>
+  <ScheduleInfo time="53"/>
+  <ScheduleInfo time="54"/>
+  <ScheduleInfo time="55"/>
+  <ScheduleInfo time="56"/>
+  <ScheduleInfo time="57"/>
+  <ScheduleInfo time="58"/>
+  <ScheduleInfo time="59"/>
+  <ScheduleInfo time="60"/>
+  <ScheduleInfo time="61"/>
+  <ScheduleInfo time="62"/>
+  <ScheduleInfo time="63"/>
+  <ScheduleInfo time="64"/>
+  <ScheduleInfo time="65"/>
+  <ScheduleInfo time="66"/>
+  <ScheduleInfo time="67"/>
+  <ScheduleInfo time="68"/>
+  <ScheduleInfo time="69"/>
+  <ScheduleInfo time="70"/>
+  <ScheduleInfo time="71"/>
+  <ScheduleInfo time="72"/>
+  <ScheduleInfo time="73"/>
+  <ScheduleInfo time="74"/>
+  <ScheduleInfo time="75"/>
+  <ScheduleInfo time="76"/>
+  <regnodes realName="icmp_ln338_reg_350">
+    <nodeIds>61</nodeIds>
   </regnodes>
-  <regnodes realName="p_loc_channel_reg_260">
-    <nodeIds>59</nodeIds>
+  <regnodes realName="shiftreg_i_i_reg_174">
+    <nodeIds>50</nodeIds>
   </regnodes>
-  <regnodes realName="send_data_c_reg_232">
-    <nodeIds>18</nodeIds>
+  <regnodes realName="add_ln336_reg_331">
+    <nodeIds>51</nodeIds>
   </regnodes>
-  <regnodes realName="input_c_reg_244">
-    <nodeIds>20</nodeIds>
+  <regnodes realName="num_chunks_load_1_reg_354">
+    <nodeIds>72</nodeIds>
   </regnodes>
-  <regnodes realName="send_data_c115_reg_226">
-    <nodeIds>17</nodeIds>
-  </regnodes>
-  <regnodes realName="output_length_c_reg_220">
+  <regnodes realName="num_chunks_reg_293">
     <nodeIds>16</nodeIds>
   </regnodes>
-  <regnodes realName="num_chunks_loc_channel_reg_250">
-    <nodeIds>56</nodeIds>
+  <regnodes realName="input_read_reg_310">
+    <nodeIds>38</nodeIds>
   </regnodes>
-  <regnodes realName="send_data_cast_loc_channel_reg_255">
+  <regnodes realName="send_data_read_reg_305">
+    <nodeIds>36</nodeIds>
+  </regnodes>
+  <regnodes realName="trunc_ln338_reg_340">
     <nodeIds>58</nodeIds>
   </regnodes>
-  <expressionNodes realName="send_data_cast_loc_channel_fu_210">
-    <nodeIds>58</nodeIds>
-  </expressionNodes>
-  <expressionNodes realName="input_length_c_fu_118">
-    <nodeIds>19</nodeIds>
-  </expressionNodes>
-  <expressionNodes realName="output_length_c_fu_106">
-    <nodeIds>16</nodeIds>
-  </expressionNodes>
-  <expressionNodes realName="send_data_c115_fu_110">
-    <nodeIds>17</nodeIds>
-  </expressionNodes>
-  <expressionNodes realName="store_array_i_alloca_fu_126">
-    <nodeIds>40</nodeIds>
-  </expressionNodes>
-  <expressionNodes realName="input_length_temp_alloca_fu_130">
-    <nodeIds>44</nodeIds>
-  </expressionNodes>
-  <expressionNodes realName="send_data_c_fu_114">
-    <nodeIds>18</nodeIds>
-  </expressionNodes>
-  <expressionNodes realName="input_c_fu_122">
-    <nodeIds>20</nodeIds>
-  </expressionNodes>
-  <expressionNodes realName="p_loc_channel_fu_215">
-    <nodeIds>59</nodeIds>
-  </expressionNodes>
-  <moduleNodes realName="grp_Loop_VITIS_LOOP_325_2_proc_fu_158">
+  <regnodes realName="aximm0_addr_reg_320">
+    <nodeIds>43</nodeIds>
+  </regnodes>
+  <regnodes realName="icmp_ln336_reg_336">
+    <nodeIds>53</nodeIds>
+  </regnodes>
+  <regnodes realName="trunc_ln_reg_315">
+    <nodeIds>41</nodeIds>
+  </regnodes>
+  <regnodes realName="i_reg_163">
+    <nodeIds>49</nodeIds>
+  </regnodes>
+  <regnodes realName="zext_ln338_reg_345">
     <nodeIds>60</nodeIds>
+  </regnodes>
+  <regnodes realName="output_length_read_reg_300">
+    <nodeIds>35</nodeIds>
+  </regnodes>
+  <regnodes realName="aximm0_addr_read_reg_326">
+    <nodeIds>45</nodeIds>
+  </regnodes>
+  <expressionNodes realName="i_phi_fu_167">
+    <nodeIds>49</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="lshr_ln_fu_262">
+    <nodeIds>59</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="sext_ln336_fu_236">
+    <nodeIds>42</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trunc_ln338_fu_258">
+    <nodeIds>58</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="num_chunks_fu_116">
+    <nodeIds>16</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="icmp_ln336_fu_252">
+    <nodeIds>53</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="zext_ln338_fu_272">
+    <nodeIds>60</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="aximm0_addr_fu_239">
+    <nodeIds>43</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="icmp_ln338_fu_276">
+    <nodeIds>61</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="num_chunks_1_fu_282">
+    <nodeIds>65</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="add_ln336_fu_246">
+    <nodeIds>51</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="shiftreg_i_i_phi_fu_177">
+    <nodeIds>50</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trunc_ln_fu_221">
+    <nodeIds>41</nodeIds>
+  </expressionNodes>
+  <moduleNodes realName="grp_dataflow_parent_loop_proc_fu_183">
+    <nodeIds>73</nodeIds>
   </moduleNodes>
-  <moduleNodes realName="call_ret8_Block_krnl_LZW_exit1_proc_fu_188">
-    <nodeIds>57</nodeIds>
-  </moduleNodes>
-  <moduleNodes realName="grp_Loop_VITIS_LOOP_318_1_proc_fu_180">
-    <nodeIds>56</nodeIds>
-  </moduleNodes>
-  <moduleNodes realName="call_ln299_krnl_LZW_entry4_fu_193">
-    <nodeIds>55</nodeIds>
-  </moduleNodes>
-  <ioNodes realName="send_data_read_read_fu_140">
-    <nodeIds>13</nodeIds>
+  <ioNodes realName="store_ln0_store_fu_231">
+    <nodeIds>46</nodeIds>
   </ioNodes>
-  <ioNodes realName="output_length_read_read_fu_134">
-    <nodeIds>12</nodeIds>
+  <ioNodes realName="grp_readreq_fu_144">
+    <nodeIds>44</nodeIds>
   </ioNodes>
-  <ioNodes realName="input_read_read_fu_152">
-    <nodeIds>15</nodeIds>
+  <ioNodes realName="output_length_read_read_fu_120">
+    <nodeIds>35</nodeIds>
   </ioNodes>
-  <ioNodes realName="input_length_read_read_fu_146">
-    <nodeIds>14</nodeIds>
+  <ioNodes realName="input_read_read_fu_138">
+    <nodeIds>38</nodeIds>
+  </ioNodes>
+  <ioNodes realName="aximm0_addr_read_read_fu_151">
+    <nodeIds>45</nodeIds>
+  </ioNodes>
+  <ioNodes realName="send_data_read_read_fu_126">
+    <nodeIds>36</nodeIds>
+  </ioNodes>
+  <ioNodes realName="grp_load_fu_205">
+    <nodeIds>64</nodeIds>
+    <nodeIds>72</nodeIds>
+  </ioNodes>
+  <ioNodes realName="write_ln174_write_fu_156">
+    <nodeIds>66</nodeIds>
+  </ioNodes>
+  <ioNodes realName="store_ln331_store_fu_209">
+    <nodeIds>39</nodeIds>
+  </ioNodes>
+  <ioNodes realName="store_ln332_store_fu_215">
+    <nodeIds>40</nodeIds>
+  </ioNodes>
+  <ioNodes realName="input_length_read_read_fu_132">
+    <nodeIds>37</nodeIds>
+  </ioNodes>
+  <ioNodes realName="store_ln343_store_fu_288">
+    <nodeIds>67</nodeIds>
   </ioNodes>
   <ioPorts name="aximm0">
     <contents name="call">
-      <nodeIds>60</nodeIds>
-    </contents>
-  </ioPorts>
-  <ioPorts name="aximm1">
-    <contents name="call">
-      <nodeIds>56</nodeIds>
-      <nodeIds>60</nodeIds>
+      <nodeIds>73</nodeIds>
     </contents>
   </ioPorts>
   <ioPorts name="input_length">
     <contents name="read">
-      <nodeIds>14</nodeIds>
+      <nodeIds>37</nodeIds>
     </contents>
   </ioPorts>
   <ioPorts name="input_r">
     <contents name="read">
-      <nodeIds>15</nodeIds>
+      <nodeIds>38</nodeIds>
     </contents>
   </ioPorts>
   <ioPorts name="output_length">
     <contents name="read">
-      <nodeIds>12</nodeIds>
+      <nodeIds>35</nodeIds>
     </contents>
   </ioPorts>
   <ioPorts name="send_data">
     <contents name="read">
-      <nodeIds>13</nodeIds>
+      <nodeIds>36</nodeIds>
     </contents>
   </ioPorts>
   <fsm>
     <states id="1">
-      <operations id="12" stage="1" latency="1"/>
-      <operations id="13" stage="1" latency="1"/>
-      <operations id="14" stage="1" latency="1"/>
-      <operations id="15" stage="1" latency="1"/>
       <operations id="16" stage="1" latency="1"/>
+      <operations id="35" stage="1" latency="1"/>
+      <operations id="36" stage="1" latency="1"/>
+      <operations id="37" stage="1" latency="1"/>
+      <operations id="38" stage="1" latency="1"/>
+      <operations id="39" stage="1" latency="1"/>
+      <operations id="40" stage="1" latency="1"/>
+      <operations id="41" stage="1" latency="1"/>
+      <operations id="46" stage="1" latency="1"/>
+    </states>
+    <states id="2">
+      <operations id="42" stage="1" latency="1"/>
+      <operations id="43" stage="1" latency="1"/>
+      <operations id="44" stage="70" latency="70"/>
+    </states>
+    <states id="3">
+      <operations id="44" stage="69" latency="70"/>
+    </states>
+    <states id="4">
+      <operations id="44" stage="68" latency="70"/>
+    </states>
+    <states id="5">
+      <operations id="44" stage="67" latency="70"/>
+    </states>
+    <states id="6">
+      <operations id="44" stage="66" latency="70"/>
+    </states>
+    <states id="7">
+      <operations id="44" stage="65" latency="70"/>
+    </states>
+    <states id="8">
+      <operations id="44" stage="64" latency="70"/>
+    </states>
+    <states id="9">
+      <operations id="44" stage="63" latency="70"/>
+    </states>
+    <states id="10">
+      <operations id="44" stage="62" latency="70"/>
+    </states>
+    <states id="11">
+      <operations id="44" stage="61" latency="70"/>
+    </states>
+    <states id="12">
+      <operations id="44" stage="60" latency="70"/>
+    </states>
+    <states id="13">
+      <operations id="44" stage="59" latency="70"/>
+    </states>
+    <states id="14">
+      <operations id="44" stage="58" latency="70"/>
+    </states>
+    <states id="15">
+      <operations id="44" stage="57" latency="70"/>
+    </states>
+    <states id="16">
+      <operations id="44" stage="56" latency="70"/>
+    </states>
+    <states id="17">
+      <operations id="44" stage="55" latency="70"/>
+    </states>
+    <states id="18">
+      <operations id="44" stage="54" latency="70"/>
+    </states>
+    <states id="19">
+      <operations id="44" stage="53" latency="70"/>
+    </states>
+    <states id="20">
+      <operations id="44" stage="52" latency="70"/>
+    </states>
+    <states id="21">
+      <operations id="44" stage="51" latency="70"/>
+    </states>
+    <states id="22">
+      <operations id="44" stage="50" latency="70"/>
+    </states>
+    <states id="23">
+      <operations id="44" stage="49" latency="70"/>
+    </states>
+    <states id="24">
+      <operations id="44" stage="48" latency="70"/>
+    </states>
+    <states id="25">
+      <operations id="44" stage="47" latency="70"/>
+    </states>
+    <states id="26">
+      <operations id="44" stage="46" latency="70"/>
+    </states>
+    <states id="27">
+      <operations id="44" stage="45" latency="70"/>
+    </states>
+    <states id="28">
+      <operations id="44" stage="44" latency="70"/>
+    </states>
+    <states id="29">
+      <operations id="44" stage="43" latency="70"/>
+    </states>
+    <states id="30">
+      <operations id="44" stage="42" latency="70"/>
+    </states>
+    <states id="31">
+      <operations id="44" stage="41" latency="70"/>
+    </states>
+    <states id="32">
+      <operations id="44" stage="40" latency="70"/>
+    </states>
+    <states id="33">
+      <operations id="44" stage="39" latency="70"/>
+    </states>
+    <states id="34">
+      <operations id="44" stage="38" latency="70"/>
+    </states>
+    <states id="35">
+      <operations id="44" stage="37" latency="70"/>
+    </states>
+    <states id="36">
+      <operations id="44" stage="36" latency="70"/>
+    </states>
+    <states id="37">
+      <operations id="44" stage="35" latency="70"/>
+    </states>
+    <states id="38">
+      <operations id="44" stage="34" latency="70"/>
+    </states>
+    <states id="39">
+      <operations id="44" stage="33" latency="70"/>
+    </states>
+    <states id="40">
+      <operations id="44" stage="32" latency="70"/>
+    </states>
+    <states id="41">
+      <operations id="44" stage="31" latency="70"/>
+    </states>
+    <states id="42">
+      <operations id="44" stage="30" latency="70"/>
+    </states>
+    <states id="43">
+      <operations id="44" stage="29" latency="70"/>
+    </states>
+    <states id="44">
+      <operations id="44" stage="28" latency="70"/>
+    </states>
+    <states id="45">
+      <operations id="44" stage="27" latency="70"/>
+    </states>
+    <states id="46">
+      <operations id="44" stage="26" latency="70"/>
+    </states>
+    <states id="47">
+      <operations id="44" stage="25" latency="70"/>
+    </states>
+    <states id="48">
+      <operations id="44" stage="24" latency="70"/>
+    </states>
+    <states id="49">
+      <operations id="44" stage="23" latency="70"/>
+    </states>
+    <states id="50">
+      <operations id="44" stage="22" latency="70"/>
+    </states>
+    <states id="51">
+      <operations id="44" stage="21" latency="70"/>
+    </states>
+    <states id="52">
+      <operations id="44" stage="20" latency="70"/>
+    </states>
+    <states id="53">
+      <operations id="44" stage="19" latency="70"/>
+    </states>
+    <states id="54">
+      <operations id="44" stage="18" latency="70"/>
+    </states>
+    <states id="55">
+      <operations id="44" stage="17" latency="70"/>
+    </states>
+    <states id="56">
+      <operations id="44" stage="16" latency="70"/>
+    </states>
+    <states id="57">
+      <operations id="44" stage="15" latency="70"/>
+    </states>
+    <states id="58">
+      <operations id="44" stage="14" latency="70"/>
+    </states>
+    <states id="59">
+      <operations id="44" stage="13" latency="70"/>
+    </states>
+    <states id="60">
+      <operations id="44" stage="12" latency="70"/>
+    </states>
+    <states id="61">
+      <operations id="44" stage="11" latency="70"/>
+    </states>
+    <states id="62">
+      <operations id="44" stage="10" latency="70"/>
+    </states>
+    <states id="63">
+      <operations id="44" stage="9" latency="70"/>
+    </states>
+    <states id="64">
+      <operations id="44" stage="8" latency="70"/>
+    </states>
+    <states id="65">
+      <operations id="44" stage="7" latency="70"/>
+    </states>
+    <states id="66">
+      <operations id="44" stage="6" latency="70"/>
+    </states>
+    <states id="67">
+      <operations id="44" stage="5" latency="70"/>
+    </states>
+    <states id="68">
+      <operations id="44" stage="4" latency="70"/>
+    </states>
+    <states id="69">
+      <operations id="44" stage="3" latency="70"/>
+    </states>
+    <states id="70">
+      <operations id="44" stage="2" latency="70"/>
+    </states>
+    <states id="71">
+      <operations id="44" stage="1" latency="70"/>
+    </states>
+    <states id="72">
+      <operations id="45" stage="1" latency="1"/>
+    </states>
+    <states id="73">
       <operations id="17" stage="1" latency="1"/>
       <operations id="18" stage="1" latency="1"/>
       <operations id="19" stage="1" latency="1"/>
       <operations id="20" stage="1" latency="1"/>
-      <operations id="40" stage="1" latency="1"/>
-      <operations id="44" stage="1" latency="1"/>
-      <operations id="55" stage="1" latency="1"/>
-    </states>
-    <states id="2">
-      <operations id="56" stage="2" latency="2"/>
-    </states>
-    <states id="3">
-      <operations id="56" stage="1" latency="2"/>
-    </states>
-    <states id="4">
-      <operations id="57" stage="1" latency="1"/>
-      <operations id="58" stage="1" latency="1"/>
-      <operations id="59" stage="1" latency="1"/>
-      <operations id="60" stage="2" latency="2"/>
-    </states>
-    <states id="5">
       <operations id="21" stage="1" latency="1"/>
       <operations id="22" stage="1" latency="1"/>
       <operations id="23" stage="1" latency="1"/>
@@ -343,26 +803,38 @@
       <operations id="32" stage="1" latency="1"/>
       <operations id="33" stage="1" latency="1"/>
       <operations id="34" stage="1" latency="1"/>
-      <operations id="35" stage="1" latency="1"/>
-      <operations id="36" stage="1" latency="1"/>
-      <operations id="37" stage="1" latency="1"/>
-      <operations id="38" stage="1" latency="1"/>
-      <operations id="39" stage="1" latency="1"/>
-      <operations id="41" stage="1" latency="1"/>
-      <operations id="42" stage="1" latency="1"/>
-      <operations id="43" stage="1" latency="1"/>
-      <operations id="45" stage="1" latency="1"/>
-      <operations id="46" stage="1" latency="1"/>
       <operations id="47" stage="1" latency="1"/>
-      <operations id="48" stage="1" latency="1"/>
+    </states>
+    <states id="74">
       <operations id="49" stage="1" latency="1"/>
       <operations id="50" stage="1" latency="1"/>
       <operations id="51" stage="1" latency="1"/>
       <operations id="52" stage="1" latency="1"/>
       <operations id="53" stage="1" latency="1"/>
       <operations id="54" stage="1" latency="1"/>
-      <operations id="60" stage="1" latency="2"/>
+      <operations id="55" stage="1" latency="1"/>
+      <operations id="57" stage="1" latency="1"/>
+      <operations id="58" stage="1" latency="1"/>
+      <operations id="59" stage="1" latency="1"/>
+      <operations id="60" stage="1" latency="1"/>
       <operations id="61" stage="1" latency="1"/>
+      <operations id="62" stage="1" latency="1"/>
+      <operations id="70" stage="1" latency="1"/>
+    </states>
+    <states id="75">
+      <operations id="64" stage="1" latency="1"/>
+      <operations id="65" stage="1" latency="1"/>
+      <operations id="66" stage="1" latency="1"/>
+      <operations id="67" stage="1" latency="1"/>
+      <operations id="68" stage="1" latency="1"/>
+    </states>
+    <states id="76">
+      <operations id="72" stage="1" latency="1"/>
+      <operations id="73" stage="2" latency="2"/>
+    </states>
+    <states id="77">
+      <operations id="73" stage="1" latency="2"/>
+      <operations id="74" stage="1" latency="1"/>
     </states>
     <transitions inState="1" outState="2">
       <condition id="-1"/>
@@ -376,172 +848,247 @@
     <transitions inState="4" outState="5">
       <condition id="-1"/>
     </transitions>
+    <transitions inState="5" outState="6">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="6" outState="7">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="7" outState="8">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="8" outState="9">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="9" outState="10">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="10" outState="11">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="11" outState="12">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="12" outState="13">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="13" outState="14">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="14" outState="15">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="15" outState="16">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="16" outState="17">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="17" outState="18">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="18" outState="19">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="19" outState="20">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="20" outState="21">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="21" outState="22">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="22" outState="23">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="23" outState="24">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="24" outState="25">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="25" outState="26">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="26" outState="27">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="27" outState="28">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="28" outState="29">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="29" outState="30">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="30" outState="31">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="31" outState="32">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="32" outState="33">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="33" outState="34">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="34" outState="35">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="35" outState="36">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="36" outState="37">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="37" outState="38">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="38" outState="39">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="39" outState="40">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="40" outState="41">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="41" outState="42">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="42" outState="43">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="43" outState="44">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="44" outState="45">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="45" outState="46">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="46" outState="47">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="47" outState="48">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="48" outState="49">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="49" outState="50">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="50" outState="51">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="51" outState="52">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="52" outState="53">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="53" outState="54">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="54" outState="55">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="55" outState="56">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="56" outState="57">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="57" outState="58">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="58" outState="59">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="59" outState="60">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="60" outState="61">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="61" outState="62">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="62" outState="63">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="63" outState="64">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="64" outState="65">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="65" outState="66">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="66" outState="67">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="67" outState="68">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="68" outState="69">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="69" outState="70">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="70" outState="71">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="71" outState="72">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="72" outState="73">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="73" outState="74">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="76" outState="77">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="75" outState="74">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="74" outState="76">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="74" outState="75">
+      <condition id="-1"/>
+    </transitions>
   </fsm>
   <CFGRegionsRoot>
-    <cfgRegions mId="1" mTag="krnl_LZW" mII="-1" mDepth="-1" mMinTripCount="-1" mMaxTripCount="-1" mMinLatency="-1" mMaxLatency="-1" mIsDfPipe="true">
-      <basicBlocks>62</basicBlocks>
-      <mDfPipe allPipePinInst="//@CFGRegionsRoot/@cfgRegions.0/@mDfPipe/@processe_list.0/@pins.0/@inst //@CFGRegionsRoot/@cfgRegions.0/@mDfPipe/@processe_list.1/@pins.0/@inst //@CFGRegionsRoot/@cfgRegions.0/@mDfPipe/@processe_list.3/@pins.0/@inst //@CFGRegionsRoot/@cfgRegions.0/@mDfPipe/@channel_list.2/@sink/@inst">
-        <processe_list name="krnl_LZW_entry4_U0" ssdmobj_id="55">
-          <pins>
-            <port name="input" type="SIOType" need_hs="true" top_port_object_id="" top_port_object_id_reference="_84" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="krnl_LZW_entry4_U0" ssdmobj_id="55" object_id="_91"/>
-          </pins>
-          <pins>
-            <port name="input_length" type="SIOType" need_hs="true" top_port_object_id="" top_port_object_id_reference="_85" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="krnl_LZW_entry4_U0" ssdmobj_id="55" object_id="_91"/>
-          </pins>
-          <pins>
-            <port name="send_data" type="SIOType" need_hs="true" top_port_object_id="" top_port_object_id_reference="_86" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="krnl_LZW_entry4_U0" ssdmobj_id="55" object_id="_91"/>
-          </pins>
-          <pins>
-            <port name="output_length" type="SIOType" need_hs="true" top_port_object_id="" top_port_object_id_reference="_87" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="krnl_LZW_entry4_U0" ssdmobj_id="55" object_id="_91"/>
-          </pins>
-        </processe_list>
-        <processe_list name="Loop_VITIS_LOOP_318_1_proc_U0" ssdmobj_id="56">
-          <pins>
-            <port name="aximm1" type="BUSType" need_hs="true" top_port_object_id="" top_port_object_id_reference="_83" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="Loop_VITIS_LOOP_318_1_proc_U0" ssdmobj_id="56" object_id="_101"/>
-          </pins>
-        </processe_list>
-        <processe_list name="Block_krnl_LZW_exit1_proc_U0" ssdmobj_id="57"/>
-        <processe_list name="Loop_VITIS_LOOP_325_2_proc_U0" ssdmobj_id="60">
-          <pins>
-            <port name="aximm0" dir="DirInOut" type="BUSType" need_hs="true" top_port_object_id="" top_port_object_id_reference="_82" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="Loop_VITIS_LOOP_325_2_proc_U0" ssdmobj_id="60" object_id="_106"/>
-          </pins>
-          <pins>
-            <port name="store_array_i" dir="DirInOut" type="MEMType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="_109" chan_object_id_reference=""/>
-            <inst name="Loop_VITIS_LOOP_325_2_proc_U0" ssdmobj_id="60" object_id="_106"/>
-          </pins>
-          <pins>
-            <port name="aximm1" dir="DirOut" type="BUSType" need_hs="true" top_port_object_id="" top_port_object_id_reference="_83" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="Loop_VITIS_LOOP_325_2_proc_U0" ssdmobj_id="60" object_id="_106"/>
-          </pins>
-        </processe_list>
-        <channel_list depth="3" bitwidth="64" suggested_type="2" suggested_depth="3" name="input_c" ssdmobj_id="20">
-          <source>
-            <port name="in" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="krnl_LZW_entry4_U0" ssdmobj_id="55" object_id="_91"/>
-          </source>
-          <sink>
-            <port name="out" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="Loop_VITIS_LOOP_325_2_proc_U0" ssdmobj_id="60" object_id="_106"/>
-          </sink>
-        </channel_list>
-        <channel_list depth="2" bitwidth="64" suggested_type="2" suggested_depth="2" name="input_length_c" ssdmobj_id="19">
-          <source>
-            <port name="in" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="krnl_LZW_entry4_U0" ssdmobj_id="55" object_id="_91"/>
-          </source>
-          <sink>
-            <port name="out" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="Loop_VITIS_LOOP_318_1_proc_U0" ssdmobj_id="56" object_id="_101"/>
-          </sink>
-        </channel_list>
-        <channel_list depth="2" bitwidth="64" suggested_type="2" suggested_depth="2" name="send_data_c" ssdmobj_id="18">
-          <source>
-            <port name="in" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="krnl_LZW_entry4_U0" ssdmobj_id="55" object_id="_91"/>
-          </source>
-          <sink>
-            <port name="out" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="Block_krnl_LZW_exit1_proc_U0" ssdmobj_id="57" object_id="_127"/>
-          </sink>
-        </channel_list>
-        <channel_list depth="3" bitwidth="64" suggested_type="2" suggested_depth="3" name="send_data_c115" ssdmobj_id="17">
-          <source>
-            <port name="in" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="krnl_LZW_entry4_U0" ssdmobj_id="55" object_id="_91"/>
-          </source>
-          <sink>
-            <port name="out" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="Loop_VITIS_LOOP_325_2_proc_U0" ssdmobj_id="60" object_id="_106"/>
-          </sink>
-        </channel_list>
-        <channel_list depth="3" bitwidth="64" suggested_type="2" suggested_depth="3" name="output_length_c" ssdmobj_id="16">
-          <source>
-            <port name="in" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="krnl_LZW_entry4_U0" ssdmobj_id="55" object_id="_91"/>
-          </source>
-          <sink>
-            <port name="out" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="Loop_VITIS_LOOP_325_2_proc_U0" ssdmobj_id="60" object_id="_106"/>
-          </sink>
-        </channel_list>
-        <channel_list depth="0" bitwidth="0" type="PIPO" suggested_type="0" suggested_depth="2" name="input_length_temp" ssdmobj_id="44">
-          <source>
-            <port name="in" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="Loop_VITIS_LOOP_318_1_proc_U0" ssdmobj_id="56" object_id="_101"/>
-          </source>
-          <sink>
-            <port name="out" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="Loop_VITIS_LOOP_325_2_proc_U0" ssdmobj_id="60" object_id="_106"/>
-          </sink>
-        </channel_list>
-        <channel_list depth="2" bitwidth="8" suggested_type="1" suggested_depth="2" name="num_chunks_loc_channel" ssdmobj_id="56">
-          <source>
-            <port name="in" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="Loop_VITIS_LOOP_318_1_proc_U0" ssdmobj_id="56" object_id="_101"/>
-          </source>
-          <sink>
-            <port name="out" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="Loop_VITIS_LOOP_325_2_proc_U0" ssdmobj_id="60" object_id="_106"/>
-          </sink>
-        </channel_list>
-        <channel_list depth="2" bitwidth="1" suggested_type="1" suggested_depth="2" name="send_data_cast_loc_channel" ssdmobj_id="58">
-          <source>
-            <port name="in" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="Block_krnl_LZW_exit1_proc_U0" ssdmobj_id="57" object_id="_127"/>
-          </source>
-          <sink>
-            <port name="out" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="Loop_VITIS_LOOP_325_2_proc_U0" ssdmobj_id="60" object_id="_106"/>
-          </sink>
-        </channel_list>
-        <channel_list depth="2" bitwidth="64" suggested_type="1" suggested_depth="2" name="p_loc_channel" ssdmobj_id="59">
-          <source>
-            <port name="in" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="Block_krnl_LZW_exit1_proc_U0" ssdmobj_id="57" object_id="_127"/>
-          </source>
-          <sink>
-            <port name="out" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="Loop_VITIS_LOOP_325_2_proc_U0" ssdmobj_id="60" object_id="_106"/>
-          </sink>
-        </channel_list>
-        <channel_list/>
-        <channel_list depth="2" bitwidth="8" suggested_type="0" suggested_depth="2" name="outStream_code_flg" ssdmobj_id="8">
-          <source>
-            <port name="in" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="Loop_VITIS_LOOP_325_2_proc_U0" ssdmobj_id="60" object_id="_106"/>
-          </source>
-          <sink>
-            <port name="out" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="Loop_VITIS_LOOP_325_2_proc_U0" ssdmobj_id="60" object_id="_106"/>
-          </sink>
-        </channel_list>
-        <channel_list depth="2" bitwidth="13" suggested_type="0" suggested_depth="2" name="outStream_code" ssdmobj_id="10">
-          <source>
-            <port name="in" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="Loop_VITIS_LOOP_325_2_proc_U0" ssdmobj_id="60" object_id="_106"/>
-          </source>
-          <sink>
-            <port name="out" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="Loop_VITIS_LOOP_325_2_proc_U0" ssdmobj_id="60" object_id="_106"/>
-          </sink>
-        </channel_list>
-        <channel_list depth="2" bitwidth="8" suggested_type="0" suggested_depth="2" name="inStream_in" ssdmobj_id="11">
-          <source>
-            <port name="in" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="Loop_VITIS_LOOP_325_2_proc_U0" ssdmobj_id="60" object_id="_106"/>
-          </source>
-          <sink>
-            <port name="out" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
-            <inst name="Loop_VITIS_LOOP_325_2_proc_U0" ssdmobj_id="60" object_id="_106"/>
-          </sink>
-        </channel_list>
-      </mDfPipe>
+    <cfgRegions mId="1" mTag="krnl_LZW" mII="-1" mDepth="-1" mMinTripCount="-1" mMaxTripCount="-1" mMinLatency="-1" mMaxLatency="-1">
+      <subRegions>2</subRegions>
+      <subRegions>3</subRegions>
+      <subRegions>4</subRegions>
+      <mDfPipe/>
+    </cfgRegions>
+    <cfgRegions mId="2" mTag="Entry" mII="-1" mDepth="-1" mMinTripCount="-1" mMaxTripCount="-1" mMinLatency="72" mMaxLatency="72">
+      <basicBlocks>48</basicBlocks>
+      <mDfPipe/>
+    </cfgRegions>
+    <cfgRegions mId="3" mTag="VITIS_LOOP_336_1" mII="1" mDepth="2" mMinTripCount="4" mMaxTripCount="4" mMinLatency="4" mMaxLatency="4" mType="1">
+      <basicBlocks>56</basicBlocks>
+      <basicBlocks>63</basicBlocks>
+      <basicBlocks>69</basicBlocks>
+      <basicBlocks>71</basicBlocks>
+      <mDfPipe/>
+    </cfgRegions>
+    <cfgRegions mId="4" mTag="Return" mII="-1" mDepth="-1" mMinTripCount="-1" mMaxTripCount="-1" mMinLatency="-2" mMaxLatency="-2">
+      <basicBlocks>75</basicBlocks>
+      <mDfPipe/>
     </cfgRegions>
   </CFGRegionsRoot>
 </cdfg:DBCdfg>

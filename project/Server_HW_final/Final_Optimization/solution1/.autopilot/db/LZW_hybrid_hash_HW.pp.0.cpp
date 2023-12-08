@@ -59388,13 +59388,18 @@ typedef struct
     unsigned int fill;
 } assoc_mem;
 
-static void read_input(char *in, uint16_t input_length,
+
+
+static void read_input(char *in, uint32_t *input_offset, uint16_t input_length,
                         hls::stream<char>& inStream_in){
+
     mem_rd:
         for (int i = 0; i < input_length; i++){
 
-            inStream_in << in[i];
+            inStream_in << (in + *input_offset)[i];
         }
+
+        *input_offset += input_length;
 }
 
 void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
@@ -59415,15 +59420,15 @@ void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
 
 
 
-    VITIS_LOOP_67_1: for(int i = 0; i < (1 << 15); i++){
+    VITIS_LOOP_72_1: for(int i = 0; i < (1 << 15); i++){
 
-        VITIS_LOOP_69_2: for (int j = 0; j < 1; j++){
+        VITIS_LOOP_74_2: for (int j = 0; j < 1; j++){
             hash_table[i][j] = 0;
         }
     }
 
     my_assoc_mem.fill = 0;
-    VITIS_LOOP_75_3: for(int i = 0; i < 512; i++)
+    VITIS_LOOP_80_3: for(int i = 0; i < 512; i++)
     {
 #pragma HLS unroll
  my_assoc_mem.upper_key_mem[i] = 0;
@@ -59433,15 +59438,16 @@ void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
 
 
     ap_uint<13> next_code = 256;
-    ap_uint<13> prefix_code = inStream_in.read();
+    char first_in = inStream_in.read();
+    ap_uint<13> prefix_code = first_in;
     ap_uint<13> code = 0;
-    unsigned char next_char = 0;
+    char next_char = 0;
     uint16_t j = 0;
     unsigned char shift = 0;
     unsigned char shift_offset = 16 - 13;
     ap_uint<13> i = 0;
 
-    VITIS_LOOP_93_4: for (int i = 0; i < (in_length - 1); i++)
+    VITIS_LOOP_99_4: for (int i = 0; i < (in_length - 1); i++)
     {
 
         next_char = inStream_in.read();
@@ -59450,7 +59456,7 @@ void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
 
         ap_uint<(13 + 8)> key = (prefix_code.to_uint() << 8) + next_char;
 
-        VITIS_LOOP_102_5: for (int j = 0; j < 1; j++){
+        VITIS_LOOP_108_5: for (int j = 0; j < 1; j++){
 
             ap_uint<((13 + 8) + 13 + 1)> lookup = hash_table[my_hash(key)][j];
 
@@ -59477,7 +59483,7 @@ void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
             ap_int<(72 * 1)> match = match_high & match_middle & match_low;
 
             unsigned int address;
-            VITIS_LOOP_129_6: for(address = 0; address < (72 * 1); address++)
+            VITIS_LOOP_135_6: for(address = 0; address < (72 * 1); address++)
             {
 
 
@@ -59503,14 +59509,14 @@ void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
 
         if(!hit)
         {
-            uint32_t written_code = prefix_code.to_uint();
+
 
             bool collision = 0;
 
 
 
 
-            VITIS_LOOP_162_7: for (int j = 0; j < 1; j++){
+            VITIS_LOOP_168_7: for (int j = 0; j < 1; j++){
 #pragma HLS unroll
  ap_uint<((13 + 8) + 13 + 1)> lookup = hash_table[my_hash(key)][j];
                 ap_uint<1> valid = (lookup >> ((13 + 8) + 13)) & 0x1;
@@ -59553,8 +59559,8 @@ void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
             }
 
 
-            outStream_code << prefix_code;
             outStream_code_flg << 1;
+            outStream_code << prefix_code;
 
 
             next_code += 1;
@@ -59565,22 +59571,28 @@ void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
             prefix_code = code;
         }
     }
-    outStream_code << prefix_code;
+
     outStream_code_flg << 0;
+    outStream_code << prefix_code;
+
     std::cout << std::endl << "assoc mem entry count: " << my_assoc_mem.fill << std::endl;
 
 }
 
+
+
 static void write_result(uint16_t in_length, hls::stream<ap_uint<13>>& outStream_code, hls::stream<char>& outStream_code_flg,
-                        uint16_t *send_data, uint16_t *output_length){
+                        uint16_t *send_data, uint16_t *output_length, uint32_t *output_offset){
 
     uint16_t j = 0;
     unsigned char shift = 0;
     unsigned char shift_offset = 16 - 13;
     ap_uint<13> prefix_code;
     uint16_t store_array[4096];
+    char stop_flg = outStream_code_flg.read();
 
-    VITIS_LOOP_232_1: while(outStream_code_flg.read()){
+
+    VITIS_LOOP_244_1: while(stop_flg){
         prefix_code = outStream_code.read();
         if (j == 0){
             shift = shift_offset;
@@ -59602,6 +59614,7 @@ static void write_result(uint16_t in_length, hls::stream<ap_uint<13>>& outStream
 
             }
         }
+        stop_flg = outStream_code_flg.read();
     }
 
     prefix_code = outStream_code.read();
@@ -59636,13 +59649,14 @@ static void write_result(uint16_t in_length, hls::stream<ap_uint<13>>& outStream
     }
     header = compressed_length << 1;
 
-    memcpy(send_data, &header, 4);
-    memcpy(send_data + 2, store_array, compressed_length);
+    memcpy(send_data + *output_offset, &header, 4);
+    memcpy(send_data + *output_offset + 2, store_array, compressed_length);
 
 
 
     *output_length = compressed_length + 4;
 
+    *output_offset += (*output_length + sizeof(uint16_t) - 1) / sizeof(uint16_t);
 
 }
 
@@ -59650,38 +59664,51 @@ static void write_result(uint16_t in_length, hls::stream<ap_uint<13>>& outStream
 __attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *input, uint16_t *input_length, uint16_t *send_data, uint16_t *output_length)
 {
 #pragma HLS TOP name=krnl_LZW
-# 300 "LZW_hybrid_hash_HW.cpp"
+# 314 "LZW_hybrid_hash_HW.cpp"
 
     static hls::stream<char> inStream_in("in_stream");
+    static hls::stream<uint16_t> inStream_in_length("in_length_stream");
     static hls::stream<ap_uint<13>> outStream_code("outStream_code");
     static hls::stream<char> outStream_code_flg("outStream_code_flg");
 #pragma HLS interface m_axi port=input bundle=aximm0
-#pragma HLS interface m_axi port=input_length bundle=aximm1
-#pragma HLS interface m_axi port=send_data bundle=aximm1
+#pragma HLS interface m_axi port=input_length bundle=aximm0
+#pragma HLS interface m_axi port=send_data bundle=aximm0
 #pragma HLS interface m_axi port=output_length bundle=aximm0
-#pragma HLS stream variable = inStream_in
-#pragma HLS stream variable = outStream_code
-#pragma HLS stream variable = outStream_code_flg
-#pragma HLS dataflow
+#pragma HLS stream variable = inStream_in depth=2
+#pragma HLS stream variable = inStream_in_length depth=4
+#pragma HLS stream variable = outStream_code depth=4
+#pragma HLS stream variable = outStream_code_flg depth=4
+
+
 
  char num_chunks = 0;
     uint32_t input_offset = 0;
     uint32_t output_offset = 0;
-    uint16_t input_length_temp[(4)];
 
-    VITIS_LOOP_318_1: for (int i = 0; i < (4); i++){
+    uint16_t input_length_temp;
+
+    VITIS_LOOP_336_1: for (int i = 0; i < (4); i++){
+
         if (input_length[i]){
             num_chunks++;
-            input_length_temp[i] = input_length[i];
+
+#pragma HLS dataflow
+ inStream_in_length << input_length[i];
         }
     }
 
-    VITIS_LOOP_325_2: for (int i = 0; i < num_chunks; i++){
-        read_input((input + input_offset), input_length_temp[i], inStream_in);
-        compute_LZW(inStream_in, input_length_temp[i], outStream_code, outStream_code_flg);
-        write_result(input_length_temp[i], outStream_code, outStream_code_flg, (send_data + output_offset), &output_length[i]);
+    VITIS_LOOP_346_2: for (int i = 0; i < num_chunks; i++){
+#pragma HLS dataflow
 
-        input_offset += input_length_temp[i];
-        output_offset += (output_length[i] + sizeof(uint16_t) - 1) / sizeof(uint16_t);
+
+
+
+ input_length_temp = inStream_in_length.read();
+        read_input(input, &input_offset, input_length_temp, inStream_in);
+        compute_LZW(inStream_in, input_length_temp, outStream_code, outStream_code_flg);
+        write_result(input_length_temp, outStream_code, outStream_code_flg, send_data, &output_length[i], &output_offset);
+
+
+
     }
 }
