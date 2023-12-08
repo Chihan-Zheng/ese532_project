@@ -53,7 +53,7 @@ int main(int argc, char* argv[]) {
     // std::string binaryFile = "LZW_hybrid_hash_HW.xclbin";
 	std::string binaryFile = "krnl_LZW.xclbin";
     unsigned fileBufSize;
-	auto constexpr num_cu = 4;
+	auto constexpr num_cu = 3;
 	// char num_chunks_krnl = 4;
 
     std::vector<cl::Device> devices = get_xilinx_devices();
