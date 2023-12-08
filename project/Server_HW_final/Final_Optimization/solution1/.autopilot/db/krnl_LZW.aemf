@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<cdfg:DBCdfg xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdfg="http://www.autoesl.com/DBCdfg" timeStamp="1701995794087">
+<cdfg:DBCdfg xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdfg="http://www.autoesl.com/DBCdfg" timeStamp="1702001960554">
   <ports id="1" name="aximm0" type="PortType" coreId="0" bitwidth="16" direction="DirInOut" iftype="IfTypeFifo">
     <dataInputObjs>call</dataInputObjs>
     <dataOutputObjs>call</dataOutputObjs>
   </ports>
-  <ports id="2" name="aximm1" type="PortType" coreId="678595968" bitwidth="16" direction="DirInOut" iftype="IfTypeFifo">
+  <ports id="2" name="aximm1" type="PortType" coreId="2021571912" bitwidth="16" direction="DirInOut" iftype="IfTypeFifo">
     <dataInputObjs>call</dataInputObjs>
     <dataInputObjs>call</dataInputObjs>
     <dataOutputObjs>call</dataOutputObjs>
     <dataOutputObjs>call</dataOutputObjs>
   </ports>
-  <ports id="3" name="in_r" type="PortType" originalName="in" coreId="0" bitwidth="64">
+  <ports id="3" name="input_r" type="PortType" originalName="input" coreId="321" bitwidth="64">
     <dataOutputObjs>read</dataOutputObjs>
   </ports>
-  <ports id="4" name="input_length" type="PortType" originalName="input_length" coreId="0" bitwidth="64">
+  <ports id="4" name="input_length" type="PortType" originalName="input_length" coreId="49" bitwidth="64">
     <dataOutputObjs>read</dataOutputObjs>
   </ports>
-  <ports id="5" name="send_data" type="PortType" originalName="send_data" coreId="0" bitwidth="64">
+  <ports id="5" name="send_data" type="PortType" originalName="send_data" coreId="2021955040" bitwidth="64">
     <dataOutputObjs>read</dataOutputObjs>
   </ports>
-  <ports id="6" name="output_length" type="PortType" originalName="output_length" coreId="33" bitwidth="64">
+  <ports id="6" name="output_length" type="PortType" originalName="output_length" coreId="2021418096" bitwidth="64">
     <dataOutputObjs>read</dataOutputObjs>
   </ports>
   <edges id="65" source_obj="//@ports.5" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.0"/>
@@ -80,9 +80,9 @@
         <dataInputObjs>input_length</dataInputObjs>
         <dataOutputObjs>call</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="15" name="in_read" lineNumber="299" originalName="in" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreName="s_axilite" implIndex="UNSUPPORTED" control="auto" coreId="122" contextFuncName="krnl_LZW" bitwidth="64" opcode="read" m_display="0" m_delay="1.0" m_topoIndex="4" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="15" name="input_read" lineNumber="299" originalName="input" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreName="s_axilite" implIndex="UNSUPPORTED" control="auto" coreId="122" contextFuncName="krnl_LZW" bitwidth="64" opcode="read" m_display="0" m_delay="1.0" m_topoIndex="4" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="299" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
-        <dataInputObjs>in_r</dataInputObjs>
+        <dataInputObjs>input_r</dataInputObjs>
         <dataOutputObjs>call</dataOutputObjs>
       </node_objs>
       <node_objs xsi:type="cdfg:CdfgNode" id="16" name="output_length_c" lineNumber="299" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="output_length_c_U" coreName="FIFO_SRL" implIndex="srl" control="auto" opType="fifo" coreId="81" contextFuncName="krnl_LZW" bitwidth="64" opcode="alloca" m_display="0" m_topoIndex="5" m_clusterGroupNumber="-1">
@@ -109,23 +109,23 @@
         <dataOutputObjs>call</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="20" name="in_c" lineNumber="299" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="in_c_U" coreName="FIFO_SRL" implIndex="srl" control="auto" opType="fifo" coreId="81" contextFuncName="krnl_LZW" bitwidth="64" opcode="alloca" m_display="0" m_topoIndex="9" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="20" name="input_c" lineNumber="299" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="input_c_U" coreName="FIFO_SRL" implIndex="srl" control="auto" opType="fifo" coreId="81" contextFuncName="krnl_LZW" bitwidth="64" opcode="alloca" m_display="0" m_topoIndex="9" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="299" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
         <dataOutputObjs>call</dataOutputObjs>
         <dataOutputObjs>call</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="40" name="store_array_i" rtlName="store_array_i_U" coreId="545" bitwidth="16" opcode="alloca" m_display="0" m_topoIndex="10" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="40" name="store_array_i" rtlName="store_array_i_U" coreId="0" bitwidth="16" opcode="alloca" m_display="0" m_topoIndex="10" m_clusterGroupNumber="-1">
         <dataOutputObjs>call</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="44" name="input_length_temp" lineNumber="316" originalName="input_length_temp" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="input_length_temp_U" coreId="678964352" contextFuncName="krnl_LZW" bitwidth="16" opcode="alloca" m_display="0" m_topoIndex="11" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="44" name="input_length_temp" lineNumber="316" originalName="input_length_temp" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="input_length_temp_U" coreId="0" contextFuncName="krnl_LZW" bitwidth="16" opcode="alloca" m_display="0" m_topoIndex="11" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="316" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
         <dataOutputObjs>call</dataOutputObjs>
         <dataOutputObjs>call</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="55" name="_ln299" lineNumber="299" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="krnl_LZW_entry4_U0" coreId="2327" contextFuncName="krnl_LZW" opcode="call" m_display="0" m_delay="2.16" m_topoIndex="12" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="55" name="_ln299" lineNumber="299" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="krnl_LZW_entry4_U0" coreId="0" contextFuncName="krnl_LZW" opcode="call" m_display="0" m_delay="2.16" m_topoIndex="12" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="299" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
         <dataInputObjs>read</dataInputObjs>
         <dataInputObjs>read</dataInputObjs>
@@ -147,7 +147,7 @@
         <dataOutputObjs>aximm1</dataOutputObjs>
         <constName>Loop_VITIS_LOOP_318_1_proc</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="57" name="call_ret8" lineNumber="299" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="Block_krnl_LZW_exit1_proc_U0" coreId="0" contextFuncName="krnl_LZW" bitwidth="65" opcode="call" nodeLabel="3.0" m_display="0" m_topoIndex="14" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="57" name="call_ret8" lineNumber="299" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="Block_krnl_LZW_exit1_proc_U0" coreId="2021565929" contextFuncName="krnl_LZW" bitwidth="65" opcode="call" nodeLabel="3.0" m_display="0" m_topoIndex="14" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="299" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
         <dataInputObjs>alloca</dataInputObjs>
         <dataOutputObjs>extractvalue</dataOutputObjs>
@@ -164,7 +164,7 @@
         <dataInputObjs>call</dataInputObjs>
         <dataOutputObjs>call</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="60" name="_ln299" lineNumber="299" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="Loop_VITIS_LOOP_325_2_proc_U0" coreId="678963856" contextFuncName="krnl_LZW" opcode="call" nodeLabel="3.0" nodeLatency="1" m_display="0" m_topoIndex="17" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="60" name="_ln299" lineNumber="299" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="Loop_VITIS_LOOP_325_2_proc_U0" coreId="539107901" contextFuncName="krnl_LZW" opcode="call" nodeLabel="3.0" nodeLatency="1" m_display="0" m_topoIndex="17" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="299" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
         <dataInputObjs>call</dataInputObjs>
         <dataInputObjs>aximm0</dataInputObjs>
@@ -180,7 +180,7 @@
         <dataOutputObjs>aximm1</dataOutputObjs>
         <constName>Loop_VITIS_LOOP_325_2_proc</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="61" name="_ln333" lineNumber="333" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="0" contextFuncName="krnl_LZW" opcode="ret" nodeLabel="4.0" m_display="0" m_topoIndex="18" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="61" name="_ln333" lineNumber="333" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="1187080264" contextFuncName="krnl_LZW" opcode="ret" nodeLabel="4.0" m_display="0" m_topoIndex="18" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="333" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
       </node_objs>
       <fileValidLineNumbers fileName="LZW_hybrid_hash_HW.cpp">
@@ -195,9 +195,6 @@
   <ScheduleInfo time="2"/>
   <ScheduleInfo time="3"/>
   <ScheduleInfo time="4"/>
-  <regnodes realName="in_c_reg_244">
-    <nodeIds>20</nodeIds>
-  </regnodes>
   <regnodes realName="input_length_c_reg_238">
     <nodeIds>19</nodeIds>
   </regnodes>
@@ -206,6 +203,9 @@
   </regnodes>
   <regnodes realName="send_data_c_reg_232">
     <nodeIds>18</nodeIds>
+  </regnodes>
+  <regnodes realName="input_c_reg_244">
+    <nodeIds>20</nodeIds>
   </regnodes>
   <regnodes realName="send_data_c115_reg_226">
     <nodeIds>17</nodeIds>
@@ -234,14 +234,14 @@
   <expressionNodes realName="store_array_i_alloca_fu_126">
     <nodeIds>40</nodeIds>
   </expressionNodes>
-  <expressionNodes realName="in_c_fu_122">
-    <nodeIds>20</nodeIds>
-  </expressionNodes>
   <expressionNodes realName="input_length_temp_alloca_fu_130">
     <nodeIds>44</nodeIds>
   </expressionNodes>
   <expressionNodes realName="send_data_c_fu_114">
     <nodeIds>18</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="input_c_fu_122">
+    <nodeIds>20</nodeIds>
   </expressionNodes>
   <expressionNodes realName="p_loc_channel_fu_215">
     <nodeIds>59</nodeIds>
@@ -264,7 +264,7 @@
   <ioNodes realName="output_length_read_read_fu_134">
     <nodeIds>12</nodeIds>
   </ioNodes>
-  <ioNodes realName="in_read_read_fu_152">
+  <ioNodes realName="input_read_read_fu_152">
     <nodeIds>15</nodeIds>
   </ioNodes>
   <ioNodes realName="input_length_read_read_fu_146">
@@ -281,14 +281,14 @@
       <nodeIds>60</nodeIds>
     </contents>
   </ioPorts>
-  <ioPorts name="in_r">
-    <contents name="read">
-      <nodeIds>15</nodeIds>
-    </contents>
-  </ioPorts>
   <ioPorts name="input_length">
     <contents name="read">
       <nodeIds>14</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="input_r">
+    <contents name="read">
+      <nodeIds>15</nodeIds>
     </contents>
   </ioPorts>
   <ioPorts name="output_length">
@@ -383,7 +383,7 @@
       <mDfPipe allPipePinInst="//@CFGRegionsRoot/@cfgRegions.0/@mDfPipe/@processe_list.0/@pins.0/@inst //@CFGRegionsRoot/@cfgRegions.0/@mDfPipe/@processe_list.1/@pins.0/@inst //@CFGRegionsRoot/@cfgRegions.0/@mDfPipe/@processe_list.3/@pins.0/@inst //@CFGRegionsRoot/@cfgRegions.0/@mDfPipe/@channel_list.2/@sink/@inst">
         <processe_list name="krnl_LZW_entry4_U0" ssdmobj_id="55">
           <pins>
-            <port name="in" type="SIOType" need_hs="true" top_port_object_id="" top_port_object_id_reference="_84" chan_object_id="" chan_object_id_reference=""/>
+            <port name="input" type="SIOType" need_hs="true" top_port_object_id="" top_port_object_id_reference="_84" chan_object_id="" chan_object_id_reference=""/>
             <inst name="krnl_LZW_entry4_U0" ssdmobj_id="55" object_id="_91"/>
           </pins>
           <pins>
@@ -420,7 +420,7 @@
             <inst name="Loop_VITIS_LOOP_325_2_proc_U0" ssdmobj_id="60" object_id="_106"/>
           </pins>
         </processe_list>
-        <channel_list depth="3" bitwidth="64" suggested_type="2" suggested_depth="3" name="in_c" ssdmobj_id="20">
+        <channel_list depth="3" bitwidth="64" suggested_type="2" suggested_depth="3" name="input_c" ssdmobj_id="20">
           <source>
             <port name="in" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
             <inst name="krnl_LZW_entry4_U0" ssdmobj_id="55" object_id="_91"/>

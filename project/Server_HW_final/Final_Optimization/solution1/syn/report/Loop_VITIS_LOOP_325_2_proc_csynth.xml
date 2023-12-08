@@ -1421,8 +1421,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>in_r_dout</name>
-<Object>in_r</Object>
+<name>input_r_dout</name>
+<Object>input_r</Object>
 <Type>pointer</Type>
 <Scope></Scope>
 <IOProtocol>ap_fifo</IOProtocol>
@@ -1432,8 +1432,8 @@
 <Attribute>control</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>in_r_empty_n</name>
-<Object>in_r</Object>
+<name>input_r_empty_n</name>
+<Object>input_r</Object>
 <Type>pointer</Type>
 <Scope></Scope>
 <IOProtocol>ap_fifo</IOProtocol>
@@ -1443,8 +1443,8 @@
 <Attribute>control</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>in_r_read</name>
-<Object>in_r</Object>
+<name>input_r_read</name>
+<Object>input_r</Object>
 <Type>pointer</Type>
 <Scope></Scope>
 <IOProtocol>ap_fifo</IOProtocol>

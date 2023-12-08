@@ -196,22 +196,22 @@
          <wvobject type="group" fp_name="krnl_LZW_entry4_U0_Output_group">
             <obj_property name="label">Output Channels</obj_property>
             <obj_property name="DisplayName">label</obj_property>
-            <wvobject type="group" fp_name="in_out_group">
-               <obj_property name="label">in_out(in_c_U, FIFO)</obj_property>
+            <wvobject type="group" fp_name="input_out_group">
+               <obj_property name="label">input_out(input_c_U, FIFO)</obj_property>
                <obj_property name="DisplayName">label</obj_property>
-               <wvobject type="logic" fp_name="/apatb_krnl_LZW_top/AESL_inst_krnl_LZW/krnl_LZW_entry4_U0/in_out_blk_n">
-                  <obj_property name="ElementShortName">in_out_blk_n</obj_property>
-                  <obj_property name="ObjectShortName">in_out_blk_n</obj_property>
+               <wvobject type="logic" fp_name="/apatb_krnl_LZW_top/AESL_inst_krnl_LZW/krnl_LZW_entry4_U0/input_out_blk_n">
+                  <obj_property name="ElementShortName">input_out_blk_n</obj_property>
+                  <obj_property name="ObjectShortName">input_out_blk_n</obj_property>
                </wvobject>
-               <wvobject type="logic" fp_name="/apatb_krnl_LZW_top/AESL_inst_krnl_LZW/krnl_LZW_entry4_U0/in_out_din">
+               <wvobject type="logic" fp_name="/apatb_krnl_LZW_top/AESL_inst_krnl_LZW/krnl_LZW_entry4_U0/input_out_din">
                </wvobject>
-               <wvobject type="logic" fp_name="/apatb_krnl_LZW_top/AESL_inst_krnl_LZW/krnl_LZW_entry4_U0/in_out_full_n">
-                  <obj_property name="ElementShortName">in_out_full_n</obj_property>
-                  <obj_property name="ObjectShortName">in_out_full_n</obj_property>
+               <wvobject type="logic" fp_name="/apatb_krnl_LZW_top/AESL_inst_krnl_LZW/krnl_LZW_entry4_U0/input_out_full_n">
+                  <obj_property name="ElementShortName">input_out_full_n</obj_property>
+                  <obj_property name="ObjectShortName">input_out_full_n</obj_property>
                </wvobject>
-               <wvobject type="logic" fp_name="/apatb_krnl_LZW_top/AESL_inst_krnl_LZW/krnl_LZW_entry4_U0/in_out_write">
-                  <obj_property name="ElementShortName">in_out_write</obj_property>
-                  <obj_property name="ObjectShortName">in_out_write</obj_property>
+               <wvobject type="logic" fp_name="/apatb_krnl_LZW_top/AESL_inst_krnl_LZW/krnl_LZW_entry4_U0/input_out_write">
+                  <obj_property name="ElementShortName">input_out_write</obj_property>
+                  <obj_property name="ObjectShortName">input_out_write</obj_property>
                </wvobject>
             </wvobject>
             <wvobject type="group" fp_name="input_length_out_group">
@@ -468,24 +468,24 @@
                   <obj_property name="DisplayName">label</obj_property>
                </wvobject>
             </wvobject>
-            <wvobject type="group" fp_name="in_r_group">
-               <obj_property name="label">in_r(in_c_U, FIFO)</obj_property>
+            <wvobject type="group" fp_name="input_r_group">
+               <obj_property name="label">input_r(input_c_U, FIFO)</obj_property>
                <obj_property name="DisplayName">label</obj_property>
-               <wvobject type="logic" fp_name="/apatb_krnl_LZW_top/AESL_inst_krnl_LZW/Loop_VITIS_LOOP_325_2_proc_U0/in_r_blk_n">
-                  <obj_property name="ElementShortName">in_r_blk_n</obj_property>
-                  <obj_property name="ObjectShortName">in_r_blk_n</obj_property>
+               <wvobject type="logic" fp_name="/apatb_krnl_LZW_top/AESL_inst_krnl_LZW/Loop_VITIS_LOOP_325_2_proc_U0/input_r_blk_n">
+                  <obj_property name="ElementShortName">input_r_blk_n</obj_property>
+                  <obj_property name="ObjectShortName">input_r_blk_n</obj_property>
                </wvobject>
-               <wvobject type="logic" fp_name="/apatb_krnl_LZW_top/AESL_inst_krnl_LZW/Loop_VITIS_LOOP_325_2_proc_U0/in_r_dout">
-                  <obj_property name="ElementShortName">in_r_dout[63:0]</obj_property>
-                  <obj_property name="ObjectShortName">in_r_dout[63:0]</obj_property>
+               <wvobject type="logic" fp_name="/apatb_krnl_LZW_top/AESL_inst_krnl_LZW/Loop_VITIS_LOOP_325_2_proc_U0/input_r_dout">
+                  <obj_property name="ElementShortName">input_r_dout[63:0]</obj_property>
+                  <obj_property name="ObjectShortName">input_r_dout[63:0]</obj_property>
                </wvobject>
-               <wvobject type="logic" fp_name="/apatb_krnl_LZW_top/AESL_inst_krnl_LZW/Loop_VITIS_LOOP_325_2_proc_U0/in_r_empty_n">
-                  <obj_property name="ElementShortName">in_r_empty_n</obj_property>
-                  <obj_property name="ObjectShortName">in_r_empty_n</obj_property>
+               <wvobject type="logic" fp_name="/apatb_krnl_LZW_top/AESL_inst_krnl_LZW/Loop_VITIS_LOOP_325_2_proc_U0/input_r_empty_n">
+                  <obj_property name="ElementShortName">input_r_empty_n</obj_property>
+                  <obj_property name="ObjectShortName">input_r_empty_n</obj_property>
                </wvobject>
-               <wvobject type="logic" fp_name="/apatb_krnl_LZW_top/AESL_inst_krnl_LZW/Loop_VITIS_LOOP_325_2_proc_U0/in_r_read">
-                  <obj_property name="ElementShortName">in_r_read</obj_property>
-                  <obj_property name="ObjectShortName">in_r_read</obj_property>
+               <wvobject type="logic" fp_name="/apatb_krnl_LZW_top/AESL_inst_krnl_LZW/Loop_VITIS_LOOP_325_2_proc_U0/input_r_read">
+                  <obj_property name="ElementShortName">input_r_read</obj_property>
+                  <obj_property name="ObjectShortName">input_r_read</obj_property>
                </wvobject>
             </wvobject>
             <wvobject type="group" fp_name="send_data_group">

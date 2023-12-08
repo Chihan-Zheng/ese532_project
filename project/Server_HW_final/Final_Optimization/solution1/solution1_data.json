@@ -15,7 +15,7 @@
     "Triple": "fpga64-xilinx-none"
   },
   "Args": {
-    "in": {
+    "input": {
       "index": "0",
       "direction": "inout",
       "srcType": "char*",
@@ -31,14 +31,14 @@
         {
           "type": "register",
           "interface": "s_axi_control",
-          "name": "in_r_1",
+          "name": "input_r_1",
           "usage": "address",
           "direction": "in"
         },
         {
           "type": "register",
           "interface": "s_axi_control",
-          "name": "in_r_2",
+          "name": "input_r_2",
           "usage": "address",
           "direction": "in"
         }
@@ -140,9 +140,13 @@
       "config_interface -m_axi_max_widen_bitwidth=512",
       "config_interface -default_interface=kernel",
       "config_interface -m_axi_offset=slave",
-      "config_rtl -register_reset_num=3"
+      "config_rtl -register_reset_num=3",
+      "config_export -format=xo",
+      "config_export -output=\/mnt\/castor\/seas_home\/c\/chihan\/chihan\/ese532_project\/project\/Server_HW_final\/krnl_LZW.xo",
+      "config_export -rtl=verilog"
     ],
     "DirectiveTcl": [
+      "set_directive_top krnl_LZW -name krnl_LZW",
       "set_directive_top krnl_LZW -name krnl_LZW",
       "set_directive_top krnl_LZW -name krnl_LZW",
       "set_directive_top krnl_LZW -name krnl_LZW",
@@ -175,10 +179,10 @@
   },
   "Files": {
     "CSource": [
-      "..\/..\/common\/check_endian.cpp",
-      "..\/..\/common\/Utilities.cpp",
+      "..\/..\/common\/EventTimer.cpp",
       "..\/..\/LZW_hybrid_hash_HW.cpp",
-      "..\/..\/common\/EventTimer.cpp"
+      "..\/..\/common\/Utilities.cpp",
+      "..\/..\/common\/check_endian.cpp"
     ],
     "Vhdl": [
       "impl\/vhdl\/krnl_LZW_aximm0_m_axi.vhd",
@@ -239,6 +243,7 @@
     "IpMisc": ["impl\/misc\/logo.png"],
     "DesignXml": ".autopilot\/db\/krnl_LZW.design.xml",
     "DebugDir": ".debug",
+    "Xo": "..\/..\/krnl_LZW.xo",
     "ProtoInst": ["\/mnt\/castor\/seas_home\/c\/chihan\/chihan\/ese532_project\/project\/Server_HW_final\/Final_Optimization\/solution1\/.debug\/krnl_LZW.protoinst"]
   },
   "SubcoreInfo": {
@@ -355,13 +360,13 @@
           "max_read_burst_length": "16",
           "max_write_burst_length": "16",
           "max_widen_bitwidth": "512",
-          "argName": "in"
+          "argName": "input"
         },
         {
           "constraint_type": "bitwidth",
           "orig_bitwidth": "8",
           "final_bitwidth": "16",
-          "argName": "in"
+          "argName": "input"
         }
       ]
     },
@@ -654,34 +659,34 @@
         },
         {
           "offset": "0x10",
-          "name": "in_r_1",
+          "name": "input_r_1",
           "access": "W",
           "resetValue": "0x0",
-          "description": "Data signal of in_r",
+          "description": "Data signal of input_r",
           "range": "32",
           "fields": [{
               "offset": "0",
               "width": "32",
-              "name": "in_r",
+              "name": "input_r",
               "access": "W",
               "resetValue": "0",
-              "description": "Bit 31 to 0 of in_r"
+              "description": "Bit 31 to 0 of input_r"
             }]
         },
         {
           "offset": "0x14",
-          "name": "in_r_2",
+          "name": "input_r_2",
           "access": "W",
           "resetValue": "0x0",
-          "description": "Data signal of in_r",
+          "description": "Data signal of input_r",
           "range": "32",
           "fields": [{
               "offset": "0",
               "width": "32",
-              "name": "in_r",
+              "name": "input_r",
               "access": "W",
               "resetValue": "0",
-              "description": "Bit 63 to 32 of in_r"
+              "description": "Bit 63 to 32 of input_r"
             }]
         },
         {
@@ -786,7 +791,7 @@
           "mode": "s_axilite",
           "register_option": "0",
           "offset": "16",
-          "argName": "in"
+          "argName": "input"
         }]
     }
   },
@@ -1631,7 +1636,7 @@
   "GenerateBdFiles": "0",
   "GenData": {
     "DataVersion": "0.2",
-    "Time": "2023-12-07 19:36:39 EST",
+    "Time": "2023-12-07 21:19:28 EST",
     "ToolName": "vivado_hls",
     "ToolVersion": "2020.2"
   }

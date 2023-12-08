@@ -7,15 +7,15 @@ target triple = "fpga64-xilinx-none"
 declare void @llvm.memcpy.p0i8.p0i8.i64(i8* nocapture writeonly, i8* nocapture readonly, i64, i1) #0
 
 ; Function Attrs: noinline
-define void @apatb_krnl_LZW_ir(i8* %in, i16* %input_length, i16* %send_data, i16* %output_length) local_unnamed_addr #1 {
+define void @apatb_krnl_LZW_ir(i8* %input, i16* %input_length, i16* %send_data, i16* %output_length) local_unnamed_addr #1 {
 entry:
-  %in_copy = alloca i8, align 512
+  %input_copy = alloca i8, align 512
   %input_length_copy = alloca i16, align 512
   %send_data_copy = alloca i16, align 512
   %output_length_copy = alloca i16, align 512
-  call fastcc void @copy_in(i8* %in, i8* nonnull align 512 %in_copy, i16* %input_length, i16* nonnull align 512 %input_length_copy, i16* %send_data, i16* nonnull align 512 %send_data_copy, i16* %output_length, i16* nonnull align 512 %output_length_copy)
-  call void @apatb_krnl_LZW_hw(i8* %in_copy, i16* %input_length_copy, i16* %send_data_copy, i16* %output_length_copy)
-  call fastcc void @copy_out(i8* %in, i8* nonnull align 512 %in_copy, i16* %input_length, i16* nonnull align 512 %input_length_copy, i16* %send_data, i16* nonnull align 512 %send_data_copy, i16* %output_length, i16* nonnull align 512 %output_length_copy)
+  call fastcc void @copy_in(i8* %input, i8* nonnull align 512 %input_copy, i16* %input_length, i16* nonnull align 512 %input_length_copy, i16* %send_data, i16* nonnull align 512 %send_data_copy, i16* %output_length, i16* nonnull align 512 %output_length_copy)
+  call void @apatb_krnl_LZW_hw(i8* %input_copy, i16* %input_length_copy, i16* %send_data_copy, i16* %output_length_copy)
+  call fastcc void @copy_out(i8* %input, i8* nonnull align 512 %input_copy, i16* %input_length, i16* nonnull align 512 %input_length_copy, i16* %send_data, i16* nonnull align 512 %send_data_copy, i16* %output_length, i16* nonnull align 512 %output_length_copy)
   ret void
 }
 

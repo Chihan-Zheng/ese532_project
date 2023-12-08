@@ -139,14 +139,14 @@ eval "cg_default_interface_gen_dc { \
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
     id 29 \
-    name in_r \
+    name input_r \
     type fifo \
     dir I \
     reset_level 1 \
     sync_rst true \
-    corename dc_in_r \
+    corename dc_input_r \
     op interface \
-    ports { in_r_dout { I 64 vector } in_r_empty_n { I 1 bit } in_r_read { O 1 bit } } \
+    ports { input_r_dout { I 64 vector } input_r_empty_n { I 1 bit } input_r_read { O 1 bit } } \
 } "
 }
 

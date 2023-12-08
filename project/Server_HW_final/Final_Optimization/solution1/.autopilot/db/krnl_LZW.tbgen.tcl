@@ -14,15 +14,15 @@ set C_modelType { void 0 }
 set C_modelArgList {
 	{ aximm0 int 16 regular {axi_master 2}  }
 	{ aximm1 int 16 regular {axi_master 2}  }
-	{ in_r int 64 regular {axi_slave 0}  }
+	{ input_r int 64 regular {axi_slave 0}  }
 	{ input_length int 64 regular {axi_slave 0}  }
 	{ send_data int 64 regular {axi_slave 0}  }
 	{ output_length int 64 regular {axi_slave 0}  }
 }
 set C_modelArgMapList {[ 
-	{ "Name" : "aximm0", "interface" : "axi_master", "bitwidth" : 16, "direction" : "READWRITE", "bitSlice":[{"low":0,"up":0,"cElement": [{"cName": "in","cData": "short","bit_use": { "low": 0,"up": 0},"offset": { "type": "dynamic","port_name": "in_r","bundle": "control"},"direction": "READONLY","cArray": [{"low" : 0,"up" : 0,"step" : 0}]},{"cName": "output_length","cData": "short","bit_use": { "low": 0,"up": 0},"offset": { "type": "dynamic","port_name": "output_length","bundle": "control"},"direction": "WRITEONLY","cArray": [{"low" : 0,"up" : 0,"step" : 0}]}]}]} , 
+	{ "Name" : "aximm0", "interface" : "axi_master", "bitwidth" : 16, "direction" : "READWRITE", "bitSlice":[{"low":0,"up":0,"cElement": [{"cName": "input","cData": "short","bit_use": { "low": 0,"up": 0},"offset": { "type": "dynamic","port_name": "input_r","bundle": "control"},"direction": "READONLY","cArray": [{"low" : 0,"up" : 0,"step" : 0}]},{"cName": "output_length","cData": "short","bit_use": { "low": 0,"up": 0},"offset": { "type": "dynamic","port_name": "output_length","bundle": "control"},"direction": "WRITEONLY","cArray": [{"low" : 0,"up" : 0,"step" : 0}]}]}]} , 
  	{ "Name" : "aximm1", "interface" : "axi_master", "bitwidth" : 16, "direction" : "READWRITE", "bitSlice":[{"low":0,"up":0,"cElement": [{"cName": "input_length","cData": "short","bit_use": { "low": 0,"up": 0},"offset": { "type": "dynamic","port_name": "input_length","bundle": "control"},"direction": "READONLY","cArray": [{"low" : 0,"up" : 0,"step" : 0}]},{"cName": "send_data","cData": "short","bit_use": { "low": 0,"up": 0},"offset": { "type": "dynamic","port_name": "send_data","bundle": "control"},"direction": "WRITEONLY","cArray": [{"low" : 0,"up" : 0,"step" : 0}]}]}]} , 
- 	{ "Name" : "in_r", "interface" : "axi_slave", "bundle":"control","type":"ap_none","bitwidth" : 64, "direction" : "READONLY", "offset" : {"in":16}, "offset_end" : {"in":27}} , 
+ 	{ "Name" : "input_r", "interface" : "axi_slave", "bundle":"control","type":"ap_none","bitwidth" : 64, "direction" : "READONLY", "offset" : {"in":16}, "offset_end" : {"in":27}} , 
  	{ "Name" : "input_length", "interface" : "axi_slave", "bundle":"control","type":"ap_none","bitwidth" : 64, "direction" : "READONLY", "offset" : {"in":28}, "offset_end" : {"in":39}} , 
  	{ "Name" : "send_data", "interface" : "axi_slave", "bundle":"control","type":"ap_none","bitwidth" : 64, "direction" : "READONLY", "offset" : {"in":40}, "offset_end" : {"in":51}} , 
  	{ "Name" : "output_length", "interface" : "axi_slave", "bundle":"control","type":"ap_none","bitwidth" : 64, "direction" : "READONLY", "offset" : {"in":52}, "offset_end" : {"in":63}} ]}
@@ -141,7 +141,7 @@ set portList {
 	{ m_axi_aximm1_BUSER sc_in sc_lv 1 signal 1 } 
 }
 set NewPortList {[ 
-	{ "name": "s_axi_control_AWADDR", "direction": "in", "datatype": "sc_lv", "bitwidth":6, "type": "signal", "bundle":{"name": "control", "role": "AWADDR" },"address":[{"name":"krnl_LZW","role":"start","value":"0","valid_bit":"0"},{"name":"krnl_LZW","role":"continue","value":"0","valid_bit":"4"},{"name":"krnl_LZW","role":"auto_start","value":"0","valid_bit":"7"},{"name":"in_r","role":"data","value":"16"},{"name":"input_length","role":"data","value":"28"},{"name":"send_data","role":"data","value":"40"},{"name":"output_length","role":"data","value":"52"}] },
+	{ "name": "s_axi_control_AWADDR", "direction": "in", "datatype": "sc_lv", "bitwidth":6, "type": "signal", "bundle":{"name": "control", "role": "AWADDR" },"address":[{"name":"krnl_LZW","role":"start","value":"0","valid_bit":"0"},{"name":"krnl_LZW","role":"continue","value":"0","valid_bit":"4"},{"name":"krnl_LZW","role":"auto_start","value":"0","valid_bit":"7"},{"name":"input_r","role":"data","value":"16"},{"name":"input_length","role":"data","value":"28"},{"name":"send_data","role":"data","value":"40"},{"name":"output_length","role":"data","value":"52"}] },
 	{ "name": "s_axi_control_AWVALID", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "control", "role": "AWVALID" } },
 	{ "name": "s_axi_control_AWREADY", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "control", "role": "AWREADY" } },
 	{ "name": "s_axi_control_WVALID", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "control", "role": "WVALID" } },
@@ -278,9 +278,9 @@ set RtlHierarchyInfo {[
 					{"ID" : "9", "SubInstance" : "Loop_VITIS_LOOP_325_2_proc_U0", "Port" : "aximm0"}]},
 			{"Name" : "aximm1", "Type" : "MAXI", "Direction" : "IO",
 				"SubConnect" : [
-					{"ID" : "7", "SubInstance" : "Loop_VITIS_LOOP_318_1_proc_U0", "Port" : "aximm1"},
-					{"ID" : "9", "SubInstance" : "Loop_VITIS_LOOP_325_2_proc_U0", "Port" : "aximm1"}]},
-			{"Name" : "in_r", "Type" : "None", "Direction" : "I"},
+					{"ID" : "9", "SubInstance" : "Loop_VITIS_LOOP_325_2_proc_U0", "Port" : "aximm1"},
+					{"ID" : "7", "SubInstance" : "Loop_VITIS_LOOP_318_1_proc_U0", "Port" : "aximm1"}]},
+			{"Name" : "input_r", "Type" : "None", "Direction" : "I"},
 			{"Name" : "input_length", "Type" : "None", "Direction" : "I"},
 			{"Name" : "send_data", "Type" : "None", "Direction" : "I"},
 			{"Name" : "output_length", "Type" : "None", "Direction" : "I"},
@@ -312,13 +312,13 @@ set RtlHierarchyInfo {[
 		"InDataflowNetwork" : "1",
 		"HasNonBlockingOperation" : "0",
 		"Port" : [
-			{"Name" : "in_r", "Type" : "None", "Direction" : "I"},
+			{"Name" : "input_r", "Type" : "None", "Direction" : "I"},
 			{"Name" : "input_length", "Type" : "None", "Direction" : "I"},
 			{"Name" : "send_data", "Type" : "None", "Direction" : "I"},
 			{"Name" : "output_length", "Type" : "None", "Direction" : "I"},
-			{"Name" : "in_out", "Type" : "Fifo", "Direction" : "O", "DependentProc" : "9", "DependentChan" : "16", "DependentChanDepth" : "3", "DependentChanType" : "2",
+			{"Name" : "input_out", "Type" : "Fifo", "Direction" : "O", "DependentProc" : "9", "DependentChan" : "16", "DependentChanDepth" : "3", "DependentChanType" : "2",
 				"BlockSignal" : [
-					{"Name" : "in_out_blk_n", "Type" : "RtlSignal"}]},
+					{"Name" : "input_out_blk_n", "Type" : "RtlSignal"}]},
 			{"Name" : "input_length_out", "Type" : "Fifo", "Direction" : "O", "DependentProc" : "7", "DependentChan" : "17", "DependentChanDepth" : "2", "DependentChanType" : "2",
 				"BlockSignal" : [
 					{"Name" : "input_length_out_blk_n", "Type" : "RtlSignal"}]},
@@ -406,9 +406,9 @@ set RtlHierarchyInfo {[
 				"BlockSignal" : [
 					{"Name" : "output_length_blk_n", "Type" : "RtlSignal"}]},
 			{"Name" : "input_length_temp", "Type" : "Memory", "Direction" : "I", "DependentProc" : "7", "DependentChan" : "5"},
-			{"Name" : "in_r", "Type" : "Fifo", "Direction" : "I", "DependentProc" : "6", "DependentChan" : "16", "DependentChanDepth" : "3", "DependentChanType" : "2",
+			{"Name" : "input_r", "Type" : "Fifo", "Direction" : "I", "DependentProc" : "6", "DependentChan" : "16", "DependentChanDepth" : "3", "DependentChanType" : "2",
 				"BlockSignal" : [
-					{"Name" : "in_r_blk_n", "Type" : "RtlSignal"}]},
+					{"Name" : "input_r_blk_n", "Type" : "RtlSignal"}]},
 			{"Name" : "send_data", "Type" : "Fifo", "Direction" : "I", "DependentProc" : "6", "DependentChan" : "19", "DependentChanDepth" : "3", "DependentChanType" : "2",
 				"BlockSignal" : [
 					{"Name" : "send_data_blk_n", "Type" : "RtlSignal"}]},
@@ -456,7 +456,7 @@ set RtlHierarchyInfo {[
 	{"ID" : "13", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.Loop_VITIS_LOOP_325_2_proc_U0.grp_compute_LZW_fu_612.my_assoc_mem_middle_key_mem_V_U", "Parent" : "10"},
 	{"ID" : "14", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.Loop_VITIS_LOOP_325_2_proc_U0.grp_compute_LZW_fu_612.my_assoc_mem_lower_key_mem_V_U", "Parent" : "10"},
 	{"ID" : "15", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.Loop_VITIS_LOOP_325_2_proc_U0.grp_compute_LZW_fu_612.my_assoc_mem_value_V_U", "Parent" : "10"},
-	{"ID" : "16", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.in_c_U", "Parent" : "0"},
+	{"ID" : "16", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.input_c_U", "Parent" : "0"},
 	{"ID" : "17", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.input_length_c_U", "Parent" : "0"},
 	{"ID" : "18", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.send_data_c_U", "Parent" : "0"},
 	{"ID" : "19", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.send_data_c115_U", "Parent" : "0"},
@@ -474,7 +474,7 @@ set ArgLastReadFirstWriteLatency {
 	krnl_LZW {
 		aximm0 {Type IO LastRead 152 FirstWrite 151}
 		aximm1 {Type IO LastRead 152 FirstWrite -1}
-		in_r {Type I LastRead 0 FirstWrite -1}
+		input_r {Type I LastRead 0 FirstWrite -1}
 		input_length {Type I LastRead 0 FirstWrite -1}
 		send_data {Type I LastRead 0 FirstWrite -1}
 		output_length {Type I LastRead 0 FirstWrite -1}
@@ -482,11 +482,11 @@ set ArgLastReadFirstWriteLatency {
 		outStream_code {Type IO LastRead -1 FirstWrite -1}
 		inStream_in {Type IO LastRead -1 FirstWrite -1}}
 	krnl_LZW_entry4 {
-		in_r {Type I LastRead 0 FirstWrite -1}
+		input_r {Type I LastRead 0 FirstWrite -1}
 		input_length {Type I LastRead 0 FirstWrite -1}
 		send_data {Type I LastRead 0 FirstWrite -1}
 		output_length {Type I LastRead 0 FirstWrite -1}
-		in_out {Type O LastRead -1 FirstWrite 0}
+		input_out {Type O LastRead -1 FirstWrite 0}
 		input_length_out {Type O LastRead -1 FirstWrite 0}
 		send_data_out {Type O LastRead -1 FirstWrite 0}
 		send_data_out1 {Type O LastRead -1 FirstWrite 0}
@@ -506,7 +506,7 @@ set ArgLastReadFirstWriteLatency {
 		aximm1 {Type O LastRead 152 FirstWrite 11}
 		output_length {Type I LastRead 0 FirstWrite -1}
 		input_length_temp {Type I LastRead 1 FirstWrite -1}
-		in_r {Type I LastRead 0 FirstWrite -1}
+		input_r {Type I LastRead 0 FirstWrite -1}
 		send_data {Type I LastRead 0 FirstWrite -1}
 		outStream_code_flg {Type IO LastRead 6 FirstWrite 258}
 		outStream_code {Type IO LastRead 6 FirstWrite 258}

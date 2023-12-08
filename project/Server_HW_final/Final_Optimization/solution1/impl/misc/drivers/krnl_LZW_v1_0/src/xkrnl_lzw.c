@@ -83,22 +83,22 @@ void XKrnl_lzw_DisableAutoRestart(XKrnl_lzw *InstancePtr) {
     XKrnl_lzw_WriteReg(InstancePtr->Control_BaseAddress, XKRNL_LZW_CONTROL_ADDR_AP_CTRL, 0);
 }
 
-void XKrnl_lzw_Set_in_r(XKrnl_lzw *InstancePtr, u64 Data) {
+void XKrnl_lzw_Set_input_r(XKrnl_lzw *InstancePtr, u64 Data) {
     Xil_AssertVoid(InstancePtr != NULL);
     Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    XKrnl_lzw_WriteReg(InstancePtr->Control_BaseAddress, XKRNL_LZW_CONTROL_ADDR_IN_R_DATA, (u32)(Data));
-    XKrnl_lzw_WriteReg(InstancePtr->Control_BaseAddress, XKRNL_LZW_CONTROL_ADDR_IN_R_DATA + 4, (u32)(Data >> 32));
+    XKrnl_lzw_WriteReg(InstancePtr->Control_BaseAddress, XKRNL_LZW_CONTROL_ADDR_INPUT_R_DATA, (u32)(Data));
+    XKrnl_lzw_WriteReg(InstancePtr->Control_BaseAddress, XKRNL_LZW_CONTROL_ADDR_INPUT_R_DATA + 4, (u32)(Data >> 32));
 }
 
-u64 XKrnl_lzw_Get_in_r(XKrnl_lzw *InstancePtr) {
+u64 XKrnl_lzw_Get_input_r(XKrnl_lzw *InstancePtr) {
     u64 Data;
 
     Xil_AssertNonvoid(InstancePtr != NULL);
     Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    Data = XKrnl_lzw_ReadReg(InstancePtr->Control_BaseAddress, XKRNL_LZW_CONTROL_ADDR_IN_R_DATA);
-    Data += (u64)XKrnl_lzw_ReadReg(InstancePtr->Control_BaseAddress, XKRNL_LZW_CONTROL_ADDR_IN_R_DATA + 4) << 32;
+    Data = XKrnl_lzw_ReadReg(InstancePtr->Control_BaseAddress, XKRNL_LZW_CONTROL_ADDR_INPUT_R_DATA);
+    Data += (u64)XKrnl_lzw_ReadReg(InstancePtr->Control_BaseAddress, XKRNL_LZW_CONTROL_ADDR_INPUT_R_DATA + 4) << 32;
     return Data;
 }
 

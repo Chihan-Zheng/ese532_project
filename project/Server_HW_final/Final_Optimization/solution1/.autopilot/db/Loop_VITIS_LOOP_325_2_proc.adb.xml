@@ -2354,7 +2354,7 @@ entry:5 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %se
 
 <Node id="22" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="0" op_3_bw="32" op_4_bw="32" op_5_bw="0" op_6_bw="32" op_7_bw="32" op_8_bw="0" op_9_bw="0" op_10_bw="0" op_11_bw="32" op_12_bw="32" op_13_bw="32" op_14_bw="32" op_15_bw="0" op_16_bw="0">
 <![CDATA[
-entry:6 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %in_r, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str
+entry:6 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %input_r, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str
 
 ]]></Node>
 <StgValue><ssdm name="specinterface_ln0"/></StgValue>
@@ -2399,10 +2399,10 @@ entry:8 %output_length_read = read i64 @_ssdm_op_Read.ap_fifo.i64P0A, i64 %outpu
 
 <Node id="25" bw="64" op_0_bw="64" op_1_bw="64">
 <![CDATA[
-entry:9 %in_read = read i64 @_ssdm_op_Read.ap_fifo.i64P0A, i64 %in_r
+entry:9 %input_read = read i64 @_ssdm_op_Read.ap_fifo.i64P0A, i64 %input_r
 
 ]]></Node>
-<StgValue><ssdm name="in_read"/></StgValue>
+<StgValue><ssdm name="input_read"/></StgValue>
 </operation>
 
 <operation id="377" st_id="1" stage="1" lat="1">
@@ -2504,7 +2504,7 @@ entry:15 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %a
 
 <Node id="32" bw="1" op_0_bw="64">
 <![CDATA[
-entry:16 %trunc_ln43 = trunc i64 %in_read
+entry:16 %trunc_ln43 = trunc i64 %input_read
 
 ]]></Node>
 <StgValue><ssdm name="trunc_ln43"/></StgValue>
@@ -2971,7 +2971,7 @@ entry:18 %br_ln0 = br void
 
 <Node id="65" bw="64" op_0_bw="64" op_1_bw="64">
 <![CDATA[
-.split3.i.i:4 %add_ln174 = add i64 %zext_ln174, i64 %in_read
+.split3.i.i:4 %add_ln174 = add i64 %zext_ln174, i64 %input_read
 
 ]]></Node>
 <StgValue><ssdm name="add_ln174"/></StgValue>
@@ -13413,8 +13413,8 @@ post-loop-memcpy-expansion.loopexit.i.i:13 %br_ln325 = br void
 <core>RAM</core><StgValue><ssdm name="input_length_temp"/><MemPortTyVec>1 3 </MemPortTyVec>
 </StgValue>
 </port>
-<port id="1562" name="in_r" dir="0" iftype="3">
-<core>FIFO_SRL</core><StgValue><ssdm name="in_r"/></StgValue>
+<port id="1562" name="input_r" dir="0" iftype="3">
+<core>FIFO_SRL</core><StgValue><ssdm name="input_r"/></StgValue>
 </port>
 <port id="1563" name="send_data" dir="0" iftype="3">
 <core>FIFO_SRL</core><StgValue><ssdm name="send_data"/></StgValue>
@@ -13548,7 +13548,7 @@ post-loop-memcpy-expansion.loopexit.i.i:13 %br_ln325 = br void
 </dataflow>
 <dataflow id="1640" from="_ssdm_op_SpecInterface" to="specinterface_ln0" fromId="1576" toId="373">
 </dataflow>
-<dataflow id="1641" from="in_r" to="specinterface_ln0" fromId="1562" toId="373">
+<dataflow id="1641" from="input_r" to="specinterface_ln0" fromId="1562" toId="373">
 </dataflow>
 <dataflow id="1642" from="ap_fifo_str" to="specinterface_ln0" fromId="1621" toId="373">
 </dataflow>
@@ -13618,9 +13618,9 @@ post-loop-memcpy-expansion.loopexit.i.i:13 %br_ln325 = br void
 </dataflow>
 <dataflow id="1676" from="output_length" to="output_length_read" fromId="1560" toId="375">
 </dataflow>
-<dataflow id="1677" from="_ssdm_op_Read.ap_fifo.i64P0A" to="in_read" fromId="1674" toId="376">
+<dataflow id="1677" from="_ssdm_op_Read.ap_fifo.i64P0A" to="input_read" fromId="1674" toId="376">
 </dataflow>
-<dataflow id="1678" from="in_r" to="in_read" fromId="1562" toId="376">
+<dataflow id="1678" from="input_r" to="input_read" fromId="1562" toId="376">
 </dataflow>
 <dataflow id="1679" from="_ssdm_op_Read.ap_fifo.i64P0A" to="send_data_read" fromId="1674" toId="377">
 </dataflow>
@@ -13796,7 +13796,7 @@ post-loop-memcpy-expansion.loopexit.i.i:13 %br_ln325 = br void
 </dataflow>
 <dataflow id="1766" from="empty_3" to="specinterface_ln0" fromId="1584" toId="382">
 </dataflow>
-<dataflow id="1767" from="in_read" to="trunc_ln43" fromId="376" toId="383">
+<dataflow id="1767" from="input_read" to="trunc_ln43" fromId="376" toId="383">
 </dataflow>
 <dataflow id="1768" from="store_array_i" to="store_array_i_addr" fromId="1556" toId="384">
 </dataflow>
@@ -13951,7 +13951,7 @@ post-loop-memcpy-expansion.loopexit.i.i:13 %br_ln325 = br void
 </dataflow>
 <dataflow id="1842" from="zext_ln174" to="add_ln174" fromId="412" toId="413">
 </dataflow>
-<dataflow id="1843" from="in_read" to="add_ln174" fromId="376" toId="413">
+<dataflow id="1843" from="input_read" to="add_ln174" fromId="376" toId="413">
 </dataflow>
 <dataflow id="1845" from="_ssdm_op_PartSelect.i63.i64.i32.i32" to="trunc_ln3" fromId="1844" toId="414">
 </dataflow>

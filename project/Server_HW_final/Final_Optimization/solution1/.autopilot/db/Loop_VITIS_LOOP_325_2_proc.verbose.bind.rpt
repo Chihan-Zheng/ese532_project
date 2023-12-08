@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'Loop_VITIS_LOOP_325_2_proc'
 ================================================================
-* Date:           Thu Dec  7 19:36:29 2023
+* Date:           Thu Dec  7 21:19:14 2023
 
 * Version:        2020.2 (Build 3064766 on Wed Nov 18 09:12:47 MST 2020)
 * Project:        Final_Optimization
@@ -473,17 +473,17 @@ ST_1 : Operation 369 [1/1] (0.00ns)   --->   "%p_read_3 = read i8 @_ssdm_op_Read
 ST_1 : Operation 370 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %aximm0, void @empty_12, i32 0, i32 0, void @empty_3, i32 64, i32 0, void @empty, void @empty_0, void @empty_3, i32 16, i32 16, i32 16, i32 16, void @empty_3, void @empty_3"   --->   Operation 370 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 371 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %aximm1, void @empty_12, i32 0, i32 0, void @empty_3, i32 64, i32 0, void @empty_1, void @empty_0, void @empty_3, i32 16, i32 16, i32 16, i32 16, void @empty_3, void @empty_3"   --->   Operation 371 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 372 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %send_data, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str"   --->   Operation 372 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 373 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %in_r, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str"   --->   Operation 373 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 373 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %input_r, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str"   --->   Operation 373 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 374 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %output_length, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str"   --->   Operation 374 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 375 [1/1] (2.16ns)   --->   "%output_length_read = read i64 @_ssdm_op_Read.ap_fifo.i64P0A, i64 %output_length" [LZW_hybrid_hash_HW.cpp:328]   --->   Operation 375 'read' 'output_length_read' <Predicate = true> <Delay = 2.16> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 2.16> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 64> <Depth = 3> <FIFO>
-ST_1 : Operation 376 [1/1] (2.16ns)   --->   "%in_read = read i64 @_ssdm_op_Read.ap_fifo.i64P0A, i64 %in_r" [LZW_hybrid_hash_HW.cpp:43]   --->   Operation 376 'read' 'in_read' <Predicate = true> <Delay = 2.16> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 2.16> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 64> <Depth = 3> <FIFO>
+ST_1 : Operation 376 [1/1] (2.16ns)   --->   "%input_read = read i64 @_ssdm_op_Read.ap_fifo.i64P0A, i64 %input_r" [LZW_hybrid_hash_HW.cpp:43]   --->   Operation 376 'read' 'input_read' <Predicate = true> <Delay = 2.16> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 2.16> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 64> <Depth = 3> <FIFO>
 ST_1 : Operation 377 [1/1] (2.16ns)   --->   "%send_data_read = read i64 @_ssdm_op_Read.ap_fifo.i64P0A, i64 %send_data"   --->   Operation 377 'read' 'send_data_read' <Predicate = true> <Delay = 2.16> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 2.16> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 64> <Depth = 3> <FIFO>
 ST_1 : Operation 378 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i8 %outStream_code_flg, void @empty_6, i32 0, i32 0, void @empty_3, i32 0, i32 0, void @empty_3, void @empty_3, void @empty_3, i32 0, i32 0, i32 0, i32 0, void @empty_3, void @empty_3"   --->   Operation 378 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 379 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i13 %outStream_code, void @empty_6, i32 0, i32 0, void @empty_3, i32 0, i32 0, void @empty_3, void @empty_3, void @empty_3, i32 0, i32 0, i32 0, i32 0, void @empty_3, void @empty_3"   --->   Operation 379 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 380 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i8 %inStream_in, void @empty_6, i32 0, i32 0, void @empty_3, i32 0, i32 0, void @empty_3, void @empty_3, void @empty_3, i32 0, i32 0, i32 0, i32 0, void @empty_3, void @empty_3"   --->   Operation 380 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 381 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %aximm1, void @empty_12, i32 0, i32 0, void @empty_3, i32 64, i32 0, void @empty_1, void @empty_0, void @empty_3, i32 16, i32 16, i32 16, i32 16, void @empty_3, void @empty_3"   --->   Operation 381 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 382 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %aximm0, void @empty_12, i32 0, i32 0, void @empty_3, i32 64, i32 0, void @empty, void @empty_0, void @empty_3, i32 16, i32 16, i32 16, i32 16, void @empty_3, void @empty_3"   --->   Operation 382 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 383 [1/1] (0.00ns)   --->   "%trunc_ln43 = trunc i64 %in_read" [LZW_hybrid_hash_HW.cpp:43]   --->   Operation 383 'trunc' 'trunc_ln43' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 383 [1/1] (0.00ns)   --->   "%trunc_ln43 = trunc i64 %input_read" [LZW_hybrid_hash_HW.cpp:43]   --->   Operation 383 'trunc' 'trunc_ln43' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 384 [1/1] (0.00ns)   --->   "%store_array_i_addr = getelementptr i16 %store_array_i, i64 0, i64 0" [LZW_hybrid_hash_HW.cpp:236]   --->   Operation 384 'getelementptr' 'store_array_i_addr' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 385 [1/1] (0.48ns)   --->   "%br_ln0 = br void"   --->   Operation 385 'br' 'br_ln0' <Predicate = true> <Delay = 0.48>
 
@@ -519,7 +519,7 @@ ST_4 : Operation 409 [1/1] (0.00ns)   --->   "%br_ln43 = br i1 %icmp_ln43, void 
 ST_4 : Operation 410 [1/1] (0.00ns)   --->   "%i_9_cast = zext i16 %i_8" [LZW_hybrid_hash_HW.cpp:43]   --->   Operation 410 'zext' 'i_9_cast' <Predicate = (!icmp_ln43)> <Delay = 0.00>
 ST_4 : Operation 411 [1/1] (1.09ns)   --->   "%add_ln174_1 = add i24 %zext_ln326, i24 %i_9_cast" [/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:174]   --->   Operation 411 'add' 'add_ln174_1' <Predicate = (!icmp_ln43)> <Delay = 1.09> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.08> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
 ST_4 : Operation 412 [1/1] (0.00ns)   --->   "%zext_ln174 = zext i24 %add_ln174_1" [/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:174]   --->   Operation 412 'zext' 'zext_ln174' <Predicate = (!icmp_ln43)> <Delay = 0.00>
-ST_4 : Operation 413 [1/1] (1.47ns)   --->   "%add_ln174 = add i64 %zext_ln174, i64 %in_read" [/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:174]   --->   Operation 413 'add' 'add_ln174' <Predicate = (!icmp_ln43)> <Delay = 1.47> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.08> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 413 [1/1] (1.47ns)   --->   "%add_ln174 = add i64 %zext_ln174, i64 %input_read" [/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:174]   --->   Operation 413 'add' 'add_ln174' <Predicate = (!icmp_ln43)> <Delay = 1.47> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.08> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
 ST_4 : Operation 414 [1/1] (0.00ns)   --->   "%trunc_ln3 = partselect i63 @_ssdm_op_PartSelect.i63.i64.i32.i32, i64 %add_ln174, i32 1, i32 63" [/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:174]   --->   Operation 414 'partselect' 'trunc_ln3' <Predicate = (!icmp_ln43)> <Delay = 0.00>
 ST_4 : Operation 415 [1/1] (0.00ns)   --->   "%sext_ln174 = sext i63 %trunc_ln3" [/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:174]   --->   Operation 415 'sext' 'sext_ln174' <Predicate = (!icmp_ln43)> <Delay = 0.00>
 ST_4 : Operation 416 [1/1] (0.00ns)   --->   "%aximm0_addr = getelementptr i16 %aximm0, i64 %sext_ln174" [/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:174]   --->   Operation 416 'getelementptr' 'aximm0_addr' <Predicate = (!icmp_ln43)> <Delay = 0.00>
@@ -1858,7 +1858,7 @@ Port [ p_read2]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; ex
 Port [ aximm1]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=4; pingpong=0; private_global=0; IO mode=m_axi:ce=0
 Port [ output_length]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
 Port [ input_length_temp]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=1; pingpong=1; private_global=0; MemPort=[13]; IO mode=ap_memory:ce=0
-Port [ in_r]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ input_r]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
 Port [ send_data]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
 Port [ outStream_code_flg]:  wired=1; compound=1; hidden=0; nouse=0; global=1; static=1; extern=0; dir=2; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
 Port [ outStream_code]:  wired=1; compound=1; hidden=0; nouse=0; global=1; static=1; extern=0; dir=2; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
@@ -1878,7 +1878,7 @@ specinterface_ln0            (specinterface    ) [ 00000000000000000000000000000
 specinterface_ln0            (specinterface    ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
 specinterface_ln0            (specinterface    ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
 output_length_read           (read             ) [ 0011111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111]
-in_read                      (read             ) [ 0011111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111]
+input_read                   (read             ) [ 0011111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111]
 send_data_read               (read             ) [ 0011111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111]
 specinterface_ln0            (specinterface    ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
 specinterface_ln0            (specinterface    ) [ 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
@@ -2243,12 +2243,12 @@ br_ln325                     (br               ) [ 01111111111111111111111111111
 </bind>
 </comp>
 
-<comp id="16" class="1000" name="in_r">
+<comp id="16" class="1000" name="input_r">
 <pin_list>
 <pin id="17" dir="1" index="0" bw="1" slack="0"/>
 </pin_list>
 <bind>
-<StgValue><ssdm name="in_r"/></StgValue>
+<StgValue><ssdm name="input_r"/></StgValue>
 </bind>
 </comp>
 
@@ -3218,7 +3218,7 @@ br_ln325                     (br               ) [ 01111111111111111111111111111
 </bind>
 </comp>
 
-<comp id="246" class="1004" name="in_read_read_fu_246">
+<comp id="246" class="1004" name="input_read_read_fu_246">
 <pin_list>
 <pin id="247" dir="0" index="0" bw="64" slack="0"/>
 <pin id="248" dir="0" index="1" bw="64" slack="0"/>
@@ -3226,7 +3226,7 @@ br_ln325                     (br               ) [ 01111111111111111111111111111
 </pin_list>
 <bind>
 <opcode="read(1150) " fcode="read"/>
-<opset="in_read/1 "/>
+<opset="input_read/1 "/>
 </bind>
 </comp>
 
@@ -5996,13 +5996,13 @@ br_ln325                     (br               ) [ 01111111111111111111111111111
 </bind>
 </comp>
 
-<comp id="1604" class="1005" name="in_read_reg_1604">
+<comp id="1604" class="1005" name="input_read_reg_1604">
 <pin_list>
 <pin id="1605" dir="0" index="0" bw="64" slack="3"/>
 <pin id="1606" dir="1" index="1" bw="64" slack="3"/>
 </pin_list>
 <bind>
-<opset="in_read "/>
+<opset="input_read "/>
 </bind>
 </comp>
 
@@ -7790,7 +7790,7 @@ br_ln325                     (br               ) [ 01111111111111111111111111111
 	Port: Loop_VITIS_LOOP_325_2_proc : p_read2 | {1 }
 	Port: Loop_VITIS_LOOP_325_2_proc : output_length | {1 }
 	Port: Loop_VITIS_LOOP_325_2_proc : input_length_temp | {2 3 }
-	Port: Loop_VITIS_LOOP_325_2_proc : in_r | {1 }
+	Port: Loop_VITIS_LOOP_325_2_proc : input_r | {1 }
 	Port: Loop_VITIS_LOOP_325_2_proc : send_data | {1 }
 	Port: Loop_VITIS_LOOP_325_2_proc : outStream_code_flg | {79 }
 	Port: Loop_VITIS_LOOP_325_2_proc : outStream_code | {79 }
@@ -8425,7 +8425,7 @@ br_ln325                     (br               ) [ 01111111111111111111111111111
 |          |         p_read_2_read_fu_228         |    0    |    0    |    0    |    0    |
 |          |         p_read_3_read_fu_234         |    0    |    0    |    0    |    0    |
 |          |    output_length_read_read_fu_240    |    0    |    0    |    0    |    0    |
-|   read   |          in_read_read_fu_246         |    0    |    0    |    0    |    0    |
+|   read   |        input_read_read_fu_246        |    0    |    0    |    0    |    0    |
 |          |      send_data_read_read_fu_252      |    0    |    0    |    0    |    0    |
 |          |     aximm0_addr_read_read_fu_265     |    0    |    0    |    0    |    0    |
 |          |            tmp_read_fu_277           |    0    |    0    |    0    |    0    |
@@ -8595,11 +8595,11 @@ N/A
 |      icmp_ln262_reg_1742      |    1   |
 |      icmp_ln289_reg_1852      |    1   |
 |       icmp_ln43_reg_1664      |    1   |
-|        in_read_reg_1604       |   64   |
 |input_length_temp_addr_reg_1632|    2   |
 |input_length_temp_load_reg_1642|   16   |
 |    input_offset_1_reg_1933    |   23   |
 |      input_offset_reg_465     |   23   |
+|      input_read_reg_1604      |   64   |
 |          j_1_reg_1774         |   15   |
 |          j_3_reg_556          |   15   |
 |          j_4_reg_525          |   16   |

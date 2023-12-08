@@ -1,1 +1,1 @@
-lappend RenamedRtlIO in in_r
+lappend RenamedRtlIO input input_r

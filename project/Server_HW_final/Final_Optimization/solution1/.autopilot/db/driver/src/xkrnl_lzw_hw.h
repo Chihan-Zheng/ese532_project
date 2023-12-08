@@ -22,10 +22,10 @@
 //        bit 0  - ap_done (COR/TOW)
 //        bit 1  - ap_ready (COR/TOW)
 //        others - reserved
-// 0x10 : Data signal of in_r
-//        bit 31~0 - in_r[31:0] (Read/Write)
-// 0x14 : Data signal of in_r
-//        bit 31~0 - in_r[63:32] (Read/Write)
+// 0x10 : Data signal of input_r
+//        bit 31~0 - input_r[31:0] (Read/Write)
+// 0x14 : Data signal of input_r
+//        bit 31~0 - input_r[63:32] (Read/Write)
 // 0x18 : reserved
 // 0x1c : Data signal of input_length
 //        bit 31~0 - input_length[31:0] (Read/Write)
@@ -48,8 +48,8 @@
 #define XKRNL_LZW_CONTROL_ADDR_GIE                0x04
 #define XKRNL_LZW_CONTROL_ADDR_IER                0x08
 #define XKRNL_LZW_CONTROL_ADDR_ISR                0x0c
-#define XKRNL_LZW_CONTROL_ADDR_IN_R_DATA          0x10
-#define XKRNL_LZW_CONTROL_BITS_IN_R_DATA          64
+#define XKRNL_LZW_CONTROL_ADDR_INPUT_R_DATA       0x10
+#define XKRNL_LZW_CONTROL_BITS_INPUT_R_DATA       64
 #define XKRNL_LZW_CONTROL_ADDR_INPUT_LENGTH_DATA  0x1c
 #define XKRNL_LZW_CONTROL_BITS_INPUT_LENGTH_DATA  64
 #define XKRNL_LZW_CONTROL_ADDR_SEND_DATA_DATA     0x28

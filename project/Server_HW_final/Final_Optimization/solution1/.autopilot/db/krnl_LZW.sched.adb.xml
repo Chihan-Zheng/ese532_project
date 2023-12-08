@@ -88,10 +88,10 @@
 
 <Node id="15" bw="64" op_0_bw="64" op_1_bw="64">
 <![CDATA[
-.split:3 %in_read = read i64 @_ssdm_op_Read.s_axilite.i64, i64 %in_r
+.split:3 %input_read = read i64 @_ssdm_op_Read.s_axilite.i64, i64 %input_r
 
 ]]></Node>
-<StgValue><ssdm name="in_read"/></StgValue>
+<StgValue><ssdm name="input_read"/></StgValue>
 </operation>
 
 <operation id="10" st_id="1" stage="1" lat="1">
@@ -163,10 +163,10 @@
 
 <Node id="20" bw="64" op_0_bw="64">
 <![CDATA[
-.split:8 %in_c = alloca i64 1
+.split:8 %input_c = alloca i64 1
 
 ]]></Node>
-<StgValue><ssdm name="in_c"/></StgValue>
+<StgValue><ssdm name="input_c"/></StgValue>
 </operation>
 
 <operation id="15" st_id="1" stage="1" lat="1">
@@ -208,7 +208,7 @@
 
 <Node id="55" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="64" op_3_bw="64" op_4_bw="64" op_5_bw="64" op_6_bw="64" op_7_bw="64" op_8_bw="64" op_9_bw="64">
 <![CDATA[
-.split:43 %call_ln299 = call void @krnl_LZW.entry4, i64 %in_read, i64 %input_length_read, i64 %send_data_read, i64 %output_length_read, i64 %in_c, i64 %input_length_c, i64 %send_data_c, i64 %send_data_c115, i64 %output_length_c
+.split:43 %call_ln299 = call void @krnl_LZW.entry4, i64 %input_read, i64 %input_length_read, i64 %send_data_read, i64 %output_length_read, i64 %input_c, i64 %input_length_c, i64 %send_data_c, i64 %send_data_c115, i64 %output_length_c
 
 ]]></Node>
 <StgValue><ssdm name="call_ln299"/></StgValue>
@@ -307,7 +307,7 @@
 
 <Node id="60" bw="0" op_0_bw="0" op_1_bw="8" op_2_bw="16" op_3_bw="16" op_4_bw="64" op_5_bw="1" op_6_bw="16" op_7_bw="64" op_8_bw="16" op_9_bw="64" op_10_bw="64" op_11_bw="8" op_12_bw="13" op_13_bw="8" op_14_bw="0" op_15_bw="0" op_16_bw="0">
 <![CDATA[
-.split:48 %call_ln299 = call void @Loop_VITIS_LOOP_325_2_proc, i8 %num_chunks_loc_channel, i16 %aximm0, i16 %store_array_i, i64 %p_loc_channel, i1 %send_data_cast_loc_channel, i16 %aximm1, i64 %output_length_c, i16 %input_length_temp, i64 %in_c, i64 %send_data_c115, i8 %outStream_code_flg, i13 %outStream_code, i8 %inStream_in
+.split:48 %call_ln299 = call void @Loop_VITIS_LOOP_325_2_proc, i8 %num_chunks_loc_channel, i16 %aximm0, i16 %store_array_i, i64 %p_loc_channel, i1 %send_data_cast_loc_channel, i16 %aximm1, i64 %output_length_c, i16 %input_length_temp, i64 %input_c, i64 %send_data_c115, i8 %outStream_code_flg, i13 %outStream_code, i8 %inStream_in
 
 ]]></Node>
 <StgValue><ssdm name="call_ln299"/></StgValue>
@@ -475,7 +475,7 @@
 
 <Node id="31" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="0" op_3_bw="32" op_4_bw="32" op_5_bw="0" op_6_bw="32" op_7_bw="32" op_8_bw="0" op_9_bw="0" op_10_bw="0" op_11_bw="32" op_12_bw="32" op_13_bw="32" op_14_bw="32" op_15_bw="0" op_16_bw="0">
 <![CDATA[
-.split:19 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %in_r, void @empty_11, i32 0, i32 0, void @empty_3, i32 0, i32 0, void @empty_21, void @empty_18, void @empty_3, i32 0, i32 0, i32 0, i32 0, void @empty_3, void @empty_20
+.split:19 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %input_r, void @empty_11, i32 0, i32 0, void @empty_3, i32 0, i32 0, void @empty_21, void @empty_18, void @empty_3, i32 0, i32 0, i32 0, i32 0, void @empty_3, void @empty_20
 
 ]]></Node>
 <StgValue><ssdm name="specinterface_ln0"/></StgValue>
@@ -490,7 +490,7 @@
 
 <Node id="32" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="0" op_3_bw="32" op_4_bw="32" op_5_bw="0" op_6_bw="32" op_7_bw="32" op_8_bw="0" op_9_bw="0" op_10_bw="0" op_11_bw="32" op_12_bw="32" op_13_bw="32" op_14_bw="32" op_15_bw="0" op_16_bw="0">
 <![CDATA[
-.split:20 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %in_r, void @empty_15, i32 0, i32 0, void @empty_3, i32 0, i32 0, void @empty_3, void @empty_3, void @empty_3, i32 0, i32 0, i32 0, i32 0, void @empty_3, void @empty_20
+.split:20 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %input_r, void @empty_15, i32 0, i32 0, void @empty_3, i32 0, i32 0, void @empty_3, void @empty_3, void @empty_3, i32 0, i32 0, i32 0, i32 0, void @empty_3, void @empty_20
 
 ]]></Node>
 <StgValue><ssdm name="specinterface_ln0"/></StgValue>
@@ -655,7 +655,7 @@
 
 <Node id="45" bw="32" op_0_bw="32" op_1_bw="0" op_2_bw="32" op_3_bw="0" op_4_bw="0" op_5_bw="32" op_6_bw="32" op_7_bw="64" op_8_bw="64">
 <![CDATA[
-.split:33 %empty_49 = specchannel i32 @_ssdm_op_SpecChannel, void @in_c_str, i32 1, void @p_str, void @p_str, i32 3, i32 0, i64 %in_c, i64 %in_c
+.split:33 %empty_49 = specchannel i32 @_ssdm_op_SpecChannel, void @input_c_str, i32 1, void @p_str, void @p_str, i32 3, i32 0, i64 %input_c, i64 %input_c
 
 ]]></Node>
 <StgValue><ssdm name="empty_49"/></StgValue>
@@ -670,7 +670,7 @@
 
 <Node id="46" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="0" op_3_bw="32" op_4_bw="32" op_5_bw="0" op_6_bw="32" op_7_bw="32" op_8_bw="0" op_9_bw="0" op_10_bw="0" op_11_bw="32" op_12_bw="32" op_13_bw="32" op_14_bw="32" op_15_bw="0" op_16_bw="0">
 <![CDATA[
-.split:34 %specinterface_ln299 = specinterface void @_ssdm_op_SpecInterface, i64 %in_c, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str
+.split:34 %specinterface_ln299 = specinterface void @_ssdm_op_SpecInterface, i64 %input_c, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str
 
 ]]></Node>
 <StgValue><ssdm name="specinterface_ln299"/></StgValue>
@@ -805,7 +805,7 @@
 
 <Node id="60" bw="0" op_0_bw="0" op_1_bw="8" op_2_bw="16" op_3_bw="16" op_4_bw="64" op_5_bw="1" op_6_bw="16" op_7_bw="64" op_8_bw="16" op_9_bw="64" op_10_bw="64" op_11_bw="8" op_12_bw="13" op_13_bw="8" op_14_bw="0" op_15_bw="0" op_16_bw="0">
 <![CDATA[
-.split:48 %call_ln299 = call void @Loop_VITIS_LOOP_325_2_proc, i8 %num_chunks_loc_channel, i16 %aximm0, i16 %store_array_i, i64 %p_loc_channel, i1 %send_data_cast_loc_channel, i16 %aximm1, i64 %output_length_c, i16 %input_length_temp, i64 %in_c, i64 %send_data_c115, i8 %outStream_code_flg, i13 %outStream_code, i8 %inStream_in
+.split:48 %call_ln299 = call void @Loop_VITIS_LOOP_325_2_proc, i8 %num_chunks_loc_channel, i16 %aximm0, i16 %store_array_i, i64 %p_loc_channel, i1 %send_data_cast_loc_channel, i16 %aximm1, i64 %output_length_c, i16 %input_length_temp, i64 %input_c, i64 %send_data_c115, i8 %outStream_code_flg, i13 %outStream_code, i8 %inStream_in
 
 ]]></Node>
 <StgValue><ssdm name="call_ln299"/></StgValue>

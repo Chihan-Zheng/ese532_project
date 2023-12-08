@@ -173,7 +173,7 @@ puts "@W \[IMPL-105\] Cannot find ap_gen_simcore_mem_df_channel, check your plat
 # FIFO definition:
 set ID 36
 set FifoName krnl_LZW_fifo_w64_d3_S
-set InstName in_c_U
+set InstName input_c_U
 set CoreName ap_simcore_fifo
 set NumOfStage 2
 set RegisteredInput 0
@@ -1079,7 +1079,7 @@ if {${::AESL::PGuard_autoexp_gen}} {
 
 set axilite_register_dict [dict create]
 set port_control {
-in_r { 
+input_r { 
 	dir I
 	width 64
 	depth 1

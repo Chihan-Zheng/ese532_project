@@ -182,7 +182,7 @@ attribute shreg_extract of ap_rst_reg_2 : signal is "no";
 attribute shreg_extract of ap_rst_reg_1 : signal is "no";
     signal ap_rst_n_inv : STD_LOGIC := '1';
 attribute shreg_extract of ap_rst_n_inv : signal is "no";
-    signal in_r : STD_LOGIC_VECTOR (63 downto 0);
+    signal input_r : STD_LOGIC_VECTOR (63 downto 0);
     signal input_length : STD_LOGIC_VECTOR (63 downto 0);
     signal send_data : STD_LOGIC_VECTOR (63 downto 0);
     signal output_length : STD_LOGIC_VECTOR (63 downto 0);
@@ -228,8 +228,8 @@ attribute shreg_extract of ap_rst_n_inv : signal is "no";
     signal krnl_LZW_entry4_U0_ap_ready : STD_LOGIC;
     signal krnl_LZW_entry4_U0_start_out : STD_LOGIC;
     signal krnl_LZW_entry4_U0_start_write : STD_LOGIC;
-    signal krnl_LZW_entry4_U0_in_out_din : STD_LOGIC_VECTOR (63 downto 0);
-    signal krnl_LZW_entry4_U0_in_out_write : STD_LOGIC;
+    signal krnl_LZW_entry4_U0_input_out_din : STD_LOGIC_VECTOR (63 downto 0);
+    signal krnl_LZW_entry4_U0_input_out_write : STD_LOGIC;
     signal krnl_LZW_entry4_U0_input_length_out_din : STD_LOGIC_VECTOR (63 downto 0);
     signal krnl_LZW_entry4_U0_input_length_out_write : STD_LOGIC;
     signal krnl_LZW_entry4_U0_send_data_out_din : STD_LOGIC_VECTOR (63 downto 0);
@@ -385,7 +385,7 @@ attribute shreg_extract of ap_rst_n_inv : signal is "no";
     signal Loop_VITIS_LOOP_325_2_proc_U0_output_length_read : STD_LOGIC;
     signal Loop_VITIS_LOOP_325_2_proc_U0_input_length_temp_address0 : STD_LOGIC_VECTOR (1 downto 0);
     signal Loop_VITIS_LOOP_325_2_proc_U0_input_length_temp_ce0 : STD_LOGIC;
-    signal Loop_VITIS_LOOP_325_2_proc_U0_in_r_read : STD_LOGIC;
+    signal Loop_VITIS_LOOP_325_2_proc_U0_input_r_read : STD_LOGIC;
     signal Loop_VITIS_LOOP_325_2_proc_U0_send_data_read : STD_LOGIC;
     signal Loop_VITIS_LOOP_325_2_proc_U0_outStream_code_flg_read : STD_LOGIC;
     signal Loop_VITIS_LOOP_325_2_proc_U0_outStream_code_flg_din : STD_LOGIC_VECTOR (7 downto 0);
@@ -399,9 +399,9 @@ attribute shreg_extract of ap_rst_n_inv : signal is "no";
     signal ap_sync_continue : STD_LOGIC;
     signal input_length_temp_i_full_n : STD_LOGIC;
     signal input_length_temp_t_empty_n : STD_LOGIC;
-    signal in_c_full_n : STD_LOGIC;
-    signal in_c_dout : STD_LOGIC_VECTOR (63 downto 0);
-    signal in_c_empty_n : STD_LOGIC;
+    signal input_c_full_n : STD_LOGIC;
+    signal input_c_dout : STD_LOGIC_VECTOR (63 downto 0);
+    signal input_c_empty_n : STD_LOGIC;
     signal input_length_c_full_n : STD_LOGIC;
     signal input_length_c_dout : STD_LOGIC_VECTOR (63 downto 0);
     signal input_length_c_empty_n : STD_LOGIC;
@@ -461,13 +461,13 @@ attribute shreg_extract of ap_rst_n_inv : signal is "no";
         ap_ready : OUT STD_LOGIC;
         start_out : OUT STD_LOGIC;
         start_write : OUT STD_LOGIC;
-        in_r : IN STD_LOGIC_VECTOR (63 downto 0);
+        input_r : IN STD_LOGIC_VECTOR (63 downto 0);
         input_length : IN STD_LOGIC_VECTOR (63 downto 0);
         send_data : IN STD_LOGIC_VECTOR (63 downto 0);
         output_length : IN STD_LOGIC_VECTOR (63 downto 0);
-        in_out_din : OUT STD_LOGIC_VECTOR (63 downto 0);
-        in_out_full_n : IN STD_LOGIC;
-        in_out_write : OUT STD_LOGIC;
+        input_out_din : OUT STD_LOGIC_VECTOR (63 downto 0);
+        input_out_full_n : IN STD_LOGIC;
+        input_out_write : OUT STD_LOGIC;
         input_length_out_din : OUT STD_LOGIC_VECTOR (63 downto 0);
         input_length_out_full_n : IN STD_LOGIC;
         input_length_out_write : OUT STD_LOGIC;
@@ -683,9 +683,9 @@ attribute shreg_extract of ap_rst_n_inv : signal is "no";
         input_length_temp_address0 : OUT STD_LOGIC_VECTOR (1 downto 0);
         input_length_temp_ce0 : OUT STD_LOGIC;
         input_length_temp_q0 : IN STD_LOGIC_VECTOR (15 downto 0);
-        in_r_dout : IN STD_LOGIC_VECTOR (63 downto 0);
-        in_r_empty_n : IN STD_LOGIC;
-        in_r_read : OUT STD_LOGIC;
+        input_r_dout : IN STD_LOGIC_VECTOR (63 downto 0);
+        input_r_empty_n : IN STD_LOGIC;
+        input_r_read : OUT STD_LOGIC;
         send_data_dout : IN STD_LOGIC_VECTOR (63 downto 0);
         send_data_empty_n : IN STD_LOGIC;
         send_data_read : OUT STD_LOGIC;
@@ -873,7 +873,7 @@ attribute shreg_extract of ap_rst_n_inv : signal is "no";
         ACLK : IN STD_LOGIC;
         ARESET : IN STD_LOGIC;
         ACLK_EN : IN STD_LOGIC;
-        in_r : OUT STD_LOGIC_VECTOR (63 downto 0);
+        input_r : OUT STD_LOGIC_VECTOR (63 downto 0);
         input_length : OUT STD_LOGIC_VECTOR (63 downto 0);
         send_data : OUT STD_LOGIC_VECTOR (63 downto 0);
         output_length : OUT STD_LOGIC_VECTOR (63 downto 0);
@@ -1149,7 +1149,7 @@ begin
         ACLK => ap_clk,
         ARESET => ap_rst_n_inv,
         ACLK_EN => ap_const_logic_1,
-        in_r => in_r,
+        input_r => input_r,
         input_length => input_length,
         send_data => send_data,
         output_length => output_length,
@@ -1448,13 +1448,13 @@ begin
         ap_ready => krnl_LZW_entry4_U0_ap_ready,
         start_out => krnl_LZW_entry4_U0_start_out,
         start_write => krnl_LZW_entry4_U0_start_write,
-        in_r => in_r,
+        input_r => input_r,
         input_length => input_length,
         send_data => send_data,
         output_length => output_length,
-        in_out_din => krnl_LZW_entry4_U0_in_out_din,
-        in_out_full_n => in_c_full_n,
-        in_out_write => krnl_LZW_entry4_U0_in_out_write,
+        input_out_din => krnl_LZW_entry4_U0_input_out_din,
+        input_out_full_n => input_c_full_n,
+        input_out_write => krnl_LZW_entry4_U0_input_out_write,
         input_length_out_din => krnl_LZW_entry4_U0_input_length_out_din,
         input_length_out_full_n => input_length_c_full_n,
         input_length_out_write => krnl_LZW_entry4_U0_input_length_out_write,
@@ -1664,9 +1664,9 @@ begin
         input_length_temp_address0 => Loop_VITIS_LOOP_325_2_proc_U0_input_length_temp_address0,
         input_length_temp_ce0 => Loop_VITIS_LOOP_325_2_proc_U0_input_length_temp_ce0,
         input_length_temp_q0 => input_length_temp_t_q0,
-        in_r_dout => in_c_dout,
-        in_r_empty_n => in_c_empty_n,
-        in_r_read => Loop_VITIS_LOOP_325_2_proc_U0_in_r_read,
+        input_r_dout => input_c_dout,
+        input_r_empty_n => input_c_empty_n,
+        input_r_read => Loop_VITIS_LOOP_325_2_proc_U0_input_r_read,
         send_data_dout => send_data_c115_dout,
         send_data_empty_n => send_data_c115_empty_n,
         send_data_read => Loop_VITIS_LOOP_325_2_proc_U0_send_data_read,
@@ -1689,18 +1689,18 @@ begin
         inStream_in_full_n => inStream_in_full_n,
         inStream_in_write => Loop_VITIS_LOOP_325_2_proc_U0_inStream_in_write);
 
-    in_c_U : component krnl_LZW_fifo_w64_d3_S
+    input_c_U : component krnl_LZW_fifo_w64_d3_S
     port map (
         clk => ap_clk,
         reset => ap_rst_n_inv,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => krnl_LZW_entry4_U0_in_out_din,
-        if_full_n => in_c_full_n,
-        if_write => krnl_LZW_entry4_U0_in_out_write,
-        if_dout => in_c_dout,
-        if_empty_n => in_c_empty_n,
-        if_read => Loop_VITIS_LOOP_325_2_proc_U0_in_r_read);
+        if_din => krnl_LZW_entry4_U0_input_out_din,
+        if_full_n => input_c_full_n,
+        if_write => krnl_LZW_entry4_U0_input_out_write,
+        if_dout => input_c_dout,
+        if_empty_n => input_c_empty_n,
+        if_read => Loop_VITIS_LOOP_325_2_proc_U0_input_r_read);
 
     input_length_c_U : component krnl_LZW_fifo_w64_d2_S
     port map (

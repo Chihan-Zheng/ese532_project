@@ -277,7 +277,7 @@ input  [C_M_AXI_AXIMM1_BUSER_WIDTH - 1:0] m_axi_aximm1_BUSER;
 (* shreg_extract = "no" *) reg    ap_rst_reg_2;
 (* shreg_extract = "no" *) reg    ap_rst_reg_1;
 (* shreg_extract = "no" *) reg    ap_rst_n_inv;
-wire   [63:0] in_r;
+wire   [63:0] input_r;
 wire   [63:0] input_length;
 wire   [63:0] send_data;
 wire   [63:0] output_length;
@@ -323,8 +323,8 @@ wire    krnl_LZW_entry4_U0_ap_idle;
 wire    krnl_LZW_entry4_U0_ap_ready;
 wire    krnl_LZW_entry4_U0_start_out;
 wire    krnl_LZW_entry4_U0_start_write;
-wire   [63:0] krnl_LZW_entry4_U0_in_out_din;
-wire    krnl_LZW_entry4_U0_in_out_write;
+wire   [63:0] krnl_LZW_entry4_U0_input_out_din;
+wire    krnl_LZW_entry4_U0_input_out_write;
 wire   [63:0] krnl_LZW_entry4_U0_input_length_out_din;
 wire    krnl_LZW_entry4_U0_input_length_out_write;
 wire   [63:0] krnl_LZW_entry4_U0_send_data_out_din;
@@ -480,7 +480,7 @@ wire    Loop_VITIS_LOOP_325_2_proc_U0_m_axi_aximm1_BREADY;
 wire    Loop_VITIS_LOOP_325_2_proc_U0_output_length_read;
 wire   [1:0] Loop_VITIS_LOOP_325_2_proc_U0_input_length_temp_address0;
 wire    Loop_VITIS_LOOP_325_2_proc_U0_input_length_temp_ce0;
-wire    Loop_VITIS_LOOP_325_2_proc_U0_in_r_read;
+wire    Loop_VITIS_LOOP_325_2_proc_U0_input_r_read;
 wire    Loop_VITIS_LOOP_325_2_proc_U0_send_data_read;
 wire    Loop_VITIS_LOOP_325_2_proc_U0_outStream_code_flg_read;
 wire   [7:0] Loop_VITIS_LOOP_325_2_proc_U0_outStream_code_flg_din;
@@ -494,9 +494,9 @@ wire    Loop_VITIS_LOOP_325_2_proc_U0_inStream_in_write;
 wire    ap_sync_continue;
 wire    input_length_temp_i_full_n;
 wire    input_length_temp_t_empty_n;
-wire    in_c_full_n;
-wire   [63:0] in_c_dout;
-wire    in_c_empty_n;
+wire    input_c_full_n;
+wire   [63:0] input_c_dout;
+wire    input_c_empty_n;
 wire    input_length_c_full_n;
 wire   [63:0] input_length_c_dout;
 wire    input_length_c_empty_n;
@@ -582,7 +582,7 @@ control_s_axi_U(
     .ACLK(ap_clk),
     .ARESET(ap_rst_n_inv),
     .ACLK_EN(1'b1),
-    .in_r(in_r),
+    .input_r(input_r),
     .input_length(input_length),
     .send_data(send_data),
     .output_length(output_length),
@@ -881,13 +881,13 @@ krnl_LZW_krnl_LZW_entry4 krnl_LZW_entry4_U0(
     .ap_ready(krnl_LZW_entry4_U0_ap_ready),
     .start_out(krnl_LZW_entry4_U0_start_out),
     .start_write(krnl_LZW_entry4_U0_start_write),
-    .in_r(in_r),
+    .input_r(input_r),
     .input_length(input_length),
     .send_data(send_data),
     .output_length(output_length),
-    .in_out_din(krnl_LZW_entry4_U0_in_out_din),
-    .in_out_full_n(in_c_full_n),
-    .in_out_write(krnl_LZW_entry4_U0_in_out_write),
+    .input_out_din(krnl_LZW_entry4_U0_input_out_din),
+    .input_out_full_n(input_c_full_n),
+    .input_out_write(krnl_LZW_entry4_U0_input_out_write),
     .input_length_out_din(krnl_LZW_entry4_U0_input_length_out_din),
     .input_length_out_full_n(input_length_c_full_n),
     .input_length_out_write(krnl_LZW_entry4_U0_input_length_out_write),
@@ -1097,9 +1097,9 @@ krnl_LZW_Loop_VITIS_LOOP_325_2_proc Loop_VITIS_LOOP_325_2_proc_U0(
     .input_length_temp_address0(Loop_VITIS_LOOP_325_2_proc_U0_input_length_temp_address0),
     .input_length_temp_ce0(Loop_VITIS_LOOP_325_2_proc_U0_input_length_temp_ce0),
     .input_length_temp_q0(input_length_temp_t_q0),
-    .in_r_dout(in_c_dout),
-    .in_r_empty_n(in_c_empty_n),
-    .in_r_read(Loop_VITIS_LOOP_325_2_proc_U0_in_r_read),
+    .input_r_dout(input_c_dout),
+    .input_r_empty_n(input_c_empty_n),
+    .input_r_read(Loop_VITIS_LOOP_325_2_proc_U0_input_r_read),
     .send_data_dout(send_data_c115_dout),
     .send_data_empty_n(send_data_c115_empty_n),
     .send_data_read(Loop_VITIS_LOOP_325_2_proc_U0_send_data_read),
@@ -1123,17 +1123,17 @@ krnl_LZW_Loop_VITIS_LOOP_325_2_proc Loop_VITIS_LOOP_325_2_proc_U0(
     .inStream_in_write(Loop_VITIS_LOOP_325_2_proc_U0_inStream_in_write)
 );
 
-krnl_LZW_fifo_w64_d3_S in_c_U(
+krnl_LZW_fifo_w64_d3_S input_c_U(
     .clk(ap_clk),
     .reset(ap_rst_n_inv),
     .if_read_ce(1'b1),
     .if_write_ce(1'b1),
-    .if_din(krnl_LZW_entry4_U0_in_out_din),
-    .if_full_n(in_c_full_n),
-    .if_write(krnl_LZW_entry4_U0_in_out_write),
-    .if_dout(in_c_dout),
-    .if_empty_n(in_c_empty_n),
-    .if_read(Loop_VITIS_LOOP_325_2_proc_U0_in_r_read)
+    .if_din(krnl_LZW_entry4_U0_input_out_din),
+    .if_full_n(input_c_full_n),
+    .if_write(krnl_LZW_entry4_U0_input_out_write),
+    .if_dout(input_c_dout),
+    .if_empty_n(input_c_empty_n),
+    .if_read(Loop_VITIS_LOOP_325_2_proc_U0_input_r_read)
 );
 
 krnl_LZW_fifo_w64_d2_S input_length_c_U(

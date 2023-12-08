@@ -162,8 +162,8 @@
 <Attribute>unknown</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>in_r</name>
-<Object>in_r</Object>
+<name>input_r</name>
+<Object>input_r</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -206,8 +206,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>in_out_din</name>
-<Object>in_out</Object>
+<name>input_out_din</name>
+<Object>input_out</Object>
 <Type>pointer</Type>
 <Scope></Scope>
 <IOProtocol>ap_fifo</IOProtocol>
@@ -217,8 +217,8 @@
 <Attribute>control</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>in_out_full_n</name>
-<Object>in_out</Object>
+<name>input_out_full_n</name>
+<Object>input_out</Object>
 <Type>pointer</Type>
 <Scope></Scope>
 <IOProtocol>ap_fifo</IOProtocol>
@@ -228,8 +228,8 @@
 <Attribute>control</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>in_out_write</name>
-<Object>in_out</Object>
+<name>input_out_write</name>
+<Object>input_out</Object>
 <Type>pointer</Type>
 <Scope></Scope>
 <IOProtocol>ap_fifo</IOProtocol>

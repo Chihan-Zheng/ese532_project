@@ -19,7 +19,7 @@
 
 <Node id="10" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="0" op_3_bw="32" op_4_bw="32" op_5_bw="0" op_6_bw="32" op_7_bw="32" op_8_bw="0" op_9_bw="0" op_10_bw="0" op_11_bw="32" op_12_bw="32" op_13_bw="32" op_14_bw="32" op_15_bw="0" op_16_bw="0">
 <![CDATA[
-entry:0 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %in_out, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str
+entry:0 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %input_out, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str
 
 ]]></Node>
 <StgValue><ssdm name="specinterface_ln0"/></StgValue>
@@ -79,10 +79,10 @@ entry:3 %input_length_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %input_len
 
 <Node id="14" bw="64" op_0_bw="64" op_1_bw="64">
 <![CDATA[
-entry:4 %in_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %in_r
+entry:4 %input_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %input_r
 
 ]]></Node>
-<StgValue><ssdm name="in_read"/></StgValue>
+<StgValue><ssdm name="input_read"/></StgValue>
 </operation>
 
 <operation id="7" st_id="1" stage="1" lat="1">
@@ -94,7 +94,7 @@ entry:4 %in_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %in_r
 
 <Node id="15" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="64">
 <![CDATA[
-entry:5 %write_ln0 = write void @_ssdm_op_Write.ap_fifo.i64P0A, i64 %in_out, i64 %in_read
+entry:5 %write_ln0 = write void @_ssdm_op_Write.ap_fifo.i64P0A, i64 %input_out, i64 %input_read
 
 ]]></Node>
 <StgValue><ssdm name="write_ln0"/></StgValue>
@@ -239,8 +239,8 @@ entry:14 %ret_ln0 = ret
 
 
 <ports>
-<port id="17" name="in_r" dir="0" iftype="0">
-<core>NULL</core><StgValue><ssdm name="in_r"/></StgValue>
+<port id="17" name="input_r" dir="0" iftype="0">
+<core>NULL</core><StgValue><ssdm name="input_r"/></StgValue>
 </port>
 <port id="18" name="input_length" dir="0" iftype="0">
 <core>NULL</core><StgValue><ssdm name="input_length"/></StgValue>
@@ -251,8 +251,8 @@ entry:14 %ret_ln0 = ret
 <port id="20" name="output_length" dir="0" iftype="0">
 <core>NULL</core><StgValue><ssdm name="output_length"/></StgValue>
 </port>
-<port id="21" name="in_out" dir="1" iftype="3">
-<core>FIFO_SRL</core><StgValue><ssdm name="in_out"/></StgValue>
+<port id="21" name="input_out" dir="1" iftype="3">
+<core>FIFO_SRL</core><StgValue><ssdm name="input_out"/></StgValue>
 </port>
 <port id="22" name="input_length_out" dir="1" iftype="3">
 <core>FIFO_SRL</core><StgValue><ssdm name="input_length_out"/></StgValue>
@@ -272,7 +272,7 @@ entry:14 %ret_ln0 = ret
 <dataflows>
 <dataflow id="27" from="_ssdm_op_SpecInterface" to="specinterface_ln0" fromId="26" toId="2">
 </dataflow>
-<dataflow id="28" from="in_out" to="specinterface_ln0" fromId="21" toId="2">
+<dataflow id="28" from="input_out" to="specinterface_ln0" fromId="21" toId="2">
 </dataflow>
 <dataflow id="30" from="ap_fifo_str" to="specinterface_ln0" fromId="29" toId="2">
 </dataflow>
@@ -316,15 +316,15 @@ entry:14 %ret_ln0 = ret
 </dataflow>
 <dataflow id="56" from="input_length" to="input_length_read" fromId="18" toId="5">
 </dataflow>
-<dataflow id="57" from="_ssdm_op_Read.ap_auto.i64" to="in_read" fromId="50" toId="6">
+<dataflow id="57" from="_ssdm_op_Read.ap_auto.i64" to="input_read" fromId="50" toId="6">
 </dataflow>
-<dataflow id="58" from="in_r" to="in_read" fromId="17" toId="6">
+<dataflow id="58" from="input_r" to="input_read" fromId="17" toId="6">
 </dataflow>
 <dataflow id="60" from="_ssdm_op_Write.ap_fifo.i64P0A" to="write_ln0" fromId="59" toId="7">
 </dataflow>
-<dataflow id="61" from="in_out" to="write_ln0" fromId="21" toId="7">
+<dataflow id="61" from="input_out" to="write_ln0" fromId="21" toId="7">
 </dataflow>
-<dataflow id="62" from="in_read" to="write_ln0" fromId="6" toId="7">
+<dataflow id="62" from="input_read" to="write_ln0" fromId="6" toId="7">
 </dataflow>
 <dataflow id="63" from="_ssdm_op_SpecInterface" to="specinterface_ln0" fromId="26" toId="8">
 </dataflow>

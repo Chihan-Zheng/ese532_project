@@ -8,7 +8,7 @@
 #define Max_Chunk_Size (1 << CODE_LEN)
 
 #define WIN_SIZE 8
-#define PRIME 3
+#define PRIME  3   
 #define MODULUS 1024
 #define TARGET 0
 #define MAX_BOUNDARY 512

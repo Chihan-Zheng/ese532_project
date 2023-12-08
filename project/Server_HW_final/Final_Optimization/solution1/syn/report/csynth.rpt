@@ -4,7 +4,7 @@
 == Synthesis Summary Report of 'krnl_LZW'
 ================================================================
 + General Information: 
-    * Date:           Thu Dec  7 19:36:34 2023
+    * Date:           Thu Dec  7 21:19:20 2023
     * Version:        2020.2 (Build 3064766 on Wed Nov 18 09:12:47 MST 2020)
     * Project:        Final_Optimization
     * Solution:       solution1 (Vitis Kernel Flow Target)

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<cdfg:DBCdfg xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdfg="http://www.autoesl.com/DBCdfg" timeStamp="1701995793281">
+<cdfg:DBCdfg xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdfg="http://www.autoesl.com/DBCdfg" timeStamp="1702001959650">
   <ports id="1" name="p_read" type="PortType" coreId="4294967295" bitwidth="8">
     <dataOutputObjs>read</dataOutputObjs>
   </ports>
@@ -48,7 +48,7 @@
   <ports id="8" name="input_length_temp" type="PortType" coreName="RAM" coreId="68" bitwidth="16" iftype="IfTypeRegister" arraysize="4">
     <dataOutputObjs>getelementptr</dataOutputObjs>
   </ports>
-  <ports id="9" name="in_r" type="PortType" coreName="FIFO_SRL" coreId="68" bitwidth="64" iftype="IfTypeRom">
+  <ports id="9" name="input_r" type="PortType" coreName="FIFO_SRL" coreId="68" bitwidth="64" iftype="IfTypeRom">
     <dataOutputObjs>read</dataOutputObjs>
   </ports>
   <ports id="10" name="send_data" type="PortType" coreName="FIFO_SRL" coreId="68" bitwidth="64" iftype="IfTypeRom">
@@ -66,7 +66,7 @@
     <dataOutputObjs>read</dataOutputObjs>
     <dataOutputObjs>call</dataOutputObjs>
   </ports>
-  <ports id="15" name="inStream_in" type="PortType" coreName="FIFO_SRL" coreId="97" bitwidth="8" direction="DirInOut" iftype="IfTypeRom">
+  <ports id="15" name="inStream_in" type="PortType" coreName="FIFO_SRL" coreId="68" bitwidth="8" direction="DirInOut" iftype="IfTypeRom">
     <dataInputObjs>write</dataInputObjs>
     <dataInputObjs>call</dataInputObjs>
     <dataOutputObjs>write</dataOutputObjs>
@@ -570,12 +570,12 @@
       <dataInputObjs>p_read2</dataInputObjs>
       <dataOutputObjs>xor</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="17" name="p_read_2" coreId="0" bitwidth="64" opcode="read" m_display="0" m_topoIndex="2" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="17" name="p_read_2" coreId="7" bitwidth="64" opcode="read" m_display="0" m_topoIndex="2" m_clusterGroupNumber="-1">
       <dataInputObjs>p_read1</dataInputObjs>
       <dataOutputObjs>add</dataOutputObjs>
       <dataOutputObjs>add</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="18" name="p_read_3" coreId="13" bitwidth="8" opcode="read" m_display="0" m_topoIndex="3" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="18" name="p_read_3" coreId="129" bitwidth="8" opcode="read" m_display="0" m_topoIndex="3" m_clusterGroupNumber="-1">
       <dataInputObjs>p_read</dataInputObjs>
       <dataOutputObjs>icmp</dataOutputObjs>
     </node_objs>
@@ -584,9 +584,9 @@
       <dataInputObjs>output_length</dataInputObjs>
       <dataOutputObjs>add</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="25" name="in_read" lineNumber="43" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreName="FIFO_SRL" implIndex="srl" control="auto" opType="fifo" coreId="81" contextFuncName="read_input" bitwidth="64" opcode="read" m_display="0" m_delay="2.16" m_topoIndex="5" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="25" name="input_read" lineNumber="43" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreName="FIFO_SRL" implIndex="srl" control="auto" opType="fifo" coreId="81" contextFuncName="read_input" bitwidth="64" opcode="read" m_display="0" m_delay="2.16" m_topoIndex="5" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="43" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="read_input"/>
-      <dataInputObjs>in_r</dataInputObjs>
+      <dataInputObjs>input_r</dataInputObjs>
       <dataOutputObjs>trunc</dataOutputObjs>
       <dataOutputObjs>add</dataOutputObjs>
     </node_objs>
@@ -594,19 +594,19 @@
       <dataInputObjs>send_data</dataInputObjs>
       <dataOutputObjs>add</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="32" name="trunc_ln43" lineNumber="43" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="trunc_ln43_fu_661_p1" coreId="129" contextFuncName="read_input" bitwidth="1" opcode="trunc" m_display="0" m_topoIndex="7" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="32" name="trunc_ln43" lineNumber="43" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="trunc_ln43_fu_661_p1" coreId="145" contextFuncName="read_input" bitwidth="1" opcode="trunc" m_display="0" m_topoIndex="7" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="43" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="read_input"/>
       <dataInputObjs>read</dataInputObjs>
       <dataOutputObjs>xor</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="33" name="store_array_i_addr" lineNumber="236" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="129" contextFuncName="write_result" bitwidth="12" opcode="getelementptr" m_display="0" m_topoIndex="8" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="33" name="store_array_i_addr" lineNumber="236" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="49" contextFuncName="write_result" bitwidth="12" opcode="getelementptr" m_display="0" m_topoIndex="8" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="236" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>store_array_i</dataInputObjs>
       <dataOutputObjs>store</dataOutputObjs>
       <dataOutputObjs>store_array_i</dataOutputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="34" name="br_ln0" coreId="145" opcode="br" m_display="0" m_delay="0.48" m_topoIndex="9" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="34" name="br_ln0" coreId="177" opcode="br" m_display="0" m_delay="0.48" m_topoIndex="9" m_clusterGroupNumber="-1">
       <controlInputObjs>block_44</controlInputObjs>
     </node_objs>
     <fileValidLineNumbers fileName="LZW_hybrid_hash_HW.cpp">
@@ -622,7 +622,7 @@
     <controlOutputObjs>br</controlOutputObjs>
     <controlOutputObjs>.lr.ph.i.i.i</controlOutputObjs>
     <controlOutputObjs>.exit</controlOutputObjs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="36" name="i" lineNumber="325" originalName="i" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="49" contextFuncName="krnl_LZW" bitwidth="7" opcode="phi" nodeLabel="1.0" m_display="0" m_topoIndex="10" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="36" name="i" lineNumber="325" originalName="i" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="0" contextFuncName="krnl_LZW" bitwidth="7" opcode="phi" nodeLabel="1.0" m_display="0" m_topoIndex="10" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="325" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
       <dataInputObjs>add</dataInputObjs>
       <dataOutputObjs>add</dataOutputObjs>
@@ -633,7 +633,7 @@
       <controlInputObjs>entry</controlInputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="37" name="input_offset" originalName="input_offset" coreId="177" bitwidth="23" opcode="phi" nodeLabel="1.0" m_display="0" m_topoIndex="11" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="37" name="input_offset" originalName="input_offset" coreId="132" bitwidth="23" opcode="phi" nodeLabel="1.0" m_display="0" m_topoIndex="11" m_clusterGroupNumber="-1">
       <dataInputObjs>add</dataInputObjs>
       <dataOutputObjs>add</dataOutputObjs>
       <dataOutputObjs>zext</dataOutputObjs>
@@ -642,7 +642,7 @@
       <controlInputObjs>entry</controlInputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="38" name="output_offset" originalName="output_offset" coreId="0" bitwidth="22" opcode="phi" nodeLabel="1.0" m_display="0" m_topoIndex="12" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="38" name="output_offset" originalName="output_offset" coreId="273" bitwidth="22" opcode="phi" nodeLabel="1.0" m_display="0" m_topoIndex="12" m_clusterGroupNumber="-1">
       <dataInputObjs>add</dataInputObjs>
       <dataOutputObjs>add</dataOutputObjs>
       <dataOutputObjs>bitconcatenate</dataOutputObjs>
@@ -656,18 +656,18 @@
       <dataOutputObjs>phi</dataOutputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="40" name="zext_ln325" lineNumber="325" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln325_fu_671_p1" coreId="132" contextFuncName="krnl_LZW" bitwidth="8" opcode="zext" nodeLabel="1.0" m_display="0" m_topoIndex="14" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="40" name="zext_ln325" lineNumber="325" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln325_fu_671_p1" coreId="49" contextFuncName="krnl_LZW" bitwidth="8" opcode="zext" nodeLabel="1.0" m_display="0" m_topoIndex="14" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="325" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
       <dataInputObjs>phi</dataInputObjs>
       <dataOutputObjs>icmp</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="41" name="icmp_ln325" lineNumber="325" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="icmp_ln325_fu_675_p2" opType="icmp" coreId="49" contextFuncName="krnl_LZW" bitwidth="1" opcode="icmp" nodeLabel="1.0" m_display="0" m_delay="0.85" m_topoIndex="15" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="41" name="icmp_ln325" lineNumber="325" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="icmp_ln325_fu_675_p2" opType="icmp" coreId="321" contextFuncName="krnl_LZW" bitwidth="1" opcode="icmp" nodeLabel="1.0" m_display="0" m_delay="0.85" m_topoIndex="15" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="325" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
       <dataInputObjs>zext</dataInputObjs>
       <dataInputObjs>read</dataInputObjs>
       <dataOutputObjs>br</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="43" name="br_ln325" lineNumber="325" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="321" contextFuncName="krnl_LZW" opcode="br" nodeLabel="1.0" m_display="0" m_topoIndex="16" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="43" name="br_ln325" lineNumber="325" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="2146662400" contextFuncName="krnl_LZW" opcode="br" nodeLabel="1.0" m_display="0" m_topoIndex="16" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="325" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
       <dataInputObjs>icmp</dataInputObjs>
       <controlInputObjs>.exit</controlInputObjs>
@@ -682,17 +682,17 @@
     <controlOutputObjs>br</controlOutputObjs>
     <controlOutputObjs>phi</controlOutputObjs>
     <controlOutputObjs>block_60</controlOutputObjs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="45" name="zext_ln325_1" lineNumber="325" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln325_1_fu_680_p1" coreId="606613656" contextFuncName="krnl_LZW" bitwidth="64" opcode="zext" nodeLabel="1.0" m_display="0" m_topoIndex="17" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="45" name="zext_ln325_1" lineNumber="325" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln325_1_fu_680_p1" coreId="49" contextFuncName="krnl_LZW" bitwidth="64" opcode="zext" nodeLabel="1.0" m_display="0" m_topoIndex="17" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="325" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
       <dataInputObjs>phi</dataInputObjs>
       <dataOutputObjs>getelementptr</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="47" name="zext_ln326" lineNumber="326" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln326_fu_685_p1" coreId="49" contextFuncName="krnl_LZW" bitwidth="24" opcode="zext" nodeLabel="2.0" m_display="0" m_topoIndex="21" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="47" name="zext_ln326" lineNumber="326" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln326_fu_685_p1" coreId="337" contextFuncName="krnl_LZW" bitwidth="24" opcode="zext" nodeLabel="2.0" m_display="0" m_topoIndex="21" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="326" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
       <dataInputObjs>phi</dataInputObjs>
       <dataOutputObjs>add</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="48" name="input_length_temp_addr" lineNumber="326" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="49" contextFuncName="krnl_LZW" bitwidth="2" opcode="getelementptr" nodeLabel="1.0" m_display="0" m_topoIndex="18" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="48" name="input_length_temp_addr" lineNumber="326" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="337" contextFuncName="krnl_LZW" bitwidth="2" opcode="getelementptr" nodeLabel="1.0" m_display="0" m_topoIndex="18" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="326" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
       <dataInputObjs>input_length_temp</dataInputObjs>
       <dataInputObjs>zext</dataInputObjs>
@@ -707,17 +707,17 @@
       <dataOutputObjs>icmp</dataOutputObjs>
       <dataOutputObjs>zext</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="50" name="zext_ln43" lineNumber="43" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln43_fu_689_p1" coreId="0" contextFuncName="read_input" bitwidth="23" opcode="zext" nodeLabel="2.0" m_display="0" m_topoIndex="22" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="50" name="zext_ln43" lineNumber="43" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln43_fu_689_p1" coreId="2146833673" contextFuncName="read_input" bitwidth="23" opcode="zext" nodeLabel="2.0" m_display="0" m_topoIndex="22" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="43" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="read_input"/>
       <dataInputObjs>load</dataInputObjs>
       <dataOutputObjs>add</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="51" name="trunc_ln43_1" lineNumber="43" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="trunc_ln43_1_fu_693_p1" coreId="497" contextFuncName="read_input" bitwidth="1" opcode="trunc" nodeLabel="2.0" m_display="0" m_topoIndex="23" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="51" name="trunc_ln43_1" lineNumber="43" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="trunc_ln43_1_fu_693_p1" coreId="433" contextFuncName="read_input" bitwidth="1" opcode="trunc" nodeLabel="2.0" m_display="0" m_topoIndex="23" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="43" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="read_input"/>
       <dataInputObjs>phi</dataInputObjs>
       <dataOutputObjs>xor</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="52" name="br_ln43" lineNumber="43" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="804142328" contextFuncName="read_input" opcode="br" nodeLabel="2.0" m_display="0" m_delay="0.48" m_topoIndex="24" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="52" name="br_ln43" lineNumber="43" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="4" contextFuncName="read_input" opcode="br" nodeLabel="2.0" m_display="0" m_delay="0.48" m_topoIndex="24" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="43" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="read_input"/>
       <controlInputObjs>block_60</controlInputObjs>
     </node_objs>
@@ -733,7 +733,7 @@
     <controlOutputObjs>phi</controlOutputObjs>
     <controlOutputObjs>br</controlOutputObjs>
     <controlOutputObjs>block_95</controlOutputObjs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="81" name="_ln327" lineNumber="327" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="grp_compute_LZW_fu_612" coreId="4" contextFuncName="krnl_LZW" opcode="call" nodeLabel="76.0" nodeLatency="1" m_display="0" m_topoIndex="47" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="81" name="_ln327" lineNumber="327" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="grp_compute_LZW_fu_612" coreId="433" contextFuncName="krnl_LZW" opcode="call" nodeLabel="76.0" nodeLatency="1" m_display="0" m_topoIndex="47" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="327" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
       <dataInputObjs>load</dataInputObjs>
       <dataInputObjs>inStream_in</dataInputObjs>
@@ -744,7 +744,7 @@
       <dataOutputObjs>outStream_code_flg</dataOutputObjs>
       <constName>compute_LZW</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="82" name="br_ln232" lineNumber="232" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="132" contextFuncName="write_result" opcode="br" nodeLabel="77.0" m_display="0" m_delay="0.48" m_topoIndex="48" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="82" name="br_ln232" lineNumber="232" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="433" contextFuncName="write_result" opcode="br" nodeLabel="77.0" m_display="0" m_delay="0.48" m_topoIndex="48" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="232" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <controlInputObjs>block_95</controlInputObjs>
     </node_objs>
@@ -758,20 +758,20 @@
     <controlOutputObjs>br</controlOutputObjs>
     <controlOutputObjs>block_213</controlOutputObjs>
     <controlOutputObjs>block_161</controlOutputObjs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="149" name="empty_150" lineNumber="246" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="empty_150_fu_942_p1" coreId="49" contextFuncName="write_result" bitwidth="15" opcode="trunc" nodeLabel="80.0" m_display="0" m_topoIndex="105" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="149" name="empty_150" lineNumber="246" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="empty_150_fu_942_p1" coreId="2146668969" contextFuncName="write_result" bitwidth="15" opcode="trunc" nodeLabel="80.0" m_display="0" m_topoIndex="105" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="246" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>phi</dataInputObjs>
       <dataOutputObjs>phi</dataOutputObjs>
       <dataOutputObjs>phi</dataOutputObjs>
       <dataOutputObjs>add</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="150" name="shl_ln2" lineNumber="328" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="shl_ln2_fu_946_p3" coreId="737057640" contextFuncName="krnl_LZW" bitwidth="8" opcode="bitconcatenate" nodeLabel="80.0" m_display="0" m_topoIndex="106" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="150" name="shl_ln2" lineNumber="328" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="shl_ln2_fu_946_p3" coreId="0" contextFuncName="krnl_LZW" bitwidth="8" opcode="bitconcatenate" nodeLabel="80.0" m_display="0" m_topoIndex="106" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="328" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
       <dataInputObjs>phi</dataInputObjs>
       <dataOutputObjs>zext</dataOutputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="151" name="zext_ln328" lineNumber="328" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln328_fu_954_p1" coreId="49" contextFuncName="krnl_LZW" bitwidth="64" opcode="zext" nodeLabel="80.0" m_display="0" m_topoIndex="107" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="151" name="zext_ln328" lineNumber="328" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln328_fu_954_p1" coreId="2146670665" contextFuncName="krnl_LZW" bitwidth="64" opcode="zext" nodeLabel="80.0" m_display="0" m_topoIndex="107" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="328" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
       <dataInputObjs>bitconcatenate</dataInputObjs>
       <dataOutputObjs>add</dataOutputObjs>
@@ -788,7 +788,7 @@
       <dataOutputObjs>br</dataOutputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="154" name="br_ln257" lineNumber="257" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="132" contextFuncName="write_result" opcode="br" nodeLabel="80.0" m_display="0" m_topoIndex="110" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="154" name="br_ln257" lineNumber="257" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="0" contextFuncName="write_result" opcode="br" nodeLabel="80.0" m_display="0" m_topoIndex="110" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="257" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>icmp</dataInputObjs>
       <controlInputObjs>block_161</controlInputObjs>
@@ -805,13 +805,13 @@
     <controlOutputObjs>br</controlOutputObjs>
     <controlOutputObjs>block_202</controlOutputObjs>
     <controlOutputObjs>block_175</controlOutputObjs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="156" name="icmp_ln262" lineNumber="262" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="grp_fu_623_p2" opType="icmp" coreId="433" contextFuncName="write_result" bitwidth="1" opcode="icmp" nodeLabel="80.0" m_display="0" m_delay="0.85" m_topoIndex="111" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="156" name="icmp_ln262" lineNumber="262" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="grp_fu_623_p2" opType="icmp" coreId="2146501264" contextFuncName="write_result" bitwidth="1" opcode="icmp" nodeLabel="80.0" m_display="0" m_delay="0.85" m_topoIndex="111" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="262" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>phi</dataInputObjs>
       <dataOutputObjs>br</dataOutputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="157" name="trunc_ln272" lineNumber="272" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="trunc_ln272_fu_968_p1" coreId="132" contextFuncName="write_result" bitwidth="12" opcode="trunc" nodeLabel="80.0" m_display="0" m_topoIndex="112" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="157" name="trunc_ln272" lineNumber="272" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="trunc_ln272_fu_968_p1" coreId="0" contextFuncName="write_result" bitwidth="12" opcode="trunc" nodeLabel="80.0" m_display="0" m_topoIndex="112" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="272" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>phi</dataInputObjs>
       <dataOutputObjs>add</dataOutputObjs>
@@ -822,13 +822,13 @@
       <dataOutputObjs>zext</dataOutputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="159" name="zext_ln272" lineNumber="272" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln272_fu_978_p1" coreId="737242224" contextFuncName="write_result" bitwidth="64" opcode="zext" nodeLabel="80.0" m_display="0" m_topoIndex="114" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="159" name="zext_ln272" lineNumber="272" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln272_fu_978_p1" coreId="1290" contextFuncName="write_result" bitwidth="64" opcode="zext" nodeLabel="80.0" m_display="0" m_topoIndex="114" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="272" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>add</dataInputObjs>
       <dataOutputObjs>getelementptr</dataOutputObjs>
       <dataOutputObjs>getelementptr</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="160" name="br_ln262" lineNumber="262" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="0" contextFuncName="write_result" opcode="br" nodeLabel="80.0" m_display="0" m_topoIndex="115" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="160" name="br_ln262" lineNumber="262" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="2146679424" contextFuncName="write_result" opcode="br" nodeLabel="80.0" m_display="0" m_topoIndex="115" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="262" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>icmp</dataInputObjs>
       <controlInputObjs>block_175</controlInputObjs>
@@ -852,12 +852,12 @@
       <dataOutputObjs>sext</dataOutputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="163" name="sext_ln272" lineNumber="272" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="sext_ln272_fu_1064_p1" coreId="737245968" contextFuncName="write_result" bitwidth="32" opcode="sext" nodeLabel="81.0" m_display="0" m_topoIndex="141" m_clusterGroupNumber="4">
+    <node_objs xsi:type="cdfg:CdfgNode" id="163" name="sext_ln272" lineNumber="272" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="sext_ln272_fu_1064_p1" coreId="2015476720" contextFuncName="write_result" bitwidth="32" opcode="sext" nodeLabel="81.0" m_display="0" m_topoIndex="141" m_clusterGroupNumber="4">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="272" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>add</dataInputObjs>
       <dataOutputObjs>shl</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="164" name="store_array_i_addr_4" lineNumber="272" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="737246336" contextFuncName="write_result" bitwidth="12" opcode="getelementptr" nodeLabel="80.0" m_display="0" m_topoIndex="117" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="164" name="store_array_i_addr_4" lineNumber="272" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="132" contextFuncName="write_result" bitwidth="12" opcode="getelementptr" nodeLabel="80.0" m_display="0" m_topoIndex="117" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="272" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>store_array_i</dataInputObjs>
       <dataInputObjs>zext</dataInputObjs>
@@ -877,24 +877,24 @@
       <dataInputObjs>sext</dataInputObjs>
       <dataOutputObjs>trunc</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="167" name="trunc_ln272_1" lineNumber="272" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="trunc_ln272_1_fu_1072_p1" coreId="737250128" contextFuncName="write_result" bitwidth="16" opcode="trunc" nodeLabel="81.0" m_display="0" m_topoIndex="143" m_clusterGroupNumber="4">
+    <node_objs xsi:type="cdfg:CdfgNode" id="167" name="trunc_ln272_1" lineNumber="272" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="trunc_ln272_1_fu_1072_p1" coreId="132" contextFuncName="write_result" bitwidth="16" opcode="trunc" nodeLabel="81.0" m_display="0" m_topoIndex="143" m_clusterGroupNumber="4">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="272" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>shl</dataInputObjs>
       <dataOutputObjs>or</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="168" name="or_ln272" lineNumber="272" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="or_ln272_fu_1076_p2" opType="or" coreId="0" contextFuncName="write_result" bitwidth="16" opcode="or" nodeLabel="81.0" m_display="0" m_delay="1.19" m_topoIndex="144" m_clusterGroupNumber="4">
+    <node_objs xsi:type="cdfg:CdfgNode" id="168" name="or_ln272" lineNumber="272" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="or_ln272_fu_1076_p2" opType="or" coreId="1948245960" contextFuncName="write_result" bitwidth="16" opcode="or" nodeLabel="81.0" m_display="0" m_delay="1.19" m_topoIndex="144" m_clusterGroupNumber="4">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="272" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>load</dataInputObjs>
       <dataInputObjs>trunc</dataInputObjs>
       <dataOutputObjs>trunc</dataOutputObjs>
       <dataOutputObjs>partselect</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="169" name="empty_156" lineNumber="272" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="empty_156_fu_1082_p1" coreId="132" contextFuncName="write_result" bitwidth="8" opcode="trunc" nodeLabel="81.0" m_display="0" m_topoIndex="145" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="169" name="empty_156" lineNumber="272" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="empty_156_fu_1082_p1" coreId="62" contextFuncName="write_result" bitwidth="8" opcode="trunc" nodeLabel="81.0" m_display="0" m_topoIndex="145" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="272" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>or</dataInputObjs>
       <dataOutputObjs>bitconcatenate</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="170" name="conv135_i_1_i_i" lineNumber="272" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="conv135_i_1_i_i_fu_1086_p4" coreId="0" contextFuncName="write_result" bitwidth="8" opcode="partselect" nodeLabel="81.0" m_display="0" m_topoIndex="146" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="170" name="conv135_i_1_i_i" lineNumber="272" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="conv135_i_1_i_i_fu_1086_p4" coreId="1948248336" contextFuncName="write_result" bitwidth="8" opcode="partselect" nodeLabel="81.0" m_display="0" m_topoIndex="146" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="272" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>or</dataInputObjs>
       <dataOutputObjs>bitconcatenate</dataOutputObjs>
@@ -917,7 +917,7 @@
       <dataOutputObjs>phi</dataOutputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="174" name="br_ln0" coreId="0" opcode="br" nodeLabel="81.0" m_display="0" m_delay="0.54" m_topoIndex="150" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="174" name="br_ln0" coreId="2015897616" opcode="br" nodeLabel="81.0" m_display="0" m_delay="0.54" m_topoIndex="150" m_clusterGroupNumber="-1">
       <controlInputObjs>_ZL12write_resulttRN3hls6streamI7ap_uintILi13EELi0EEERNS0_IcLi0EEEPtS7_.exit.i.i</controlInputObjs>
     </node_objs>
     <fileValidLineNumbers fileName="LZW_hybrid_hash_HW.cpp">
@@ -939,7 +939,7 @@
       <dataOutputObjs>zext</dataOutputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="177" name="zext_ln264" lineNumber="264" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln264_fu_984_p1" coreId="132" contextFuncName="write_result" bitwidth="16" opcode="zext" nodeLabel="80.0" m_display="0" m_topoIndex="120" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="177" name="zext_ln264" lineNumber="264" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln264_fu_984_p1" coreId="1948252256" contextFuncName="write_result" bitwidth="16" opcode="zext" nodeLabel="80.0" m_display="0" m_topoIndex="120" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="264" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>add</dataInputObjs>
       <dataOutputObjs>shl</dataOutputObjs>
@@ -951,29 +951,29 @@
       <dataOutputObjs>trunc</dataOutputObjs>
       <dataOutputObjs>partselect</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="179" name="empty_154" lineNumber="264" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="empty_154_fu_993_p1" coreId="0" contextFuncName="write_result" bitwidth="8" opcode="trunc" nodeLabel="80.0" m_display="0" m_topoIndex="122" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="179" name="empty_154" lineNumber="264" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="empty_154_fu_993_p1" coreId="1948258304" contextFuncName="write_result" bitwidth="8" opcode="trunc" nodeLabel="80.0" m_display="0" m_topoIndex="122" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="264" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>shl</dataInputObjs>
       <dataOutputObjs>bitconcatenate</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="180" name="conv85_i_1_i_i" lineNumber="264" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="conv85_i_1_i_i_fu_997_p4" coreId="0" contextFuncName="write_result" bitwidth="8" opcode="partselect" nodeLabel="80.0" m_display="0" m_topoIndex="123" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="180" name="conv85_i_1_i_i" lineNumber="264" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="conv85_i_1_i_i_fu_997_p4" coreId="1948258672" contextFuncName="write_result" bitwidth="8" opcode="partselect" nodeLabel="80.0" m_display="0" m_topoIndex="123" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="264" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>shl</dataInputObjs>
       <dataOutputObjs>bitconcatenate</dataOutputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="181" name="tmp_5_i_i" lineNumber="264" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="tmp_5_i_i_fu_1007_p3" coreId="0" contextFuncName="write_result" bitwidth="16" opcode="bitconcatenate" nodeLabel="80.0" m_display="0" m_topoIndex="124" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="181" name="tmp_5_i_i" lineNumber="264" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="tmp_5_i_i_fu_1007_p3" coreId="2751463552" contextFuncName="write_result" bitwidth="16" opcode="bitconcatenate" nodeLabel="80.0" m_display="0" m_topoIndex="124" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="264" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>trunc</dataInputObjs>
       <dataInputObjs>partselect</dataInputObjs>
       <dataOutputObjs>store</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="182" name="zext_ln264_1" lineNumber="264" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln264_1_fu_1016_p1" coreId="803801056" contextFuncName="write_result" bitwidth="64" opcode="zext" nodeLabel="80.0" m_display="0" m_topoIndex="125" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="182" name="zext_ln264_1" lineNumber="264" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln264_1_fu_1016_p1" coreId="1431261768" contextFuncName="write_result" bitwidth="64" opcode="zext" nodeLabel="80.0" m_display="0" m_topoIndex="125" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="264" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>phi</dataInputObjs>
       <dataOutputObjs>getelementptr</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="183" name="store_array_i_addr_2" lineNumber="265" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="1476395136" contextFuncName="write_result" bitwidth="12" opcode="getelementptr" nodeLabel="80.0" m_display="0" m_topoIndex="126" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="183" name="store_array_i_addr_2" lineNumber="265" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="1701978146" contextFuncName="write_result" bitwidth="12" opcode="getelementptr" nodeLabel="80.0" m_display="0" m_topoIndex="126" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="265" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>store_array_i</dataInputObjs>
       <dataInputObjs>zext</dataInputObjs>
@@ -993,17 +993,17 @@
       <dataOutputObjs>zext</dataOutputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="186" name="zext_ln227" lineNumber="227" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln227_fu_1110_p1" coreId="803802776" contextFuncName="write_result" bitwidth="5" opcode="zext" nodeLabel="81.0" m_display="0" m_topoIndex="151" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="186" name="zext_ln227" lineNumber="227" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln227_fu_1110_p1" coreId="825634100" contextFuncName="write_result" bitwidth="5" opcode="zext" nodeLabel="81.0" m_display="0" m_topoIndex="151" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="227" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>sub</dataInputObjs>
       <dataOutputObjs>sub</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="187" name="zext_ln267" lineNumber="267" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln267_fu_1113_p1" coreId="0" contextFuncName="write_result" bitwidth="14" opcode="zext" nodeLabel="81.0" m_display="0" m_topoIndex="152" m_clusterGroupNumber="5">
+    <node_objs xsi:type="cdfg:CdfgNode" id="187" name="zext_ln267" lineNumber="267" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln267_fu_1113_p1" coreId="539111479" contextFuncName="write_result" bitwidth="14" opcode="zext" nodeLabel="81.0" m_display="0" m_topoIndex="152" m_clusterGroupNumber="5">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="267" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>sub</dataInputObjs>
       <dataOutputObjs>lshr</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="188" name="store_array_i_addr_3" lineNumber="267" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="0" contextFuncName="write_result" bitwidth="12" opcode="getelementptr" nodeLabel="80.0" m_display="0" m_topoIndex="129" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="188" name="store_array_i_addr_3" lineNumber="267" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="1702043749" contextFuncName="write_result" bitwidth="12" opcode="getelementptr" nodeLabel="80.0" m_display="0" m_topoIndex="129" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="267" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>store_array_i</dataInputObjs>
       <dataInputObjs>zext</dataInputObjs>
@@ -1024,24 +1024,24 @@
       <dataInputObjs>zext</dataInputObjs>
       <dataOutputObjs>trunc</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="191" name="trunc_ln267" lineNumber="267" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="trunc_ln267_fu_1121_p1" coreId="803808440" contextFuncName="write_result" bitwidth="12" opcode="trunc" nodeLabel="81.0" m_display="0" m_topoIndex="154" m_clusterGroupNumber="5">
+    <node_objs xsi:type="cdfg:CdfgNode" id="191" name="trunc_ln267" lineNumber="267" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="trunc_ln267_fu_1121_p1" coreId="0" contextFuncName="write_result" bitwidth="12" opcode="trunc" nodeLabel="81.0" m_display="0" m_topoIndex="154" m_clusterGroupNumber="5">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="267" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>lshr</dataInputObjs>
       <dataOutputObjs>or</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="192" name="trunc_ln267_1" lineNumber="267" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="trunc_ln267_1_fu_1125_p1" coreId="803809216" contextFuncName="write_result" bitwidth="12" opcode="trunc" nodeLabel="81.0" m_display="0" m_topoIndex="155" m_clusterGroupNumber="5">
+    <node_objs xsi:type="cdfg:CdfgNode" id="192" name="trunc_ln267_1" lineNumber="267" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="trunc_ln267_1_fu_1125_p1" coreId="0" contextFuncName="write_result" bitwidth="12" opcode="trunc" nodeLabel="81.0" m_display="0" m_topoIndex="155" m_clusterGroupNumber="5">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="267" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>load</dataInputObjs>
       <dataOutputObjs>or</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="193" name="or_ln267" lineNumber="267" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="or_ln267_fu_1129_p2" opType="or" coreId="4657" contextFuncName="write_result" bitwidth="12" opcode="or" nodeLabel="81.0" m_display="0" m_delay="1.19" m_topoIndex="156" m_clusterGroupNumber="5">
+    <node_objs xsi:type="cdfg:CdfgNode" id="193" name="or_ln267" lineNumber="267" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="or_ln267_fu_1129_p2" opType="or" coreId="0" contextFuncName="write_result" bitwidth="12" opcode="or" nodeLabel="81.0" m_display="0" m_delay="1.19" m_topoIndex="156" m_clusterGroupNumber="5">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="267" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>trunc</dataInputObjs>
       <dataInputObjs>trunc</dataInputObjs>
       <dataOutputObjs>trunc</dataOutputObjs>
       <dataOutputObjs>partselect</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="194" name="tmp_3" lineNumber="267" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="grp_fu_647_p4" coreId="3441" contextFuncName="write_result" bitwidth="4" opcode="partselect" nodeLabel="81.0" m_display="0" m_topoIndex="157" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="194" name="tmp_3" lineNumber="267" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="grp_fu_647_p4" coreId="0" contextFuncName="write_result" bitwidth="4" opcode="partselect" nodeLabel="81.0" m_display="0" m_topoIndex="157" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="267" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>load</dataInputObjs>
       <dataOutputObjs>bitconcatenate</dataOutputObjs>
@@ -1052,13 +1052,13 @@
       <dataInputObjs>or</dataInputObjs>
       <dataOutputObjs>bitconcatenate</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="196" name="tmp_4" lineNumber="267" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="tmp_4_fu_1139_p4" coreId="8" contextFuncName="write_result" bitwidth="4" opcode="partselect" nodeLabel="81.0" m_display="0" m_topoIndex="159" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="196" name="tmp_4" lineNumber="267" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="tmp_4_fu_1139_p4" coreId="0" contextFuncName="write_result" bitwidth="4" opcode="partselect" nodeLabel="81.0" m_display="0" m_topoIndex="159" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="267" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>or</dataInputObjs>
       <dataOutputObjs>bitconcatenate</dataOutputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="197" name="tmp_7_i_i" lineNumber="267" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="tmp_7_i_i_fu_1149_p4" coreId="49" contextFuncName="write_result" bitwidth="16" opcode="bitconcatenate" nodeLabel="81.0" m_display="0" m_topoIndex="160" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="197" name="tmp_7_i_i" lineNumber="267" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="tmp_7_i_i_fu_1149_p4" coreId="0" contextFuncName="write_result" bitwidth="16" opcode="bitconcatenate" nodeLabel="81.0" m_display="0" m_topoIndex="160" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="267" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>trunc</dataInputObjs>
       <dataInputObjs>partselect</dataInputObjs>
@@ -1076,12 +1076,12 @@
       <dataOutputObjs>zext</dataOutputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="200" name="zext_ln227_1" lineNumber="227" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln227_1_fu_1166_p1" coreId="1476395136" contextFuncName="write_result" bitwidth="8" opcode="zext" nodeLabel="81.0" m_display="0" m_topoIndex="163" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="200" name="zext_ln227_1" lineNumber="227" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln227_1_fu_1166_p1" coreId="0" contextFuncName="write_result" bitwidth="8" opcode="zext" nodeLabel="81.0" m_display="0" m_topoIndex="163" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="227" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>sub</dataInputObjs>
       <dataOutputObjs>phi</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="201" name="br_ln270" lineNumber="270" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="1277698107" contextFuncName="write_result" opcode="br" nodeLabel="81.0" m_display="0" m_delay="0.54" m_topoIndex="164" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="201" name="br_ln270" lineNumber="270" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="0" contextFuncName="write_result" opcode="br" nodeLabel="81.0" m_display="0" m_delay="0.54" m_topoIndex="164" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="270" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <controlInputObjs>_ZL12write_resulttRN3hls6streamI7ap_uintILi13EELi0EEERNS0_IcLi0EEEPtS7_.exit.i.i</controlInputObjs>
     </node_objs>
@@ -1122,29 +1122,29 @@
       <dataOutputObjs>trunc</dataOutputObjs>
       <dataOutputObjs>partselect</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="206" name="empty_149" lineNumber="259" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="empty_149_fu_1036_p1" coreId="0" contextFuncName="write_result" bitwidth="8" opcode="trunc" nodeLabel="80.0" m_display="0" m_topoIndex="134" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="206" name="empty_149" lineNumber="259" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="empty_149_fu_1036_p1" coreId="2079066096" contextFuncName="write_result" bitwidth="8" opcode="trunc" nodeLabel="80.0" m_display="0" m_topoIndex="134" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="259" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>shl</dataInputObjs>
       <dataOutputObjs>bitconcatenate</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="207" name="conv68_i_1_i_i" lineNumber="259" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="conv68_i_1_i_i_fu_1040_p4" coreId="737069424" contextFuncName="write_result" bitwidth="8" opcode="partselect" nodeLabel="80.0" m_display="0" m_topoIndex="135" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="207" name="conv68_i_1_i_i" lineNumber="259" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="conv68_i_1_i_i_fu_1040_p4" coreId="2079110480" contextFuncName="write_result" bitwidth="8" opcode="partselect" nodeLabel="80.0" m_display="0" m_topoIndex="135" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="259" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>shl</dataInputObjs>
       <dataOutputObjs>bitconcatenate</dataOutputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="208" name="tmp_3_i_i" lineNumber="259" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="tmp_3_i_i_fu_1050_p3" coreId="737070208" contextFuncName="write_result" bitwidth="16" opcode="bitconcatenate" nodeLabel="80.0" m_display="0" m_topoIndex="136" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="208" name="tmp_3_i_i" lineNumber="259" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="tmp_3_i_i_fu_1050_p3" coreId="2079150736" contextFuncName="write_result" bitwidth="16" opcode="bitconcatenate" nodeLabel="80.0" m_display="0" m_topoIndex="136" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="259" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>trunc</dataInputObjs>
       <dataInputObjs>partselect</dataInputObjs>
       <dataOutputObjs>store</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="209" name="zext_ln259_1" lineNumber="259" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln259_1_fu_1059_p1" coreId="1476395136" contextFuncName="write_result" bitwidth="64" opcode="zext" nodeLabel="80.0" m_display="0" m_topoIndex="137" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="209" name="zext_ln259_1" lineNumber="259" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln259_1_fu_1059_p1" coreId="2079195984" contextFuncName="write_result" bitwidth="64" opcode="zext" nodeLabel="80.0" m_display="0" m_topoIndex="137" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="259" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>phi</dataInputObjs>
       <dataOutputObjs>getelementptr</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="210" name="store_array_i_addr_1" lineNumber="260" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="0" contextFuncName="write_result" bitwidth="12" opcode="getelementptr" nodeLabel="80.0" m_display="0" m_topoIndex="138" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="210" name="store_array_i_addr_1" lineNumber="260" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="2079240560" contextFuncName="write_result" bitwidth="12" opcode="getelementptr" nodeLabel="80.0" m_display="0" m_topoIndex="138" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="260" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>store_array_i</dataInputObjs>
       <dataInputObjs>zext</dataInputObjs>
@@ -1157,7 +1157,7 @@
       <dataInputObjs>bitconcatenate</dataInputObjs>
       <dataInputObjs>getelementptr</dataInputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="212" name="br_ln261" lineNumber="261" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="543649385" contextFuncName="write_result" opcode="br" nodeLabel="80.0" m_display="0" m_delay="0.54" m_topoIndex="140" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="212" name="br_ln261" lineNumber="261" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="2079323536" contextFuncName="write_result" opcode="br" nodeLabel="80.0" m_display="0" m_delay="0.54" m_topoIndex="140" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="261" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <controlInputObjs>_ZL12write_resulttRN3hls6streamI7ap_uintILi13EELi0EEERNS0_IcLi0EEEPtS7_.exit.i.i</controlInputObjs>
     </node_objs>
@@ -1177,7 +1177,7 @@
     <controlOutputObjs>br</controlOutputObjs>
     <controlOutputObjs>br</controlOutputObjs>
     <controlOutputObjs>load-store-loop.i.i</controlOutputObjs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="214" name="j_3" originalName="j" coreId="544040308" bitwidth="15" opcode="phi" nodeLabel="82.0" m_display="0" m_topoIndex="171" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="214" name="j_3" originalName="j" coreId="2078723120" bitwidth="15" opcode="phi" nodeLabel="82.0" m_display="0" m_topoIndex="171" m_clusterGroupNumber="-1">
       <dataInputObjs>trunc</dataInputObjs>
       <dataInputObjs>trunc</dataInputObjs>
       <dataInputObjs>add</dataInputObjs>
@@ -1186,7 +1186,7 @@
       <controlInputObjs>block_202</controlInputObjs>
       <controlInputObjs>block_175</controlInputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="215" name="shift_10" originalName="vacant_bit_number" coreId="1634956133" bitwidth="8" opcode="phi" nodeLabel="82.0" m_display="0" m_topoIndex="172" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="215" name="shift_10" originalName="vacant_bit_number" coreId="2078750608" bitwidth="8" opcode="phi" nodeLabel="82.0" m_display="0" m_topoIndex="172" m_clusterGroupNumber="-1">
       <dataInputObjs>add</dataInputObjs>
       <dataInputObjs>zext</dataInputObjs>
       <dataInputObjs>add</dataInputObjs>
@@ -1195,7 +1195,7 @@
       <controlInputObjs>block_202</controlInputObjs>
       <controlInputObjs>block_175</controlInputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="216" name="shl_ln4" lineNumber="281" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="shl_ln4_fu_1207_p3" coreId="1701605485" contextFuncName="write_result" bitwidth="16" opcode="bitconcatenate" nodeLabel="82.0" m_display="0" m_topoIndex="173" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="216" name="shl_ln4" lineNumber="281" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="shl_ln4_fu_1207_p3" coreId="2079498576" contextFuncName="write_result" bitwidth="16" opcode="bitconcatenate" nodeLabel="82.0" m_display="0" m_topoIndex="173" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="281" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>phi</dataInputObjs>
       <dataOutputObjs>add</dataOutputObjs>
@@ -1208,19 +1208,19 @@
       <dataOutputObjs>select</dataOutputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="218" name="tmp_7" lineNumber="283" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="tmp_7_fu_1221_p4" coreId="1702129263" contextFuncName="write_result" bitwidth="5" opcode="partselect" nodeLabel="82.0" m_display="0" m_topoIndex="175" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="218" name="tmp_7" lineNumber="283" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="tmp_7_fu_1221_p4" coreId="2079588640" contextFuncName="write_result" bitwidth="5" opcode="partselect" nodeLabel="82.0" m_display="0" m_topoIndex="175" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="283" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>phi</dataInputObjs>
       <dataOutputObjs>icmp</dataOutputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="219" name="icmp_ln283" lineNumber="283" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="icmp_ln283_fu_1231_p2" opType="icmp" coreId="1718773072" contextFuncName="write_result" bitwidth="1" opcode="icmp" nodeLabel="82.0" m_display="0" m_delay="0.87" m_topoIndex="176" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="219" name="icmp_ln283" lineNumber="283" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="icmp_ln283_fu_1231_p2" opType="icmp" coreId="2079632288" contextFuncName="write_result" bitwidth="1" opcode="icmp" nodeLabel="82.0" m_display="0" m_delay="0.87" m_topoIndex="176" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="283" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>partselect</dataInputObjs>
       <dataOutputObjs>select</dataOutputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="220" name="compressed_length_1" lineNumber="284" originalName="compressed_length" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="compressed_length_1_fu_1237_p2" coreId="1734439795" contextFuncName="write_result" bitwidth="16" opcode="or" nodeLabel="82.0" m_display="0" m_topoIndex="177" m_clusterGroupNumber="6">
+    <node_objs xsi:type="cdfg:CdfgNode" id="220" name="compressed_length_1" lineNumber="284" originalName="compressed_length" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="compressed_length_1_fu_1237_p2" coreId="2079677824" contextFuncName="write_result" bitwidth="16" opcode="or" nodeLabel="82.0" m_display="0" m_topoIndex="177" m_clusterGroupNumber="6">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="284" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>bitconcatenate</dataInputObjs>
       <dataOutputObjs>select</dataOutputObjs>
@@ -1237,29 +1237,29 @@
       <dataOutputObjs>zext</dataOutputObjs>
       <dataOutputObjs>bitconcatenate</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="222" name="zext_ln286" lineNumber="286" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln286_fu_1251_p1" coreId="1869182069" contextFuncName="write_result" bitwidth="17" opcode="zext" nodeLabel="82.0" m_display="0" m_topoIndex="179" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="222" name="zext_ln286" lineNumber="286" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln286_fu_1251_p1" coreId="2079762400" contextFuncName="write_result" bitwidth="17" opcode="zext" nodeLabel="82.0" m_display="0" m_topoIndex="179" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="286" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>select</dataInputObjs>
       <dataOutputObjs>sub</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="223" name="header" lineNumber="286" originalName="header" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="header_fu_1255_p3" coreId="825046065" contextFuncName="write_result" bitwidth="17" opcode="bitconcatenate" nodeLabel="82.0" m_display="0" m_topoIndex="180" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="223" name="header" lineNumber="286" originalName="header" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="header_fu_1255_p3" coreId="2079806976" contextFuncName="write_result" bitwidth="17" opcode="bitconcatenate" nodeLabel="82.0" m_display="0" m_topoIndex="180" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="286" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>select</dataInputObjs>
       <dataOutputObjs>zext</dataOutputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="224" name="zext_ln280" lineNumber="280" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln280_fu_1263_p1" coreId="1868767232" contextFuncName="write_result" bitwidth="32" opcode="zext" nodeLabel="82.0" m_display="0" m_topoIndex="181" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="224" name="zext_ln280" lineNumber="280" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln280_fu_1263_p1" coreId="2079851904" contextFuncName="write_result" bitwidth="32" opcode="zext" nodeLabel="82.0" m_display="0" m_topoIndex="181" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="280" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>bitconcatenate</dataInputObjs>
       <dataOutputObjs>lshr</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="225" name="tmp_s" lineNumber="331" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="tmp_s_fu_1170_p3" coreId="540697965" contextFuncName="krnl_LZW" bitwidth="23" opcode="bitconcatenate" nodeLabel="81.0" m_display="0" m_topoIndex="165" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="225" name="tmp_s" lineNumber="331" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="tmp_s_fu_1170_p3" coreId="2079896480" contextFuncName="krnl_LZW" bitwidth="23" opcode="bitconcatenate" nodeLabel="81.0" m_display="0" m_topoIndex="165" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="331" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
       <dataInputObjs>phi</dataInputObjs>
       <dataOutputObjs>zext</dataOutputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="226" name="tmp_11_cast" lineNumber="331" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="tmp_11_cast_fu_1178_p1" coreId="997420912" contextFuncName="krnl_LZW" bitwidth="64" opcode="zext" nodeLabel="81.0" m_display="0" m_topoIndex="166" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="226" name="tmp_11_cast" lineNumber="331" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="tmp_11_cast_fu_1178_p1" coreId="2079942368" contextFuncName="krnl_LZW" bitwidth="64" opcode="zext" nodeLabel="81.0" m_display="0" m_topoIndex="166" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="331" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
       <dataInputObjs>bitconcatenate</dataInputObjs>
       <dataOutputObjs>add</dataOutputObjs>
@@ -1272,18 +1272,18 @@
       <dataInputObjs>zext</dataInputObjs>
       <dataOutputObjs>partselect</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="228" name="tmp_1" lineNumber="331" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="tmp_1_fu_1187_p4" coreId="1864835181" contextFuncName="krnl_LZW" bitwidth="63" opcode="partselect" nodeLabel="81.0" m_display="0" m_topoIndex="168" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="228" name="tmp_1" lineNumber="331" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="tmp_1_fu_1187_p4" coreId="2080024032" contextFuncName="krnl_LZW" bitwidth="63" opcode="partselect" nodeLabel="81.0" m_display="0" m_topoIndex="168" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="331" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
       <dataInputObjs>add</dataInputObjs>
       <dataOutputObjs>sext</dataOutputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="229" name="tmp_12_cast" lineNumber="331" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="tmp_12_cast_fu_1197_p1" coreId="1869770847" contextFuncName="krnl_LZW" bitwidth="64" opcode="sext" nodeLabel="81.0" m_display="0" m_topoIndex="169" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="229" name="tmp_12_cast" lineNumber="331" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="tmp_12_cast_fu_1197_p1" coreId="2080069616" contextFuncName="krnl_LZW" bitwidth="64" opcode="sext" nodeLabel="81.0" m_display="0" m_topoIndex="169" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="331" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
       <dataInputObjs>partselect</dataInputObjs>
       <dataOutputObjs>getelementptr</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="230" name="aximm1_addr" lineNumber="331" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="1869573152" contextFuncName="krnl_LZW" bitwidth="16" opcode="getelementptr" nodeLabel="81.0" m_display="0" m_topoIndex="170" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="230" name="aximm1_addr" lineNumber="331" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="2080111600" contextFuncName="krnl_LZW" bitwidth="16" opcode="getelementptr" nodeLabel="81.0" m_display="0" m_topoIndex="170" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="331" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
       <dataInputObjs>sext</dataInputObjs>
       <dataOutputObjs>writeresp</dataOutputObjs>
@@ -1319,18 +1319,18 @@
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="331" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
       <dataInputObjs>getelementptr</dataInputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="250" name="trunc_ln289" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="trunc_ln289_fu_1304_p1" coreId="1969516397" contextFuncName="write_result" bitwidth="1" opcode="trunc" nodeLabel="152.0" m_display="0" m_topoIndex="196" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="250" name="trunc_ln289" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="trunc_ln289_fu_1304_p1" coreId="1948231256" contextFuncName="write_result" bitwidth="1" opcode="trunc" nodeLabel="152.0" m_display="0" m_topoIndex="196" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="289" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>select</dataInputObjs>
       <dataOutputObjs>xor</dataOutputObjs>
       <dataOutputObjs>zext</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="251" name="zext_ln289" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln289_fu_1307_p1" coreId="541673760" contextFuncName="write_result" bitwidth="17" opcode="zext" nodeLabel="152.0" m_display="0" m_topoIndex="197" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="251" name="zext_ln289" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln289_fu_1307_p1" coreId="0" contextFuncName="write_result" bitwidth="17" opcode="zext" nodeLabel="152.0" m_display="0" m_topoIndex="197" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="289" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>trunc</dataInputObjs>
       <dataOutputObjs>sub</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="252" name="lshr_ln" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="lshr_ln_reg_1831" coreId="541673760" contextFuncName="write_result" bitwidth="15" opcode="partselect" nodeLabel="152.0" m_display="0" m_topoIndex="198" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="252" name="lshr_ln" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="lshr_ln_reg_1831" coreId="1948233104" contextFuncName="write_result" bitwidth="15" opcode="partselect" nodeLabel="152.0" m_display="0" m_topoIndex="198" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="289" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>select</dataInputObjs>
       <dataOutputObjs>icmp</dataOutputObjs>
@@ -1346,23 +1346,23 @@
       <dataOutputObjs>trunc</dataOutputObjs>
       <dataOutputObjs>sext</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="254" name="trunc_ln289_1" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="trunc_ln289_1_fu_1325_p1" coreId="611802992" contextFuncName="write_result" bitwidth="13" opcode="trunc" nodeLabel="152.0" m_display="0" m_topoIndex="200" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="254" name="trunc_ln289_1" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="trunc_ln289_1_fu_1325_p1" coreId="0" contextFuncName="write_result" bitwidth="13" opcode="trunc" nodeLabel="152.0" m_display="0" m_topoIndex="200" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="289" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>sub</dataInputObjs>
       <dataOutputObjs>add</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="255" name="sext_ln289" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="sext_ln289_fu_1329_p1" coreId="672266880" contextFuncName="write_result" bitwidth="18" opcode="sext" nodeLabel="152.0" m_display="0" m_topoIndex="201" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="255" name="sext_ln289" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="sext_ln289_fu_1329_p1" coreId="49" contextFuncName="write_result" bitwidth="18" opcode="sext" nodeLabel="152.0" m_display="0" m_topoIndex="201" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="289" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>sub</dataInputObjs>
       <dataOutputObjs>add</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="256" name="icmp_ln289" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="icmp_ln289_fu_1333_p2" opType="icmp" coreId="672311264" contextFuncName="write_result" bitwidth="1" opcode="icmp" nodeLabel="152.0" m_display="0" m_delay="0.86" m_topoIndex="202" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="256" name="icmp_ln289" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="icmp_ln289_fu_1333_p2" opType="icmp" coreId="0" contextFuncName="write_result" bitwidth="1" opcode="icmp" nodeLabel="152.0" m_display="0" m_delay="0.86" m_topoIndex="202" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="289" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>partselect</dataInputObjs>
       <dataOutputObjs>br</dataOutputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="257" name="br_ln289" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="672352480" contextFuncName="write_result" opcode="br" nodeLabel="152.0" m_display="0" m_topoIndex="203" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="257" name="br_ln289" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="1869357159" contextFuncName="write_result" opcode="br" nodeLabel="152.0" m_display="0" m_topoIndex="203" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="289" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>icmp</dataInputObjs>
       <controlInputObjs>loop-memcpy-expansion.preheader.i.i</controlInputObjs>
@@ -1384,18 +1384,18 @@
       <dataInputObjs>read</dataInputObjs>
       <dataOutputObjs>partselect</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="260" name="p_cast13_i_i" lineNumber="331" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="p_cast13_i_i_fu_1339_p4" coreId="0" contextFuncName="krnl_LZW" bitwidth="63" opcode="partselect" nodeLabel="152.0" m_display="0" m_topoIndex="205" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="260" name="p_cast13_i_i" lineNumber="331" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="p_cast13_i_i_fu_1339_p4" coreId="2146545584" contextFuncName="krnl_LZW" bitwidth="63" opcode="partselect" nodeLabel="152.0" m_display="0" m_topoIndex="205" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="331" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
       <dataInputObjs>add</dataInputObjs>
       <dataOutputObjs>sext</dataOutputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="261" name="p_cast13_cast_i_i" lineNumber="331" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="p_cast13_cast_i_i_fu_1349_p1" coreId="0" contextFuncName="krnl_LZW" bitwidth="64" opcode="sext" nodeLabel="152.0" m_display="0" m_topoIndex="206" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="261" name="p_cast13_cast_i_i" lineNumber="331" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="p_cast13_cast_i_i_fu_1349_p1" coreId="2751463552" contextFuncName="krnl_LZW" bitwidth="64" opcode="sext" nodeLabel="152.0" m_display="0" m_topoIndex="206" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="331" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
       <dataInputObjs>partselect</dataInputObjs>
       <dataOutputObjs>getelementptr</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="262" name="aximm1_addr_1" lineNumber="331" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="0" contextFuncName="krnl_LZW" bitwidth="16" opcode="getelementptr" nodeLabel="152.0" m_display="0" m_topoIndex="207" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="262" name="aximm1_addr_1" lineNumber="331" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="28271" contextFuncName="krnl_LZW" bitwidth="16" opcode="getelementptr" nodeLabel="152.0" m_display="0" m_topoIndex="207" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="331" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
       <dataInputObjs>sext</dataInputObjs>
       <dataOutputObjs>writeresp</dataOutputObjs>
@@ -1403,7 +1403,7 @@
       <dataOutputObjs>writereq</dataOutputObjs>
       <dataOutputObjs>write</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="263" name="lshr_ln289_cast14_cast_i_i" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="lshr_ln289_cast14_cast_i_i_fu_1359_p1" coreId="0" contextFuncName="write_result" bitwidth="32" opcode="zext" nodeLabel="153.0" m_display="0" m_topoIndex="208" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="263" name="lshr_ln289_cast14_cast_i_i" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="lshr_ln289_cast14_cast_i_i_fu_1359_p1" coreId="574454132" contextFuncName="write_result" bitwidth="32" opcode="zext" nodeLabel="153.0" m_display="0" m_topoIndex="208" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="289" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>partselect</dataInputObjs>
       <dataOutputObjs>writereq</dataOutputObjs>
@@ -1413,7 +1413,7 @@
       <dataInputObjs>getelementptr</dataInputObjs>
       <dataInputObjs>zext</dataInputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="265" name="br_ln0" coreId="0" opcode="br" nodeLabel="153.0" m_display="0" m_delay="0.48" m_topoIndex="210" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="265" name="br_ln0" coreId="539112497" opcode="br" nodeLabel="153.0" m_display="0" m_delay="0.48" m_topoIndex="210" m_clusterGroupNumber="-1">
       <controlInputObjs>loop-memcpy-expansion.i.i</controlInputObjs>
     </node_objs>
     <fileValidLineNumbers fileName="LZW_hybrid_hash_HW.cpp">
@@ -1429,7 +1429,7 @@
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="331" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
       <dataInputObjs>getelementptr</dataInputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="281" name="br_ln0" coreId="0" opcode="br" nodeLabel="224.0" m_display="0" m_topoIndex="221" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="281" name="br_ln0" coreId="2751463552" opcode="br" nodeLabel="224.0" m_display="0" m_topoIndex="221" m_clusterGroupNumber="-1">
       <controlInputObjs>loop-memcpy-residual-header.i.i</controlInputObjs>
     </node_objs>
     <fileValidLineNumbers fileName="LZW_hybrid_hash_HW.cpp">
@@ -1455,7 +1455,7 @@
       <dataInputObjs>read</dataInputObjs>
       <dataOutputObjs>add</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="285" name="br_ln0" coreId="671154691" opcode="br" nodeLabel="224.0" m_display="0" m_delay="0.48" m_topoIndex="224" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="285" name="br_ln0" coreId="540767087" opcode="br" nodeLabel="224.0" m_display="0" m_delay="0.48" m_topoIndex="224" m_clusterGroupNumber="-1">
       <controlInputObjs>loop-memcpy-residual.i.i</controlInputObjs>
     </node_objs>
     <fileValidLineNumbers fileName="LZW_hybrid_hash_HW.cpp">
@@ -1477,23 +1477,23 @@
       <dataOutputObjs>write</dataOutputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="326" name="zext_ln331" lineNumber="331" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln331_fu_1529_p1" coreId="737120848" contextFuncName="krnl_LZW" bitwidth="17" opcode="zext" nodeLabel="296.0" m_display="0" m_topoIndex="260" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="326" name="zext_ln331" lineNumber="331" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln331_fu_1529_p1" coreId="2146549664" contextFuncName="krnl_LZW" bitwidth="17" opcode="zext" nodeLabel="296.0" m_display="0" m_topoIndex="260" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="331" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
       <dataInputObjs>add</dataInputObjs>
       <dataOutputObjs>add</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="327" name="trunc_ln" lineNumber="293" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="trunc_ln_fu_1533_p4" coreId="735343888" contextFuncName="write_result" bitwidth="63" opcode="partselect" nodeLabel="296.0" m_display="0" m_topoIndex="261" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="327" name="trunc_ln" lineNumber="293" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="trunc_ln_fu_1533_p4" coreId="1869833586" contextFuncName="write_result" bitwidth="63" opcode="partselect" nodeLabel="296.0" m_display="0" m_topoIndex="261" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="293" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>add</dataInputObjs>
       <dataOutputObjs>sext</dataOutputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="328" name="sext_ln293" lineNumber="293" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="sext_ln293_fu_1542_p1" coreId="735380688" contextFuncName="write_result" bitwidth="64" opcode="sext" nodeLabel="296.0" m_display="0" m_topoIndex="262" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="328" name="sext_ln293" lineNumber="293" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="sext_ln293_fu_1542_p1" coreId="171847424" contextFuncName="write_result" bitwidth="64" opcode="sext" nodeLabel="296.0" m_display="0" m_topoIndex="262" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="293" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>partselect</dataInputObjs>
       <dataOutputObjs>getelementptr</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="329" name="aximm0_addr_1" lineNumber="293" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="735416208" contextFuncName="write_result" bitwidth="16" opcode="getelementptr" nodeLabel="296.0" m_display="0" m_topoIndex="263" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="329" name="aximm0_addr_1" lineNumber="293" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="757935405" contextFuncName="write_result" bitwidth="16" opcode="getelementptr" nodeLabel="296.0" m_display="0" m_topoIndex="263" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="293" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
       <dataInputObjs>aximm0</dataInputObjs>
       <dataInputObjs>sext</dataInputObjs>
@@ -1529,13 +1529,13 @@
       <dataOutputObjs>partselect</dataOutputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="335" name="lshr_ln1" lineNumber="331" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="lshr_ln1_fu_1564_p4" coreId="735682224" contextFuncName="krnl_LZW" bitwidth="16" opcode="partselect" nodeLabel="296.0" m_display="0" m_topoIndex="267" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="335" name="lshr_ln1" lineNumber="331" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="lshr_ln1_fu_1564_p4" coreId="1819243365" contextFuncName="krnl_LZW" bitwidth="16" opcode="partselect" nodeLabel="296.0" m_display="0" m_topoIndex="267" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="331" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
       <dataInputObjs>add</dataInputObjs>
       <dataOutputObjs>zext</dataOutputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="336" name="zext_ln331_1" lineNumber="331" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln331_1_fu_1574_p1" coreId="735719344" contextFuncName="krnl_LZW" bitwidth="22" opcode="zext" nodeLabel="296.0" m_display="0" m_topoIndex="268" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="336" name="zext_ln331_1" lineNumber="331" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln331_1_fu_1574_p1" coreId="1330405203" contextFuncName="krnl_LZW" bitwidth="22" opcode="zext" nodeLabel="296.0" m_display="0" m_topoIndex="268" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="331" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
       <dataInputObjs>partselect</dataInputObjs>
       <dataOutputObjs>add</dataOutputObjs>
@@ -1546,7 +1546,7 @@
       <dataInputObjs>phi</dataInputObjs>
       <dataOutputObjs>phi</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="338" name="br_ln325" lineNumber="325" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="735808304" contextFuncName="krnl_LZW" opcode="br" nodeLabel="365.0" m_display="0" m_topoIndex="272" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="338" name="br_ln325" lineNumber="325" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="0" contextFuncName="krnl_LZW" opcode="br" nodeLabel="365.0" m_display="0" m_topoIndex="272" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="325" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
       <controlInputObjs>block_44</controlInputObjs>
     </node_objs>
@@ -1560,7 +1560,7 @@
   <blocks id="341" name=".exit" type="BlockType">
     <controlInputObjs>block_44</controlInputObjs>
     <controlOutputObjs>br</controlOutputObjs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="340" name="_ln299" lineNumber="299" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="735869424" contextFuncName="krnl_LZW" opcode="ret" nodeLabel="1.0" m_display="0" m_topoIndex="20" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="340" name="_ln299" lineNumber="299" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="0" contextFuncName="krnl_LZW" opcode="ret" nodeLabel="1.0" m_display="0" m_topoIndex="20" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="299" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
     </node_objs>
     <fileValidLineNumbers fileName="LZW_hybrid_hash_HW.cpp">
@@ -1575,7 +1575,7 @@
       <controlOutputObjs>br</controlOutputObjs>
       <controlOutputObjs>_ZL10read_inputPctRN3hls6streamIcLi0EEE.exit.loopexit.i.i</controlOutputObjs>
       <controlOutputObjs>.split3.i.i</controlOutputObjs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="54" name="i_8" lineNumber="43" originalName="i" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="49" contextFuncName="read_input" bitwidth="16" opcode="phi" nodeLabel="3.0" m_display="0" m_topoIndex="25" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="54" name="i_8" lineNumber="43" originalName="i" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="132" contextFuncName="read_input" bitwidth="16" opcode="phi" nodeLabel="3.0" m_display="0" m_topoIndex="25" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="43" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="read_input"/>
         <dataInputObjs>add</dataInputObjs>
         <dataOutputObjs>add</dataOutputObjs>
@@ -1592,13 +1592,13 @@
         <dataOutputObjs>phi</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="57" name="icmp_ln43" lineNumber="43" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="icmp_ln43_fu_703_p2" opType="icmp" coreId="433" contextFuncName="read_input" bitwidth="1" opcode="icmp" nodeLabel="3.0" m_display="0" m_delay="0.86" m_topoIndex="27" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="57" name="icmp_ln43" lineNumber="43" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="icmp_ln43_fu_703_p2" opType="icmp" coreId="497" contextFuncName="read_input" bitwidth="1" opcode="icmp" nodeLabel="3.0" m_display="0" m_delay="0.86" m_topoIndex="27" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="43" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="read_input"/>
         <dataInputObjs>phi</dataInputObjs>
         <dataInputObjs>load</dataInputObjs>
         <dataOutputObjs>br</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="59" name="br_ln43" lineNumber="43" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="433" contextFuncName="read_input" opcode="br" nodeLabel="3.0" m_display="0" m_topoIndex="28" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="59" name="br_ln43" lineNumber="43" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="49" contextFuncName="read_input" opcode="br" nodeLabel="3.0" m_display="0" m_topoIndex="28" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="43" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="read_input"/>
         <dataInputObjs>icmp</dataInputObjs>
         <controlInputObjs>.split3.i.i</controlInputObjs>
@@ -1613,7 +1613,7 @@
       <controlOutputObjs>phi</controlOutputObjs>
       <controlOutputObjs>br</controlOutputObjs>
       <controlOutputObjs>block_60</controlOutputObjs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="61" name="i_9_cast" lineNumber="43" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="i_9_cast_fu_708_p1" coreId="132" contextFuncName="read_input" bitwidth="24" opcode="zext" nodeLabel="3.0" m_display="0" m_topoIndex="29" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="61" name="i_9_cast" lineNumber="43" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="i_9_cast_fu_708_p1" coreId="49" contextFuncName="read_input" bitwidth="24" opcode="zext" nodeLabel="3.0" m_display="0" m_topoIndex="29" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="43" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="read_input"/>
         <dataInputObjs>phi</dataInputObjs>
         <dataOutputObjs>add</dataOutputObjs>
@@ -1624,7 +1624,7 @@
         <dataInputObjs>zext</dataInputObjs>
         <dataOutputObjs>zext</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="64" name="zext_ln174" lineNumber="174" fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" fileDirectory=".." rtlName="zext_ln174_fu_717_p1" coreId="433" contextFuncName="write" bitwidth="64" opcode="zext" nodeLabel="3.0" m_display="0" m_topoIndex="31" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="64" name="zext_ln174" lineNumber="174" fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" fileDirectory=".." rtlName="zext_ln174_fu_717_p1" coreId="49" contextFuncName="write" bitwidth="64" opcode="zext" nodeLabel="3.0" m_display="0" m_topoIndex="31" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" linenumber="174" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write"/>
         <dataInputObjs>add</dataInputObjs>
         <dataOutputObjs>add</dataOutputObjs>
@@ -1635,18 +1635,18 @@
         <dataInputObjs>read</dataInputObjs>
         <dataOutputObjs>partselect</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="66" name="trunc_ln3" lineNumber="174" fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" fileDirectory=".." rtlName="trunc_ln3_fu_726_p4" coreId="132" contextFuncName="write" bitwidth="63" opcode="partselect" nodeLabel="3.0" m_display="0" m_topoIndex="33" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="66" name="trunc_ln3" lineNumber="174" fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" fileDirectory=".." rtlName="trunc_ln3_fu_726_p4" coreId="49" contextFuncName="write" bitwidth="63" opcode="partselect" nodeLabel="3.0" m_display="0" m_topoIndex="33" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" linenumber="174" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write"/>
         <dataInputObjs>add</dataInputObjs>
         <dataOutputObjs>sext</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="67" name="sext_ln174" lineNumber="174" fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" fileDirectory=".." rtlName="sext_ln174_fu_736_p1" coreId="433" contextFuncName="write" bitwidth="64" opcode="sext" nodeLabel="3.0" m_display="0" m_topoIndex="34" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="67" name="sext_ln174" lineNumber="174" fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" fileDirectory=".." rtlName="sext_ln174_fu_736_p1" coreId="49" contextFuncName="write" bitwidth="64" opcode="sext" nodeLabel="3.0" m_display="0" m_topoIndex="34" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" linenumber="174" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write"/>
         <dataInputObjs>partselect</dataInputObjs>
         <dataOutputObjs>getelementptr</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="68" name="aximm0_addr" lineNumber="174" fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" fileDirectory=".." coreId="433" contextFuncName="write" bitwidth="16" opcode="getelementptr" nodeLabel="3.0" m_display="0" m_topoIndex="35" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="68" name="aximm0_addr" lineNumber="174" fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" fileDirectory=".." coreId="49" contextFuncName="write" bitwidth="16" opcode="getelementptr" nodeLabel="3.0" m_display="0" m_topoIndex="35" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" linenumber="174" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write"/>
         <dataInputObjs>aximm0</dataInputObjs>
         <dataInputObjs>sext</dataInputObjs>
@@ -1664,30 +1664,30 @@
         <dataInputObjs>getelementptr</dataInputObjs>
         <dataOutputObjs>lshr</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="71" name="trunc_ln174" lineNumber="174" fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" fileDirectory=".." rtlName="trunc_ln174_fu_746_p1" coreId="132" contextFuncName="write" bitwidth="1" opcode="trunc" nodeLabel="75.0" m_display="0" m_topoIndex="38" m_clusterGroupNumber="1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="71" name="trunc_ln174" lineNumber="174" fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" fileDirectory=".." rtlName="trunc_ln174_fu_746_p1" coreId="49" contextFuncName="write" bitwidth="1" opcode="trunc" nodeLabel="75.0" m_display="0" m_topoIndex="38" m_clusterGroupNumber="1">
         <inlineStackInfo fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" linenumber="174" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write"/>
         <dataInputObjs>phi</dataInputObjs>
         <dataOutputObjs>xor</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="72" name="xor_ln174" lineNumber="174" fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" fileDirectory=".." rtlName="xor_ln174_fu_750_p2" opType="xor" coreId="433" contextFuncName="write" bitwidth="1" opcode="xor" nodeLabel="75.0" m_display="0" m_topoIndex="39" m_clusterGroupNumber="1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="72" name="xor_ln174" lineNumber="174" fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" fileDirectory=".." rtlName="xor_ln174_fu_750_p2" opType="xor" coreId="49" contextFuncName="write" bitwidth="1" opcode="xor" nodeLabel="75.0" m_display="0" m_topoIndex="39" m_clusterGroupNumber="1">
         <inlineStackInfo fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" linenumber="174" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write"/>
         <dataInputObjs>trunc</dataInputObjs>
         <dataInputObjs>trunc</dataInputObjs>
         <dataOutputObjs>xor</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="73" name="xor_ln174_1" lineNumber="174" fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" fileDirectory=".." rtlName="xor_ln174_1_fu_755_p2" opType="xor" coreId="433" contextFuncName="write" bitwidth="1" opcode="xor" nodeLabel="75.0" m_display="0" m_topoIndex="40" m_clusterGroupNumber="1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="73" name="xor_ln174_1" lineNumber="174" fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" fileDirectory=".." rtlName="xor_ln174_1_fu_755_p2" opType="xor" coreId="497" contextFuncName="write" bitwidth="1" opcode="xor" nodeLabel="75.0" m_display="0" m_topoIndex="40" m_clusterGroupNumber="1">
         <inlineStackInfo fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" linenumber="174" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write"/>
         <dataInputObjs>xor</dataInputObjs>
         <dataInputObjs>trunc</dataInputObjs>
         <dataOutputObjs>bitconcatenate</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="74" name="shl_ln" lineNumber="174" fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" fileDirectory=".." rtlName="shl_ln_fu_760_p3" coreId="433" contextFuncName="write" bitwidth="4" opcode="bitconcatenate" nodeLabel="75.0" m_display="0" m_topoIndex="41" m_clusterGroupNumber="1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="74" name="shl_ln" lineNumber="174" fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" fileDirectory=".." rtlName="shl_ln_fu_760_p3" coreId="497" contextFuncName="write" bitwidth="4" opcode="bitconcatenate" nodeLabel="75.0" m_display="0" m_topoIndex="41" m_clusterGroupNumber="1">
         <inlineStackInfo fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" linenumber="174" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write"/>
         <dataInputObjs>xor</dataInputObjs>
         <dataOutputObjs>zext</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="75" name="zext_ln174_1" lineNumber="174" fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" fileDirectory=".." rtlName="zext_ln174_1_fu_768_p1" coreId="433" contextFuncName="write" bitwidth="16" opcode="zext" nodeLabel="75.0" m_display="0" m_topoIndex="42" m_clusterGroupNumber="1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="75" name="zext_ln174_1" lineNumber="174" fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" fileDirectory=".." rtlName="zext_ln174_1_fu_768_p1" coreId="132" contextFuncName="write" bitwidth="16" opcode="zext" nodeLabel="75.0" m_display="0" m_topoIndex="42" m_clusterGroupNumber="1">
         <inlineStackInfo fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" linenumber="174" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write"/>
         <dataInputObjs>bitconcatenate</dataInputObjs>
         <dataOutputObjs>lshr</dataOutputObjs>
@@ -1755,7 +1755,7 @@
         <controlInputObjs>block_148</controlInputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="86" name="empty_151" lineNumber="227" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="empty_151_fu_782_p1" coreId="609" contextFuncName="write_result" bitwidth="4" opcode="trunc" nodeLabel="78.0" m_display="0" m_topoIndex="51" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="86" name="empty_151" lineNumber="227" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="empty_151_fu_782_p1" coreId="132" contextFuncName="write_result" bitwidth="4" opcode="trunc" nodeLabel="78.0" m_display="0" m_topoIndex="51" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="227" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>phi</dataInputObjs>
         <dataOutputObjs>add</dataOutputObjs>
@@ -1769,7 +1769,7 @@
         <dataOutputObjs>icmp</dataOutputObjs>
         <dataOutputObjs>outStream_code_flg</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="89" name="icmp_ln232" lineNumber="232" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="icmp_ln232_fu_787_p2" opType="icmp" coreId="132" contextFuncName="write_result" bitwidth="1" opcode="icmp" nodeLabel="78.0" m_display="0" m_delay="0.85" m_topoIndex="53" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="89" name="icmp_ln232" lineNumber="232" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="icmp_ln232_fu_787_p2" opType="icmp" coreId="433" contextFuncName="write_result" bitwidth="1" opcode="icmp" nodeLabel="78.0" m_display="0" m_delay="0.85" m_topoIndex="53" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="232" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>read</dataInputObjs>
         <dataOutputObjs>br</dataOutputObjs>
@@ -1784,26 +1784,26 @@
         <dataOutputObjs>bitconcatenate</dataOutputObjs>
         <dataOutputObjs>outStream_code</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="91" name="zext_ln232" lineNumber="232" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln232_fu_793_p1" coreId="132" contextFuncName="write_result" bitwidth="16" opcode="zext" nodeLabel="78.0" m_display="0" m_topoIndex="55" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="91" name="zext_ln232" lineNumber="232" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln232_fu_793_p1" coreId="433" contextFuncName="write_result" bitwidth="16" opcode="zext" nodeLabel="78.0" m_display="0" m_topoIndex="55" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="232" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>read</dataInputObjs>
         <dataOutputObjs>shl</dataOutputObjs>
         <dataOutputObjs>shl</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="92" name="zext_ln232_1" lineNumber="232" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln232_1_fu_797_p1" coreId="132" contextFuncName="write_result" bitwidth="14" opcode="zext" nodeLabel="78.0" m_display="0" m_topoIndex="56" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="92" name="zext_ln232_1" lineNumber="232" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln232_1_fu_797_p1" coreId="433" contextFuncName="write_result" bitwidth="14" opcode="zext" nodeLabel="78.0" m_display="0" m_topoIndex="56" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="232" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>read</dataInputObjs>
         <dataOutputObjs>lshr</dataOutputObjs>
         <dataOutputObjs>lshr</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="93" name="zext_ln546" lineNumber="546" fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/ap_int_base.h" fileDirectory=".." rtlName="zext_ln546_fu_801_p1" coreId="785" contextFuncName="to_uint" bitwidth="32" opcode="zext" nodeLabel="78.0" m_display="0" m_topoIndex="57" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="93" name="zext_ln546" lineNumber="546" fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/ap_int_base.h" fileDirectory=".." rtlName="zext_ln546_fu_801_p1" coreId="609" contextFuncName="to_uint" bitwidth="32" opcode="zext" nodeLabel="78.0" m_display="0" m_topoIndex="57" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/ap_int_base.h" linenumber="546" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="to_uint"/>
         <dataInputObjs>read</dataInputObjs>
         <dataOutputObjs>shl</dataOutputObjs>
         <dataOutputObjs>shl</dataOutputObjs>
         <dataOutputObjs>shl</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="94" name="br_ln232" lineNumber="232" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="132" contextFuncName="write_result" opcode="br" nodeLabel="78.0" m_display="0" m_topoIndex="58" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="94" name="br_ln232" lineNumber="232" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="609" contextFuncName="write_result" opcode="br" nodeLabel="78.0" m_display="0" m_topoIndex="58" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="232" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>icmp</dataInputObjs>
         <controlInputObjs>block_100</controlInputObjs>
@@ -1825,18 +1825,18 @@
       <controlOutputObjs>br</controlOutputObjs>
       <controlOutputObjs>block_144</controlOutputObjs>
       <controlOutputObjs>block_105</controlOutputObjs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="97" name="trunc_ln234" lineNumber="234" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="trunc_ln234_fu_805_p1" coreId="913" contextFuncName="write_result" bitwidth="12" opcode="trunc" nodeLabel="78.0" m_display="0" m_topoIndex="59" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="97" name="trunc_ln234" lineNumber="234" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="trunc_ln234_fu_805_p1" coreId="49" contextFuncName="write_result" bitwidth="12" opcode="trunc" nodeLabel="78.0" m_display="0" m_topoIndex="59" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="234" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>phi</dataInputObjs>
         <dataOutputObjs>add</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="98" name="icmp_ln234" lineNumber="234" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="icmp_ln234_fu_809_p2" opType="icmp" coreId="49" contextFuncName="write_result" bitwidth="1" opcode="icmp" nodeLabel="78.0" m_display="0" m_delay="0.86" m_topoIndex="60" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="98" name="icmp_ln234" lineNumber="234" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="icmp_ln234_fu_809_p2" opType="icmp" coreId="737" contextFuncName="write_result" bitwidth="1" opcode="icmp" nodeLabel="78.0" m_display="0" m_delay="0.86" m_topoIndex="60" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="234" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>phi</dataInputObjs>
         <dataOutputObjs>br</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="99" name="br_ln234" lineNumber="234" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="49" contextFuncName="write_result" opcode="br" nodeLabel="78.0" m_display="0" m_topoIndex="61" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="99" name="br_ln234" lineNumber="234" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="785" contextFuncName="write_result" opcode="br" nodeLabel="78.0" m_display="0" m_topoIndex="61" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="234" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>icmp</dataInputObjs>
         <controlInputObjs>block_105</controlInputObjs>
@@ -1851,7 +1851,7 @@
       <controlOutputObjs>br</controlOutputObjs>
       <controlOutputObjs>block_140</controlOutputObjs>
       <controlOutputObjs>block_115</controlOutputObjs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="101" name="icmp_ln239" lineNumber="239" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="grp_fu_623_p2" opType="icmp" coreId="209" contextFuncName="write_result" bitwidth="1" opcode="icmp" nodeLabel="78.0" m_display="0" m_delay="0.85" m_topoIndex="62" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="101" name="icmp_ln239" lineNumber="239" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="grp_fu_623_p2" opType="icmp" coreId="0" contextFuncName="write_result" bitwidth="1" opcode="icmp" nodeLabel="78.0" m_display="0" m_delay="0.85" m_topoIndex="62" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="239" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>phi</dataInputObjs>
         <dataOutputObjs>br</dataOutputObjs>
@@ -1863,13 +1863,13 @@
         <dataOutputObjs>zext</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="103" name="zext_ln243" lineNumber="243" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln243_fu_821_p1" coreId="4" contextFuncName="write_result" bitwidth="64" opcode="zext" nodeLabel="78.0" m_display="0" m_topoIndex="64" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="103" name="zext_ln243" lineNumber="243" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln243_fu_821_p1" coreId="0" contextFuncName="write_result" bitwidth="64" opcode="zext" nodeLabel="78.0" m_display="0" m_topoIndex="64" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="243" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>add</dataInputObjs>
         <dataOutputObjs>getelementptr</dataOutputObjs>
         <dataOutputObjs>getelementptr</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="104" name="br_ln239" lineNumber="239" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="803764256" contextFuncName="write_result" opcode="br" nodeLabel="78.0" m_display="0" m_topoIndex="65" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="104" name="br_ln239" lineNumber="239" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="0" contextFuncName="write_result" opcode="br" nodeLabel="78.0" m_display="0" m_topoIndex="65" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="239" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>icmp</dataInputObjs>
         <controlInputObjs>block_115</controlInputObjs>
@@ -1893,12 +1893,12 @@
         <dataOutputObjs>sext</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="107" name="sext_ln249" lineNumber="249" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="sext_ln249_fu_852_p1" coreId="209" contextFuncName="write_result" bitwidth="32" opcode="sext" nodeLabel="79.0" m_display="0" m_topoIndex="80" m_clusterGroupNumber="2">
+      <node_objs xsi:type="cdfg:CdfgNode" id="107" name="sext_ln249" lineNumber="249" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="sext_ln249_fu_852_p1" coreId="2751463552" contextFuncName="write_result" bitwidth="32" opcode="sext" nodeLabel="79.0" m_display="0" m_topoIndex="80" m_clusterGroupNumber="2">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="249" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>add</dataInputObjs>
         <dataOutputObjs>shl</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="108" name="store_array_i_addr_7" lineNumber="249" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="49" contextFuncName="write_result" bitwidth="12" opcode="getelementptr" nodeLabel="78.0" m_display="0" m_topoIndex="66" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="108" name="store_array_i_addr_7" lineNumber="249" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="132" contextFuncName="write_result" bitwidth="12" opcode="getelementptr" nodeLabel="78.0" m_display="0" m_topoIndex="66" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="249" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>store_array_i</dataInputObjs>
         <dataInputObjs>zext</dataInputObjs>
@@ -1919,12 +1919,12 @@
         <dataInputObjs>sext</dataInputObjs>
         <dataOutputObjs>trunc</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="111" name="trunc_ln249" lineNumber="249" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="trunc_ln249_fu_861_p1" coreId="0" contextFuncName="write_result" bitwidth="16" opcode="trunc" nodeLabel="79.0" m_display="0" m_topoIndex="82" m_clusterGroupNumber="2">
+      <node_objs xsi:type="cdfg:CdfgNode" id="111" name="trunc_ln249" lineNumber="249" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="trunc_ln249_fu_861_p1" coreId="36" contextFuncName="write_result" bitwidth="16" opcode="trunc" nodeLabel="79.0" m_display="0" m_topoIndex="82" m_clusterGroupNumber="2">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="249" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>shl</dataInputObjs>
         <dataOutputObjs>or</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="112" name="or_ln249" lineNumber="249" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="or_ln249_fu_865_p2" opType="or" coreId="64" contextFuncName="write_result" bitwidth="16" opcode="or" nodeLabel="79.0" m_display="1" m_delay="1.19" m_isLCDNode="true" m_topoIndex="83" m_clusterGroupNumber="2">
+      <node_objs xsi:type="cdfg:CdfgNode" id="112" name="or_ln249" lineNumber="249" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="or_ln249_fu_865_p2" opType="or" coreId="49" contextFuncName="write_result" bitwidth="16" opcode="or" nodeLabel="79.0" m_display="1" m_delay="1.19" m_isLCDNode="true" m_topoIndex="83" m_clusterGroupNumber="2">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="249" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>load</dataInputObjs>
         <dataInputObjs>trunc</dataInputObjs>
@@ -1936,7 +1936,7 @@
         <dataInputObjs>getelementptr</dataInputObjs>
         <dataOutputObjs>load</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="114" name="br_ln0" coreId="132" opcode="br" nodeLabel="79.0" m_display="0" m_delay="0.54" m_topoIndex="85" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="114" name="br_ln0" coreId="0" opcode="br" nodeLabel="79.0" m_display="0" m_delay="0.54" m_topoIndex="85" m_clusterGroupNumber="-1">
         <controlInputObjs>block_148</controlInputObjs>
       </node_objs>
       <fileValidLineNumbers fileName="LZW_hybrid_hash_HW.cpp">
@@ -1956,7 +1956,7 @@
         <dataOutputObjs>zext</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="117" name="zext_ln241" lineNumber="241" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln241_fu_827_p1" coreId="803779096" contextFuncName="write_result" bitwidth="16" opcode="zext" nodeLabel="78.0" m_display="0" m_topoIndex="69" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="117" name="zext_ln241" lineNumber="241" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln241_fu_827_p1" coreId="132" contextFuncName="write_result" bitwidth="16" opcode="zext" nodeLabel="78.0" m_display="0" m_topoIndex="69" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="241" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>add</dataInputObjs>
         <dataOutputObjs>shl</dataOutputObjs>
@@ -1967,12 +1967,12 @@
         <dataInputObjs>zext</dataInputObjs>
         <dataOutputObjs>store</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="119" name="zext_ln241_1" lineNumber="241" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln241_1_fu_838_p1" coreId="0" contextFuncName="write_result" bitwidth="64" opcode="zext" nodeLabel="78.0" m_display="0" m_topoIndex="71" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="119" name="zext_ln241_1" lineNumber="241" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln241_1_fu_838_p1" coreId="4" contextFuncName="write_result" bitwidth="64" opcode="zext" nodeLabel="78.0" m_display="0" m_topoIndex="71" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="241" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>phi</dataInputObjs>
         <dataOutputObjs>getelementptr</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="120" name="store_array_i_addr_5" lineNumber="241" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="132" contextFuncName="write_result" bitwidth="12" opcode="getelementptr" nodeLabel="78.0" m_display="0" m_topoIndex="72" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="120" name="store_array_i_addr_5" lineNumber="241" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="49" contextFuncName="write_result" bitwidth="12" opcode="getelementptr" nodeLabel="78.0" m_display="0" m_topoIndex="72" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="241" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>store_array_i</dataInputObjs>
         <dataInputObjs>zext</dataInputObjs>
@@ -1997,12 +1997,12 @@
         <dataInputObjs>sub</dataInputObjs>
         <dataOutputObjs>sub</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="124" name="zext_ln243_1" lineNumber="243" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln243_1_fu_876_p1" coreId="606093193" contextFuncName="write_result" bitwidth="14" opcode="zext" nodeLabel="79.0" m_display="0" m_topoIndex="88" m_clusterGroupNumber="3">
+      <node_objs xsi:type="cdfg:CdfgNode" id="124" name="zext_ln243_1" lineNumber="243" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln243_1_fu_876_p1" coreId="0" contextFuncName="write_result" bitwidth="14" opcode="zext" nodeLabel="79.0" m_display="0" m_topoIndex="88" m_clusterGroupNumber="3">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="243" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>sub</dataInputObjs>
         <dataOutputObjs>lshr</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="125" name="store_array_i_addr_6" lineNumber="243" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="1476395136" contextFuncName="write_result" bitwidth="12" opcode="getelementptr" nodeLabel="78.0" m_display="0" m_topoIndex="74" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="125" name="store_array_i_addr_6" lineNumber="243" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="2751463552" contextFuncName="write_result" bitwidth="12" opcode="getelementptr" nodeLabel="78.0" m_display="0" m_topoIndex="74" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="243" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>store_array_i</dataInputObjs>
         <dataInputObjs>zext</dataInputObjs>
@@ -2023,24 +2023,24 @@
         <dataInputObjs>zext</dataInputObjs>
         <dataOutputObjs>trunc</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="128" name="trunc_ln243" lineNumber="243" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="trunc_ln243_fu_885_p1" coreId="4294967295" contextFuncName="write_result" bitwidth="12" opcode="trunc" nodeLabel="79.0" m_display="0" m_topoIndex="90" m_clusterGroupNumber="3">
+      <node_objs xsi:type="cdfg:CdfgNode" id="128" name="trunc_ln243" lineNumber="243" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="trunc_ln243_fu_885_p1" coreId="0" contextFuncName="write_result" bitwidth="12" opcode="trunc" nodeLabel="79.0" m_display="0" m_topoIndex="90" m_clusterGroupNumber="3">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="243" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>lshr</dataInputObjs>
         <dataOutputObjs>or</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="129" name="trunc_ln243_1" lineNumber="243" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="trunc_ln243_1_fu_889_p1" coreId="803750968" contextFuncName="write_result" bitwidth="12" opcode="trunc" nodeLabel="79.0" m_display="0" m_topoIndex="91" m_clusterGroupNumber="3">
+      <node_objs xsi:type="cdfg:CdfgNode" id="129" name="trunc_ln243_1" lineNumber="243" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="trunc_ln243_1_fu_889_p1" coreId="132" contextFuncName="write_result" bitwidth="12" opcode="trunc" nodeLabel="79.0" m_display="0" m_topoIndex="91" m_clusterGroupNumber="3">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="243" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>load</dataInputObjs>
         <dataOutputObjs>or</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="130" name="or_ln243" lineNumber="243" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="or_ln243_fu_893_p2" opType="or" coreId="12" contextFuncName="write_result" bitwidth="12" opcode="or" nodeLabel="79.0" m_display="0" m_delay="1.19" m_topoIndex="92" m_clusterGroupNumber="3">
+      <node_objs xsi:type="cdfg:CdfgNode" id="130" name="or_ln243" lineNumber="243" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="or_ln243_fu_893_p2" opType="or" coreId="1663050324" contextFuncName="write_result" bitwidth="12" opcode="or" nodeLabel="79.0" m_display="0" m_delay="1.19" m_topoIndex="92" m_clusterGroupNumber="3">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="243" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>trunc</dataInputObjs>
         <dataInputObjs>trunc</dataInputObjs>
         <dataOutputObjs>trunc</dataOutputObjs>
         <dataOutputObjs>partselect</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="131" name="tmp_5" lineNumber="243" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="grp_fu_647_p4" coreId="803751168" contextFuncName="write_result" bitwidth="4" opcode="partselect" nodeLabel="79.0" m_display="0" m_topoIndex="93" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="131" name="tmp_5" lineNumber="243" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="grp_fu_647_p4" coreId="9633" contextFuncName="write_result" bitwidth="4" opcode="partselect" nodeLabel="79.0" m_display="0" m_topoIndex="93" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="243" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>load</dataInputObjs>
         <dataOutputObjs>bitconcatenate</dataOutputObjs>
@@ -2052,23 +2052,23 @@
         <dataOutputObjs>zext</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="133" name="zext_ln227_3" lineNumber="227" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln227_3_fu_905_p1" coreId="132" contextFuncName="write_result" bitwidth="8" opcode="zext" nodeLabel="79.0" m_display="0" m_topoIndex="95" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="133" name="zext_ln227_3" lineNumber="227" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="zext_ln227_3_fu_905_p1" coreId="0" contextFuncName="write_result" bitwidth="8" opcode="zext" nodeLabel="79.0" m_display="0" m_topoIndex="95" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="227" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>sub</dataInputObjs>
         <dataOutputObjs>phi</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="134" name="empty_153" lineNumber="243" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="empty_153_fu_910_p1" coreId="1701344288" contextFuncName="write_result" bitwidth="8" opcode="trunc" nodeLabel="79.0" m_display="0" m_topoIndex="96" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="134" name="empty_153" lineNumber="243" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="empty_153_fu_910_p1" coreId="2146531024" contextFuncName="write_result" bitwidth="8" opcode="trunc" nodeLabel="79.0" m_display="0" m_topoIndex="96" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="243" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>or</dataInputObjs>
         <dataOutputObjs>bitconcatenate</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="135" name="tmp_6" lineNumber="243" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="tmp_6_fu_914_p4" coreId="12" contextFuncName="write_result" bitwidth="4" opcode="partselect" nodeLabel="79.0" m_display="0" m_topoIndex="97" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="135" name="tmp_6" lineNumber="243" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="tmp_6_fu_914_p4" coreId="574454117" contextFuncName="write_result" bitwidth="4" opcode="partselect" nodeLabel="79.0" m_display="0" m_topoIndex="97" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="243" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>or</dataInputObjs>
         <dataOutputObjs>bitconcatenate</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="136" name="tmp_1_i_i" lineNumber="243" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="tmp_1_i_i_fu_924_p4" coreId="49" contextFuncName="write_result" bitwidth="16" opcode="bitconcatenate" nodeLabel="79.0" m_display="0" m_topoIndex="98" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="136" name="tmp_1_i_i" lineNumber="243" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="tmp_1_i_i_fu_924_p4" coreId="4609" contextFuncName="write_result" bitwidth="16" opcode="bitconcatenate" nodeLabel="79.0" m_display="0" m_topoIndex="98" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="243" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>trunc</dataInputObjs>
         <dataInputObjs>partselect</dataInputObjs>
@@ -2086,7 +2086,7 @@
         <dataOutputObjs>phi</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="139" name="br_ln247" lineNumber="247" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="774910512" contextFuncName="write_result" opcode="br" nodeLabel="79.0" m_display="0" m_delay="0.54" m_topoIndex="101" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="139" name="br_ln247" lineNumber="247" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="1763731310" contextFuncName="write_result" opcode="br" nodeLabel="79.0" m_display="0" m_delay="0.54" m_topoIndex="101" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="247" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <controlInputObjs>block_148</controlInputObjs>
       </node_objs>
@@ -2108,7 +2108,7 @@
       <controlOutputObjs>phi</controlOutputObjs>
       <controlOutputObjs>br</controlOutputObjs>
       <controlOutputObjs>block_148</controlOutputObjs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="141" name="shl_ln3" lineNumber="236" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="shl_ln3_fu_843_p3" coreId="7601" contextFuncName="write_result" bitwidth="16" opcode="bitconcatenate" nodeLabel="78.0" m_display="0" m_topoIndex="76" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="141" name="shl_ln3" lineNumber="236" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="shl_ln3_fu_843_p3" coreId="132" contextFuncName="write_result" bitwidth="16" opcode="bitconcatenate" nodeLabel="78.0" m_display="0" m_topoIndex="76" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="236" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>read</dataInputObjs>
         <dataOutputObjs>store</dataOutputObjs>
@@ -2119,7 +2119,7 @@
         <dataInputObjs>bitconcatenate</dataInputObjs>
         <dataInputObjs>getelementptr</dataInputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="143" name="br_ln238" lineNumber="238" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="737052496" contextFuncName="write_result" opcode="br" nodeLabel="78.0" m_display="0" m_delay="0.54" m_topoIndex="78" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="143" name="br_ln238" lineNumber="238" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="2751463552" contextFuncName="write_result" opcode="br" nodeLabel="78.0" m_display="0" m_delay="0.54" m_topoIndex="78" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="238" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <controlInputObjs>block_148</controlInputObjs>
       </node_objs>
@@ -2138,7 +2138,7 @@
       <controlOutputObjs>br</controlOutputObjs>
       <controlOutputObjs>br</controlOutputObjs>
       <controlOutputObjs>block_95</controlOutputObjs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="145" name="j_4" originalName="j" coreId="737055680" bitwidth="16" opcode="phi" nodeLabel="79.0" m_display="0" m_topoIndex="102" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="145" name="j_4" originalName="j" coreId="0" bitwidth="16" opcode="phi" nodeLabel="79.0" m_display="0" m_topoIndex="102" m_clusterGroupNumber="-1">
         <dataInputObjs>add</dataInputObjs>
         <dataInputObjs>phi</dataInputObjs>
         <dataOutputObjs>phi</dataOutputObjs>
@@ -2147,7 +2147,7 @@
         <controlInputObjs>block_115</controlInputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="146" name="shift_11" originalName="vacant_bit_number" coreId="132" bitwidth="8" opcode="phi" nodeLabel="79.0" m_display="0" m_topoIndex="103" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="146" name="shift_11" originalName="vacant_bit_number" coreId="49" bitwidth="8" opcode="phi" nodeLabel="79.0" m_display="0" m_topoIndex="103" m_clusterGroupNumber="-1">
         <dataInputObjs>zext</dataInputObjs>
         <dataInputObjs>add</dataInputObjs>
         <dataOutputObjs>phi</dataOutputObjs>
@@ -2173,7 +2173,7 @@
       <controlOutputObjs>br</controlOutputObjs>
       <controlOutputObjs>memcpy-split.i.i</controlOutputObjs>
       <controlOutputObjs>load-store-loop.split.i.i</controlOutputObjs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="234" name="loop_index12_i_i" coreId="656437108" bitwidth="2" opcode="phi" nodeLabel="83.0" m_display="0" m_topoIndex="184" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="234" name="loop_index12_i_i" coreId="2080356880" bitwidth="2" opcode="phi" nodeLabel="83.0" m_display="0" m_topoIndex="184" m_clusterGroupNumber="-1">
         <dataInputObjs>add</dataInputObjs>
         <dataOutputObjs>add</dataOutputObjs>
         <dataOutputObjs>icmp</dataOutputObjs>
@@ -2187,12 +2187,12 @@
         <dataOutputObjs>phi</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="237" name="exitcond7_i_i" rtlName="exitcond7_i_i_fu_1273_p2" opType="icmp" coreId="3551801" bitwidth="1" opcode="icmp" nodeLabel="83.0" m_display="0" m_delay="0.51" m_topoIndex="186" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="237" name="exitcond7_i_i" rtlName="exitcond7_i_i_fu_1273_p2" opType="icmp" coreId="2014629456" bitwidth="1" opcode="icmp" nodeLabel="83.0" m_display="0" m_delay="0.51" m_topoIndex="186" m_clusterGroupNumber="-1">
         <dataInputObjs>phi</dataInputObjs>
         <dataOutputObjs>br</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="239" name="br_ln0" coreId="1730176370" opcode="br" nodeLabel="83.0" m_display="0" m_topoIndex="187" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="239" name="br_ln0" coreId="2014655696" opcode="br" nodeLabel="83.0" m_display="0" m_topoIndex="187" m_clusterGroupNumber="-1">
         <dataInputObjs>icmp</dataInputObjs>
         <controlInputObjs>load-store-loop.split.i.i</controlInputObjs>
         <controlInputObjs>memcpy-split.i.i</controlInputObjs>
@@ -2203,16 +2203,16 @@
       <controlOutputObjs>phi</controlOutputObjs>
       <controlOutputObjs>br</controlOutputObjs>
       <controlOutputObjs>load-store-loop.i.i</controlOutputObjs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="241" name="empty_157" rtlName="empty_157_fu_1279_p1" coreId="6775156" bitwidth="1" opcode="trunc" nodeLabel="83.0" m_display="0" m_topoIndex="188" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="241" name="empty_157" rtlName="empty_157_fu_1279_p1" coreId="2014693136" bitwidth="1" opcode="trunc" nodeLabel="83.0" m_display="0" m_topoIndex="188" m_clusterGroupNumber="-1">
         <dataInputObjs>phi</dataInputObjs>
         <dataOutputObjs>bitconcatenate</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="242" name="tmp_2" rtlName="tmp_2_fu_1283_p3" coreId="536879616" bitwidth="5" opcode="bitconcatenate" nodeLabel="83.0" m_display="0" m_topoIndex="189" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="242" name="tmp_2" rtlName="tmp_2_fu_1283_p3" coreId="2014720016" bitwidth="5" opcode="bitconcatenate" nodeLabel="83.0" m_display="0" m_topoIndex="189" m_clusterGroupNumber="-1">
         <dataInputObjs>trunc</dataInputObjs>
         <dataOutputObjs>zext</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="243" name="p_cast28_i_i" rtlName="p_cast28_i_i_fu_1291_p1" coreId="1869182049" bitwidth="32" opcode="zext" nodeLabel="83.0" m_display="0" m_topoIndex="190" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="243" name="p_cast28_i_i" rtlName="p_cast28_i_i_fu_1291_p1" coreId="2014746256" bitwidth="32" opcode="zext" nodeLabel="83.0" m_display="0" m_topoIndex="190" m_clusterGroupNumber="-1">
         <dataInputObjs>bitconcatenate</dataInputObjs>
         <dataOutputObjs>lshr</dataOutputObjs>
       </node_objs>
@@ -2222,7 +2222,7 @@
         <dataInputObjs>zext</dataInputObjs>
         <dataOutputObjs>trunc</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="245" name="empty_159" lineNumber="280" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="empty_159_fu_1300_p1" coreId="2017796608" contextFuncName="write_result" bitwidth="16" opcode="trunc" nodeLabel="83.0" m_display="0" m_topoIndex="192" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="245" name="empty_159" lineNumber="280" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="empty_159_fu_1300_p1" coreId="2014808656" contextFuncName="write_result" bitwidth="16" opcode="trunc" nodeLabel="83.0" m_display="0" m_topoIndex="192" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="280" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>lshr</dataInputObjs>
         <dataOutputObjs>write</dataOutputObjs>
@@ -2233,7 +2233,7 @@
         <dataInputObjs>trunc</dataInputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="247" name="br_ln0" coreId="1279610953" opcode="br" nodeLabel="84.0" m_display="0" m_topoIndex="194" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="247" name="br_ln0" coreId="2014885456" opcode="br" nodeLabel="84.0" m_display="0" m_topoIndex="194" m_clusterGroupNumber="-1">
         <controlInputObjs>load-store-loop.i.i</controlInputObjs>
       </node_objs>
       <fileValidLineNumbers fileName="LZW_hybrid_hash_HW.cpp">
@@ -2264,13 +2264,13 @@
         <dataOutputObjs>phi</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="270" name="exitcond155_i_i" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="exitcond155_i_i_fu_1369_p2" opType="icmp" coreId="0" contextFuncName="write_result" bitwidth="1" opcode="icmp" nodeLabel="154.0" m_display="0" m_delay="0.86" m_topoIndex="213" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="270" name="exitcond155_i_i" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="exitcond155_i_i_fu_1369_p2" opType="icmp" coreId="6" contextFuncName="write_result" bitwidth="1" opcode="icmp" nodeLabel="154.0" m_display="0" m_delay="0.86" m_topoIndex="213" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="289" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>phi</dataInputObjs>
         <dataInputObjs>partselect</dataInputObjs>
         <dataOutputObjs>br</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="272" name="br_ln289" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="672843152" contextFuncName="write_result" opcode="br" nodeLabel="154.0" m_display="0" m_topoIndex="214" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="272" name="br_ln289" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="1953244788" contextFuncName="write_result" opcode="br" nodeLabel="154.0" m_display="0" m_topoIndex="214" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="289" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>icmp</dataInputObjs>
         <controlInputObjs>loop-memcpy-expansion.split.i.i</controlInputObjs>
@@ -2285,11 +2285,11 @@
       <controlOutputObjs>phi</controlOutputObjs>
       <controlOutputObjs>br</controlOutputObjs>
       <controlOutputObjs>loop-memcpy-expansion.i.i</controlOutputObjs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="274" name="loop_index_cast_i_i" rtlName="loop_index_cast_i_i_fu_1374_p1" coreId="672906064" bitwidth="64" opcode="zext" nodeLabel="154.0" m_display="0" m_topoIndex="215" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="274" name="loop_index_cast_i_i" rtlName="loop_index_cast_i_i_fu_1374_p1" coreId="4" bitwidth="64" opcode="zext" nodeLabel="154.0" m_display="0" m_topoIndex="215" m_clusterGroupNumber="-1">
         <dataInputObjs>phi</dataInputObjs>
         <dataOutputObjs>getelementptr</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="275" name="store_array_i_addr_8" coreId="672930000" bitwidth="12" opcode="getelementptr" nodeLabel="154.0" m_display="0" m_topoIndex="216" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="275" name="store_array_i_addr_8" coreId="2146556617" bitwidth="12" opcode="getelementptr" nodeLabel="154.0" m_display="0" m_topoIndex="216" m_clusterGroupNumber="-1">
         <dataInputObjs>store_array_i</dataInputObjs>
         <dataInputObjs>zext</dataInputObjs>
         <dataOutputObjs>load</dataOutputObjs>
@@ -2306,7 +2306,7 @@
         <dataInputObjs>load</dataInputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="278" name="br_ln0" coreId="673023312" opcode="br" nodeLabel="156.0" m_display="0" m_topoIndex="219" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="278" name="br_ln0" coreId="2751463552" opcode="br" nodeLabel="156.0" m_display="0" m_topoIndex="219" m_clusterGroupNumber="-1">
         <controlInputObjs>loop-memcpy-expansion.i.i</controlInputObjs>
       </node_objs>
       <fileValidLineNumbers fileName="LZW_hybrid_hash_HW.cpp">
@@ -2322,7 +2322,7 @@
       <controlOutputObjs>br</controlOutputObjs>
       <controlOutputObjs>loop-memcpy-residual.split.i.i</controlOutputObjs>
       <controlOutputObjs>post-loop-memcpy-expansion.loopexit.i.i</controlOutputObjs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="287" name="residual_loop_index_i_i" coreId="0" bitwidth="1" opcode="phi" nodeLabel="225.0" m_display="0" m_topoIndex="225" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="287" name="residual_loop_index_i_i" coreId="2146565920" bitwidth="1" opcode="phi" nodeLabel="225.0" m_display="0" m_topoIndex="225" m_clusterGroupNumber="-1">
         <dataInputObjs>xor</dataInputObjs>
         <dataOutputObjs>xor</dataOutputObjs>
         <dataOutputObjs>zext</dataOutputObjs>
@@ -2334,7 +2334,7 @@
         <controlInputObjs>loop-memcpy-residual-header.i.i</controlInputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="289" name="exitcond8tmp_i_i" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="exitcond8tmp_i_i_fu_1382_p2" opType="xor" coreId="0" contextFuncName="write_result" bitwidth="1" opcode="xor" nodeLabel="225.0" m_display="0" m_delay="0.33" m_topoIndex="226" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="289" name="exitcond8tmp_i_i" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="exitcond8tmp_i_i_fu_1382_p2" opType="xor" coreId="2146566368" contextFuncName="write_result" bitwidth="1" opcode="xor" nodeLabel="225.0" m_display="0" m_delay="0.33" m_topoIndex="226" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="289" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>phi</dataInputObjs>
         <dataInputObjs>trunc</dataInputObjs>
@@ -2355,11 +2355,11 @@
       <controlOutputObjs>phi</controlOutputObjs>
       <controlOutputObjs>br</controlOutputObjs>
       <controlOutputObjs>loop-memcpy-residual.i.i</controlOutputObjs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="293" name="residual_loop_index_cast_i_i" rtlName="residual_loop_index_cast_i_i_fu_1387_p1" coreId="737145024" bitwidth="13" opcode="zext" nodeLabel="225.0" m_display="0" m_topoIndex="228" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="293" name="residual_loop_index_cast_i_i" rtlName="residual_loop_index_cast_i_i_fu_1387_p1" coreId="2146569696" bitwidth="13" opcode="zext" nodeLabel="225.0" m_display="0" m_topoIndex="228" m_clusterGroupNumber="-1">
         <dataInputObjs>phi</dataInputObjs>
         <dataOutputObjs>add</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="294" name="residual_loop_index_i_i_cast" rtlName="residual_loop_index_i_i_cast_fu_1391_p1" coreId="737145656" bitwidth="18" opcode="zext" nodeLabel="225.0" m_display="0" m_topoIndex="229" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="294" name="residual_loop_index_i_i_cast" rtlName="residual_loop_index_i_i_cast_fu_1391_p1" coreId="132" bitwidth="18" opcode="zext" nodeLabel="225.0" m_display="0" m_topoIndex="229" m_clusterGroupNumber="-1">
         <dataInputObjs>phi</dataInputObjs>
         <dataOutputObjs>add</dataOutputObjs>
       </node_objs>
@@ -2369,18 +2369,18 @@
         <dataInputObjs>zext</dataInputObjs>
         <dataOutputObjs>partselect</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="296" name="tmp_8" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="tmp_8_fu_1400_p4" coreId="737147384" contextFuncName="write_result" bitwidth="12" opcode="partselect" nodeLabel="225.0" m_display="0" m_topoIndex="231" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="296" name="tmp_8" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="tmp_8_fu_1400_p4" coreId="1948262962" contextFuncName="write_result" bitwidth="12" opcode="partselect" nodeLabel="225.0" m_display="0" m_topoIndex="231" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="289" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>add</dataInputObjs>
         <dataOutputObjs>zext</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="297" name="p_cast16_cast_i_i" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="p_cast16_cast_i_i_fu_1410_p1" coreId="673600768" contextFuncName="write_result" bitwidth="64" opcode="zext" nodeLabel="225.0" m_display="0" m_topoIndex="232" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="297" name="p_cast16_cast_i_i" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="p_cast16_cast_i_i_fu_1410_p1" coreId="2146571352" contextFuncName="write_result" bitwidth="64" opcode="zext" nodeLabel="225.0" m_display="0" m_topoIndex="232" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="289" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>partselect</dataInputObjs>
         <dataOutputObjs>getelementptr</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="298" name="store_array_i_addr_9" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="673645984" contextFuncName="write_result" bitwidth="12" opcode="getelementptr" nodeLabel="225.0" m_display="0" m_topoIndex="233" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="298" name="store_array_i_addr_9" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="2751463552" contextFuncName="write_result" bitwidth="12" opcode="getelementptr" nodeLabel="225.0" m_display="0" m_topoIndex="233" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="289" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>store_array_i</dataInputObjs>
         <dataInputObjs>zext</dataInputObjs>
@@ -2393,19 +2393,19 @@
         <dataInputObjs>getelementptr</dataInputObjs>
         <dataOutputObjs>lshr</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="300" name="empty_135" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="empty_135_fu_1455_p2" opType="xor" coreId="673736448" contextFuncName="write_result" bitwidth="1" opcode="xor" nodeLabel="226.0" m_display="0" m_topoIndex="242" m_clusterGroupNumber="7">
+      <node_objs xsi:type="cdfg:CdfgNode" id="300" name="empty_135" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="empty_135_fu_1455_p2" opType="xor" coreId="0" contextFuncName="write_result" bitwidth="1" opcode="xor" nodeLabel="226.0" m_display="0" m_topoIndex="242" m_clusterGroupNumber="7">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="289" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>phi</dataInputObjs>
         <dataInputObjs>trunc</dataInputObjs>
         <dataOutputObjs>bitconcatenate</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="301" name="tmp_9" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="tmp_9_fu_1460_p3" coreId="673773536" contextFuncName="write_result" bitwidth="4" opcode="bitconcatenate" nodeLabel="226.0" m_display="0" m_topoIndex="243" m_clusterGroupNumber="7">
+      <node_objs xsi:type="cdfg:CdfgNode" id="301" name="tmp_9" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="tmp_9_fu_1460_p3" coreId="1953391981" contextFuncName="write_result" bitwidth="4" opcode="bitconcatenate" nodeLabel="226.0" m_display="0" m_topoIndex="243" m_clusterGroupNumber="7">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="289" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>xor</dataInputObjs>
         <dataOutputObjs>zext</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="302" name="p_cast31_i_i" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="p_cast31_i_i_fu_1468_p1" coreId="673817824" contextFuncName="write_result" bitwidth="16" opcode="zext" nodeLabel="226.0" m_display="0" m_topoIndex="244" m_clusterGroupNumber="7">
+      <node_objs xsi:type="cdfg:CdfgNode" id="302" name="p_cast31_i_i" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="p_cast31_i_i_fu_1468_p1" coreId="1701978146" contextFuncName="write_result" bitwidth="16" opcode="zext" nodeLabel="226.0" m_display="0" m_topoIndex="244" m_clusterGroupNumber="7">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="289" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>bitconcatenate</dataInputObjs>
         <dataOutputObjs>lshr</dataOutputObjs>
@@ -2416,12 +2416,12 @@
         <dataInputObjs>zext</dataInputObjs>
         <dataOutputObjs>trunc</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="304" name="empty_137" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="empty_137_fu_1478_p1" coreId="673908624" contextFuncName="write_result" bitwidth="8" opcode="trunc" nodeLabel="226.0" m_display="0" m_topoIndex="246" m_clusterGroupNumber="7">
+      <node_objs xsi:type="cdfg:CdfgNode" id="304" name="empty_137" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="empty_137_fu_1478_p1" coreId="825046320" contextFuncName="write_result" bitwidth="8" opcode="trunc" nodeLabel="226.0" m_display="0" m_topoIndex="246" m_clusterGroupNumber="7">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="289" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>lshr</dataInputObjs>
         <dataOutputObjs>zext</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="305" name="p_cast18_cast_i_i" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="p_cast18_cast_i_i_fu_1482_p1" coreId="673943696" contextFuncName="write_result" bitwidth="16" opcode="zext" nodeLabel="226.0" m_display="0" m_topoIndex="247" m_clusterGroupNumber="7">
+      <node_objs xsi:type="cdfg:CdfgNode" id="305" name="p_cast18_cast_i_i" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="p_cast18_cast_i_i_fu_1482_p1" coreId="2146581960" contextFuncName="write_result" bitwidth="16" opcode="zext" nodeLabel="226.0" m_display="0" m_topoIndex="247" m_clusterGroupNumber="7">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="289" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>trunc</dataInputObjs>
         <dataOutputObjs>shl</dataOutputObjs>
@@ -2432,7 +2432,7 @@
         <dataInputObjs>zext</dataInputObjs>
         <dataOutputObjs>sext</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="307" name="tmp4_cast" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="tmp4_cast_fu_1420_p1" coreId="674023696" contextFuncName="write_result" bitwidth="64" opcode="sext" nodeLabel="225.0" m_display="0" m_topoIndex="236" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="307" name="tmp4_cast" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="tmp4_cast_fu_1420_p1" coreId="2036428064" contextFuncName="write_result" bitwidth="64" opcode="sext" nodeLabel="225.0" m_display="0" m_topoIndex="236" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="289" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>add</dataInputObjs>
         <dataOutputObjs>add</dataOutputObjs>
@@ -2443,19 +2443,19 @@
         <dataInputObjs>add</dataInputObjs>
         <dataOutputObjs>partselect</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="309" name="tmp5" rtlName="tmp5_fu_1486_p2" opType="xor" coreId="674112368" bitwidth="1" opcode="xor" nodeLabel="226.0" m_display="0" m_topoIndex="248" m_clusterGroupNumber="8">
+      <node_objs xsi:type="cdfg:CdfgNode" id="309" name="tmp5" rtlName="tmp5_fu_1486_p2" opType="xor" coreId="7891302" bitwidth="1" opcode="xor" nodeLabel="226.0" m_display="0" m_topoIndex="248" m_clusterGroupNumber="8">
         <dataInputObjs>phi</dataInputObjs>
         <dataInputObjs>read</dataInputObjs>
         <dataOutputObjs>xor</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="310" name="empty_139" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="empty_139_fu_1491_p2" opType="xor" coreId="674138608" contextFuncName="write_result" bitwidth="1" opcode="xor" nodeLabel="226.0" m_display="0" m_delay="0.33" m_topoIndex="249" m_clusterGroupNumber="8">
+      <node_objs xsi:type="cdfg:CdfgNode" id="310" name="empty_139" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="empty_139_fu_1491_p2" opType="xor" coreId="1936618784" contextFuncName="write_result" bitwidth="1" opcode="xor" nodeLabel="226.0" m_display="0" m_delay="0.33" m_topoIndex="249" m_clusterGroupNumber="8">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="289" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>xor</dataInputObjs>
         <dataInputObjs>trunc</dataInputObjs>
         <dataOutputObjs>zext</dataOutputObjs>
         <dataOutputObjs>bitconcatenate</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="311" name="p_cast32_i_i" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="p_cast32_i_i_fu_1496_p1" coreId="674177008" contextFuncName="write_result" bitwidth="2" opcode="zext" nodeLabel="226.0" m_display="0" m_topoIndex="250" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="311" name="p_cast32_i_i" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="p_cast32_i_i_fu_1496_p1" coreId="1769172597" contextFuncName="write_result" bitwidth="2" opcode="zext" nodeLabel="226.0" m_display="0" m_topoIndex="250" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="289" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>xor</dataInputObjs>
         <dataOutputObjs>shl</dataOutputObjs>
@@ -2466,13 +2466,13 @@
         <dataOutputObjs>write</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="313" name="tmp_10" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="tmp_10_fu_1506_p3" coreId="674265968" contextFuncName="write_result" bitwidth="4" opcode="bitconcatenate" nodeLabel="226.0" m_display="0" m_topoIndex="252" m_clusterGroupNumber="7">
+      <node_objs xsi:type="cdfg:CdfgNode" id="313" name="tmp_10" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="tmp_10_fu_1506_p3" coreId="1953656680" contextFuncName="write_result" bitwidth="4" opcode="bitconcatenate" nodeLabel="226.0" m_display="0" m_topoIndex="252" m_clusterGroupNumber="7">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="289" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>xor</dataInputObjs>
         <dataOutputObjs>zext</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="314" name="p_cast33_i_i" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="p_cast33_i_i_fu_1514_p1" coreId="674303088" contextFuncName="write_result" bitwidth="16" opcode="zext" nodeLabel="226.0" m_display="0" m_topoIndex="253" m_clusterGroupNumber="7">
+      <node_objs xsi:type="cdfg:CdfgNode" id="314" name="p_cast33_i_i" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="p_cast33_i_i_fu_1514_p1" coreId="1886351212" contextFuncName="write_result" bitwidth="16" opcode="zext" nodeLabel="226.0" m_display="0" m_topoIndex="253" m_clusterGroupNumber="7">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="289" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>bitconcatenate</dataInputObjs>
         <dataOutputObjs>shl</dataOutputObjs>
@@ -2483,18 +2483,18 @@
         <dataInputObjs>zext</dataInputObjs>
         <dataOutputObjs>write</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="316" name="p_cast20_i_i" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="p_cast20_i_i_fu_1429_p4" coreId="674392048" contextFuncName="write_result" bitwidth="63" opcode="partselect" nodeLabel="225.0" m_display="0" m_topoIndex="238" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="316" name="p_cast20_i_i" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="p_cast20_i_i_fu_1429_p4" coreId="1932734068" contextFuncName="write_result" bitwidth="63" opcode="partselect" nodeLabel="225.0" m_display="0" m_topoIndex="238" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="289" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>add</dataInputObjs>
         <dataOutputObjs>sext</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="317" name="p_cast20_cast_i_i" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="p_cast20_cast_i_i_fu_1439_p1" coreId="674429168" contextFuncName="write_result" bitwidth="64" opcode="sext" nodeLabel="225.0" m_display="0" m_topoIndex="239" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="317" name="p_cast20_cast_i_i" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="p_cast20_cast_i_i_fu_1439_p1" coreId="1667590211" contextFuncName="write_result" bitwidth="64" opcode="sext" nodeLabel="225.0" m_display="0" m_topoIndex="239" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="289" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>partselect</dataInputObjs>
         <dataOutputObjs>getelementptr</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="318" name="aximm1_addr_2" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="674481648" contextFuncName="write_result" bitwidth="16" opcode="getelementptr" nodeLabel="225.0" m_display="0" m_topoIndex="240" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="318" name="aximm1_addr_2" lineNumber="289" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="997420912" contextFuncName="write_result" bitwidth="16" opcode="getelementptr" nodeLabel="225.0" m_display="0" m_topoIndex="240" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="289" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>sext</dataInputObjs>
         <dataOutputObjs>aximm1</dataOutputObjs>
@@ -2517,12 +2517,12 @@
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="289" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="write_result"/>
         <dataInputObjs>getelementptr</dataInputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="322" name="empty_144" rtlName="empty_144_fu_1449_p2" opType="xor" coreId="674783888" bitwidth="1" opcode="xor" nodeLabel="225.0" m_display="0" m_delay="0.33" m_topoIndex="241" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="322" name="empty_144" rtlName="empty_144_fu_1449_p2" opType="xor" coreId="1634492770" bitwidth="1" opcode="xor" nodeLabel="225.0" m_display="0" m_delay="0.33" m_topoIndex="241" m_clusterGroupNumber="-1">
         <dataInputObjs>phi</dataInputObjs>
         <dataOutputObjs>phi</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="323" name="br_ln0" coreId="674803152" opcode="br" nodeLabel="295.0" m_display="0" m_topoIndex="258" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="323" name="br_ln0" coreId="825307694" opcode="br" nodeLabel="295.0" m_display="0" m_topoIndex="258" m_clusterGroupNumber="-1">
         <controlInputObjs>loop-memcpy-residual.i.i</controlInputObjs>
       </node_objs>
       <fileValidLineNumbers fileName="LZW_hybrid_hash_HW.cpp">
@@ -3010,6 +3010,9 @@
   <regnodes realName="trunc_ln43_1_reg_1654">
     <nodeIds>51</nodeIds>
   </regnodes>
+  <regnodes realName="input_read_reg_1604">
+    <nodeIds>25</nodeIds>
+  </regnodes>
   <regnodes realName="zext_ln286_reg_1802">
     <nodeIds>222</nodeIds>
   </regnodes>
@@ -3096,9 +3099,6 @@
   </regnodes>
   <regnodes realName="aximm0_addr_1_reg_1927">
     <nodeIds>329</nodeIds>
-  </regnodes>
-  <regnodes realName="in_read_reg_1604">
-    <nodeIds>25</nodeIds>
   </regnodes>
   <regnodes realName="j_reg_501">
     <nodeIds>84</nodeIds>
@@ -3751,6 +3751,9 @@
   <ioNodes realName="write_ln331_write_fu_296">
     <nodeIds>246</nodeIds>
   </ioNodes>
+  <ioNodes realName="input_read_read_fu_246">
+    <nodeIds>25</nodeIds>
+  </ioNodes>
   <ioNodes realName="p_read_3_read_fu_234">
     <nodeIds>18</nodeIds>
   </ioNodes>
@@ -3763,9 +3766,6 @@
   </ioNodes>
   <ioNodes realName="tmp_read_fu_277">
     <nodeIds>88</nodeIds>
-  </ioNodes>
-  <ioNodes realName="in_read_read_fu_246">
-    <nodeIds>25</nodeIds>
   </ioNodes>
   <ioNodes realName="write_ln293_write_fu_342">
     <nodeIds>331</nodeIds>
@@ -3831,14 +3831,14 @@
       <nodeIds>78</nodeIds>
     </contents>
   </ioPorts>
-  <ioPorts name="in_r">
-    <contents name="read">
-      <nodeIds>25</nodeIds>
-    </contents>
-  </ioPorts>
   <ioPorts name="input_length_temp(p0)">
     <contents name="load">
       <nodeIds>49</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="input_r">
+    <contents name="read">
+      <nodeIds>25</nodeIds>
     </contents>
   </ioPorts>
   <ioPorts name="outStream_code">

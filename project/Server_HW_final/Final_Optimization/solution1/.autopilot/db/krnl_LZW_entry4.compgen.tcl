@@ -11,14 +11,14 @@ if {${::AESL::PGuard_autoexp_gen}} {
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
     id 1 \
-    name in_r \
+    name input_r \
     type other \
     dir I \
     reset_level 1 \
     sync_rst true \
-    corename dc_in_r \
+    corename dc_input_r \
     op interface \
-    ports { in_r { I 64 vector } } \
+    ports { input_r { I 64 vector } } \
 } "
 }
 
@@ -71,14 +71,14 @@ eval "cg_default_interface_gen_dc { \
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
     id 5 \
-    name in_out \
+    name input_out \
     type fifo \
     dir O \
     reset_level 1 \
     sync_rst true \
-    corename dc_in_out \
+    corename dc_input_out \
     op interface \
-    ports { in_out_din { O 64 vector } in_out_full_n { I 1 bit } in_out_write { O 1 bit } } \
+    ports { input_out_din { O 64 vector } input_out_full_n { I 1 bit } input_out_write { O 1 bit } } \
 } "
 }
 

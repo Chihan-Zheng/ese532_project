@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'krnl_LZW'" level="0">
-<item name = "Date">Thu Dec  7 19:36:33 2023
+<item name = "Date">Thu Dec  7 21:19:20 2023
 </item>
 <item name = "Version">2020.2 (Build 3064766 on Wed Nov 18 09:12:47 MST 2020)</item>
 <item name = "Project">Final_Optimization</item>
@@ -87,7 +87,7 @@
 <item name = "FIFO"><table name="" hasTotal="1">
 <keys size="8">Name, BRAM_18K, FF, LUT, URAM, Depth, Bits, Size:D*B</keys>
 <column name="inStream_in_U">0, 99, 0, -, 2, 8, 16</column>
-<column name="in_c_U">0, 99, 0, -, 3, 64, 192</column>
+<column name="input_c_U">0, 99, 0, -, 3, 64, 192</column>
 <column name="input_length_c_U">0, 99, 0, -, 2, 64, 128</column>
 <column name="num_chunks_loc_channel_U">0, 99, 0, -, 2, 8, 16</column>
 <column name="outStream_code_U">0, 99, 0, -, 2, 13, 26</column>

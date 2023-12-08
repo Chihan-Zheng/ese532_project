@@ -31,7 +31,7 @@
               <opType/>
               <implIndex/>
               <coreName>FIFO_SRL</coreName>
-              <coreId>740744480</coreId>
+              <coreId>1813876208</coreId>
             </Obj>
             <bitwidth>64</bitwidth>
           </Value>
@@ -108,7 +108,7 @@
               <opType/>
               <implIndex/>
               <coreName/>
-              <coreId>129</coreId>
+              <coreId>113</coreId>
             </Obj>
             <bitwidth>1</bitwidth>
           </Value>
@@ -201,7 +201,7 @@
               <opType/>
               <implIndex/>
               <coreName/>
-              <coreId>145</coreId>
+              <coreId>129</coreId>
             </Obj>
             <bitwidth>65</bitwidth>
           </Value>
@@ -255,7 +255,7 @@
               <opType/>
               <implIndex/>
               <coreName/>
-              <coreId>132</coreId>
+              <coreId>129</coreId>
             </Obj>
             <bitwidth>65</bitwidth>
           </Value>
@@ -309,7 +309,7 @@
               <opType/>
               <implIndex/>
               <coreName/>
-              <coreId>177</coreId>
+              <coreId>129</coreId>
             </Obj>
             <bitwidth>0</bitwidth>
           </Value>
@@ -352,7 +352,7 @@
               <opType/>
               <implIndex/>
               <coreName/>
-              <coreId>177</coreId>
+              <coreId>2751463600</coreId>
             </Obj>
             <bitwidth>64</bitwidth>
           </Value>
@@ -380,7 +380,7 @@
               <opType/>
               <implIndex/>
               <coreName/>
-              <coreId>177</coreId>
+              <coreId>49</coreId>
             </Obj>
             <bitwidth>65</bitwidth>
           </Value>

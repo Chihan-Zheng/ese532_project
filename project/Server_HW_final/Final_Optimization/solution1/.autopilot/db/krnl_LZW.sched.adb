@@ -64,7 +64,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName></coreName>
-						<coreId>678595968</coreId>
+						<coreId>2021571912</coreId>
 					</Obj>
 					<bitwidth>16</bitwidth>
 				</Value>
@@ -81,7 +81,7 @@
 					<Obj>
 						<type>1</type>
 						<id>3</id>
-						<name>in_r</name>
+						<name>input_r</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
 						<lineNumber>0</lineNumber>
@@ -91,13 +91,13 @@
 							<count>0</count>
 							<item_version>0</item_version>
 						</inlineStackInfo>
-						<originalName>in</originalName>
+						<originalName>input</originalName>
 						<rtlName></rtlName>
 						<control></control>
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName></coreName>
-						<coreId>0</coreId>
+						<coreId>321</coreId>
 					</Obj>
 					<bitwidth>64</bitwidth>
 				</Value>
@@ -130,7 +130,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName></coreName>
-						<coreId>0</coreId>
+						<coreId>49</coreId>
 					</Obj>
 					<bitwidth>64</bitwidth>
 				</Value>
@@ -163,7 +163,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName></coreName>
-						<coreId>0</coreId>
+						<coreId>2021955040</coreId>
 					</Obj>
 					<bitwidth>64</bitwidth>
 				</Value>
@@ -196,7 +196,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName></coreName>
-						<coreId>33</coreId>
+						<coreId>2021418096</coreId>
 					</Obj>
 					<bitwidth>64</bitwidth>
 				</Value>
@@ -301,7 +301,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName></coreName>
-						<coreId>113</coreId>
+						<coreId>14</coreId>
 					</Obj>
 					<bitwidth>64</bitwidth>
 				</Value>
@@ -379,7 +379,7 @@
 					<Obj>
 						<type>0</type>
 						<id>15</id>
-						<name>in_read</name>
+						<name>input_read</name>
 						<fileName>LZW_hybrid_hash_HW.cpp</fileName>
 						<fileDirectory>/home1/c/chihan/chihan/ese532_project/project/Server_HW_final</fileDirectory>
 						<lineNumber>299</lineNumber>
@@ -403,7 +403,7 @@
 								</second>
 							</item>
 						</inlineStackInfo>
-						<originalName>in</originalName>
+						<originalName>input</originalName>
 						<rtlName></rtlName>
 						<control></control>
 						<opType></opType>
@@ -569,7 +569,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName></coreName>
-						<coreId>113</coreId>
+						<coreId>1189954880</coreId>
 					</Obj>
 					<bitwidth>64</bitwidth>
 				</Value>
@@ -622,7 +622,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName></coreName>
-						<coreId>20</coreId>
+						<coreId>0</coreId>
 					</Obj>
 					<bitwidth>64</bitwidth>
 				</Value>
@@ -645,7 +645,7 @@
 					<Obj>
 						<type>0</type>
 						<id>20</id>
-						<name>in_c</name>
+						<name>input_c</name>
 						<fileName>LZW_hybrid_hash_HW.cpp</fileName>
 						<fileDirectory>/home1/c/chihan/chihan/ese532_project/project/Server_HW_final</fileDirectory>
 						<lineNumber>299</lineNumber>
@@ -675,7 +675,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName></coreName>
-						<coreId>18</coreId>
+						<coreId>0</coreId>
 					</Obj>
 					<bitwidth>64</bitwidth>
 				</Value>
@@ -714,7 +714,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName></coreName>
-						<coreId>545</coreId>
+						<coreId>0</coreId>
 					</Obj>
 					<bitwidth>16</bitwidth>
 				</Value>
@@ -767,7 +767,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName></coreName>
-						<coreId>678964352</coreId>
+						<coreId>0</coreId>
 					</Obj>
 					<bitwidth>16</bitwidth>
 				</Value>
@@ -820,7 +820,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName></coreName>
-						<coreId>2327</coreId>
+						<coreId>0</coreId>
 					</Obj>
 					<bitwidth>0</bitwidth>
 				</Value>
@@ -882,7 +882,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName></coreName>
-						<coreId>0</coreId>
+						<coreId>2751463552</coreId>
 					</Obj>
 					<bitwidth>8</bitwidth>
 				</Value>
@@ -940,7 +940,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName></coreName>
-						<coreId>0</coreId>
+						<coreId>2021565929</coreId>
 					</Obj>
 					<bitwidth>65</bitwidth>
 				</Value>
@@ -1048,7 +1048,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName></coreName>
-						<coreId>678965776</coreId>
+						<coreId>1769239916</coreId>
 					</Obj>
 					<bitwidth>64</bitwidth>
 				</Value>
@@ -1101,7 +1101,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName></coreName>
-						<coreId>678963856</coreId>
+						<coreId>539107901</coreId>
 					</Obj>
 					<bitwidth>0</bitwidth>
 				</Value>
@@ -1170,7 +1170,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName></coreName>
-						<coreId>0</coreId>
+						<coreId>1187080264</coreId>
 					</Obj>
 					<bitwidth>0</bitwidth>
 				</Value>
@@ -1212,7 +1212,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName></coreName>
-						<coreId>8</coreId>
+						<coreId>1187080576</coreId>
 					</Obj>
 					<bitwidth>64</bitwidth>
 				</Value>
@@ -1240,7 +1240,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName></coreName>
-						<coreId>1476395136</coreId>
+						<coreId>2021952384</coreId>
 					</Obj>
 					<bitwidth>0</bitwidth>
 				</Value>
@@ -1268,7 +1268,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName></coreName>
-						<coreId>0</coreId>
+						<coreId>2021574224</coreId>
 					</Obj>
 					<bitwidth>8</bitwidth>
 				</Value>
@@ -1296,7 +1296,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName></coreName>
-						<coreId>0</coreId>
+						<coreId>2021575168</coreId>
 					</Obj>
 					<bitwidth>65</bitwidth>
 				</Value>
@@ -1324,7 +1324,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName></coreName>
-						<coreId>0</coreId>
+						<coreId>2021571648</coreId>
 					</Obj>
 					<bitwidth>0</bitwidth>
 				</Value>
@@ -1355,7 +1355,7 @@
 					<opType></opType>
 					<implIndex></implIndex>
 					<coreName></coreName>
-					<coreId>737987328</coreId>
+					<coreId>2021618896</coreId>
 				</Obj>
 				<node_objs>
 					<count>18</count>
@@ -1774,7 +1774,7 @@
 						<chan class_id="-1"></chan>
 					</item>
 					<item class_id_reference="25" object_id="_84">
-						<name>in</name>
+						<name>input</name>
 						<dir>0</dir>
 						<type>3</type>
 						<need_hs>1</need_hs>
@@ -1818,7 +1818,7 @@
 							<item_version>0</item_version>
 							<item class_id="30" tracking_level="1" version="0" object_id="_89">
 								<port class_id_reference="25" object_id="_90">
-									<name>in</name>
+									<name>input</name>
 									<dir>0</dir>
 									<type>3</type>
 									<need_hs>1</need_hs>
@@ -1974,7 +1974,7 @@
 					<item_version>0</item_version>
 					<item class_id_reference="26" object_id="_112">
 						<type>1</type>
-						<name>in_c</name>
+						<name>input_c</name>
 						<ssdmobj_id>20</ssdmobj_id>
 						<ctype>0</ctype>
 						<depth>3</depth>

@@ -19,7 +19,7 @@
 
 <Node id="10" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="0" op_3_bw="32" op_4_bw="32" op_5_bw="0" op_6_bw="32" op_7_bw="32" op_8_bw="0" op_9_bw="0" op_10_bw="0" op_11_bw="32" op_12_bw="32" op_13_bw="32" op_14_bw="32" op_15_bw="0" op_16_bw="0">
 <![CDATA[
-entry:0 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %in_out, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str
+entry:0 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %input_out, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str
 
 ]]></Node>
 <StgValue><ssdm name="specinterface_ln0"/></StgValue>
@@ -79,10 +79,10 @@ entry:3 %input_length_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %input_len
 
 <Node id="14" bw="64" op_0_bw="64" op_1_bw="64">
 <![CDATA[
-entry:4 %in_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %in_r
+entry:4 %input_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %input_r
 
 ]]></Node>
-<StgValue><ssdm name="in_read"/></StgValue>
+<StgValue><ssdm name="input_read"/></StgValue>
 </operation>
 
 <operation id="7" st_id="1" stage="1" lat="1">
@@ -94,7 +94,7 @@ entry:4 %in_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %in_r
 
 <Node id="15" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="64">
 <![CDATA[
-entry:5 %write_ln0 = write void @_ssdm_op_Write.ap_fifo.i64P0A, i64 %in_out, i64 %in_read
+entry:5 %write_ln0 = write void @_ssdm_op_Write.ap_fifo.i64P0A, i64 %input_out, i64 %input_read
 
 ]]></Node>
 <StgValue><ssdm name="write_ln0"/></StgValue>

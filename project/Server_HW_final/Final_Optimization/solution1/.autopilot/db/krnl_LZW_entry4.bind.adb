@@ -15,7 +15,7 @@
 					<Obj class_id="5" tracking_level="0" version="0">
 						<type>1</type>
 						<id>1</id>
-						<name>in_r</name>
+						<name>input_r</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
 						<lineNumber>0</lineNumber>
@@ -31,7 +31,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName></coreName>
-						<coreId>1881171304</coreId>
+						<coreId>0</coreId>
 					</Obj>
 					<bitwidth>64</bitwidth>
 				</Value>
@@ -64,7 +64,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName></coreName>
-						<coreId>637620640</coreId>
+						<coreId>0</coreId>
 					</Obj>
 					<bitwidth>64</bitwidth>
 				</Value>
@@ -97,7 +97,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName></coreName>
-						<coreId>637653360</coreId>
+						<coreId>1813686825</coreId>
 					</Obj>
 					<bitwidth>64</bitwidth>
 				</Value>
@@ -147,7 +147,7 @@
 					<Obj>
 						<type>1</type>
 						<id>5</id>
-						<name>in_out</name>
+						<name>input_out</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
 						<lineNumber>0</lineNumber>
@@ -163,7 +163,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName>FIFO_SRL</coreName>
-						<coreId>0</coreId>
+						<coreId>49</coreId>
 					</Obj>
 					<bitwidth>64</bitwidth>
 				</Value>
@@ -196,7 +196,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName>FIFO_SRL</coreName>
-						<coreId>0</coreId>
+						<coreId>609</coreId>
 					</Obj>
 					<bitwidth>64</bitwidth>
 				</Value>
@@ -229,7 +229,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName>FIFO_SRL</coreName>
-						<coreId>0</coreId>
+						<coreId>132</coreId>
 					</Obj>
 					<bitwidth>64</bitwidth>
 				</Value>
@@ -262,7 +262,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName>FIFO_SRL</coreName>
-						<coreId>0</coreId>
+						<coreId>49</coreId>
 					</Obj>
 					<bitwidth>64</bitwidth>
 				</Value>
@@ -295,7 +295,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName>FIFO_SRL</coreName>
-						<coreId>700225264</coreId>
+						<coreId>0</coreId>
 					</Obj>
 					<bitwidth>64</bitwidth>
 				</Value>
@@ -332,7 +332,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName></coreName>
-						<coreId>476548640</coreId>
+						<coreId>1820770592</coreId>
 					</Obj>
 					<bitwidth>64</bitwidth>
 				</Value>
@@ -372,7 +372,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName></coreName>
-						<coreId>474969152</coreId>
+						<coreId>1817187520</coreId>
 					</Obj>
 					<bitwidth>64</bitwidth>
 				</Value>
@@ -412,7 +412,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName></coreName>
-						<coreId>742432416</coreId>
+						<coreId>1816271408</coreId>
 					</Obj>
 					<bitwidth>64</bitwidth>
 				</Value>
@@ -436,7 +436,7 @@
 					<Obj>
 						<type>0</type>
 						<id>14</id>
-						<name>in_read</name>
+						<name>input_read</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
 						<lineNumber>0</lineNumber>
@@ -452,7 +452,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName></coreName>
-						<coreId>0</coreId>
+						<coreId>1816376880</coreId>
 					</Obj>
 					<bitwidth>64</bitwidth>
 				</Value>
@@ -476,7 +476,7 @@
 					<Obj>
 						<type>0</type>
 						<id>15</id>
-						<name>in_out_write_ln0</name>
+						<name>input_out_write_ln0</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
 						<lineNumber>0</lineNumber>
@@ -697,7 +697,7 @@
 						<opType></opType>
 						<implIndex></implIndex>
 						<coreName></coreName>
-						<coreId>1769109280</coreId>
+						<coreId>3289395</coreId>
 					</Obj>
 					<bitwidth>0</bitwidth>
 				</Value>
@@ -742,7 +742,7 @@
 					<opType></opType>
 					<implIndex></implIndex>
 					<coreName></coreName>
-					<coreId>700122537</coreId>
+					<coreId>1813829816</coreId>
 				</Obj>
 				<node_objs>
 					<count>10</count>
@@ -1160,19 +1160,19 @@
 		<count>9</count>
 		<item_version>0</item_version>
 		<item class_id="37" tracking_level="0" version="0">
-			<first>in_read_read_fu_54</first>
-			<second>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>14</item>
-			</second>
-		</item>
-		<item>
 			<first>input_length_read_read_fu_48</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
 				<item>13</item>
+			</second>
+		</item>
+		<item>
+			<first>input_read_read_fu_54</first>
+			<second>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>14</item>
 			</second>
 		</item>
 		<item>
@@ -1260,36 +1260,6 @@
 		<count>9</count>
 		<item_version>0</item_version>
 		<item class_id="40" tracking_level="0" version="0">
-			<first>in_out</first>
-			<second>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>
-					<first>write</first>
-					<second>
-						<count>1</count>
-						<item_version>0</item_version>
-						<item>15</item>
-					</second>
-				</item>
-			</second>
-		</item>
-		<item>
-			<first>in_r</first>
-			<second>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>
-					<first>read</first>
-					<second>
-						<count>1</count>
-						<item_version>0</item_version>
-						<item>14</item>
-					</second>
-				</item>
-			</second>
-		</item>
-		<item>
 			<first>input_length</first>
 			<second>
 				<count>1</count>
@@ -1315,6 +1285,36 @@
 						<count>1</count>
 						<item_version>0</item_version>
 						<item>17</item>
+					</second>
+				</item>
+			</second>
+		</item>
+		<item>
+			<first>input_out</first>
+			<second>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<first>write</first>
+					<second>
+						<count>1</count>
+						<item_version>0</item_version>
+						<item>15</item>
+					</second>
+				</item>
+			</second>
+		</item>
+		<item>
+			<first>input_r</first>
+			<second>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<first>read</first>
+					<second>
+						<count>1</count>
+						<item_version>0</item_version>
+						<item>14</item>
 					</second>
 				</item>
 			</second>

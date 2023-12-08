@@ -88,10 +88,10 @@
 
 <Node id="15" bw="64" op_0_bw="64" op_1_bw="64">
 <![CDATA[
-.split:3 %in_read = read i64 @_ssdm_op_Read.s_axilite.i64, i64 %in_r
+.split:3 %input_read = read i64 @_ssdm_op_Read.s_axilite.i64, i64 %input_r
 
 ]]></Node>
-<StgValue><ssdm name="in_read"/></StgValue>
+<StgValue><ssdm name="input_read"/></StgValue>
 </operation>
 
 <operation id="10" st_id="1" stage="1" lat="1">
@@ -163,10 +163,10 @@
 
 <Node id="20" bw="64" op_0_bw="64">
 <![CDATA[
-.split:8 %in_c = alloca i64 1
+.split:8 %input_c = alloca i64 1
 
 ]]></Node>
-<StgValue><ssdm name="in_c"/></StgValue>
+<StgValue><ssdm name="input_c"/></StgValue>
 </operation>
 
 <operation id="15" st_id="1" stage="1" lat="1">
@@ -210,7 +210,7 @@
 
 <Node id="55" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="64" op_3_bw="64" op_4_bw="64" op_5_bw="64" op_6_bw="64" op_7_bw="64" op_8_bw="64" op_9_bw="64">
 <![CDATA[
-.split:43 %call_ln299 = call void @krnl_LZW.entry4, i64 %in_read, i64 %input_length_read, i64 %send_data_read, i64 %output_length_read, i64 %in_c, i64 %input_length_c, i64 %send_data_c, i64 %send_data_c115, i64 %output_length_c
+.split:43 %call_ln299 = call void @krnl_LZW.entry4, i64 %input_read, i64 %input_length_read, i64 %send_data_read, i64 %output_length_read, i64 %input_c, i64 %input_length_c, i64 %send_data_c, i64 %send_data_c115, i64 %output_length_c
 
 ]]></Node>
 <StgValue><ssdm name="call_ln299"/></StgValue>
@@ -309,7 +309,7 @@
 
 <Node id="60" bw="0" op_0_bw="0" op_1_bw="8" op_2_bw="16" op_3_bw="16" op_4_bw="64" op_5_bw="1" op_6_bw="16" op_7_bw="64" op_8_bw="16" op_9_bw="64" op_10_bw="64" op_11_bw="8" op_12_bw="13" op_13_bw="8" op_14_bw="0" op_15_bw="0" op_16_bw="0">
 <![CDATA[
-.split:48 %call_ln299 = call void @Loop_VITIS_LOOP_325_2_proc, i8 %num_chunks_loc_channel, i16 %aximm0, i16 %store_array_i, i64 %p_loc_channel, i1 %send_data_cast_loc_channel, i16 %aximm1, i64 %output_length_c, i16 %input_length_temp, i64 %in_c, i64 %send_data_c115, i8 %outStream_code_flg, i13 %outStream_code, i8 %inStream_in
+.split:48 %call_ln299 = call void @Loop_VITIS_LOOP_325_2_proc, i8 %num_chunks_loc_channel, i16 %aximm0, i16 %store_array_i, i64 %p_loc_channel, i1 %send_data_cast_loc_channel, i16 %aximm1, i64 %output_length_c, i16 %input_length_temp, i64 %input_c, i64 %send_data_c115, i8 %outStream_code_flg, i13 %outStream_code, i8 %inStream_in
 
 ]]></Node>
 <StgValue><ssdm name="call_ln299"/></StgValue>
@@ -477,7 +477,7 @@
 
 <Node id="31" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="0" op_3_bw="32" op_4_bw="32" op_5_bw="0" op_6_bw="32" op_7_bw="32" op_8_bw="0" op_9_bw="0" op_10_bw="0" op_11_bw="32" op_12_bw="32" op_13_bw="32" op_14_bw="32" op_15_bw="0" op_16_bw="0">
 <![CDATA[
-.split:19 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %in_r, void @empty_11, i32 0, i32 0, void @empty_3, i32 0, i32 0, void @empty_21, void @empty_18, void @empty_3, i32 0, i32 0, i32 0, i32 0, void @empty_3, void @empty_20
+.split:19 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %input_r, void @empty_11, i32 0, i32 0, void @empty_3, i32 0, i32 0, void @empty_21, void @empty_18, void @empty_3, i32 0, i32 0, i32 0, i32 0, void @empty_3, void @empty_20
 
 ]]></Node>
 <StgValue><ssdm name="specinterface_ln0"/></StgValue>
@@ -492,7 +492,7 @@
 
 <Node id="32" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="0" op_3_bw="32" op_4_bw="32" op_5_bw="0" op_6_bw="32" op_7_bw="32" op_8_bw="0" op_9_bw="0" op_10_bw="0" op_11_bw="32" op_12_bw="32" op_13_bw="32" op_14_bw="32" op_15_bw="0" op_16_bw="0">
 <![CDATA[
-.split:20 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %in_r, void @empty_15, i32 0, i32 0, void @empty_3, i32 0, i32 0, void @empty_3, void @empty_3, void @empty_3, i32 0, i32 0, i32 0, i32 0, void @empty_3, void @empty_20
+.split:20 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %input_r, void @empty_15, i32 0, i32 0, void @empty_3, i32 0, i32 0, void @empty_3, void @empty_3, void @empty_3, i32 0, i32 0, i32 0, i32 0, void @empty_3, void @empty_20
 
 ]]></Node>
 <StgValue><ssdm name="specinterface_ln0"/></StgValue>
@@ -657,7 +657,7 @@
 
 <Node id="45" bw="32" op_0_bw="32" op_1_bw="0" op_2_bw="32" op_3_bw="0" op_4_bw="0" op_5_bw="32" op_6_bw="32" op_7_bw="64" op_8_bw="64">
 <![CDATA[
-.split:33 %empty_49 = specchannel i32 @_ssdm_op_SpecChannel, void @in_c_str, i32 1, void @p_str, void @p_str, i32 3, i32 0, i64 %in_c, i64 %in_c
+.split:33 %empty_49 = specchannel i32 @_ssdm_op_SpecChannel, void @input_c_str, i32 1, void @p_str, void @p_str, i32 3, i32 0, i64 %input_c, i64 %input_c
 
 ]]></Node>
 <StgValue><ssdm name="empty_49"/></StgValue>
@@ -672,7 +672,7 @@
 
 <Node id="46" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="0" op_3_bw="32" op_4_bw="32" op_5_bw="0" op_6_bw="32" op_7_bw="32" op_8_bw="0" op_9_bw="0" op_10_bw="0" op_11_bw="32" op_12_bw="32" op_13_bw="32" op_14_bw="32" op_15_bw="0" op_16_bw="0">
 <![CDATA[
-.split:34 %specinterface_ln299 = specinterface void @_ssdm_op_SpecInterface, i64 %in_c, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str
+.split:34 %specinterface_ln299 = specinterface void @_ssdm_op_SpecInterface, i64 %input_c, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str
 
 ]]></Node>
 <StgValue><ssdm name="specinterface_ln299"/></StgValue>
@@ -807,7 +807,7 @@
 
 <Node id="60" bw="0" op_0_bw="0" op_1_bw="8" op_2_bw="16" op_3_bw="16" op_4_bw="64" op_5_bw="1" op_6_bw="16" op_7_bw="64" op_8_bw="16" op_9_bw="64" op_10_bw="64" op_11_bw="8" op_12_bw="13" op_13_bw="8" op_14_bw="0" op_15_bw="0" op_16_bw="0">
 <![CDATA[
-.split:48 %call_ln299 = call void @Loop_VITIS_LOOP_325_2_proc, i8 %num_chunks_loc_channel, i16 %aximm0, i16 %store_array_i, i64 %p_loc_channel, i1 %send_data_cast_loc_channel, i16 %aximm1, i64 %output_length_c, i16 %input_length_temp, i64 %in_c, i64 %send_data_c115, i8 %outStream_code_flg, i13 %outStream_code, i8 %inStream_in
+.split:48 %call_ln299 = call void @Loop_VITIS_LOOP_325_2_proc, i8 %num_chunks_loc_channel, i16 %aximm0, i16 %store_array_i, i64 %p_loc_channel, i1 %send_data_cast_loc_channel, i16 %aximm1, i64 %output_length_c, i16 %input_length_temp, i64 %input_c, i64 %send_data_c115, i8 %outStream_code_flg, i13 %outStream_code, i8 %inStream_in
 
 ]]></Node>
 <StgValue><ssdm name="call_ln299"/></StgValue>
@@ -838,8 +838,8 @@
 <port id="64" name="aximm1" dir="2" iftype="4">
 <core>NULL</core><StgValue><ssdm name="aximm1"/></StgValue>
 </port>
-<port id="65" name="in_r" dir="0" iftype="0">
-<core>NULL</core><StgValue><ssdm name="in_r"/></StgValue>
+<port id="65" name="input_r" dir="0" iftype="0">
+<core>NULL</core><StgValue><ssdm name="input_r"/></StgValue>
 </port>
 <port id="66" name="input_length" dir="0" iftype="0">
 <core>NULL</core><StgValue><ssdm name="input_length"/></StgValue>
@@ -875,9 +875,9 @@
 </dataflow>
 <dataflow id="78" from="input_length" to="input_length_read" fromId="66" toId="8">
 </dataflow>
-<dataflow id="79" from="_ssdm_op_Read.s_axilite.i64" to="in_read" fromId="72" toId="9">
+<dataflow id="79" from="_ssdm_op_Read.s_axilite.i64" to="input_read" fromId="72" toId="9">
 </dataflow>
-<dataflow id="80" from="in_r" to="in_read" fromId="65" toId="9">
+<dataflow id="80" from="input_r" to="input_read" fromId="65" toId="9">
 </dataflow>
 <dataflow id="82" from="StgValue_81" to="output_length_c" fromId="81" toId="10">
 </dataflow>
@@ -887,7 +887,7 @@
 </dataflow>
 <dataflow id="85" from="StgValue_81" to="input_length_c" fromId="81" toId="13">
 </dataflow>
-<dataflow id="86" from="StgValue_81" to="in_c" fromId="81" toId="14">
+<dataflow id="86" from="StgValue_81" to="input_c" fromId="81" toId="14">
 </dataflow>
 <dataflow id="87" from="StgValue_81" to="store_array_i" fromId="81" toId="15">
 </dataflow>
@@ -895,7 +895,7 @@
 </dataflow>
 <dataflow id="90" from="krnl_LZW.entry4" to="call_ln299" fromId="89" toId="17">
 </dataflow>
-<dataflow id="91" from="in_read" to="call_ln299" fromId="9" toId="17">
+<dataflow id="91" from="input_read" to="call_ln299" fromId="9" toId="17">
 </dataflow>
 <dataflow id="92" from="input_length_read" to="call_ln299" fromId="8" toId="17">
 </dataflow>
@@ -903,7 +903,7 @@
 </dataflow>
 <dataflow id="94" from="output_length_read" to="call_ln299" fromId="6" toId="17">
 </dataflow>
-<dataflow id="95" from="in_c" to="call_ln299" fromId="14" toId="17">
+<dataflow id="95" from="input_c" to="call_ln299" fromId="14" toId="17">
 </dataflow>
 <dataflow id="96" from="input_length_c" to="call_ln299" fromId="13" toId="17">
 </dataflow>
@@ -955,7 +955,7 @@
 </dataflow>
 <dataflow id="123" from="input_length_temp" to="call_ln299" fromId="16" toId="23">
 </dataflow>
-<dataflow id="124" from="in_c" to="call_ln299" fromId="14" toId="23">
+<dataflow id="124" from="input_c" to="call_ln299" fromId="14" toId="23">
 </dataflow>
 <dataflow id="125" from="send_data_c115" to="call_ln299" fromId="11" toId="23">
 </dataflow>
@@ -1143,7 +1143,7 @@
 </dataflow>
 <dataflow id="239" from="_ssdm_op_SpecInterface" to="specinterface_ln0" fromId="175" toId="34">
 </dataflow>
-<dataflow id="240" from="in_r" to="specinterface_ln0" fromId="65" toId="34">
+<dataflow id="240" from="input_r" to="specinterface_ln0" fromId="65" toId="34">
 </dataflow>
 <dataflow id="242" from="empty_11" to="specinterface_ln0" fromId="241" toId="34">
 </dataflow>
@@ -1177,7 +1177,7 @@
 </dataflow>
 <dataflow id="260" from="_ssdm_op_SpecInterface" to="specinterface_ln0" fromId="175" toId="35">
 </dataflow>
-<dataflow id="261" from="in_r" to="specinterface_ln0" fromId="65" toId="35">
+<dataflow id="261" from="input_r" to="specinterface_ln0" fromId="65" toId="35">
 </dataflow>
 <dataflow id="263" from="empty_15" to="specinterface_ln0" fromId="262" toId="35">
 </dataflow>
@@ -1551,7 +1551,7 @@
 </dataflow>
 <dataflow id="452" from="_ssdm_op_SpecChannel" to="empty_49" fromId="137" toId="46">
 </dataflow>
-<dataflow id="454" from="in_c_str" to="empty_49" fromId="453" toId="46">
+<dataflow id="454" from="input_c_str" to="empty_49" fromId="453" toId="46">
 </dataflow>
 <dataflow id="455" from="StgValue_141" to="empty_49" fromId="141" toId="46">
 </dataflow>
@@ -1563,13 +1563,13 @@
 </dataflow>
 <dataflow id="460" from="StgValue_133" to="empty_49" fromId="133" toId="46">
 </dataflow>
-<dataflow id="461" from="in_c" to="empty_49" fromId="14" toId="46">
+<dataflow id="461" from="input_c" to="empty_49" fromId="14" toId="46">
 </dataflow>
-<dataflow id="462" from="in_c" to="empty_49" fromId="14" toId="46">
+<dataflow id="462" from="input_c" to="empty_49" fromId="14" toId="46">
 </dataflow>
 <dataflow id="463" from="_ssdm_op_SpecInterface" to="specinterface_ln299" fromId="175" toId="47">
 </dataflow>
-<dataflow id="464" from="in_c" to="specinterface_ln299" fromId="14" toId="47">
+<dataflow id="464" from="input_c" to="specinterface_ln299" fromId="14" toId="47">
 </dataflow>
 <dataflow id="466" from="ap_fifo_str" to="specinterface_ln299" fromId="465" toId="47">
 </dataflow>
@@ -1827,7 +1827,7 @@
 </dataflow>
 <dataflow id="597" from="input_length_temp" to="call_ln299" fromId="16" toId="56">
 </dataflow>
-<dataflow id="598" from="in_c" to="call_ln299" fromId="14" toId="56">
+<dataflow id="598" from="input_c" to="call_ln299" fromId="14" toId="56">
 </dataflow>
 <dataflow id="599" from="send_data_c115" to="call_ln299" fromId="11" toId="56">
 </dataflow>

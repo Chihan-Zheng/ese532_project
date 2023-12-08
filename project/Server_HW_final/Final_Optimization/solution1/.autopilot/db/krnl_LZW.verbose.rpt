@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'krnl_LZW'
 ================================================================
-* Date:           Thu Dec  7 19:36:33 2023
+* Date:           Thu Dec  7 21:19:20 2023
 
 * Version:        2020.2 (Build 3064766 on Wed Nov 18 09:12:47 MST 2020)
 * Project:        Final_Optimization
@@ -105,7 +105,7 @@
     |             Name             | BRAM_18K| FF | LUT| URAM| Depth| Bits| Size:D*B|
     +------------------------------+---------+----+----+-----+------+-----+---------+
     |inStream_in_U                 |        0|  99|   0|    -|     2|    8|       16|
-    |in_c_U                        |        0|  99|   0|    -|     3|   64|      192|
+    |input_c_U                     |        0|  99|   0|    -|     3|   64|      192|
     |input_length_c_U              |        0|  99|   0|    -|     2|   64|      128|
     |num_chunks_loc_channel_U      |        0|  99|   0|    -|     2|    8|       16|
     |outStream_code_U              |        0|  99|   0|    -|     2|   13|       26|
@@ -343,15 +343,15 @@ State 1 <SV = 0> <Delay = 3.16>
 ST_1 : Operation 6 [1/1] (1.00ns)   --->   "%output_length_read = read i64 @_ssdm_op_Read.s_axilite.i64, i64 %output_length" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 6 'read' 'output_length_read' <Predicate = true> <Delay = 1.00> <CoreInst = "s_axilite">   --->   Core 122 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
 ST_1 : Operation 7 [1/1] (1.00ns)   --->   "%send_data_read = read i64 @_ssdm_op_Read.s_axilite.i64, i64 %send_data" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 7 'read' 'send_data_read' <Predicate = true> <Delay = 1.00> <CoreInst = "s_axilite">   --->   Core 122 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
 ST_1 : Operation 8 [1/1] (1.00ns)   --->   "%input_length_read = read i64 @_ssdm_op_Read.s_axilite.i64, i64 %input_length" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 8 'read' 'input_length_read' <Predicate = true> <Delay = 1.00> <CoreInst = "s_axilite">   --->   Core 122 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
-ST_1 : Operation 9 [1/1] (1.00ns)   --->   "%in_read = read i64 @_ssdm_op_Read.s_axilite.i64, i64 %in_r" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 9 'read' 'in_read' <Predicate = true> <Delay = 1.00> <CoreInst = "s_axilite">   --->   Core 122 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
+ST_1 : Operation 9 [1/1] (1.00ns)   --->   "%input_read = read i64 @_ssdm_op_Read.s_axilite.i64, i64 %input_r" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 9 'read' 'input_read' <Predicate = true> <Delay = 1.00> <CoreInst = "s_axilite">   --->   Core 122 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
 ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%output_length_c = alloca i64 1" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 10 'alloca' 'output_length_c' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 2.16> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 64> <Depth = 3> <FIFO>
 ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%send_data_c115 = alloca i64 1" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 11 'alloca' 'send_data_c115' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 2.16> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 64> <Depth = 3> <FIFO>
 ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%send_data_c = alloca i64 1" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 12 'alloca' 'send_data_c' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 2.16> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 64> <Depth = 2> <FIFO>
 ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%input_length_c = alloca i64 1" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 13 'alloca' 'input_length_c' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 2.16> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 64> <Depth = 2> <FIFO>
-ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%in_c = alloca i64 1" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 14 'alloca' 'in_c' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 2.16> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 64> <Depth = 3> <FIFO>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%input_c = alloca i64 1" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 14 'alloca' 'input_c' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 2.16> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 64> <Depth = 3> <FIFO>
 ST_1 : Operation 15 [1/1] (1.35ns)   --->   "%store_array_i = alloca i64 1"   --->   Operation 15 'alloca' 'store_array_i' <Predicate = true> <Delay = 1.35>
 ST_1 : Operation 16 [1/1] (0.79ns)   --->   "%input_length_temp = alloca i64 1" [LZW_hybrid_hash_HW.cpp:316]   --->   Operation 16 'alloca' 'input_length_temp' <Predicate = true> <Delay = 0.79>
-ST_1 : Operation 17 [1/1] (2.16ns)   --->   "%call_ln299 = call void @krnl_LZW.entry4, i64 %in_read, i64 %input_length_read, i64 %send_data_read, i64 %output_length_read, i64 %in_c, i64 %input_length_c, i64 %send_data_c, i64 %send_data_c115, i64 %output_length_c" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 17 'call' 'call_ln299' <Predicate = true> <Delay = 2.16> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_1 : Operation 17 [1/1] (2.16ns)   --->   "%call_ln299 = call void @krnl_LZW.entry4, i64 %input_read, i64 %input_length_read, i64 %send_data_read, i64 %output_length_read, i64 %input_c, i64 %input_length_c, i64 %send_data_c, i64 %send_data_c115, i64 %output_length_c" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 17 'call' 'call_ln299' <Predicate = true> <Delay = 2.16> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 
 State 2 <SV = 1> <Delay = 0.00>
 ST_2 : Operation 18 [2/2] (0.00ns)   --->   "%num_chunks_loc_channel = call i8 @Loop_VITIS_LOOP_318_1_proc, i16 %input_length_temp, i64 %input_length_c, i16 %aximm1" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 18 'call' 'num_chunks_loc_channel' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 2.16> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 8> <Depth = 2> <FIFO>
@@ -363,7 +363,7 @@ State 4 <SV = 3> <Delay = 0.00>
 ST_4 : Operation 20 [1/1] (0.00ns)   --->   "%call_ret8 = call i65 @Block_krnl_LZW_.exit1_proc, i64 %send_data_c" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 20 'call' 'call_ret8' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 ST_4 : Operation 21 [1/1] (0.00ns)   --->   "%send_data_cast_loc_channel = extractvalue i65 %call_ret8" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 21 'extractvalue' 'send_data_cast_loc_channel' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 2.16> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 1> <Depth = 2> <FIFO>
 ST_4 : Operation 22 [1/1] (0.00ns)   --->   "%p_loc_channel = extractvalue i65 %call_ret8" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 22 'extractvalue' 'p_loc_channel' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 2.16> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 64> <Depth = 2> <FIFO>
-ST_4 : Operation 23 [2/2] (0.00ns)   --->   "%call_ln299 = call void @Loop_VITIS_LOOP_325_2_proc, i8 %num_chunks_loc_channel, i16 %aximm0, i16 %store_array_i, i64 %p_loc_channel, i1 %send_data_cast_loc_channel, i16 %aximm1, i64 %output_length_c, i16 %input_length_temp, i64 %in_c, i64 %send_data_c115, i8 %outStream_code_flg, i13 %outStream_code, i8 %inStream_in" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 23 'call' 'call_ln299' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_4 : Operation 23 [2/2] (0.00ns)   --->   "%call_ln299 = call void @Loop_VITIS_LOOP_325_2_proc, i8 %num_chunks_loc_channel, i16 %aximm0, i16 %store_array_i, i64 %p_loc_channel, i1 %send_data_cast_loc_channel, i16 %aximm1, i64 %output_length_c, i16 %input_length_temp, i64 %input_c, i64 %send_data_c115, i8 %outStream_code_flg, i13 %outStream_code, i8 %inStream_in" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 23 'call' 'call_ln299' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 
 State 5 <SV = 4> <Delay = 0.00>
 ST_5 : Operation 24 [1/1] (0.00ns)   --->   "%specdataflowpipeline_ln0 = specdataflowpipeline void @_ssdm_op_SpecDataflowPipeline, i32 4294967295, i32 0, void @empty_3"   --->   Operation 24 'specdataflowpipeline' 'specdataflowpipeline_ln0' <Predicate = true> <Delay = 0.00>
@@ -376,8 +376,8 @@ ST_5 : Operation 30 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface 
 ST_5 : Operation 31 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i16 %aximm0"   --->   Operation 31 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
 ST_5 : Operation 32 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %aximm1, void @empty_12, i32 0, i32 0, void @empty_3, i32 64, i32 0, void @empty_1, void @empty_0, void @empty_3, i32 16, i32 16, i32 16, i32 16, void @empty_3, void @empty_3"   --->   Operation 32 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
 ST_5 : Operation 33 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i16 %aximm1"   --->   Operation 33 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
-ST_5 : Operation 34 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %in_r, void @empty_11, i32 0, i32 0, void @empty_3, i32 0, i32 0, void @empty_21, void @empty_18, void @empty_3, i32 0, i32 0, i32 0, i32 0, void @empty_3, void @empty_20"   --->   Operation 34 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_5 : Operation 35 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %in_r, void @empty_15, i32 0, i32 0, void @empty_3, i32 0, i32 0, void @empty_3, void @empty_3, void @empty_3, i32 0, i32 0, i32 0, i32 0, void @empty_3, void @empty_20"   --->   Operation 35 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 34 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %input_r, void @empty_11, i32 0, i32 0, void @empty_3, i32 0, i32 0, void @empty_21, void @empty_18, void @empty_3, i32 0, i32 0, i32 0, i32 0, void @empty_3, void @empty_20"   --->   Operation 34 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 35 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %input_r, void @empty_15, i32 0, i32 0, void @empty_3, i32 0, i32 0, void @empty_3, void @empty_3, void @empty_3, i32 0, i32 0, i32 0, i32 0, void @empty_3, void @empty_20"   --->   Operation 35 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
 ST_5 : Operation 36 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %input_length, void @empty_11, i32 0, i32 0, void @empty_3, i32 0, i32 0, void @empty_21, void @empty_8, void @empty_3, i32 0, i32 0, i32 0, i32 0, void @empty_3, void @empty_20"   --->   Operation 36 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
 ST_5 : Operation 37 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %input_length, void @empty_15, i32 0, i32 0, void @empty_3, i32 0, i32 0, void @empty_3, void @empty_3, void @empty_3, i32 0, i32 0, i32 0, i32 0, void @empty_3, void @empty_20"   --->   Operation 37 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
 ST_5 : Operation 38 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %send_data, void @empty_11, i32 0, i32 0, void @empty_3, i32 0, i32 0, void @empty_21, void @empty_7, void @empty_3, i32 0, i32 0, i32 0, i32 0, void @empty_3, void @empty_20"   --->   Operation 38 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
@@ -388,8 +388,8 @@ ST_5 : Operation 42 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface 
 ST_5 : Operation 43 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i8 %inStream_in, void @empty_6, i32 0, i32 0, void @empty_3, i32 0, i32 0, void @empty_3, void @empty_3, void @empty_3, i32 0, i32 0, i32 0, i32 0, void @empty_3, void @empty_3"   --->   Operation 43 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
 ST_5 : Operation 44 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i13 %outStream_code, void @empty_6, i32 0, i32 0, void @empty_3, i32 0, i32 0, void @empty_3, void @empty_3, void @empty_3, i32 0, i32 0, i32 0, i32 0, void @empty_3, void @empty_3"   --->   Operation 44 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
 ST_5 : Operation 45 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i8 %outStream_code_flg, void @empty_6, i32 0, i32 0, void @empty_3, i32 0, i32 0, void @empty_3, void @empty_3, void @empty_3, i32 0, i32 0, i32 0, i32 0, void @empty_3, void @empty_3"   --->   Operation 45 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_5 : Operation 46 [1/1] (0.00ns)   --->   "%empty_49 = specchannel i32 @_ssdm_op_SpecChannel, void @in_c_str, i32 1, void @p_str, void @p_str, i32 3, i32 0, i64 %in_c, i64 %in_c" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 46 'specchannel' 'empty_49' <Predicate = true> <Delay = 0.00>
-ST_5 : Operation 47 [1/1] (0.00ns)   --->   "%specinterface_ln299 = specinterface void @_ssdm_op_SpecInterface, i64 %in_c, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 47 'specinterface' 'specinterface_ln299' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 46 [1/1] (0.00ns)   --->   "%empty_49 = specchannel i32 @_ssdm_op_SpecChannel, void @input_c_str, i32 1, void @p_str, void @p_str, i32 3, i32 0, i64 %input_c, i64 %input_c" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 46 'specchannel' 'empty_49' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 47 [1/1] (0.00ns)   --->   "%specinterface_ln299 = specinterface void @_ssdm_op_SpecInterface, i64 %input_c, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 47 'specinterface' 'specinterface_ln299' <Predicate = true> <Delay = 0.00>
 ST_5 : Operation 48 [1/1] (0.00ns)   --->   "%empty_50 = specchannel i32 @_ssdm_op_SpecChannel, void @input_length_c_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i64 %input_length_c, i64 %input_length_c" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 48 'specchannel' 'empty_50' <Predicate = true> <Delay = 0.00>
 ST_5 : Operation 49 [1/1] (0.00ns)   --->   "%specinterface_ln299 = specinterface void @_ssdm_op_SpecInterface, i64 %input_length_c, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 49 'specinterface' 'specinterface_ln299' <Predicate = true> <Delay = 0.00>
 ST_5 : Operation 50 [1/1] (0.00ns)   --->   "%empty_51 = specchannel i32 @_ssdm_op_SpecChannel, void @send_data_c_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i64 %send_data_c, i64 %send_data_c" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 50 'specchannel' 'empty_51' <Predicate = true> <Delay = 0.00>
@@ -398,7 +398,7 @@ ST_5 : Operation 52 [1/1] (0.00ns)   --->   "%empty_52 = specchannel i32 @_ssdm_
 ST_5 : Operation 53 [1/1] (0.00ns)   --->   "%specinterface_ln299 = specinterface void @_ssdm_op_SpecInterface, i64 %send_data_c115, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 53 'specinterface' 'specinterface_ln299' <Predicate = true> <Delay = 0.00>
 ST_5 : Operation 54 [1/1] (0.00ns)   --->   "%empty_53 = specchannel i32 @_ssdm_op_SpecChannel, void @output_length_c_str, i32 1, void @p_str, void @p_str, i32 3, i32 0, i64 %output_length_c, i64 %output_length_c" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 54 'specchannel' 'empty_53' <Predicate = true> <Delay = 0.00>
 ST_5 : Operation 55 [1/1] (0.00ns)   --->   "%specinterface_ln299 = specinterface void @_ssdm_op_SpecInterface, i64 %output_length_c, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 55 'specinterface' 'specinterface_ln299' <Predicate = true> <Delay = 0.00>
-ST_5 : Operation 56 [1/2] (0.00ns)   --->   "%call_ln299 = call void @Loop_VITIS_LOOP_325_2_proc, i8 %num_chunks_loc_channel, i16 %aximm0, i16 %store_array_i, i64 %p_loc_channel, i1 %send_data_cast_loc_channel, i16 %aximm1, i64 %output_length_c, i16 %input_length_temp, i64 %in_c, i64 %send_data_c115, i8 %outStream_code_flg, i13 %outStream_code, i8 %inStream_in" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 56 'call' 'call_ln299' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_5 : Operation 56 [1/2] (0.00ns)   --->   "%call_ln299 = call void @Loop_VITIS_LOOP_325_2_proc, i8 %num_chunks_loc_channel, i16 %aximm0, i16 %store_array_i, i64 %p_loc_channel, i1 %send_data_cast_loc_channel, i16 %aximm1, i64 %output_length_c, i16 %input_length_temp, i64 %input_c, i64 %send_data_c115, i8 %outStream_code_flg, i13 %outStream_code, i8 %inStream_in" [LZW_hybrid_hash_HW.cpp:299]   --->   Operation 56 'call' 'call_ln299' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 ST_5 : Operation 57 [1/1] (0.00ns)   --->   "%ret_ln333 = ret" [LZW_hybrid_hash_HW.cpp:333]   --->   Operation 57 'ret' 'ret_ln333' <Predicate = true> <Delay = 0.00>
 
 
@@ -415,7 +415,7 @@ STG Binding:
 Port [ Return ] is wired: 1; IO mode=ap_ctrl_chain:ce=0
 Port [ aximm0]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=2; type=4; pingpong=0; private_global=0; IO mode=m_axi:ce=0
 Port [ aximm1]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=2; type=4; pingpong=0; private_global=0; IO mode=m_axi:ce=0
-Port [ in_r]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ input_r]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
 Port [ input_length]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
 Port [ send_data]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
 Port [ output_length]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
@@ -431,12 +431,12 @@ Port [ inStream_in]:  wired=0; compound=1; hidden=1; nouse=0; global=1; static=1
 output_length_read         (read                ) [ 000000]
 send_data_read             (read                ) [ 000000]
 input_length_read          (read                ) [ 000000]
-in_read                    (read                ) [ 000000]
+input_read                 (read                ) [ 000000]
 output_length_c            (alloca              ) [ 011111]
 send_data_c115             (alloca              ) [ 011111]
 send_data_c                (alloca              ) [ 011111]
 input_length_c             (alloca              ) [ 011111]
-in_c                       (alloca              ) [ 011111]
+input_c                    (alloca              ) [ 011111]
 store_array_i              (alloca              ) [ 001111]
 input_length_temp          (alloca              ) [ 001111]
 call_ln299                 (call                ) [ 000000]
@@ -501,12 +501,12 @@ ret_ln333                  (ret                 ) [ 000000]
 </bind>
 </comp>
 
-<comp id="4" class="1000" name="in_r">
+<comp id="4" class="1000" name="input_r">
 <pin_list>
 <pin id="5" dir="1" index="0" bw="1" slack="0"/>
 </pin_list>
 <bind>
-<StgValue><ssdm name="in_r"/></StgValue>
+<StgValue><ssdm name="input_r"/></StgValue>
 </bind>
 </comp>
 
@@ -902,7 +902,7 @@ ret_ln333                  (ret                 ) [ 000000]
 <pin id="93" dir="1" index="0" bw="1" slack="2147483647"/>
 </pin_list>
 <bind>
-<StgValue><ssdm name="in_c_str"/></StgValue>
+<StgValue><ssdm name="input_c_str"/></StgValue>
 </bind>
 </comp>
 
@@ -1004,14 +1004,14 @@ ret_ln333                  (ret                 ) [ 000000]
 </bind>
 </comp>
 
-<comp id="122" class="1004" name="in_c_fu_122">
+<comp id="122" class="1004" name="input_c_fu_122">
 <pin_list>
 <pin id="123" dir="0" index="0" bw="1" slack="0"/>
 <pin id="124" dir="1" index="1" bw="64" slack="0"/>
 </pin_list>
 <bind>
 <opcode="alloca(26) " fcode="alloca"/>
-<opset="in_c/1 "/>
+<opset="input_c/1 "/>
 </bind>
 </comp>
 
@@ -1073,7 +1073,7 @@ ret_ln333                  (ret                 ) [ 000000]
 </bind>
 </comp>
 
-<comp id="152" class="1004" name="in_read_read_fu_152">
+<comp id="152" class="1004" name="input_read_read_fu_152">
 <pin_list>
 <pin id="153" dir="0" index="0" bw="64" slack="0"/>
 <pin id="154" dir="0" index="1" bw="64" slack="0"/>
@@ -1081,7 +1081,7 @@ ret_ln333                  (ret                 ) [ 000000]
 </pin_list>
 <bind>
 <opcode="read(1150) " fcode="read"/>
-<opset="in_read/1 "/>
+<opset="input_read/1 "/>
 </bind>
 </comp>
 
@@ -1217,13 +1217,13 @@ ret_ln333                  (ret                 ) [ 000000]
 </bind>
 </comp>
 
-<comp id="244" class="1005" name="in_c_reg_244">
+<comp id="244" class="1005" name="input_c_reg_244">
 <pin_list>
 <pin id="245" dir="0" index="0" bw="64" slack="0"/>
 <pin id="246" dir="1" index="1" bw="64" slack="0"/>
 </pin_list>
 <bind>
-<opset="in_c "/>
+<opset="input_c "/>
 </bind>
 </comp>
 
@@ -1383,7 +1383,7 @@ ret_ln333                  (ret                 ) [ 000000]
  - Input state : 
 	Port: krnl_LZW : aximm0 | {4 5 }
 	Port: krnl_LZW : aximm1 | {2 3 }
-	Port: krnl_LZW : in_r | {1 }
+	Port: krnl_LZW : input_r | {1 }
 	Port: krnl_LZW : input_length | {1 }
 	Port: krnl_LZW : send_data | {1 }
 	Port: krnl_LZW : output_length | {1 }
@@ -1418,7 +1418,7 @@ ret_ln333                  (ret                 ) [ 000000]
 |          |       output_length_read_read_fu_134       |    0    |    0    |    0    |    0    |
 |   read   |         send_data_read_read_fu_140         |    0    |    0    |    0    |    0    |
 |          |        input_length_read_read_fu_146       |    0    |    0    |    0    |    0    |
-|          |             in_read_read_fu_152            |    0    |    0    |    0    |    0    |
+|          |           input_read_read_fu_152           |    0    |    0    |    0    |    0    |
 |----------|--------------------------------------------|---------|---------|---------|---------|
 |extractvalue|      send_data_cast_loc_channel_fu_210     |    0    |    0    |    0    |    0    |
 |          |            p_loc_channel_fu_215            |    0    |    0    |    0    |    0    |
@@ -1440,7 +1440,7 @@ Memories:
 +----------------------------------+--------+
 |                                  |   FF   |
 +----------------------------------+--------+
-|           in_c_reg_244           |   64   |
+|          input_c_reg_244         |   64   |
 |      input_length_c_reg_238      |   64   |
 |  num_chunks_loc_channel_reg_250  |    8   |
 |      output_length_c_reg_220     |   64   |

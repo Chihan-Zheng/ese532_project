@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'krnl_LZW_entry4'
 ================================================================
-* Date:           Thu Dec  7 19:36:30 2023
+* Date:           Thu Dec  7 21:19:15 2023
 
 * Version:        2020.2 (Build 3064766 on Wed Nov 18 09:12:47 MST 2020)
 * Project:        Final_Optimization
@@ -90,8 +90,8 @@
     |           Name          | LUT| Input Size| Bits| Total Bits|
     +-------------------------+----+-----------+-----+-----------+
     |ap_done                  |   9|          2|    1|          2|
-    |in_out_blk_n             |   9|          2|    1|          2|
     |input_length_out_blk_n   |   9|          2|    1|          2|
+    |input_out_blk_n          |   9|          2|    1|          2|
     |output_length_out_blk_n  |   9|          2|    1|          2|
     |real_start               |   9|          2|    1|          2|
     |send_data_out1_blk_n     |   9|          2|    1|          2|
@@ -130,13 +130,13 @@
 |ap_ready                  |  out|    1|  ap_ctrl_hs|    krnl_LZW.entry4|  return value|
 |start_out                 |  out|    1|  ap_ctrl_hs|    krnl_LZW.entry4|  return value|
 |start_write               |  out|    1|  ap_ctrl_hs|    krnl_LZW.entry4|  return value|
-|in_r                      |   in|   64|     ap_none|               in_r|        scalar|
+|input_r                   |   in|   64|     ap_none|            input_r|        scalar|
 |input_length              |   in|   64|     ap_none|       input_length|        scalar|
 |send_data                 |   in|   64|     ap_none|          send_data|        scalar|
 |output_length             |   in|   64|     ap_none|      output_length|        scalar|
-|in_out_din                |  out|   64|     ap_fifo|             in_out|       pointer|
-|in_out_full_n             |   in|    1|     ap_fifo|             in_out|       pointer|
-|in_out_write              |  out|    1|     ap_fifo|             in_out|       pointer|
+|input_out_din             |  out|   64|     ap_fifo|          input_out|       pointer|
+|input_out_full_n          |   in|    1|     ap_fifo|          input_out|       pointer|
+|input_out_write           |  out|    1|     ap_fifo|          input_out|       pointer|
 |input_length_out_din      |  out|   64|     ap_fifo|   input_length_out|       pointer|
 |input_length_out_full_n   |   in|    1|     ap_fifo|   input_length_out|       pointer|
 |input_length_out_write    |  out|    1|     ap_fifo|   input_length_out|       pointer|

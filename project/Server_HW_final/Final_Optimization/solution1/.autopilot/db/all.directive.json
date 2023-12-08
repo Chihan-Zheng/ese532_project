@@ -48,6 +48,18 @@
                 "value": "krnl_LZW"
               }]
           }
+        },
+        {
+          "functionName": "krnl_LZW",
+          "label": "",
+          "functionLabel": "",
+          "pragma": {
+            "name": "TOP",
+            "option": [{
+                "name": "name",
+                "value": "krnl_LZW"
+              }]
+          }
         }
       ]
     }]}

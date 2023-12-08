@@ -21,13 +21,13 @@ port (
     ap_ready : OUT STD_LOGIC;
     start_out : OUT STD_LOGIC;
     start_write : OUT STD_LOGIC;
-    in_r : IN STD_LOGIC_VECTOR (63 downto 0);
+    input_r : IN STD_LOGIC_VECTOR (63 downto 0);
     input_length : IN STD_LOGIC_VECTOR (63 downto 0);
     send_data : IN STD_LOGIC_VECTOR (63 downto 0);
     output_length : IN STD_LOGIC_VECTOR (63 downto 0);
-    in_out_din : OUT STD_LOGIC_VECTOR (63 downto 0);
-    in_out_full_n : IN STD_LOGIC;
-    in_out_write : OUT STD_LOGIC;
+    input_out_din : OUT STD_LOGIC_VECTOR (63 downto 0);
+    input_out_full_n : IN STD_LOGIC;
+    input_out_write : OUT STD_LOGIC;
     input_length_out_din : OUT STD_LOGIC_VECTOR (63 downto 0);
     input_length_out_full_n : IN STD_LOGIC;
     input_length_out_write : OUT STD_LOGIC;
@@ -60,7 +60,7 @@ attribute shreg_extract : string;
     signal ap_CS_fsm_state1 : STD_LOGIC;
     attribute fsm_encoding of ap_CS_fsm_state1 : signal is "none";
     signal internal_ap_ready : STD_LOGIC;
-    signal in_out_blk_n : STD_LOGIC;
+    signal input_out_blk_n : STD_LOGIC;
     signal input_length_out_blk_n : STD_LOGIC;
     signal send_data_out_blk_n : STD_LOGIC;
     signal send_data_out1_blk_n : STD_LOGIC;
@@ -95,7 +95,7 @@ begin
             else
                 if ((ap_continue = ap_const_logic_1)) then 
                     ap_done_reg <= ap_const_logic_0;
-                elsif ((not(((real_start = ap_const_logic_0) or (output_length_out_full_n = ap_const_logic_0) or (send_data_out1_full_n = ap_const_logic_0) or (send_data_out_full_n = ap_const_logic_0) or (input_length_out_full_n = ap_const_logic_0) or (in_out_full_n = ap_const_logic_0) or (ap_done_reg = ap_const_logic_1))) and (ap_const_logic_1 = ap_CS_fsm_state1))) then 
+                elsif ((not(((real_start = ap_const_logic_0) or (output_length_out_full_n = ap_const_logic_0) or (send_data_out1_full_n = ap_const_logic_0) or (send_data_out_full_n = ap_const_logic_0) or (input_length_out_full_n = ap_const_logic_0) or (input_out_full_n = ap_const_logic_0) or (ap_done_reg = ap_const_logic_1))) and (ap_const_logic_1 = ap_CS_fsm_state1))) then 
                     ap_done_reg <= ap_const_logic_1;
                 end if; 
             end if;
@@ -119,7 +119,7 @@ begin
     end process;
 
 
-    ap_NS_fsm_assign_proc : process (real_start, ap_done_reg, ap_CS_fsm, ap_CS_fsm_state1, in_out_full_n, input_length_out_full_n, send_data_out_full_n, send_data_out1_full_n, output_length_out_full_n)
+    ap_NS_fsm_assign_proc : process (real_start, ap_done_reg, ap_CS_fsm, ap_CS_fsm_state1, input_out_full_n, input_length_out_full_n, send_data_out_full_n, send_data_out1_full_n, output_length_out_full_n)
     begin
         case ap_CS_fsm is
             when ap_ST_fsm_state1 => 
@@ -130,15 +130,15 @@ begin
     end process;
     ap_CS_fsm_state1 <= ap_CS_fsm(0);
 
-    ap_block_state1_assign_proc : process(real_start, ap_done_reg, in_out_full_n, input_length_out_full_n, send_data_out_full_n, send_data_out1_full_n, output_length_out_full_n)
+    ap_block_state1_assign_proc : process(real_start, ap_done_reg, input_out_full_n, input_length_out_full_n, send_data_out_full_n, send_data_out1_full_n, output_length_out_full_n)
     begin
-                ap_block_state1 <= ((real_start = ap_const_logic_0) or (output_length_out_full_n = ap_const_logic_0) or (send_data_out1_full_n = ap_const_logic_0) or (send_data_out_full_n = ap_const_logic_0) or (input_length_out_full_n = ap_const_logic_0) or (in_out_full_n = ap_const_logic_0) or (ap_done_reg = ap_const_logic_1));
+                ap_block_state1 <= ((real_start = ap_const_logic_0) or (output_length_out_full_n = ap_const_logic_0) or (send_data_out1_full_n = ap_const_logic_0) or (send_data_out_full_n = ap_const_logic_0) or (input_length_out_full_n = ap_const_logic_0) or (input_out_full_n = ap_const_logic_0) or (ap_done_reg = ap_const_logic_1));
     end process;
 
 
-    ap_done_assign_proc : process(real_start, ap_done_reg, ap_CS_fsm_state1, in_out_full_n, input_length_out_full_n, send_data_out_full_n, send_data_out1_full_n, output_length_out_full_n)
+    ap_done_assign_proc : process(real_start, ap_done_reg, ap_CS_fsm_state1, input_out_full_n, input_length_out_full_n, send_data_out_full_n, send_data_out1_full_n, output_length_out_full_n)
     begin
-        if ((not(((real_start = ap_const_logic_0) or (output_length_out_full_n = ap_const_logic_0) or (send_data_out1_full_n = ap_const_logic_0) or (send_data_out_full_n = ap_const_logic_0) or (input_length_out_full_n = ap_const_logic_0) or (in_out_full_n = ap_const_logic_0) or (ap_done_reg = ap_const_logic_1))) and (ap_const_logic_1 = ap_CS_fsm_state1))) then 
+        if ((not(((real_start = ap_const_logic_0) or (output_length_out_full_n = ap_const_logic_0) or (send_data_out1_full_n = ap_const_logic_0) or (send_data_out_full_n = ap_const_logic_0) or (input_length_out_full_n = ap_const_logic_0) or (input_out_full_n = ap_const_logic_0) or (ap_done_reg = ap_const_logic_1))) and (ap_const_logic_1 = ap_CS_fsm_state1))) then 
             ap_done <= ap_const_logic_1;
         else 
             ap_done <= ap_done_reg;
@@ -157,27 +157,6 @@ begin
 
     ap_ready <= internal_ap_ready;
 
-    in_out_blk_n_assign_proc : process(real_start, ap_done_reg, ap_CS_fsm_state1, in_out_full_n)
-    begin
-        if ((not(((real_start = ap_const_logic_0) or (ap_done_reg = ap_const_logic_1))) and (ap_const_logic_1 = ap_CS_fsm_state1))) then 
-            in_out_blk_n <= in_out_full_n;
-        else 
-            in_out_blk_n <= ap_const_logic_1;
-        end if; 
-    end process;
-
-    in_out_din <= in_r;
-
-    in_out_write_assign_proc : process(real_start, ap_done_reg, ap_CS_fsm_state1, in_out_full_n, input_length_out_full_n, send_data_out_full_n, send_data_out1_full_n, output_length_out_full_n)
-    begin
-        if ((not(((real_start = ap_const_logic_0) or (output_length_out_full_n = ap_const_logic_0) or (send_data_out1_full_n = ap_const_logic_0) or (send_data_out_full_n = ap_const_logic_0) or (input_length_out_full_n = ap_const_logic_0) or (in_out_full_n = ap_const_logic_0) or (ap_done_reg = ap_const_logic_1))) and (ap_const_logic_1 = ap_CS_fsm_state1))) then 
-            in_out_write <= ap_const_logic_1;
-        else 
-            in_out_write <= ap_const_logic_0;
-        end if; 
-    end process;
-
-
     input_length_out_blk_n_assign_proc : process(real_start, ap_done_reg, ap_CS_fsm_state1, input_length_out_full_n)
     begin
         if ((not(((real_start = ap_const_logic_0) or (ap_done_reg = ap_const_logic_1))) and (ap_const_logic_1 = ap_CS_fsm_state1))) then 
@@ -189,9 +168,9 @@ begin
 
     input_length_out_din <= input_length;
 
-    input_length_out_write_assign_proc : process(real_start, ap_done_reg, ap_CS_fsm_state1, in_out_full_n, input_length_out_full_n, send_data_out_full_n, send_data_out1_full_n, output_length_out_full_n)
+    input_length_out_write_assign_proc : process(real_start, ap_done_reg, ap_CS_fsm_state1, input_out_full_n, input_length_out_full_n, send_data_out_full_n, send_data_out1_full_n, output_length_out_full_n)
     begin
-        if ((not(((real_start = ap_const_logic_0) or (output_length_out_full_n = ap_const_logic_0) or (send_data_out1_full_n = ap_const_logic_0) or (send_data_out_full_n = ap_const_logic_0) or (input_length_out_full_n = ap_const_logic_0) or (in_out_full_n = ap_const_logic_0) or (ap_done_reg = ap_const_logic_1))) and (ap_const_logic_1 = ap_CS_fsm_state1))) then 
+        if ((not(((real_start = ap_const_logic_0) or (output_length_out_full_n = ap_const_logic_0) or (send_data_out1_full_n = ap_const_logic_0) or (send_data_out_full_n = ap_const_logic_0) or (input_length_out_full_n = ap_const_logic_0) or (input_out_full_n = ap_const_logic_0) or (ap_done_reg = ap_const_logic_1))) and (ap_const_logic_1 = ap_CS_fsm_state1))) then 
             input_length_out_write <= ap_const_logic_1;
         else 
             input_length_out_write <= ap_const_logic_0;
@@ -199,9 +178,30 @@ begin
     end process;
 
 
-    internal_ap_ready_assign_proc : process(real_start, ap_done_reg, ap_CS_fsm_state1, in_out_full_n, input_length_out_full_n, send_data_out_full_n, send_data_out1_full_n, output_length_out_full_n)
+    input_out_blk_n_assign_proc : process(real_start, ap_done_reg, ap_CS_fsm_state1, input_out_full_n)
     begin
-        if ((not(((real_start = ap_const_logic_0) or (output_length_out_full_n = ap_const_logic_0) or (send_data_out1_full_n = ap_const_logic_0) or (send_data_out_full_n = ap_const_logic_0) or (input_length_out_full_n = ap_const_logic_0) or (in_out_full_n = ap_const_logic_0) or (ap_done_reg = ap_const_logic_1))) and (ap_const_logic_1 = ap_CS_fsm_state1))) then 
+        if ((not(((real_start = ap_const_logic_0) or (ap_done_reg = ap_const_logic_1))) and (ap_const_logic_1 = ap_CS_fsm_state1))) then 
+            input_out_blk_n <= input_out_full_n;
+        else 
+            input_out_blk_n <= ap_const_logic_1;
+        end if; 
+    end process;
+
+    input_out_din <= input_r;
+
+    input_out_write_assign_proc : process(real_start, ap_done_reg, ap_CS_fsm_state1, input_out_full_n, input_length_out_full_n, send_data_out_full_n, send_data_out1_full_n, output_length_out_full_n)
+    begin
+        if ((not(((real_start = ap_const_logic_0) or (output_length_out_full_n = ap_const_logic_0) or (send_data_out1_full_n = ap_const_logic_0) or (send_data_out_full_n = ap_const_logic_0) or (input_length_out_full_n = ap_const_logic_0) or (input_out_full_n = ap_const_logic_0) or (ap_done_reg = ap_const_logic_1))) and (ap_const_logic_1 = ap_CS_fsm_state1))) then 
+            input_out_write <= ap_const_logic_1;
+        else 
+            input_out_write <= ap_const_logic_0;
+        end if; 
+    end process;
+
+
+    internal_ap_ready_assign_proc : process(real_start, ap_done_reg, ap_CS_fsm_state1, input_out_full_n, input_length_out_full_n, send_data_out_full_n, send_data_out1_full_n, output_length_out_full_n)
+    begin
+        if ((not(((real_start = ap_const_logic_0) or (output_length_out_full_n = ap_const_logic_0) or (send_data_out1_full_n = ap_const_logic_0) or (send_data_out_full_n = ap_const_logic_0) or (input_length_out_full_n = ap_const_logic_0) or (input_out_full_n = ap_const_logic_0) or (ap_done_reg = ap_const_logic_1))) and (ap_const_logic_1 = ap_CS_fsm_state1))) then 
             internal_ap_ready <= ap_const_logic_1;
         else 
             internal_ap_ready <= ap_const_logic_0;
@@ -220,9 +220,9 @@ begin
 
     output_length_out_din <= output_length;
 
-    output_length_out_write_assign_proc : process(real_start, ap_done_reg, ap_CS_fsm_state1, in_out_full_n, input_length_out_full_n, send_data_out_full_n, send_data_out1_full_n, output_length_out_full_n)
+    output_length_out_write_assign_proc : process(real_start, ap_done_reg, ap_CS_fsm_state1, input_out_full_n, input_length_out_full_n, send_data_out_full_n, send_data_out1_full_n, output_length_out_full_n)
     begin
-        if ((not(((real_start = ap_const_logic_0) or (output_length_out_full_n = ap_const_logic_0) or (send_data_out1_full_n = ap_const_logic_0) or (send_data_out_full_n = ap_const_logic_0) or (input_length_out_full_n = ap_const_logic_0) or (in_out_full_n = ap_const_logic_0) or (ap_done_reg = ap_const_logic_1))) and (ap_const_logic_1 = ap_CS_fsm_state1))) then 
+        if ((not(((real_start = ap_const_logic_0) or (output_length_out_full_n = ap_const_logic_0) or (send_data_out1_full_n = ap_const_logic_0) or (send_data_out_full_n = ap_const_logic_0) or (input_length_out_full_n = ap_const_logic_0) or (input_out_full_n = ap_const_logic_0) or (ap_done_reg = ap_const_logic_1))) and (ap_const_logic_1 = ap_CS_fsm_state1))) then 
             output_length_out_write <= ap_const_logic_1;
         else 
             output_length_out_write <= ap_const_logic_0;
@@ -251,9 +251,9 @@ begin
 
     send_data_out1_din <= send_data;
 
-    send_data_out1_write_assign_proc : process(real_start, ap_done_reg, ap_CS_fsm_state1, in_out_full_n, input_length_out_full_n, send_data_out_full_n, send_data_out1_full_n, output_length_out_full_n)
+    send_data_out1_write_assign_proc : process(real_start, ap_done_reg, ap_CS_fsm_state1, input_out_full_n, input_length_out_full_n, send_data_out_full_n, send_data_out1_full_n, output_length_out_full_n)
     begin
-        if ((not(((real_start = ap_const_logic_0) or (output_length_out_full_n = ap_const_logic_0) or (send_data_out1_full_n = ap_const_logic_0) or (send_data_out_full_n = ap_const_logic_0) or (input_length_out_full_n = ap_const_logic_0) or (in_out_full_n = ap_const_logic_0) or (ap_done_reg = ap_const_logic_1))) and (ap_const_logic_1 = ap_CS_fsm_state1))) then 
+        if ((not(((real_start = ap_const_logic_0) or (output_length_out_full_n = ap_const_logic_0) or (send_data_out1_full_n = ap_const_logic_0) or (send_data_out_full_n = ap_const_logic_0) or (input_length_out_full_n = ap_const_logic_0) or (input_out_full_n = ap_const_logic_0) or (ap_done_reg = ap_const_logic_1))) and (ap_const_logic_1 = ap_CS_fsm_state1))) then 
             send_data_out1_write <= ap_const_logic_1;
         else 
             send_data_out1_write <= ap_const_logic_0;
@@ -272,9 +272,9 @@ begin
 
     send_data_out_din <= send_data;
 
-    send_data_out_write_assign_proc : process(real_start, ap_done_reg, ap_CS_fsm_state1, in_out_full_n, input_length_out_full_n, send_data_out_full_n, send_data_out1_full_n, output_length_out_full_n)
+    send_data_out_write_assign_proc : process(real_start, ap_done_reg, ap_CS_fsm_state1, input_out_full_n, input_length_out_full_n, send_data_out_full_n, send_data_out1_full_n, output_length_out_full_n)
     begin
-        if ((not(((real_start = ap_const_logic_0) or (output_length_out_full_n = ap_const_logic_0) or (send_data_out1_full_n = ap_const_logic_0) or (send_data_out_full_n = ap_const_logic_0) or (input_length_out_full_n = ap_const_logic_0) or (in_out_full_n = ap_const_logic_0) or (ap_done_reg = ap_const_logic_1))) and (ap_const_logic_1 = ap_CS_fsm_state1))) then 
+        if ((not(((real_start = ap_const_logic_0) or (output_length_out_full_n = ap_const_logic_0) or (send_data_out1_full_n = ap_const_logic_0) or (send_data_out_full_n = ap_const_logic_0) or (input_length_out_full_n = ap_const_logic_0) or (input_out_full_n = ap_const_logic_0) or (ap_done_reg = ap_const_logic_1))) and (ap_const_logic_1 = ap_CS_fsm_state1))) then 
             send_data_out_write <= ap_const_logic_1;
         else 
             send_data_out_write <= ap_const_logic_0;

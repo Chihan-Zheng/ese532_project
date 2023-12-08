@@ -59647,7 +59647,7 @@ static void write_result(uint16_t in_length, hls::stream<ap_uint<13>>& outStream
 }
 
 
-__attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *in, uint16_t *input_length, uint16_t *send_data, uint16_t *output_length)
+__attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *input, uint16_t *input_length, uint16_t *send_data, uint16_t *output_length)
 {
 #pragma HLS TOP name=krnl_LZW
 # 300 "LZW_hybrid_hash_HW.cpp"
@@ -59655,7 +59655,7 @@ __attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *in, uint16_t *inp
     static hls::stream<char> inStream_in("in_stream");
     static hls::stream<ap_uint<13>> outStream_code("outStream_code");
     static hls::stream<char> outStream_code_flg("outStream_code_flg");
-#pragma HLS interface m_axi port=in bundle=aximm0
+#pragma HLS interface m_axi port=input bundle=aximm0
 #pragma HLS interface m_axi port=input_length bundle=aximm1
 #pragma HLS interface m_axi port=send_data bundle=aximm1
 #pragma HLS interface m_axi port=output_length bundle=aximm0
@@ -59677,7 +59677,7 @@ __attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *in, uint16_t *inp
     }
 
     VITIS_LOOP_325_2: for (int i = 0; i < num_chunks; i++){
-        read_input((in + input_offset), input_length_temp[i], inStream_in);
+        read_input((input + input_offset), input_length_temp[i], inStream_in);
         compute_LZW(inStream_in, input_length_temp[i], outStream_code, outStream_code_flg);
         write_result(input_length_temp[i], outStream_code, outStream_code_flg, (send_data + output_offset), &output_length[i]);
 

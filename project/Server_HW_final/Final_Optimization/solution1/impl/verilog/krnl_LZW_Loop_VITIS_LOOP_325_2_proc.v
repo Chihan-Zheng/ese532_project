@@ -124,9 +124,9 @@ module krnl_LZW_Loop_VITIS_LOOP_325_2_proc (
         input_length_temp_address0,
         input_length_temp_ce0,
         input_length_temp_q0,
-        in_r_dout,
-        in_r_empty_n,
-        in_r_read,
+        input_r_dout,
+        input_r_empty_n,
+        input_r_read,
         send_data_dout,
         send_data_empty_n,
         send_data_read,
@@ -488,9 +488,9 @@ output   output_length_read;
 output  [1:0] input_length_temp_address0;
 output   input_length_temp_ce0;
 input  [15:0] input_length_temp_q0;
-input  [63:0] in_r_dout;
-input   in_r_empty_n;
-output   in_r_read;
+input  [63:0] input_r_dout;
+input   input_r_empty_n;
+output   input_r_read;
 input  [63:0] send_data_dout;
 input   send_data_empty_n;
 output   send_data_read;
@@ -538,7 +538,7 @@ reg[1:0] m_axi_aximm1_WSTRB;
 reg m_axi_aximm1_BREADY;
 reg output_length_read;
 reg input_length_temp_ce0;
-reg in_r_read;
+reg input_r_read;
 reg send_data_read;
 reg outStream_code_flg_read;
 reg outStream_code_flg_write;
@@ -589,7 +589,7 @@ wire    ap_block_pp3_stage0;
 reg   [0:0] exitcond155_i_i_reg_1867;
 reg   [0:0] exitcond155_i_i_reg_1867_pp3_iter1_reg;
 reg    output_length_blk_n;
-reg    in_r_blk_n;
+reg    input_r_blk_n;
 reg    send_data_blk_n;
 reg    outStream_code_flg_i_blk_n;
 wire    ap_CS_fsm_state79;
@@ -748,7 +748,7 @@ reg   [1:0] loop_index12_i_i_reg_578;
 reg   [14:0] loop_index_i_i_reg_589;
 reg   [0:0] residual_loop_index_i_i_reg_600;
 reg   [63:0] output_length_read_reg_1599;
-reg   [63:0] in_read_reg_1604;
+reg   [63:0] input_read_reg_1604;
 reg   [63:0] send_data_read_reg_1609;
 wire   [0:0] trunc_ln43_fu_661_p1;
 reg   [0:0] trunc_ln43_reg_1614;
@@ -3121,7 +3121,7 @@ always @ (posedge ap_clk) begin
 end
 
 always @ (posedge ap_clk) begin
-    if ((~((send_data_empty_n == 1'b0) | (in_r_empty_n == 1'b0) | (output_length_empty_n == 1'b0) | (ap_done_reg == 1'b1) | (ap_start == 1'b0)) & (1'b1 == ap_CS_fsm_state1))) begin
+    if ((~((send_data_empty_n == 1'b0) | (input_r_empty_n == 1'b0) | (output_length_empty_n == 1'b0) | (ap_done_reg == 1'b1) | (ap_start == 1'b0)) & (1'b1 == ap_CS_fsm_state1))) begin
         i_reg_453 <= 7'd0;
     end else if (((m_axi_aximm0_BVALID == 1'b1) & (1'b1 == ap_CS_fsm_state366))) begin
         i_reg_453 <= add_ln325_reg_1624;
@@ -3129,7 +3129,7 @@ always @ (posedge ap_clk) begin
 end
 
 always @ (posedge ap_clk) begin
-    if ((~((send_data_empty_n == 1'b0) | (in_r_empty_n == 1'b0) | (output_length_empty_n == 1'b0) | (ap_done_reg == 1'b1) | (ap_start == 1'b0)) & (1'b1 == ap_CS_fsm_state1))) begin
+    if ((~((send_data_empty_n == 1'b0) | (input_r_empty_n == 1'b0) | (output_length_empty_n == 1'b0) | (ap_done_reg == 1'b1) | (ap_start == 1'b0)) & (1'b1 == ap_CS_fsm_state1))) begin
         input_offset_reg_465 <= 23'd0;
     end else if (((m_axi_aximm0_BVALID == 1'b1) & (1'b1 == ap_CS_fsm_state366))) begin
         input_offset_reg_465 <= input_offset_1_reg_1933;
@@ -3181,7 +3181,7 @@ always @ (posedge ap_clk) begin
 end
 
 always @ (posedge ap_clk) begin
-    if ((~((send_data_empty_n == 1'b0) | (in_r_empty_n == 1'b0) | (output_length_empty_n == 1'b0) | (ap_done_reg == 1'b1) | (ap_start == 1'b0)) & (1'b1 == ap_CS_fsm_state1))) begin
+    if ((~((send_data_empty_n == 1'b0) | (input_r_empty_n == 1'b0) | (output_length_empty_n == 1'b0) | (ap_done_reg == 1'b1) | (ap_start == 1'b0)) & (1'b1 == ap_CS_fsm_state1))) begin
         output_offset_reg_477 <= 22'd0;
     end else if (((m_axi_aximm0_BVALID == 1'b1) & (1'b1 == ap_CS_fsm_state366))) begin
         output_offset_reg_477 <= output_offset_1_reg_1938;
@@ -3603,20 +3603,20 @@ always @ (posedge ap_clk) begin
 end
 
 always @ (posedge ap_clk) begin
-    if ((1'b1 == ap_CS_fsm_state1)) begin
-        in_read_reg_1604 <= in_r_dout;
-        output_length_read_reg_1599 <= output_length_dout;
-        send_data_read_reg_1609 <= send_data_dout;
-        trunc_ln43_reg_1614 <= trunc_ln43_fu_661_p1;
-    end
-end
-
-always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state3)) begin
         input_length_temp_load_reg_1642 <= input_length_temp_q0;
         trunc_ln43_1_reg_1654 <= trunc_ln43_1_fu_693_p1;
         zext_ln326_reg_1637[22 : 0] <= zext_ln326_fu_685_p1[22 : 0];
         zext_ln43_reg_1649[15 : 0] <= zext_ln43_fu_689_p1[15 : 0];
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_CS_fsm_state1)) begin
+        input_read_reg_1604 <= input_r_dout;
+        output_length_read_reg_1599 <= output_length_dout;
+        send_data_read_reg_1609 <= send_data_dout;
+        trunc_ln43_reg_1614 <= trunc_ln43_fu_661_p1;
     end
 end
 
@@ -3893,26 +3893,26 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if ((~((ap_done_reg == 1'b1) | (ap_start == 1'b0)) & (1'b1 == ap_CS_fsm_state1))) begin
-        in_r_blk_n = in_r_empty_n;
-    end else begin
-        in_r_blk_n = 1'b1;
-    end
-end
-
-always @ (*) begin
-    if ((~((send_data_empty_n == 1'b0) | (in_r_empty_n == 1'b0) | (output_length_empty_n == 1'b0) | (ap_done_reg == 1'b1) | (ap_start == 1'b0)) & (1'b1 == ap_CS_fsm_state1))) begin
-        in_r_read = 1'b1;
-    end else begin
-        in_r_read = 1'b0;
-    end
-end
-
-always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state2)) begin
         input_length_temp_ce0 = 1'b1;
     end else begin
         input_length_temp_ce0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((~((ap_done_reg == 1'b1) | (ap_start == 1'b0)) & (1'b1 == ap_CS_fsm_state1))) begin
+        input_r_blk_n = input_r_empty_n;
+    end else begin
+        input_r_blk_n = 1'b1;
+    end
+end
+
+always @ (*) begin
+    if ((~((send_data_empty_n == 1'b0) | (input_r_empty_n == 1'b0) | (output_length_empty_n == 1'b0) | (ap_done_reg == 1'b1) | (ap_start == 1'b0)) & (1'b1 == ap_CS_fsm_state1))) begin
+        input_r_read = 1'b1;
+    end else begin
+        input_r_read = 1'b0;
     end
 end
 
@@ -4083,7 +4083,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if ((~((send_data_empty_n == 1'b0) | (in_r_empty_n == 1'b0) | (output_length_empty_n == 1'b0) | (ap_done_reg == 1'b1) | (ap_start == 1'b0)) & (1'b1 == ap_CS_fsm_state1))) begin
+    if ((~((send_data_empty_n == 1'b0) | (input_r_empty_n == 1'b0) | (output_length_empty_n == 1'b0) | (ap_done_reg == 1'b1) | (ap_start == 1'b0)) & (1'b1 == ap_CS_fsm_state1))) begin
         output_length_read = 1'b1;
     end else begin
         output_length_read = 1'b0;
@@ -4099,7 +4099,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if ((~((send_data_empty_n == 1'b0) | (in_r_empty_n == 1'b0) | (output_length_empty_n == 1'b0) | (ap_done_reg == 1'b1) | (ap_start == 1'b0)) & (1'b1 == ap_CS_fsm_state1))) begin
+    if ((~((send_data_empty_n == 1'b0) | (input_r_empty_n == 1'b0) | (output_length_empty_n == 1'b0) | (ap_done_reg == 1'b1) | (ap_start == 1'b0)) & (1'b1 == ap_CS_fsm_state1))) begin
         send_data_read = 1'b1;
     end else begin
         send_data_read = 1'b0;
@@ -4209,7 +4209,7 @@ end
 always @ (*) begin
     case (ap_CS_fsm)
         ap_ST_fsm_state1 : begin
-            if ((~((send_data_empty_n == 1'b0) | (in_r_empty_n == 1'b0) | (output_length_empty_n == 1'b0) | (ap_done_reg == 1'b1) | (ap_start == 1'b0)) & (1'b1 == ap_CS_fsm_state1))) begin
+            if ((~((send_data_empty_n == 1'b0) | (input_r_empty_n == 1'b0) | (output_length_empty_n == 1'b0) | (ap_done_reg == 1'b1) | (ap_start == 1'b0)) & (1'b1 == ap_CS_fsm_state1))) begin
                 ap_NS_fsm = ap_ST_fsm_state2;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state1;
@@ -4951,7 +4951,7 @@ end
 
 assign add_ln174_1_fu_712_p2 = (zext_ln326_reg_1637 + i_9_cast_fu_708_p1);
 
-assign add_ln174_fu_721_p2 = (zext_ln174_fu_717_p1 + in_read_reg_1604);
+assign add_ln174_fu_721_p2 = (zext_ln174_fu_717_p1 + input_read_reg_1604);
 
 assign add_ln243_fu_815_p2 = ($signed(trunc_ln234_fu_805_p1) + $signed(12'd4095));
 
@@ -5060,7 +5060,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    ap_block_state1 = ((send_data_empty_n == 1'b0) | (in_r_empty_n == 1'b0) | (output_length_empty_n == 1'b0) | (ap_done_reg == 1'b1) | (ap_start == 1'b0));
+    ap_block_state1 = ((send_data_empty_n == 1'b0) | (input_r_empty_n == 1'b0) | (output_length_empty_n == 1'b0) | (ap_done_reg == 1'b1) | (ap_start == 1'b0));
 end
 
 assign ap_block_state10_pp0_stage0_iter6 = ~(1'b1 == 1'b1);
@@ -5771,7 +5771,7 @@ assign trunc_ln3_fu_726_p4 = {{add_ln174_fu_721_p2[63:1]}};
 
 assign trunc_ln43_1_fu_693_p1 = input_offset_reg_465[0:0];
 
-assign trunc_ln43_fu_661_p1 = in_r_dout[0:0];
+assign trunc_ln43_fu_661_p1 = input_r_dout[0:0];
 
 assign trunc_ln_fu_1533_p4 = {{add_ln328_reg_1733[63:1]}};
 

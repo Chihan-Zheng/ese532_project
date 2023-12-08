@@ -18,13 +18,13 @@ module krnl_LZW_krnl_LZW_entry4 (
         ap_ready,
         start_out,
         start_write,
-        in_r,
+        input_r,
         input_length,
         send_data,
         output_length,
-        in_out_din,
-        in_out_full_n,
-        in_out_write,
+        input_out_din,
+        input_out_full_n,
+        input_out_write,
         input_length_out_din,
         input_length_out_full_n,
         input_length_out_write,
@@ -51,13 +51,13 @@ output   ap_idle;
 output   ap_ready;
 output   start_out;
 output   start_write;
-input  [63:0] in_r;
+input  [63:0] input_r;
 input  [63:0] input_length;
 input  [63:0] send_data;
 input  [63:0] output_length;
-output  [63:0] in_out_din;
-input   in_out_full_n;
-output   in_out_write;
+output  [63:0] input_out_din;
+input   input_out_full_n;
+output   input_out_write;
 output  [63:0] input_length_out_din;
 input   input_length_out_full_n;
 output   input_length_out_write;
@@ -74,7 +74,7 @@ output   output_length_out_write;
 reg ap_done;
 reg ap_idle;
 reg start_write;
-reg in_out_write;
+reg input_out_write;
 reg input_length_out_write;
 reg send_data_out_write;
 reg send_data_out1_write;
@@ -86,7 +86,7 @@ reg    ap_done_reg;
 (* fsm_encoding = "none" *) reg   [0:0] ap_CS_fsm;
 wire    ap_CS_fsm_state1;
 reg    internal_ap_ready;
-reg    in_out_blk_n;
+reg    input_out_blk_n;
 reg    input_length_out_blk_n;
 reg    send_data_out_blk_n;
 reg    send_data_out1_blk_n;
@@ -116,7 +116,7 @@ always @ (posedge ap_clk) begin
     end else begin
         if ((ap_continue == 1'b1)) begin
             ap_done_reg <= 1'b0;
-        end else if ((~((real_start == 1'b0) | (output_length_out_full_n == 1'b0) | (send_data_out1_full_n == 1'b0) | (send_data_out_full_n == 1'b0) | (input_length_out_full_n == 1'b0) | (in_out_full_n == 1'b0) | (ap_done_reg == 1'b1)) & (1'b1 == ap_CS_fsm_state1))) begin
+        end else if ((~((real_start == 1'b0) | (output_length_out_full_n == 1'b0) | (send_data_out1_full_n == 1'b0) | (send_data_out_full_n == 1'b0) | (input_length_out_full_n == 1'b0) | (input_out_full_n == 1'b0) | (ap_done_reg == 1'b1)) & (1'b1 == ap_CS_fsm_state1))) begin
             ap_done_reg <= 1'b1;
         end
     end
@@ -135,7 +135,7 @@ always @ (posedge ap_clk) begin
 end
 
 always @ (*) begin
-    if ((~((real_start == 1'b0) | (output_length_out_full_n == 1'b0) | (send_data_out1_full_n == 1'b0) | (send_data_out_full_n == 1'b0) | (input_length_out_full_n == 1'b0) | (in_out_full_n == 1'b0) | (ap_done_reg == 1'b1)) & (1'b1 == ap_CS_fsm_state1))) begin
+    if ((~((real_start == 1'b0) | (output_length_out_full_n == 1'b0) | (send_data_out1_full_n == 1'b0) | (send_data_out_full_n == 1'b0) | (input_length_out_full_n == 1'b0) | (input_out_full_n == 1'b0) | (ap_done_reg == 1'b1)) & (1'b1 == ap_CS_fsm_state1))) begin
         ap_done = 1'b1;
     end else begin
         ap_done = ap_done_reg;
@@ -152,22 +152,6 @@ end
 
 always @ (*) begin
     if ((~((real_start == 1'b0) | (ap_done_reg == 1'b1)) & (1'b1 == ap_CS_fsm_state1))) begin
-        in_out_blk_n = in_out_full_n;
-    end else begin
-        in_out_blk_n = 1'b1;
-    end
-end
-
-always @ (*) begin
-    if ((~((real_start == 1'b0) | (output_length_out_full_n == 1'b0) | (send_data_out1_full_n == 1'b0) | (send_data_out_full_n == 1'b0) | (input_length_out_full_n == 1'b0) | (in_out_full_n == 1'b0) | (ap_done_reg == 1'b1)) & (1'b1 == ap_CS_fsm_state1))) begin
-        in_out_write = 1'b1;
-    end else begin
-        in_out_write = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if ((~((real_start == 1'b0) | (ap_done_reg == 1'b1)) & (1'b1 == ap_CS_fsm_state1))) begin
         input_length_out_blk_n = input_length_out_full_n;
     end else begin
         input_length_out_blk_n = 1'b1;
@@ -175,7 +159,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if ((~((real_start == 1'b0) | (output_length_out_full_n == 1'b0) | (send_data_out1_full_n == 1'b0) | (send_data_out_full_n == 1'b0) | (input_length_out_full_n == 1'b0) | (in_out_full_n == 1'b0) | (ap_done_reg == 1'b1)) & (1'b1 == ap_CS_fsm_state1))) begin
+    if ((~((real_start == 1'b0) | (output_length_out_full_n == 1'b0) | (send_data_out1_full_n == 1'b0) | (send_data_out_full_n == 1'b0) | (input_length_out_full_n == 1'b0) | (input_out_full_n == 1'b0) | (ap_done_reg == 1'b1)) & (1'b1 == ap_CS_fsm_state1))) begin
         input_length_out_write = 1'b1;
     end else begin
         input_length_out_write = 1'b0;
@@ -183,7 +167,23 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if ((~((real_start == 1'b0) | (output_length_out_full_n == 1'b0) | (send_data_out1_full_n == 1'b0) | (send_data_out_full_n == 1'b0) | (input_length_out_full_n == 1'b0) | (in_out_full_n == 1'b0) | (ap_done_reg == 1'b1)) & (1'b1 == ap_CS_fsm_state1))) begin
+    if ((~((real_start == 1'b0) | (ap_done_reg == 1'b1)) & (1'b1 == ap_CS_fsm_state1))) begin
+        input_out_blk_n = input_out_full_n;
+    end else begin
+        input_out_blk_n = 1'b1;
+    end
+end
+
+always @ (*) begin
+    if ((~((real_start == 1'b0) | (output_length_out_full_n == 1'b0) | (send_data_out1_full_n == 1'b0) | (send_data_out_full_n == 1'b0) | (input_length_out_full_n == 1'b0) | (input_out_full_n == 1'b0) | (ap_done_reg == 1'b1)) & (1'b1 == ap_CS_fsm_state1))) begin
+        input_out_write = 1'b1;
+    end else begin
+        input_out_write = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((~((real_start == 1'b0) | (output_length_out_full_n == 1'b0) | (send_data_out1_full_n == 1'b0) | (send_data_out_full_n == 1'b0) | (input_length_out_full_n == 1'b0) | (input_out_full_n == 1'b0) | (ap_done_reg == 1'b1)) & (1'b1 == ap_CS_fsm_state1))) begin
         internal_ap_ready = 1'b1;
     end else begin
         internal_ap_ready = 1'b0;
@@ -199,7 +199,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if ((~((real_start == 1'b0) | (output_length_out_full_n == 1'b0) | (send_data_out1_full_n == 1'b0) | (send_data_out_full_n == 1'b0) | (input_length_out_full_n == 1'b0) | (in_out_full_n == 1'b0) | (ap_done_reg == 1'b1)) & (1'b1 == ap_CS_fsm_state1))) begin
+    if ((~((real_start == 1'b0) | (output_length_out_full_n == 1'b0) | (send_data_out1_full_n == 1'b0) | (send_data_out_full_n == 1'b0) | (input_length_out_full_n == 1'b0) | (input_out_full_n == 1'b0) | (ap_done_reg == 1'b1)) & (1'b1 == ap_CS_fsm_state1))) begin
         output_length_out_write = 1'b1;
     end else begin
         output_length_out_write = 1'b0;
@@ -223,7 +223,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if ((~((real_start == 1'b0) | (output_length_out_full_n == 1'b0) | (send_data_out1_full_n == 1'b0) | (send_data_out_full_n == 1'b0) | (input_length_out_full_n == 1'b0) | (in_out_full_n == 1'b0) | (ap_done_reg == 1'b1)) & (1'b1 == ap_CS_fsm_state1))) begin
+    if ((~((real_start == 1'b0) | (output_length_out_full_n == 1'b0) | (send_data_out1_full_n == 1'b0) | (send_data_out_full_n == 1'b0) | (input_length_out_full_n == 1'b0) | (input_out_full_n == 1'b0) | (ap_done_reg == 1'b1)) & (1'b1 == ap_CS_fsm_state1))) begin
         send_data_out1_write = 1'b1;
     end else begin
         send_data_out1_write = 1'b0;
@@ -239,7 +239,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if ((~((real_start == 1'b0) | (output_length_out_full_n == 1'b0) | (send_data_out1_full_n == 1'b0) | (send_data_out_full_n == 1'b0) | (input_length_out_full_n == 1'b0) | (in_out_full_n == 1'b0) | (ap_done_reg == 1'b1)) & (1'b1 == ap_CS_fsm_state1))) begin
+    if ((~((real_start == 1'b0) | (output_length_out_full_n == 1'b0) | (send_data_out1_full_n == 1'b0) | (send_data_out_full_n == 1'b0) | (input_length_out_full_n == 1'b0) | (input_out_full_n == 1'b0) | (ap_done_reg == 1'b1)) & (1'b1 == ap_CS_fsm_state1))) begin
         send_data_out_write = 1'b1;
     end else begin
         send_data_out_write = 1'b0;
@@ -268,14 +268,14 @@ end
 assign ap_CS_fsm_state1 = ap_CS_fsm[32'd0];
 
 always @ (*) begin
-    ap_block_state1 = ((real_start == 1'b0) | (output_length_out_full_n == 1'b0) | (send_data_out1_full_n == 1'b0) | (send_data_out_full_n == 1'b0) | (input_length_out_full_n == 1'b0) | (in_out_full_n == 1'b0) | (ap_done_reg == 1'b1));
+    ap_block_state1 = ((real_start == 1'b0) | (output_length_out_full_n == 1'b0) | (send_data_out1_full_n == 1'b0) | (send_data_out_full_n == 1'b0) | (input_length_out_full_n == 1'b0) | (input_out_full_n == 1'b0) | (ap_done_reg == 1'b1));
 end
 
 assign ap_ready = internal_ap_ready;
 
-assign in_out_din = in_r;
-
 assign input_length_out_din = input_length;
+
+assign input_out_din = input_r;
 
 assign output_length_out_din = output_length;
 

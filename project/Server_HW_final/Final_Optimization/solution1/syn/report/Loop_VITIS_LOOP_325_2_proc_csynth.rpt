@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'Loop_VITIS_LOOP_325_2_proc'
 ================================================================
-* Date:           Thu Dec  7 19:36:32 2023
+* Date:           Thu Dec  7 21:19:18 2023
 
 * Version:        2020.2 (Build 3064766 on Wed Nov 18 09:12:47 MST 2020)
 * Project:        Final_Optimization
@@ -225,8 +225,8 @@
     |i_reg_453                                         |     9|          2|    7|         14|
     |inStream_in_o_blk_n                               |     9|          2|    1|          2|
     |inStream_in_read                                  |     9|          2|    1|          2|
-    |in_r_blk_n                                        |     9|          2|    1|          2|
     |input_offset_reg_465                              |     9|          2|   23|         46|
+    |input_r_blk_n                                     |     9|          2|    1|          2|
     |j_3_reg_556                                       |    14|          3|   15|         45|
     |j_4_reg_525                                       |    14|          3|   16|         48|
     |j_reg_501                                         |     9|          2|   16|         32|
@@ -441,10 +441,10 @@
     |icmp_ln262_reg_1742                     |    1|   0|    1|          0|
     |icmp_ln289_reg_1852                     |    1|   0|    1|          0|
     |icmp_ln43_reg_1664                      |    1|   0|    1|          0|
-    |in_read_reg_1604                        |   64|   0|   64|          0|
     |input_length_temp_load_reg_1642         |   16|   0|   16|          0|
     |input_offset_1_reg_1933                 |   23|   0|   23|          0|
     |input_offset_reg_465                    |   23|   0|   23|          0|
+    |input_read_reg_1604                     |   64|   0|   64|          0|
     |j_3_reg_556                             |   15|   0|   15|          0|
     |j_4_reg_525                             |   16|   0|   16|          0|
     |j_reg_501                               |   16|   0|   16|          0|
@@ -613,9 +613,9 @@
 |input_length_temp_address0  |  out|    2|   ap_memory|           input_length_temp|         array|
 |input_length_temp_ce0       |  out|    1|   ap_memory|           input_length_temp|         array|
 |input_length_temp_q0        |   in|   16|   ap_memory|           input_length_temp|         array|
-|in_r_dout                   |   in|   64|     ap_fifo|                        in_r|       pointer|
-|in_r_empty_n                |   in|    1|     ap_fifo|                        in_r|       pointer|
-|in_r_read                   |  out|    1|     ap_fifo|                        in_r|       pointer|
+|input_r_dout                |   in|   64|     ap_fifo|                     input_r|       pointer|
+|input_r_empty_n             |   in|    1|     ap_fifo|                     input_r|       pointer|
+|input_r_read                |  out|    1|     ap_fifo|                     input_r|       pointer|
 |send_data_dout              |   in|   64|     ap_fifo|                   send_data|       pointer|
 |send_data_empty_n           |   in|    1|     ap_fifo|                   send_data|       pointer|
 |send_data_read              |  out|    1|     ap_fifo|                   send_data|       pointer|

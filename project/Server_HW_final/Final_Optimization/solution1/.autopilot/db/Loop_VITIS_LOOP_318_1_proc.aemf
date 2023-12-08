@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<cdfg:DBCdfg xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdfg="http://www.autoesl.com/DBCdfg" timeStamp="1701995790832">
+<cdfg:DBCdfg xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdfg="http://www.autoesl.com/DBCdfg" timeStamp="1702001955659">
   <ports id="1" name="input_length_temp" type="PortType" coreName="RAM" coreId="84" bitwidth="16" direction="DirOut" iftype="IfTypeRegister" arraysize="4">
     <dataInputObjs>getelementptr</dataInputObjs>
   </ports>
@@ -74,18 +74,18 @@
       <dataInputObjs>input_length</dataInputObjs>
       <dataOutputObjs>partselect</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="9" name="trunc_ln319_1" lineNumber="319" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="trunc_ln319_1_fu_120_p4" coreId="1701999731" contextFuncName="krnl_LZW" bitwidth="63" opcode="partselect" m_display="0" m_topoIndex="3" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="9" name="trunc_ln319_1" lineNumber="319" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="trunc_ln319_1_fu_120_p4" coreId="145" contextFuncName="krnl_LZW" bitwidth="63" opcode="partselect" m_display="0" m_topoIndex="3" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="319" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
       <dataInputObjs>read</dataInputObjs>
       <dataOutputObjs>sext</dataOutputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="10" name="sext_ln319" lineNumber="319" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="sext_ln319_fu_130_p1" coreId="209" contextFuncName="krnl_LZW" bitwidth="64" opcode="sext" m_display="0" m_topoIndex="4" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="10" name="sext_ln319" lineNumber="319" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="sext_ln319_fu_130_p1" coreId="145" contextFuncName="krnl_LZW" bitwidth="64" opcode="sext" m_display="0" m_topoIndex="4" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="319" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
       <dataInputObjs>partselect</dataInputObjs>
       <dataOutputObjs>getelementptr</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="11" name="aximm1_addr" lineNumber="319" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="49" contextFuncName="krnl_LZW" bitwidth="16" opcode="getelementptr" m_display="0" m_topoIndex="5" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="11" name="aximm1_addr" lineNumber="319" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="161" contextFuncName="krnl_LZW" bitwidth="16" opcode="getelementptr" m_display="0" m_topoIndex="5" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="319" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
       <dataInputObjs>aximm1</dataInputObjs>
       <dataInputObjs>sext</dataInputObjs>
@@ -97,11 +97,11 @@
       <dataInputObjs>getelementptr</dataInputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="13" name="num_chunks_write_ln0" coreId="385" opcode="store" m_display="0" m_delay="0.48" m_topoIndex="6" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="13" name="num_chunks_write_ln0" coreId="161" opcode="store" m_display="0" m_delay="0.48" m_topoIndex="6" m_clusterGroupNumber="-1">
       <dataInputObjs>alloca</dataInputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="14" name="br_ln0" coreId="49" opcode="br" nodeLabel="70.0" m_display="0" m_delay="0.48" m_topoIndex="8" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="14" name="br_ln0" coreId="2036883287" opcode="br" nodeLabel="70.0" m_display="0" m_delay="0.48" m_topoIndex="8" m_clusterGroupNumber="-1">
       <controlInputObjs>block_22</controlInputObjs>
     </node_objs>
     <fileValidLineNumbers fileName="LZW_hybrid_hash_HW.cpp">
@@ -111,12 +111,12 @@
   <blocks id="40" name=".exit" type="BlockType">
     <controlInputObjs>block_22</controlInputObjs>
     <controlOutputObjs>br</controlOutputObjs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="38" name="num_chunks_load_1" lineNumber="299" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="691394592" contextFuncName="krnl_LZW" bitwidth="8" opcode="load" nodeLabel="74.0" m_display="0" m_topoIndex="24" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="38" name="num_chunks_load_1" lineNumber="299" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="0" contextFuncName="krnl_LZW" bitwidth="8" opcode="load" nodeLabel="74.0" m_display="0" m_topoIndex="24" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="299" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
       <dataInputObjs>alloca</dataInputObjs>
       <dataOutputObjs>ret</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="39" name="_ln299" lineNumber="299" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="49" contextFuncName="krnl_LZW" opcode="ret" nodeLabel="74.0" m_display="0" m_topoIndex="25" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="39" name="_ln299" lineNumber="299" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="1793" contextFuncName="krnl_LZW" opcode="ret" nodeLabel="74.0" m_display="0" m_topoIndex="25" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="299" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
       <dataInputObjs>load</dataInputObjs>
       <dataOutputObjs>ap_return</dataOutputObjs>
@@ -133,7 +133,7 @@
       <controlOutputObjs>br</controlOutputObjs>
       <controlOutputObjs>.exit</controlOutputObjs>
       <controlOutputObjs>block_28</controlOutputObjs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="16" name="i" lineNumber="318" originalName="i" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="497" contextFuncName="krnl_LZW" bitwidth="3" opcode="phi" nodeLabel="71.0" m_display="0" m_topoIndex="9" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="16" name="i" lineNumber="318" originalName="i" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="225" contextFuncName="krnl_LZW" bitwidth="3" opcode="phi" nodeLabel="71.0" m_display="0" m_topoIndex="9" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="318" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
         <dataInputObjs>add</dataInputObjs>
         <dataOutputObjs>add</dataOutputObjs>
@@ -149,13 +149,13 @@
         <dataOutputObjs>phi</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="19" name="icmp_ln318" lineNumber="318" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="icmp_ln318_fu_151_p2" opType="icmp" coreId="497" contextFuncName="krnl_LZW" bitwidth="1" opcode="icmp" nodeLabel="71.0" m_display="0" m_delay="0.69" m_topoIndex="11" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="19" name="icmp_ln318" lineNumber="318" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="icmp_ln318_fu_151_p2" opType="icmp" coreId="49" contextFuncName="krnl_LZW" bitwidth="1" opcode="icmp" nodeLabel="71.0" m_display="0" m_delay="0.69" m_topoIndex="11" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="318" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
         <dataInputObjs>phi</dataInputObjs>
         <dataOutputObjs>br</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="21" name="br_ln318" lineNumber="318" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="132" contextFuncName="krnl_LZW" opcode="br" nodeLabel="71.0" m_display="0" m_topoIndex="12" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="21" name="br_ln318" lineNumber="318" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="49" contextFuncName="krnl_LZW" opcode="br" nodeLabel="71.0" m_display="0" m_topoIndex="12" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="318" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
         <dataInputObjs>icmp</dataInputObjs>
         <controlInputObjs>block_28</controlInputObjs>
@@ -170,7 +170,7 @@
       <controlOutputObjs>br</controlOutputObjs>
       <controlOutputObjs>._crit_edge.i.i.i</controlOutputObjs>
       <controlOutputObjs>block_35</controlOutputObjs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="23" name="i_cast_i" lineNumber="318" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="i_cast_i_fu_157_p1" coreId="497" contextFuncName="krnl_LZW" bitwidth="64" opcode="zext" nodeLabel="73.0" m_display="0" m_topoIndex="15" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="23" name="i_cast_i" lineNumber="318" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="i_cast_i_fu_157_p1" coreId="49" contextFuncName="krnl_LZW" bitwidth="64" opcode="zext" nodeLabel="73.0" m_display="0" m_topoIndex="15" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="318" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
         <dataInputObjs>phi</dataInputObjs>
         <dataOutputObjs>getelementptr</dataOutputObjs>
@@ -181,13 +181,13 @@
         <dataOutputObjs>store</dataOutputObjs>
         <dataOutputObjs>icmp</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="26" name="icmp_ln319" lineNumber="319" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="icmp_ln319_fu_162_p2" opType="icmp" coreId="497" contextFuncName="krnl_LZW" bitwidth="1" opcode="icmp" nodeLabel="73.0" m_display="0" m_delay="0.86" m_topoIndex="16" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="26" name="icmp_ln319" lineNumber="319" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." rtlName="icmp_ln319_fu_162_p2" opType="icmp" coreId="49" contextFuncName="krnl_LZW" bitwidth="1" opcode="icmp" nodeLabel="73.0" m_display="0" m_delay="0.86" m_topoIndex="16" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="319" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
         <dataInputObjs>read</dataInputObjs>
         <dataOutputObjs>br</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="27" name="br_ln319" lineNumber="319" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="497" contextFuncName="krnl_LZW" opcode="br" nodeLabel="73.0" m_display="0" m_topoIndex="17" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="27" name="br_ln319" lineNumber="319" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="49" contextFuncName="krnl_LZW" opcode="br" nodeLabel="73.0" m_display="0" m_topoIndex="17" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="319" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
         <dataInputObjs>icmp</dataInputObjs>
         <controlInputObjs>block_35</controlInputObjs>
@@ -202,7 +202,7 @@
       <controlInputObjs>block_28</controlInputObjs>
       <controlOutputObjs>br</controlOutputObjs>
       <controlOutputObjs>._crit_edge.i.i.i</controlOutputObjs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="29" name="num_chunks_load" lineNumber="320" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="132" contextFuncName="krnl_LZW" bitwidth="8" opcode="load" nodeLabel="73.0" m_display="0" m_topoIndex="18" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="29" name="num_chunks_load" lineNumber="320" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="49" contextFuncName="krnl_LZW" bitwidth="8" opcode="load" nodeLabel="73.0" m_display="0" m_topoIndex="18" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="320" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
         <dataInputObjs>alloca</dataInputObjs>
         <dataOutputObjs>add</dataOutputObjs>
@@ -213,7 +213,7 @@
         <dataOutputObjs>store</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="31" name="input_length_temp_addr" lineNumber="321" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="700181544" contextFuncName="krnl_LZW" bitwidth="2" opcode="getelementptr" nodeLabel="73.0" m_display="0" m_topoIndex="20" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="31" name="input_length_temp_addr" lineNumber="321" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="49" contextFuncName="krnl_LZW" bitwidth="2" opcode="getelementptr" nodeLabel="73.0" m_display="0" m_topoIndex="20" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="321" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
         <dataInputObjs>zext</dataInputObjs>
         <dataOutputObjs>input_length_temp</dataOutputObjs>
@@ -225,12 +225,12 @@
         <dataInputObjs>read</dataInputObjs>
         <dataInputObjs>getelementptr</dataInputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="33" name="num_chunks_write_ln322" lineNumber="322" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="0" contextFuncName="krnl_LZW" opcode="store" nodeLabel="73.0" m_display="0" m_delay="0.48" m_topoIndex="22" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="33" name="num_chunks_write_ln322" lineNumber="322" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="4" contextFuncName="krnl_LZW" opcode="store" nodeLabel="73.0" m_display="0" m_delay="0.48" m_topoIndex="22" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="322" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
         <dataInputObjs>add</dataInputObjs>
         <dataInputObjs>alloca</dataInputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="34" name="br_ln322" lineNumber="322" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="0" contextFuncName="krnl_LZW" opcode="br" nodeLabel="73.0" m_display="0" m_topoIndex="23" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="34" name="br_ln322" lineNumber="322" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="49" contextFuncName="krnl_LZW" opcode="br" nodeLabel="73.0" m_display="0" m_topoIndex="23" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="322" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
         <controlInputObjs>._crit_edge.i.i.i</controlInputObjs>
       </node_objs>
@@ -247,7 +247,7 @@
       <controlOutputObjs>br</controlOutputObjs>
       <controlOutputObjs>br</controlOutputObjs>
       <controlOutputObjs>block_22</controlOutputObjs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="36" name="br_ln318" lineNumber="318" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="2977" contextFuncName="krnl_LZW" opcode="br" nodeLabel="71.0" m_display="0" m_topoIndex="13" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="36" name="br_ln318" lineNumber="318" fileName="LZW_hybrid_hash_HW.cpp" fileDirectory=".." coreId="0" contextFuncName="krnl_LZW" opcode="br" nodeLabel="71.0" m_display="0" m_topoIndex="13" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="LZW_hybrid_hash_HW.cpp" linenumber="318" fileDirectory="/home1/c/chihan/chihan/ese532_project/project/Server_HW_final" functionName="krnl_LZW"/>
         <controlInputObjs>block_22</controlInputObjs>
       </node_objs>

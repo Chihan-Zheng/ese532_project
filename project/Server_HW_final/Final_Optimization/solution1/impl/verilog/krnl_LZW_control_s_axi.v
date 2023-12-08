@@ -29,7 +29,7 @@ module krnl_LZW_control_s_axi
     output wire                          RVALID,
     input  wire                          RREADY,
     output wire                          interrupt,
-    output wire [63:0]                   in_r,
+    output wire [63:0]                   input_r,
     output wire [63:0]                   input_length,
     output wire [63:0]                   send_data,
     output wire [63:0]                   output_length,
@@ -59,10 +59,10 @@ module krnl_LZW_control_s_axi
 //        bit 0  - ap_done (COR/TOW)
 //        bit 1  - ap_ready (COR/TOW)
 //        others - reserved
-// 0x10 : Data signal of in_r
-//        bit 31~0 - in_r[31:0] (Read/Write)
-// 0x14 : Data signal of in_r
-//        bit 31~0 - in_r[63:32] (Read/Write)
+// 0x10 : Data signal of input_r
+//        bit 31~0 - input_r[31:0] (Read/Write)
+// 0x14 : Data signal of input_r
+//        bit 31~0 - input_r[63:32] (Read/Write)
 // 0x18 : reserved
 // 0x1c : Data signal of input_length
 //        bit 31~0 - input_length[31:0] (Read/Write)
@@ -87,9 +87,9 @@ localparam
     ADDR_GIE                  = 6'h04,
     ADDR_IER                  = 6'h08,
     ADDR_ISR                  = 6'h0c,
-    ADDR_IN_R_DATA_0          = 6'h10,
-    ADDR_IN_R_DATA_1          = 6'h14,
-    ADDR_IN_R_CTRL            = 6'h18,
+    ADDR_INPUT_R_DATA_0       = 6'h10,
+    ADDR_INPUT_R_DATA_1       = 6'h14,
+    ADDR_INPUT_R_CTRL         = 6'h18,
     ADDR_INPUT_LENGTH_DATA_0  = 6'h1c,
     ADDR_INPUT_LENGTH_DATA_1  = 6'h20,
     ADDR_INPUT_LENGTH_CTRL    = 6'h24,
@@ -130,7 +130,7 @@ localparam
     reg                           int_gie = 1'b0;
     reg  [1:0]                    int_ier = 2'b0;
     reg  [1:0]                    int_isr = 2'b0;
-    reg  [63:0]                   int_in_r = 'b0;
+    reg  [63:0]                   int_input_r = 'b0;
     reg  [63:0]                   int_input_length = 'b0;
     reg  [63:0]                   int_send_data = 'b0;
     reg  [63:0]                   int_output_length = 'b0;
@@ -243,11 +243,11 @@ always @(posedge ACLK) begin
                 ADDR_ISR: begin
                     rdata <= int_isr;
                 end
-                ADDR_IN_R_DATA_0: begin
-                    rdata <= int_in_r[31:0];
+                ADDR_INPUT_R_DATA_0: begin
+                    rdata <= int_input_r[31:0];
                 end
-                ADDR_IN_R_DATA_1: begin
-                    rdata <= int_in_r[63:32];
+                ADDR_INPUT_R_DATA_1: begin
+                    rdata <= int_input_r[63:32];
                 end
                 ADDR_INPUT_LENGTH_DATA_0: begin
                     rdata <= int_input_length[31:0];
@@ -278,7 +278,7 @@ assign interrupt     = int_gie & (|int_isr);
 assign ap_start      = int_ap_start;
 assign int_ap_done   = ap_done;
 assign ap_continue   = int_ap_continue;
-assign in_r          = int_in_r;
+assign input_r       = int_input_r;
 assign input_length  = int_input_length;
 assign send_data     = int_send_data;
 assign output_length = int_output_length;
@@ -380,23 +380,23 @@ always @(posedge ACLK) begin
     end
 end
 
-// int_in_r[31:0]
+// int_input_r[31:0]
 always @(posedge ACLK) begin
     if (ARESET)
-        int_in_r[31:0] <= 0;
+        int_input_r[31:0] <= 0;
     else if (ACLK_EN) begin
-        if (w_hs && waddr == ADDR_IN_R_DATA_0)
-            int_in_r[31:0] <= (WDATA[31:0] & wmask) | (int_in_r[31:0] & ~wmask);
+        if (w_hs && waddr == ADDR_INPUT_R_DATA_0)
+            int_input_r[31:0] <= (WDATA[31:0] & wmask) | (int_input_r[31:0] & ~wmask);
     end
 end
 
-// int_in_r[63:32]
+// int_input_r[63:32]
 always @(posedge ACLK) begin
     if (ARESET)
-        int_in_r[63:32] <= 0;
+        int_input_r[63:32] <= 0;
     else if (ACLK_EN) begin
-        if (w_hs && waddr == ADDR_IN_R_DATA_1)
-            int_in_r[63:32] <= (WDATA[31:0] & wmask) | (int_in_r[63:32] & ~wmask);
+        if (w_hs && waddr == ADDR_INPUT_R_DATA_1)
+            int_input_r[63:32] <= (WDATA[31:0] & wmask) | (int_input_r[63:32] & ~wmask);
     end
 end
 

@@ -88,8 +88,8 @@ void XKrnl_lzw_Continue(XKrnl_lzw *InstancePtr);
 void XKrnl_lzw_EnableAutoRestart(XKrnl_lzw *InstancePtr);
 void XKrnl_lzw_DisableAutoRestart(XKrnl_lzw *InstancePtr);
 
-void XKrnl_lzw_Set_in_r(XKrnl_lzw *InstancePtr, u64 Data);
-u64 XKrnl_lzw_Get_in_r(XKrnl_lzw *InstancePtr);
+void XKrnl_lzw_Set_input_r(XKrnl_lzw *InstancePtr, u64 Data);
+u64 XKrnl_lzw_Get_input_r(XKrnl_lzw *InstancePtr);
 void XKrnl_lzw_Set_input_length(XKrnl_lzw *InstancePtr, u64 Data);
 u64 XKrnl_lzw_Get_input_length(XKrnl_lzw *InstancePtr);
 void XKrnl_lzw_Set_send_data(XKrnl_lzw *InstancePtr, u64 Data);

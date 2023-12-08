@@ -1572,8 +1572,8 @@
                     <Attribute>unknown</Attribute>
                 </RtlPorts>
                 <RtlPorts>
-                    <name>in_r</name>
-                    <Object>in_r</Object>
+                    <name>input_r</name>
+                    <Object>input_r</Object>
                     <Type>scalar</Type>
                     <Scope/>
                     <IOProtocol>ap_none</IOProtocol>
@@ -1616,8 +1616,8 @@
                     <Attribute>data</Attribute>
                 </RtlPorts>
                 <RtlPorts>
-                    <name>in_out_din</name>
-                    <Object>in_out</Object>
+                    <name>input_out_din</name>
+                    <Object>input_out</Object>
                     <Type>pointer</Type>
                     <Scope/>
                     <IOProtocol>ap_fifo</IOProtocol>
@@ -1627,8 +1627,8 @@
                     <Attribute>control</Attribute>
                 </RtlPorts>
                 <RtlPorts>
-                    <name>in_out_full_n</name>
-                    <Object>in_out</Object>
+                    <name>input_out_full_n</name>
+                    <Object>input_out</Object>
                     <Type>pointer</Type>
                     <Scope/>
                     <IOProtocol>ap_fifo</IOProtocol>
@@ -1638,8 +1638,8 @@
                     <Attribute>control</Attribute>
                 </RtlPorts>
                 <RtlPorts>
-                    <name>in_out_write</name>
-                    <Object>in_out</Object>
+                    <name>input_out_write</name>
+                    <Object>input_out</Object>
                     <Type>pointer</Type>
                     <Scope/>
                     <IOProtocol>ap_fifo</IOProtocol>
@@ -4334,8 +4334,8 @@
                     <Attribute>data</Attribute>
                 </RtlPorts>
                 <RtlPorts>
-                    <name>in_r_dout</name>
-                    <Object>in_r</Object>
+                    <name>input_r_dout</name>
+                    <Object>input_r</Object>
                     <Type>pointer</Type>
                     <Scope/>
                     <IOProtocol>ap_fifo</IOProtocol>
@@ -4345,8 +4345,8 @@
                     <Attribute>control</Attribute>
                 </RtlPorts>
                 <RtlPorts>
-                    <name>in_r_empty_n</name>
-                    <Object>in_r</Object>
+                    <name>input_r_empty_n</name>
+                    <Object>input_r</Object>
                     <Type>pointer</Type>
                     <Scope/>
                     <IOProtocol>ap_fifo</IOProtocol>
@@ -4356,8 +4356,8 @@
                     <Attribute>control</Attribute>
                 </RtlPorts>
                 <RtlPorts>
-                    <name>in_r_read</name>
-                    <Object>in_r</Object>
+                    <name>input_r_read</name>
+                    <Object>input_r</Object>
                     <Type>pointer</Type>
                     <Scope/>
                     <IOProtocol>ap_fifo</IOProtocol>
@@ -6039,11 +6039,11 @@
         </FIFOInst>
     </FIFOInformation>
     <Args>
-        <Arg ArgName="in" index="0" direction="inout" srcType="char*" srcSize="8">
+        <Arg ArgName="input" index="0" direction="inout" srcType="char*" srcSize="8">
             <hwRefs>
                 <hwRef type="interface" interface="m_axi_aximm0" name="" usage="data" direction="out"/>
-                <hwRef type="register" interface="s_axi_control" name="in_r_1" usage="address" direction="in"/>
-                <hwRef type="register" interface="s_axi_control" name="in_r_2" usage="address" direction="in"/>
+                <hwRef type="register" interface="s_axi_control" name="input_r_1" usage="address" direction="in"/>
+                <hwRef type="register" interface="s_axi_control" name="input_r_2" usage="address" direction="in"/>
             </hwRefs>
         </Arg>
         <Arg ArgName="input_length" index="1" direction="inout" srcType="unsigned short*" srcSize="16">
@@ -6163,8 +6163,8 @@
                 <port>m_axi_aximm0_WVALID</port>
             </ports>
             <constraints>
-                <constraint constraint_type="pragma interface" mode="m_axi" register_option="0" offset="slave" latency="64" num_read_outstanding="16" num_write_outstanding="16" max_read_burst_length="16" max_write_burst_length="16" max_widen_bitwidth="512" argName="in"/>
-                <constraint constraint_type="bitwidth" orig_bitwidth="8" final_bitwidth="16" argName="in"/>
+                <constraint constraint_type="pragma interface" mode="m_axi" register_option="0" offset="slave" latency="64" num_read_outstanding="16" num_write_outstanding="16" max_read_burst_length="16" max_write_burst_length="16" max_widen_bitwidth="512" argName="input"/>
+                <constraint constraint_type="bitwidth" orig_bitwidth="8" final_bitwidth="16" argName="input"/>
             </constraints>
         </Interface>
         <Interface InterfaceName="m_axi_aximm1" type="axi4full" busTypeName="aximm" mode="master" dataWidth="32" addrWidth="64" portPrefix="m_axi_aximm1_" paramPrefix="C_M_AXI_AXIMM1_" offsetSlaveName="s_axi_control" preferredUsageValue="MEMORY">
@@ -6284,14 +6284,14 @@
                         <field offset="2" width="30" name="RESERVED" access="R" resetValue="0" description="Reserved.  0s on read."/>
                     </fields>
                 </register>
-                <register offset="0x10" name="in_r_1" access="W" resetValue="0x0" description="Data signal of in_r" range="32">
+                <register offset="0x10" name="input_r_1" access="W" resetValue="0x0" description="Data signal of input_r" range="32">
                     <fields>
-                        <field offset="0" width="32" name="in_r" access="W" resetValue="0" description="Bit 31 to 0 of in_r"/>
+                        <field offset="0" width="32" name="input_r" access="W" resetValue="0" description="Bit 31 to 0 of input_r"/>
                     </fields>
                 </register>
-                <register offset="0x14" name="in_r_2" access="W" resetValue="0x0" description="Data signal of in_r" range="32">
+                <register offset="0x14" name="input_r_2" access="W" resetValue="0x0" description="Data signal of input_r" range="32">
                     <fields>
-                        <field offset="0" width="32" name="in_r" access="W" resetValue="0" description="Bit 63 to 32 of in_r"/>
+                        <field offset="0" width="32" name="input_r" access="W" resetValue="0" description="Bit 63 to 32 of input_r"/>
                     </fields>
                 </register>
                 <register offset="0x1c" name="input_length_1" access="W" resetValue="0x0" description="Data signal of input_length" range="32">
@@ -6326,7 +6326,7 @@
                 </register>
             </registers>
             <constraints>
-                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="16" argName="in"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="16" argName="input"/>
             </constraints>
         </Interface>
     </Interfaces>
@@ -6361,7 +6361,7 @@
             <item name="Top Function Arguments">
                 <table isCollapsed="1">
                     <keys size="3">Argument, Direction, Datatype</keys>
-                    <column name="in">inout, char*</column>
+                    <column name="input">inout, char*</column>
                     <column name="input_length">inout, unsigned short*</column>
                     <column name="send_data">inout, unsigned short*</column>
                     <column name="output_length">inout, unsigned short*</column>
@@ -6370,9 +6370,9 @@
             <item name="SW-to-HW Mapping">
                 <table isCollapsed="1">
                     <keys size="5">Argument, HW Name, HW Type, HW Usage, HW Info</keys>
-                    <column name="in">m_axi_aximm0, interface, , </column>
-                    <column name="in">s_axi_control in_r_1, register, offset, offset=0x10 range=32</column>
-                    <column name="in">s_axi_control in_r_2, register, offset, offset=0x14 range=32</column>
+                    <column name="input">m_axi_aximm0, interface, , </column>
+                    <column name="input">s_axi_control input_r_1, register, offset, offset=0x10 range=32</column>
+                    <column name="input">s_axi_control input_r_2, register, offset, offset=0x14 range=32</column>
                     <column name="input_length">m_axi_aximm1, interface, , </column>
                     <column name="input_length">s_axi_control input_length_1, register, offset, offset=0x1c range=32</column>
                     <column name="input_length">s_axi_control input_length_2, register, offset, offset=0x20 range=32</column>
@@ -6393,7 +6393,7 @@
                     <keys size="5">HW Interface, Variable, Problem, Resolution, Location</keys>
                     <column name="m_axi_aximm1">send_data, Could not widen since Type i8 size is greater than or equal to alignment 1, , bytes</column>
                     <column name="m_axi_aximm1">send_data, Could not widen since Type i16 size is greater than or equal to alignment 2, , bytes</column>
-                    <column name="m_axi_aximm0">in, Could not widen since Type i8 size is greater than or equal to alignment 1(bytes), , LZW_hybrid_hash_HW.cpp:43:9</column>
+                    <column name="m_axi_aximm0">input, Could not widen since Type i8 size is greater than or equal to alignment 1(bytes), , LZW_hybrid_hash_HW.cpp:43:9</column>
                 </table>
             </item>
         </section>
