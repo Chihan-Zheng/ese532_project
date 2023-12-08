@@ -66,7 +66,7 @@ uint64_t hash_func(unsigned char *input, unsigned int pos)
 //read the input file and call the rolling hash function.
 // int cdc( const char* file, char** chunk, uint16_t *chunk_size)
 void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size, uint32_t *offset_buff, char *pipeline_drained,
-		stopwatch &stopwatch)
+		stopwatch &stopwatch, uint64_t *hash)
 {
 	// printf("before define buff_new\n");
 	// unsigned char *buff_new = (unsigned char *)malloc(70000000 + sizeof(uint16_t));
@@ -79,7 +79,8 @@ void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size,
     unsigned int buff_size_new = buff_size - *offset_buff;
     // printf("after define buff_new_size\n");
 	// printf("buff_size_new: %d\n", buff_size_new);
-	uint64_t *hash = (uint64_t *)malloc(sizeof(uint64_t) * (buff_size_new - WIN_SIZE));
+
+	/* uint64_t *hash = (uint64_t *)malloc(sizeof(uint64_t) * (buff_size_new - WIN_SIZE)); */
 	buff_new = buff + *offset_buff;
 
 	/* if (buff_new  == NULL){
@@ -87,17 +88,17 @@ void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size,
 		exit (EXIT_FAILURE);
 	} */
 
-	if (hash  == NULL){
+	/* if (hash  == NULL){
 		std::cerr << "Could not malloc hash." << std::endl;
 		exit (EXIT_FAILURE);
-	}
+	} */
     
 	//std::cout << "---------------------------------Boundary Index--------------------------------------" << std::endl;
     for(unsigned int i = WIN_SIZE; i<buff_size_new - WIN_SIZE; i++){
 		if(i == WIN_SIZE){
 			hash[i] = hash_func(buff_new, WIN_SIZE);
 		}else{
-			hash[i] = hash[i-1] * PRIME - buff_new[i-1]*pow(PRIME, WIN_SIZE+1) + buff_new[i+WIN_SIZE-1]*PRIME;
+			hash[i] = hash[i-1] * PRIME - buff_new[i-1]*POW + buff_new[i+WIN_SIZE-1]*PRIME;
 		}
 		// printf("loop num: %d\n", i);
 		if((((hash[i] % MODULUS) == TARGET)&&(i>=MIN_CHUNK))||(i>=MAX_CHUNK)||(i==buff_size_new-WIN_SIZE-1)) {
@@ -117,7 +118,7 @@ void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size,
             *offset_buff += i;
 			// printf("\nwe find a chunk:\n");
 			// printf("%s\n",chunk);
-			free(hash);
+			/* free(hash); */
 			// printf("\nfinished innner cdc\n");
 			stopwatch.stop();
 // printf("cdc_finished: %d\n", *pipeline_drained);

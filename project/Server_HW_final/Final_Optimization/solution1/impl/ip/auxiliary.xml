@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="krnl_LZW" xd:componentRef="krnl_LZW" xd:initiationInterval="x" xd:clockPeriod="6.667" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
   <xd:controlReg xd:name="control" xd:interfaceRef="s_axi_control" xd:busTypeRef="axilite" xd:type="generic_axi_lite" xd:offset="0x0"/>
-  <xd:arg xd:name="*(input)" xd:originalName="input" xd:direction="inout" xd:interfaceRef="m_axi_aximm0" xd:busTypeRef="aximm" xd:dataPack="true" xd:bitMapping="0:0" xd:dataWidth="1" xd:bufferDirection="in"/>
-  <xd:arg xd:name="*(input_length)" xd:originalName="input_length" xd:direction="inout" xd:interfaceRef="m_axi_aximm0" xd:busTypeRef="aximm" xd:dataPack="true" xd:bitMapping="0:0" xd:dataWidth="1" xd:bufferDirection="in"/>
-  <xd:arg xd:name="*(send_data)" xd:originalName="send_data" xd:direction="inout" xd:interfaceRef="m_axi_aximm0" xd:busTypeRef="aximm" xd:dataPack="true" xd:bitMapping="0:0" xd:dataWidth="1" xd:bufferDirection="out"/>
-  <xd:arg xd:name="*(output_length)" xd:originalName="output_length" xd:direction="inout" xd:interfaceRef="m_axi_aximm0" xd:busTypeRef="aximm" xd:dataPack="true" xd:bitMapping="0:0" xd:dataWidth="1" xd:bufferDirection="out"/>
-  <xd:arg xd:name="input_r" xd:originalName="input_r" xd:direction="in" xd:interfaceRef="s_axi_control" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_aximm0" xd:dataWidth="64" xd:offset="0x10" xd:handshakeRef="ap_none"/>
-  <xd:arg xd:name="input_length" xd:originalName="input_length" xd:direction="in" xd:interfaceRef="s_axi_control" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_aximm0" xd:dataWidth="64" xd:offset="0x1C" xd:handshakeRef="ap_none"/>
-  <xd:arg xd:name="send_data" xd:originalName="send_data" xd:direction="in" xd:interfaceRef="s_axi_control" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_aximm0" xd:dataWidth="64" xd:offset="0x28" xd:handshakeRef="ap_none"/>
-  <xd:arg xd:name="output_length" xd:originalName="output_length" xd:direction="in" xd:interfaceRef="s_axi_control" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_aximm0" xd:dataWidth="64" xd:offset="0x34" xd:handshakeRef="ap_none"/>
+  <xd:arg xd:name="*(input)" xd:originalName="input" xd:direction="inout" xd:interfaceRef="m_axi_gmem" xd:busTypeRef="aximm" xd:dataPack="true" xd:bitMapping="0:0" xd:dataWidth="1" xd:bufferDirection="in"/>
+  <xd:arg xd:name="*(input_length)" xd:originalName="input_length" xd:direction="inout" xd:interfaceRef="m_axi_gmem" xd:busTypeRef="aximm" xd:dataPack="true" xd:bitMapping="0:0" xd:dataWidth="1" xd:bufferDirection="in"/>
+  <xd:arg xd:name="*(send_data)" xd:originalName="send_data" xd:direction="inout" xd:interfaceRef="m_axi_gmem" xd:busTypeRef="aximm" xd:dataPack="true" xd:bitMapping="0:0" xd:dataWidth="1" xd:bufferDirection="out"/>
+  <xd:arg xd:name="*(output_length)" xd:originalName="output_length" xd:direction="inout" xd:interfaceRef="m_axi_gmem" xd:busTypeRef="aximm" xd:dataPack="true" xd:bitMapping="0:0" xd:dataWidth="1" xd:bufferDirection="out"/>
+  <xd:arg xd:name="input_r" xd:originalName="input_r" xd:direction="in" xd:interfaceRef="s_axi_control" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_gmem" xd:dataWidth="64" xd:offset="0x10" xd:handshakeRef="ap_none"/>
+  <xd:arg xd:name="input_length" xd:originalName="input_length" xd:direction="in" xd:interfaceRef="s_axi_control" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_gmem" xd:dataWidth="64" xd:offset="0x1C" xd:handshakeRef="ap_none"/>
+  <xd:arg xd:name="send_data" xd:originalName="send_data" xd:direction="in" xd:interfaceRef="s_axi_control" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_gmem" xd:dataWidth="64" xd:offset="0x28" xd:handshakeRef="ap_none"/>
+  <xd:arg xd:name="output_length" xd:originalName="output_length" xd:direction="in" xd:interfaceRef="s_axi_control" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_gmem" xd:dataWidth="64" xd:offset="0x34" xd:handshakeRef="ap_none"/>
   <xd:latencyEstimates xd:best-case="undef" xd:worst-case="undef" xd:average-case="undef"/>
-  <xd:resourceEstimates xd:LUT="19089" xd:FF="5723" xd:BRAM="84" xd:DSP="0"/>
+  <xd:resourceEstimates xd:LUT="10071" xd:FF="4488" xd:BRAM="78" xd:DSP="0"/>
 </xd:acceleratorMap>

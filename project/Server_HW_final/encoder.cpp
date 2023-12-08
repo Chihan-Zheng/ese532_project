@@ -53,7 +53,7 @@ int main(int argc, char* argv[]) {
     // std::string binaryFile = "LZW_hybrid_hash_HW.xclbin";
 	std::string binaryFile = "krnl_LZW.xclbin";
     unsigned fileBufSize;
-	auto constexpr num_cu = 3;
+	auto constexpr num_cu = 5;
 	// char num_chunks_krnl = 4;
 
     std::vector<cl::Device> devices = get_xilinx_devices();
@@ -77,6 +77,7 @@ int main(int argc, char* argv[]) {
 	 // ------------------------------------------------------------------------------------
     // Step 2: Create buffers and initialize test values
     // ------------------------------------------------------------------------------------
+	uint64_t *cdc_hash = (uint64_t *)malloc(sizeof(uint64_t) * (BLOCKSIZE - WIN_SIZE));
 	// char *ArrayOfChunks[MAX_BOUNDARY];
 	char *ArrayOfChunks_LZW[num_cu];
 	uint32_t *cdc_offset;   //cdc chunks offset: should be cdc_offset += chunks' size 
@@ -111,6 +112,11 @@ int main(int argc, char* argv[]) {
 	char *chunk_dedup = (char *)malloc(Max_Chunk_Size);   //output chunk propagated to dedup
 	char *chunk_LZW = (char *)malloc(Max_Chunk_Size);     //output chunk propagated to LZW
 	char *chunk_temp = (char *)malloc(Max_Chunk_Size);     //used for pointer exchange for these chunk pointers
+
+	if (cdc_hash  == NULL){
+		std::cerr << "Could not malloc cdc_hash." << std::endl;
+		exit (EXIT_FAILURE);
+	}
 
 	if (cdc_offset == NULL){
 		std::cerr << "Could not malloc cdc_offset  ." << std::endl;
@@ -349,7 +355,7 @@ int main(int argc, char* argv[]) {
 					/* if (fread(buffer, 1, offset, &file[0]) != offset)
 						Exit_with_error("fread for first two packets failed"); */
 					// printf("before cdc, loop: %d\n", loop_cnt);
-					core_1_thread = std::thread(&cdc, file, offset, chunk_cdc, chunk_size, cdc_offset, cdc_finished, std::ref(cdc_timer));
+					core_1_thread = std::thread(&cdc, file, offset, chunk_cdc, chunk_size, cdc_offset, cdc_finished, std::ref(cdc_timer), cdc_hash);
 					// printf("after cdc, loop: %d\n", loop_cnt);
 					pin_thread_to_cpu(core_1_thread, 1);
 					// cdc(file, offset, chunk, chunk_size, cdc_offset, cdc_finished);   //boundary_num should use char?
@@ -364,7 +370,7 @@ int main(int argc, char* argv[]) {
 // printf("chunk_size: %d\n", *chunk_size);
 // printf("cdc_offset: %d\n", *cdc_offset);
 // printf("cdc_finished: %d\n", *cdc_finished);
-					core_1_thread = std::thread(&cdc, &buffer[2], length, chunk_cdc, chunk_size, cdc_offset, cdc_finished, std::ref(cdc_timer));
+					core_1_thread = std::thread(&cdc, &buffer[2], length, chunk_cdc, chunk_size, cdc_offset, cdc_finished, std::ref(cdc_timer), cdc_hash);
 					pin_thread_to_cpu(core_1_thread, 1);
 					// cdc(&buffer[2], length, chunk, chunk_size, cdc_offset, cdc_finished);   //boundary_num should use char?
 				}
@@ -411,7 +417,7 @@ int main(int argc, char* argv[]) {
 // printf("enter LZW loop\n");
 // printf("debug----------pipeline_drained:\t%d\n", *pipeline_drained);
 
-printf("debug: kernel idx: %d\n", krnl_idx);
+// printf("debug: kernel idx: %d\n", krnl_idx);
 				if (((LZW_chunks_cnt < (num_chunks_krnl - 1)) || (krnl_idx < (num_cu - 1))) && (*pipeline_drained < 2)){
 					krnl_chunks_cnt[krnl_idx]++;
 					krnl_idx++;
@@ -446,9 +452,9 @@ printf("debug: kernel idx: %d\n", krnl_idx);
 					// LZW_output_length = krnl_LZW(ArrayOfChunks[i], in_length, LZW_send_data);
 					//--------------------------------kernel computation --------------------------------
 					for (int j = 0; j < num_used_krnls; j++){
-						// krnl_LZW(ArrayOfChunks_LZW[j], LZW_input_length[j], LZW_send_data[j], LZW_output_length[j]);}
+						krnl_LZW(ArrayOfChunks_LZW[j], LZW_input_length[j], LZW_send_data[j], LZW_output_length[j]);}
 					
-			 			OCL_CHECK(err, err = krnls[j].setArg(0, Input_buf[j]));
+			 		/* 	OCL_CHECK(err, err = krnls[j].setArg(0, Input_buf[j]));
 						OCL_CHECK(err, err = krnls[j].setArg(1, In_length_buf[j]));
 						OCL_CHECK(err, err = krnls[j].setArg(2, Output_buf[j]));
 						OCL_CHECK(err, err = krnls[j].setArg(3,Output_length_buf[j]));
@@ -456,26 +462,26 @@ printf("debug: kernel idx: %d\n", krnl_idx);
 						OCL_CHECK(err, err = q[j].enqueueMigrateMemObjects({In_length_buf[j]}, 0));
 						OCL_CHECK(err, err = q[j].enqueueMigrateMemObjects({Input_buf[j]}, 0));
 					}
-printf("before kernel\n");
+// printf("before kernel\n");
 					for (int j = 0; j < num_used_krnls; j++){
 						OCL_CHECK(err, err = q[j].finish());
 						OCL_CHECK(err, err = q[j].enqueueTask(krnls[j]));
 					}
-printf("after input\n");
+// printf("after input\n");
 					for (int j = 0; j < num_used_krnls; j++){
 						OCL_CHECK(err, err = q[j].finish());
 						OCL_CHECK(err, err = q[j].enqueueMigrateMemObjects({Output_buf[j], Output_length_buf[j]}, CL_MIGRATE_MEM_OBJECT_HOST));
 					}
-printf("after task\n");
+// printf("after task\n");
 					for (int j = 0; j < num_cu; j++){
 						OCL_CHECK(err, err = q[j].finish());
-					}       
+					}     */  
 					 
 					/* for (int j = 0; j < num_used_krnls; j++){
 						read_done[j].wait();
 					} */
 					LZW_timer.stop();
-printf("debug------------num_used_krnls:\t%d\n", num_used_krnls);
+// printf("debug------------num_used_krnls:\t%d\n", num_used_krnls);
 					for (int j = 0; j < num_used_krnls; j++){
 						num_krnl_loop_wr = krnl_chunks_cnt[j];
 // printf("debug------------krnl_chunks_cnt[%d]:\t%d\n", j, krnl_chunks_cnt[j]);
@@ -613,6 +619,7 @@ printf("debug------------num_used_krnls:\t%d\n", num_used_krnls);
 	free(cdc_offset);	
 	free(cdc_finished);
 	free(pipeline_drained);
+	free(cdc_hash);
 	// free(chunk_cdc);
 	// free(chunk_dedup);
 	// free(chunk_LZW);

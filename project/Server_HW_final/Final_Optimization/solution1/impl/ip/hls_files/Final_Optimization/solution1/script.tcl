@@ -5,13 +5,13 @@
 ############################################################
 open_project Final_Optimization
 set_top krnl_LZW
-add_files Constants.h
-add_files common/EventTimer.cpp
-add_files common/EventTimer.h
-add_files LZW_hybrid_hash_HW.cpp
-add_files common/Utilities.cpp
-add_files common/Utilities.h
 add_files common/check_endian.cpp
+add_files common/Utilities.h
+add_files common/Utilities.cpp
+add_files LZW_hybrid_hash_HW.cpp
+add_files common/EventTimer.h
+add_files common/EventTimer.cpp
+add_files Constants.h
 open_solution "solution1" -flow_target vitis
 set_part {xczu3eg-sbva484-1-i}
 create_clock -period 150MHz -name default

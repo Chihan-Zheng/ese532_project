@@ -59327,11 +59327,11 @@ void send_data(unsigned char *Data, uint16_t Data_size);
 uint16_t swap_endian_16(uint16_t value);
 uint32_t swap_endian_32(uint32_t value);
 # 5 "common/../Constants.h" 2
-# 29 "common/../Constants.h"
+# 32 "common/../Constants.h"
 uint64_t hash_func(unsigned char *input, unsigned int pos);
 
 void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size,
-            uint32_t *offset_buff, char *pipeline_drained, stopwatch &stopwatch);
+            uint32_t *offset_buff, char *pipeline_drained, stopwatch &stopwatch, uint64_t *hash);
 uint64_t basicHash(char* input, size_t length);
 
 

@@ -1,0 +1,11 @@
+Fri Dec  8 17:25:38 2023: Server was asked to start on port: '46131'
+Fri Dec  8 17:25:38 2023: Server is using token UUID: '14efc06e-226f-400d-9f49-ed14028cbd6d'
+Fri Dec  8 17:25:38 2023: Attempting to start server on port '46131'
+Fri Dec  8 17:25:38 2023: XRC main fifo: created main fifo '/tmp/xrcmain14efc06e-226f-400d-9f49-ed14028cbd6d', fd read = 13
+Fri Dec  8 17:25:38 2023: Running Rule Check Server
+Fri Dec  8 17:25:38 2023: Version 1.6.1
+Fri Dec  8 17:25:39 2023: Rule Check Server: Accepted socket connection from client
+Fri Dec  8 17:25:39 2023: EXCHANGE_TOKEN received, server token: 14efc06e-226f-400d-9f49-ed14028cbd6d, passed token: 14efc06e-226f-400d-9f49-ed14028cbd6d
+Fri Dec  8 17:25:39 2023: SESSION_MGR: creating session with session uuid: '852244b9-c484-41c9-8ee8-fb828f4b146b' and name 'v++_link_krnl_LZW'
+Fri Dec  8 17:25:41 2023: Rule Check Server: Accepted socket connection from client
+Fri Dec  8 17:26:09 2023: Rule Check Server: Accepted socket connection from client

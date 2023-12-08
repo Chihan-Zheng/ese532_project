@@ -59327,11 +59327,11 @@ void send_data(unsigned char *Data, uint16_t Data_size);
 uint16_t swap_endian_16(uint16_t value);
 uint32_t swap_endian_32(uint32_t value);
 # 5 "./Constants.h" 2
-# 29 "./Constants.h"
+# 32 "./Constants.h"
 uint64_t hash_func(unsigned char *input, unsigned int pos);
 
 void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size,
-            uint32_t *offset_buff, char *pipeline_drained, stopwatch &stopwatch);
+            uint32_t *offset_buff, char *pipeline_drained, stopwatch &stopwatch, uint64_t *hash);
 uint64_t basicHash(char* input, size_t length);
 
 
@@ -59351,15 +59351,11 @@ static void write_result(uint16_t in_length, hls::stream<ap_uint<13>>& outStream
                         uint16_t *send_data, uint16_t *output_length);
 # 2 "LZW_hybrid_hash_HW.cpp" 2
 
-
-
-
-
 unsigned int my_hash(ap_uint<(13 + 8)> key)
 {
     unsigned int hashed = 0;
 
-    VITIS_LOOP_11_1: for(int i = 0; i < (13 + 8); i++)
+    VITIS_LOOP_7_1: for(int i = 0; i < (13 + 8); i++)
     {
         hashed += (key >> i)&0x01;
         hashed += hashed << 10;
@@ -59389,326 +59385,258 @@ typedef struct
 } assoc_mem;
 
 
-
-static void read_input(char *in, uint32_t *input_offset, uint16_t input_length,
-                        hls::stream<char>& inStream_in){
-
-    mem_rd:
-        for (int i = 0; i < input_length; i++){
-
-            inStream_in << (in + *input_offset)[i];
-        }
-
-        *input_offset += input_length;
-}
-
-void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
-                 hls::stream<ap_uint<13>>& outStream_code, hls::stream<char>& outStream_code_flg){
+__attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *input, uint16_t *input_length, uint16_t *send_data, uint16_t *output_length)
+{
+#pragma HLS TOP name=krnl_LZW
+# 38 "LZW_hybrid_hash_HW.cpp"
 
 
 
 
 
 
-    uint16_t in_length = input_length;
 
-    ap_uint<((13 + 8) + 13 + 1)> hash_table[(1 << 15)][1];
+    char num_chunks = 0;
+    uint32_t input_offset = 0;
+    uint32_t output_offset = 0;
+    uint16_t in_length;
 
-    assoc_mem my_assoc_mem;
-
-
-
-
-
-    VITIS_LOOP_72_1: for(int i = 0; i < (1 << 15); i++){
-
-        VITIS_LOOP_74_2: for (int j = 0; j < 1; j++){
-            hash_table[i][j] = 0;
+    char *in;
+# 65 "LZW_hybrid_hash_HW.cpp"
+    VITIS_LOOP_65_1: for (int i = 0; i < (100); i++){
+        if (input_length[i]){
+            num_chunks++;
         }
     }
 
-    my_assoc_mem.fill = 0;
-    VITIS_LOOP_80_3: for(int i = 0; i < 512; i++)
-    {
+    VITIS_LOOP_71_2: for(int n = 0; n < num_chunks; n++){
+        in = input + input_offset;
+        in_length = input_length[n];
+        input_offset += in_length;
+
+        ap_uint<((13 + 8) + 13 + 1)> hash_table[(1 << 15)][1];
+
+        assoc_mem my_assoc_mem;
+
+
+
+
+
+        VITIS_LOOP_84_3: for(int i = 0; i < (1 << 15); i++){
+
+            VITIS_LOOP_86_4: for (int j = 0; j < 1; j++){
+                hash_table[i][j] = 0;
+            }
+        }
+
+        my_assoc_mem.fill = 0;
+        VITIS_LOOP_92_5: for(int i = 0; i < 512; i++)
+        {
+
+            my_assoc_mem.upper_key_mem[i] = 0;
+            my_assoc_mem.middle_key_mem[i] = 0;
+            my_assoc_mem.lower_key_mem[i] = 0;
+        }
+
+        VITIS_LOOP_100_6: for (int i = 0; i < (72 * 1); i++){
 #pragma HLS unroll
- my_assoc_mem.upper_key_mem[i] = 0;
-        my_assoc_mem.middle_key_mem[i] = 0;
-        my_assoc_mem.lower_key_mem[i] = 0;
-    }
-
-
-    ap_uint<13> next_code = 256;
-    char first_in = inStream_in.read();
-    ap_uint<13> prefix_code = first_in;
-    ap_uint<13> code = 0;
-    char next_char = 0;
-    uint16_t j = 0;
-    unsigned char shift = 0;
-    unsigned char shift_offset = 16 - 13;
-    ap_uint<13> i = 0;
-
-    VITIS_LOOP_99_4: for (int i = 0; i < (in_length - 1); i++)
-    {
-
-        next_char = inStream_in.read();
-
-        bool hit = 0;
-
-        ap_uint<(13 + 8)> key = (prefix_code.to_uint() << 8) + next_char;
-
-        VITIS_LOOP_108_5: for (int j = 0; j < 1; j++){
-
-            ap_uint<((13 + 8) + 13 + 1)> lookup = hash_table[my_hash(key)][j];
-
-
-            ap_uint<(13 + 8)> stored_key = lookup & ((1<<(13 + 8)) - 1);
-            ap_uint<13> value = (lookup >> (13 + 8)) & ((1<<13) - 1);
-            ap_uint<1> valid = (lookup >> ((13 + 8) + 13)) & 0x1;
-
-            if(valid && (key == stored_key))
-            {
-                hit = 1;
-                code = value;
-                break;
-            }
+ my_assoc_mem.value[i] = 0;
         }
 
-        if(!hit)
+        uint16_t store_array[4096];
+        ap_uint<13> next_code = 256;
+        ap_uint<13> prefix_code = in[0];
+        ap_uint<13> code = 0;
+        unsigned char next_char = 0;
+        uint16_t j = 0;
+        unsigned char shift = 0;
+        unsigned char shift_offset = 16 - 13;
+        ap_uint<13> i = 0;
+# 124 "LZW_hybrid_hash_HW.cpp"
+        VITIS_LOOP_124_7: for (int i = 0; i < (in_length - 1); i++)
         {
+            next_char = in[i + 1];
 
-            ap_int<(72 * 1)> match_high = my_assoc_mem.upper_key_mem[(key >> 18)%512];
-            ap_int<(72 * 1)> match_middle = my_assoc_mem.middle_key_mem[(key >> 9)%512];
-            ap_int<(72 * 1)> match_low = my_assoc_mem.lower_key_mem[(key >> 0)%512];
+            bool hit = 0;
 
-            ap_int<(72 * 1)> match = match_high & match_middle & match_low;
+            ap_uint<(13 + 8)> key = (prefix_code.to_uint() << 8) + next_char;
 
-            unsigned int address;
-            VITIS_LOOP_135_6: for(address = 0; address < (72 * 1); address++)
-            {
-
-
-
-                if(match.test(address))
-                {
-                    break;
-                }
-            }
-
-            if(address != (72 * 1))
-            {
-                code = my_assoc_mem.value[address];
-                hit = 1;
-            }
-            else
-            {
-                hit = 0;
-            }
-
-        }
-
-
-        if(!hit)
-        {
-
-
-            bool collision = 0;
-
-
-
-
-            VITIS_LOOP_168_7: for (int j = 0; j < 1; j++){
+            VITIS_LOOP_132_8: for (int j = 0; j < 1; j++){
 #pragma HLS unroll
  ap_uint<((13 + 8) + 13 + 1)> lookup = hash_table[my_hash(key)][j];
+
+
+                ap_uint<(13 + 8)> stored_key = lookup & ((1<<(13 + 8)) - 1);
+                ap_uint<13> value = (lookup >> (13 + 8)) & ((1<<13) - 1);
                 ap_uint<1> valid = (lookup >> ((13 + 8) + 13)) & 0x1;
-                if(!valid)
+
+                if(valid && (key == stored_key))
                 {
-                    hash_table[my_hash(key)][j] = (1UL << ((13 + 8) + 13)) | (next_code.to_uint64() << (13 + 8)) | key;
-                    collision = 0;
+                    hit = 1;
+                    code = value;
                     break;
                 }
-                collision = 1;
             }
 
-
-            if(collision)
+            if(!hit)
             {
 
+                ap_int<(72 * 1)> match_high = my_assoc_mem.upper_key_mem[(key >> 18)%512];
+                ap_int<(72 * 1)> match_middle = my_assoc_mem.middle_key_mem[(key >> 9)%512];
+                ap_int<(72 * 1)> match_low = my_assoc_mem.lower_key_mem[(key >> 0)%512];
 
-                if(my_assoc_mem.fill < (72 * 1))
+                ap_int<(72 * 1)> match = match_high & match_middle & match_low;
+
+                unsigned int address;
+                VITIS_LOOP_159_9: for(address = 0; address < (72 * 1); address++)
                 {
-                    ap_int<(72 * 1)> mask = 1;
-                    my_assoc_mem.upper_key_mem[(key >> 18)%512] |= (mask << my_assoc_mem.fill);
-                    my_assoc_mem.middle_key_mem[(key >> 9)%512] |= (mask << my_assoc_mem.fill);
-                    my_assoc_mem.lower_key_mem[(key >> 0)%512] |= (mask << my_assoc_mem.fill);
-                    my_assoc_mem.value[my_assoc_mem.fill] = next_code;
-                    my_assoc_mem.fill++;
-                    collision = 0;
+
+
+
+                    if(match.test(address))
+                    {
+                        break;
+                    }
+                }
+
+                if(address != (72 * 1))
+                {
+                    code = my_assoc_mem.value[address];
+                    hit = 1;
                 }
                 else
                 {
-                    collision = 1;
+                    hit = 0;
                 }
 
             }
 
 
-            if(collision)
+            if(!hit)
             {
-                std::cout << "ERROR: FAILED TO INSERT! NO MORE ROOM IN ASSOC MEM!" << std::endl;
+                uint32_t written_code = prefix_code.to_uint();
 
+                bool collision = 0;
+
+
+
+
+                VITIS_LOOP_192_10: for (int j = 0; j < 1; j++){
+#pragma HLS unroll
+ ap_uint<((13 + 8) + 13 + 1)> lookup = hash_table[my_hash(key)][j];
+                    ap_uint<1> valid = (lookup >> ((13 + 8) + 13)) & 0x1;
+                    if(!valid)
+                    {
+                        hash_table[my_hash(key)][j] = (1UL << ((13 + 8) + 13)) | (next_code.to_uint64() << (13 + 8)) | key;
+                        collision = 0;
+                        break;
+                    }
+                    collision = 1;
+                }
+
+
+                if(collision)
+                {
+
+
+                    if(my_assoc_mem.fill < (72 * 1))
+                    {
+                        ap_int<(72 * 1)> mask = 1;
+                        my_assoc_mem.upper_key_mem[(key >> 18)%512] |= (mask << my_assoc_mem.fill);
+                        my_assoc_mem.middle_key_mem[(key >> 9)%512] |= (mask << my_assoc_mem.fill);
+                        my_assoc_mem.lower_key_mem[(key >> 0)%512] |= (mask << my_assoc_mem.fill);
+                        my_assoc_mem.value[my_assoc_mem.fill] = next_code;
+                        my_assoc_mem.fill++;
+                        collision = 0;
+                    }
+                    else
+                    {
+                        collision = 1;
+                    }
+
+                }
+
+
+                if(collision)
+                {
+                    std::cout << "ERROR: FAILED TO INSERT! NO MORE ROOM IN ASSOC MEM!" << std::endl;
+
+                }
+
+
+                if (j == 0){
+                    shift = shift_offset;
+                    store_array[0] = prefix_code.to_uint() << shift;
+                    j++;
+                }else{
+                    if (shift < 13){
+                        shift = shift + shift_offset;
+                        store_array[j] = prefix_code.to_uint() << shift;
+                        shift = 16 - shift;
+                        store_array[j-1] = store_array[j-1] | (prefix_code.to_uint() >> shift);
+                        shift = 16 - shift;
+                        store_array[j-1] = swap_endian_16(store_array[j-1]);
+                        j++;
+                    }else{
+                        char vacant_bit_number = shift - 13;
+                        store_array[j-1] = store_array[j-1] | (prefix_code.to_uint() << vacant_bit_number);
+                        shift = vacant_bit_number;
+
+                    }
+                }
+
+
+                next_code += 1;
+                prefix_code = next_char;
             }
-
-
-            outStream_code_flg << 1;
-            outStream_code << prefix_code;
-
-
-            next_code += 1;
-            prefix_code = next_char;
+            else
+            {
+                prefix_code = code;
+            }
         }
-        else
-        {
-            prefix_code = code;
-        }
-    }
-
-    outStream_code_flg << 0;
-    outStream_code << prefix_code;
-
-    std::cout << std::endl << "assoc mem entry count: " << my_assoc_mem.fill << std::endl;
-
-}
 
 
-
-static void write_result(uint16_t in_length, hls::stream<ap_uint<13>>& outStream_code, hls::stream<char>& outStream_code_flg,
-                        uint16_t *send_data, uint16_t *output_length, uint32_t *output_offset){
-
-    uint16_t j = 0;
-    unsigned char shift = 0;
-    unsigned char shift_offset = 16 - 13;
-    ap_uint<13> prefix_code;
-    uint16_t store_array[4096];
-    char stop_flg = outStream_code_flg.read();
-
-
-    VITIS_LOOP_244_1: while(stop_flg){
-        prefix_code = outStream_code.read();
-        if (j == 0){
-            shift = shift_offset;
-            store_array[0] = prefix_code.to_uint() << shift;
-            j++;
+        if (in_length == 1) {
+            shift = shift + shift_offset;
+            store_array[j] = prefix_code.to_uint() << shift;
+            store_array[j] = swap_endian_16(store_array[j]);
         }else{
             if (shift < 13){
                 shift = shift + shift_offset;
                 store_array[j] = prefix_code.to_uint() << shift;
+                store_array[j] = swap_endian_16(store_array[j]);
                 shift = 16 - shift;
                 store_array[j-1] = store_array[j-1] | (prefix_code.to_uint() >> shift);
-                shift = 16 - shift;
                 store_array[j-1] = swap_endian_16(store_array[j-1]);
-                j++;
+                shift = 16 - shift;
             }else{
                 char vacant_bit_number = shift - 13;
                 store_array[j-1] = store_array[j-1] | (prefix_code.to_uint() << vacant_bit_number);
+                store_array[j-1] = swap_endian_16(store_array[j-1]);
+                j = j - 1;
                 shift = vacant_bit_number;
-
             }
         }
-        stop_flg = outStream_code_flg.read();
-    }
 
-    prefix_code = outStream_code.read();
-    if (in_length == 1) {
-        shift = shift + shift_offset;
-        store_array[j] = prefix_code.to_uint() << shift;
-        store_array[j] = swap_endian_16(store_array[j]);
-    }else{
-        if (shift < 13){
-            shift = shift + shift_offset;
-            store_array[j] = prefix_code.to_uint() << shift;
-            store_array[j] = swap_endian_16(store_array[j]);
-            shift = 16 - shift;
-            store_array[j-1] = store_array[j-1] | (prefix_code.to_uint() >> shift);
-            store_array[j-1] = swap_endian_16(store_array[j-1]);
-            shift = 16 - shift;
-        }else{
-            char vacant_bit_number = shift - 13;
-            store_array[j-1] = store_array[j-1] | (prefix_code.to_uint() << vacant_bit_number);
-            store_array[j-1] = swap_endian_16(store_array[j-1]);
-            j = j - 1;
-            shift = vacant_bit_number;
+
+        uint32_t header = 0;
+        uint16_t compressed_length = (j+1) * sizeof(uint16_t);
+
+        if (shift >= 8){
+            compressed_length = compressed_length - 1;
         }
-    }
+        header = compressed_length << 1;
+
+        memcpy((send_data + output_offset), &header, 4);
+        memcpy((send_data + output_offset + 2), store_array, compressed_length);
 
 
-    uint32_t header = 0;
-    uint16_t compressed_length = (j+1) * sizeof(uint16_t);
-
-    if (shift >= 8){
-        compressed_length = compressed_length - 1;
-    }
-    header = compressed_length << 1;
-
-    memcpy(send_data + *output_offset, &header, 4);
-    memcpy(send_data + *output_offset + 2, store_array, compressed_length);
-
-
-
-    *output_length = compressed_length + 4;
-
-    *output_offset += (*output_length + sizeof(uint16_t) - 1) / sizeof(uint16_t);
-
-}
-
-
-__attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *input, uint16_t *input_length, uint16_t *send_data, uint16_t *output_length)
-{
-#pragma HLS TOP name=krnl_LZW
-# 314 "LZW_hybrid_hash_HW.cpp"
-
-    static hls::stream<char> inStream_in("in_stream");
-    static hls::stream<uint16_t> inStream_in_length("in_length_stream");
-    static hls::stream<ap_uint<13>> outStream_code("outStream_code");
-    static hls::stream<char> outStream_code_flg("outStream_code_flg");
-#pragma HLS interface m_axi port=input bundle=aximm0
-#pragma HLS interface m_axi port=input_length bundle=aximm0
-#pragma HLS interface m_axi port=send_data bundle=aximm0
-#pragma HLS interface m_axi port=output_length bundle=aximm0
-#pragma HLS stream variable = inStream_in depth=2
-#pragma HLS stream variable = inStream_in_length depth=4
-#pragma HLS stream variable = outStream_code depth=4
-#pragma HLS stream variable = outStream_code_flg depth=4
-
-
-
- char num_chunks = 0;
-    uint32_t input_offset = 0;
-    uint32_t output_offset = 0;
-
-    uint16_t input_length_temp;
-
-    VITIS_LOOP_336_1: for (int i = 0; i < (4); i++){
-
-        if (input_length[i]){
-            num_chunks++;
-
-#pragma HLS dataflow
- inStream_in_length << input_length[i];
-        }
-    }
-
-    VITIS_LOOP_346_2: for (int i = 0; i < num_chunks; i++){
-#pragma HLS dataflow
-
-
-
-
- input_length_temp = inStream_in_length.read();
-        read_input(input, &input_offset, input_length_temp, inStream_in);
-        compute_LZW(inStream_in, input_length_temp, outStream_code, outStream_code_flg);
-        write_result(input_length_temp, outStream_code, outStream_code_flg, send_data, &output_length[i], &output_offset);
-
-
+        std::cout << std::endl << "assoc mem entry count: " << my_assoc_mem.fill << std::endl;
+        output_length[n] = compressed_length + 4;
+        printf("output length: %d\n", output_length[n]);
+        output_offset += ((output_length[n] + sizeof(uint16_t) - 1) / sizeof(uint16_t));
 
     }
+
+
 }

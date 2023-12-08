@@ -14,7 +14,7 @@
 #include <time.h>
 
 #define PORT 8091
-#define BLOCKSIZE 8192
+#define BLOCKSIZE 8192       //remember to change the value accordingly in Constants.h
 #define MAX_BLOCKSIZE 16384
 #define HEADER 2
 #define DONE_BIT (1 << 7)
