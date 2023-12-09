@@ -333,6 +333,7 @@ int main(int argc, char* argv[]) {
 			offset += length;
 		}else{
 			//--- 1 packet:
+			memcpy(&file[offset], &buffer[HEADER], length);
 			offset += length;
 		}
 		
@@ -452,9 +453,9 @@ int main(int argc, char* argv[]) {
 					// LZW_output_length = krnl_LZW(ArrayOfChunks[i], in_length, LZW_send_data);
 					//--------------------------------kernel computation --------------------------------
 					for (int j = 0; j < num_used_krnls; j++){
-						krnl_LZW(ArrayOfChunks_LZW[j], LZW_input_length[j], LZW_send_data[j], LZW_output_length[j]);}
+						// krnl_LZW(ArrayOfChunks_LZW[j], LZW_input_length[j], LZW_send_data[j], LZW_output_length[j]);}
 					
-			 		/* 	OCL_CHECK(err, err = krnls[j].setArg(0, Input_buf[j]));
+			 			OCL_CHECK(err, err = krnls[j].setArg(0, Input_buf[j]));
 						OCL_CHECK(err, err = krnls[j].setArg(1, In_length_buf[j]));
 						OCL_CHECK(err, err = krnls[j].setArg(2, Output_buf[j]));
 						OCL_CHECK(err, err = krnls[j].setArg(3,Output_length_buf[j]));
@@ -475,7 +476,7 @@ int main(int argc, char* argv[]) {
 // printf("after task\n");
 					for (int j = 0; j < num_cu; j++){
 						OCL_CHECK(err, err = q[j].finish());
-					}     */  
+					}       
 					 
 					/* for (int j = 0; j < num_used_krnls; j++){
 						read_done[j].wait();
