@@ -21,13 +21,13 @@
 #define HASH_BIT_NUM 15
 #define CAPACITY (1 << HASH_BIT_NUM) // hash output is 15 bits, and we have 1 entry per bucket, so capacity is 2^15
 #define KEY_LEN (CODE_LEN + 8)
-#define BUCKETS_NUM 1
+#define BUCKETS_NUM 2
 #define BUCKET_LEN (KEY_LEN + CODE_LEN + 1)
 
 #define MATCH_UNITS_COLUMN_NUM 1
 #define ASSOC_MEM_SIZE (72 * MATCH_UNITS_COLUMN_NUM)
 
-#define num_chunks_krnl (150)
+#define num_chunks_krnl (60)
 #define ArrayOfCodeNum (70000)
 
 uint64_t hash_func(unsigned char *input, unsigned int pos);
