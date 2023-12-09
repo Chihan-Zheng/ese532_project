@@ -86,6 +86,7 @@ int main(int argc, char* argv[]) {
 	uint16_t *chunk_size_LZW = (uint16_t *)malloc(sizeof(uint16_t));       //input chunk size to LZW
 	char *cdc_finished;         //flag whether cdc has finished: it's the output "pipeline_drained" of cdc
 	char *pipeline_drained;     //determine the stage in draining pipeline: 2 -> the last stage of pipeline: only execute LZW or not
+	uint num_chunks_total = 0;
 	uint16_t *ArrayOfCode[MAX_BOUNDARY];     //Array to store all the codes need to be written to file
 											//the first 16bits determine whether the chunk is deduplicated or not: 1 -> dedup; 0 -> LZW
 	uint16_t ArrayOfOutputLength_LZW[MAX_BOUNDARY];     //Array to store the output codes length of each chunk
@@ -357,6 +358,7 @@ int main(int argc, char* argv[]) {
 						Exit_with_error("fread for first two packets failed"); */
 					// printf("before cdc, loop: %d\n", loop_cnt);
 					core_1_thread = std::thread(&cdc, file, offset, chunk_cdc, chunk_size, cdc_offset, cdc_finished, std::ref(cdc_timer), cdc_hash);
+					num_chunks_total++;
 					// printf("after cdc, loop: %d\n", loop_cnt);
 					pin_thread_to_cpu(core_1_thread, 1);
 					// cdc(file, offset, chunk, chunk_size, cdc_offset, cdc_finished);   //boundary_num should use char?
@@ -372,6 +374,7 @@ int main(int argc, char* argv[]) {
 // printf("cdc_offset: %d\n", *cdc_offset);
 // printf("cdc_finished: %d\n", *cdc_finished);
 					core_1_thread = std::thread(&cdc, &buffer[2], length, chunk_cdc, chunk_size, cdc_offset, cdc_finished, std::ref(cdc_timer), cdc_hash);
+					num_chunks_total++;
 					pin_thread_to_cpu(core_1_thread, 1);
 					// cdc(&buffer[2], length, chunk, chunk_size, cdc_offset, cdc_finished);   //boundary_num should use char?
 				}
@@ -658,6 +661,7 @@ int main(int argc, char* argv[]) {
 	std::cout << "Input Throughput to Encoder: " << input_throughput << " Mb/s."
 			<< " (Latency: " << ethernet_latency << "s)." << std::endl;
 	std::cout << "-----------------------------------Compress Ratio-----------------------------------" << std::endl;
+	printf("Totoal chunks number is: %d\n", num_chunks_total);
 	printf("input file with %dB\n", offset);
 	printf("encode file with %dB\n\n", file_size);
 	printf("Compressed ratio: %.2f%%\n", (file_size * 100.0 / offset));
