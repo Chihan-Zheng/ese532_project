@@ -164,7 +164,7 @@ extern "C" void apatb_krnl_LZW_hw(volatile void * __xlx_apatb_param_input, volat
           exit(1);
         }
         if (atoi(AESL_num.c_str()) == AESL_transaction_pc) {
-          std::vector<sc_bv<64> > gmem_pc_buffer(4);
+          std::vector<sc_bv<32> > gmem_pc_buffer(4);
           int i = 0;
 
           rtl_tv_out_file >> AESL_token; //data
@@ -185,16 +185,16 @@ extern "C" void apatb_krnl_LZW_hw(volatile void * __xlx_apatb_param_input, volat
           if (i > 0) {{
             int i = 0;
             for (int j = 0, e = 1; j < e; j += 1, ++i) {
-            ((long long*)__xlx_apatb_param_input)[j] = gmem_pc_buffer[i].to_int64();
+            ((int*)__xlx_apatb_param_input)[j] = gmem_pc_buffer[i].to_int64();
           }
             for (int j = 0, e = 1; j < e; j += 1, ++i) {
-            ((long long*)__xlx_apatb_param_input_length)[j] = gmem_pc_buffer[i].to_int64();
+            ((int*)__xlx_apatb_param_input_length)[j] = gmem_pc_buffer[i].to_int64();
           }
             for (int j = 0, e = 1; j < e; j += 1, ++i) {
-            ((long long*)__xlx_apatb_param_send_data)[j] = gmem_pc_buffer[i].to_int64();
+            ((int*)__xlx_apatb_param_send_data)[j] = gmem_pc_buffer[i].to_int64();
           }
             for (int j = 0, e = 1; j < e; j += 1, ++i) {
-            ((long long*)__xlx_apatb_param_output_length)[j] = gmem_pc_buffer[i].to_int64();
+            ((int*)__xlx_apatb_param_output_length)[j] = gmem_pc_buffer[i].to_int64();
           }}}
         } // end transaction
       } // end file is good
@@ -232,37 +232,37 @@ unsigned __xlx_offset_byte_param_output_length = 0;
 {
   sprintf(__xlx_sprintf_buffer.data(), "[[transaction]] %d\n", AESL_transaction);
   aesl_fh.write(AUTOTB_TVIN_gmem, __xlx_sprintf_buffer.data());
-  {  __xlx_offset_byte_param_input = 0*8;
+  {  __xlx_offset_byte_param_input = 0*4;
   if (__xlx_apatb_param_input) {
     for (int j = 0  - 0, e = 1 - 0; j != e; ++j) {
-sc_bv<64> __xlx_tmp_lv = ((long long*)__xlx_apatb_param_input)[j];
+sc_bv<32> __xlx_tmp_lv = ((int*)__xlx_apatb_param_input)[j];
 
     sprintf(__xlx_sprintf_buffer.data(), "%s\n", __xlx_tmp_lv.to_string(SC_HEX).c_str());
     aesl_fh.write(AUTOTB_TVIN_gmem, __xlx_sprintf_buffer.data()); 
       }
   }
-  __xlx_offset_byte_param_input_length = 1*8;
+  __xlx_offset_byte_param_input_length = 1*4;
   if (__xlx_apatb_param_input_length) {
     for (int j = 0  - 0, e = 1 - 0; j != e; ++j) {
-sc_bv<64> __xlx_tmp_lv = ((long long*)__xlx_apatb_param_input_length)[j];
+sc_bv<32> __xlx_tmp_lv = ((int*)__xlx_apatb_param_input_length)[j];
 
     sprintf(__xlx_sprintf_buffer.data(), "%s\n", __xlx_tmp_lv.to_string(SC_HEX).c_str());
     aesl_fh.write(AUTOTB_TVIN_gmem, __xlx_sprintf_buffer.data()); 
       }
   }
-  __xlx_offset_byte_param_send_data = 2*8;
+  __xlx_offset_byte_param_send_data = 2*4;
   if (__xlx_apatb_param_send_data) {
     for (int j = 0  - 0, e = 1 - 0; j != e; ++j) {
-sc_bv<64> __xlx_tmp_lv = ((long long*)__xlx_apatb_param_send_data)[j];
+sc_bv<32> __xlx_tmp_lv = ((int*)__xlx_apatb_param_send_data)[j];
 
     sprintf(__xlx_sprintf_buffer.data(), "%s\n", __xlx_tmp_lv.to_string(SC_HEX).c_str());
     aesl_fh.write(AUTOTB_TVIN_gmem, __xlx_sprintf_buffer.data()); 
       }
   }
-  __xlx_offset_byte_param_output_length = 3*8;
+  __xlx_offset_byte_param_output_length = 3*4;
   if (__xlx_apatb_param_output_length) {
     for (int j = 0  - 0, e = 1 - 0; j != e; ++j) {
-sc_bv<64> __xlx_tmp_lv = ((long long*)__xlx_apatb_param_output_length)[j];
+sc_bv<32> __xlx_tmp_lv = ((int*)__xlx_apatb_param_output_length)[j];
 
     sprintf(__xlx_sprintf_buffer.data(), "%s\n", __xlx_tmp_lv.to_string(SC_HEX).c_str());
     aesl_fh.write(AUTOTB_TVIN_gmem, __xlx_sprintf_buffer.data()); 
@@ -336,37 +336,37 @@ CodeState = DUMP_OUTPUTS;
 {
   sprintf(__xlx_sprintf_buffer.data(), "[[transaction]] %d\n", AESL_transaction);
   aesl_fh.write(AUTOTB_TVOUT_gmem, __xlx_sprintf_buffer.data());
-  {  __xlx_offset_byte_param_input = 0*8;
+  {  __xlx_offset_byte_param_input = 0*4;
   if (__xlx_apatb_param_input) {
     for (int j = 0  - 0, e = 1 - 0; j != e; ++j) {
-sc_bv<64> __xlx_tmp_lv = ((long long*)__xlx_apatb_param_input)[j];
+sc_bv<32> __xlx_tmp_lv = ((int*)__xlx_apatb_param_input)[j];
 
     sprintf(__xlx_sprintf_buffer.data(), "%s\n", __xlx_tmp_lv.to_string(SC_HEX).c_str());
     aesl_fh.write(AUTOTB_TVOUT_gmem, __xlx_sprintf_buffer.data()); 
       }
   }
-  __xlx_offset_byte_param_input_length = 1*8;
+  __xlx_offset_byte_param_input_length = 1*4;
   if (__xlx_apatb_param_input_length) {
     for (int j = 0  - 0, e = 1 - 0; j != e; ++j) {
-sc_bv<64> __xlx_tmp_lv = ((long long*)__xlx_apatb_param_input_length)[j];
+sc_bv<32> __xlx_tmp_lv = ((int*)__xlx_apatb_param_input_length)[j];
 
     sprintf(__xlx_sprintf_buffer.data(), "%s\n", __xlx_tmp_lv.to_string(SC_HEX).c_str());
     aesl_fh.write(AUTOTB_TVOUT_gmem, __xlx_sprintf_buffer.data()); 
       }
   }
-  __xlx_offset_byte_param_send_data = 2*8;
+  __xlx_offset_byte_param_send_data = 2*4;
   if (__xlx_apatb_param_send_data) {
     for (int j = 0  - 0, e = 1 - 0; j != e; ++j) {
-sc_bv<64> __xlx_tmp_lv = ((long long*)__xlx_apatb_param_send_data)[j];
+sc_bv<32> __xlx_tmp_lv = ((int*)__xlx_apatb_param_send_data)[j];
 
     sprintf(__xlx_sprintf_buffer.data(), "%s\n", __xlx_tmp_lv.to_string(SC_HEX).c_str());
     aesl_fh.write(AUTOTB_TVOUT_gmem, __xlx_sprintf_buffer.data()); 
       }
   }
-  __xlx_offset_byte_param_output_length = 3*8;
+  __xlx_offset_byte_param_output_length = 3*4;
   if (__xlx_apatb_param_output_length) {
     for (int j = 0  - 0, e = 1 - 0; j != e; ++j) {
-sc_bv<64> __xlx_tmp_lv = ((long long*)__xlx_apatb_param_output_length)[j];
+sc_bv<32> __xlx_tmp_lv = ((int*)__xlx_apatb_param_output_length)[j];
 
     sprintf(__xlx_sprintf_buffer.data(), "%s\n", __xlx_tmp_lv.to_string(SC_HEX).c_str());
     aesl_fh.write(AUTOTB_TVOUT_gmem, __xlx_sprintf_buffer.data()); 

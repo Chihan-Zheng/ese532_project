@@ -451,7 +451,7 @@ int main(int argc, char* argv[]) {
 							LZW_input_length[i][j] = 0;
 						}
 					}
-
+// printf("\n--------------------------------pipeline_drain: %d\n", *pipeline_drained);
 					LZW_timer.start();
 					// LZW_output_length = krnl_LZW(ArrayOfChunks[i], in_length, LZW_send_data);
 					//--------------------------------kernel computation --------------------------------

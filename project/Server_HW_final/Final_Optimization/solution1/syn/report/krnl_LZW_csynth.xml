@@ -33,9 +33,9 @@
 </SummaryOfOverallLatency>
 <SummaryOfLoopLatency>
 <VITIS_LOOP_65_1>
-<TripCount>100</TripCount>
-<Latency>101</Latency>
-<AbsoluteTimeLatency>673</AbsoluteTimeLatency>
+<TripCount>150</TripCount>
+<Latency>151</Latency>
+<AbsoluteTimeLatency>1006</AbsoluteTimeLatency>
 <PipelineII>1</PipelineII>
 <PipelineDepth>3</PipelineDepth>
 </VITIS_LOOP_65_1>
@@ -169,9 +169,9 @@
 
 <AreaEstimates>
 <Resources>
-<BRAM_18K>78</BRAM_18K>
-<FF>4488</FF>
-<LUT>10071</LUT>
+<BRAM_18K>76</BRAM_18K>
+<FF>4137</FF>
+<LUT>9274</LUT>
 <DSP>0</DSP>
 <URAM>0</URAM>
 </Resources>
@@ -627,7 +627,7 @@
 <IOProtocol>m_axi</IOProtocol>
 <IOConfig></IOConfig>
 <Dir>out</Dir>
-<Bits>64</Bits>
+<Bits>32</Bits>
 <Attribute>unknown</Attribute>
 <CType>int</CType>
 </RtlPorts>
@@ -639,7 +639,7 @@
 <IOProtocol>m_axi</IOProtocol>
 <IOConfig></IOConfig>
 <Dir>out</Dir>
-<Bits>8</Bits>
+<Bits>4</Bits>
 <Attribute>unknown</Attribute>
 <CType>int</CType>
 </RtlPorts>
@@ -867,7 +867,7 @@
 <IOProtocol>m_axi</IOProtocol>
 <IOConfig></IOConfig>
 <Dir>in</Dir>
-<Bits>64</Bits>
+<Bits>32</Bits>
 <Attribute>unknown</Attribute>
 <CType>int</CType>
 </RtlPorts>

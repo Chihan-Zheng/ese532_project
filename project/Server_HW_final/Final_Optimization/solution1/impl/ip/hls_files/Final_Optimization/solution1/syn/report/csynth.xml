@@ -30,9 +30,9 @@
         </SummaryOfOverallLatency>
         <SummaryOfLoopLatency>
             <VITIS_LOOP_65_1>
-                <TripCount>100</TripCount>
-                <Latency>101</Latency>
-                <AbsoluteTimeLatency>673</AbsoluteTimeLatency>
+                <TripCount>150</TripCount>
+                <Latency>151</Latency>
+                <AbsoluteTimeLatency>1006</AbsoluteTimeLatency>
                 <PipelineII>1</PipelineII>
                 <PipelineDepth>3</PipelineDepth>
             </VITIS_LOOP_65_1>
@@ -165,9 +165,9 @@
     </PerformanceEstimates>
     <AreaEstimates>
         <Resources>
-            <BRAM_18K>78</BRAM_18K>
-            <FF>4488</FF>
-            <LUT>10071</LUT>
+            <BRAM_18K>76</BRAM_18K>
+            <FF>4137</FF>
+            <LUT>9274</LUT>
             <DSP>0</DSP>
             <URAM>0</URAM>
         </Resources>
@@ -622,7 +622,7 @@
             <IOProtocol>m_axi</IOProtocol>
             <IOConfig/>
             <Dir>out</Dir>
-            <Bits>64</Bits>
+            <Bits>32</Bits>
             <Attribute>unknown</Attribute>
             <CType>int</CType>
         </RtlPorts>
@@ -634,7 +634,7 @@
             <IOProtocol>m_axi</IOProtocol>
             <IOConfig/>
             <Dir>out</Dir>
-            <Bits>8</Bits>
+            <Bits>4</Bits>
             <Attribute>unknown</Attribute>
             <CType>int</CType>
         </RtlPorts>
@@ -862,7 +862,7 @@
             <IOProtocol>m_axi</IOProtocol>
             <IOConfig/>
             <Dir>in</Dir>
-            <Bits>64</Bits>
+            <Bits>32</Bits>
             <Attribute>unknown</Attribute>
             <CType>int</CType>
         </RtlPorts>
@@ -1002,9 +1002,9 @@
                 <SummaryOfLoopLatency>
                     <VITIS_LOOP_65_1>
                         <Name>VITIS_LOOP_65_1</Name>
-                        <TripCount>100</TripCount>
-                        <Latency>101</Latency>
-                        <AbsoluteTimeLatency>0.673 us</AbsoluteTimeLatency>
+                        <TripCount>150</TripCount>
+                        <Latency>151</Latency>
+                        <AbsoluteTimeLatency>1.007 us</AbsoluteTimeLatency>
                         <PipelineII>1</PipelineII>
                         <PipelineDepth>3</PipelineDepth>
                     </VITIS_LOOP_65_1>
@@ -1120,15 +1120,15 @@
             </PerformanceEstimates>
             <AreaEstimates>
                 <Resources>
-                    <BRAM_18K>78</BRAM_18K>
+                    <BRAM_18K>76</BRAM_18K>
                     <AVAIL_BRAM>432</AVAIL_BRAM>
-                    <UTIL_BRAM>18</UTIL_BRAM>
-                    <FF>4488</FF>
+                    <UTIL_BRAM>17</UTIL_BRAM>
+                    <FF>4137</FF>
                     <AVAIL_FF>141120</AVAIL_FF>
-                    <UTIL_FF>3</UTIL_FF>
-                    <LUT>10071</LUT>
+                    <UTIL_FF>2</UTIL_FF>
+                    <LUT>9274</LUT>
                     <AVAIL_LUT>70560</AVAIL_LUT>
-                    <UTIL_LUT>14</UTIL_LUT>
+                    <UTIL_LUT>13</UTIL_LUT>
                     <DSP>0</DSP>
                     <AVAIL_DSP>360</AVAIL_DSP>
                     <UTIL_DSP>0</UTIL_DSP>
@@ -1580,7 +1580,7 @@
                     <IOProtocol>m_axi</IOProtocol>
                     <IOConfig/>
                     <Dir>out</Dir>
-                    <Bits>64</Bits>
+                    <Bits>32</Bits>
                     <Attribute>unknown</Attribute>
                     <CType>int</CType>
                 </RtlPorts>
@@ -1592,7 +1592,7 @@
                     <IOProtocol>m_axi</IOProtocol>
                     <IOConfig/>
                     <Dir>out</Dir>
-                    <Bits>8</Bits>
+                    <Bits>4</Bits>
                     <Attribute>unknown</Attribute>
                     <CType>int</CType>
                 </RtlPorts>
@@ -1820,7 +1820,7 @@
                     <IOProtocol>m_axi</IOProtocol>
                     <IOConfig/>
                     <Dir>in</Dir>
-                    <Bits>64</Bits>
+                    <Bits>32</Bits>
                     <Attribute>unknown</Attribute>
                     <CType>int</CType>
                 </RtlPorts>
@@ -2001,7 +2001,7 @@
                 <port>interrupt</port>
             </ports>
         </Interface>
-        <Interface InterfaceName="m_axi_gmem" type="axi4full" busTypeName="aximm" mode="master" dataWidth="64" addrWidth="64" portPrefix="m_axi_gmem_" paramPrefix="C_M_AXI_GMEM_" offsetSlaveName="s_axi_control" preferredUsageValue="MEMORY">
+        <Interface InterfaceName="m_axi_gmem" type="axi4full" busTypeName="aximm" mode="master" dataWidth="32" addrWidth="64" portPrefix="m_axi_gmem_" paramPrefix="C_M_AXI_GMEM_" offsetSlaveName="s_axi_control" preferredUsageValue="MEMORY">
             <busParams>
                 <busParam busParamName="NUM_READ_OUTSTANDING">16</busParam>
                 <busParam busParamName="NUM_WRITE_OUTSTANDING">16</busParam>
@@ -2062,7 +2062,7 @@
             </ports>
             <constraints>
                 <constraint constraint_type="pragma interface" mode="m_axi" register_option="0" offset="slave" latency="64" num_read_outstanding="16" num_write_outstanding="16" max_read_burst_length="16" max_write_burst_length="16" max_widen_bitwidth="512" argName="input"/>
-                <constraint constraint_type="bitwidth" orig_bitwidth="8" final_bitwidth="64" argName="input"/>
+                <constraint constraint_type="bitwidth" orig_bitwidth="8" final_bitwidth="32" argName="input"/>
             </constraints>
         </Interface>
         <Interface InterfaceName="s_axi_control" type="axi4lite" busTypeName="aximm" mode="slave" dataWidth="32" addrWidth="6" portPrefix="s_axi_control_" paramPrefix="C_S_AXI_CONTROL_" offsetMasterName="m_axi_gmem">
@@ -2169,7 +2169,7 @@
             <item name="M_AXI">
                 <table>
                     <keys size="12">Interface, Data Width (SW-&gt;HW), Address Width, Latency, Offset, Offset Interfaces, Register, Max Widen Bitwidth, Max Read Burst Length, Max Write Burst Length, Num Read Outstanding, Num Write Outstanding</keys>
-                    <column name="m_axi_gmem">8 -&gt; 64, 64, 64, slave, s_axi_control, 0, 512, 16, 16, 16, 16</column>
+                    <column name="m_axi_gmem">8 -&gt; 32, 64, 64, slave, s_axi_control, 0, 512, 16, 16, 16, 16</column>
                 </table>
             </item>
             <item name="S_AXILITE">
@@ -2224,7 +2224,7 @@
             <item name="Burst Summary">
                 <table>
                     <keys size="3">HW Interface, Message, Location</keys>
-                    <column name="m_axi_gmem">Multiple burst reads of length 25 and bit width 64, LZW_hybrid_hash_HW.cpp:65:22</column>
+                    <column name="m_axi_gmem">Multiple burst reads of length 75 and bit width 32, LZW_hybrid_hash_HW.cpp:65:22</column>
                 </table>
             </item>
             <item name="Burst Missed">

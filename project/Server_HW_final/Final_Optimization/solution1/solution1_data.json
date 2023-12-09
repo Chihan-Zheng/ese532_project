@@ -179,10 +179,10 @@
   },
   "Files": {
     "CSource": [
-      "..\/..\/common\/EventTimer.cpp",
-      "..\/..\/LZW_hybrid_hash_HW.cpp",
+      "..\/..\/common\/check_endian.cpp",
       "..\/..\/common\/Utilities.cpp",
-      "..\/..\/common\/check_endian.cpp"
+      "..\/..\/LZW_hybrid_hash_HW.cpp",
+      "..\/..\/common\/EventTimer.cpp"
     ],
     "Vhdl": [
       "impl\/vhdl\/krnl_LZW_control_s_axi.vhd",
@@ -256,7 +256,7 @@
       "type": "axi4full",
       "busTypeName": "aximm",
       "mode": "master",
-      "dataWidth": "64",
+      "dataWidth": "32",
       "addrWidth": "64",
       "portPrefix": "m_axi_gmem_",
       "paramPrefix": "C_M_AXI_GMEM_",
@@ -337,7 +337,7 @@
         {
           "constraint_type": "bitwidth",
           "orig_bitwidth": "8",
-          "final_bitwidth": "64",
+          "final_bitwidth": "32",
           "argName": "input"
         }
       ]
@@ -822,11 +822,11 @@
     },
     "m_axi_gmem_WDATA": {
       "dir": "out",
-      "width": "64"
+      "width": "32"
     },
     "m_axi_gmem_WSTRB": {
       "dir": "out",
-      "width": "8"
+      "width": "4"
     },
     "m_axi_gmem_WLAST": {
       "dir": "out",
@@ -906,7 +906,7 @@
     },
     "m_axi_gmem_RDATA": {
       "dir": "in",
-      "width": "64"
+      "width": "32"
     },
     "m_axi_gmem_RLAST": {
       "dir": "in",
@@ -975,8 +975,8 @@
         "Loops": [
           {
             "Name": "VITIS_LOOP_65_1",
-            "TripCount": "100",
-            "Latency": "101",
+            "TripCount": "150",
+            "Latency": "151",
             "PipelineII": "1",
             "PipelineDepth": "3"
           },
@@ -1071,15 +1071,15 @@
           }
         ],
         "Area": {
-          "BRAM_18K": "78",
+          "BRAM_18K": "76",
           "AVAIL_BRAM": "432",
-          "UTIL_BRAM": "18",
-          "FF": "4488",
+          "UTIL_BRAM": "17",
+          "FF": "4137",
           "AVAIL_FF": "141120",
-          "UTIL_FF": "3",
-          "LUT": "10071",
+          "UTIL_FF": "2",
+          "LUT": "9274",
           "AVAIL_LUT": "70560",
-          "UTIL_LUT": "14",
+          "UTIL_LUT": "13",
           "DSP": "0",
           "AVAIL_DSP": "360",
           "UTIL_DSP": "0",
@@ -1092,7 +1092,7 @@
   "GenerateBdFiles": "0",
   "GenData": {
     "DataVersion": "0.2",
-    "Time": "2023-12-08 18:09:55 EST",
+    "Time": "2023-12-08 20:36:50 EST",
     "ToolName": "vivado_hls",
     "ToolVersion": "2020.2"
   }

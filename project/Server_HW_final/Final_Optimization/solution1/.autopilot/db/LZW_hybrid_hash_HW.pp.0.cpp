@@ -59403,7 +59403,7 @@ __attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *input, uint16_t *
 
     char *in;
 # 65 "LZW_hybrid_hash_HW.cpp"
-    VITIS_LOOP_65_1: for (int i = 0; i < (100); i++){
+    VITIS_LOOP_65_1: for (int i = 0; i < (150); i++){
         if (input_length[i]){
             num_chunks++;
         }

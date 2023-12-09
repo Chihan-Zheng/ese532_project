@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
   <source>
-    <originFiles name="check_endian.cpp" path="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/common/check_endian.cpp"/>
-    <originFiles name="Utilities.h" path="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/common/Utilities.h"/>
-    <originFiles name="Utilities.cpp" path="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/common/Utilities.cpp"/>
-    <originFiles name="LZW_hybrid_hash_HW.cpp" path="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/LZW_hybrid_hash_HW.cpp"/>
-    <originFiles name="EventTimer.h" path="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/common/EventTimer.h"/>
-    <originFiles name="EventTimer.cpp" path="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/common/EventTimer.cpp"/>
     <originFiles name="Constants.h" path="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/Constants.h"/>
+    <originFiles name="EventTimer.cpp" path="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/common/EventTimer.cpp"/>
+    <originFiles name="EventTimer.h" path="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/common/EventTimer.h"/>
+    <originFiles name="LZW_hybrid_hash_HW.cpp" path="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/LZW_hybrid_hash_HW.cpp"/>
+    <originFiles name="Utilities.cpp" path="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/common/Utilities.cpp"/>
+    <originFiles name="Utilities.h" path="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/common/Utilities.h"/>
+    <originFiles name="check_endian.cpp" path="/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_final/common/check_endian.cpp"/>
   </source>
   <testbench/>
 </autopilotfilemapping:AutoPilotFileMapping>
