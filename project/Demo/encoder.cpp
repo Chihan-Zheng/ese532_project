@@ -87,9 +87,10 @@ int main(int argc, char* argv[]) {
 	char *cdc_finished;         //flag whether cdc has finished: it's the output "pipeline_drained" of cdc
 	char *pipeline_drained;     //determine the stage in draining pipeline: 2 -> the last stage of pipeline: only execute LZW or not
 	uint num_chunks_total = 0;
-	uint16_t *ArrayOfCode[MAX_BOUNDARY];     //Array to store all the codes need to be written to file
+	uint16_t *ArrayOfCode[ArrayOfCodeNum];     //Array to store all the codes need to be written to file
 											//the first 16bits determine whether the chunk is deduplicated or not: 1 -> dedup; 0 -> LZW
-	uint16_t ArrayOfOutputLength_LZW[MAX_BOUNDARY];     //Array to store the output codes length of each chunk
+	uint16_t *ArrayOfOutputLength_LZW;     //Array to store the output codes length of each chunk: len=ArrayOfCodeNum`
+	uint64_t chunks_idx_offset = 0;
     std::unordered_map<string, uint32_t> chunkTable;     //hash table in dedup
     uint32_t deDup_header;     //output of deDup function    //header from dedup
 	uint32_t deDup_header_LZW;      //header propagated to LZW
@@ -99,7 +100,11 @@ int main(int argc, char* argv[]) {
 	char LZW_chunks_cnt = 0;                //indicates the chunk index in current kernel: 0 -> num_chunks_krnl (the number of chunks each kernel receives)
 	char LZW_chunks_idx[num_cu][num_chunks_krnl];            //store the chunk index of the LZW chunks (needed when writing output code to file)
 	char num_used_krnls = 0;                //the number of actual used kernels
+	char LZW_done_flg = 0;
     // uint16_t *LZW_send_data = (uint16_t *)calloc(Max_Chunk_Size + 2, sizeof(uint16_t));     //Max_Chunk_Size + 32bits header -> unit is 16bits
+	uint boundary_idx = 0;      //used to record boundary number of a packet: 0, 1, 2, ...
+	uint32_t krnl_in_offset[num_cu] = {0};    //offset for chunk size of a single kernel: used when store input chunks of one kernel
+	char krnl_chunks_cnt[num_cu] = {0};      //count how many chunk a kernel has
 
 	*chunk_size = 0;    //initialize input chunk size
 	*chunk_size_dedup = 0;
@@ -154,13 +159,18 @@ int main(int argc, char* argv[]) {
 		exit (EXIT_FAILURE);
 	}
 
-	for (int i = 0; i < MAX_BOUNDARY; i++){
+	for (int i = 0; i < ArrayOfCodeNum; i++){
 		ArrayOfCode[i] = (uint16_t *)calloc(Max_Chunk_Size + 1, sizeof(uint16_t));    //malloc and initialize ArrayOfCode to 0's
-
 		if (ArrayOfCode[i] == NULL){
 			std::cerr << "Could not malloc ArrayOfCode[" << i << "]." << std::endl;
 			exit (EXIT_FAILURE);
 		}
+	}
+
+	ArrayOfOutputLength_LZW = (uint16_t *)malloc(sizeof(uint16_t) * ArrayOfCodeNum);
+	if (ArrayOfOutputLength_LZW  == NULL){
+		std::cerr << "Could not malloc ArrayOfOutputLength_LZW ." << std::endl;
+		exit (EXIT_FAILURE);
 	}
 
     timer2.add("Allocate contiguous OpenCL buffers");
@@ -317,14 +327,11 @@ int main(int argc, char* argv[]) {
 
 		//-------------------------------------start encoding-----------------------------------------------
 		//--- define flags for kernel
-		uint boundary_idx = 0;      //used to record boundary number of a packet: 0, 1, 2, ...
 		uint loop_cnt = 0;          //pipeline while loop's loop index
 		*cdc_offset = 0;         //refresh value before encoding the next packet   
 		*cdc_finished = 0;
 		*pipeline_drained = 0;   //refresh pipeline_drained flag to 0
-		uint32_t krnl_in_offset[num_cu] = {0};    //offset for chunk size of a single kernel: used when store input chunks of one kernel
 		char krnl_idx = 0;              //index for each kernel
-		char krnl_chunks_cnt[num_cu] = {0};      //count how many chunk a kernel has
 		char num_krnl_loop_wr = 0;      //the number of iteration when writing the codes to file of one kernel
 		uint32_t krnl_wr_offset = 0;    //offset for output code size of a single kernel: used when writing output codes to file
 // printf("after define variable\n");
@@ -404,14 +411,14 @@ int main(int argc, char* argv[]) {
 
 			// printf("before enter LZW, loop: %d\n", loop_cnt);
 			//---: if (the chunk is LZW chunk or the last stage of pipeline) and loop_cnt >= 2  ---> go to LZW part (doesn't mean execute LZW)
-			if ((!(deDup_header_LZW & 1u) || (*pipeline_drained == 2)) && (loop_cnt > 1)){
+			if ((!(deDup_header_LZW & 1u) || ((*pipeline_drained == 2) && done)) && (loop_cnt > 1)){
 				//-----------------------map Input Buffer-----------------------------------
 				if (!(deDup_header_LZW & 1u)){
 					memcpy(ArrayOfChunks_LZW[krnl_idx] + krnl_in_offset[krnl_idx], chunk_LZW, *chunk_size_LZW);   //store chunk to LZW in ArrayOfChunks_LZW
 																										//krnl_idx declare which kernel the chunk should be sent to
 					krnl_in_offset[krnl_idx] += *chunk_size_LZW;      //used to move the pointer of ArrayOfChunks_LZW[krnl_idx]
 					LZW_input_length[krnl_idx][LZW_chunks_cnt] = *chunk_size_LZW;       //store LZW input chunk length for all kernels
-					LZW_chunks_idx[krnl_idx][LZW_chunks_cnt] = loop_cnt - 2;            //store the LZW chunk index among all chunks
+					LZW_chunks_idx[krnl_idx][LZW_chunks_cnt] = chunks_idx_offset + loop_cnt - 2;            //store the LZW chunk index among all chunks
 					/* printf("\nLZW_header - boundary:%d\n", LZW_chunks_idx[krnl_idx][LZW_chunks_cnt]);
 					printf("-----------------------------------------------\n"); */
 					// printf("LZW chunk size: %d\n", *chunk_size_LZW);
@@ -422,7 +429,7 @@ int main(int argc, char* argv[]) {
 // printf("debug----------pipeline_drained:\t%d\n", *pipeline_drained);
 
 // printf("debug: kernel idx: %d\n", krnl_idx);
-				if (((LZW_chunks_cnt < (num_chunks_krnl - 1)) || (krnl_idx < (num_cu - 1))) && (*pipeline_drained < 2)){
+				if (((LZW_chunks_cnt < (num_chunks_krnl - 1)) || (krnl_idx < (num_cu - 1))) && !((*pipeline_drained == 2) && (done))){
 					krnl_chunks_cnt[krnl_idx]++;
 					krnl_idx++;
 					if (krnl_idx == num_cu){
@@ -506,10 +513,12 @@ int main(int argc, char* argv[]) {
 					for (int i = 0; i < num_cu; i++){
 						krnl_in_offset[i] = 0;
 						krnl_chunks_cnt[i] = 0;
+						krnl_in_offset[i] = 0;
 					}
 
 					LZW_chunks_cnt = 0;
 					krnl_idx = 0;
+					// LZW_done_flg = 1;
 					// LZW_timer.stop();
 				}
 // printf("after LZW\n");
@@ -538,8 +547,8 @@ int main(int argc, char* argv[]) {
 			// std::cout << "--------------------------Header Types for this Iteration------------------------------------" << std::endl;
 			if ((deDup_header & 1u) && (loop_cnt > 0) && (*pipeline_drained < 2)){
 				// std::cout << "deDup_header - boundary: " << (loop_cnt - 1) << std::endl;
-				memcpy(ArrayOfCode[loop_cnt - 1] + 1, &deDup_header, sizeof(deDup_header));
-				*ArrayOfCode[loop_cnt - 1] = 1;
+				memcpy(ArrayOfCode[chunks_idx_offset + loop_cnt - 1] + 1, &deDup_header, sizeof(deDup_header));
+				*ArrayOfCode[chunks_idx_offset + loop_cnt - 1] = 1;
 				deDup_final_bytes += sizeof(deDup_header);
 			}
 			
@@ -568,24 +577,31 @@ int main(int argc, char* argv[]) {
 			if (*cdc_finished){
 				(*pipeline_drained)++;
 			}
+
 		}
 		
-		//------ writing output code:
-		for (int i = 0; i <= boundary_idx; i++){
-			if (*ArrayOfCode[i] && 1){
-				if (fwrite(ArrayOfCode[i] + 1, 1, sizeof(uint32_t), File) != sizeof(uint32_t))
-					Exit_with_error("fwrite dedup header to compressed_data.bin failed");
-			}else{
-				if (fwrite(ArrayOfCode[i] + 1, 1, ArrayOfOutputLength_LZW[i], File) != ArrayOfOutputLength_LZW[i])
-					Exit_with_error("fwrite LZW output to compressed_data.bin failed");
-// printf("ArrayOfOutputLength_LZW[%d]: %d\n", i, ArrayOfOutputLength_LZW[i]);
-			}			
-		}		
 		total_timer.stop();
+		chunks_idx_offset += boundary_idx;
+
+		if (boundary_idx > ArrayOfCodeNum){
+			Exit_with_error("ArrayOfCodeNum is not enough! Please expand ArrayOfCode by increasing ArrayOfCodeNum.");
+		}
 // printf("after a packet\n");
 // printf("done: %d\n", done);
 	}					
 	//---------------------------------------end encoding----------------------------------------------
+	//------ writing output code:
+	for (int i = 0; i <= boundary_idx; i++){
+		if (*ArrayOfCode[i] && 1){
+			if (fwrite(ArrayOfCode[i] + 1, 1, sizeof(uint32_t), File) != sizeof(uint32_t))
+				Exit_with_error("fwrite dedup header to compressed_data.bin failed");
+		}else{
+			if (fwrite(ArrayOfCode[i] + 1, 1, ArrayOfOutputLength_LZW[i], File) != ArrayOfOutputLength_LZW[i])
+				Exit_with_error("fwrite LZW output to compressed_data.bin failed");
+			// printf("ArrayOfOutputLength_LZW[%d]: %d\n", i, ArrayOfOutputLength_LZW[i]);
+		}			
+	}	
+	
 	// total_timer.stop();
 // printf("outside while loop\n");
 	for (int j = 0; j < num_cu; j++){
@@ -628,10 +644,11 @@ int main(int argc, char* argv[]) {
 	// free(chunk_dedup);
 	// free(chunk_LZW);
 	// free(chunk_temp);
-	for (int i = 0; i < MAX_BOUNDARY; i++){
+	for (int i = 0; i < ArrayOfCodeNum; i++){
 		// free(ArrayOfChunks[i]);
 		free(ArrayOfCode[i]);
 	}
+	free(ArrayOfOutputLength_LZW);
 	// ------------------------------------------------------------------------------------
     // Step 5: Release Allocated Resources
     // ------------------------------------------------------------------------------------

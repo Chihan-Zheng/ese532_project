@@ -28,6 +28,7 @@
 #define ASSOC_MEM_SIZE (72 * MATCH_UNITS_COLUMN_NUM)
 
 #define num_chunks_krnl (150)
+#define ArrayOfCodeNum (700000)
 
 uint64_t hash_func(unsigned char *input, unsigned int pos);
 // int cdc( unsigned char* buff, int buff_size,char** chunk, uint16_t *chunk_size);
