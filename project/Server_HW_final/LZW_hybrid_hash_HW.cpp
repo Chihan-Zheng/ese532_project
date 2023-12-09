@@ -67,7 +67,7 @@ void krnl_LZW(char *input, uint16_t *input_length, uint16_t *send_data, uint16_t
             num_chunks++;
         }
     }
-printf("num_chunk: \t%d\n\n", num_chunks);
+// printf("num_chunk: \t%d\n\n", num_chunks);
     for(int n = 0; n < num_chunks; n++){
         in = input + input_offset;
         in_length = input_length[n];

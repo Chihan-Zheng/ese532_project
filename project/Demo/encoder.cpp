@@ -98,13 +98,15 @@ int main(int argc, char* argv[]) {
     uint16_t *LZW_output_length[num_cu];    //the output code bytes size of each compute unit
 	uint16_t *LZW_send_data[num_cu];        //the output code of each compute unit
 	char LZW_chunks_cnt = 0;                //indicates the chunk index in current kernel: 0 -> num_chunks_krnl (the number of chunks each kernel receives)
-	char LZW_chunks_idx[num_cu][num_chunks_krnl];            //store the chunk index of the LZW chunks (needed when writing output code to file)
+	uint32_t LZW_chunks_idx[num_cu][num_chunks_krnl];            //store the chunk index of the LZW chunks (needed when writing output code to file)
 	char num_used_krnls = 0;                //the number of actual used kernels
 	char LZW_done_flg = 0;
     // uint16_t *LZW_send_data = (uint16_t *)calloc(Max_Chunk_Size + 2, sizeof(uint16_t));     //Max_Chunk_Size + 32bits header -> unit is 16bits
+
 	uint boundary_idx = 0;      //used to record boundary number of a packet: 0, 1, 2, ...
 	uint32_t krnl_in_offset[num_cu] = {0};    //offset for chunk size of a single kernel: used when store input chunks of one kernel
 	char krnl_chunks_cnt[num_cu] = {0};      //count how many chunk a kernel has
+	char krnl_idx = 0;              //index for each kernel
 
 	*chunk_size = 0;    //initialize input chunk size
 	*chunk_size_dedup = 0;
@@ -180,9 +182,9 @@ int main(int argc, char* argv[]) {
 	std::vector<cl::Buffer> Output_buf(num_cu);
 	std::vector<cl::Buffer> In_length_buf(num_cu);
 	std::vector<cl::Buffer> Output_length_buf(num_cu);
-/* 
+
 	//---: do not need these. Using this will prevent from overlapping. Using q.finish() to sync
-	std::vector<cl::Event> write_done(MAX_BOUNDARY);
+/* 	std::vector<cl::Event> write_done(MAX_BOUNDARY);
 	// std::vector<cl::Event> write_waitlist;
 	std::vector<std::vector<cl::Event>> write_waitlist(num_cu);
 	std::vector<std::vector<cl::Event>> execute_waitlist(MAX_BOUNDARY);
@@ -297,7 +299,7 @@ int main(int argc, char* argv[]) {
 	// total_timer.start();
 	//last message
 	while (!done) {
-		// printf("enter large while loop\n");
+		// printf("\nenter large while loop\n");
 
 		// reset ring buffer
 		if (writer == NUM_PACKETS) {
@@ -331,7 +333,6 @@ int main(int argc, char* argv[]) {
 		*cdc_offset = 0;         //refresh value before encoding the next packet   
 		*cdc_finished = 0;
 		*pipeline_drained = 0;   //refresh pipeline_drained flag to 0
-		char krnl_idx = 0;              //index for each kernel
 		char num_krnl_loop_wr = 0;      //the number of iteration when writing the codes to file of one kernel
 		uint32_t krnl_wr_offset = 0;    //offset for output code size of a single kernel: used when writing output codes to file
 // printf("after define variable\n");
@@ -408,14 +409,16 @@ int main(int argc, char* argv[]) {
 					deDup_final_bytes += sizeof(deDup_header);
 				} */
 			}
-
+// printf("before done:\t%d\n", done);	
 			// printf("before enter LZW, loop: %d\n", loop_cnt);
 			//---: if (the chunk is LZW chunk or the last stage of pipeline) and loop_cnt >= 2  ---> go to LZW part (doesn't mean execute LZW)
 			if ((!(deDup_header_LZW & 1u) || ((*pipeline_drained == 2) && done)) && (loop_cnt > 1)){
 				//-----------------------map Input Buffer-----------------------------------
 				if (!(deDup_header_LZW & 1u)){
 					memcpy(ArrayOfChunks_LZW[krnl_idx] + krnl_in_offset[krnl_idx], chunk_LZW, *chunk_size_LZW);   //store chunk to LZW in ArrayOfChunks_LZW
-																										//krnl_idx declare which kernel the chunk should be sent to
+// printf("done:\t%d\n", done);	
+// printf("boundary_idx: \t%d\n", boundary_idx);
+// printf("num_chunks_total:\t%d\n", num_chunks_total);																				//krnl_idx declare which kernel the chunk should be sent to
 					krnl_in_offset[krnl_idx] += *chunk_size_LZW;      //used to move the pointer of ArrayOfChunks_LZW[krnl_idx]
 					LZW_input_length[krnl_idx][LZW_chunks_cnt] = *chunk_size_LZW;       //store LZW input chunk length for all kernels
 					LZW_chunks_idx[krnl_idx][LZW_chunks_cnt] = chunks_idx_offset + loop_cnt - 2;            //store the LZW chunk index among all chunks
@@ -464,7 +467,7 @@ int main(int argc, char* argv[]) {
 					//--------------------------------kernel computation --------------------------------
 					for (int j = 0; j < num_used_krnls; j++){
 						// krnl_LZW(ArrayOfChunks_LZW[j], LZW_input_length[j], LZW_send_data[j], LZW_output_length[j]);}
-					
+				
 			 			OCL_CHECK(err, err = krnls[j].setArg(0, Input_buf[j]));
 						OCL_CHECK(err, err = krnls[j].setArg(1, In_length_buf[j]));
 						OCL_CHECK(err, err = krnls[j].setArg(2, Output_buf[j]));
@@ -473,6 +476,7 @@ int main(int argc, char* argv[]) {
 						OCL_CHECK(err, err = q[j].enqueueMigrateMemObjects({In_length_buf[j]}, 0));
 						OCL_CHECK(err, err = q[j].enqueueMigrateMemObjects({Input_buf[j]}, 0));
 					}
+
 // printf("before kernel\n");
 					for (int j = 0; j < num_used_krnls; j++){
 						OCL_CHECK(err, err = q[j].finish());
@@ -484,9 +488,9 @@ int main(int argc, char* argv[]) {
 						OCL_CHECK(err, err = q[j].enqueueMigrateMemObjects({Output_buf[j], Output_length_buf[j]}, CL_MIGRATE_MEM_OBJECT_HOST));
 					}
 // printf("after task\n");
-					for (int j = 0; j < num_cu; j++){
+					for (int j = 0; j < num_used_krnls; j++){
 						OCL_CHECK(err, err = q[j].finish());
-					}       
+					}     
 					 
 					/* for (int j = 0; j < num_used_krnls; j++){
 						read_done[j].wait();
@@ -576,22 +580,27 @@ int main(int argc, char* argv[]) {
 			
 			if (*cdc_finished){
 				(*pipeline_drained)++;
+				if (*pipeline_drained == 3){
+					boundary_idx++;
+				}
 			}
 
 		}
 		
 		total_timer.stop();
-		chunks_idx_offset += boundary_idx;
+		chunks_idx_offset = boundary_idx;
 
-		if (boundary_idx > ArrayOfCodeNum){
-			Exit_with_error("ArrayOfCodeNum is not enough! Please expand ArrayOfCode by increasing ArrayOfCodeNum.");
+		// boundary_idx = 0;
+
+		if (boundary_idx > (ArrayOfCodeNum - BLOCKSIZE)){
+			Exit_with_error("ArrayOfCodeNum is not enough! The chunk number exceeds (ArrayOfCodeNUM - PacketSize). Please expand ArrayOfCode by increasing ArrayOfCodeNum.");
 		}
 // printf("after a packet\n");
 // printf("done: %d\n", done);
 	}					
 	//---------------------------------------end encoding----------------------------------------------
 	//------ writing output code:
-	for (int i = 0; i <= boundary_idx; i++){
+	for (int i = 0; i < boundary_idx; i++){
 		if (*ArrayOfCode[i] && 1){
 			if (fwrite(ArrayOfCode[i] + 1, 1, sizeof(uint32_t), File) != sizeof(uint32_t))
 				Exit_with_error("fwrite dedup header to compressed_data.bin failed");
