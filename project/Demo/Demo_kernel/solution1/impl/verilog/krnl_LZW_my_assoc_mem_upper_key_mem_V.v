@@ -5,7 +5,7 @@
 `timescale 1 ns / 1 ps
 module krnl_LZW_my_assoc_mem_upper_key_mem_V_ram (addr0, ce0, d0, we0, q0,  clk);
 
-parameter DWIDTH = 72;
+parameter DWIDTH = 216;
 parameter AWIDTH = 9;
 parameter MEM_SIZE = 512;
 
@@ -43,7 +43,7 @@ module krnl_LZW_my_assoc_mem_upper_key_mem_V(
     d0,
     q0);
 
-parameter DataWidth = 32'd72;
+parameter DataWidth = 32'd216;
 parameter AddressRange = 32'd512;
 parameter AddressWidth = 32'd9;
 input reset;

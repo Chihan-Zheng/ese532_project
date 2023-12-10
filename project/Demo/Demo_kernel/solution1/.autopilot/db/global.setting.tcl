@@ -1,6 +1,6 @@
 
 set TopModule "krnl_LZW"
-set ClockPeriod 5
+set ClockPeriod 6.667
 set ClockList ap_clk
 set HasVivadoClockPeriod 0
 set CombLogicFlag 0
@@ -42,7 +42,7 @@ set SCTraceFileName mytrace
 set SCTraceFileFormat vcd
 set SCTraceOption all
 set TargetInfo xczu3eg:-sbva484:-1-i
-set SourceFiles {sc {} c {../../common/check_endian.cpp ../../common/Utilities.cpp ../../LZW_hybrid_hash_HW.cpp ../../common/EventTimer.cpp}}
+set SourceFiles {sc {} c {../../common/EventTimer.cpp ../../LZW_hybrid_hash_HW.cpp ../../common/Utilities.cpp ../../common/check_endian.cpp}}
 set SourceFlags {sc {} c {{} {} {} {}}}
 set DirectiveFile /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Demo/Demo_kernel/solution1/solution1.directive
 set TBFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}

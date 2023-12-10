@@ -59342,13 +59342,13 @@ unsigned int my_hash(ap_uint<(13 + 8)> key);
 
 
 __attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *input, uint16_t *input_length,
-                uint16_t *send_data, uint16_t *output_length);
+                uint16_t *send_data, uint32_t *output_length);
 static void read_input(char *in, uint16_t input_length,
                         hls::stream<char>& inStream_in);
 void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
                  hls::stream<ap_uint<13>>& outStream_code, hls::stream<char>& outStream_code_flg);
 static void write_result(uint16_t in_length, hls::stream<ap_uint<13>>& outStream_code, hls::stream<char>& outStream_code_flg,
-                        uint16_t *send_data, uint16_t *output_length);
+                        uint16_t *send_data, uint32_t *output_length);
 # 2 "LZW_hybrid_hash_HW.cpp" 2
 
 unsigned int my_hash(ap_uint<(13 + 8)> key)
@@ -59377,15 +59377,15 @@ typedef struct
 
 
 
-    ap_int<(72 * 1)> upper_key_mem[512];
-    ap_int<(72 * 1)> middle_key_mem[512];
-    ap_int<(72 * 1)> lower_key_mem[512];
-    ap_int<13> value[(72 * 1)];
+    ap_int<(72 * 3)> upper_key_mem[512];
+    ap_int<(72 * 3)> middle_key_mem[512];
+    ap_int<(72 * 3)> lower_key_mem[512];
+    ap_int<13> value[(72 * 3)];
     unsigned int fill;
 } assoc_mem;
 
 
-__attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *input, uint16_t *input_length, uint16_t *send_data, uint16_t *output_length)
+__attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *input, uint16_t *input_length, uint16_t *send_data, uint32_t *output_length)
 {
 #pragma HLS TOP name=krnl_LZW
 # 38 "LZW_hybrid_hash_HW.cpp"
@@ -59403,7 +59403,7 @@ __attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *input, uint16_t *
 
     char *in;
 # 65 "LZW_hybrid_hash_HW.cpp"
-    VITIS_LOOP_65_1: for (int i = 0; i < (60); i++){
+    VITIS_LOOP_65_1: for (int i = 0; i < (50); i++){
         if (input_length[i]){
             num_chunks++;
         }
@@ -59414,7 +59414,7 @@ __attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *input, uint16_t *
         in_length = input_length[n];
         input_offset += in_length;
 
-        ap_uint<((13 + 8) + 13 + 1)> hash_table[(1 << 15)][2];
+        ap_uint<((13 + 8) + 13 + 1)> hash_table[(1 << 15)][1];
 
         assoc_mem my_assoc_mem;
 
@@ -59424,7 +59424,7 @@ __attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *input, uint16_t *
 
         VITIS_LOOP_84_3: for(int i = 0; i < (1 << 15); i++){
 
-            VITIS_LOOP_86_4: for (int j = 0; j < 2; j++){
+            VITIS_LOOP_86_4: for (int j = 0; j < 1; j++){
                 hash_table[i][j] = 0;
             }
         }
@@ -59438,7 +59438,7 @@ __attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *input, uint16_t *
             my_assoc_mem.lower_key_mem[i] = 0;
         }
 
-        VITIS_LOOP_100_6: for (int i = 0; i < (72 * 1); i++){
+        VITIS_LOOP_100_6: for (int i = 0; i < (72 * 3); i++){
 #pragma HLS unroll
  my_assoc_mem.value[i] = 0;
         }
@@ -59461,7 +59461,7 @@ __attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *input, uint16_t *
 
             ap_uint<(13 + 8)> key = (prefix_code.to_uint() << 8) + next_char;
 
-            VITIS_LOOP_132_8: for (int j = 0; j < 2; j++){
+            VITIS_LOOP_132_8: for (int j = 0; j < 1; j++){
 #pragma HLS unroll
  ap_uint<((13 + 8) + 13 + 1)> lookup = hash_table[my_hash(key)][j];
 
@@ -59481,14 +59481,14 @@ __attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *input, uint16_t *
             if(!hit)
             {
 
-                ap_int<(72 * 1)> match_high = my_assoc_mem.upper_key_mem[(key >> 18)%512];
-                ap_int<(72 * 1)> match_middle = my_assoc_mem.middle_key_mem[(key >> 9)%512];
-                ap_int<(72 * 1)> match_low = my_assoc_mem.lower_key_mem[(key >> 0)%512];
+                ap_int<(72 * 3)> match_high = my_assoc_mem.upper_key_mem[(key >> 18)%512];
+                ap_int<(72 * 3)> match_middle = my_assoc_mem.middle_key_mem[(key >> 9)%512];
+                ap_int<(72 * 3)> match_low = my_assoc_mem.lower_key_mem[(key >> 0)%512];
 
-                ap_int<(72 * 1)> match = match_high & match_middle & match_low;
+                ap_int<(72 * 3)> match = match_high & match_middle & match_low;
 
                 unsigned int address;
-                VITIS_LOOP_159_9: for(address = 0; address < (72 * 1); address++)
+                VITIS_LOOP_159_9: for(address = 0; address < (72 * 3); address++)
                 {
 
 
@@ -59499,7 +59499,7 @@ __attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *input, uint16_t *
                     }
                 }
 
-                if(address != (72 * 1))
+                if(address != (72 * 3))
                 {
                     code = my_assoc_mem.value[address];
                     hit = 1;
@@ -59521,7 +59521,7 @@ __attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *input, uint16_t *
 
 
 
-                VITIS_LOOP_192_10: for (int j = 0; j < 2; j++){
+                VITIS_LOOP_192_10: for (int j = 0; j < 1; j++){
 #pragma HLS unroll
  ap_uint<((13 + 8) + 13 + 1)> lookup = hash_table[my_hash(key)][j];
                     ap_uint<1> valid = (lookup >> ((13 + 8) + 13)) & 0x1;
@@ -59539,9 +59539,9 @@ __attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *input, uint16_t *
                 {
 
 
-                    if(my_assoc_mem.fill < (72 * 1))
+                    if(my_assoc_mem.fill < (72 * 3))
                     {
-                        ap_int<(72 * 1)> mask = 1;
+                        ap_int<(72 * 3)> mask = 1;
                         my_assoc_mem.upper_key_mem[(key >> 18)%512] |= (mask << my_assoc_mem.fill);
                         my_assoc_mem.middle_key_mem[(key >> 9)%512] |= (mask << my_assoc_mem.fill);
                         my_assoc_mem.lower_key_mem[(key >> 0)%512] |= (mask << my_assoc_mem.fill);

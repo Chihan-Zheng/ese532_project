@@ -10,8 +10,8 @@ use ieee.std_logic_unsigned.all;
 entity krnl_LZW_my_assoc_mem_value_V_ram is 
     generic(
             DWIDTH     : integer := 13; 
-            AWIDTH     : integer := 7; 
-            MEM_SIZE    : integer := 72
+            AWIDTH     : integer := 8; 
+            MEM_SIZE    : integer := 216
     ); 
     port (
           addr0     : in std_logic_vector(AWIDTH-1 downto 0); 
@@ -83,8 +83,8 @@ use IEEE.std_logic_1164.all;
 entity krnl_LZW_my_assoc_mem_value_V is
     generic (
         DataWidth : INTEGER := 13;
-        AddressRange : INTEGER := 72;
-        AddressWidth : INTEGER := 7);
+        AddressRange : INTEGER := 216;
+        AddressWidth : INTEGER := 8);
     port (
         reset : IN STD_LOGIC;
         clk : IN STD_LOGIC;

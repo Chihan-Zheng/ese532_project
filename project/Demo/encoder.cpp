@@ -95,7 +95,7 @@ int main(int argc, char* argv[]) {
     uint32_t deDup_header;     //output of deDup function    //header from dedup
 	uint32_t deDup_header_LZW;      //header propagated to LZW
 	uint16_t *LZW_input_length[num_cu];     //the input chunks bytes size of each compute unit
-    uint16_t *LZW_output_length[num_cu];    //the output code bytes size of each compute unit
+    uint32_t *LZW_output_length[num_cu];    //the output code bytes size of each compute unit
 	uint16_t *LZW_send_data[num_cu];        //the output code of each compute unit
 	char LZW_chunks_cnt = 0;                //indicates the chunk index in current kernel: 0 -> num_chunks_krnl (the number of chunks each kernel receives)
 	uint32_t LZW_chunks_idx[num_cu][num_chunks_krnl];            //store the chunk index of the LZW chunks (needed when writing output code to file)
@@ -217,7 +217,7 @@ int main(int argc, char* argv[]) {
 		LZW_input_length[j] = (uint16_t*)q[j].enqueueMapBuffer(In_length_buf[j], CL_TRUE, CL_MAP_WRITE, 0, In_length_buf_size, NULL, NULL, &err);
 		if (err != CL_SUCCESS) 
 			printf("map LZW_input_length failed\n");
-		LZW_output_length[j] = (uint16_t*)q[j].enqueueMapBuffer(Output_length_buf[j], CL_TRUE, CL_MAP_READ, 0, Output_length_buf_size, NULL, NULL, &err);
+		LZW_output_length[j] = (uint32_t*)q[j].enqueueMapBuffer(Output_length_buf[j], CL_TRUE, CL_MAP_READ, 0, Output_length_buf_size, NULL, NULL, &err);
 		if (err != CL_SUCCESS) 
 			printf("map LZW_output_length failed\n");
 	}
@@ -484,7 +484,7 @@ int main(int argc, char* argv[]) {
 // printf("after task\n");
 					for (int j = 0; j < num_used_krnls; j++){
 						OCL_CHECK(err, err = q[j].finish());
-					}  	 	
+					}  
 					/* for (int j = 0; j < num_used_krnls; j++){
 						read_done[j].wait();
 					} */

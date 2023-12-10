@@ -3,11 +3,11 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // ==============================================================
 `timescale 1 ns / 1 ps
-module krnl_LZW_hash_table_V_ram (addr0, ce0, d0, we0, q0,  clk);
+module krnl_LZW_hash_table_V_0_ram (addr0, ce0, d0, we0, q0,  clk);
 
 parameter DWIDTH = 35;
-parameter AWIDTH = 16;
-parameter MEM_SIZE = 65536;
+parameter AWIDTH = 15;
+parameter MEM_SIZE = 32768;
 
 input[AWIDTH-1:0] addr0;
 input ce0;
@@ -34,7 +34,7 @@ end
 endmodule
 
 `timescale 1 ns / 1 ps
-module krnl_LZW_hash_table_V(
+module krnl_LZW_hash_table_V_0(
     reset,
     clk,
     address0,
@@ -44,8 +44,8 @@ module krnl_LZW_hash_table_V(
     q0);
 
 parameter DataWidth = 32'd35;
-parameter AddressRange = 32'd65536;
-parameter AddressWidth = 32'd16;
+parameter AddressRange = 32'd32768;
+parameter AddressWidth = 32'd15;
 input reset;
 input clk;
 input[AddressWidth - 1:0] address0;
@@ -56,7 +56,7 @@ output[DataWidth - 1:0] q0;
 
 
 
-krnl_LZW_hash_table_V_ram krnl_LZW_hash_table_V_ram_U(
+krnl_LZW_hash_table_V_0_ram krnl_LZW_hash_table_V_0_ram_U(
     .clk( clk ),
     .addr0( address0 ),
     .ce0( ce0 ),

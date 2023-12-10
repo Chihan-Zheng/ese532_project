@@ -7,15 +7,15 @@
         <ProductFamily>zynquplus</ProductFamily>
         <Part>xczu3eg-sbva484-1-i</Part>
         <TopModelName>krnl_LZW</TopModelName>
-        <TargetClockPeriod>5.00</TargetClockPeriod>
-        <ClockUncertainty>1.35</ClockUncertainty>
+        <TargetClockPeriod>6.67</TargetClockPeriod>
+        <ClockUncertainty>1.80</ClockUncertainty>
         <FlowTarget>vitis</FlowTarget>
     </UserAssignments>
     <PerformanceEstimates>
         <PipelineType>none</PipelineType>
         <SummaryOfTimingAnalysis>
             <unit>ns</unit>
-            <EstimatedClockPeriod>3.650</EstimatedClockPeriod>
+            <EstimatedClockPeriod>4.867</EstimatedClockPeriod>
         </SummaryOfTimingAnalysis>
         <SummaryOfOverallLatency>
             <unit>clock cycles</unit>
@@ -30,9 +30,9 @@
         </SummaryOfOverallLatency>
         <SummaryOfLoopLatency>
             <VITIS_LOOP_65_1>
-                <TripCount>60</TripCount>
-                <Latency>61</Latency>
-                <AbsoluteTimeLatency>305</AbsoluteTimeLatency>
+                <TripCount>50</TripCount>
+                <Latency>51</Latency>
+                <AbsoluteTimeLatency>340</AbsoluteTimeLatency>
                 <PipelineII>1</PipelineII>
                 <PipelineDepth>3</PipelineDepth>
             </VITIS_LOOP_65_1>
@@ -41,17 +41,17 @@
                 <Latency>undef</Latency>
                 <AbsoluteTimeLatency>undef</AbsoluteTimeLatency>
                 <IterationLatency>undef</IterationLatency>
-                <VITIS_LOOP_84_3_VITIS_LOOP_86_4>
-                    <TripCount>65536</TripCount>
-                    <Latency>65536</Latency>
-                    <AbsoluteTimeLatency>327680</AbsoluteTimeLatency>
+                <VITIS_LOOP_84_3>
+                    <TripCount>32768</TripCount>
+                    <Latency>32768</Latency>
+                    <AbsoluteTimeLatency>218464</AbsoluteTimeLatency>
                     <PipelineII>1</PipelineII>
-                    <PipelineDepth>2</PipelineDepth>
-                </VITIS_LOOP_84_3_VITIS_LOOP_86_4>
+                    <PipelineDepth>1</PipelineDepth>
+                </VITIS_LOOP_84_3>
                 <VITIS_LOOP_92_5>
                     <TripCount>512</TripCount>
                     <Latency>512</Latency>
-                    <AbsoluteTimeLatency>2560</AbsoluteTimeLatency>
+                    <AbsoluteTimeLatency>3413</AbsoluteTimeLatency>
                     <PipelineII>1</PipelineII>
                     <PipelineDepth>1</PipelineDepth>
                 </VITIS_LOOP_92_5>
@@ -61,21 +61,14 @@
                     <AbsoluteTimeLatency>undef</AbsoluteTimeLatency>
                     <IterationLatency>
                         <range>
-                            <min>99</min>
-                            <max>269</max>
+                            <min>98</min>
+                            <max>364</max>
                         </range>
                     </IterationLatency>
                     <VITIS_LOOP_7_1>
                         <TripCount>21</TripCount>
                         <Latency>21</Latency>
-                        <AbsoluteTimeLatency>105</AbsoluteTimeLatency>
-                        <PipelineII>1</PipelineII>
-                        <PipelineDepth>1</PipelineDepth>
-                    </VITIS_LOOP_7_1>
-                    <VITIS_LOOP_7_1>
-                        <TripCount>21</TripCount>
-                        <Latency>21</Latency>
-                        <AbsoluteTimeLatency>105</AbsoluteTimeLatency>
+                        <AbsoluteTimeLatency>140</AbsoluteTimeLatency>
                         <PipelineII>1</PipelineII>
                         <PipelineDepth>1</PipelineDepth>
                     </VITIS_LOOP_7_1>
@@ -83,19 +76,19 @@
                         <TripCount>
                             <range>
                                 <min>1</min>
-                                <max>72</max>
+                                <max>216</max>
                             </range>
                         </TripCount>
                         <Latency>
                             <range>
                                 <min>1</min>
-                                <max>72</max>
+                                <max>216</max>
                             </range>
                         </Latency>
                         <AbsoluteTimeLatency>
                             <range>
-                                <min>5</min>
-                                <max>360</max>
+                                <min>6</min>
+                                <max>1440</max>
                             </range>
                         </AbsoluteTimeLatency>
                         <PipelineII>1</PipelineII>
@@ -104,21 +97,14 @@
                     <VITIS_LOOP_7_1>
                         <TripCount>21</TripCount>
                         <Latency>21</Latency>
-                        <AbsoluteTimeLatency>105</AbsoluteTimeLatency>
+                        <AbsoluteTimeLatency>140</AbsoluteTimeLatency>
                         <PipelineII>1</PipelineII>
                         <PipelineDepth>1</PipelineDepth>
                     </VITIS_LOOP_7_1>
                     <VITIS_LOOP_7_1>
                         <TripCount>21</TripCount>
                         <Latency>21</Latency>
-                        <AbsoluteTimeLatency>105</AbsoluteTimeLatency>
-                        <PipelineII>1</PipelineII>
-                        <PipelineDepth>1</PipelineDepth>
-                    </VITIS_LOOP_7_1>
-                    <VITIS_LOOP_7_1>
-                        <TripCount>21</TripCount>
-                        <Latency>21</Latency>
-                        <AbsoluteTimeLatency>105</AbsoluteTimeLatency>
+                        <AbsoluteTimeLatency>140</AbsoluteTimeLatency>
                         <PipelineII>1</PipelineII>
                         <PipelineDepth>1</PipelineDepth>
                     </VITIS_LOOP_7_1>
@@ -126,7 +112,7 @@
                 <VITIS_LOOP_71_2.4>
                     <TripCount>2</TripCount>
                     <Latency>71</Latency>
-                    <AbsoluteTimeLatency>355</AbsoluteTimeLatency>
+                    <AbsoluteTimeLatency>473</AbsoluteTimeLatency>
                     <PipelineII>1</PipelineII>
                     <PipelineDepth>71</PipelineDepth>
                 </VITIS_LOOP_71_2.4>
@@ -146,7 +132,7 @@
                     <AbsoluteTimeLatency>
                         <range>
                             <min>0</min>
-                            <max>164180</max>
+                            <max>218917</max>
                         </range>
                     </AbsoluteTimeLatency>
                     <PipelineII>1</PipelineII>
@@ -168,7 +154,7 @@
                     <AbsoluteTimeLatency>
                         <range>
                             <min>0</min>
-                            <max>350</max>
+                            <max>466</max>
                         </range>
                     </AbsoluteTimeLatency>
                     <PipelineII>1</PipelineII>
@@ -179,9 +165,9 @@
     </PerformanceEstimates>
     <AreaEstimates>
         <Resources>
-            <BRAM_18K>142</BRAM_18K>
-            <FF>4699</FF>
-            <LUT>10817</LUT>
+            <BRAM_18K>89</BRAM_18K>
+            <FF>4656</FF>
+            <LUT>12127</LUT>
             <DSP>0</DSP>
             <URAM>0</URAM>
         </Resources>
@@ -636,7 +622,7 @@
             <IOProtocol>m_axi</IOProtocol>
             <IOConfig/>
             <Dir>out</Dir>
-            <Bits>64</Bits>
+            <Bits>32</Bits>
             <Attribute>unknown</Attribute>
             <CType>int</CType>
         </RtlPorts>
@@ -648,7 +634,7 @@
             <IOProtocol>m_axi</IOProtocol>
             <IOConfig/>
             <Dir>out</Dir>
-            <Bits>8</Bits>
+            <Bits>4</Bits>
             <Attribute>unknown</Attribute>
             <CType>int</CType>
         </RtlPorts>
@@ -876,7 +862,7 @@
             <IOProtocol>m_axi</IOProtocol>
             <IOConfig/>
             <Dir>in</Dir>
-            <Bits>64</Bits>
+            <Bits>32</Bits>
             <Attribute>unknown</Attribute>
             <CType>int</CType>
         </RtlPorts>
@@ -999,9 +985,9 @@
             <Name>krnl_LZW</Name>
             <PerformanceEstimates>
                 <SummaryOfTimingAnalysis>
-                    <TargetClockPeriod>5.00</TargetClockPeriod>
-                    <ClockUncertainty>1.35</ClockUncertainty>
-                    <EstimatedClockPeriod>3.650</EstimatedClockPeriod>
+                    <TargetClockPeriod>6.67</TargetClockPeriod>
+                    <ClockUncertainty>1.80</ClockUncertainty>
+                    <EstimatedClockPeriod>4.867</EstimatedClockPeriod>
                 </SummaryOfTimingAnalysis>
                 <SummaryOfOverallLatency>
                     <Best-caseLatency>undef</Best-caseLatency>
@@ -1016,9 +1002,9 @@
                 <SummaryOfLoopLatency>
                     <VITIS_LOOP_65_1>
                         <Name>VITIS_LOOP_65_1</Name>
-                        <TripCount>60</TripCount>
-                        <Latency>61</Latency>
-                        <AbsoluteTimeLatency>0.305 us</AbsoluteTimeLatency>
+                        <TripCount>50</TripCount>
+                        <Latency>51</Latency>
+                        <AbsoluteTimeLatency>0.340 us</AbsoluteTimeLatency>
                         <PipelineII>1</PipelineII>
                         <PipelineDepth>3</PipelineDepth>
                     </VITIS_LOOP_65_1>
@@ -1029,19 +1015,19 @@
                         <AbsoluteTimeLatency>undef</AbsoluteTimeLatency>
                         <IterationLatency>undef</IterationLatency>
                         <PipelineDepth>undef</PipelineDepth>
-                        <VITIS_LOOP_84_3_VITIS_LOOP_86_4>
-                            <Name>VITIS_LOOP_84_3_VITIS_LOOP_86_4</Name>
-                            <TripCount>65536</TripCount>
-                            <Latency>65536</Latency>
-                            <AbsoluteTimeLatency>0.328 ms</AbsoluteTimeLatency>
+                        <VITIS_LOOP_84_3>
+                            <Name>VITIS_LOOP_84_3</Name>
+                            <TripCount>32768</TripCount>
+                            <Latency>32768</Latency>
+                            <AbsoluteTimeLatency>0.218 ms</AbsoluteTimeLatency>
                             <PipelineII>1</PipelineII>
-                            <PipelineDepth>2</PipelineDepth>
-                        </VITIS_LOOP_84_3_VITIS_LOOP_86_4>
+                            <PipelineDepth>1</PipelineDepth>
+                        </VITIS_LOOP_84_3>
                         <VITIS_LOOP_92_5>
                             <Name>VITIS_LOOP_92_5</Name>
                             <TripCount>512</TripCount>
                             <Latency>512</Latency>
-                            <AbsoluteTimeLatency>2.560 us</AbsoluteTimeLatency>
+                            <AbsoluteTimeLatency>3.414 us</AbsoluteTimeLatency>
                             <PipelineII>1</PipelineII>
                             <PipelineDepth>1</PipelineDepth>
                         </VITIS_LOOP_92_5>
@@ -1052,24 +1038,16 @@
                             <AbsoluteTimeLatency>undef</AbsoluteTimeLatency>
                             <IterationLatency>
                                 <range>
-                                    <min>99</min>
-                                    <max>269</max>
+                                    <min>98</min>
+                                    <max>364</max>
                                 </range>
                             </IterationLatency>
-                            <PipelineDepth>99 ~ 269</PipelineDepth>
+                            <PipelineDepth>98 ~ 364</PipelineDepth>
                             <VITIS_LOOP_7_1>
                                 <Name>VITIS_LOOP_7_1</Name>
                                 <TripCount>21</TripCount>
                                 <Latency>21</Latency>
-                                <AbsoluteTimeLatency>0.105 us</AbsoluteTimeLatency>
-                                <PipelineII>1</PipelineII>
-                                <PipelineDepth>1</PipelineDepth>
-                            </VITIS_LOOP_7_1>
-                            <VITIS_LOOP_7_1>
-                                <Name>VITIS_LOOP_7_1</Name>
-                                <TripCount>21</TripCount>
-                                <Latency>21</Latency>
-                                <AbsoluteTimeLatency>0.105 us</AbsoluteTimeLatency>
+                                <AbsoluteTimeLatency>0.140 us</AbsoluteTimeLatency>
                                 <PipelineII>1</PipelineII>
                                 <PipelineDepth>1</PipelineDepth>
                             </VITIS_LOOP_7_1>
@@ -1078,11 +1056,11 @@
                                 <TripCount>
                                     <range>
                                         <min>1</min>
-                                        <max>72</max>
+                                        <max>216</max>
                                     </range>
                                 </TripCount>
-                                <Latency>1 ~ 72</Latency>
-                                <AbsoluteTimeLatency>5.000 ns ~ 0.360 us</AbsoluteTimeLatency>
+                                <Latency>1 ~ 216</Latency>
+                                <AbsoluteTimeLatency>6.667 ns ~ 1.440 us</AbsoluteTimeLatency>
                                 <PipelineII>1</PipelineII>
                                 <PipelineDepth>1</PipelineDepth>
                             </VITIS_LOOP_159_9>
@@ -1090,7 +1068,7 @@
                                 <Name>VITIS_LOOP_7_1</Name>
                                 <TripCount>21</TripCount>
                                 <Latency>21</Latency>
-                                <AbsoluteTimeLatency>0.105 us</AbsoluteTimeLatency>
+                                <AbsoluteTimeLatency>0.140 us</AbsoluteTimeLatency>
                                 <PipelineII>1</PipelineII>
                                 <PipelineDepth>1</PipelineDepth>
                             </VITIS_LOOP_7_1>
@@ -1098,15 +1076,7 @@
                                 <Name>VITIS_LOOP_7_1</Name>
                                 <TripCount>21</TripCount>
                                 <Latency>21</Latency>
-                                <AbsoluteTimeLatency>0.105 us</AbsoluteTimeLatency>
-                                <PipelineII>1</PipelineII>
-                                <PipelineDepth>1</PipelineDepth>
-                            </VITIS_LOOP_7_1>
-                            <VITIS_LOOP_7_1>
-                                <Name>VITIS_LOOP_7_1</Name>
-                                <TripCount>21</TripCount>
-                                <Latency>21</Latency>
-                                <AbsoluteTimeLatency>0.105 us</AbsoluteTimeLatency>
+                                <AbsoluteTimeLatency>0.140 us</AbsoluteTimeLatency>
                                 <PipelineII>1</PipelineII>
                                 <PipelineDepth>1</PipelineDepth>
                             </VITIS_LOOP_7_1>
@@ -1115,7 +1085,7 @@
                             <Name>VITIS_LOOP_71_2.4</Name>
                             <TripCount>2</TripCount>
                             <Latency>71</Latency>
-                            <AbsoluteTimeLatency>0.355 us</AbsoluteTimeLatency>
+                            <AbsoluteTimeLatency>0.473 us</AbsoluteTimeLatency>
                             <PipelineII>1</PipelineII>
                             <PipelineDepth>71</PipelineDepth>
                         </VITIS_LOOP_71_2.4>
@@ -1128,7 +1098,7 @@
                                 </range>
                             </TripCount>
                             <Latency>0 ~ 32836</Latency>
-                            <AbsoluteTimeLatency>0 ns ~ 0.164 ms</AbsoluteTimeLatency>
+                            <AbsoluteTimeLatency>0 ns ~ 0.219 ms</AbsoluteTimeLatency>
                             <PipelineII>1</PipelineII>
                             <PipelineDepth>71</PipelineDepth>
                         </VITIS_LOOP_71_2.5>
@@ -1141,7 +1111,7 @@
                                 </range>
                             </TripCount>
                             <Latency>0 ~ 70</Latency>
-                            <AbsoluteTimeLatency>0 ns ~ 0.350 us</AbsoluteTimeLatency>
+                            <AbsoluteTimeLatency>0 ns ~ 0.467 us</AbsoluteTimeLatency>
                             <PipelineII>1</PipelineII>
                             <PipelineDepth>71</PipelineDepth>
                         </VITIS_LOOP_71_2.6>
@@ -1150,15 +1120,15 @@
             </PerformanceEstimates>
             <AreaEstimates>
                 <Resources>
-                    <BRAM_18K>142</BRAM_18K>
+                    <BRAM_18K>89</BRAM_18K>
                     <AVAIL_BRAM>432</AVAIL_BRAM>
-                    <UTIL_BRAM>32</UTIL_BRAM>
-                    <FF>4699</FF>
+                    <UTIL_BRAM>20</UTIL_BRAM>
+                    <FF>4656</FF>
                     <AVAIL_FF>141120</AVAIL_FF>
                     <UTIL_FF>3</UTIL_FF>
-                    <LUT>10817</LUT>
+                    <LUT>12127</LUT>
                     <AVAIL_LUT>70560</AVAIL_LUT>
-                    <UTIL_LUT>15</UTIL_LUT>
+                    <UTIL_LUT>17</UTIL_LUT>
                     <DSP>0</DSP>
                     <AVAIL_DSP>360</AVAIL_DSP>
                     <UTIL_DSP>0</UTIL_DSP>
@@ -1610,7 +1580,7 @@
                     <IOProtocol>m_axi</IOProtocol>
                     <IOConfig/>
                     <Dir>out</Dir>
-                    <Bits>64</Bits>
+                    <Bits>32</Bits>
                     <Attribute>unknown</Attribute>
                     <CType>int</CType>
                 </RtlPorts>
@@ -1622,7 +1592,7 @@
                     <IOProtocol>m_axi</IOProtocol>
                     <IOConfig/>
                     <Dir>out</Dir>
-                    <Bits>8</Bits>
+                    <Bits>4</Bits>
                     <Attribute>unknown</Attribute>
                     <CType>int</CType>
                 </RtlPorts>
@@ -1850,7 +1820,7 @@
                     <IOProtocol>m_axi</IOProtocol>
                     <IOConfig/>
                     <Dir>in</Dir>
-                    <Bits>64</Bits>
+                    <Bits>32</Bits>
                     <Attribute>unknown</Attribute>
                     <CType>int</CType>
                 </RtlPorts>
@@ -1988,7 +1958,7 @@
                 <hwRef type="register" interface="s_axi_control" name="send_data_2" usage="address" direction="in"/>
             </hwRefs>
         </Arg>
-        <Arg ArgName="output_length" index="3" direction="inout" srcType="unsigned short*" srcSize="16">
+        <Arg ArgName="output_length" index="3" direction="inout" srcType="unsigned int*" srcSize="32">
             <hwRefs>
                 <hwRef type="interface" interface="m_axi_gmem" name="" usage="data" direction="out"/>
                 <hwRef type="register" interface="s_axi_control" name="output_length_1" usage="address" direction="in"/>
@@ -2031,7 +2001,7 @@
                 <port>interrupt</port>
             </ports>
         </Interface>
-        <Interface InterfaceName="m_axi_gmem" type="axi4full" busTypeName="aximm" mode="master" dataWidth="64" addrWidth="64" portPrefix="m_axi_gmem_" paramPrefix="C_M_AXI_GMEM_" offsetSlaveName="s_axi_control" preferredUsageValue="MEMORY">
+        <Interface InterfaceName="m_axi_gmem" type="axi4full" busTypeName="aximm" mode="master" dataWidth="32" addrWidth="64" portPrefix="m_axi_gmem_" paramPrefix="C_M_AXI_GMEM_" offsetSlaveName="s_axi_control" preferredUsageValue="MEMORY">
             <busParams>
                 <busParam busParamName="NUM_READ_OUTSTANDING">16</busParam>
                 <busParam busParamName="NUM_WRITE_OUTSTANDING">16</busParam>
@@ -2092,7 +2062,7 @@
             </ports>
             <constraints>
                 <constraint constraint_type="pragma interface" mode="m_axi" register_option="0" offset="slave" latency="64" num_read_outstanding="16" num_write_outstanding="16" max_read_burst_length="16" max_write_burst_length="16" max_widen_bitwidth="512" argName="input"/>
-                <constraint constraint_type="bitwidth" orig_bitwidth="8" final_bitwidth="64" argName="input"/>
+                <constraint constraint_type="bitwidth" orig_bitwidth="8" final_bitwidth="32" argName="input"/>
             </constraints>
         </Interface>
         <Interface InterfaceName="s_axi_control" type="axi4lite" busTypeName="aximm" mode="slave" dataWidth="32" addrWidth="6" portPrefix="s_axi_control_" paramPrefix="C_S_AXI_CONTROL_" offsetMasterName="m_axi_gmem">
@@ -2199,7 +2169,7 @@
             <item name="M_AXI">
                 <table>
                     <keys size="12">Interface, Data Width (SW-&gt;HW), Address Width, Latency, Offset, Offset Interfaces, Register, Max Widen Bitwidth, Max Read Burst Length, Max Write Burst Length, Num Read Outstanding, Num Write Outstanding</keys>
-                    <column name="m_axi_gmem">8 -&gt; 64, 64, 64, slave, s_axi_control, 0, 512, 16, 16, 16, 16</column>
+                    <column name="m_axi_gmem">8 -&gt; 32, 64, 64, slave, s_axi_control, 0, 512, 16, 16, 16, 16</column>
                 </table>
             </item>
             <item name="S_AXILITE">
@@ -2227,7 +2197,7 @@
                     <column name="input">inout, char*</column>
                     <column name="input_length">inout, unsigned short*</column>
                     <column name="send_data">inout, unsigned short*</column>
-                    <column name="output_length">inout, unsigned short*</column>
+                    <column name="output_length">inout, unsigned int*</column>
                 </table>
             </item>
             <item name="SW-to-HW Mapping">
@@ -2254,7 +2224,7 @@
             <item name="Burst Summary">
                 <table>
                     <keys size="3">HW Interface, Message, Location</keys>
-                    <column name="m_axi_gmem">Multiple burst reads of length 15 and bit width 64, LZW_hybrid_hash_HW.cpp:65:22</column>
+                    <column name="m_axi_gmem">Multiple burst reads of length 25 and bit width 32, LZW_hybrid_hash_HW.cpp:65:22</column>
                 </table>
             </item>
             <item name="Burst Missed">

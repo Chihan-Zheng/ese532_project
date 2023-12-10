@@ -105,8 +105,8 @@
     "output_length": {
       "index": "3",
       "direction": "inout",
-      "srcType": "unsigned short*",
-      "srcSize": "16",
+      "srcType": "unsigned int*",
+      "srcSize": "32",
       "hwRefs": [
         {
           "type": "interface",
@@ -149,6 +149,7 @@
       "set_directive_top krnl_LZW -name krnl_LZW",
       "set_directive_top krnl_LZW -name krnl_LZW",
       "set_directive_top krnl_LZW -name krnl_LZW",
+      "set_directive_top krnl_LZW -name krnl_LZW",
       "set_directive_top krnl_LZW -name krnl_LZW"
     ],
     "ProfileOption": "0",
@@ -157,13 +158,13 @@
   },
   "ClockInfo": {
     "ClockName": "ap_clk",
-    "ClockPeriod": "5",
-    "Uncertainty": "1.35",
+    "ClockPeriod": "6.667",
+    "Uncertainty": "1.80009",
     "IsCombinational": "0",
     "II": "x",
     "Latency": "undef"
   },
-  "Xdc": {"OocClocks": ["create_clock -name ap_clk -period 5.000 [get_ports ap_clk]"]},
+  "Xdc": {"OocClocks": ["create_clock -name ap_clk -period 6.667 [get_ports ap_clk]"]},
   "Ipx": {
     "Vendor": "xilinx.com",
     "Library": "hls",
@@ -178,15 +179,15 @@
   },
   "Files": {
     "CSource": [
-      "..\/..\/common\/check_endian.cpp",
-      "..\/..\/common\/Utilities.cpp",
+      "..\/..\/common\/EventTimer.cpp",
       "..\/..\/LZW_hybrid_hash_HW.cpp",
-      "..\/..\/common\/EventTimer.cpp"
+      "..\/..\/common\/Utilities.cpp",
+      "..\/..\/common\/check_endian.cpp"
     ],
     "Vhdl": [
       "impl\/vhdl\/krnl_LZW_control_s_axi.vhd",
       "impl\/vhdl\/krnl_LZW_gmem_m_axi.vhd",
-      "impl\/vhdl\/krnl_LZW_hash_table_V.vhd",
+      "impl\/vhdl\/krnl_LZW_hash_table_V_0.vhd",
       "impl\/vhdl\/krnl_LZW_my_assoc_mem_upper_key_mem_V.vhd",
       "impl\/vhdl\/krnl_LZW_my_assoc_mem_value_V.vhd",
       "impl\/vhdl\/krnl_LZW_store_array.vhd",
@@ -195,7 +196,7 @@
     "Verilog": [
       "impl\/verilog\/krnl_LZW_control_s_axi.v",
       "impl\/verilog\/krnl_LZW_gmem_m_axi.v",
-      "impl\/verilog\/krnl_LZW_hash_table_V.v",
+      "impl\/verilog\/krnl_LZW_hash_table_V_0.v",
       "impl\/verilog\/krnl_LZW_my_assoc_mem_upper_key_mem_V.v",
       "impl\/verilog\/krnl_LZW_my_assoc_mem_value_V.v",
       "impl\/verilog\/krnl_LZW_store_array.v",
@@ -254,7 +255,7 @@
       "type": "axi4full",
       "busTypeName": "aximm",
       "mode": "master",
-      "dataWidth": "64",
+      "dataWidth": "32",
       "addrWidth": "64",
       "portPrefix": "m_axi_gmem_",
       "paramPrefix": "C_M_AXI_GMEM_",
@@ -335,7 +336,7 @@
         {
           "constraint_type": "bitwidth",
           "orig_bitwidth": "8",
-          "final_bitwidth": "64",
+          "final_bitwidth": "32",
           "argName": "input"
         }
       ]
@@ -820,11 +821,11 @@
     },
     "m_axi_gmem_WDATA": {
       "dir": "out",
-      "width": "64"
+      "width": "32"
     },
     "m_axi_gmem_WSTRB": {
       "dir": "out",
-      "width": "8"
+      "width": "4"
     },
     "m_axi_gmem_WLAST": {
       "dir": "out",
@@ -904,7 +905,7 @@
     },
     "m_axi_gmem_RDATA": {
       "dir": "in",
-      "width": "64"
+      "width": "32"
     },
     "m_axi_gmem_RLAST": {
       "dir": "in",
@@ -966,15 +967,15 @@
           "PipelineType": "none"
         },
         "Timing": {
-          "Target": "5.00",
-          "Uncertainty": "1.35",
-          "Estimate": "3.650"
+          "Target": "6.67",
+          "Uncertainty": "1.80",
+          "Estimate": "4.867"
         },
         "Loops": [
           {
             "Name": "VITIS_LOOP_65_1",
-            "TripCount": "60",
-            "Latency": "61",
+            "TripCount": "50",
+            "Latency": "51",
             "PipelineII": "1",
             "PipelineDepth": "3"
           },
@@ -986,11 +987,11 @@
             "PipelineDepth": "",
             "Loops": [
               {
-                "Name": "VITIS_LOOP_84_3_VITIS_LOOP_86_4",
-                "TripCount": "65536",
-                "Latency": "65536",
+                "Name": "VITIS_LOOP_84_3",
+                "TripCount": "32768",
+                "Latency": "32768",
                 "PipelineII": "1",
-                "PipelineDepth": "2"
+                "PipelineDepth": "1"
               },
               {
                 "Name": "VITIS_LOOP_92_5",
@@ -1004,17 +1005,10 @@
                 "TripCount": "",
                 "Latency": "",
                 "PipelineII": "",
-                "PipelineDepthMin": "99",
-                "PipelineDepthMax": "269",
-                "PipelineDepth": "99 ~ 269",
+                "PipelineDepthMin": "98",
+                "PipelineDepthMax": "364",
+                "PipelineDepth": "98 ~ 364",
                 "Loops": [
-                  {
-                    "Name": "VITIS_LOOP_7_1",
-                    "TripCount": "21",
-                    "Latency": "21",
-                    "PipelineII": "1",
-                    "PipelineDepth": "1"
-                  },
                   {
                     "Name": "VITIS_LOOP_7_1",
                     "TripCount": "21",
@@ -1026,15 +1020,8 @@
                     "Name": "VITIS_LOOP_159_9",
                     "TripCount": "",
                     "LatencyMin": "1",
-                    "LatencyMax": "72",
-                    "Latency": "1 ~ 72",
-                    "PipelineII": "1",
-                    "PipelineDepth": "1"
-                  },
-                  {
-                    "Name": "VITIS_LOOP_7_1",
-                    "TripCount": "21",
-                    "Latency": "21",
+                    "LatencyMax": "216",
+                    "Latency": "1 ~ 216",
                     "PipelineII": "1",
                     "PipelineDepth": "1"
                   },
@@ -1083,15 +1070,15 @@
           }
         ],
         "Area": {
-          "BRAM_18K": "142",
+          "BRAM_18K": "89",
           "AVAIL_BRAM": "432",
-          "UTIL_BRAM": "32",
-          "FF": "4699",
+          "UTIL_BRAM": "20",
+          "FF": "4656",
           "AVAIL_FF": "141120",
           "UTIL_FF": "3",
-          "LUT": "10817",
+          "LUT": "12127",
           "AVAIL_LUT": "70560",
-          "UTIL_LUT": "15",
+          "UTIL_LUT": "17",
           "DSP": "0",
           "AVAIL_DSP": "360",
           "UTIL_DSP": "0",
@@ -1104,7 +1091,7 @@
   "GenerateBdFiles": "0",
   "GenData": {
     "DataVersion": "0.2",
-    "Time": "2023-12-09 18:21:49 EST",
+    "Time": "2023-12-09 23:40:32 EST",
     "ToolName": "vivado_hls",
     "ToolVersion": "2020.2"
   }

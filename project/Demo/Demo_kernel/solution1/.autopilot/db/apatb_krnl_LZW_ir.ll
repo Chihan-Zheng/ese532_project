@@ -7,25 +7,25 @@ target triple = "fpga64-xilinx-none"
 declare void @llvm.memcpy.p0i8.p0i8.i64(i8* nocapture writeonly, i8* nocapture readonly, i64, i1) #0
 
 ; Function Attrs: noinline
-define void @apatb_krnl_LZW_ir(i8* %input, i16* %input_length, i16* %send_data, i16* %output_length) local_unnamed_addr #1 {
+define void @apatb_krnl_LZW_ir(i8* %input, i16* %input_length, i16* %send_data, i32* %output_length) local_unnamed_addr #1 {
 entry:
   %input_copy = alloca i8, align 512
   %input_length_copy = alloca i16, align 512
   %send_data_copy = alloca i16, align 512
-  %output_length_copy = alloca i16, align 512
-  call fastcc void @copy_in(i8* %input, i8* nonnull align 512 %input_copy, i16* %input_length, i16* nonnull align 512 %input_length_copy, i16* %send_data, i16* nonnull align 512 %send_data_copy, i16* %output_length, i16* nonnull align 512 %output_length_copy)
-  call void @apatb_krnl_LZW_hw(i8* %input_copy, i16* %input_length_copy, i16* %send_data_copy, i16* %output_length_copy)
-  call fastcc void @copy_out(i8* %input, i8* nonnull align 512 %input_copy, i16* %input_length, i16* nonnull align 512 %input_length_copy, i16* %send_data, i16* nonnull align 512 %send_data_copy, i16* %output_length, i16* nonnull align 512 %output_length_copy)
+  %output_length_copy = alloca i32, align 512
+  call fastcc void @copy_in(i8* %input, i8* nonnull align 512 %input_copy, i16* %input_length, i16* nonnull align 512 %input_length_copy, i16* %send_data, i16* nonnull align 512 %send_data_copy, i32* %output_length, i32* nonnull align 512 %output_length_copy)
+  call void @apatb_krnl_LZW_hw(i8* %input_copy, i16* %input_length_copy, i16* %send_data_copy, i32* %output_length_copy)
+  call fastcc void @copy_out(i8* %input, i8* nonnull align 512 %input_copy, i16* %input_length, i16* nonnull align 512 %input_length_copy, i16* %send_data, i16* nonnull align 512 %send_data_copy, i32* %output_length, i32* nonnull align 512 %output_length_copy)
   ret void
 }
 
 ; Function Attrs: argmemonly noinline
-define internal fastcc void @copy_in(i8* readonly, i8* noalias align 512, i16* readonly, i16* noalias align 512, i16* readonly, i16* noalias align 512, i16* readonly, i16* noalias align 512) unnamed_addr #2 {
+define internal fastcc void @copy_in(i8* readonly, i8* noalias align 512, i16* readonly, i16* noalias align 512, i16* readonly, i16* noalias align 512, i32* readonly, i32* noalias align 512) unnamed_addr #2 {
 entry:
   call fastcc void @onebyonecpy_hls.p0i8(i8* align 512 %1, i8* %0)
   call fastcc void @onebyonecpy_hls.p0i16(i16* align 512 %3, i16* %2)
   call fastcc void @onebyonecpy_hls.p0i16(i16* align 512 %5, i16* %4)
-  call fastcc void @onebyonecpy_hls.p0i16(i16* align 512 %7, i16* %6)
+  call fastcc void @onebyonecpy_hls.p0i32(i32* align 512 %7, i32* %6)
   ret void
 }
 
@@ -64,26 +64,44 @@ ret:                                              ; preds = %copy, %entry
 }
 
 ; Function Attrs: argmemonly noinline
-define internal fastcc void @copy_out(i8*, i8* noalias readonly align 512, i16*, i16* noalias readonly align 512, i16*, i16* noalias readonly align 512, i16*, i16* noalias readonly align 512) unnamed_addr #4 {
+define internal fastcc void @onebyonecpy_hls.p0i32(i32* noalias align 512, i32* noalias readonly) unnamed_addr #3 {
+entry:
+  %2 = icmp eq i32* %0, null
+  %3 = icmp eq i32* %1, null
+  %4 = or i1 %2, %3
+  br i1 %4, label %ret, label %copy
+
+copy:                                             ; preds = %entry
+  %5 = bitcast i32* %0 to i8*
+  %6 = bitcast i32* %1 to i8*
+  call void @llvm.memcpy.p0i8.p0i8.i64(i8* align 1 %5, i8* align 1 %6, i64 4, i1 false)
+  br label %ret
+
+ret:                                              ; preds = %copy, %entry
+  ret void
+}
+
+; Function Attrs: argmemonly noinline
+define internal fastcc void @copy_out(i8*, i8* noalias readonly align 512, i16*, i16* noalias readonly align 512, i16*, i16* noalias readonly align 512, i32*, i32* noalias readonly align 512) unnamed_addr #4 {
 entry:
   call fastcc void @onebyonecpy_hls.p0i8(i8* %0, i8* align 512 %1)
   call fastcc void @onebyonecpy_hls.p0i16(i16* %2, i16* align 512 %3)
   call fastcc void @onebyonecpy_hls.p0i16(i16* %4, i16* align 512 %5)
-  call fastcc void @onebyonecpy_hls.p0i16(i16* %6, i16* align 512 %7)
+  call fastcc void @onebyonecpy_hls.p0i32(i32* %6, i32* align 512 %7)
   ret void
 }
 
-declare void @apatb_krnl_LZW_hw(i8*, i16*, i16*, i16*)
+declare void @apatb_krnl_LZW_hw(i8*, i16*, i16*, i32*)
 
-define void @krnl_LZW_hw_stub_wrapper(i8*, i16*, i16*, i16*) #5 {
+define void @krnl_LZW_hw_stub_wrapper(i8*, i16*, i16*, i32*) #5 {
 entry:
-  call void @copy_out(i8* null, i8* %0, i16* null, i16* %1, i16* null, i16* %2, i16* null, i16* %3)
-  call void @krnl_LZW_hw_stub(i8* %0, i16* %1, i16* %2, i16* %3)
-  call void @copy_in(i8* null, i8* %0, i16* null, i16* %1, i16* null, i16* %2, i16* null, i16* %3)
+  call void @copy_out(i8* null, i8* %0, i16* null, i16* %1, i16* null, i16* %2, i32* null, i32* %3)
+  call void @krnl_LZW_hw_stub(i8* %0, i16* %1, i16* %2, i32* %3)
+  call void @copy_in(i8* null, i8* %0, i16* null, i16* %1, i16* null, i16* %2, i32* null, i32* %3)
   ret void
 }
 
-declare void @krnl_LZW_hw_stub(i8*, i16*, i16*, i16*)
+declare void @krnl_LZW_hw_stub(i8*, i16*, i16*, i32*)
 
 attributes #0 = { argmemonly nounwind }
 attributes #1 = { noinline "fpga.wrapper.func"="wrapper" }

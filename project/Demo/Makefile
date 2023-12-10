@@ -73,7 +73,7 @@ fpga: package/sd_card.img
 
 $(XCLBIN): $(XO) 
 	-@$(RM) $@
-	$(VPP) $(VPP_OPTS) --link -Icommon/ --config ./u96_v2.cfg --nk krnl_LZW:3 -o"$@" $(+)
+	$(VPP) $(VPP_OPTS) --link -Icommon/ --config ./u96_v2.cfg --nk krnl_LZW:4 -o"$@" $(+)
 # $(VPP) $(VPP_OPTS) --compile -Icommon/ --config ./u96_v2.cfg --nk krnl_LZW:4 -o"$@" $(+)
 
 package/sd_card.img: $(XCLBIN) ./xrt.ini 

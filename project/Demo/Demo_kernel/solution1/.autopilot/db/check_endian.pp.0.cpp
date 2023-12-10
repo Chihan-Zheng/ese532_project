@@ -59342,13 +59342,13 @@ unsigned int my_hash(ap_uint<(13 + 8)> key);
 
 
 void krnl_LZW(char *input, uint16_t *input_length,
-                uint16_t *send_data, uint16_t *output_length);
+                uint16_t *send_data, uint32_t *output_length);
 static void read_input(char *in, uint16_t input_length,
                         hls::stream<char>& inStream_in);
 void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
                  hls::stream<ap_uint<13>>& outStream_code, hls::stream<char>& outStream_code_flg);
 static void write_result(uint16_t in_length, hls::stream<ap_uint<13>>& outStream_code, hls::stream<char>& outStream_code_flg,
-                        uint16_t *send_data, uint16_t *output_length);
+                        uint16_t *send_data, uint32_t *output_length);
 # 2 "common/check_endian.cpp" 2
 
 int main() {

@@ -7,11 +7,11 @@ library ieee;
 use ieee.std_logic_1164.all; 
 use ieee.std_logic_unsigned.all;
 
-entity krnl_LZW_hash_table_V_ram is 
+entity krnl_LZW_hash_table_V_0_ram is 
     generic(
             DWIDTH     : integer := 35; 
-            AWIDTH     : integer := 16; 
-            MEM_SIZE    : integer := 65536
+            AWIDTH     : integer := 15; 
+            MEM_SIZE    : integer := 32768
     ); 
     port (
           addr0     : in std_logic_vector(AWIDTH-1 downto 0); 
@@ -24,7 +24,7 @@ entity krnl_LZW_hash_table_V_ram is
 end entity; 
 
 
-architecture rtl of krnl_LZW_hash_table_V_ram is 
+architecture rtl of krnl_LZW_hash_table_V_0_ram is 
 
 signal addr0_tmp : std_logic_vector(AWIDTH-1 downto 0); 
 type mem_array is array (0 to MEM_SIZE-1) of std_logic_vector (DWIDTH-1 downto 0); 
@@ -64,11 +64,11 @@ end rtl;
 Library IEEE;
 use IEEE.std_logic_1164.all;
 
-entity krnl_LZW_hash_table_V is
+entity krnl_LZW_hash_table_V_0 is
     generic (
         DataWidth : INTEGER := 35;
-        AddressRange : INTEGER := 65536;
-        AddressWidth : INTEGER := 16);
+        AddressRange : INTEGER := 32768;
+        AddressWidth : INTEGER := 15);
     port (
         reset : IN STD_LOGIC;
         clk : IN STD_LOGIC;
@@ -79,8 +79,8 @@ entity krnl_LZW_hash_table_V is
         q0 : OUT STD_LOGIC_VECTOR(DataWidth - 1 DOWNTO 0));
 end entity;
 
-architecture arch of krnl_LZW_hash_table_V is
-    component krnl_LZW_hash_table_V_ram is
+architecture arch of krnl_LZW_hash_table_V_0 is
+    component krnl_LZW_hash_table_V_0_ram is
         port (
             clk : IN STD_LOGIC;
             addr0 : IN STD_LOGIC_VECTOR;
@@ -93,7 +93,7 @@ architecture arch of krnl_LZW_hash_table_V is
 
 
 begin
-    krnl_LZW_hash_table_V_ram_U :  component krnl_LZW_hash_table_V_ram
+    krnl_LZW_hash_table_V_0_ram_U :  component krnl_LZW_hash_table_V_0_ram
     port map (
         clk => clk,
         addr0 => address0,

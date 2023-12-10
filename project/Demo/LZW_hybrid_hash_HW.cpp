@@ -34,7 +34,7 @@ typedef struct
 } assoc_mem;
 
 //****************************************************************************************************************
-void krnl_LZW(char *input, uint16_t *input_length, uint16_t *send_data, uint16_t *output_length)
+void krnl_LZW(char *input, uint16_t *input_length, uint16_t *send_data, uint32_t *output_length)
 {
     // #pragma HLS interface m_axi port=in bundle=aximm1
     // #pragma HLS interface m_axi port=input_length bundle=aximm1

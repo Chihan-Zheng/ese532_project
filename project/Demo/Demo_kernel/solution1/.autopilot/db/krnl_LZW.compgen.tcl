@@ -17,7 +17,7 @@ set ROMData {}
 set NumOfStage 2
 set MaxLatency -1
 set DelayBudget 1.352
-set ClkPeriod 5
+set ClkPeriod 6.667
 set RegisteredInput 0
 if {${::AESL::PGuard_simmodel_gen}} {
 if {[info proc ap_gen_simcore_mem] == "ap_gen_simcore_mem"} {
@@ -88,12 +88,12 @@ if {[info proc ::AESL_LIB_VIRTEX::xil_gen_RAM] == "::AESL_LIB_VIRTEX::xil_gen_RA
 # Memory (RAM/ROM)  definition:
 set ID 2
 set hasByteEnable 0
-set MemName krnl_LZW_hash_table_V
+set MemName krnl_LZW_hash_table_V_0
 set CoreName ap_simcore_mem
 set PortList { 2 3 }
 set DataWd 35
-set AddrRange 65536
-set AddrWd 16
+set AddrRange 32768
+set AddrWd 15
 set impl_style auto
 set TrueReset 0
 set HasInitializer 0
@@ -102,7 +102,7 @@ set ROMData {}
 set NumOfStage 2
 set MaxLatency -1
 set DelayBudget 1.352
-set ClkPeriod 5
+set ClkPeriod 6.667
 set RegisteredInput 0
 if {${::AESL::PGuard_simmodel_gen}} {
 if {[info proc ap_gen_simcore_mem] == "ap_gen_simcore_mem"} {
@@ -176,7 +176,7 @@ set hasByteEnable 0
 set MemName krnl_LZW_my_assoc_mem_upper_key_mem_V
 set CoreName ap_simcore_mem
 set PortList { 2 3 }
-set DataWd 72
+set DataWd 216
 set AddrRange 512
 set AddrWd 9
 set impl_style auto
@@ -187,7 +187,7 @@ set ROMData {}
 set NumOfStage 2
 set MaxLatency -1
 set DelayBudget 1.352
-set ClkPeriod 5
+set ClkPeriod 6.667
 set RegisteredInput 0
 if {${::AESL::PGuard_simmodel_gen}} {
 if {[info proc ap_gen_simcore_mem] == "ap_gen_simcore_mem"} {
@@ -262,8 +262,8 @@ set MemName krnl_LZW_my_assoc_mem_value_V
 set CoreName ap_simcore_mem
 set PortList { 2 0 }
 set DataWd 13
-set AddrRange 72
-set AddrWd 7
+set AddrRange 216
+set AddrWd 8
 set impl_style auto
 set TrueReset 0
 set HasInitializer 0
@@ -271,8 +271,8 @@ set IsROM 0
 set ROMData {}
 set NumOfStage 2
 set MaxLatency -1
-set DelayBudget 0.79
-set ClkPeriod 5
+set DelayBudget 1.352
+set ClkPeriod 6.667
 set RegisteredInput 0
 if {${::AESL::PGuard_simmodel_gen}} {
 if {[info proc ap_gen_simcore_mem] == "ap_gen_simcore_mem"} {
@@ -419,7 +419,7 @@ eval "::AESL_LIB_XILADAPTER::m_axi_gen { \
     corename {m_axi} \
     op interface \
     max_latency -1 \ 
-    delay_budget 3.65 \ 
+    delay_budget 4.86691 \ 
     is_flushable 0 \ 
     name {krnl_LZW_gmem_m_axi} \
 } "
