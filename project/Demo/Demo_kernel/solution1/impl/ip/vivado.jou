@@ -2,8 +2,8 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Sat Dec  9 23:40:42 2023
-# Process ID: 31061
+# Start of session at: Sun Dec 10 12:42:06 2023
+# Process ID: 8272
 # Current directory: /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Demo/Demo_kernel/solution1/impl/ip
 # Command line: vivado -notrace -mode batch -source run_ippack.tcl
 # Log file: /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Demo/Demo_kernel/solution1/impl/ip/vivado.log

@@ -14,7 +14,7 @@ add_files common/EventTimer.cpp
 add_files Constants.h
 open_solution "solution1" -flow_target vitis
 set_part {xczu3eg-sbva484-1-i}
-create_clock -period 150MHz -name default
+create_clock -period 200MHz -name default
 config_rtl -register_reset_num 3
 config_interface -m_axi_alignment_byte_size 64 -m_axi_latency 64 -m_axi_max_widen_bitwidth 512 -m_axi_offset slave
 config_export -format xo -output /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Demo/krnl_LZW.xo -rtl verilog

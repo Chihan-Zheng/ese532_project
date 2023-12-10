@@ -27,30 +27,30 @@
 #define MATCH_UNITS_COLUMN_NUM 3
 #define ASSOC_MEM_SIZE (72 * MATCH_UNITS_COLUMN_NUM)
 
-#define num_chunks_krnl (50)
+#define num_chunks_krnl (100)
 #define ArrayOfCodeNum (70000)
 
 uint64_t hash_func(unsigned char *input, unsigned int pos);
 // int cdc( unsigned char* buff, int buff_size,char** chunk, uint16_t *chunk_size);
-void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size, 
+void cdc( unsigned char* buff, int buff_size, unsigned char* chunk, uint16_t *chunk_size, 
             uint32_t *offset_buff, char *pipeline_drained, stopwatch &stopwatch, uint64_t *hash);
 uint64_t basicHash(char* input, size_t length);
 /* uint32_t deDup(char* inputChunk, uint16_t chunk_size, 
                std::unordered_map<string, uint32_t>& chunkTable, stopwatch& stopwatch); */
-void deDup(char* inputChunk, uint16_t chunk_size,
+void deDup(unsigned char* inputChunk, uint16_t chunk_size,
     std::unordered_map<string, uint32_t>& chunkTable,
     stopwatch& sha_timer, stopwatch& dedup_timer, uint32_t &deDup_header);
 unsigned int my_hash(ap_uint<KEY_LEN> key);
 /* void LZW_hybrid_hash_HW(char *in, uint16_t *input_length, 
                         uint16_t *send_data, uint16_t *output_length); */
-void krnl_LZW(char *input, uint16_t *input_length, 
+void krnl_LZW(unsigned char *input, uint16_t *input_length, 
                 uint16_t *send_data, uint32_t *output_length);  //multiChunks
-static void read_input(char *in, uint16_t input_length, 
+/* static void read_input(char *in, uint16_t input_length, 
                         hls::stream<char>& inStream_in);
 void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
                  hls::stream<ap_uint<CODE_LEN>>& outStream_code, hls::stream<char>& outStream_code_flg);
 static void write_result(uint16_t in_length, hls::stream<ap_uint<CODE_LEN>>& outStream_code,  hls::stream<char>& outStream_code_flg, 
-                        uint16_t *send_data, uint32_t *output_length);
+                        uint16_t *send_data, uint32_t *output_length); */
 
 #endif
 

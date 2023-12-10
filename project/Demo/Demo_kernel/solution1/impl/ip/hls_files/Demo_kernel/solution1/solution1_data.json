@@ -18,7 +18,7 @@
     "input": {
       "index": "0",
       "direction": "inout",
-      "srcType": "char*",
+      "srcType": "unsigned char*",
       "srcSize": "8",
       "hwRefs": [
         {
@@ -136,11 +136,11 @@
     "FlowTarget": "vitis",
     "ConfigTcl": [
       "config_rtl -register_reset_num=3",
-      "config_interface -default_interface=kernel",
       "config_interface -m_axi_alignment_byte_size=64",
       "config_interface -m_axi_latency=64",
       "config_interface -m_axi_max_widen_bitwidth=512",
       "config_interface -m_axi_offset=slave",
+      "config_interface -default_interface=kernel",
       "config_export -format=xo",
       "config_export -output=\/mnt\/castor\/seas_home\/c\/chihan\/chihan\/ese532_project\/project\/Demo\/krnl_LZW.xo",
       "config_export -rtl=verilog"
@@ -158,13 +158,13 @@
   },
   "ClockInfo": {
     "ClockName": "ap_clk",
-    "ClockPeriod": "6.667",
-    "Uncertainty": "1.80009",
+    "ClockPeriod": "5",
+    "Uncertainty": "1.35",
     "IsCombinational": "0",
     "II": "x",
     "Latency": "undef"
   },
-  "Xdc": {"OocClocks": ["create_clock -name ap_clk -period 6.667 [get_ports ap_clk]"]},
+  "Xdc": {"OocClocks": ["create_clock -name ap_clk -period 5.000 [get_ports ap_clk]"]},
   "Ipx": {
     "Vendor": "xilinx.com",
     "Library": "hls",
@@ -255,7 +255,7 @@
       "type": "axi4full",
       "busTypeName": "aximm",
       "mode": "master",
-      "dataWidth": "32",
+      "dataWidth": "64",
       "addrWidth": "64",
       "portPrefix": "m_axi_gmem_",
       "paramPrefix": "C_M_AXI_GMEM_",
@@ -336,7 +336,7 @@
         {
           "constraint_type": "bitwidth",
           "orig_bitwidth": "8",
-          "final_bitwidth": "32",
+          "final_bitwidth": "64",
           "argName": "input"
         }
       ]
@@ -821,11 +821,11 @@
     },
     "m_axi_gmem_WDATA": {
       "dir": "out",
-      "width": "32"
+      "width": "64"
     },
     "m_axi_gmem_WSTRB": {
       "dir": "out",
-      "width": "4"
+      "width": "8"
     },
     "m_axi_gmem_WLAST": {
       "dir": "out",
@@ -905,7 +905,7 @@
     },
     "m_axi_gmem_RDATA": {
       "dir": "in",
-      "width": "32"
+      "width": "64"
     },
     "m_axi_gmem_RLAST": {
       "dir": "in",
@@ -967,15 +967,15 @@
           "PipelineType": "none"
         },
         "Timing": {
-          "Target": "6.67",
-          "Uncertainty": "1.80",
-          "Estimate": "4.867"
+          "Target": "5.00",
+          "Uncertainty": "1.35",
+          "Estimate": "3.650"
         },
         "Loops": [
           {
             "Name": "VITIS_LOOP_65_1",
-            "TripCount": "50",
-            "Latency": "51",
+            "TripCount": "100",
+            "Latency": "101",
             "PipelineII": "1",
             "PipelineDepth": "3"
           },
@@ -1005,9 +1005,9 @@
                 "TripCount": "",
                 "Latency": "",
                 "PipelineII": "",
-                "PipelineDepthMin": "98",
-                "PipelineDepthMax": "364",
-                "PipelineDepth": "98 ~ 364",
+                "PipelineDepthMin": "99",
+                "PipelineDepthMax": "366",
+                "PipelineDepth": "99 ~ 366",
                 "Loops": [
                   {
                     "Name": "VITIS_LOOP_7_1",
@@ -1070,15 +1070,15 @@
           }
         ],
         "Area": {
-          "BRAM_18K": "89",
+          "BRAM_18K": "91",
           "AVAIL_BRAM": "432",
-          "UTIL_BRAM": "20",
-          "FF": "4656",
+          "UTIL_BRAM": "21",
+          "FF": "5123",
           "AVAIL_FF": "141120",
           "UTIL_FF": "3",
-          "LUT": "12127",
+          "LUT": "13066",
           "AVAIL_LUT": "70560",
-          "UTIL_LUT": "17",
+          "UTIL_LUT": "18",
           "DSP": "0",
           "AVAIL_DSP": "360",
           "UTIL_DSP": "0",
@@ -1091,7 +1091,7 @@
   "GenerateBdFiles": "0",
   "GenData": {
     "DataVersion": "0.2",
-    "Time": "2023-12-09 23:40:32 EST",
+    "Time": "2023-12-10 12:41:55 EST",
     "ToolName": "vivado_hls",
     "ToolVersion": "2020.2"
   }

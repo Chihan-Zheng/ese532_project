@@ -59330,25 +59330,19 @@ uint32_t swap_endian_32(uint32_t value);
 # 33 "./Constants.h"
 uint64_t hash_func(unsigned char *input, unsigned int pos);
 
-void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size,
+void cdc( unsigned char* buff, int buff_size, unsigned char* chunk, uint16_t *chunk_size,
             uint32_t *offset_buff, char *pipeline_drained, stopwatch &stopwatch, uint64_t *hash);
 uint64_t basicHash(char* input, size_t length);
 
 
-void deDup(char* inputChunk, uint16_t chunk_size,
+void deDup(unsigned char* inputChunk, uint16_t chunk_size,
     std::unordered_map<string, uint32_t>& chunkTable,
     stopwatch& sha_timer, stopwatch& dedup_timer, uint32_t &deDup_header);
 unsigned int my_hash(ap_uint<(13 + 8)> key);
 
 
-__attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *input, uint16_t *input_length,
+__attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(unsigned char *input, uint16_t *input_length,
                 uint16_t *send_data, uint32_t *output_length);
-static void read_input(char *in, uint16_t input_length,
-                        hls::stream<char>& inStream_in);
-void compute_LZW(hls::stream<char>& inStream_in, uint16_t input_length,
-                 hls::stream<ap_uint<13>>& outStream_code, hls::stream<char>& outStream_code_flg);
-static void write_result(uint16_t in_length, hls::stream<ap_uint<13>>& outStream_code, hls::stream<char>& outStream_code_flg,
-                        uint16_t *send_data, uint32_t *output_length);
 # 2 "LZW_hybrid_hash_HW.cpp" 2
 
 unsigned int my_hash(ap_uint<(13 + 8)> key)
@@ -59385,7 +59379,7 @@ typedef struct
 } assoc_mem;
 
 
-__attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *input, uint16_t *input_length, uint16_t *send_data, uint32_t *output_length)
+__attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(unsigned char *input, uint16_t *input_length, uint16_t *send_data, uint32_t *output_length)
 {
 #pragma HLS TOP name=krnl_LZW
 # 38 "LZW_hybrid_hash_HW.cpp"
@@ -59401,9 +59395,9 @@ __attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *input, uint16_t *
     uint32_t output_offset = 0;
     uint16_t in_length;
 
-    char *in;
+    unsigned char *in;
 # 65 "LZW_hybrid_hash_HW.cpp"
-    VITIS_LOOP_65_1: for (int i = 0; i < (50); i++){
+    VITIS_LOOP_65_1: for (int i = 0; i < (100); i++){
         if (input_length[i]){
             num_chunks++;
         }
@@ -59637,6 +59631,8 @@ __attribute__((sdx_kernel("krnl_LZW", 0))) void krnl_LZW(char *input, uint16_t *
         output_offset += ((output_length[n] + sizeof(uint16_t) - 1) / sizeof(uint16_t));
 
     }
+
+
 
 
 }

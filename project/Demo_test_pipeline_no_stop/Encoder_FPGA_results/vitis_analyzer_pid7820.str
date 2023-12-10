@@ -1,0 +1,436 @@
+/*
+
+Xilinx Vitis Analyzer v2020.2 (64-bit) [Major: 2020, Minor: 2]
+SW Build: 3064766 on Wed Nov 18 09:12:47 MST 2020
+
+Process ID (PID): 7820
+License: Customer
+Mode: GUI Mode
+
+Current time: 	Sat Dec 09 17:59:20 EST 2023
+Time zone: 	Eastern Standard Time (America/New_York)
+
+OS: NAME="openSUSE Leap"
+OS Version: 5.14.21-150500.55.36-default
+OS Architecture: amd64
+Available processors (cores): 20
+
+Display: 0
+Screen size: 1920x1080
+Screen resolution (DPI): 100
+Available screens: 1
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+Scale size: 12
+
+Java version: 	11.0.2 64-bit
+Java home: 	/mnt/pollux/software/xilinx/2020.2/Vitis/2020.2/tps/lnx64/jre11.0.2
+Java executable location: 	/mnt/pollux/software/xilinx/2020.2/Vitis/2020.2/tps/lnx64/jre11.0.2/bin/java
+Java initial memory (-Xms): 	128 MB
+Java maximum memory (-Xmx):	 3 GB
+
+
+User name: 	chihan
+User home directory: /mnt/castor/seas_home/c/chihan
+User working directory: /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Demo/Encoder_FPGA_results
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI_BASEROOT: /mnt/pollux/software/xilinx/2020.2/Vitis
+HDI_APPROOT: /mnt/pollux/software/xilinx/2020.2/Vitis/2020.2
+RDI_DATADIR: /mnt/pollux/software/xilinx/2020.2/Vitis/2020.2/data
+RDI_BINDIR: /mnt/pollux/software/xilinx/2020.2/Vitis/2020.2/bin
+
+Vitis Analyzer preferences file location: /home1/c/chihan/.Xilinx/vitis_analyzer/2020.2/vitis_analyzer.xml
+Vitis Analyzer preferences directory: /home1/c/chihan/.Xilinx/vitis_analyzer/2020.2/
+Vitis Analyzer layouts directory: /mnt/castor/seas_home/c/chihan/.Xilinx/vitis_analyzer/2020.2/data/layouts
+PlanAhead jar file location: 	/mnt/pollux/software/xilinx/2020.2/Vitis/2020.2/lib/classes/frank.jar
+Vitis Analyzer log file location: 	/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Demo/Encoder_FPGA_results/vitis_analyzer.log
+Vitis Analyzer journal file location: 	/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Demo/Encoder_FPGA_results/vitis_analyzer.jou
+Engine tmp dir: 	./.Xil/vitis_analyzer-7820-Delphinus
+
+Xilinx Environment Variables
+----------------------------
+SDK_HOME: /usr/lib64/jvm/java-17-openjdk-17
+XILINXD_LICENSE_FILE: /mnt/pollux/software/xilinx/.Xilinx/
+XILINX_DSP: 
+XILINX_HLS: /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2
+XILINX_PLANAHEAD: /mnt/pollux/software/xilinx/2020.2/Vitis/2020.2
+XILINX_SDK: /mnt/pollux/software/xilinx/2020.2/Vitis/2020.2
+XILINX_VITIS: /mnt/pollux/software/xilinx/2020.2/Vitis/2020.2
+XILINX_VITIS_AIETOOLS: /mnt/pollux/software/xilinx/2020.2/Vitis/2020.2/cardano
+XILINX_VIVADO: /mnt/pollux/software/xilinx/2020.2/Vivado/2020.2
+XILINX_VIVADO_HLS: /mnt/pollux/software/xilinx/2020.2/Vivado/2020.2
+
+
+GUI allocated memory:	136 MB
+GUI max memory:		3,072 MB
+Engine allocated memory: 1,510 MB
+
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// Command line args: 
+// Vitis Analyzer Command Line Arguments: krnl_LZW.xclbin.run_summary
+// bz (cs):  Open Files : addNotify
+dismissDialog("Open Files"); // bz
+// Tcl Command: 'create_project dummy'
+// TclEventType: PROJECT_NEW
+// Opening Summary: Resource{value=FrankResource.FrankReportHolderType_RUN_SUMMARY}Type{value=RUN_SUMMARY},SummaryFile{file=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Demo/Encoder_FPGA_results/krnl_LZW.xclbin.run_summary}
+// bz (cs):  Open Summary : addNotify
+// Command working directory: /tmp/vitis_analyzer_chihan9002957340536845979/815605049
+// Command: /mnt/pollux/software/xilinx/2020.2/Vitis/2020.2/bin/perf_analyze profile --input=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Demo/Encoder_FPGA_results/profile_summary.csv --output=/tmp/vitis_analyzer_chihan9002957340536845979/815605049/profile_summary.pb
+// Tcl Message: create_project dummy 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,515 MB. GUI used memory: 67 MB. Current time: 12/9/23, 5:59:21 PM EST
+// Command elapsed time: 3.9s seconds
+dismissDialog("Open Summary"); // bz
+// [GUI Memory]: 99 MB (+101257kb) [00:00:31]
+// [Engine Memory]: 1,520 MB (+1442675kb) [00:00:31]
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// Elapsed time: 315 seconds
+selectTree(FrankResource.ReportNavigatorTreePanel_REPORT_NAVIGATOR_TREE, "[root, Resource{value=FrankResource.FrankViewType_APPLICATION_TIMELINE}Type{value=APPLICATION_TIMELINE_REPORT},SummaryFile{file=krnl_LZW.xclbin.run_summary isArchive=false},ReportFile{file=Encoder_FPGA_results/timeline_trace.csv}]", 6, false); // b
+// Opening Report: Resource{value=FrankResource.FrankViewType_APPLICATION_TIMELINE}Type{value=APPLICATION_TIMELINE_REPORT},SummaryFile{file=krnl_LZW.xclbin.run_summary isArchive=false},ReportFile{file=Encoder_FPGA_results/timeline_trace.csv}
+// Command working directory: /tmp/vitis_analyzer_chihan9002957340536845979/815605049
+// Command: /mnt/pollux/software/xilinx/2020.2/Vitis/2020.2/bin/perf_analyze trace --format=wdb --input=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Demo/Encoder_FPGA_results/timeline_trace.csv --output=/tmp/vitis_analyzer_chihan9002957340536845979/815605049/timeline_trace.wdb
+// bz (cs):  Open Application Timeline Report [krnl_LZW.xclbin.run_summary] : addNotify
+// Command elapsed time: 0.9s seconds
+// bz (cs):  Open Application Timeline Report [krnl_LZW.xclbin.run_summary] : addNotify
+// TclEventType: WAVEFORM_UPDATE_TITLE
+// TclEventType: WAVEFORM_OPEN_WCFG
+// TclEventType: WAVEFORM_DELAYED_MODEL_EVENT
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// Waveform: addNotify
+// Waveform: addNotify
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+dismissDialog("Open Application Timeline Report [krnl_LZW.xclbin.run_summary]"); // bz
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// HMemoryUtils.trashcanNow. Engine heap size: 1,586 MB. GUI used memory: 88 MB. Current time: 12/9/23, 6:04:39 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,587 MB. GUI used memory: 78 MB. Current time: 12/9/23, 6:04:40 PM EST
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_MODEL_EVENT
+selectGraphicalView(RDIResource.RDIViews_WAVEFORM_VIEWER, 1202, 52); // n
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,588 MB. GUI used memory: 86 MB. Current time: 12/9/23, 6:04:41 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,588 MB. GUI used memory: 86 MB. Current time: 12/9/23, 6:04:41 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,589 MB. GUI used memory: 78 MB. Current time: 12/9/23, 6:04:42 PM EST
+selectGraphicalView(RDIResource.RDIViews_WAVEFORM_VIEWER, 227, 57); // n
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,582 MB. GUI used memory: 85 MB. Current time: 12/9/23, 6:04:48 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,582 MB. GUI used memory: 83 MB. Current time: 12/9/23, 6:04:48 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,584 MB. GUI used memory: 82 MB. Current time: 12/9/23, 6:04:48 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,584 MB. GUI used memory: 78 MB. Current time: 12/9/23, 6:04:48 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,584 MB. GUI used memory: 78 MB. Current time: 12/9/23, 6:04:48 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+selectGraphicalView(RDIResource.RDIViews_WAVEFORM_VIEWER, 893, 304); // n
+// HMemoryUtils.trashcanNow. Engine heap size: 1,584 MB. GUI used memory: 78 MB. Current time: 12/9/23, 6:04:50 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,584 MB. GUI used memory: 78 MB. Current time: 12/9/23, 6:04:50 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,585 MB. GUI used memory: 78 MB. Current time: 12/9/23, 6:04:50 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,585 MB. GUI used memory: 78 MB. Current time: 12/9/23, 6:04:51 PM EST
+selectButton(RDIResource.GraphicalView_ZOOM_OUT, "Waveform Viewer_zoom_out"); // E
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// HMemoryUtils.trashcanNow. Engine heap size: 1,586 MB. GUI used memory: 84 MB. Current time: 12/9/23, 6:04:53 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+selectButton(RDIResource.GraphicalView_ZOOM_OUT, "Waveform Viewer_zoom_out"); // E
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// Elapsed time: 116 seconds
+selectButton(RDIResource.GraphicalView_ZOOM_OUT, "Waveform Viewer_zoom_out"); // E
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// HMemoryUtils.trashcanNow. Engine heap size: 1,586 MB. GUI used memory: 82 MB. Current time: 12/9/23, 6:06:50 PM EST
+selectButton(RDIResource.GraphicalView_ZOOM_OUT, "Waveform Viewer_zoom_out"); // E
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+selectGraphicalView(RDIResource.RDIViews_WAVEFORM_VIEWER, 419, 70); // n
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,586 MB. GUI used memory: 78 MB. Current time: 12/9/23, 6:06:52 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,586 MB. GUI used memory: 78 MB. Current time: 12/9/23, 6:06:52 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,586 MB. GUI used memory: 83 MB. Current time: 12/9/23, 6:06:52 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,586 MB. GUI used memory: 83 MB. Current time: 12/9/23, 6:06:52 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,586 MB. GUI used memory: 83 MB. Current time: 12/9/23, 6:06:52 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,587 MB. GUI used memory: 78 MB. Current time: 12/9/23, 6:06:52 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,587 MB. GUI used memory: 79 MB. Current time: 12/9/23, 6:06:52 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+selectButton(RDIResource.GraphicalView_ZOOM_FIT, "Waveform Viewer_zoom_fit"); // E
+// HMemoryUtils.trashcanNow. Engine heap size: 1,587 MB. GUI used memory: 78 MB. Current time: 12/9/23, 6:06:54 PM EST
+selectGraphicalView(RDIResource.RDIViews_WAVEFORM_VIEWER, 1186, 65); // n
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,587 MB. GUI used memory: 85 MB. Current time: 12/9/23, 6:06:54 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,587 MB. GUI used memory: 78 MB. Current time: 12/9/23, 6:06:55 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,588 MB. GUI used memory: 83 MB. Current time: 12/9/23, 6:06:55 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,588 MB. GUI used memory: 78 MB. Current time: 12/9/23, 6:06:55 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,588 MB. GUI used memory: 79 MB. Current time: 12/9/23, 6:06:55 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+selectGraphicalView(RDIResource.RDIViews_WAVEFORM_VIEWER, 477, 86); // n
+// HMemoryUtils.trashcanNow. Engine heap size: 1,588 MB. GUI used memory: 78 MB. Current time: 12/9/23, 6:06:56 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,588 MB. GUI used memory: 79 MB. Current time: 12/9/23, 6:06:56 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,588 MB. GUI used memory: 79 MB. Current time: 12/9/23, 6:06:57 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,588 MB. GUI used memory: 79 MB. Current time: 12/9/23, 6:06:57 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,588 MB. GUI used memory: 83 MB. Current time: 12/9/23, 6:06:57 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,589 MB. GUI used memory: 79 MB. Current time: 12/9/23, 6:06:57 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,589 MB. GUI used memory: 79 MB. Current time: 12/9/23, 6:06:57 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,590 MB. GUI used memory: 79 MB. Current time: 12/9/23, 6:06:57 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,590 MB. GUI used memory: 79 MB. Current time: 12/9/23, 6:06:57 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,590 MB. GUI used memory: 79 MB. Current time: 12/9/23, 6:06:57 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,590 MB. GUI used memory: 79 MB. Current time: 12/9/23, 6:06:57 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// Elapsed time: 39 seconds
+selectGraphicalView(RDIResource.RDIViews_WAVEFORM_VIEWER, 6, 52); // n
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// [GUI Memory]: 115 MB (+11241kb) [00:08:45]
+// HMemoryUtils.trashcanNow. Engine heap size: 1,591 MB. GUI used memory: 78 MB. Current time: 12/9/23, 6:07:36 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,591 MB. GUI used memory: 79 MB. Current time: 12/9/23, 6:07:36 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,591 MB. GUI used memory: 83 MB. Current time: 12/9/23, 6:07:36 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,591 MB. GUI used memory: 78 MB. Current time: 12/9/23, 6:07:37 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,591 MB. GUI used memory: 79 MB. Current time: 12/9/23, 6:07:37 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,591 MB. GUI used memory: 84 MB. Current time: 12/9/23, 6:07:37 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,591 MB. GUI used memory: 79 MB. Current time: 12/9/23, 6:07:37 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+selectButton(RDIResource.WaveformView_ADD_MARKER, "Waveform Viewer_waveformAddMarker"); // E
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_TITLE
+selectGraphicalView(RDIResource.RDIViews_WAVEFORM_VIEWER, 933, 14); // n
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// HMemoryUtils.trashcanNow. Engine heap size: 1,592 MB. GUI used memory: 94 MB. Current time: 12/9/23, 6:07:40 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,592 MB. GUI used memory: 83 MB. Current time: 12/9/23, 6:07:40 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,592 MB. GUI used memory: 78 MB. Current time: 12/9/23, 6:07:40 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,592 MB. GUI used memory: 78 MB. Current time: 12/9/23, 6:07:40 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,592 MB. GUI used memory: 80 MB. Current time: 12/9/23, 6:07:40 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,592 MB. GUI used memory: 80 MB. Current time: 12/9/23, 6:07:40 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,592 MB. GUI used memory: 79 MB. Current time: 12/9/23, 6:07:40 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,592 MB. GUI used memory: 78 MB. Current time: 12/9/23, 6:07:40 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,592 MB. GUI used memory: 80 MB. Current time: 12/9/23, 6:07:40 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,592 MB. GUI used memory: 80 MB. Current time: 12/9/23, 6:07:40 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,592 MB. GUI used memory: 80 MB. Current time: 12/9/23, 6:07:41 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,592 MB. GUI used memory: 78 MB. Current time: 12/9/23, 6:07:41 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,592 MB. GUI used memory: 78 MB. Current time: 12/9/23, 6:07:41 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,592 MB. GUI used memory: 78 MB. Current time: 12/9/23, 6:07:41 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,592 MB. GUI used memory: 80 MB. Current time: 12/9/23, 6:07:41 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_TITLE
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+selectGraphicalView(RDIResource.RDIViews_WAVEFORM_VIEWER, 957, -14); // n
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// HMemoryUtils.trashcanNow. Engine heap size: 1,592 MB. GUI used memory: 79 MB. Current time: 12/9/23, 6:07:42 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// HMemoryUtils.trashcanNow. Engine heap size: 1,592 MB. GUI used memory: 80 MB. Current time: 12/9/23, 6:07:42 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// HMemoryUtils.trashcanNow. Engine heap size: 1,592 MB. GUI used memory: 78 MB. Current time: 12/9/23, 6:07:42 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// HMemoryUtils.trashcanNow. Engine heap size: 1,592 MB. GUI used memory: 80 MB. Current time: 12/9/23, 6:07:42 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// HMemoryUtils.trashcanNow. Engine heap size: 1,592 MB. GUI used memory: 78 MB. Current time: 12/9/23, 6:07:43 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// HMemoryUtils.trashcanNow. Engine heap size: 1,593 MB. GUI used memory: 78 MB. Current time: 12/9/23, 6:07:43 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// HMemoryUtils.trashcanNow. Engine heap size: 1,593 MB. GUI used memory: 78 MB. Current time: 12/9/23, 6:07:43 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// HMemoryUtils.trashcanNow. Engine heap size: 1,593 MB. GUI used memory: 80 MB. Current time: 12/9/23, 6:07:43 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// HMemoryUtils.trashcanNow. Engine heap size: 1,593 MB. GUI used memory: 80 MB. Current time: 12/9/23, 6:07:43 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// HMemoryUtils.trashcanNow. Engine heap size: 1,593 MB. GUI used memory: 78 MB. Current time: 12/9/23, 6:07:43 PM EST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// Elapsed time: 47 seconds
+selectTree(FrankResource.ReportNavigatorTreePanel_REPORT_NAVIGATOR_TREE, "[root, Resource{value=FrankResource.FrankViewType_PROFILE_SUMMARY}Type{value=PROFILE_SUMMARY_REPORT},SummaryFile{file=krnl_LZW.xclbin.run_summary isArchive=false},ReportFile{file=Encoder_FPGA_results/profile_summary.csv}]", 5, false); // b
+// Opening Report: Resource{value=FrankResource.FrankViewType_PROFILE_SUMMARY}Type{value=PROFILE_SUMMARY_REPORT},SummaryFile{file=krnl_LZW.xclbin.run_summary isArchive=false},ReportFile{file=Encoder_FPGA_results/profile_summary.csv}
+// Elapsed time: 38 seconds
+selectTree(RDIResource.NavigableReportTab_REPORT_NAVIGATION_TREE, "[Report Contents, Kernels & Compute Units]", 2, true); // r - Node
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// Elapsed time: 21 seconds
+selectTree(RDIResource.NavigableReportTab_REPORT_NAVIGATION_TREE, "[Report Contents, Kernels & Compute Units, Kernel Execution]", 3, false); // r
+// Elapsed time: 17 seconds
+selectTree(RDIResource.NavigableReportTab_REPORT_NAVIGATION_TREE, "[Report Contents, Kernels & Compute Units, Kernel Execution]", 3, false); // r
+selectTree(RDIResource.NavigableReportTab_REPORT_NAVIGATION_TREE, "[Report Contents, Kernel Data Transfers]", 5, false); // r
+selectTree(RDIResource.NavigableReportTab_REPORT_NAVIGATION_TREE, "[Report Contents, Kernels & Compute Units, Top Kernel Execution]", 4, false); // r
+selectTree(RDIResource.NavigableReportTab_REPORT_NAVIGATION_TREE, "[Report Contents, Host Data Transfers]", 6, true); // r - Node
+selectTree(RDIResource.NavigableReportTab_REPORT_NAVIGATION_TREE, "[Report Contents, Host Data Transfers, Host Transfer]", 7, false); // r
+selectTree(RDIResource.NavigableReportTab_REPORT_NAVIGATION_TREE, "[Report Contents, Host Data Transfers, Top Memory Writes]", 8, false); // r
+selectTree(RDIResource.NavigableReportTab_REPORT_NAVIGATION_TREE, "[Report Contents, Host Data Transfers, Top Memory Reads]", 9, false); // r
+selectTree(RDIResource.NavigableReportTab_REPORT_NAVIGATION_TREE, "[Report Contents, Kernel Data Transfers]", 5, false); // r
+selectTree(RDIResource.NavigableReportTab_REPORT_NAVIGATION_TREE, "[Report Contents, Host Data Transfers]", 6, true); // r - Node
+selectTree(RDIResource.NavigableReportTab_REPORT_NAVIGATION_TREE, "[Report Contents, Kernels & Compute Units, Kernel Execution]", 3, false); // r
+selectTree(RDIResource.NavigableReportTab_REPORT_NAVIGATION_TREE, "[Report Contents, Kernels & Compute Units]", 2, true); // r - Node
+selectTree(RDIResource.NavigableReportTab_REPORT_NAVIGATION_TREE, "[Report Contents, Kernels & Compute Units, Kernel Execution]", 3, false); // r
+selectTree(RDIResource.NavigableReportTab_REPORT_NAVIGATION_TREE, "[Report Contents, Kernels & Compute Units]", 2, true); // r - Node
+selectTree(RDIResource.NavigableReportTab_REPORT_NAVIGATION_TREE, "[Report Contents, Summary]", 1, false); // r
+selectTree(RDIResource.NavigableReportTab_REPORT_NAVIGATION_TREE, "[Report Contents, Summary]", 1, false); // r
+selectTree(FrankResource.ReportNavigatorTreePanel_REPORT_NAVIGATOR_TREE, "[root, Resource{value=FrankResource.FrankViewType_SYSTEM_DIAGRAM}Type{value=SYSTEM_DIAGRAM_REPORT},SummaryFile{file=krnl_LZW.xclbin.run_summary isArchive=false}]", 2, false); // b
+// Opening Report: Resource{value=FrankResource.FrankViewType_SYSTEM_DIAGRAM}Type{value=SYSTEM_DIAGRAM_REPORT},SummaryFile{file=krnl_LZW.xclbin.run_summary isArchive=false}
+// Elapsed time: 43 seconds
+selectTree(FrankResource.ReportNavigatorTreePanel_REPORT_NAVIGATOR_TREE, "[root, Resource{value=FrankResource.FrankViewType_RUN_SUMMARY}Type{value=RUN_SUMMARY_REPORT},SummaryFile{file=krnl_LZW.xclbin.run_summary isArchive=false},ReportFile{file=Encoder_FPGA_results/krnl_LZW.xclbin.run_summary}]", 1, false); // b
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1002 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1002 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.

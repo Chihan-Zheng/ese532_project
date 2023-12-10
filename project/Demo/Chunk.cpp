@@ -65,7 +65,7 @@ uint64_t hash_func(unsigned char *input, unsigned int pos)
 } */
 //read the input file and call the rolling hash function.
 // int cdc( const char* file, char** chunk, uint16_t *chunk_size)
-void cdc( unsigned char* buff, int buff_size, char* chunk, uint16_t *chunk_size, uint32_t *offset_buff, char *pipeline_drained,
+void cdc( unsigned char* buff, int buff_size, unsigned char* chunk, uint16_t *chunk_size, uint32_t *offset_buff, char *pipeline_drained,
 		stopwatch &stopwatch, uint64_t *hash)
 {
 	// printf("before define buff_new\n");

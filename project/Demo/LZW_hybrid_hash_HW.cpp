@@ -34,33 +34,33 @@ typedef struct
 } assoc_mem;
 
 //****************************************************************************************************************
-void krnl_LZW(char *input, uint16_t *input_length, uint16_t *send_data, uint32_t *output_length)
+void krnl_LZW(unsigned char *input, uint16_t *input_length, uint16_t *send_data, uint32_t *output_length)
 {
-    // #pragma HLS interface m_axi port=in bundle=aximm1
-    // #pragma HLS interface m_axi port=input_length bundle=aximm1
-    // #pragma HLS interface m_axi port=send_data bundle=aximm2
-    // #pragma HLS interface m_axi port=output_length bundle=aximm2
-    // #pragma HLS dataflow
+//     // #pragma HLS interface m_axi port=in bundle=aximm1
+//     // #pragma HLS interface m_axi port=input_length bundle=aximm1
+//     // #pragma HLS interface m_axi port=send_data bundle=aximm2
+//     // #pragma HLS interface m_axi port=output_length bundle=aximm2
+//     // #pragma HLS dataflow
 
     char num_chunks = 0;
     uint32_t input_offset = 0;
     uint32_t output_offset = 0;
     uint16_t in_length;
 
-    char *in;
+    unsigned char *in;
 
-/*     ap_uint<BUCKET_LEN> hash_table[CAPACITY][BUCKETS_NUM];
-    // #pragma HLS array_partition variable=hash_table block factor=128 dim=1
-    assoc_mem my_assoc_mem;
-    uint16_t store_array[MAX_CHUNK];
-    ap_uint<CODE_LEN> next_code = 256;
-    ap_uint<CODE_LEN> prefix_code;
-    ap_uint<CODE_LEN> code = 0;
-    unsigned char next_char = 0;
-    uint16_t j = 0;                   //index of store array (should j++ every time after store)
-    unsigned char shift = 0;
-    unsigned char shift_offset = 16 - CODE_LEN;
-    ap_uint<CODE_LEN> i = 0; */
+// /*     ap_uint<BUCKET_LEN> hash_table[CAPACITY][BUCKETS_NUM];
+//     // #pragma HLS array_partition variable=hash_table block factor=128 dim=1
+//     assoc_mem my_assoc_mem;
+//     uint16_t store_array[MAX_CHUNK];
+//     ap_uint<CODE_LEN> next_code = 256;
+//     ap_uint<CODE_LEN> prefix_code;
+//     ap_uint<CODE_LEN> code = 0;
+//     unsigned char next_char = 0;
+//     uint16_t j = 0;                   //index of store array (should j++ every time after store)
+//     unsigned char shift = 0;
+//     unsigned char shift_offset = 16 - CODE_LEN;
+//     ap_uint<CODE_LEN> i = 0; */
 
     for (int i = 0; i < num_chunks_krnl; i++){
         if (input_length[i]){
@@ -305,6 +305,8 @@ void krnl_LZW(char *input, uint16_t *input_length, uint16_t *send_data, uint32_t
         output_offset += ((output_length[n] + sizeof(uint16_t) - 1) / sizeof(uint16_t));    //ceil(output_length / 2)
         // return (compressed_length + 4);
     }
-
-
+/*     for(int n = 0; n < num_chunks; n++){
+        memcpy(send_data, input, input_length[n]);
+        output_length[n] = input_length[n];
+    } */
 }

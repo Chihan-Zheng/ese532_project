@@ -1,0 +1,157 @@
+INFO: Applying HLS Y2K22 patch v1.2 for IP revision
+INFO: [HLS 200-10] Running '/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/bin/unwrapped/lnx64.o/vitis_hls'
+INFO: [HLS 200-10] For user 'chihan' on host 'kneesock.seas.upenn.edu' (Linux_x86_64 version 5.14.21-150500.55.36-default) on Sun Dec 10 11:46:06 EST 2023
+INFO: [HLS 200-10] On os "openSUSE Leap 15.5"
+INFO: [HLS 200-10] In directory '/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Demo'
+Sourcing Tcl script '/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Demo/Demo_kernel/solution1/csynth.tcl'
+INFO: [HLS 200-1510] Running: open_project Demo_kernel 
+INFO: [HLS 200-10] Opening project '/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Demo/Demo_kernel'.
+INFO: [HLS 200-1510] Running: set_top krnl_LZW 
+INFO: [HLS 200-1510] Running: add_files common/check_endian.cpp 
+INFO: [HLS 200-10] Adding design file 'common/check_endian.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files common/Utilities.h 
+INFO: [HLS 200-10] Adding design file 'common/Utilities.h' to the project
+INFO: [HLS 200-1510] Running: add_files common/Utilities.cpp 
+INFO: [HLS 200-10] Adding design file 'common/Utilities.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files LZW_hybrid_hash_HW.cpp 
+INFO: [HLS 200-10] Adding design file 'LZW_hybrid_hash_HW.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files common/EventTimer.h 
+INFO: [HLS 200-10] Adding design file 'common/EventTimer.h' to the project
+INFO: [HLS 200-1510] Running: add_files common/EventTimer.cpp 
+INFO: [HLS 200-10] Adding design file 'common/EventTimer.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files Constants.h 
+INFO: [HLS 200-10] Adding design file 'Constants.h' to the project
+INFO: [HLS 200-1510] Running: open_solution solution1 -flow_target vitis 
+INFO: [HLS 200-10] Opening solution '/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Demo/Demo_kernel/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 6.667ns.
+INFO: [HLS 200-10] Setting target device to 'xczu3eg-sbva484-1-i'
+INFO: [HLS 200-1505] Using flow_target 'vitis'
+Resolution: For help on HLS 200-1505 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-1505.html
+INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_offset=slave
+INFO: [HLS 200-1464] Running solution command: config_export -format=xo
+INFO: [HLS 200-1464] Running solution command: config_export -output=/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Demo/krnl_LZW.xo
+INFO: [HLS 200-1464] Running solution command: config_export -rtl=verilog
+INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-i 
+INFO: [HLS 200-1510] Running: create_clock -period 150MHz -name default 
+INFO: [HLS 200-1510] Running: config_rtl -register_reset_num 3 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size 64 -m_axi_latency 64 -m_axi_max_widen_bitwidth 512 -m_axi_offset slave 
+INFO: [HLS 200-1510] Running: config_export -format xo -output /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Demo/krnl_LZW.xo -rtl verilog 
+INFO: [HLS 200-1510] Running: set_directive_top -name krnl_LZW krnl_LZW 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 208.286 MB.
+INFO: [HLS 200-10] Analyzing design file 'common/EventTimer.cpp' ... 
+INFO: [HLS 200-10] Analyzing design file 'LZW_hybrid_hash_HW.cpp' ... 
+INFO: [HLS 200-10] Analyzing design file 'common/Utilities.cpp' ... 
+INFO: [HLS 200-10] Analyzing design file 'common/check_endian.cpp' ... 
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 7.9 seconds. CPU system time: 0.81 seconds. Elapsed time: 10.6 seconds; current allocated memory: 209.940 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vitis' flow target.
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_100_6' (LZW_hybrid_hash_HW.cpp:100:27) in function 'krnl_LZW' completely with a factor of 216 (LZW_hybrid_hash_HW.cpp:100:27)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_132_8' (LZW_hybrid_hash_HW.cpp:132:31) in function 'krnl_LZW' completely with a factor of 1 (LZW_hybrid_hash_HW.cpp:132:31)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_192_10' (LZW_hybrid_hash_HW.cpp:192:36) in function 'krnl_LZW' completely with a factor of 1 (LZW_hybrid_hash_HW.cpp:192:36)
+INFO: [HLS 214-178] Inlining function 'my_hash(ap_uint<21>)' into 'krnl_LZW(unsigned char*, unsigned short*, unsigned short*, unsigned int*)' (LZW_hybrid_hash_HW.cpp:38:0)
+INFO: [HLS 214-178] Inlining function 'swap_endian_16(unsigned short)' into 'krnl_LZW(unsigned char*, unsigned short*, unsigned short*, unsigned int*)' (LZW_hybrid_hash_HW.cpp:38:0)
+INFO: [HLS 214-115] Multiple burst reads of length 25 and bit width 64 has been inferred on port 'gmem' (LZW_hybrid_hash_HW.cpp:65:22)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 2.27 seconds. CPU system time: 0.21 seconds. Elapsed time: 4.02 seconds; current allocated memory: 212.219 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 212.220 MB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.07 seconds. CPU system time: 0 seconds. Elapsed time: 0.16 seconds; current allocated memory: 222.432 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.13 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.19 seconds; current allocated memory: 233.145 MB.
+INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_65_1' (LZW_hybrid_hash_HW.cpp:65) in function 'krnl_LZW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_84_3' (LZW_hybrid_hash_HW.cpp:84) in function 'krnl_LZW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_92_5' (LZW_hybrid_hash_HW.cpp:92) in function 'krnl_LZW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_159_9' in function 'krnl_LZW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_7_1' in function 'krnl_LZW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_7_1' in function 'krnl_LZW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_7_1' in function 'krnl_LZW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-3.4' in function 'krnl_LZW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-3.5' in function 'krnl_LZW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-3.6' in function 'krnl_LZW' automatically.
+INFO: [XFORM 203-102] Partitioning array 'hash_table.V' (LZW_hybrid_hash_HW.cpp:76) in dimension 2 automatically.
+INFO: [XFORM 203-11] Balancing expressions in function 'krnl_LZW' (LZW_hybrid_hash_HW.cpp:37)...3 expression(s) balanced.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.57 seconds. CPU system time: 0 seconds. Elapsed time: 0.67 seconds; current allocated memory: 268.338 MB.
+WARNING: [HLS 200-960] Cannot flatten loop 'VITIS_LOOP_124_7' (LZW_hybrid_hash_HW.cpp:78:19) in function 'krnl_LZW' more than one sub loop.
+Resolution: For help on HLS 200-960 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-960.html
+WARNING: [HLS 200-960] Cannot flatten loop 'VITIS_LOOP_71_2' (LZW_hybrid_hash_HW.cpp:71:30) in function 'krnl_LZW' more than one sub loop.
+Resolution: For help on HLS 200-960 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-960.html
+INFO: [HLS 200-472] Inferring partial write operation for 'hash_table.V[0]' (LZW_hybrid_hash_HW.cpp:87:34)
+INFO: [HLS 200-472] Inferring partial write operation for 'my_assoc_mem.upper_key_mem.V' (LZW_hybrid_hash_HW.cpp:95:43)
+INFO: [HLS 200-472] Inferring partial write operation for 'my_assoc_mem.middle_key_mem.V' (LZW_hybrid_hash_HW.cpp:96:44)
+INFO: [HLS 200-472] Inferring partial write operation for 'my_assoc_mem.lower_key_mem.V' (LZW_hybrid_hash_HW.cpp:97:43)
+INFO: [HLS 200-472] Inferring partial write operation for 'my_assoc_mem.value.V' (LZW_hybrid_hash_HW.cpp:102:24)
+INFO: [HLS 200-472] Inferring partial write operation for 'hash_table.V[0]' (LZW_hybrid_hash_HW.cpp:198:53)
+INFO: [HLS 200-472] Inferring partial write operation for 'my_assoc_mem.upper_key_mem.V' 
+INFO: [HLS 200-472] Inferring partial write operation for 'my_assoc_mem.value.V' (LZW_hybrid_hash_HW.cpp:216:63)
+INFO: [HLS 200-472] Inferring partial write operation for 'store_array' (LZW_hybrid_hash_HW.cpp:237:36)
+INFO: [HLS 200-472] Inferring partial write operation for 'store_array' (LZW_hybrid_hash_HW.cpp:242:40)
+INFO: [HLS 200-472] Inferring partial write operation for 'store_array' (LZW_hybrid_hash_HW.cpp:246:42)
+INFO: [HLS 200-472] Inferring partial write operation for 'store_array' (LZW_hybrid_hash_HW.cpp:250:42)
+INFO: [HLS 200-472] Inferring partial write operation for 'store_array' (LZW_hybrid_hash_HW.cpp:270:28)
+INFO: [HLS 200-472] Inferring partial write operation for 'store_array' (LZW_hybrid_hash_HW.cpp:275:32)
+INFO: [HLS 200-472] Inferring partial write operation for 'store_array' (LZW_hybrid_hash_HW.cpp:278:34)
+INFO: [HLS 200-472] Inferring partial write operation for 'store_array' (LZW_hybrid_hash_HW.cpp:283:34)
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.48 seconds. CPU system time: 0 seconds. Elapsed time: 0.58 seconds; current allocated memory: 272.750 MB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'krnl_LZW' ...
+WARNING: [SYN 201-107] Renaming port name 'krnl_LZW/input' to 'krnl_LZW/input_r' to avoid the conflict with HDL keywords or other object names.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'krnl_LZW' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_65_1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'VITIS_LOOP_65_1'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_84_3'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_84_3'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_92_5'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_92_5'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_7_1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_7_1'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_159_9'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_159_9'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_7_1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_7_1'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_7_1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_7_1'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_71_2.4'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 71, loop 'VITIS_LOOP_71_2.4'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_71_2.5'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 71, loop 'VITIS_LOOP_71_2.5'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_71_2.6'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 71, loop 'VITIS_LOOP_71_2.6'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.7 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.83 seconds; current allocated memory: 276.847 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 1.26 seconds. CPU system time: 0.03 seconds. Elapsed time: 1.54 seconds; current allocated memory: 283.896 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'krnl_LZW' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Design contains AXI ports. Reset is fixed to synchronous and active low.
+INFO: [RTGEN 206-500] Setting interface mode on port 'krnl_LZW/gmem' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'krnl_LZW/input_r' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'krnl_LZW/input_length' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'krnl_LZW/send_data' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'krnl_LZW/output_length' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'krnl_LZW' to 's_axilite & ap_ctrl_chain'.
+INFO: [RTGEN 206-100] Bundling port 'input_r', 'input_length', 'send_data', 'output_length' to AXI-Lite port control.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'krnl_LZW'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.66 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.91 seconds; current allocated memory: 294.568 MB.
+INFO: [RTMG 210-278] Implementing memory 'krnl_LZW_store_array_ram (RAM)' using auto RAMs.
+INFO: [RTMG 210-278] Implementing memory 'krnl_LZW_hash_table_V_0_ram (RAM)' using auto RAMs.
+INFO: [RTMG 210-278] Implementing memory 'krnl_LZW_my_assoc_mem_upper_key_mem_V_ram (RAM)' using auto RAMs.
+INFO: [RTMG 210-278] Implementing memory 'krnl_LZW_my_assoc_mem_value_V_ram (RAM)' using auto RAMs.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 2.07 seconds. CPU system time: 0.12 seconds. Elapsed time: 4.01 seconds; current allocated memory: 319.824 MB.
+INFO: [VHDL 208-304] Generating VHDL RTL for krnl_LZW.
+INFO: [VLOG 209-307] Generating Verilog RTL for krnl_LZW.
+INFO: [HLS 200-1603] Design has MAXI bursts and missed bursts, see Vitis HLS GUI synthesis summary report for detailed information.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 205.47 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 16.21 seconds. CPU system time: 1.21 seconds. Elapsed time: 23.7 seconds; current allocated memory: 320.435 MB.
+INFO: [HLS 200-112] Total CPU user time: 18.29 seconds. Total CPU system time: 1.5 seconds. Total elapsed time: 29.09 seconds; peak allocated memory: 319.824 MB.

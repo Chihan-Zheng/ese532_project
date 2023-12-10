@@ -79,7 +79,7 @@ int main(int argc, char* argv[]) {
     // ------------------------------------------------------------------------------------
 	uint64_t *cdc_hash = (uint64_t *)malloc(sizeof(uint64_t) * (BLOCKSIZE - WIN_SIZE));
 	// char *ArrayOfChunks[MAX_BOUNDARY];
-	char *ArrayOfChunks_LZW[num_cu];
+	unsigned char *ArrayOfChunks_LZW[num_cu];
 	uint32_t *cdc_offset;   //cdc chunks offset: should be cdc_offset += chunks' size 
 	uint16_t *chunk_size = (uint16_t *)malloc(sizeof(uint16_t));      //input chunk size to cdc
 	uint16_t *chunk_size_dedup = (uint16_t *)malloc(sizeof(uint16_t));     //input chunk size to dedup
@@ -116,10 +116,10 @@ int main(int argc, char* argv[]) {
 	cdc_finished = (char *)malloc(sizeof(char));
 	pipeline_drained = (char *)malloc(sizeof(char));
 
-	char *chunk_cdc = (char *)malloc(Max_Chunk_Size);    //output chunk from cdc
-	char *chunk_dedup = (char *)malloc(Max_Chunk_Size);   //output chunk propagated to dedup
-	char *chunk_LZW = (char *)malloc(Max_Chunk_Size);     //output chunk propagated to LZW
-	char *chunk_temp = (char *)malloc(Max_Chunk_Size);     //used for pointer exchange for these chunk pointers
+	unsigned char *chunk_cdc = (unsigned char *)malloc(Max_Chunk_Size);    //output chunk from cdc
+	unsigned char *chunk_dedup = (unsigned char *)malloc(Max_Chunk_Size);   //output chunk propagated to dedup
+	unsigned char *chunk_LZW = (unsigned char *)malloc(Max_Chunk_Size);     //output chunk propagated to LZW
+	unsigned char *chunk_temp = (unsigned char *)malloc(Max_Chunk_Size);     //used for pointer exchange for these chunk pointers
 
 	if (cdc_hash  == NULL){
 		std::cerr << "Could not malloc cdc_hash." << std::endl;
@@ -223,7 +223,7 @@ int main(int argc, char* argv[]) {
 	}
 
 	for (int j = 0; j < num_cu; j++){
-		ArrayOfChunks_LZW[j] = (char*)q[j].enqueueMapBuffer(Input_buf[j], CL_TRUE, CL_MAP_WRITE, 0, (Max_Chunk_Size * num_chunks_krnl), NULL, NULL, &err);
+		ArrayOfChunks_LZW[j] = (unsigned char*)q[j].enqueueMapBuffer(Input_buf[j], CL_TRUE, CL_MAP_WRITE, 0, (Max_Chunk_Size * num_chunks_krnl), NULL, NULL, &err);
 		if (err != CL_SUCCESS) 
 			printf("map ArrayOfChunks_LZW failed\n");
 	}
@@ -484,7 +484,8 @@ int main(int argc, char* argv[]) {
 // printf("after task\n");
 					for (int j = 0; j < num_used_krnls; j++){
 						OCL_CHECK(err, err = q[j].finish());
-					}  
+					}   
+
 					/* for (int j = 0; j < num_used_krnls; j++){
 						read_done[j].wait();
 					} */

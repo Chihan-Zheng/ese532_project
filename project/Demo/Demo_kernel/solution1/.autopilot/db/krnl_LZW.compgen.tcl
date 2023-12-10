@@ -17,7 +17,7 @@ set ROMData {}
 set NumOfStage 2
 set MaxLatency -1
 set DelayBudget 1.352
-set ClkPeriod 6.667
+set ClkPeriod 5
 set RegisteredInput 0
 if {${::AESL::PGuard_simmodel_gen}} {
 if {[info proc ap_gen_simcore_mem] == "ap_gen_simcore_mem"} {
@@ -102,7 +102,7 @@ set ROMData {}
 set NumOfStage 2
 set MaxLatency -1
 set DelayBudget 1.352
-set ClkPeriod 6.667
+set ClkPeriod 5
 set RegisteredInput 0
 if {${::AESL::PGuard_simmodel_gen}} {
 if {[info proc ap_gen_simcore_mem] == "ap_gen_simcore_mem"} {
@@ -187,7 +187,7 @@ set ROMData {}
 set NumOfStage 2
 set MaxLatency -1
 set DelayBudget 1.352
-set ClkPeriod 6.667
+set ClkPeriod 5
 set RegisteredInput 0
 if {${::AESL::PGuard_simmodel_gen}} {
 if {[info proc ap_gen_simcore_mem] == "ap_gen_simcore_mem"} {
@@ -272,7 +272,7 @@ set ROMData {}
 set NumOfStage 2
 set MaxLatency -1
 set DelayBudget 1.352
-set ClkPeriod 6.667
+set ClkPeriod 5
 set RegisteredInput 0
 if {${::AESL::PGuard_simmodel_gen}} {
 if {[info proc ap_gen_simcore_mem] == "ap_gen_simcore_mem"} {
@@ -419,7 +419,7 @@ eval "::AESL_LIB_XILADAPTER::m_axi_gen { \
     corename {m_axi} \
     op interface \
     max_latency -1 \ 
-    delay_budget 4.86691 \ 
+    delay_budget 3.65 \ 
     is_flushable 0 \ 
     name {krnl_LZW_gmem_m_axi} \
 } "

@@ -2,8 +2,8 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Sat Dec  9 23:40:42 2023
-# Process ID: 31061
+# Start of session at: Sun Dec 10 12:42:06 2023
+# Process ID: 8272
 # Current directory: /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Demo/Demo_kernel/solution1/impl/ip
 # Command line: vivado -notrace -mode batch -source run_ippack.tcl
 # Log file: /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Demo/Demo_kernel/solution1/impl/ip/vivado.log
@@ -14,4 +14,4 @@ INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/mnt/pollux/software/xilinx/2020.2/Vivado/2020.2/data/ip'.
 Running package_xo -xo_path /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Demo/krnl_LZW.xo -kernel_name krnl_LZW -kernel_xml /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Demo/Demo_kernel/solution1/impl/ip/../kernel/kernel.xml -kernel_files {/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Demo/common/EventTimer.cpp /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Demo/LZW_hybrid_hash_HW.cpp /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Demo/common/Utilities.cpp /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Demo/common/check_endian.cpp} -ip_directory /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Demo/Demo_kernel/solution1/impl/ip/ip_unzip_dir -design_xml /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Demo/Demo_kernel/solution1/.autopilot/db/krnl_LZW.design.xml -debug_directory /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Demo/Demo_kernel/solution1/.debug -hls_directory /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Demo/Demo_kernel/solution1/impl/ip/hls_files
-INFO: [Common 17-206] Exiting Vivado at Sat Dec  9 23:40:52 2023...
+INFO: [Common 17-206] Exiting Vivado at Sun Dec 10 12:42:17 2023...
