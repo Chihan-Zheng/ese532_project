@@ -197,7 +197,7 @@ int main(int argc, char* argv[]) {
 	uint32_t Input_buf_size = Max_Chunk_Size * num_chunks_krnl;
 	uint32_t Output_buf_size = (Max_Chunk_Size + 2) * num_chunks_krnl * sizeof(uint16_t);
 	uint32_t In_length_buf_size = sizeof(uint16_t) * num_chunks_krnl;
-	uint32_t Output_length_buf_size = sizeof(uint16_t) * num_chunks_krnl;
+	uint32_t Output_length_buf_size = sizeof(uint32_t) * num_chunks_krnl;
 
 	for (int j = 0; j < num_cu; j++){
 		//---: set buffers' properties
