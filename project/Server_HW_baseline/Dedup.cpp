@@ -179,7 +179,7 @@ string hexconvert(unsigned char* bytes, int size) {
     return ss.str();
 }
 
-uint32_t deDup(char* inputChunk, uint16_t chunk_size,
+uint32_t deDup(unsigned char* inputChunk, uint16_t chunk_size,
     std::unordered_map<string, uint32_t>& chunkTable,
     stopwatch& stopwatch) {
     unsigned char uinputChunk[static_cast<int>(chunk_size)];

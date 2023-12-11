@@ -33,7 +33,7 @@ int cdc_window(unsigned char *buff, unsigned int buff_size, char** chunk, uint16
 	uint64_t *hash = (uint64_t *)malloc(sizeof(uint64_t) * (buff_size - WIN_SIZE));
 	int boundary_index = 0;
 	int previous_boundary = 0;
-	std::cout << "---------------------------------Boundary Index--------------------------------------" << std::endl;
+	/* std::cout << "---------------------------------Boundary Index--------------------------------------" << std::endl; */
     for(unsigned int i = WIN_SIZE; i<buff_size - WIN_SIZE; i++){
 		if(i == WIN_SIZE)
 		hash[i] = hash_func(buff, WIN_SIZE);
@@ -42,7 +42,7 @@ int cdc_window(unsigned char *buff, unsigned int buff_size, char** chunk, uint16
 		if((((hash[i] % MODULUS) == TARGET)&&(i-previous_boundary>=MIN_CHUNK))||(i-previous_boundary>=MAX_CHUNK)||(i==buff_size-WIN_SIZE-1)) {
 		// if((((hash[i] % MODULUS) == TARGET)&&(i-previous_boundary>=MIN_CHUNK))||(i-previous_boundary>=MAX_CHUNK)||(i==buff_size-WIN_SIZE)) {
 
-			printf("The index %d is a boundary\n", i); //Print out the boundary we found.
+			/* printf("The index %d is a boundary\n", i); //Print out the boundary we found. */
 			chunk[boundary_index] = (char*)malloc(sizeof(char)*MAX_CHUNK);
 			if(i<buff_size-WIN_SIZE-1){
 				memcpy(chunk[boundary_index], buff+previous_boundary, i-previous_boundary);

@@ -48,7 +48,7 @@ int main(int argc, char* argv[]) {
     // ------------------------------------------------------------------------------------
     timer2.add("OpenCL Initialization");
     cl_int err;
-    std::string binaryFile = "krnl_LZW.xclbin";
+    std::string binaryFile = "LZW_hybrid_hash_HW.xclbin";
     unsigned fileBufSize;
     std::vector<cl::Device> devices = get_xilinx_devices();
     devices.resize(1);
@@ -63,8 +63,8 @@ int main(int argc, char* argv[]) {
 	 // ------------------------------------------------------------------------------------
     // Step 2: Create buffers and initialize test values
     // ------------------------------------------------------------------------------------
-	char *ArrayOfChunks[MAX_BOUNDARY];
-	char *ArrayOfChunks_temp[MAX_BOUNDARY];
+	unsigned char *ArrayOfChunks[MAX_BOUNDARY];
+	unsigned char *ArrayOfChunks_temp[MAX_BOUNDARY];
     std::unordered_map<string, uint32_t> chunkTable;
     uint32_t deDup_header;     //output of deDup function
 	uint16_t *LZW_input_length;
@@ -214,7 +214,7 @@ int main(int argc, char* argv[]) {
 		}
 
 		//--- define flags for kernel
-		timer2.add("Running the encoding");
+		/* timer2.add("Running the encoding"); */
 		//-------------------------------------start encoding-----------------------------------------------
 		int boundary_num = 0;
 		// printf("before cdc\n");
@@ -222,7 +222,7 @@ int main(int argc, char* argv[]) {
 			//--- 2 packet:
 			memcpy(&file[offset], &buffer[HEADER], length);
 			offset += length;
-			printf("Second packet length is: %d\n", length);
+			/* printf("Second packet length is: %d\n", length); */
 			// if (fread(buffer, 1, offset, &file[0]) != offset)
  			// 	Exit_with_error("fread for first two packets failed");
 			total_timer.start();
@@ -242,8 +242,8 @@ int main(int argc, char* argv[]) {
 		}
 		// printf("after cdc\n");
 
-		std::cout << "-------------------------------Chunks Info-------------------------------------" << std::endl;
-		std::cout << "chunk number: " << boundary_num << std::endl;
+		/* std::cout << "-------------------------------Chunks Info-------------------------------------" << std::endl;
+		std::cout << "chunk number: " << boundary_num << std::endl; */
 		for (int i = 0; i < boundary_num; i++){
 			// printf("for loop i: %d\n", i);
 			deDup_timer.start();
@@ -251,18 +251,18 @@ int main(int argc, char* argv[]) {
 			deDup_timer.stop();
 			if (deDup_header & 1u){
 				// printf("deDup_header inside: %x\n", deDup_header);
-				std::cout << "deDup_header - boundary: " << i << std::endl;
+				/* std::cout << "deDup_header - boundary: " << i << std::endl; */
 				if (fwrite(&deDup_header, 1, sizeof(deDup_header), File) != sizeof(deDup_header))
 					Exit_with_error("fwrite dedup header to compressed_data.bin failed");
 				deDup_final_bytes += sizeof(deDup_header);
 			}else{
 				//-----------------------map Input Buffer-----------------------------------
-				ArrayOfChunks[i] = (char*)q.enqueueMapBuffer(Input_buf, CL_TRUE, CL_MAP_WRITE, 0, chunk_size[i], NULL, NULL, &err);
+				ArrayOfChunks[i] = (unsigned char*)q.enqueueMapBuffer(Input_buf, CL_TRUE, CL_MAP_WRITE, 0, chunk_size[i], NULL, NULL, &err);
 				memcpy(ArrayOfChunks[i], ArrayOfChunks_temp[i], chunk_size[i]);
 				//------------------------------------------------------------------------------
 				if (err != CL_SUCCESS) 
 					printf("map ArrayOfChunks failed\n");
-				std::cout << "\n" << "LZW_header - boundary: " << i << std::endl;
+				/* std::cout << "\n" << "LZW_header - boundary: " << i << std::endl; */
 				*LZW_input_length = chunk_size[i];
 				LZW_timer.start();
 				// LZW_output_length = LZW_hybrid_hash_HW(ArrayOfChunks[i], in_length, LZW_send_data);
@@ -300,8 +300,9 @@ int main(int argc, char* argv[]) {
 				q.enqueueUnmapMemObject(Input_buf, ArrayOfChunks[i]);
 				LZW_timer.stop();   
 			}
+			total_timer.stop();
 		}
-		total_timer.stop();
+		
 		//---------------------------------------end encoding----------------------------------------------
 	}
 	q.finish();
@@ -348,8 +349,8 @@ int main(int argc, char* argv[]) {
     std::cout << "Total latency of LZW is: " << LZW_timer.latency() << " ms.\n" << std::endl;
     std::cout << "Total time taken from CDC to get output file is: " << total_timer.latency() << " ms." << std::endl;
 	float total_latency = total_timer.latency() / 1000.0;
-	float overall_throughput = (offset * 8 / 1000000000.0) / total_latency;
-	std::cout << "Overall throughput: " << overall_throughput << " Gb/s." << std::endl;
+	float overall_throughput = (offset * 8 / 1000000.0) / total_latency;
+	std::cout << "Overall throughput: " << overall_throughput << " Mb/s." << std::endl;
     std::cout << "------------------------------------------------------------------------------------" << std::endl;
     std::cout << "Average latency of SHA is: " << SHA_timer.avg_latency() << " ms." << std::endl;
     std::cout << "Average latency of deDup is: " << deDup_timer.avg_latency() << " ms." << std::endl;

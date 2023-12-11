@@ -25,12 +25,12 @@
 #define ASSOC_MEM_SIZE (72 * MATCH_UNITS_COLUMN_NUM)
 
 uint64_t hash_func(unsigned char *input, unsigned int pos);
-int cdc( unsigned char* buff, int buff_size,char** chunk, uint16_t *chunk_size);
-uint64_t basicHash(char* input, size_t length);
-uint32_t deDup(char* inputChunk, uint16_t chunk_size, 
+int cdc( unsigned char* buff, int buff_size, unsigned char** chunk, uint16_t *chunk_size);
+uint64_t basicHash(unsigned char* input, size_t length);
+uint32_t deDup(unsigned char* inputChunk, uint16_t chunk_size, 
                std::unordered_map<string, uint32_t>& chunkTable, stopwatch& stopwatch);
 unsigned int my_hash(ap_uint<KEY_LEN> key);
-void LZW_hybrid_hash_HW(char *in, uint16_t *input_length, 
+void LZW_hybrid_hash_HW(unsigned char *in, uint16_t *input_length, 
                         uint16_t *send_data, uint16_t *output_length);
 
 #endif

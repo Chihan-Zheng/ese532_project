@@ -156,24 +156,24 @@ int main(int argc, char* argv[]) {
     cdc_timer.start();
     int boundary_num = cdc("LittlePrince.txt", ArrayOfChunks, chunk_size);   //boundary_num should use char?
     cdc_timer.stop();
-	std::cout << "-------------------------------Chunks Info-------------------------------------" << std::endl;
-	std::cout << "chunk number: " << boundary_num << std::endl;
+	/* std::cout << "-------------------------------Chunks Info-------------------------------------" << std::endl;
+	std::cout << "chunk number: " << boundary_num << std::endl; */
 	for (int i = 0; i < boundary_num; i++){
 		deDup_timer.start();
         deDup_header = deDup(ArrayOfChunks[i], chunk_size[i], chunkTable, std::ref(SHA_timer));
         deDup_timer.stop();
         if (deDup_header & 1u){
-            std::cout << "deDup_header - boundary: " << i << std::endl;
+            /* std::cout << "deDup_header - boundary: " << i << std::endl; */
             if (fwrite(&deDup_header, 1, sizeof(deDup_header), File) != sizeof(deDup_header))
                 Exit_with_error("fwrite dedup header to compressed_data.bin failed");
 			deDup_final_bytes += sizeof(deDup_header);
         }else{
-            std::cout << "\n" << "LZW_header - boundary: " << i << std::endl;
+            /* std::cout << "\n" << "LZW_header - boundary: " << i << std::endl; */
             uint16_t in_length = chunk_size[i];
             LZW_timer.start();
             LZW_output_length = LZW(ArrayOfChunks[i], in_length, LZW_send_data);
             LZW_timer.stop();
-            std::cout << "LZW_output_length[" << i << "]: " << LZW_output_length << "\n" << std::endl;
+            /* std::cout << "LZW_output_length[" << i << "]: " << LZW_output_length << "\n" << std::endl; */
             if (fwrite(LZW_send_data, 1, LZW_output_length, File) != LZW_output_length)
                 Exit_with_error("fwrite LZW output to compressed_data.bin failed");
             memset(LZW_send_data, 0, (Max_Chunk_Size + 2) * sizeof(uint16_t));
@@ -211,8 +211,8 @@ int main(int argc, char* argv[]) {
     std::cout << "Total latency of LZW is: " << LZW_timer.latency() << " ms.\n" << std::endl;
     std::cout << "Total time taken from CDC to get output file is: " << total_timer.latency() << " ms." << std::endl;
 	float total_latency = (total_timer.latency() + ethernet_timer.latency()) / 1000.0;
-	float overall_throughput = (offset * 8 / 1000000000.0) / total_latency;
-	std::cout << "Overall throughput: " << overall_throughput << " Gb/s." << std::endl;
+	float overall_throughput = (offset * 8 / 1000000.0) / total_latency;
+	std::cout << "Overall throughput: " << overall_throughput << " Mb/s." << std::endl;
     std::cout << "------------------------------------------------------------------------------------" << std::endl;
     std::cout << "Average latency of SHA is: " << SHA_timer.avg_latency() << " ms." << std::endl;
     std::cout << "Average latency of deDup is: " << deDup_timer.avg_latency() << " ms." << std::endl;

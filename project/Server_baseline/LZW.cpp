@@ -18,7 +18,7 @@ uint16_t LZW (char *in, uint16_t in_length, uint16_t *send_data){
     uint16_t j = 0;                   //index of store array (should j++ every time after store)
     unsigned char shift = 0;
 
-    std::cout << "input chunk length: " << in_length <<std::endl;
+    /* std::cout << "input chunk length: " << in_length <<std::endl; */
     for (int i = 0; i < (in_length - 1); i++){
         next_char = *(in + i + 1);       //next character
         if ((temp_code = dict[code][next_char]) != 0){     //check strings exist or not
