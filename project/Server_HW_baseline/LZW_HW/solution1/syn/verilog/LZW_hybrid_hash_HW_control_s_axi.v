@@ -29,15 +29,15 @@ module LZW_hybrid_hash_HW_control_s_axi
     output wire                          RVALID,
     input  wire                          RREADY,
     output wire                          interrupt,
+    output wire [63:0]                   in_r,
+    output wire [63:0]                   input_length,
+    output wire [63:0]                   send_data,
+    output wire [63:0]                   output_length,
     output wire                          ap_start,
     input  wire                          ap_done,
     input  wire                          ap_ready,
     output wire                          ap_continue,
-    input  wire                          ap_idle,
-    input  wire [15:0]                   ap_return,
-    output wire [63:0]                   in_r,
-    output wire [15:0]                   in_length,
-    output wire [63:0]                   send_data
+    input  wire                          ap_idle
 );
 //------------------------Address Info-------------------
 // 0x00 : Control signals
@@ -59,47 +59,53 @@ module LZW_hybrid_hash_HW_control_s_axi
 //        bit 0  - ap_done (COR/TOW)
 //        bit 1  - ap_ready (COR/TOW)
 //        others - reserved
-// 0x10 : Data signal of ap_return
-//        bit 15~0 - ap_return[15:0] (Read)
-//        others   - reserved
-// 0x18 : Data signal of in_r
+// 0x10 : Data signal of in_r
 //        bit 31~0 - in_r[31:0] (Read/Write)
-// 0x1c : Data signal of in_r
+// 0x14 : Data signal of in_r
 //        bit 31~0 - in_r[63:32] (Read/Write)
-// 0x20 : reserved
-// 0x24 : Data signal of in_length
-//        bit 15~0 - in_length[15:0] (Read/Write)
-//        others   - reserved
-// 0x28 : reserved
-// 0x2c : Data signal of send_data
+// 0x18 : reserved
+// 0x1c : Data signal of input_length
+//        bit 31~0 - input_length[31:0] (Read/Write)
+// 0x20 : Data signal of input_length
+//        bit 31~0 - input_length[63:32] (Read/Write)
+// 0x24 : reserved
+// 0x28 : Data signal of send_data
 //        bit 31~0 - send_data[31:0] (Read/Write)
-// 0x30 : Data signal of send_data
+// 0x2c : Data signal of send_data
 //        bit 31~0 - send_data[63:32] (Read/Write)
-// 0x34 : reserved
+// 0x30 : reserved
+// 0x34 : Data signal of output_length
+//        bit 31~0 - output_length[31:0] (Read/Write)
+// 0x38 : Data signal of output_length
+//        bit 31~0 - output_length[63:32] (Read/Write)
+// 0x3c : reserved
 // (SC = Self Clear, COR = Clear on Read, TOW = Toggle on Write, COH = Clear on Handshake)
 
 //------------------------Parameter----------------------
 localparam
-    ADDR_AP_CTRL          = 6'h00,
-    ADDR_GIE              = 6'h04,
-    ADDR_IER              = 6'h08,
-    ADDR_ISR              = 6'h0c,
-    ADDR_AP_RETURN_0      = 6'h10,
-    ADDR_IN_R_DATA_0      = 6'h18,
-    ADDR_IN_R_DATA_1      = 6'h1c,
-    ADDR_IN_R_CTRL        = 6'h20,
-    ADDR_IN_LENGTH_DATA_0 = 6'h24,
-    ADDR_IN_LENGTH_CTRL   = 6'h28,
-    ADDR_SEND_DATA_DATA_0 = 6'h2c,
-    ADDR_SEND_DATA_DATA_1 = 6'h30,
-    ADDR_SEND_DATA_CTRL   = 6'h34,
-    WRIDLE                = 2'd0,
-    WRDATA                = 2'd1,
-    WRRESP                = 2'd2,
-    WRRESET               = 2'd3,
-    RDIDLE                = 2'd0,
-    RDDATA                = 2'd1,
-    RDRESET               = 2'd2,
+    ADDR_AP_CTRL              = 6'h00,
+    ADDR_GIE                  = 6'h04,
+    ADDR_IER                  = 6'h08,
+    ADDR_ISR                  = 6'h0c,
+    ADDR_IN_R_DATA_0          = 6'h10,
+    ADDR_IN_R_DATA_1          = 6'h14,
+    ADDR_IN_R_CTRL            = 6'h18,
+    ADDR_INPUT_LENGTH_DATA_0  = 6'h1c,
+    ADDR_INPUT_LENGTH_DATA_1  = 6'h20,
+    ADDR_INPUT_LENGTH_CTRL    = 6'h24,
+    ADDR_SEND_DATA_DATA_0     = 6'h28,
+    ADDR_SEND_DATA_DATA_1     = 6'h2c,
+    ADDR_SEND_DATA_CTRL       = 6'h30,
+    ADDR_OUTPUT_LENGTH_DATA_0 = 6'h34,
+    ADDR_OUTPUT_LENGTH_DATA_1 = 6'h38,
+    ADDR_OUTPUT_LENGTH_CTRL   = 6'h3c,
+    WRIDLE                    = 2'd0,
+    WRDATA                    = 2'd1,
+    WRRESP                    = 2'd2,
+    WRRESET                   = 2'd3,
+    RDIDLE                    = 2'd0,
+    RDDATA                    = 2'd1,
+    RDRESET                   = 2'd2,
     ADDR_BITS                = 6;
 
 //------------------------Local signal-------------------
@@ -124,10 +130,10 @@ localparam
     reg                           int_gie = 1'b0;
     reg  [1:0]                    int_ier = 2'b0;
     reg  [1:0]                    int_isr = 2'b0;
-    reg  [15:0]                   int_ap_return;
     reg  [63:0]                   int_in_r = 'b0;
-    reg  [15:0]                   int_in_length = 'b0;
+    reg  [63:0]                   int_input_length = 'b0;
     reg  [63:0]                   int_send_data = 'b0;
+    reg  [63:0]                   int_output_length = 'b0;
 
 //------------------------Instantiation------------------
 
@@ -237,23 +243,29 @@ always @(posedge ACLK) begin
                 ADDR_ISR: begin
                     rdata <= int_isr;
                 end
-                ADDR_AP_RETURN_0: begin
-                    rdata <= int_ap_return[15:0];
-                end
                 ADDR_IN_R_DATA_0: begin
                     rdata <= int_in_r[31:0];
                 end
                 ADDR_IN_R_DATA_1: begin
                     rdata <= int_in_r[63:32];
                 end
-                ADDR_IN_LENGTH_DATA_0: begin
-                    rdata <= int_in_length[15:0];
+                ADDR_INPUT_LENGTH_DATA_0: begin
+                    rdata <= int_input_length[31:0];
+                end
+                ADDR_INPUT_LENGTH_DATA_1: begin
+                    rdata <= int_input_length[63:32];
                 end
                 ADDR_SEND_DATA_DATA_0: begin
                     rdata <= int_send_data[31:0];
                 end
                 ADDR_SEND_DATA_DATA_1: begin
                     rdata <= int_send_data[63:32];
+                end
+                ADDR_OUTPUT_LENGTH_DATA_0: begin
+                    rdata <= int_output_length[31:0];
+                end
+                ADDR_OUTPUT_LENGTH_DATA_1: begin
+                    rdata <= int_output_length[63:32];
                 end
             endcase
         end
@@ -262,13 +274,14 @@ end
 
 
 //------------------------Register logic-----------------
-assign interrupt   = int_gie & (|int_isr);
-assign ap_start    = int_ap_start;
-assign int_ap_done = ap_done;
-assign ap_continue = int_ap_continue;
-assign in_r        = int_in_r;
-assign in_length   = int_in_length;
-assign send_data   = int_send_data;
+assign interrupt     = int_gie & (|int_isr);
+assign ap_start      = int_ap_start;
+assign int_ap_done   = ap_done;
+assign ap_continue   = int_ap_continue;
+assign in_r          = int_in_r;
+assign input_length  = int_input_length;
+assign send_data     = int_send_data;
+assign output_length = int_output_length;
 // int_ap_start
 always @(posedge ACLK) begin
     if (ARESET)
@@ -367,16 +380,6 @@ always @(posedge ACLK) begin
     end
 end
 
-// int_ap_return
-always @(posedge ACLK) begin
-    if (ARESET)
-        int_ap_return <= 0;
-    else if (ACLK_EN) begin
-        if (ap_done)
-            int_ap_return <= ap_return;
-    end
-end
-
 // int_in_r[31:0]
 always @(posedge ACLK) begin
     if (ARESET)
@@ -397,13 +400,23 @@ always @(posedge ACLK) begin
     end
 end
 
-// int_in_length[15:0]
+// int_input_length[31:0]
 always @(posedge ACLK) begin
     if (ARESET)
-        int_in_length[15:0] <= 0;
+        int_input_length[31:0] <= 0;
     else if (ACLK_EN) begin
-        if (w_hs && waddr == ADDR_IN_LENGTH_DATA_0)
-            int_in_length[15:0] <= (WDATA[31:0] & wmask) | (int_in_length[15:0] & ~wmask);
+        if (w_hs && waddr == ADDR_INPUT_LENGTH_DATA_0)
+            int_input_length[31:0] <= (WDATA[31:0] & wmask) | (int_input_length[31:0] & ~wmask);
+    end
+end
+
+// int_input_length[63:32]
+always @(posedge ACLK) begin
+    if (ARESET)
+        int_input_length[63:32] <= 0;
+    else if (ACLK_EN) begin
+        if (w_hs && waddr == ADDR_INPUT_LENGTH_DATA_1)
+            int_input_length[63:32] <= (WDATA[31:0] & wmask) | (int_input_length[63:32] & ~wmask);
     end
 end
 
@@ -424,6 +437,26 @@ always @(posedge ACLK) begin
     else if (ACLK_EN) begin
         if (w_hs && waddr == ADDR_SEND_DATA_DATA_1)
             int_send_data[63:32] <= (WDATA[31:0] & wmask) | (int_send_data[63:32] & ~wmask);
+    end
+end
+
+// int_output_length[31:0]
+always @(posedge ACLK) begin
+    if (ARESET)
+        int_output_length[31:0] <= 0;
+    else if (ACLK_EN) begin
+        if (w_hs && waddr == ADDR_OUTPUT_LENGTH_DATA_0)
+            int_output_length[31:0] <= (WDATA[31:0] & wmask) | (int_output_length[31:0] & ~wmask);
+    end
+end
+
+// int_output_length[63:32]
+always @(posedge ACLK) begin
+    if (ARESET)
+        int_output_length[63:32] <= 0;
+    else if (ACLK_EN) begin
+        if (w_hs && waddr == ADDR_OUTPUT_LENGTH_DATA_1)
+            int_output_length[63:32] <= (WDATA[31:0] & wmask) | (int_output_length[63:32] & ~wmask);
     end
 end
 

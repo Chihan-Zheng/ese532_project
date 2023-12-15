@@ -6,8 +6,8 @@
 module LZW_hybrid_hash_HW_my_assoc_mem_value_V_ram (addr0, ce0, d0, we0, q0,  clk);
 
 parameter DWIDTH = 13;
-parameter AWIDTH = 7;
-parameter MEM_SIZE = 72;
+parameter AWIDTH = 8;
+parameter MEM_SIZE = 216;
 
 input[AWIDTH-1:0] addr0;
 input ce0;
@@ -44,8 +44,8 @@ module LZW_hybrid_hash_HW_my_assoc_mem_value_V(
     q0);
 
 parameter DataWidth = 32'd13;
-parameter AddressRange = 32'd72;
-parameter AddressWidth = 32'd7;
+parameter AddressRange = 32'd216;
+parameter AddressWidth = 32'd8;
 input reset;
 input clk;
 input[AddressWidth - 1:0] address0;

@@ -22,35 +22,38 @@
 //        bit 0  - ap_done (COR/TOW)
 //        bit 1  - ap_ready (COR/TOW)
 //        others - reserved
-// 0x10 : Data signal of ap_return
-//        bit 15~0 - ap_return[15:0] (Read)
-//        others   - reserved
-// 0x18 : Data signal of in_r
+// 0x10 : Data signal of in_r
 //        bit 31~0 - in_r[31:0] (Read/Write)
-// 0x1c : Data signal of in_r
+// 0x14 : Data signal of in_r
 //        bit 31~0 - in_r[63:32] (Read/Write)
-// 0x20 : reserved
-// 0x24 : Data signal of in_length
-//        bit 15~0 - in_length[15:0] (Read/Write)
-//        others   - reserved
-// 0x28 : reserved
-// 0x2c : Data signal of send_data
+// 0x18 : reserved
+// 0x1c : Data signal of input_length
+//        bit 31~0 - input_length[31:0] (Read/Write)
+// 0x20 : Data signal of input_length
+//        bit 31~0 - input_length[63:32] (Read/Write)
+// 0x24 : reserved
+// 0x28 : Data signal of send_data
 //        bit 31~0 - send_data[31:0] (Read/Write)
-// 0x30 : Data signal of send_data
+// 0x2c : Data signal of send_data
 //        bit 31~0 - send_data[63:32] (Read/Write)
-// 0x34 : reserved
+// 0x30 : reserved
+// 0x34 : Data signal of output_length
+//        bit 31~0 - output_length[31:0] (Read/Write)
+// 0x38 : Data signal of output_length
+//        bit 31~0 - output_length[63:32] (Read/Write)
+// 0x3c : reserved
 // (SC = Self Clear, COR = Clear on Read, TOW = Toggle on Write, COH = Clear on Handshake)
 
-#define XLZW_HYBRID_HASH_HW_CONTROL_ADDR_AP_CTRL        0x00
-#define XLZW_HYBRID_HASH_HW_CONTROL_ADDR_GIE            0x04
-#define XLZW_HYBRID_HASH_HW_CONTROL_ADDR_IER            0x08
-#define XLZW_HYBRID_HASH_HW_CONTROL_ADDR_ISR            0x0c
-#define XLZW_HYBRID_HASH_HW_CONTROL_ADDR_AP_RETURN      0x10
-#define XLZW_HYBRID_HASH_HW_CONTROL_BITS_AP_RETURN      16
-#define XLZW_HYBRID_HASH_HW_CONTROL_ADDR_IN_R_DATA      0x18
-#define XLZW_HYBRID_HASH_HW_CONTROL_BITS_IN_R_DATA      64
-#define XLZW_HYBRID_HASH_HW_CONTROL_ADDR_IN_LENGTH_DATA 0x24
-#define XLZW_HYBRID_HASH_HW_CONTROL_BITS_IN_LENGTH_DATA 16
-#define XLZW_HYBRID_HASH_HW_CONTROL_ADDR_SEND_DATA_DATA 0x2c
-#define XLZW_HYBRID_HASH_HW_CONTROL_BITS_SEND_DATA_DATA 64
+#define XLZW_HYBRID_HASH_HW_CONTROL_ADDR_AP_CTRL            0x00
+#define XLZW_HYBRID_HASH_HW_CONTROL_ADDR_GIE                0x04
+#define XLZW_HYBRID_HASH_HW_CONTROL_ADDR_IER                0x08
+#define XLZW_HYBRID_HASH_HW_CONTROL_ADDR_ISR                0x0c
+#define XLZW_HYBRID_HASH_HW_CONTROL_ADDR_IN_R_DATA          0x10
+#define XLZW_HYBRID_HASH_HW_CONTROL_BITS_IN_R_DATA          64
+#define XLZW_HYBRID_HASH_HW_CONTROL_ADDR_INPUT_LENGTH_DATA  0x1c
+#define XLZW_HYBRID_HASH_HW_CONTROL_BITS_INPUT_LENGTH_DATA  64
+#define XLZW_HYBRID_HASH_HW_CONTROL_ADDR_SEND_DATA_DATA     0x28
+#define XLZW_HYBRID_HASH_HW_CONTROL_BITS_SEND_DATA_DATA     64
+#define XLZW_HYBRID_HASH_HW_CONTROL_ADDR_OUTPUT_LENGTH_DATA 0x34
+#define XLZW_HYBRID_HASH_HW_CONTROL_BITS_OUTPUT_LENGTH_DATA 64
 

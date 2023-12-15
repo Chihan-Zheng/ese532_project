@@ -32,15 +32,15 @@ port (
     RVALID                :out  STD_LOGIC;
     RREADY                :in   STD_LOGIC;
     interrupt             :out  STD_LOGIC;
+    in_r                  :out  STD_LOGIC_VECTOR(63 downto 0);
+    input_length          :out  STD_LOGIC_VECTOR(63 downto 0);
+    send_data             :out  STD_LOGIC_VECTOR(63 downto 0);
+    output_length         :out  STD_LOGIC_VECTOR(63 downto 0);
     ap_start              :out  STD_LOGIC;
     ap_done               :in   STD_LOGIC;
     ap_ready              :in   STD_LOGIC;
     ap_continue           :out  STD_LOGIC;
-    ap_idle               :in   STD_LOGIC;
-    ap_return             :in   STD_LOGIC_VECTOR(15 downto 0);
-    in_r                  :out  STD_LOGIC_VECTOR(63 downto 0);
-    in_length             :out  STD_LOGIC_VECTOR(15 downto 0);
-    send_data             :out  STD_LOGIC_VECTOR(63 downto 0)
+    ap_idle               :in   STD_LOGIC
 );
 end entity LZW_hybrid_hash_HW_control_s_axi;
 
@@ -64,23 +64,26 @@ end entity LZW_hybrid_hash_HW_control_s_axi;
 --        bit 0  - ap_done (COR/TOW)
 --        bit 1  - ap_ready (COR/TOW)
 --        others - reserved
--- 0x10 : Data signal of ap_return
---        bit 15~0 - ap_return[15:0] (Read)
---        others   - reserved
--- 0x18 : Data signal of in_r
+-- 0x10 : Data signal of in_r
 --        bit 31~0 - in_r[31:0] (Read/Write)
--- 0x1c : Data signal of in_r
+-- 0x14 : Data signal of in_r
 --        bit 31~0 - in_r[63:32] (Read/Write)
--- 0x20 : reserved
--- 0x24 : Data signal of in_length
---        bit 15~0 - in_length[15:0] (Read/Write)
---        others   - reserved
--- 0x28 : reserved
--- 0x2c : Data signal of send_data
+-- 0x18 : reserved
+-- 0x1c : Data signal of input_length
+--        bit 31~0 - input_length[31:0] (Read/Write)
+-- 0x20 : Data signal of input_length
+--        bit 31~0 - input_length[63:32] (Read/Write)
+-- 0x24 : reserved
+-- 0x28 : Data signal of send_data
 --        bit 31~0 - send_data[31:0] (Read/Write)
--- 0x30 : Data signal of send_data
+-- 0x2c : Data signal of send_data
 --        bit 31~0 - send_data[63:32] (Read/Write)
--- 0x34 : reserved
+-- 0x30 : reserved
+-- 0x34 : Data signal of output_length
+--        bit 31~0 - output_length[31:0] (Read/Write)
+-- 0x38 : Data signal of output_length
+--        bit 31~0 - output_length[63:32] (Read/Write)
+-- 0x3c : reserved
 -- (SC = Self Clear, COR = Clear on Read, TOW = Toggle on Write, COH = Clear on Handshake)
 
 architecture behave of LZW_hybrid_hash_HW_control_s_axi is
@@ -88,19 +91,22 @@ architecture behave of LZW_hybrid_hash_HW_control_s_axi is
     signal wstate  : states := wrreset;
     signal rstate  : states := rdreset;
     signal wnext, rnext: states;
-    constant ADDR_AP_CTRL          : INTEGER := 16#00#;
-    constant ADDR_GIE              : INTEGER := 16#04#;
-    constant ADDR_IER              : INTEGER := 16#08#;
-    constant ADDR_ISR              : INTEGER := 16#0c#;
-    constant ADDR_AP_RETURN_0      : INTEGER := 16#10#;
-    constant ADDR_IN_R_DATA_0      : INTEGER := 16#18#;
-    constant ADDR_IN_R_DATA_1      : INTEGER := 16#1c#;
-    constant ADDR_IN_R_CTRL        : INTEGER := 16#20#;
-    constant ADDR_IN_LENGTH_DATA_0 : INTEGER := 16#24#;
-    constant ADDR_IN_LENGTH_CTRL   : INTEGER := 16#28#;
-    constant ADDR_SEND_DATA_DATA_0 : INTEGER := 16#2c#;
-    constant ADDR_SEND_DATA_DATA_1 : INTEGER := 16#30#;
-    constant ADDR_SEND_DATA_CTRL   : INTEGER := 16#34#;
+    constant ADDR_AP_CTRL              : INTEGER := 16#00#;
+    constant ADDR_GIE                  : INTEGER := 16#04#;
+    constant ADDR_IER                  : INTEGER := 16#08#;
+    constant ADDR_ISR                  : INTEGER := 16#0c#;
+    constant ADDR_IN_R_DATA_0          : INTEGER := 16#10#;
+    constant ADDR_IN_R_DATA_1          : INTEGER := 16#14#;
+    constant ADDR_IN_R_CTRL            : INTEGER := 16#18#;
+    constant ADDR_INPUT_LENGTH_DATA_0  : INTEGER := 16#1c#;
+    constant ADDR_INPUT_LENGTH_DATA_1  : INTEGER := 16#20#;
+    constant ADDR_INPUT_LENGTH_CTRL    : INTEGER := 16#24#;
+    constant ADDR_SEND_DATA_DATA_0     : INTEGER := 16#28#;
+    constant ADDR_SEND_DATA_DATA_1     : INTEGER := 16#2c#;
+    constant ADDR_SEND_DATA_CTRL       : INTEGER := 16#30#;
+    constant ADDR_OUTPUT_LENGTH_DATA_0 : INTEGER := 16#34#;
+    constant ADDR_OUTPUT_LENGTH_DATA_1 : INTEGER := 16#38#;
+    constant ADDR_OUTPUT_LENGTH_CTRL   : INTEGER := 16#3c#;
     constant ADDR_BITS         : INTEGER := 6;
 
     signal waddr               : UNSIGNED(ADDR_BITS-1 downto 0);
@@ -124,10 +130,10 @@ architecture behave of LZW_hybrid_hash_HW_control_s_axi is
     signal int_gie             : STD_LOGIC := '0';
     signal int_ier             : UNSIGNED(1 downto 0) := (others => '0');
     signal int_isr             : UNSIGNED(1 downto 0) := (others => '0');
-    signal int_ap_return       : UNSIGNED(15 downto 0);
     signal int_in_r            : UNSIGNED(63 downto 0) := (others => '0');
-    signal int_in_length       : UNSIGNED(15 downto 0) := (others => '0');
+    signal int_input_length    : UNSIGNED(63 downto 0) := (others => '0');
     signal int_send_data       : UNSIGNED(63 downto 0) := (others => '0');
+    signal int_output_length   : UNSIGNED(63 downto 0) := (others => '0');
 
 
 begin
@@ -256,18 +262,22 @@ begin
                         rdata_data(1 downto 0) <= int_ier;
                     when ADDR_ISR =>
                         rdata_data(1 downto 0) <= int_isr;
-                    when ADDR_AP_RETURN_0 =>
-                        rdata_data <= RESIZE(int_ap_return(15 downto 0), 32);
                     when ADDR_IN_R_DATA_0 =>
                         rdata_data <= RESIZE(int_in_r(31 downto 0), 32);
                     when ADDR_IN_R_DATA_1 =>
                         rdata_data <= RESIZE(int_in_r(63 downto 32), 32);
-                    when ADDR_IN_LENGTH_DATA_0 =>
-                        rdata_data <= RESIZE(int_in_length(15 downto 0), 32);
+                    when ADDR_INPUT_LENGTH_DATA_0 =>
+                        rdata_data <= RESIZE(int_input_length(31 downto 0), 32);
+                    when ADDR_INPUT_LENGTH_DATA_1 =>
+                        rdata_data <= RESIZE(int_input_length(63 downto 32), 32);
                     when ADDR_SEND_DATA_DATA_0 =>
                         rdata_data <= RESIZE(int_send_data(31 downto 0), 32);
                     when ADDR_SEND_DATA_DATA_1 =>
                         rdata_data <= RESIZE(int_send_data(63 downto 32), 32);
+                    when ADDR_OUTPUT_LENGTH_DATA_0 =>
+                        rdata_data <= RESIZE(int_output_length(31 downto 0), 32);
+                    when ADDR_OUTPUT_LENGTH_DATA_1 =>
+                        rdata_data <= RESIZE(int_output_length(63 downto 32), 32);
                     when others =>
                         NULL;
                     end case;
@@ -282,8 +292,9 @@ begin
     int_ap_done          <= ap_done;
     ap_continue          <= int_ap_continue;
     in_r                 <= STD_LOGIC_VECTOR(int_in_r);
-    in_length            <= STD_LOGIC_VECTOR(int_in_length);
+    input_length         <= STD_LOGIC_VECTOR(int_input_length);
     send_data            <= STD_LOGIC_VECTOR(int_send_data);
+    output_length        <= STD_LOGIC_VECTOR(int_output_length);
 
     process (ACLK)
     begin
@@ -415,19 +426,6 @@ begin
     process (ACLK)
     begin
         if (ACLK'event and ACLK = '1') then
-            if (ARESET = '1') then
-                int_ap_return <= (others => '0');
-            elsif (ACLK_EN = '1') then
-                if (ap_done = '1') then
-                    int_ap_return <= UNSIGNED(ap_return);
-                end if;
-            end if;
-        end if;
-    end process;
-
-    process (ACLK)
-    begin
-        if (ACLK'event and ACLK = '1') then
             if (ACLK_EN = '1') then
                 if (w_hs = '1' and waddr = ADDR_IN_R_DATA_0) then
                     int_in_r(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_in_r(31 downto 0));
@@ -451,8 +449,19 @@ begin
     begin
         if (ACLK'event and ACLK = '1') then
             if (ACLK_EN = '1') then
-                if (w_hs = '1' and waddr = ADDR_IN_LENGTH_DATA_0) then
-                    int_in_length(15 downto 0) <= (UNSIGNED(WDATA(15 downto 0)) and wmask(15 downto 0)) or ((not wmask(15 downto 0)) and int_in_length(15 downto 0));
+                if (w_hs = '1' and waddr = ADDR_INPUT_LENGTH_DATA_0) then
+                    int_input_length(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_input_length(31 downto 0));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_INPUT_LENGTH_DATA_1) then
+                    int_input_length(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_input_length(63 downto 32));
                 end if;
             end if;
         end if;
@@ -475,6 +484,28 @@ begin
             if (ACLK_EN = '1') then
                 if (w_hs = '1' and waddr = ADDR_SEND_DATA_DATA_1) then
                     int_send_data(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_send_data(63 downto 32));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_OUTPUT_LENGTH_DATA_0) then
+                    int_output_length(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_output_length(31 downto 0));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_OUTPUT_LENGTH_DATA_1) then
+                    int_output_length(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_output_length(63 downto 32));
                 end if;
             end if;
         end if;

@@ -48,6 +48,18 @@
                 "value": "LZW_hybrid_hash_HW"
               }]
           }
+        },
+        {
+          "functionName": "LZW_hybrid_hash_HW",
+          "label": "",
+          "functionLabel": "",
+          "pragma": {
+            "name": "TOP",
+            "option": [{
+                "name": "name",
+                "value": "LZW_hybrid_hash_HW"
+              }]
+          }
         }
       ]
     }]}

@@ -87,14 +87,15 @@ u32 XLzw_hybrid_hash_hw_IsReady(XLzw_hybrid_hash_hw *InstancePtr);
 void XLzw_hybrid_hash_hw_Continue(XLzw_hybrid_hash_hw *InstancePtr);
 void XLzw_hybrid_hash_hw_EnableAutoRestart(XLzw_hybrid_hash_hw *InstancePtr);
 void XLzw_hybrid_hash_hw_DisableAutoRestart(XLzw_hybrid_hash_hw *InstancePtr);
-u32 XLzw_hybrid_hash_hw_Get_return(XLzw_hybrid_hash_hw *InstancePtr);
 
 void XLzw_hybrid_hash_hw_Set_in_r(XLzw_hybrid_hash_hw *InstancePtr, u64 Data);
 u64 XLzw_hybrid_hash_hw_Get_in_r(XLzw_hybrid_hash_hw *InstancePtr);
-void XLzw_hybrid_hash_hw_Set_in_length(XLzw_hybrid_hash_hw *InstancePtr, u32 Data);
-u32 XLzw_hybrid_hash_hw_Get_in_length(XLzw_hybrid_hash_hw *InstancePtr);
+void XLzw_hybrid_hash_hw_Set_input_length(XLzw_hybrid_hash_hw *InstancePtr, u64 Data);
+u64 XLzw_hybrid_hash_hw_Get_input_length(XLzw_hybrid_hash_hw *InstancePtr);
 void XLzw_hybrid_hash_hw_Set_send_data(XLzw_hybrid_hash_hw *InstancePtr, u64 Data);
 u64 XLzw_hybrid_hash_hw_Get_send_data(XLzw_hybrid_hash_hw *InstancePtr);
+void XLzw_hybrid_hash_hw_Set_output_length(XLzw_hybrid_hash_hw *InstancePtr, u64 Data);
+u64 XLzw_hybrid_hash_hw_Get_output_length(XLzw_hybrid_hash_hw *InstancePtr);
 
 void XLzw_hybrid_hash_hw_InterruptGlobalEnable(XLzw_hybrid_hash_hw *InstancePtr);
 void XLzw_hybrid_hash_hw_InterruptGlobalDisable(XLzw_hybrid_hash_hw *InstancePtr);

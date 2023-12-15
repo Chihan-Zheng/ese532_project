@@ -42,9 +42,9 @@ set SCTraceFileName mytrace
 set SCTraceFileFormat vcd
 set SCTraceOption all
 set TargetInfo xczu3eg:-sbva484:-1-i
-set SourceFiles {sc {} c {../../common/Utilities.cpp ../../LZW_hybrid_hash_HW.cpp ../../Dedup.cpp ../../Chunk.cpp}}
+set SourceFiles {sc {} c {../../Chunk.cpp ../../Dedup.cpp ../../LZW_hybrid_hash_HW.cpp ../../common/Utilities.cpp}}
 set SourceFlags {sc {} c {{} {} {} {}}}
-set DirectiveFile /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/LZW_HW/solution1/solution1.directive
+set DirectiveFile /mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_baseline/LZW_HW/solution1/solution1.directive
 set TBFiles {verilog ../../baseline.cpp bc ../../baseline.cpp vhdl ../../baseline.cpp sc ../../baseline.cpp cas ../../baseline.cpp c {}}
 set SpecLanguage C
 set TVInFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}

@@ -29,82 +29,82 @@
 		<link>
 			<name>source</name>
 			<type>2</type>
-			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/LZW_HW/.apc/.src</location>
+			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_baseline/LZW_HW/.apc/.src</location>
 		</link>
 		<link>
 			<name>testbench</name>
 			<type>2</type>
-			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/LZW_HW/.apc/.tb</location>
+			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_baseline/LZW_HW/.apc/.tb</location>
 		</link>
 		<link>
 			<name>solution1/constraints</name>
 			<type>2</type>
-			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/LZW_HW/solution1/.tcls</location>
+			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_baseline/LZW_HW/solution1/.tcls</location>
 		</link>
 		<link>
 			<name>source/Chunk.cpp</name>
 			<type>1</type>
-			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/Chunk.cpp</location>
+			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_baseline/Chunk.cpp</location>
 		</link>
 		<link>
 			<name>source/Constants.h</name>
 			<type>1</type>
-			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/Constants.h</location>
+			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_baseline/Constants.h</location>
 		</link>
 		<link>
 			<name>source/Dedup.cpp</name>
 			<type>1</type>
-			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/Dedup.cpp</location>
+			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_baseline/Dedup.cpp</location>
 		</link>
 		<link>
 			<name>source/LZW_hybrid_hash_HW.cpp</name>
 			<type>1</type>
-			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/LZW_hybrid_hash_HW.cpp</location>
+			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_baseline/LZW_hybrid_hash_HW.cpp</location>
 		</link>
 		<link>
 			<name>source/LittlePrince.txt</name>
 			<type>1</type>
-			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/LittlePrince.txt</location>
+			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_baseline/LittlePrince.txt</location>
 		</link>
 		<link>
 			<name>source/Utilities.cpp</name>
 			<type>1</type>
-			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/common/Utilities.cpp</location>
+			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_baseline/common/Utilities.cpp</location>
 		</link>
 		<link>
 			<name>source/Utilities.h</name>
 			<type>1</type>
-			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/common/Utilities.h</location>
+			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_baseline/common/Utilities.h</location>
 		</link>
 		<link>
 			<name>source/stopwatch.h</name>
 			<type>1</type>
-			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/stopwatch.h</location>
+			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_baseline/stopwatch.h</location>
 		</link>
 		<link>
 			<name>source/test.txt</name>
 			<type>1</type>
-			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/test.txt</location>
+			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_baseline/test.txt</location>
 		</link>
 		<link>
 			<name>testbench/baseline.cpp</name>
 			<type>1</type>
-			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/baseline.cpp</location>
+			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_baseline/baseline.cpp</location>
 		</link>
 		<link>
 			<name>solution1/constraints/.xml.directive</name>
 			<type>1</type>
-			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/LZW_HW/solution1/solution1.directive</location>
+			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_baseline/LZW_HW/solution1/solution1.directive</location>
 		</link>
 		<link>
 			<name>solution1/constraints/directives.tcl</name>
 			<type>1</type>
-			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/LZW_HW/solution1/directives.tcl</location>
+			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_baseline/LZW_HW/solution1/directives.tcl</location>
 		</link>
 		<link>
 			<name>solution1/constraints/script.tcl</name>
 			<type>1</type>
-			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server/LZW_HW/solution1/script.tcl</location>
+			<location>/mnt/castor/seas_home/c/chihan/chihan/ese532_project/project/Server_HW_baseline/LZW_HW/solution1/script.tcl</location>
 		</link>
 	</linkedResources>
 </projectDescription>

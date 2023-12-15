@@ -42,25 +42,12 @@ void krnl_LZW(unsigned char *input, uint16_t *input_length, uint16_t *send_data,
 //     // #pragma HLS interface m_axi port=output_length bundle=aximm2
 //     // #pragma HLS dataflow
 
-    char num_chunks = 0;
-    uint32_t input_offset = 0;
-    uint32_t output_offset = 0;
-    uint16_t in_length;
+    char num_chunks = 0;    //number of input chunks: iteration of LZW
+    uint32_t input_offset = 0;    //chunks length offset of each chunk/iteration
+    uint32_t output_offset = 0;   //output code offset
+    uint16_t in_length;       
 
     unsigned char *in;
-
-// /*     ap_uint<BUCKET_LEN> hash_table[CAPACITY][BUCKETS_NUM];
-//     // #pragma HLS array_partition variable=hash_table block factor=128 dim=1
-//     assoc_mem my_assoc_mem;
-//     uint16_t store_array[MAX_CHUNK];
-//     ap_uint<CODE_LEN> next_code = 256;
-//     ap_uint<CODE_LEN> prefix_code;
-//     ap_uint<CODE_LEN> code = 0;
-//     unsigned char next_char = 0;
-//     uint16_t j = 0;                   //index of store array (should j++ every time after store)
-//     unsigned char shift = 0;
-//     unsigned char shift_offset = 16 - CODE_LEN;
-//     ap_uint<CODE_LEN> i = 0; */
 
     for (int i = 0; i < num_chunks_krnl; i++){
         if (input_length[i]){
@@ -104,12 +91,12 @@ void krnl_LZW(unsigned char *input, uint16_t *input_length, uint16_t *send_data,
 
         uint16_t store_array[MAX_CHUNK];
         ap_uint<CODE_LEN> next_code = 256;
-        ap_uint<CODE_LEN> prefix_code = in[0];
-        ap_uint<CODE_LEN> code = 0;
+        ap_uint<CODE_LEN> prefix_code = in[0];    //the current code
+        ap_uint<CODE_LEN> code = 0;   //looked up code
         unsigned char next_char = 0;
         uint16_t j = 0;                   //index of store array (should j++ every time after store)
-        unsigned char shift = 0;
-        unsigned char shift_offset = 16 - CODE_LEN;
+        unsigned char shift = 0;     //for concatenating codes: shift means the empty space of 16bits
+        unsigned char shift_offset = 16 - CODE_LEN;      //if 13bits, then shift_offset is 3bits
         ap_uint<CODE_LEN> i = 0;
 
 /*         next_code = 256;
@@ -249,7 +236,7 @@ void krnl_LZW(unsigned char *input, uint16_t *input_length, uint16_t *send_data,
                         char vacant_bit_number = shift - CODE_LEN;      //the rest bits number after code is written to store_array[j-1]
                         store_array[j-1] = store_array[j-1] | (prefix_code.to_uint() << vacant_bit_number);
                         shift = vacant_bit_number;     
-                        //do not j++ here 
+                        //do not j++ here, because this entry may not be filled yet
                     }
                 }
                 //-------------------------------------end insert code to store_array------------------------------------------
@@ -305,8 +292,5 @@ void krnl_LZW(unsigned char *input, uint16_t *input_length, uint16_t *send_data,
         output_offset += ((output_length[n] + sizeof(uint16_t) - 1) / sizeof(uint16_t));    //ceil(output_length / 2)
         // return (compressed_length + 4);
     }
-/*     for(int n = 0; n < num_chunks; n++){
-        memcpy(send_data, input, input_length[n]);
-        output_length[n] = input_length[n];
-    } */
+
 }

@@ -300,9 +300,8 @@ int main(int argc, char* argv[]) {
 				q.enqueueUnmapMemObject(Input_buf, ArrayOfChunks[i]);
 				LZW_timer.stop();   
 			}
-			total_timer.stop();
 		}
-		
+		total_timer.stop();
 		//---------------------------------------end encoding----------------------------------------------
 	}
 	q.finish();

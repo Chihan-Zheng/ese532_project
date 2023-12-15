@@ -156,9 +156,7 @@ extern "C" {
 
 
 # 1 "././common/Utilities.h" 1
-
-
-
+# 22 "././common/Utilities.h"
 # 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/math.h" 1 3
 # 36 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/math.h" 3
 # 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/cmath" 1 3
@@ -4942,7 +4940,7 @@ using std::scalbln;
 using std::scalbn;
 using std::tgamma;
 using std::trunc;
-# 5 "././common/Utilities.h" 2
+# 23 "././common/Utilities.h" 2
 # 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/unordered_map" 1 3
 # 33 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/unordered_map" 3
 
@@ -29779,7 +29777,7 @@ namespace std __attribute__ ((__visibility__ ("default")))
 
 }
 # 49 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/unordered_map" 2 3
-# 6 "././common/Utilities.h" 2
+# 24 "././common/Utilities.h" 2
 # 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/iostream" 1 3
 # 37 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/iostream" 3
 
@@ -38201,10 +38199,10 @@ namespace std __attribute__ ((__visibility__ ("default")))
 
 
 }
-# 7 "././common/Utilities.h" 2
+# 25 "././common/Utilities.h" 2
 # 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/cstdlib" 1 3
 # 40 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/cstdlib" 3
-# 8 "././common/Utilities.h" 2
+# 26 "././common/Utilities.h" 2
 
 # 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/stdlib.h" 1 3
 # 36 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/stdlib.h" 3
@@ -38256,7 +38254,7 @@ using std::system;
 
 using std::wcstombs;
 using std::wctomb;
-# 10 "././common/Utilities.h" 2
+# 28 "././common/Utilities.h" 2
 # 1 "/usr/include/string.h" 1 3 4
 # 26 "/usr/include/string.h" 3 4
 # 1 "/usr/include/bits/libc-header-start.h" 1 3 4
@@ -38635,7 +38633,9 @@ extern "C++" const char *basename (const char *__filename)
      throw () __asm ("basename") __attribute__ ((__nonnull__ (1)));
 # 499 "/usr/include/string.h" 3 4
 }
-# 11 "././common/Utilities.h" 2
+# 29 "././common/Utilities.h" 2
+using namespace std;
+
 
 # 1 "/usr/include/unistd.h" 1 3 4
 # 27 "/usr/include/unistd.h" 3 4
@@ -39991,7 +39991,7 @@ extern __pid_t gettid (void) throw ();
 # 1171 "/usr/include/unistd.h" 2 3 4
 
 }
-# 13 "././common/Utilities.h" 2
+# 32 "././common/Utilities.h" 2
 # 1 "/usr/include/fcntl.h" 1 3 4
 # 28 "/usr/include/fcntl.h" 3 4
 extern "C" {
@@ -40268,7 +40268,7 @@ extern int posix_fallocate (int __fd, off_t __offset, off_t __len);
 extern int posix_fallocate64 (int __fd, off64_t __offset, off64_t __len);
 # 332 "/usr/include/fcntl.h" 3 4
 }
-# 14 "././common/Utilities.h" 2
+# 33 "././common/Utilities.h" 2
 
 # 1 "/usr/include/sys/stat.h" 1 3 4
 # 99 "/usr/include/sys/stat.h" 3 4
@@ -40677,7 +40677,7 @@ int statx (int __dirfd, const char *__restrict __path, int __flags,
 # 447 "/usr/include/sys/stat.h" 2 3 4
 # 534 "/usr/include/sys/stat.h" 3 4
 }
-# 16 "././common/Utilities.h" 2
+# 35 "././common/Utilities.h" 2
 # 1 "././common/../stopwatch.h" 1
 
 
@@ -43739,7 +43739,7 @@ public:
  }
  ;
 };
-# 17 "././common/Utilities.h" 2
+# 36 "././common/Utilities.h" 2
 # 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/functional" 1 3
 # 47 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/functional" 3
 
@@ -45833,7 +45833,7 @@ template<typename _Res, typename _Class, typename... _ArgTypes> struct _Mem_fn_t
 
 
 }
-# 18 "././common/Utilities.h" 2
+# 37 "././common/Utilities.h" 2
 # 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/fstream" 1 3
 # 37 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/fstream" 3
 
@@ -48173,7 +48173,7 @@ namespace std __attribute__ ((__visibility__ ("default")))
 
 }
 # 1082 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/fstream" 2 3
-# 19 "././common/Utilities.h" 2
+# 38 "././common/Utilities.h" 2
 # 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/sstream" 1 3
 # 37 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/sstream" 3
 
@@ -48983,7 +48983,7 @@ namespace std __attribute__ ((__visibility__ ("default")))
 
 }
 # 814 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/sstream" 2 3
-# 20 "././common/Utilities.h" 2
+# 39 "././common/Utilities.h" 2
 # 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/ap_int.h" 1
 # 55 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/ap_int.h"
 # 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/ap_common.h" 1
@@ -54409,7 +54409,6642 @@ inline bool operator!=(
 }
 # 396 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/ap_fixed.h" 2
 # 365 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/ap_int.h" 2
-# 21 "././common/Utilities.h" 2
+# 40 "././common/Utilities.h" 2
+# 1 "././common/EventTimer.h" 1
+# 39 "././common/EventTimer.h"
+# 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/vector" 1 3
+# 59 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/vector" 3
+
+
+
+# 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_construct.h" 1 3
+# 63 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_construct.h" 3
+namespace std __attribute__ ((__visibility__ ("default")))
+{
+
+
+
+
+
+
+
+  template<typename _T1, typename... _Args>
+    inline void
+    _Construct(_T1* __p, _Args&&... __args)
+    { ::new(static_cast<void*>(__p)) _T1(std::forward<_Args>(__args)...); }
+# 90 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_construct.h" 3
+  template<typename _Tp>
+    inline void
+    _Destroy(_Tp* __pointer)
+    { __pointer->~_Tp(); }
+
+  template<bool>
+    struct _Destroy_aux
+    {
+      template<typename _ForwardIterator>
+        static void
+        __destroy(_ForwardIterator __first, _ForwardIterator __last)
+ {
+   for (; __first != __last; ++__first)
+     std::_Destroy(std::__addressof(*__first));
+ }
+    };
+
+  template<>
+    struct _Destroy_aux<true>
+    {
+      template<typename _ForwardIterator>
+        static void
+        __destroy(_ForwardIterator, _ForwardIterator) { }
+    };
+
+
+
+
+
+
+  template<typename _ForwardIterator>
+    inline void
+    _Destroy(_ForwardIterator __first, _ForwardIterator __last)
+    {
+      typedef typename iterator_traits<_ForwardIterator>::value_type
+                       _Value_type;
+      std::_Destroy_aux<__has_trivial_destructor(_Value_type)>::
+ __destroy(__first, __last);
+    }
+
+
+
+
+
+
+
+  template<typename _ForwardIterator, typename _Allocator>
+    void
+    _Destroy(_ForwardIterator __first, _ForwardIterator __last,
+      _Allocator& __alloc)
+    {
+      typedef __gnu_cxx::__alloc_traits<_Allocator> __traits;
+      for (; __first != __last; ++__first)
+ __traits::destroy(__alloc, std::__addressof(*__first));
+    }
+
+  template<typename _ForwardIterator, typename _Tp>
+    inline void
+    _Destroy(_ForwardIterator __first, _ForwardIterator __last,
+      allocator<_Tp>&)
+    {
+      _Destroy(__first, __last);
+    }
+
+
+}
+# 63 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/vector" 2 3
+# 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_uninitialized.h" 1 3
+# 59 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_uninitialized.h" 3
+namespace std __attribute__ ((__visibility__ ("default")))
+{
+
+
+  template<bool _TrivialValueTypes>
+    struct __uninitialized_copy
+    {
+      template<typename _InputIterator, typename _ForwardIterator>
+        static _ForwardIterator
+        __uninit_copy(_InputIterator __first, _InputIterator __last,
+        _ForwardIterator __result)
+        {
+   _ForwardIterator __cur = __result;
+   if (true)
+     {
+       for (; __first != __last; ++__first, (void)++__cur)
+  std::_Construct(std::__addressof(*__cur), *__first);
+       return __cur;
+     }
+   if (false)
+     {
+       std::_Destroy(__result, __cur);
+                              ;
+     }
+ }
+    };
+
+  template<>
+    struct __uninitialized_copy<true>
+    {
+      template<typename _InputIterator, typename _ForwardIterator>
+        static _ForwardIterator
+        __uninit_copy(_InputIterator __first, _InputIterator __last,
+        _ForwardIterator __result)
+        { return std::copy(__first, __last, __result); }
+    };
+# 105 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_uninitialized.h" 3
+  template<typename _InputIterator, typename _ForwardIterator>
+    inline _ForwardIterator
+    uninitialized_copy(_InputIterator __first, _InputIterator __last,
+         _ForwardIterator __result)
+    {
+      typedef typename iterator_traits<_InputIterator>::value_type
+ _ValueType1;
+      typedef typename iterator_traits<_ForwardIterator>::value_type
+ _ValueType2;
+
+
+
+
+      typedef typename iterator_traits<_InputIterator>::reference _RefType1;
+      typedef typename iterator_traits<_ForwardIterator>::reference _RefType2;
+      const bool __assignable = is_assignable<_RefType2, _RefType1>::value;
+
+
+      return std::__uninitialized_copy<__is_trivial(_ValueType1)
+           && __is_trivial(_ValueType2)
+           && __assignable>::
+ __uninit_copy(__first, __last, __result);
+    }
+
+
+  template<bool _TrivialValueType>
+    struct __uninitialized_fill
+    {
+      template<typename _ForwardIterator, typename _Tp>
+        static void
+        __uninit_fill(_ForwardIterator __first, _ForwardIterator __last,
+        const _Tp& __x)
+        {
+   _ForwardIterator __cur = __first;
+   if (true)
+     {
+       for (; __cur != __last; ++__cur)
+  std::_Construct(std::__addressof(*__cur), __x);
+     }
+   if (false)
+     {
+       std::_Destroy(__first, __cur);
+                              ;
+     }
+ }
+    };
+
+  template<>
+    struct __uninitialized_fill<true>
+    {
+      template<typename _ForwardIterator, typename _Tp>
+        static void
+        __uninit_fill(_ForwardIterator __first, _ForwardIterator __last,
+        const _Tp& __x)
+        { std::fill(__first, __last, __x); }
+    };
+# 171 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_uninitialized.h" 3
+  template<typename _ForwardIterator, typename _Tp>
+    inline void
+    uninitialized_fill(_ForwardIterator __first, _ForwardIterator __last,
+         const _Tp& __x)
+    {
+      typedef typename iterator_traits<_ForwardIterator>::value_type
+ _ValueType;
+
+
+
+
+      const bool __assignable = is_copy_assignable<_ValueType>::value;
+
+
+      std::__uninitialized_fill<__is_trivial(_ValueType) && __assignable>::
+ __uninit_fill(__first, __last, __x);
+    }
+
+
+  template<bool _TrivialValueType>
+    struct __uninitialized_fill_n
+    {
+      template<typename _ForwardIterator, typename _Size, typename _Tp>
+        static _ForwardIterator
+        __uninit_fill_n(_ForwardIterator __first, _Size __n,
+   const _Tp& __x)
+        {
+   _ForwardIterator __cur = __first;
+   if (true)
+     {
+       for (; __n > 0; --__n, ++__cur)
+  std::_Construct(std::__addressof(*__cur), __x);
+       return __cur;
+     }
+   if (false)
+     {
+       std::_Destroy(__first, __cur);
+                              ;
+     }
+ }
+    };
+
+  template<>
+    struct __uninitialized_fill_n<true>
+    {
+      template<typename _ForwardIterator, typename _Size, typename _Tp>
+        static _ForwardIterator
+        __uninit_fill_n(_ForwardIterator __first, _Size __n,
+   const _Tp& __x)
+        { return std::fill_n(__first, __n, __x); }
+    };
+# 234 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_uninitialized.h" 3
+  template<typename _ForwardIterator, typename _Size, typename _Tp>
+    inline _ForwardIterator
+    uninitialized_fill_n(_ForwardIterator __first, _Size __n, const _Tp& __x)
+    {
+      typedef typename iterator_traits<_ForwardIterator>::value_type
+ _ValueType;
+
+
+
+
+      const bool __assignable = is_copy_assignable<_ValueType>::value;
+
+      return __uninitialized_fill_n<__is_trivial(_ValueType) && __assignable>::
+ __uninit_fill_n(__first, __n, __x);
+    }
+
+
+
+
+
+
+
+  template<typename _InputIterator, typename _ForwardIterator,
+    typename _Allocator>
+    _ForwardIterator
+    __uninitialized_copy_a(_InputIterator __first, _InputIterator __last,
+      _ForwardIterator __result, _Allocator& __alloc)
+    {
+      _ForwardIterator __cur = __result;
+      if (true)
+ {
+   typedef __gnu_cxx::__alloc_traits<_Allocator> __traits;
+   for (; __first != __last; ++__first, (void)++__cur)
+     __traits::construct(__alloc, std::__addressof(*__cur), *__first);
+   return __cur;
+ }
+      if (false)
+ {
+   std::_Destroy(__result, __cur, __alloc);
+                          ;
+ }
+    }
+
+  template<typename _InputIterator, typename _ForwardIterator, typename _Tp>
+    inline _ForwardIterator
+    __uninitialized_copy_a(_InputIterator __first, _InputIterator __last,
+      _ForwardIterator __result, allocator<_Tp>&)
+    { return std::uninitialized_copy(__first, __last, __result); }
+
+  template<typename _InputIterator, typename _ForwardIterator,
+    typename _Allocator>
+    inline _ForwardIterator
+    __uninitialized_move_a(_InputIterator __first, _InputIterator __last,
+      _ForwardIterator __result, _Allocator& __alloc)
+    {
+      return std::__uninitialized_copy_a(std::make_move_iterator(__first),
+      std::make_move_iterator(__last),
+      __result, __alloc);
+    }
+
+  template<typename _InputIterator, typename _ForwardIterator,
+    typename _Allocator>
+    inline _ForwardIterator
+    __uninitialized_move_if_noexcept_a(_InputIterator __first,
+           _InputIterator __last,
+           _ForwardIterator __result,
+           _Allocator& __alloc)
+    {
+      return std::__uninitialized_copy_a
+ (std::__make_move_if_noexcept_iterator(__first),
+  std::__make_move_if_noexcept_iterator(__last), __result, __alloc);
+    }
+
+  template<typename _ForwardIterator, typename _Tp, typename _Allocator>
+    void
+    __uninitialized_fill_a(_ForwardIterator __first, _ForwardIterator __last,
+      const _Tp& __x, _Allocator& __alloc)
+    {
+      _ForwardIterator __cur = __first;
+      if (true)
+ {
+   typedef __gnu_cxx::__alloc_traits<_Allocator> __traits;
+   for (; __cur != __last; ++__cur)
+     __traits::construct(__alloc, std::__addressof(*__cur), __x);
+ }
+      if (false)
+ {
+   std::_Destroy(__first, __cur, __alloc);
+                          ;
+ }
+    }
+
+  template<typename _ForwardIterator, typename _Tp, typename _Tp2>
+    inline void
+    __uninitialized_fill_a(_ForwardIterator __first, _ForwardIterator __last,
+      const _Tp& __x, allocator<_Tp2>&)
+    { std::uninitialized_fill(__first, __last, __x); }
+
+  template<typename _ForwardIterator, typename _Size, typename _Tp,
+    typename _Allocator>
+    _ForwardIterator
+    __uninitialized_fill_n_a(_ForwardIterator __first, _Size __n,
+        const _Tp& __x, _Allocator& __alloc)
+    {
+      _ForwardIterator __cur = __first;
+      if (true)
+ {
+   typedef __gnu_cxx::__alloc_traits<_Allocator> __traits;
+   for (; __n > 0; --__n, ++__cur)
+     __traits::construct(__alloc, std::__addressof(*__cur), __x);
+   return __cur;
+ }
+      if (false)
+ {
+   std::_Destroy(__first, __cur, __alloc);
+                          ;
+ }
+    }
+
+  template<typename _ForwardIterator, typename _Size, typename _Tp,
+    typename _Tp2>
+    inline _ForwardIterator
+    __uninitialized_fill_n_a(_ForwardIterator __first, _Size __n,
+        const _Tp& __x, allocator<_Tp2>&)
+    { return std::uninitialized_fill_n(__first, __n, __x); }
+# 370 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_uninitialized.h" 3
+  template<typename _InputIterator1, typename _InputIterator2,
+    typename _ForwardIterator, typename _Allocator>
+    inline _ForwardIterator
+    __uninitialized_copy_move(_InputIterator1 __first1,
+         _InputIterator1 __last1,
+         _InputIterator2 __first2,
+         _InputIterator2 __last2,
+         _ForwardIterator __result,
+         _Allocator& __alloc)
+    {
+      _ForwardIterator __mid = std::__uninitialized_copy_a(__first1, __last1,
+          __result,
+          __alloc);
+      if (true)
+ {
+   return std::__uninitialized_move_a(__first2, __last2, __mid, __alloc);
+ }
+      if (false)
+ {
+   std::_Destroy(__result, __mid, __alloc);
+                          ;
+ }
+    }
+
+
+
+
+
+  template<typename _InputIterator1, typename _InputIterator2,
+    typename _ForwardIterator, typename _Allocator>
+    inline _ForwardIterator
+    __uninitialized_move_copy(_InputIterator1 __first1,
+         _InputIterator1 __last1,
+         _InputIterator2 __first2,
+         _InputIterator2 __last2,
+         _ForwardIterator __result,
+         _Allocator& __alloc)
+    {
+      _ForwardIterator __mid = std::__uninitialized_move_a(__first1, __last1,
+          __result,
+          __alloc);
+      if (true)
+ {
+   return std::__uninitialized_copy_a(__first2, __last2, __mid, __alloc);
+ }
+      if (false)
+ {
+   std::_Destroy(__result, __mid, __alloc);
+                          ;
+ }
+    }
+
+
+
+
+  template<typename _ForwardIterator, typename _Tp, typename _InputIterator,
+    typename _Allocator>
+    inline _ForwardIterator
+    __uninitialized_fill_move(_ForwardIterator __result, _ForwardIterator __mid,
+         const _Tp& __x, _InputIterator __first,
+         _InputIterator __last, _Allocator& __alloc)
+    {
+      std::__uninitialized_fill_a(__result, __mid, __x, __alloc);
+      if (true)
+ {
+   return std::__uninitialized_move_a(__first, __last, __mid, __alloc);
+ }
+      if (false)
+ {
+   std::_Destroy(__result, __mid, __alloc);
+                          ;
+ }
+    }
+
+
+
+
+  template<typename _InputIterator, typename _ForwardIterator, typename _Tp,
+    typename _Allocator>
+    inline void
+    __uninitialized_move_fill(_InputIterator __first1, _InputIterator __last1,
+         _ForwardIterator __first2,
+         _ForwardIterator __last2, const _Tp& __x,
+         _Allocator& __alloc)
+    {
+      _ForwardIterator __mid2 = std::__uninitialized_move_a(__first1, __last1,
+           __first2,
+           __alloc);
+      if (true)
+ {
+   std::__uninitialized_fill_a(__mid2, __last2, __x, __alloc);
+ }
+      if (false)
+ {
+   std::_Destroy(__first2, __mid2, __alloc);
+                          ;
+ }
+    }
+
+
+
+
+
+  template<bool _TrivialValueType>
+    struct __uninitialized_default_1
+    {
+      template<typename _ForwardIterator>
+        static void
+        __uninit_default(_ForwardIterator __first, _ForwardIterator __last)
+        {
+   _ForwardIterator __cur = __first;
+   if (true)
+     {
+       for (; __cur != __last; ++__cur)
+  std::_Construct(std::__addressof(*__cur));
+     }
+   if (false)
+     {
+       std::_Destroy(__first, __cur);
+                              ;
+     }
+ }
+    };
+
+  template<>
+    struct __uninitialized_default_1<true>
+    {
+      template<typename _ForwardIterator>
+        static void
+        __uninit_default(_ForwardIterator __first, _ForwardIterator __last)
+        {
+   typedef typename iterator_traits<_ForwardIterator>::value_type
+     _ValueType;
+
+   std::fill(__first, __last, _ValueType());
+ }
+    };
+
+  template<bool _TrivialValueType>
+    struct __uninitialized_default_n_1
+    {
+      template<typename _ForwardIterator, typename _Size>
+        static _ForwardIterator
+        __uninit_default_n(_ForwardIterator __first, _Size __n)
+        {
+   _ForwardIterator __cur = __first;
+   if (true)
+     {
+       for (; __n > 0; --__n, ++__cur)
+  std::_Construct(std::__addressof(*__cur));
+       return __cur;
+     }
+   if (false)
+     {
+       std::_Destroy(__first, __cur);
+                              ;
+     }
+ }
+    };
+
+  template<>
+    struct __uninitialized_default_n_1<true>
+    {
+      template<typename _ForwardIterator, typename _Size>
+        static _ForwardIterator
+        __uninit_default_n(_ForwardIterator __first, _Size __n)
+        {
+   typedef typename iterator_traits<_ForwardIterator>::value_type
+     _ValueType;
+
+   return std::fill_n(__first, __n, _ValueType());
+ }
+    };
+
+
+
+
+  template<typename _ForwardIterator>
+    inline void
+    __uninitialized_default(_ForwardIterator __first,
+       _ForwardIterator __last)
+    {
+      typedef typename iterator_traits<_ForwardIterator>::value_type
+ _ValueType;
+
+      const bool __assignable = is_copy_assignable<_ValueType>::value;
+
+      std::__uninitialized_default_1<__is_trivial(_ValueType)
+         && __assignable>::
+ __uninit_default(__first, __last);
+    }
+
+
+
+  template<typename _ForwardIterator, typename _Size>
+    inline _ForwardIterator
+    __uninitialized_default_n(_ForwardIterator __first, _Size __n)
+    {
+      typedef typename iterator_traits<_ForwardIterator>::value_type
+ _ValueType;
+
+      const bool __assignable = is_copy_assignable<_ValueType>::value;
+
+      return __uninitialized_default_n_1<__is_trivial(_ValueType)
+           && __assignable>::
+ __uninit_default_n(__first, __n);
+    }
+
+
+
+
+
+  template<typename _ForwardIterator, typename _Allocator>
+    void
+    __uninitialized_default_a(_ForwardIterator __first,
+         _ForwardIterator __last,
+         _Allocator& __alloc)
+    {
+      _ForwardIterator __cur = __first;
+      if (true)
+ {
+   typedef __gnu_cxx::__alloc_traits<_Allocator> __traits;
+   for (; __cur != __last; ++__cur)
+     __traits::construct(__alloc, std::__addressof(*__cur));
+ }
+      if (false)
+ {
+   std::_Destroy(__first, __cur, __alloc);
+                          ;
+ }
+    }
+
+  template<typename _ForwardIterator, typename _Tp>
+    inline void
+    __uninitialized_default_a(_ForwardIterator __first,
+         _ForwardIterator __last,
+         allocator<_Tp>&)
+    { std::__uninitialized_default(__first, __last); }
+
+
+
+
+
+  template<typename _ForwardIterator, typename _Size, typename _Allocator>
+    _ForwardIterator
+    __uninitialized_default_n_a(_ForwardIterator __first, _Size __n,
+    _Allocator& __alloc)
+    {
+      _ForwardIterator __cur = __first;
+      if (true)
+ {
+   typedef __gnu_cxx::__alloc_traits<_Allocator> __traits;
+   for (; __n > 0; --__n, ++__cur)
+     __traits::construct(__alloc, std::__addressof(*__cur));
+   return __cur;
+ }
+      if (false)
+ {
+   std::_Destroy(__first, __cur, __alloc);
+                          ;
+ }
+    }
+
+  template<typename _ForwardIterator, typename _Size, typename _Tp>
+    inline _ForwardIterator
+    __uninitialized_default_n_a(_ForwardIterator __first, _Size __n,
+    allocator<_Tp>&)
+    { return std::__uninitialized_default_n(__first, __n); }
+
+
+  template<typename _InputIterator, typename _Size,
+    typename _ForwardIterator>
+    _ForwardIterator
+    __uninitialized_copy_n(_InputIterator __first, _Size __n,
+      _ForwardIterator __result, input_iterator_tag)
+    {
+      _ForwardIterator __cur = __result;
+      if (true)
+ {
+   for (; __n > 0; --__n, ++__first, ++__cur)
+     std::_Construct(std::__addressof(*__cur), *__first);
+   return __cur;
+ }
+      if (false)
+ {
+   std::_Destroy(__result, __cur);
+                          ;
+ }
+    }
+
+  template<typename _RandomAccessIterator, typename _Size,
+    typename _ForwardIterator>
+    inline _ForwardIterator
+    __uninitialized_copy_n(_RandomAccessIterator __first, _Size __n,
+      _ForwardIterator __result,
+      random_access_iterator_tag)
+    { return std::uninitialized_copy(__first, __first + __n, __result); }
+# 677 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_uninitialized.h" 3
+  template<typename _InputIterator, typename _Size, typename _ForwardIterator>
+    inline _ForwardIterator
+    uninitialized_copy_n(_InputIterator __first, _Size __n,
+    _ForwardIterator __result)
+    { return std::__uninitialized_copy_n(__first, __n, __result,
+      std::__iterator_category(__first)); }
+
+
+
+}
+# 64 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/vector" 2 3
+# 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 1 3
+# 66 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+namespace std __attribute__ ((__visibility__ ("default")))
+{
+
+
+
+  template<typename _Tp, typename _Alloc>
+    struct _Vector_base
+    {
+      typedef typename __gnu_cxx::__alloc_traits<_Alloc>::template
+        rebind<_Tp>::other _Tp_alloc_type;
+      typedef typename __gnu_cxx::__alloc_traits<_Tp_alloc_type>::pointer
+        pointer;
+
+      struct _Vector_impl
+      : public _Tp_alloc_type
+      {
+ pointer _M_start;
+ pointer _M_finish;
+ pointer _M_end_of_storage;
+
+ _Vector_impl()
+ : _Tp_alloc_type(), _M_start(), _M_finish(), _M_end_of_storage()
+ { }
+
+ _Vector_impl(_Tp_alloc_type const& __a) noexcept
+ : _Tp_alloc_type(__a), _M_start(), _M_finish(), _M_end_of_storage()
+ { }
+
+
+ _Vector_impl(_Tp_alloc_type&& __a) noexcept
+ : _Tp_alloc_type(std::move(__a)),
+   _M_start(), _M_finish(), _M_end_of_storage()
+ { }
+
+
+ void _M_swap_data(_Vector_impl& __x) noexcept
+ {
+   std::swap(_M_start, __x._M_start);
+   std::swap(_M_finish, __x._M_finish);
+   std::swap(_M_end_of_storage, __x._M_end_of_storage);
+ }
+      };
+
+    public:
+      typedef _Alloc allocator_type;
+
+      _Tp_alloc_type&
+      _M_get_Tp_allocator() noexcept
+      { return *static_cast<_Tp_alloc_type*>(&this->_M_impl); }
+
+      const _Tp_alloc_type&
+      _M_get_Tp_allocator() const noexcept
+      { return *static_cast<const _Tp_alloc_type*>(&this->_M_impl); }
+
+      allocator_type
+      get_allocator() const noexcept
+      { return allocator_type(_M_get_Tp_allocator()); }
+
+      _Vector_base()
+      : _M_impl() { }
+
+      _Vector_base(const allocator_type& __a) noexcept
+      : _M_impl(__a) { }
+
+      _Vector_base(size_t __n)
+      : _M_impl()
+      { _M_create_storage(__n); }
+
+      _Vector_base(size_t __n, const allocator_type& __a)
+      : _M_impl(__a)
+      { _M_create_storage(__n); }
+
+
+      _Vector_base(_Tp_alloc_type&& __a) noexcept
+      : _M_impl(std::move(__a)) { }
+
+      _Vector_base(_Vector_base&& __x) noexcept
+      : _M_impl(std::move(__x._M_get_Tp_allocator()))
+      { this->_M_impl._M_swap_data(__x._M_impl); }
+
+      _Vector_base(_Vector_base&& __x, const allocator_type& __a)
+      : _M_impl(__a)
+      {
+ if (__x.get_allocator() == __a)
+   this->_M_impl._M_swap_data(__x._M_impl);
+ else
+   {
+     size_t __n = __x._M_impl._M_finish - __x._M_impl._M_start;
+     _M_create_storage(__n);
+   }
+      }
+
+
+      ~_Vector_base() noexcept
+      { _M_deallocate(this->_M_impl._M_start, this->_M_impl._M_end_of_storage
+        - this->_M_impl._M_start); }
+
+    public:
+      _Vector_impl _M_impl;
+
+      pointer
+      _M_allocate(size_t __n)
+      {
+ typedef __gnu_cxx::__alloc_traits<_Tp_alloc_type> _Tr;
+ return __n != 0 ? _Tr::allocate(_M_impl, __n) : pointer();
+      }
+
+      void
+      _M_deallocate(pointer __p, size_t __n)
+      {
+ typedef __gnu_cxx::__alloc_traits<_Tp_alloc_type> _Tr;
+ if (__p)
+   _Tr::deallocate(_M_impl, __p, __n);
+      }
+
+    private:
+      void
+      _M_create_storage(size_t __n)
+      {
+ this->_M_impl._M_start = this->_M_allocate(__n);
+ this->_M_impl._M_finish = this->_M_impl._M_start;
+ this->_M_impl._M_end_of_storage = this->_M_impl._M_start + __n;
+      }
+    };
+# 213 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+  template<typename _Tp, typename _Alloc = std::allocator<_Tp> >
+    class vector : protected _Vector_base<_Tp, _Alloc>
+    {
+
+      typedef typename _Alloc::value_type _Alloc_value_type;
+
+
+
+
+
+      typedef _Vector_base<_Tp, _Alloc> _Base;
+      typedef typename _Base::_Tp_alloc_type _Tp_alloc_type;
+      typedef __gnu_cxx::__alloc_traits<_Tp_alloc_type> _Alloc_traits;
+
+    public:
+      typedef _Tp value_type;
+      typedef typename _Base::pointer pointer;
+      typedef typename _Alloc_traits::const_pointer const_pointer;
+      typedef typename _Alloc_traits::reference reference;
+      typedef typename _Alloc_traits::const_reference const_reference;
+      typedef __gnu_cxx::__normal_iterator<pointer, vector> iterator;
+      typedef __gnu_cxx::__normal_iterator<const_pointer, vector>
+      const_iterator;
+      typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
+      typedef std::reverse_iterator<iterator> reverse_iterator;
+      typedef size_t size_type;
+      typedef ptrdiff_t difference_type;
+      typedef _Alloc allocator_type;
+
+    protected:
+      using _Base::_M_allocate;
+      using _Base::_M_deallocate;
+      using _Base::_M_impl;
+      using _Base::_M_get_Tp_allocator;
+
+    public:
+
+
+
+
+
+
+      vector()
+
+      noexcept(is_nothrow_default_constructible<_Alloc>::value)
+
+      : _Base() { }
+
+
+
+
+
+      explicit
+      vector(const allocator_type& __a) noexcept
+      : _Base(__a) { }
+# 278 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      explicit
+      vector(size_type __n, const allocator_type& __a = allocator_type())
+      : _Base(__n, __a)
+      { _M_default_initialize(__n); }
+# 291 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      vector(size_type __n, const value_type& __value,
+      const allocator_type& __a = allocator_type())
+      : _Base(__n, __a)
+      { _M_fill_initialize(__n, __value); }
+# 320 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      vector(const vector& __x)
+      : _Base(__x.size(),
+        _Alloc_traits::_S_select_on_copy(__x._M_get_Tp_allocator()))
+      { this->_M_impl._M_finish =
+   std::__uninitialized_copy_a(__x.begin(), __x.end(),
+          this->_M_impl._M_start,
+          _M_get_Tp_allocator());
+      }
+# 337 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      vector(vector&& __x) noexcept
+      : _Base(std::move(__x)) { }
+
+
+      vector(const vector& __x, const allocator_type& __a)
+      : _Base(__x.size(), __a)
+      { this->_M_impl._M_finish =
+   std::__uninitialized_copy_a(__x.begin(), __x.end(),
+          this->_M_impl._M_start,
+          _M_get_Tp_allocator());
+      }
+
+
+      vector(vector&& __rv, const allocator_type& __m)
+      noexcept(_Alloc_traits::_S_always_equal())
+      : _Base(std::move(__rv), __m)
+      {
+ if (__rv.get_allocator() != __m)
+   {
+     this->_M_impl._M_finish =
+       std::__uninitialized_move_a(__rv.begin(), __rv.end(),
+       this->_M_impl._M_start,
+       _M_get_Tp_allocator());
+     __rv.clear();
+   }
+      }
+# 375 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      vector(initializer_list<value_type> __l,
+      const allocator_type& __a = allocator_type())
+      : _Base(__a)
+      {
+ _M_range_initialize(__l.begin(), __l.end(),
+       random_access_iterator_tag());
+      }
+# 401 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      template<typename _InputIterator,
+        typename = std::_RequireInputIter<_InputIterator>>
+        vector(_InputIterator __first, _InputIterator __last,
+        const allocator_type& __a = allocator_type())
+ : _Base(__a)
+        { _M_initialize_dispatch(__first, __last, __false_type()); }
+# 425 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      ~vector() noexcept
+      { std::_Destroy(this->_M_impl._M_start, this->_M_impl._M_finish,
+        _M_get_Tp_allocator()); }
+# 437 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      vector&
+      operator=(const vector& __x);
+# 449 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      vector&
+      operator=(vector&& __x) noexcept(_Alloc_traits::_S_nothrow_move())
+      {
+        constexpr bool __move_storage =
+          _Alloc_traits::_S_propagate_on_move_assign()
+          || _Alloc_traits::_S_always_equal();
+        _M_move_assign(std::move(__x), __bool_constant<__move_storage>());
+ return *this;
+      }
+# 470 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      vector&
+      operator=(initializer_list<value_type> __l)
+      {
+ this->assign(__l.begin(), __l.end());
+ return *this;
+      }
+# 488 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      void
+      assign(size_type __n, const value_type& __val)
+      { _M_fill_assign(__n, __val); }
+# 505 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      template<typename _InputIterator,
+        typename = std::_RequireInputIter<_InputIterator>>
+        void
+        assign(_InputIterator __first, _InputIterator __last)
+        { _M_assign_dispatch(__first, __last, __false_type()); }
+# 533 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      void
+      assign(initializer_list<value_type> __l)
+      { this->assign(__l.begin(), __l.end()); }
+
+
+
+      using _Base::get_allocator;
+
+
+
+
+
+
+
+      iterator
+      begin() noexcept
+      { return iterator(this->_M_impl._M_start); }
+
+
+
+
+
+
+      const_iterator
+      begin() const noexcept
+      { return const_iterator(this->_M_impl._M_start); }
+
+
+
+
+
+
+      iterator
+      end() noexcept
+      { return iterator(this->_M_impl._M_finish); }
+
+
+
+
+
+
+      const_iterator
+      end() const noexcept
+      { return const_iterator(this->_M_impl._M_finish); }
+
+
+
+
+
+
+      reverse_iterator
+      rbegin() noexcept
+      { return reverse_iterator(end()); }
+
+
+
+
+
+
+      const_reverse_iterator
+      rbegin() const noexcept
+      { return const_reverse_iterator(end()); }
+
+
+
+
+
+
+      reverse_iterator
+      rend() noexcept
+      { return reverse_iterator(begin()); }
+
+
+
+
+
+
+      const_reverse_iterator
+      rend() const noexcept
+      { return const_reverse_iterator(begin()); }
+
+
+
+
+
+
+
+      const_iterator
+      cbegin() const noexcept
+      { return const_iterator(this->_M_impl._M_start); }
+
+
+
+
+
+
+      const_iterator
+      cend() const noexcept
+      { return const_iterator(this->_M_impl._M_finish); }
+
+
+
+
+
+
+      const_reverse_iterator
+      crbegin() const noexcept
+      { return const_reverse_iterator(end()); }
+
+
+
+
+
+
+      const_reverse_iterator
+      crend() const noexcept
+      { return const_reverse_iterator(begin()); }
+
+
+
+
+      size_type
+      size() const noexcept
+      { return size_type(this->_M_impl._M_finish - this->_M_impl._M_start); }
+
+
+      size_type
+      max_size() const noexcept
+      { return _Alloc_traits::max_size(_M_get_Tp_allocator()); }
+# 673 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      void
+      resize(size_type __new_size)
+      {
+ if (__new_size > size())
+   _M_default_append(__new_size - size());
+ else if (__new_size < size())
+   _M_erase_at_end(this->_M_impl._M_start + __new_size);
+      }
+# 693 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      void
+      resize(size_type __new_size, const value_type& __x)
+      {
+ if (__new_size > size())
+   insert(end(), __new_size - size(), __x);
+ else if (__new_size < size())
+   _M_erase_at_end(this->_M_impl._M_start + __new_size);
+      }
+# 725 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      void
+      shrink_to_fit()
+      { _M_shrink_to_fit(); }
+
+
+
+
+
+
+      size_type
+      capacity() const noexcept
+      { return size_type(this->_M_impl._M_end_of_storage
+    - this->_M_impl._M_start); }
+
+
+
+
+
+      bool
+      empty() const noexcept
+      { return begin() == end(); }
+# 764 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      void
+      reserve(size_type __n);
+# 779 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      reference
+      operator[](size_type __n) noexcept
+      { return *(this->_M_impl._M_start + __n); }
+# 794 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      const_reference
+      operator[](size_type __n) const noexcept
+      { return *(this->_M_impl._M_start + __n); }
+
+    protected:
+
+      void
+      _M_range_check(size_type __n) const
+      {
+ if (__n >= this->size())
+   __throw_out_of_range_fmt(("vector::_M_range_check: __n " "(which is %zu) >= this->size() " "(which is %zu)"),
+
+
+       __n, this->size());
+      }
+
+    public:
+# 822 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      reference
+      at(size_type __n)
+      {
+ _M_range_check(__n);
+ return (*this)[__n];
+      }
+# 840 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      const_reference
+      at(size_type __n) const
+      {
+ _M_range_check(__n);
+ return (*this)[__n];
+      }
+
+
+
+
+
+      reference
+      front() noexcept
+      { return *begin(); }
+
+
+
+
+
+      const_reference
+      front() const noexcept
+      { return *begin(); }
+
+
+
+
+
+      reference
+      back() noexcept
+      { return *(end() - 1); }
+
+
+
+
+
+      const_reference
+      back() const noexcept
+      { return *(end() - 1); }
+# 887 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      _Tp*
+
+
+
+      data() noexcept
+      { return _M_data_ptr(this->_M_impl._M_start); }
+
+
+      const _Tp*
+
+
+
+      data() const noexcept
+      { return _M_data_ptr(this->_M_impl._M_start); }
+# 913 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      void
+      push_back(const value_type& __x)
+      {
+ if (this->_M_impl._M_finish != this->_M_impl._M_end_of_storage)
+   {
+     _Alloc_traits::construct(this->_M_impl, this->_M_impl._M_finish,
+                              __x);
+     ++this->_M_impl._M_finish;
+   }
+ else
+
+   _M_emplace_back_aux(__x);
+
+
+
+      }
+
+
+      void
+      push_back(value_type&& __x)
+      { emplace_back(std::move(__x)); }
+
+      template<typename... _Args>
+        void
+        emplace_back(_Args&&... __args);
+# 949 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      void
+      pop_back() noexcept
+      {
+ --this->_M_impl._M_finish;
+ _Alloc_traits::destroy(this->_M_impl, this->_M_impl._M_finish);
+      }
+# 969 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      template<typename... _Args>
+        iterator
+        emplace(const_iterator __position, _Args&&... __args);
+# 984 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      iterator
+      insert(const_iterator __position, const value_type& __x);
+# 1014 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      iterator
+      insert(const_iterator __position, value_type&& __x)
+      { return emplace(__position, std::move(__x)); }
+# 1031 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      iterator
+      insert(const_iterator __position, initializer_list<value_type> __l)
+      { return this->insert(__position, __l.begin(), __l.end()); }
+# 1051 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      iterator
+      insert(const_iterator __position, size_type __n, const value_type& __x)
+      {
+ difference_type __offset = __position - cbegin();
+ _M_fill_insert(begin() + __offset, __n, __x);
+ return begin() + __offset;
+      }
+# 1093 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      template<typename _InputIterator,
+        typename = std::_RequireInputIter<_InputIterator>>
+        iterator
+        insert(const_iterator __position, _InputIterator __first,
+        _InputIterator __last)
+        {
+   difference_type __offset = __position - cbegin();
+   _M_insert_dispatch(begin() + __offset,
+        __first, __last, __false_type());
+   return begin() + __offset;
+ }
+# 1145 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      iterator
+
+      erase(const_iterator __position)
+      { return _M_erase(begin() + (__position - cbegin())); }
+# 1172 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      iterator
+
+      erase(const_iterator __first, const_iterator __last)
+      {
+ const auto __beg = begin();
+ const auto __cbeg = cbegin();
+ return _M_erase(__beg + (__first - __cbeg), __beg + (__last - __cbeg));
+      }
+# 1194 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      void
+      swap(vector& __x) noexcept
+      {
+ this->_M_impl._M_swap_data(__x._M_impl);
+ _Alloc_traits::_S_on_swap(_M_get_Tp_allocator(),
+                           __x._M_get_Tp_allocator());
+      }
+
+
+
+
+
+
+
+      void
+      clear() noexcept
+      { _M_erase_at_end(this->_M_impl._M_start); }
+
+    protected:
+
+
+
+
+      template<typename _ForwardIterator>
+        pointer
+        _M_allocate_and_copy(size_type __n,
+        _ForwardIterator __first, _ForwardIterator __last)
+        {
+   pointer __result = this->_M_allocate(__n);
+   if (true)
+     {
+       std::__uninitialized_copy_a(__first, __last, __result,
+       _M_get_Tp_allocator());
+       return __result;
+     }
+   if (false)
+     {
+       _M_deallocate(__result, __n);
+                              ;
+     }
+ }
+# 1243 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      template<typename _Integer>
+        void
+        _M_initialize_dispatch(_Integer __n, _Integer __value, __true_type)
+        {
+   this->_M_impl._M_start = _M_allocate(static_cast<size_type>(__n));
+   this->_M_impl._M_end_of_storage =
+     this->_M_impl._M_start + static_cast<size_type>(__n);
+   _M_fill_initialize(static_cast<size_type>(__n), __value);
+ }
+
+
+      template<typename _InputIterator>
+        void
+        _M_initialize_dispatch(_InputIterator __first, _InputIterator __last,
+          __false_type)
+        {
+   typedef typename std::iterator_traits<_InputIterator>::
+     iterator_category _IterCategory;
+   _M_range_initialize(__first, __last, _IterCategory());
+ }
+
+
+      template<typename _InputIterator>
+        void
+        _M_range_initialize(_InputIterator __first,
+       _InputIterator __last, std::input_iterator_tag)
+        {
+   for (; __first != __last; ++__first)
+
+     emplace_back(*__first);
+
+
+
+ }
+
+
+      template<typename _ForwardIterator>
+        void
+        _M_range_initialize(_ForwardIterator __first,
+       _ForwardIterator __last, std::forward_iterator_tag)
+        {
+   const size_type __n = std::distance(__first, __last);
+   this->_M_impl._M_start = this->_M_allocate(__n);
+   this->_M_impl._M_end_of_storage = this->_M_impl._M_start + __n;
+   this->_M_impl._M_finish =
+     std::__uninitialized_copy_a(__first, __last,
+     this->_M_impl._M_start,
+     _M_get_Tp_allocator());
+ }
+
+
+
+      void
+      _M_fill_initialize(size_type __n, const value_type& __value)
+      {
+ this->_M_impl._M_finish =
+   std::__uninitialized_fill_n_a(this->_M_impl._M_start, __n, __value,
+     _M_get_Tp_allocator());
+      }
+
+
+
+      void
+      _M_default_initialize(size_type __n)
+      {
+ this->_M_impl._M_finish =
+   std::__uninitialized_default_n_a(this->_M_impl._M_start, __n,
+        _M_get_Tp_allocator());
+      }
+# 1321 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      template<typename _Integer>
+        void
+        _M_assign_dispatch(_Integer __n, _Integer __val, __true_type)
+        { _M_fill_assign(__n, __val); }
+
+
+      template<typename _InputIterator>
+        void
+        _M_assign_dispatch(_InputIterator __first, _InputIterator __last,
+      __false_type)
+        {
+   typedef typename std::iterator_traits<_InputIterator>::
+     iterator_category _IterCategory;
+   _M_assign_aux(__first, __last, _IterCategory());
+ }
+
+
+      template<typename _InputIterator>
+        void
+        _M_assign_aux(_InputIterator __first, _InputIterator __last,
+        std::input_iterator_tag);
+
+
+      template<typename _ForwardIterator>
+        void
+        _M_assign_aux(_ForwardIterator __first, _ForwardIterator __last,
+        std::forward_iterator_tag);
+
+
+
+      void
+      _M_fill_assign(size_type __n, const value_type& __val);
+# 1361 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+      template<typename _Integer>
+        void
+        _M_insert_dispatch(iterator __pos, _Integer __n, _Integer __val,
+      __true_type)
+        { _M_fill_insert(__pos, __n, __val); }
+
+
+      template<typename _InputIterator>
+        void
+        _M_insert_dispatch(iterator __pos, _InputIterator __first,
+      _InputIterator __last, __false_type)
+        {
+   typedef typename std::iterator_traits<_InputIterator>::
+     iterator_category _IterCategory;
+   _M_range_insert(__pos, __first, __last, _IterCategory());
+ }
+
+
+      template<typename _InputIterator>
+        void
+        _M_range_insert(iterator __pos, _InputIterator __first,
+   _InputIterator __last, std::input_iterator_tag);
+
+
+      template<typename _ForwardIterator>
+        void
+        _M_range_insert(iterator __pos, _ForwardIterator __first,
+   _ForwardIterator __last, std::forward_iterator_tag);
+
+
+
+      void
+      _M_fill_insert(iterator __pos, size_type __n, const value_type& __x);
+
+
+
+      void
+      _M_default_append(size_type __n);
+
+      bool
+      _M_shrink_to_fit();
+
+
+
+
+
+
+
+      template<typename... _Args>
+        void
+        _M_insert_aux(iterator __position, _Args&&... __args);
+
+      template<typename... _Args>
+        void
+        _M_emplace_back_aux(_Args&&... __args);
+
+
+
+      size_type
+      _M_check_len(size_type __n, const char* __s) const
+      {
+ if (max_size() - size() < __n)
+   __throw_length_error((__s));
+
+ const size_type __len = size() + std::max(size(), __n);
+ return (__len < size() || __len > max_size()) ? max_size() : __len;
+      }
+
+
+
+
+
+      void
+      _M_erase_at_end(pointer __pos) noexcept
+      {
+ std::_Destroy(__pos, this->_M_impl._M_finish, _M_get_Tp_allocator());
+ this->_M_impl._M_finish = __pos;
+      }
+
+      iterator
+      _M_erase(iterator __position);
+
+      iterator
+      _M_erase(iterator __first, iterator __last);
+
+
+    private:
+
+
+
+      void
+      _M_move_assign(vector&& __x, std::true_type) noexcept
+      {
+ vector __tmp(get_allocator());
+ this->_M_impl._M_swap_data(__tmp._M_impl);
+ this->_M_impl._M_swap_data(__x._M_impl);
+ std::__alloc_on_move(_M_get_Tp_allocator(), __x._M_get_Tp_allocator());
+      }
+
+
+
+      void
+      _M_move_assign(vector&& __x, std::false_type)
+      {
+ if (__x._M_get_Tp_allocator() == this->_M_get_Tp_allocator())
+   _M_move_assign(std::move(__x), std::true_type());
+ else
+   {
+
+
+     this->assign(std::__make_move_if_noexcept_iterator(__x.begin()),
+    std::__make_move_if_noexcept_iterator(__x.end()));
+     __x.clear();
+   }
+      }
+
+
+
+      template<typename _Up>
+ _Up*
+ _M_data_ptr(_Up* __ptr) const
+ { return __ptr; }
+
+      template<typename _Ptr>
+ typename std::pointer_traits<_Ptr>::element_type*
+ _M_data_ptr(_Ptr __ptr) const
+ { return empty() ? nullptr : std::__addressof(*__ptr); }
+
+
+
+
+
+
+    };
+# 1507 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+  template<typename _Tp, typename _Alloc>
+    inline bool
+    operator==(const vector<_Tp, _Alloc>& __x, const vector<_Tp, _Alloc>& __y)
+    { return (__x.size() == __y.size()
+       && std::equal(__x.begin(), __x.end(), __y.begin())); }
+# 1524 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_vector.h" 3
+  template<typename _Tp, typename _Alloc>
+    inline bool
+    operator<(const vector<_Tp, _Alloc>& __x, const vector<_Tp, _Alloc>& __y)
+    { return std::lexicographical_compare(__x.begin(), __x.end(),
+       __y.begin(), __y.end()); }
+
+
+  template<typename _Tp, typename _Alloc>
+    inline bool
+    operator!=(const vector<_Tp, _Alloc>& __x, const vector<_Tp, _Alloc>& __y)
+    { return !(__x == __y); }
+
+
+  template<typename _Tp, typename _Alloc>
+    inline bool
+    operator>(const vector<_Tp, _Alloc>& __x, const vector<_Tp, _Alloc>& __y)
+    { return __y < __x; }
+
+
+  template<typename _Tp, typename _Alloc>
+    inline bool
+    operator<=(const vector<_Tp, _Alloc>& __x, const vector<_Tp, _Alloc>& __y)
+    { return !(__y < __x); }
+
+
+  template<typename _Tp, typename _Alloc>
+    inline bool
+    operator>=(const vector<_Tp, _Alloc>& __x, const vector<_Tp, _Alloc>& __y)
+    { return !(__x < __y); }
+
+
+  template<typename _Tp, typename _Alloc>
+    inline void
+    swap(vector<_Tp, _Alloc>& __x, vector<_Tp, _Alloc>& __y)
+    noexcept(noexcept(__x.swap(__y)))
+    { __x.swap(__y); }
+
+
+}
+# 65 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/vector" 2 3
+# 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_bvector.h" 1 3
+# 63 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_bvector.h" 3
+namespace std __attribute__ ((__visibility__ ("default")))
+{
+
+
+  typedef unsigned long _Bit_type;
+  enum { _S_word_bit = int(8 * sizeof(_Bit_type)) };
+
+  struct _Bit_reference
+  {
+    _Bit_type * _M_p;
+    _Bit_type _M_mask;
+
+    _Bit_reference(_Bit_type * __x, _Bit_type __y)
+    : _M_p(__x), _M_mask(__y) { }
+
+    _Bit_reference() noexcept : _M_p(0), _M_mask(0) { }
+
+    operator bool() const noexcept
+    { return !!(*_M_p & _M_mask); }
+
+    _Bit_reference&
+    operator=(bool __x) noexcept
+    {
+      if (__x)
+ *_M_p |= _M_mask;
+      else
+ *_M_p &= ~_M_mask;
+      return *this;
+    }
+
+    _Bit_reference&
+    operator=(const _Bit_reference& __x) noexcept
+    { return *this = bool(__x); }
+
+    bool
+    operator==(const _Bit_reference& __x) const
+    { return bool(*this) == bool(__x); }
+
+    bool
+    operator<(const _Bit_reference& __x) const
+    { return !bool(*this) && bool(__x); }
+
+    void
+    flip() noexcept
+    { *_M_p ^= _M_mask; }
+  };
+
+
+  inline void
+  swap(_Bit_reference __x, _Bit_reference __y) noexcept
+  {
+    bool __tmp = __x;
+    __x = __y;
+    __y = __tmp;
+  }
+
+  inline void
+  swap(_Bit_reference __x, bool& __y) noexcept
+  {
+    bool __tmp = __x;
+    __x = __y;
+    __y = __tmp;
+  }
+
+  inline void
+  swap(bool& __x, _Bit_reference __y) noexcept
+  {
+    bool __tmp = __x;
+    __x = __y;
+    __y = __tmp;
+  }
+
+
+  struct _Bit_iterator_base
+  : public std::iterator<std::random_access_iterator_tag, bool>
+  {
+    _Bit_type * _M_p;
+    unsigned int _M_offset;
+
+    _Bit_iterator_base(_Bit_type * __x, unsigned int __y)
+    : _M_p(__x), _M_offset(__y) { }
+
+    void
+    _M_bump_up()
+    {
+      if (_M_offset++ == int(_S_word_bit) - 1)
+ {
+   _M_offset = 0;
+   ++_M_p;
+ }
+    }
+
+    void
+    _M_bump_down()
+    {
+      if (_M_offset-- == 0)
+ {
+   _M_offset = int(_S_word_bit) - 1;
+   --_M_p;
+ }
+    }
+
+    void
+    _M_incr(ptrdiff_t __i)
+    {
+      difference_type __n = __i + _M_offset;
+      _M_p += __n / int(_S_word_bit);
+      __n = __n % int(_S_word_bit);
+      if (__n < 0)
+ {
+   __n += int(_S_word_bit);
+   --_M_p;
+ }
+      _M_offset = static_cast<unsigned int>(__n);
+    }
+
+    bool
+    operator==(const _Bit_iterator_base& __i) const
+    { return _M_p == __i._M_p && _M_offset == __i._M_offset; }
+
+    bool
+    operator<(const _Bit_iterator_base& __i) const
+    {
+      return _M_p < __i._M_p
+      || (_M_p == __i._M_p && _M_offset < __i._M_offset);
+    }
+
+    bool
+    operator!=(const _Bit_iterator_base& __i) const
+    { return !(*this == __i); }
+
+    bool
+    operator>(const _Bit_iterator_base& __i) const
+    { return __i < *this; }
+
+    bool
+    operator<=(const _Bit_iterator_base& __i) const
+    { return !(__i < *this); }
+
+    bool
+    operator>=(const _Bit_iterator_base& __i) const
+    { return !(*this < __i); }
+  };
+
+  inline ptrdiff_t
+  operator-(const _Bit_iterator_base& __x, const _Bit_iterator_base& __y)
+  {
+    return (int(_S_word_bit) * (__x._M_p - __y._M_p)
+     + __x._M_offset - __y._M_offset);
+  }
+
+  struct _Bit_iterator : public _Bit_iterator_base
+  {
+    typedef _Bit_reference reference;
+    typedef _Bit_reference* pointer;
+    typedef _Bit_iterator iterator;
+
+    _Bit_iterator() : _Bit_iterator_base(0, 0) { }
+
+    _Bit_iterator(_Bit_type * __x, unsigned int __y)
+    : _Bit_iterator_base(__x, __y) { }
+
+    iterator
+    _M_const_cast() const
+    { return *this; }
+
+    reference
+    operator*() const
+    { return reference(_M_p, 1UL << _M_offset); }
+
+    iterator&
+    operator++()
+    {
+      _M_bump_up();
+      return *this;
+    }
+
+    iterator
+    operator++(int)
+    {
+      iterator __tmp = *this;
+      _M_bump_up();
+      return __tmp;
+    }
+
+    iterator&
+    operator--()
+    {
+      _M_bump_down();
+      return *this;
+    }
+
+    iterator
+    operator--(int)
+    {
+      iterator __tmp = *this;
+      _M_bump_down();
+      return __tmp;
+    }
+
+    iterator&
+    operator+=(difference_type __i)
+    {
+      _M_incr(__i);
+      return *this;
+    }
+
+    iterator&
+    operator-=(difference_type __i)
+    {
+      *this += -__i;
+      return *this;
+    }
+
+    iterator
+    operator+(difference_type __i) const
+    {
+      iterator __tmp = *this;
+      return __tmp += __i;
+    }
+
+    iterator
+    operator-(difference_type __i) const
+    {
+      iterator __tmp = *this;
+      return __tmp -= __i;
+    }
+
+    reference
+    operator[](difference_type __i) const
+    { return *(*this + __i); }
+  };
+
+  inline _Bit_iterator
+  operator+(ptrdiff_t __n, const _Bit_iterator& __x)
+  { return __x + __n; }
+
+  struct _Bit_const_iterator : public _Bit_iterator_base
+  {
+    typedef bool reference;
+    typedef bool const_reference;
+    typedef const bool* pointer;
+    typedef _Bit_const_iterator const_iterator;
+
+    _Bit_const_iterator() : _Bit_iterator_base(0, 0) { }
+
+    _Bit_const_iterator(_Bit_type * __x, unsigned int __y)
+    : _Bit_iterator_base(__x, __y) { }
+
+    _Bit_const_iterator(const _Bit_iterator& __x)
+    : _Bit_iterator_base(__x._M_p, __x._M_offset) { }
+
+    _Bit_iterator
+    _M_const_cast() const
+    { return _Bit_iterator(_M_p, _M_offset); }
+
+    const_reference
+    operator*() const
+    { return _Bit_reference(_M_p, 1UL << _M_offset); }
+
+    const_iterator&
+    operator++()
+    {
+      _M_bump_up();
+      return *this;
+    }
+
+    const_iterator
+    operator++(int)
+    {
+      const_iterator __tmp = *this;
+      _M_bump_up();
+      return __tmp;
+    }
+
+    const_iterator&
+    operator--()
+    {
+      _M_bump_down();
+      return *this;
+    }
+
+    const_iterator
+    operator--(int)
+    {
+      const_iterator __tmp = *this;
+      _M_bump_down();
+      return __tmp;
+    }
+
+    const_iterator&
+    operator+=(difference_type __i)
+    {
+      _M_incr(__i);
+      return *this;
+    }
+
+    const_iterator&
+    operator-=(difference_type __i)
+    {
+      *this += -__i;
+      return *this;
+    }
+
+    const_iterator
+    operator+(difference_type __i) const
+    {
+      const_iterator __tmp = *this;
+      return __tmp += __i;
+    }
+
+    const_iterator
+    operator-(difference_type __i) const
+    {
+      const_iterator __tmp = *this;
+      return __tmp -= __i;
+    }
+
+    const_reference
+    operator[](difference_type __i) const
+    { return *(*this + __i); }
+  };
+
+  inline _Bit_const_iterator
+  operator+(ptrdiff_t __n, const _Bit_const_iterator& __x)
+  { return __x + __n; }
+
+  inline void
+  __fill_bvector(_Bit_iterator __first, _Bit_iterator __last, bool __x)
+  {
+    for (; __first != __last; ++__first)
+      *__first = __x;
+  }
+
+  inline void
+  fill(_Bit_iterator __first, _Bit_iterator __last, const bool& __x)
+  {
+    if (__first._M_p != __last._M_p)
+      {
+ std::fill(__first._M_p + 1, __last._M_p, __x ? ~0 : 0);
+ __fill_bvector(__first, _Bit_iterator(__first._M_p + 1, 0), __x);
+ __fill_bvector(_Bit_iterator(__last._M_p, 0), __last, __x);
+      }
+    else
+      __fill_bvector(__first, __last, __x);
+  }
+
+  template<typename _Alloc>
+    struct _Bvector_base
+    {
+      typedef typename __gnu_cxx::__alloc_traits<_Alloc>::template
+        rebind<_Bit_type>::other _Bit_alloc_type;
+      typedef typename __gnu_cxx::__alloc_traits<_Bit_alloc_type>
+ _Bit_alloc_traits;
+      typedef typename _Bit_alloc_traits::pointer _Bit_pointer;
+
+      struct _Bvector_impl
+      : public _Bit_alloc_type
+      {
+ _Bit_iterator _M_start;
+ _Bit_iterator _M_finish;
+ _Bit_pointer _M_end_of_storage;
+
+ _Bvector_impl()
+ : _Bit_alloc_type(), _M_start(), _M_finish(), _M_end_of_storage()
+ { }
+
+ _Bvector_impl(const _Bit_alloc_type& __a)
+ : _Bit_alloc_type(__a), _M_start(), _M_finish(), _M_end_of_storage()
+ { }
+
+
+ _Bvector_impl(_Bit_alloc_type&& __a)
+ : _Bit_alloc_type(std::move(__a)), _M_start(), _M_finish(),
+   _M_end_of_storage()
+ { }
+
+
+ _Bit_type*
+ _M_end_addr() const noexcept
+ {
+   if (_M_end_of_storage)
+     return std::__addressof(_M_end_of_storage[-1]) + 1;
+   return 0;
+ }
+      };
+
+    public:
+      typedef _Alloc allocator_type;
+
+      _Bit_alloc_type&
+      _M_get_Bit_allocator() noexcept
+      { return *static_cast<_Bit_alloc_type*>(&this->_M_impl); }
+
+      const _Bit_alloc_type&
+      _M_get_Bit_allocator() const noexcept
+      { return *static_cast<const _Bit_alloc_type*>(&this->_M_impl); }
+
+      allocator_type
+      get_allocator() const noexcept
+      { return allocator_type(_M_get_Bit_allocator()); }
+
+      _Bvector_base()
+      : _M_impl() { }
+
+      _Bvector_base(const allocator_type& __a)
+      : _M_impl(__a) { }
+
+
+      _Bvector_base(_Bvector_base&& __x) noexcept
+      : _M_impl(std::move(__x._M_get_Bit_allocator()))
+      {
+ this->_M_impl._M_start = __x._M_impl._M_start;
+ this->_M_impl._M_finish = __x._M_impl._M_finish;
+ this->_M_impl._M_end_of_storage = __x._M_impl._M_end_of_storage;
+ __x._M_impl._M_start = _Bit_iterator();
+ __x._M_impl._M_finish = _Bit_iterator();
+ __x._M_impl._M_end_of_storage = nullptr;
+      }
+
+
+      ~_Bvector_base()
+      { this->_M_deallocate(); }
+
+    protected:
+      _Bvector_impl _M_impl;
+
+      _Bit_pointer
+      _M_allocate(size_t __n)
+      { return _Bit_alloc_traits::allocate(_M_impl, _S_nword(__n)); }
+
+      void
+      _M_deallocate()
+      {
+ if (_M_impl._M_start._M_p)
+   {
+     const size_t __n = _M_impl._M_end_addr() - _M_impl._M_start._M_p;
+     _Bit_alloc_traits::deallocate(_M_impl,
+       _M_impl._M_end_of_storage - __n,
+       __n);
+   }
+      }
+
+      static size_t
+      _S_nword(size_t __n)
+      { return (__n + int(_S_word_bit) - 1) / int(_S_word_bit); }
+    };
+
+
+}
+
+
+
+
+namespace std __attribute__ ((__visibility__ ("default")))
+{
+# 540 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_bvector.h" 3
+template<typename _Alloc>
+  class vector<bool, _Alloc> : protected _Bvector_base<_Alloc>
+  {
+    typedef _Bvector_base<_Alloc> _Base;
+    typedef typename _Base::_Bit_pointer _Bit_pointer;
+    typedef typename _Base::_Bit_alloc_traits _Bit_alloc_traits;
+
+
+    template<typename> friend struct hash;
+
+
+  public:
+    typedef bool value_type;
+    typedef size_t size_type;
+    typedef ptrdiff_t difference_type;
+    typedef _Bit_reference reference;
+    typedef bool const_reference;
+    typedef _Bit_reference* pointer;
+    typedef const bool* const_pointer;
+    typedef _Bit_iterator iterator;
+    typedef _Bit_const_iterator const_iterator;
+    typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
+    typedef std::reverse_iterator<iterator> reverse_iterator;
+    typedef _Alloc allocator_type;
+
+    allocator_type get_allocator() const
+    { return _Base::get_allocator(); }
+
+  protected:
+    using _Base::_M_allocate;
+    using _Base::_M_deallocate;
+    using _Base::_S_nword;
+    using _Base::_M_get_Bit_allocator;
+
+  public:
+    vector()
+
+      noexcept(is_nothrow_default_constructible<allocator_type>::value)
+
+    : _Base() { }
+
+    explicit
+    vector(const allocator_type& __a)
+    : _Base(__a) { }
+
+
+    explicit
+    vector(size_type __n, const allocator_type& __a = allocator_type())
+    : vector(__n, false, __a)
+    { }
+
+    vector(size_type __n, const bool& __value,
+    const allocator_type& __a = allocator_type())
+    : _Base(__a)
+    {
+      _M_initialize(__n);
+      std::fill(this->_M_impl._M_start._M_p, this->_M_impl._M_end_addr(),
+  __value ? ~0 : 0);
+    }
+# 611 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_bvector.h" 3
+    vector(const vector& __x)
+    : _Base(_Bit_alloc_traits::_S_select_on_copy(__x._M_get_Bit_allocator()))
+    {
+      _M_initialize(__x.size());
+      _M_copy_aligned(__x.begin(), __x.end(), this->_M_impl._M_start);
+    }
+
+
+    vector(vector&& __x) noexcept
+    : _Base(std::move(__x)) { }
+
+    vector(vector&& __x, const allocator_type& __a)
+    noexcept(_Bit_alloc_traits::_S_always_equal())
+    : _Base(__a)
+    {
+      if (__x.get_allocator() == __a)
+ {
+   this->_M_impl._M_start = __x._M_impl._M_start;
+   this->_M_impl._M_finish = __x._M_impl._M_finish;
+   this->_M_impl._M_end_of_storage = __x._M_impl._M_end_of_storage;
+   __x._M_impl._M_start = _Bit_iterator();
+   __x._M_impl._M_finish = _Bit_iterator();
+   __x._M_impl._M_end_of_storage = nullptr;
+ }
+      else
+ {
+   _M_initialize(__x.size());
+   _M_copy_aligned(__x.begin(), __x.end(), begin());
+   __x.clear();
+ }
+    }
+
+    vector(const vector& __x, const allocator_type& __a)
+    : _Base(__a)
+    {
+      _M_initialize(__x.size());
+      _M_copy_aligned(__x.begin(), __x.end(), this->_M_impl._M_start);
+    }
+
+    vector(initializer_list<bool> __l,
+    const allocator_type& __a = allocator_type())
+    : _Base(__a)
+    {
+      _M_initialize_range(__l.begin(), __l.end(),
+     random_access_iterator_tag());
+    }
+
+
+
+    template<typename _InputIterator,
+      typename = std::_RequireInputIter<_InputIterator>>
+      vector(_InputIterator __first, _InputIterator __last,
+      const allocator_type& __a = allocator_type())
+      : _Base(__a)
+      { _M_initialize_dispatch(__first, __last, __false_type()); }
+# 677 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_bvector.h" 3
+    ~vector() noexcept { }
+
+    vector&
+    operator=(const vector& __x)
+    {
+      if (&__x == this)
+ return *this;
+
+      if (_Bit_alloc_traits::_S_propagate_on_copy_assign())
+ {
+   if (this->_M_get_Bit_allocator() != __x._M_get_Bit_allocator())
+     {
+       this->_M_deallocate();
+       std::__alloc_on_copy(_M_get_Bit_allocator(),
+       __x._M_get_Bit_allocator());
+       _M_initialize(__x.size());
+     }
+   else
+     std::__alloc_on_copy(_M_get_Bit_allocator(),
+     __x._M_get_Bit_allocator());
+ }
+
+      if (__x.size() > capacity())
+ {
+   this->_M_deallocate();
+   _M_initialize(__x.size());
+ }
+      this->_M_impl._M_finish = _M_copy_aligned(__x.begin(), __x.end(),
+      begin());
+      return *this;
+    }
+
+
+    vector&
+    operator=(vector&& __x) noexcept(_Bit_alloc_traits::_S_nothrow_move())
+    {
+      if (_Bit_alloc_traits::_S_propagate_on_move_assign()
+   || this->_M_get_Bit_allocator() == __x._M_get_Bit_allocator())
+ {
+   this->_M_deallocate();
+   this->_M_impl._M_start = __x._M_impl._M_start;
+   this->_M_impl._M_finish = __x._M_impl._M_finish;
+   this->_M_impl._M_end_of_storage = __x._M_impl._M_end_of_storage;
+   __x._M_impl._M_start = _Bit_iterator();
+   __x._M_impl._M_finish = _Bit_iterator();
+   __x._M_impl._M_end_of_storage = nullptr;
+   std::__alloc_on_move(_M_get_Bit_allocator(),
+          __x._M_get_Bit_allocator());
+ }
+      else
+ {
+   if (__x.size() > capacity())
+     {
+       this->_M_deallocate();
+       _M_initialize(__x.size());
+     }
+   this->_M_impl._M_finish = _M_copy_aligned(__x.begin(), __x.end(),
+          begin());
+   __x.clear();
+ }
+      return *this;
+    }
+
+    vector&
+    operator=(initializer_list<bool> __l)
+    {
+      this->assign (__l.begin(), __l.end());
+      return *this;
+    }
+
+
+
+
+
+
+    void
+    assign(size_type __n, const bool& __x)
+    { _M_fill_assign(__n, __x); }
+
+
+    template<typename _InputIterator,
+      typename = std::_RequireInputIter<_InputIterator>>
+      void
+      assign(_InputIterator __first, _InputIterator __last)
+      { _M_assign_dispatch(__first, __last, __false_type()); }
+# 773 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_bvector.h" 3
+    void
+    assign(initializer_list<bool> __l)
+    { this->assign(__l.begin(), __l.end()); }
+
+
+    iterator
+    begin() noexcept
+    { return this->_M_impl._M_start; }
+
+    const_iterator
+    begin() const noexcept
+    { return this->_M_impl._M_start; }
+
+    iterator
+    end() noexcept
+    { return this->_M_impl._M_finish; }
+
+    const_iterator
+    end() const noexcept
+    { return this->_M_impl._M_finish; }
+
+    reverse_iterator
+    rbegin() noexcept
+    { return reverse_iterator(end()); }
+
+    const_reverse_iterator
+    rbegin() const noexcept
+    { return const_reverse_iterator(end()); }
+
+    reverse_iterator
+    rend() noexcept
+    { return reverse_iterator(begin()); }
+
+    const_reverse_iterator
+    rend() const noexcept
+    { return const_reverse_iterator(begin()); }
+
+
+    const_iterator
+    cbegin() const noexcept
+    { return this->_M_impl._M_start; }
+
+    const_iterator
+    cend() const noexcept
+    { return this->_M_impl._M_finish; }
+
+    const_reverse_iterator
+    crbegin() const noexcept
+    { return const_reverse_iterator(end()); }
+
+    const_reverse_iterator
+    crend() const noexcept
+    { return const_reverse_iterator(begin()); }
+
+
+    size_type
+    size() const noexcept
+    { return size_type(end() - begin()); }
+
+    size_type
+    max_size() const noexcept
+    {
+      const size_type __isize =
+ __gnu_cxx::__numeric_traits<difference_type>::__max
+ - int(_S_word_bit) + 1;
+      const size_type __asize
+ = _Bit_alloc_traits::max_size(_M_get_Bit_allocator());
+      return (__asize <= __isize / int(_S_word_bit)
+       ? __asize * int(_S_word_bit) : __isize);
+    }
+
+    size_type
+    capacity() const noexcept
+    { return size_type(const_iterator(this->_M_impl._M_end_addr(), 0)
+         - begin()); }
+
+    bool
+    empty() const noexcept
+    { return begin() == end(); }
+
+    reference
+    operator[](size_type __n)
+    {
+      return *iterator(this->_M_impl._M_start._M_p
+         + __n / int(_S_word_bit), __n % int(_S_word_bit));
+    }
+
+    const_reference
+    operator[](size_type __n) const
+    {
+      return *const_iterator(this->_M_impl._M_start._M_p
+        + __n / int(_S_word_bit), __n % int(_S_word_bit));
+    }
+
+  protected:
+    void
+    _M_range_check(size_type __n) const
+    {
+      if (__n >= this->size())
+ __throw_out_of_range_fmt(("vector<bool>::_M_range_check: __n " "(which is %zu) >= this->size() " "(which is %zu)"),
+
+
+     __n, this->size());
+    }
+
+  public:
+    reference
+    at(size_type __n)
+    { _M_range_check(__n); return (*this)[__n]; }
+
+    const_reference
+    at(size_type __n) const
+    { _M_range_check(__n); return (*this)[__n]; }
+
+    void
+    reserve(size_type __n)
+    {
+      if (__n > max_size())
+ __throw_length_error(("vector::reserve"));
+      if (capacity() < __n)
+ _M_reallocate(__n);
+    }
+
+    reference
+    front()
+    { return *begin(); }
+
+    const_reference
+    front() const
+    { return *begin(); }
+
+    reference
+    back()
+    { return *(end() - 1); }
+
+    const_reference
+    back() const
+    { return *(end() - 1); }
+
+
+
+
+
+
+    void
+    data() noexcept { }
+
+    void
+    push_back(bool __x)
+    {
+      if (this->_M_impl._M_finish._M_p != this->_M_impl._M_end_addr())
+        *this->_M_impl._M_finish++ = __x;
+      else
+        _M_insert_aux(end(), __x);
+    }
+
+    void
+    swap(vector& __x) noexcept
+    {
+      std::swap(this->_M_impl._M_start, __x._M_impl._M_start);
+      std::swap(this->_M_impl._M_finish, __x._M_impl._M_finish);
+      std::swap(this->_M_impl._M_end_of_storage,
+  __x._M_impl._M_end_of_storage);
+      _Bit_alloc_traits::_S_on_swap(_M_get_Bit_allocator(),
+        __x._M_get_Bit_allocator());
+    }
+
+
+    static void
+    swap(reference __x, reference __y) noexcept
+    {
+      bool __tmp = __x;
+      __x = __y;
+      __y = __tmp;
+    }
+
+    iterator
+
+    insert(const_iterator __position, const bool& __x = bool())
+
+
+
+    {
+      const difference_type __n = __position - begin();
+      if (this->_M_impl._M_finish._M_p != this->_M_impl._M_end_addr()
+   && __position == end())
+        *this->_M_impl._M_finish++ = __x;
+      else
+        _M_insert_aux(__position._M_const_cast(), __x);
+      return begin() + __n;
+    }
+
+
+    template<typename _InputIterator,
+      typename = std::_RequireInputIter<_InputIterator>>
+      iterator
+      insert(const_iterator __position,
+      _InputIterator __first, _InputIterator __last)
+      {
+ difference_type __offset = __position - cbegin();
+ _M_insert_dispatch(__position._M_const_cast(),
+      __first, __last, __false_type());
+ return begin() + __offset;
+      }
+# 989 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/stl_bvector.h" 3
+    iterator
+    insert(const_iterator __position, size_type __n, const bool& __x)
+    {
+      difference_type __offset = __position - cbegin();
+      _M_fill_insert(__position._M_const_cast(), __n, __x);
+      return begin() + __offset;
+    }
+
+
+
+
+
+
+
+    iterator
+    insert(const_iterator __p, initializer_list<bool> __l)
+    { return this->insert(__p, __l.begin(), __l.end()); }
+
+
+    void
+    pop_back()
+    { --this->_M_impl._M_finish; }
+
+    iterator
+
+    erase(const_iterator __position)
+
+
+
+    { return _M_erase(__position._M_const_cast()); }
+
+    iterator
+
+    erase(const_iterator __first, const_iterator __last)
+
+
+
+    { return _M_erase(__first._M_const_cast(), __last._M_const_cast()); }
+
+    void
+    resize(size_type __new_size, bool __x = bool())
+    {
+      if (__new_size < size())
+        _M_erase_at_end(begin() + difference_type(__new_size));
+      else
+        insert(end(), __new_size - size(), __x);
+    }
+
+
+    void
+    shrink_to_fit()
+    { _M_shrink_to_fit(); }
+
+
+    void
+    flip() noexcept
+    {
+      _Bit_type * const __end = this->_M_impl._M_end_addr();
+      for (_Bit_type * __p = this->_M_impl._M_start._M_p; __p != __end; ++__p)
+        *__p = ~*__p;
+    }
+
+    void
+    clear() noexcept
+    { _M_erase_at_end(begin()); }
+
+
+    template<typename... _Args>
+      void
+      emplace_back(_Args&&... __args)
+      { push_back(bool(__args...)); }
+
+    template<typename... _Args>
+      iterator
+      emplace(const_iterator __pos, _Args&&... __args)
+      { return insert(__pos, bool(__args...)); }
+
+
+  protected:
+
+    iterator
+    _M_copy_aligned(const_iterator __first, const_iterator __last,
+      iterator __result)
+    {
+      _Bit_type* __q = std::copy(__first._M_p, __last._M_p, __result._M_p);
+      return std::copy(const_iterator(__last._M_p, 0), __last,
+         iterator(__q, 0));
+    }
+
+    void
+    _M_initialize(size_type __n)
+    {
+      _Bit_pointer __q = this->_M_allocate(__n);
+      this->_M_impl._M_end_of_storage = __q + _S_nword(__n);
+      this->_M_impl._M_start = iterator(std::__addressof(*__q), 0);
+      this->_M_impl._M_finish = this->_M_impl._M_start + difference_type(__n);
+    }
+
+    void
+    _M_reallocate(size_type __n);
+
+
+    bool
+    _M_shrink_to_fit();
+
+
+
+
+
+
+    template<typename _Integer>
+      void
+      _M_initialize_dispatch(_Integer __n, _Integer __x, __true_type)
+      {
+ _M_initialize(static_cast<size_type>(__n));
+ std::fill(this->_M_impl._M_start._M_p,
+    this->_M_impl._M_end_addr(), __x ? ~0 : 0);
+      }
+
+    template<typename _InputIterator>
+      void
+      _M_initialize_dispatch(_InputIterator __first, _InputIterator __last,
+        __false_type)
+      { _M_initialize_range(__first, __last,
+       std::__iterator_category(__first)); }
+
+    template<typename _InputIterator>
+      void
+      _M_initialize_range(_InputIterator __first, _InputIterator __last,
+     std::input_iterator_tag)
+      {
+ for (; __first != __last; ++__first)
+   push_back(*__first);
+      }
+
+    template<typename _ForwardIterator>
+      void
+      _M_initialize_range(_ForwardIterator __first, _ForwardIterator __last,
+     std::forward_iterator_tag)
+      {
+ const size_type __n = std::distance(__first, __last);
+ _M_initialize(__n);
+ std::copy(__first, __last, this->_M_impl._M_start);
+      }
+
+
+
+    template<typename _Integer>
+      void
+      _M_assign_dispatch(_Integer __n, _Integer __val, __true_type)
+      { _M_fill_assign(__n, __val); }
+
+    template<class _InputIterator>
+      void
+      _M_assign_dispatch(_InputIterator __first, _InputIterator __last,
+    __false_type)
+      { _M_assign_aux(__first, __last, std::__iterator_category(__first)); }
+
+    void
+    _M_fill_assign(size_t __n, bool __x)
+    {
+      if (__n > size())
+ {
+   std::fill(this->_M_impl._M_start._M_p,
+      this->_M_impl._M_end_addr(), __x ? ~0 : 0);
+   insert(end(), __n - size(), __x);
+ }
+      else
+ {
+   _M_erase_at_end(begin() + __n);
+   std::fill(this->_M_impl._M_start._M_p,
+      this->_M_impl._M_end_addr(), __x ? ~0 : 0);
+ }
+    }
+
+    template<typename _InputIterator>
+      void
+      _M_assign_aux(_InputIterator __first, _InputIterator __last,
+      std::input_iterator_tag)
+      {
+ iterator __cur = begin();
+ for (; __first != __last && __cur != end(); ++__cur, ++__first)
+   *__cur = *__first;
+ if (__first == __last)
+   _M_erase_at_end(__cur);
+ else
+   insert(end(), __first, __last);
+      }
+
+    template<typename _ForwardIterator>
+      void
+      _M_assign_aux(_ForwardIterator __first, _ForwardIterator __last,
+      std::forward_iterator_tag)
+      {
+ const size_type __len = std::distance(__first, __last);
+ if (__len < size())
+   _M_erase_at_end(std::copy(__first, __last, begin()));
+ else
+   {
+     _ForwardIterator __mid = __first;
+     std::advance(__mid, size());
+     std::copy(__first, __mid, begin());
+     insert(end(), __mid, __last);
+   }
+      }
+
+
+
+
+
+    template<typename _Integer>
+      void
+      _M_insert_dispatch(iterator __pos, _Integer __n, _Integer __x,
+    __true_type)
+      { _M_fill_insert(__pos, __n, __x); }
+
+    template<typename _InputIterator>
+      void
+      _M_insert_dispatch(iterator __pos,
+    _InputIterator __first, _InputIterator __last,
+    __false_type)
+      { _M_insert_range(__pos, __first, __last,
+   std::__iterator_category(__first)); }
+
+    void
+    _M_fill_insert(iterator __position, size_type __n, bool __x);
+
+    template<typename _InputIterator>
+      void
+      _M_insert_range(iterator __pos, _InputIterator __first,
+        _InputIterator __last, std::input_iterator_tag)
+      {
+ for (; __first != __last; ++__first)
+   {
+     __pos = insert(__pos, *__first);
+     ++__pos;
+   }
+      }
+
+    template<typename _ForwardIterator>
+      void
+      _M_insert_range(iterator __position, _ForwardIterator __first,
+        _ForwardIterator __last, std::forward_iterator_tag);
+
+    void
+    _M_insert_aux(iterator __position, bool __x);
+
+    size_type
+    _M_check_len(size_type __n, const char* __s) const
+    {
+      if (max_size() - size() < __n)
+ __throw_length_error((__s));
+
+      const size_type __len = size() + std::max(size(), __n);
+      return (__len < size() || __len > max_size()) ? max_size() : __len;
+    }
+
+    void
+    _M_erase_at_end(iterator __pos)
+    { this->_M_impl._M_finish = __pos; }
+
+    iterator
+    _M_erase(iterator __pos);
+
+    iterator
+    _M_erase(iterator __first, iterator __last);
+  };
+
+
+}
+
+
+
+
+
+namespace std __attribute__ ((__visibility__ ("default")))
+{
+
+
+
+
+  template<typename _Alloc>
+    struct hash<std::vector<bool, _Alloc>>
+    : public __hash_base<size_t, std::vector<bool, _Alloc>>
+    {
+      size_t
+      operator()(const std::vector<bool, _Alloc>&) const noexcept;
+    };
+
+
+}
+# 66 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/vector" 2 3
+
+
+
+# 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/vector.tcc" 1 3
+# 59 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/vector.tcc" 3
+namespace std __attribute__ ((__visibility__ ("default")))
+{
+
+
+  template<typename _Tp, typename _Alloc>
+    void
+    vector<_Tp, _Alloc>::
+    reserve(size_type __n)
+    {
+      if (__n > this->max_size())
+ __throw_length_error(("vector::reserve"));
+      if (this->capacity() < __n)
+ {
+   const size_type __old_size = size();
+   pointer __tmp = _M_allocate_and_copy(__n,
+     std::__make_move_if_noexcept_iterator(this->_M_impl._M_start),
+     std::__make_move_if_noexcept_iterator(this->_M_impl._M_finish));
+   std::_Destroy(this->_M_impl._M_start, this->_M_impl._M_finish,
+   _M_get_Tp_allocator());
+   _M_deallocate(this->_M_impl._M_start,
+   this->_M_impl._M_end_of_storage
+   - this->_M_impl._M_start);
+   this->_M_impl._M_start = __tmp;
+   this->_M_impl._M_finish = __tmp + __old_size;
+   this->_M_impl._M_end_of_storage = this->_M_impl._M_start + __n;
+ }
+    }
+
+
+  template<typename _Tp, typename _Alloc>
+    template<typename... _Args>
+      void
+      vector<_Tp, _Alloc>::
+      emplace_back(_Args&&... __args)
+      {
+ if (this->_M_impl._M_finish != this->_M_impl._M_end_of_storage)
+   {
+     _Alloc_traits::construct(this->_M_impl, this->_M_impl._M_finish,
+         std::forward<_Args>(__args)...);
+     ++this->_M_impl._M_finish;
+   }
+ else
+   _M_emplace_back_aux(std::forward<_Args>(__args)...);
+      }
+
+
+  template<typename _Tp, typename _Alloc>
+    typename vector<_Tp, _Alloc>::iterator
+    vector<_Tp, _Alloc>::
+
+    insert(const_iterator __position, const value_type& __x)
+
+
+
+    {
+      const size_type __n = __position - begin();
+      if (this->_M_impl._M_finish != this->_M_impl._M_end_of_storage
+   && __position == end())
+ {
+   _Alloc_traits::construct(this->_M_impl, this->_M_impl._M_finish, __x);
+   ++this->_M_impl._M_finish;
+ }
+      else
+ {
+
+   const auto __pos = begin() + (__position - cbegin());
+   if (this->_M_impl._M_finish != this->_M_impl._M_end_of_storage)
+     {
+       _Tp __x_copy = __x;
+       _M_insert_aux(__pos, std::move(__x_copy));
+     }
+   else
+     _M_insert_aux(__pos, __x);
+
+
+
+ }
+      return iterator(this->_M_impl._M_start + __n);
+    }
+
+  template<typename _Tp, typename _Alloc>
+    typename vector<_Tp, _Alloc>::iterator
+    vector<_Tp, _Alloc>::
+    _M_erase(iterator __position)
+    {
+      if (__position + 1 != end())
+ std::move(__position + 1, end(), __position);
+      --this->_M_impl._M_finish;
+      _Alloc_traits::destroy(this->_M_impl, this->_M_impl._M_finish);
+      return __position;
+    }
+
+  template<typename _Tp, typename _Alloc>
+    typename vector<_Tp, _Alloc>::iterator
+    vector<_Tp, _Alloc>::
+    _M_erase(iterator __first, iterator __last)
+    {
+      if (__first != __last)
+ {
+   if (__last != end())
+     std::move(__last, end(), __first);
+   _M_erase_at_end(__first.base() + (end() - __last));
+ }
+      return __first;
+    }
+
+  template<typename _Tp, typename _Alloc>
+    vector<_Tp, _Alloc>&
+    vector<_Tp, _Alloc>::
+    operator=(const vector<_Tp, _Alloc>& __x)
+    {
+      if (&__x != this)
+ {
+
+   if (_Alloc_traits::_S_propagate_on_copy_assign())
+     {
+       if (!_Alloc_traits::_S_always_equal()
+           && _M_get_Tp_allocator() != __x._M_get_Tp_allocator())
+         {
+
+    this->clear();
+    _M_deallocate(this->_M_impl._M_start,
+    this->_M_impl._M_end_of_storage
+    - this->_M_impl._M_start);
+    this->_M_impl._M_start = nullptr;
+    this->_M_impl._M_finish = nullptr;
+    this->_M_impl._M_end_of_storage = nullptr;
+  }
+       std::__alloc_on_copy(_M_get_Tp_allocator(),
+       __x._M_get_Tp_allocator());
+     }
+
+   const size_type __xlen = __x.size();
+   if (__xlen > capacity())
+     {
+       pointer __tmp = _M_allocate_and_copy(__xlen, __x.begin(),
+         __x.end());
+       std::_Destroy(this->_M_impl._M_start, this->_M_impl._M_finish,
+       _M_get_Tp_allocator());
+       _M_deallocate(this->_M_impl._M_start,
+       this->_M_impl._M_end_of_storage
+       - this->_M_impl._M_start);
+       this->_M_impl._M_start = __tmp;
+       this->_M_impl._M_end_of_storage = this->_M_impl._M_start + __xlen;
+     }
+   else if (size() >= __xlen)
+     {
+       std::_Destroy(std::copy(__x.begin(), __x.end(), begin()),
+       end(), _M_get_Tp_allocator());
+     }
+   else
+     {
+       std::copy(__x._M_impl._M_start, __x._M_impl._M_start + size(),
+   this->_M_impl._M_start);
+       std::__uninitialized_copy_a(__x._M_impl._M_start + size(),
+       __x._M_impl._M_finish,
+       this->_M_impl._M_finish,
+       _M_get_Tp_allocator());
+     }
+   this->_M_impl._M_finish = this->_M_impl._M_start + __xlen;
+ }
+      return *this;
+    }
+
+  template<typename _Tp, typename _Alloc>
+    void
+    vector<_Tp, _Alloc>::
+    _M_fill_assign(size_t __n, const value_type& __val)
+    {
+      if (__n > capacity())
+ {
+   vector __tmp(__n, __val, _M_get_Tp_allocator());
+   __tmp._M_impl._M_swap_data(this->_M_impl);
+ }
+      else if (__n > size())
+ {
+   std::fill(begin(), end(), __val);
+   this->_M_impl._M_finish =
+     std::__uninitialized_fill_n_a(this->_M_impl._M_finish,
+       __n - size(), __val,
+       _M_get_Tp_allocator());
+ }
+      else
+        _M_erase_at_end(std::fill_n(this->_M_impl._M_start, __n, __val));
+    }
+
+  template<typename _Tp, typename _Alloc>
+    template<typename _InputIterator>
+      void
+      vector<_Tp, _Alloc>::
+      _M_assign_aux(_InputIterator __first, _InputIterator __last,
+      std::input_iterator_tag)
+      {
+ pointer __cur(this->_M_impl._M_start);
+ for (; __first != __last && __cur != this->_M_impl._M_finish;
+      ++__cur, ++__first)
+   *__cur = *__first;
+ if (__first == __last)
+   _M_erase_at_end(__cur);
+ else
+   insert(end(), __first, __last);
+      }
+
+  template<typename _Tp, typename _Alloc>
+    template<typename _ForwardIterator>
+      void
+      vector<_Tp, _Alloc>::
+      _M_assign_aux(_ForwardIterator __first, _ForwardIterator __last,
+      std::forward_iterator_tag)
+      {
+ const size_type __len = std::distance(__first, __last);
+
+ if (__len > capacity())
+   {
+     pointer __tmp(_M_allocate_and_copy(__len, __first, __last));
+     std::_Destroy(this->_M_impl._M_start, this->_M_impl._M_finish,
+     _M_get_Tp_allocator());
+     _M_deallocate(this->_M_impl._M_start,
+     this->_M_impl._M_end_of_storage
+     - this->_M_impl._M_start);
+     this->_M_impl._M_start = __tmp;
+     this->_M_impl._M_finish = this->_M_impl._M_start + __len;
+     this->_M_impl._M_end_of_storage = this->_M_impl._M_finish;
+   }
+ else if (size() >= __len)
+   _M_erase_at_end(std::copy(__first, __last, this->_M_impl._M_start));
+ else
+   {
+     _ForwardIterator __mid = __first;
+     std::advance(__mid, size());
+     std::copy(__first, __mid, this->_M_impl._M_start);
+     this->_M_impl._M_finish =
+       std::__uninitialized_copy_a(__mid, __last,
+       this->_M_impl._M_finish,
+       _M_get_Tp_allocator());
+   }
+      }
+
+
+  template<typename _Tp, typename _Alloc>
+    template<typename... _Args>
+      typename vector<_Tp, _Alloc>::iterator
+      vector<_Tp, _Alloc>::
+      emplace(const_iterator __position, _Args&&... __args)
+      {
+ const size_type __n = __position - begin();
+ if (this->_M_impl._M_finish != this->_M_impl._M_end_of_storage
+     && __position == end())
+   {
+     _Alloc_traits::construct(this->_M_impl, this->_M_impl._M_finish,
+         std::forward<_Args>(__args)...);
+     ++this->_M_impl._M_finish;
+   }
+ else
+   _M_insert_aux(begin() + (__position - cbegin()),
+   std::forward<_Args>(__args)...);
+ return iterator(this->_M_impl._M_start + __n);
+      }
+
+  template<typename _Tp, typename _Alloc>
+    template<typename... _Args>
+      void
+      vector<_Tp, _Alloc>::
+      _M_insert_aux(iterator __position, _Args&&... __args)
+
+
+
+
+
+
+    {
+      if (this->_M_impl._M_finish != this->_M_impl._M_end_of_storage)
+ {
+   _Alloc_traits::construct(this->_M_impl, this->_M_impl._M_finish,
+              std::move(*(this->_M_impl._M_finish - 1)));
+
+   ++this->_M_impl._M_finish;
+
+
+
+   std::move_backward(__position.base(), this->_M_impl._M_finish - 2, this->_M_impl._M_finish - 1);
+
+
+
+
+
+   *__position = _Tp(std::forward<_Args>(__args)...);
+
+ }
+      else
+ {
+   const size_type __len =
+     _M_check_len(size_type(1), "vector::_M_insert_aux");
+   const size_type __elems_before = __position - begin();
+   pointer __new_start(this->_M_allocate(__len));
+   pointer __new_finish(__new_start);
+   if (true)
+     {
+
+
+
+
+       _Alloc_traits::construct(this->_M_impl,
+                         __new_start + __elems_before,
+
+           std::forward<_Args>(__args)...);
+
+
+
+       __new_finish = pointer();
+
+       __new_finish
+  = std::__uninitialized_move_if_noexcept_a
+  (this->_M_impl._M_start, __position.base(),
+   __new_start, _M_get_Tp_allocator());
+
+       ++__new_finish;
+
+       __new_finish
+  = std::__uninitialized_move_if_noexcept_a
+  (__position.base(), this->_M_impl._M_finish,
+   __new_finish, _M_get_Tp_allocator());
+     }
+          if (false)
+     {
+       if (!__new_finish)
+  _Alloc_traits::destroy(this->_M_impl,
+                         __new_start + __elems_before);
+       else
+  std::_Destroy(__new_start, __new_finish, _M_get_Tp_allocator());
+       _M_deallocate(__new_start, __len);
+                              ;
+     }
+   std::_Destroy(this->_M_impl._M_start, this->_M_impl._M_finish,
+   _M_get_Tp_allocator());
+   _M_deallocate(this->_M_impl._M_start,
+   this->_M_impl._M_end_of_storage
+   - this->_M_impl._M_start);
+   this->_M_impl._M_start = __new_start;
+   this->_M_impl._M_finish = __new_finish;
+   this->_M_impl._M_end_of_storage = __new_start + __len;
+ }
+    }
+
+
+  template<typename _Tp, typename _Alloc>
+    template<typename... _Args>
+      void
+      vector<_Tp, _Alloc>::
+      _M_emplace_back_aux(_Args&&... __args)
+      {
+ const size_type __len =
+   _M_check_len(size_type(1), "vector::_M_emplace_back_aux");
+ pointer __new_start(this->_M_allocate(__len));
+ pointer __new_finish(__new_start);
+ if (true)
+   {
+     _Alloc_traits::construct(this->_M_impl, __new_start + size(),
+         std::forward<_Args>(__args)...);
+     __new_finish = pointer();
+
+     __new_finish
+       = std::__uninitialized_move_if_noexcept_a
+       (this->_M_impl._M_start, this->_M_impl._M_finish,
+        __new_start, _M_get_Tp_allocator());
+
+     ++__new_finish;
+   }
+ if (false)
+   {
+     if (!__new_finish)
+       _Alloc_traits::destroy(this->_M_impl, __new_start + size());
+     else
+       std::_Destroy(__new_start, __new_finish, _M_get_Tp_allocator());
+     _M_deallocate(__new_start, __len);
+                            ;
+   }
+ std::_Destroy(this->_M_impl._M_start, this->_M_impl._M_finish,
+        _M_get_Tp_allocator());
+ _M_deallocate(this->_M_impl._M_start,
+        this->_M_impl._M_end_of_storage
+        - this->_M_impl._M_start);
+ this->_M_impl._M_start = __new_start;
+ this->_M_impl._M_finish = __new_finish;
+ this->_M_impl._M_end_of_storage = __new_start + __len;
+      }
+
+
+  template<typename _Tp, typename _Alloc>
+    void
+    vector<_Tp, _Alloc>::
+    _M_fill_insert(iterator __position, size_type __n, const value_type& __x)
+    {
+      if (__n != 0)
+ {
+   if (size_type(this->_M_impl._M_end_of_storage
+   - this->_M_impl._M_finish) >= __n)
+     {
+       value_type __x_copy = __x;
+       const size_type __elems_after = end() - __position;
+       pointer __old_finish(this->_M_impl._M_finish);
+       if (__elems_after > __n)
+  {
+    std::__uninitialized_move_a(this->_M_impl._M_finish - __n,
+           this->_M_impl._M_finish,
+           this->_M_impl._M_finish,
+           _M_get_Tp_allocator());
+    this->_M_impl._M_finish += __n;
+    std::move_backward(__position.base(), __old_finish - __n, __old_finish);
+
+    std::fill(__position.base(), __position.base() + __n,
+       __x_copy);
+  }
+       else
+  {
+    this->_M_impl._M_finish =
+      std::__uninitialized_fill_n_a(this->_M_impl._M_finish,
+        __n - __elems_after,
+        __x_copy,
+        _M_get_Tp_allocator());
+    std::__uninitialized_move_a(__position.base(), __old_finish,
+           this->_M_impl._M_finish,
+           _M_get_Tp_allocator());
+    this->_M_impl._M_finish += __elems_after;
+    std::fill(__position.base(), __old_finish, __x_copy);
+  }
+     }
+   else
+     {
+       const size_type __len =
+  _M_check_len(__n, "vector::_M_fill_insert");
+       const size_type __elems_before = __position - begin();
+       pointer __new_start(this->_M_allocate(__len));
+       pointer __new_finish(__new_start);
+       if (true)
+  {
+
+    std::__uninitialized_fill_n_a(__new_start + __elems_before,
+      __n, __x,
+      _M_get_Tp_allocator());
+    __new_finish = pointer();
+
+    __new_finish
+      = std::__uninitialized_move_if_noexcept_a
+      (this->_M_impl._M_start, __position.base(),
+       __new_start, _M_get_Tp_allocator());
+
+    __new_finish += __n;
+
+    __new_finish
+      = std::__uninitialized_move_if_noexcept_a
+      (__position.base(), this->_M_impl._M_finish,
+       __new_finish, _M_get_Tp_allocator());
+  }
+       if (false)
+  {
+    if (!__new_finish)
+      std::_Destroy(__new_start + __elems_before,
+      __new_start + __elems_before + __n,
+      _M_get_Tp_allocator());
+    else
+      std::_Destroy(__new_start, __new_finish,
+      _M_get_Tp_allocator());
+    _M_deallocate(__new_start, __len);
+                           ;
+  }
+       std::_Destroy(this->_M_impl._M_start, this->_M_impl._M_finish,
+       _M_get_Tp_allocator());
+       _M_deallocate(this->_M_impl._M_start,
+       this->_M_impl._M_end_of_storage
+       - this->_M_impl._M_start);
+       this->_M_impl._M_start = __new_start;
+       this->_M_impl._M_finish = __new_finish;
+       this->_M_impl._M_end_of_storage = __new_start + __len;
+     }
+ }
+    }
+
+
+  template<typename _Tp, typename _Alloc>
+    void
+    vector<_Tp, _Alloc>::
+    _M_default_append(size_type __n)
+    {
+      if (__n != 0)
+ {
+   if (size_type(this->_M_impl._M_end_of_storage
+   - this->_M_impl._M_finish) >= __n)
+     {
+       this->_M_impl._M_finish =
+  std::__uninitialized_default_n_a(this->_M_impl._M_finish,
+       __n, _M_get_Tp_allocator());
+     }
+   else
+     {
+       const size_type __len =
+  _M_check_len(__n, "vector::_M_default_append");
+       const size_type __old_size = this->size();
+       pointer __new_start(this->_M_allocate(__len));
+       pointer __new_finish(__new_start);
+       if (true)
+  {
+    __new_finish
+      = std::__uninitialized_move_if_noexcept_a
+      (this->_M_impl._M_start, this->_M_impl._M_finish,
+       __new_start, _M_get_Tp_allocator());
+    __new_finish =
+      std::__uninitialized_default_n_a(__new_finish, __n,
+           _M_get_Tp_allocator());
+  }
+       if (false)
+  {
+    std::_Destroy(__new_start, __new_finish,
+    _M_get_Tp_allocator());
+    _M_deallocate(__new_start, __len);
+                           ;
+  }
+       std::_Destroy(this->_M_impl._M_start, this->_M_impl._M_finish,
+       _M_get_Tp_allocator());
+       _M_deallocate(this->_M_impl._M_start,
+       this->_M_impl._M_end_of_storage
+       - this->_M_impl._M_start);
+       this->_M_impl._M_start = __new_start;
+       this->_M_impl._M_finish = __new_finish;
+       this->_M_impl._M_end_of_storage = __new_start + __len;
+     }
+ }
+    }
+
+  template<typename _Tp, typename _Alloc>
+    bool
+    vector<_Tp, _Alloc>::
+    _M_shrink_to_fit()
+    {
+      if (capacity() == size())
+ return false;
+      return std::__shrink_to_fit_aux<vector>::_S_do_it(*this);
+    }
+
+
+  template<typename _Tp, typename _Alloc>
+    template<typename _InputIterator>
+      void
+      vector<_Tp, _Alloc>::
+      _M_range_insert(iterator __pos, _InputIterator __first,
+        _InputIterator __last, std::input_iterator_tag)
+      {
+ for (; __first != __last; ++__first)
+   {
+     __pos = insert(__pos, *__first);
+     ++__pos;
+   }
+      }
+
+  template<typename _Tp, typename _Alloc>
+    template<typename _ForwardIterator>
+      void
+      vector<_Tp, _Alloc>::
+      _M_range_insert(iterator __position, _ForwardIterator __first,
+        _ForwardIterator __last, std::forward_iterator_tag)
+      {
+ if (__first != __last)
+   {
+     const size_type __n = std::distance(__first, __last);
+     if (size_type(this->_M_impl._M_end_of_storage
+     - this->_M_impl._M_finish) >= __n)
+       {
+  const size_type __elems_after = end() - __position;
+  pointer __old_finish(this->_M_impl._M_finish);
+  if (__elems_after > __n)
+    {
+      std::__uninitialized_move_a(this->_M_impl._M_finish - __n,
+      this->_M_impl._M_finish,
+      this->_M_impl._M_finish,
+      _M_get_Tp_allocator());
+      this->_M_impl._M_finish += __n;
+      std::move_backward(__position.base(), __old_finish - __n, __old_finish);
+
+      std::copy(__first, __last, __position);
+    }
+  else
+    {
+      _ForwardIterator __mid = __first;
+      std::advance(__mid, __elems_after);
+      std::__uninitialized_copy_a(__mid, __last,
+      this->_M_impl._M_finish,
+      _M_get_Tp_allocator());
+      this->_M_impl._M_finish += __n - __elems_after;
+      std::__uninitialized_move_a(__position.base(),
+      __old_finish,
+      this->_M_impl._M_finish,
+      _M_get_Tp_allocator());
+      this->_M_impl._M_finish += __elems_after;
+      std::copy(__first, __mid, __position);
+    }
+       }
+     else
+       {
+  const size_type __len =
+    _M_check_len(__n, "vector::_M_range_insert");
+  pointer __new_start(this->_M_allocate(__len));
+  pointer __new_finish(__new_start);
+  if (true)
+    {
+      __new_finish
+        = std::__uninitialized_move_if_noexcept_a
+        (this->_M_impl._M_start, __position.base(),
+         __new_start, _M_get_Tp_allocator());
+      __new_finish
+        = std::__uninitialized_copy_a(__first, __last,
+          __new_finish,
+          _M_get_Tp_allocator());
+      __new_finish
+        = std::__uninitialized_move_if_noexcept_a
+        (__position.base(), this->_M_impl._M_finish,
+         __new_finish, _M_get_Tp_allocator());
+    }
+  if (false)
+    {
+      std::_Destroy(__new_start, __new_finish,
+      _M_get_Tp_allocator());
+      _M_deallocate(__new_start, __len);
+                             ;
+    }
+  std::_Destroy(this->_M_impl._M_start, this->_M_impl._M_finish,
+         _M_get_Tp_allocator());
+  _M_deallocate(this->_M_impl._M_start,
+         this->_M_impl._M_end_of_storage
+         - this->_M_impl._M_start);
+  this->_M_impl._M_start = __new_start;
+  this->_M_impl._M_finish = __new_finish;
+  this->_M_impl._M_end_of_storage = __new_start + __len;
+       }
+   }
+      }
+
+
+
+  template<typename _Alloc>
+    void
+    vector<bool, _Alloc>::
+    _M_reallocate(size_type __n)
+    {
+      _Bit_pointer __q = this->_M_allocate(__n);
+      iterator __start(std::__addressof(*__q), 0);
+      this->_M_impl._M_finish = _M_copy_aligned(begin(), end(), __start);
+      this->_M_deallocate();
+      this->_M_impl._M_start = __start;
+      this->_M_impl._M_end_of_storage = __q + _S_nword(__n);
+    }
+
+  template<typename _Alloc>
+    void
+    vector<bool, _Alloc>::
+    _M_fill_insert(iterator __position, size_type __n, bool __x)
+    {
+      if (__n == 0)
+ return;
+      if (capacity() - size() >= __n)
+ {
+   std::copy_backward(__position, end(),
+        this->_M_impl._M_finish + difference_type(__n));
+   std::fill(__position, __position + difference_type(__n), __x);
+   this->_M_impl._M_finish += difference_type(__n);
+ }
+      else
+ {
+   const size_type __len =
+     _M_check_len(__n, "vector<bool>::_M_fill_insert");
+   _Bit_pointer __q = this->_M_allocate(__len);
+   iterator __start(std::__addressof(*__q), 0);
+   iterator __i = _M_copy_aligned(begin(), __position, __start);
+   std::fill(__i, __i + difference_type(__n), __x);
+   this->_M_impl._M_finish = std::copy(__position, end(),
+           __i + difference_type(__n));
+   this->_M_deallocate();
+   this->_M_impl._M_end_of_storage = __q + _S_nword(__len);
+   this->_M_impl._M_start = __start;
+ }
+    }
+
+  template<typename _Alloc>
+    template<typename _ForwardIterator>
+      void
+      vector<bool, _Alloc>::
+      _M_insert_range(iterator __position, _ForwardIterator __first,
+        _ForwardIterator __last, std::forward_iterator_tag)
+      {
+ if (__first != __last)
+   {
+     size_type __n = std::distance(__first, __last);
+     if (capacity() - size() >= __n)
+       {
+  std::copy_backward(__position, end(),
+       this->_M_impl._M_finish
+       + difference_type(__n));
+  std::copy(__first, __last, __position);
+  this->_M_impl._M_finish += difference_type(__n);
+       }
+     else
+       {
+  const size_type __len =
+    _M_check_len(__n, "vector<bool>::_M_insert_range");
+  _Bit_pointer __q = this->_M_allocate(__len);
+  iterator __start(std::__addressof(*__q), 0);
+  iterator __i = _M_copy_aligned(begin(), __position, __start);
+  __i = std::copy(__first, __last, __i);
+  this->_M_impl._M_finish = std::copy(__position, end(), __i);
+  this->_M_deallocate();
+  this->_M_impl._M_end_of_storage = __q + _S_nword(__len);
+  this->_M_impl._M_start = __start;
+       }
+   }
+      }
+
+  template<typename _Alloc>
+    void
+    vector<bool, _Alloc>::
+    _M_insert_aux(iterator __position, bool __x)
+    {
+      if (this->_M_impl._M_finish._M_p != this->_M_impl._M_end_addr())
+ {
+   std::copy_backward(__position, this->_M_impl._M_finish,
+        this->_M_impl._M_finish + 1);
+   *__position = __x;
+   ++this->_M_impl._M_finish;
+ }
+      else
+ {
+   const size_type __len =
+     _M_check_len(size_type(1), "vector<bool>::_M_insert_aux");
+   _Bit_pointer __q = this->_M_allocate(__len);
+   iterator __start(std::__addressof(*__q), 0);
+   iterator __i = _M_copy_aligned(begin(), __position, __start);
+   *__i++ = __x;
+   this->_M_impl._M_finish = std::copy(__position, end(), __i);
+   this->_M_deallocate();
+   this->_M_impl._M_end_of_storage = __q + _S_nword(__len);
+   this->_M_impl._M_start = __start;
+ }
+    }
+
+  template<typename _Alloc>
+    typename vector<bool, _Alloc>::iterator
+    vector<bool, _Alloc>::
+    _M_erase(iterator __position)
+    {
+      if (__position + 1 != end())
+        std::copy(__position + 1, end(), __position);
+      --this->_M_impl._M_finish;
+      return __position;
+    }
+
+  template<typename _Alloc>
+    typename vector<bool, _Alloc>::iterator
+    vector<bool, _Alloc>::
+    _M_erase(iterator __first, iterator __last)
+    {
+      if (__first != __last)
+ _M_erase_at_end(std::copy(__last, end(), __first));
+      return __first;
+    }
+
+
+  template<typename _Alloc>
+    bool
+    vector<bool, _Alloc>::
+    _M_shrink_to_fit()
+    {
+      if (capacity() - size() < int(_S_word_bit))
+ return false;
+      if (true)
+ {
+   _M_reallocate(size());
+   return true;
+ }
+      if (false)
+ { return false; }
+    }
+
+
+
+}
+
+
+
+namespace std __attribute__ ((__visibility__ ("default")))
+{
+
+
+  template<typename _Alloc>
+    size_t
+    hash<std::vector<bool, _Alloc>>::
+    operator()(const std::vector<bool, _Alloc>& __b) const noexcept
+    {
+      size_t __hash = 0;
+      using std::_S_word_bit;
+      using std::_Bit_type;
+
+      const size_t __words = __b.size() / _S_word_bit;
+      if (__words)
+ {
+   const size_t __clength = __words * sizeof(_Bit_type);
+   __hash = std::_Hash_impl::hash(__b._M_impl._M_start._M_p, __clength);
+ }
+
+      const size_t __extrabits = __b.size() % _S_word_bit;
+      if (__extrabits)
+ {
+   _Bit_type __hiword = *__b._M_impl._M_finish._M_p;
+   __hiword &= ~((~static_cast<_Bit_type>(0)) << __extrabits);
+
+   const size_t __clength
+     = (__extrabits + 8 - 1) / 8;
+   if (__words)
+     __hash = std::_Hash_impl::hash(&__hiword, __clength, __hash);
+   else
+     __hash = std::_Hash_impl::hash(&__hiword, __clength);
+ }
+
+      return __hash;
+    }
+
+
+}
+# 70 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/vector" 2 3
+# 40 "././common/EventTimer.h" 2
+
+class EventTimer
+{
+    typedef std::chrono::high_resolution_clock::time_point timepoint;
+
+private:
+    std::vector<EventTimer::timepoint> start_times;
+    std::vector<EventTimer::timepoint> end_times;
+    std::vector<std::string> event_names;
+
+    bool unfinished;
+    unsigned int event_count;
+    int max_string_length;
+
+    float ms_difference(EventTimer::timepoint start, EventTimer::timepoint end);
+
+public:
+    EventTimer(void);
+    int add(std::string description);
+    void finish(void);
+    void clear(void);
+
+    void print(int id = -1);
+};
+# 41 "././common/Utilities.h" 2
+
+# 1 "././common/../server.h" 1
+
+
+
+
+# 1 "/usr/include/sys/socket.h" 1 3 4
+# 24 "/usr/include/sys/socket.h" 3 4
+extern "C" {
+
+
+
+
+# 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/lib/clang/7.0.0/include/stddef.h" 1 3 4
+# 29 "/usr/include/sys/socket.h" 2 3 4
+
+
+
+
+# 1 "/usr/include/bits/socket.h" 1 3 4
+# 27 "/usr/include/bits/socket.h" 3 4
+# 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/lib/clang/7.0.0/include/stddef.h" 1 3 4
+# 28 "/usr/include/bits/socket.h" 2 3 4
+# 38 "/usr/include/bits/socket.h" 3 4
+# 1 "/usr/include/bits/socket_type.h" 1 3 4
+# 24 "/usr/include/bits/socket_type.h" 3 4
+enum __socket_type
+{
+  SOCK_STREAM = 1,
+
+
+  SOCK_DGRAM = 2,
+
+
+  SOCK_RAW = 3,
+
+  SOCK_RDM = 4,
+
+  SOCK_SEQPACKET = 5,
+
+
+  SOCK_DCCP = 6,
+
+  SOCK_PACKET = 10,
+
+
+
+
+
+
+
+  SOCK_CLOEXEC = 02000000,
+
+
+  SOCK_NONBLOCK = 00004000
+
+
+};
+# 39 "/usr/include/bits/socket.h" 2 3 4
+# 175 "/usr/include/bits/socket.h" 3 4
+# 1 "/usr/include/bits/sockaddr.h" 1 3 4
+# 28 "/usr/include/bits/sockaddr.h" 3 4
+typedef unsigned short int sa_family_t;
+# 176 "/usr/include/bits/socket.h" 2 3 4
+
+
+struct sockaddr
+  {
+    sa_family_t sa_family;
+    char sa_data[14];
+  };
+# 191 "/usr/include/bits/socket.h" 3 4
+struct sockaddr_storage
+  {
+    sa_family_t ss_family;
+    char __ss_padding[(128 - (sizeof (unsigned short int)) - sizeof (unsigned long int))];
+    unsigned long int __ss_align;
+  };
+
+
+
+enum
+  {
+    MSG_OOB = 0x01,
+
+    MSG_PEEK = 0x02,
+
+    MSG_DONTROUTE = 0x04,
+
+
+
+    MSG_TRYHARD = MSG_DONTROUTE,
+
+
+    MSG_CTRUNC = 0x08,
+
+    MSG_PROXY = 0x10,
+
+    MSG_TRUNC = 0x20,
+
+    MSG_DONTWAIT = 0x40,
+
+    MSG_EOR = 0x80,
+
+    MSG_WAITALL = 0x100,
+
+    MSG_FIN = 0x200,
+
+    MSG_SYN = 0x400,
+
+    MSG_CONFIRM = 0x800,
+
+    MSG_RST = 0x1000,
+
+    MSG_ERRQUEUE = 0x2000,
+
+    MSG_NOSIGNAL = 0x4000,
+
+    MSG_MORE = 0x8000,
+
+    MSG_WAITFORONE = 0x10000,
+
+    MSG_BATCH = 0x40000,
+
+    MSG_ZEROCOPY = 0x4000000,
+
+    MSG_FASTOPEN = 0x20000000,
+
+
+    MSG_CMSG_CLOEXEC = 0x40000000
+
+
+
+  };
+
+
+
+
+struct msghdr
+  {
+    void *msg_name;
+    socklen_t msg_namelen;
+
+    struct iovec *msg_iov;
+    size_t msg_iovlen;
+
+    void *msg_control;
+    size_t msg_controllen;
+
+
+
+
+    int msg_flags;
+  };
+
+
+struct cmsghdr
+  {
+    size_t cmsg_len;
+
+
+
+
+    int cmsg_level;
+    int cmsg_type;
+
+    __extension__ unsigned char __cmsg_data [];
+
+  };
+# 305 "/usr/include/bits/socket.h" 3 4
+extern struct cmsghdr *__cmsg_nxthdr (struct msghdr *__mhdr,
+          struct cmsghdr *__cmsg) throw ();
+# 332 "/usr/include/bits/socket.h" 3 4
+enum
+  {
+    SCM_RIGHTS = 0x01
+
+
+    , SCM_CREDENTIALS = 0x02
+
+
+  };
+
+
+
+struct ucred
+{
+  pid_t pid;
+  uid_t uid;
+  gid_t gid;
+};
+
+
+
+
+
+# 1 "/usr/include/asm/socket.h" 1 3 4
+# 1 "/usr/include/asm-generic/socket.h" 1 3 4
+
+
+
+
+
+# 1 "/usr/include/asm/sockios.h" 1 3 4
+# 1 "/usr/include/asm-generic/sockios.h" 1 3 4
+# 2 "/usr/include/asm/sockios.h" 2 3 4
+# 7 "/usr/include/asm-generic/socket.h" 2 3 4
+# 2 "/usr/include/asm/socket.h" 2 3 4
+# 355 "/usr/include/bits/socket.h" 2 3 4
+
+
+
+
+
+
+struct linger
+  {
+    int l_onoff;
+    int l_linger;
+  };
+# 34 "/usr/include/sys/socket.h" 2 3 4
+
+
+# 1 "/usr/include/bits/types/struct_osockaddr.h" 1 3 4
+
+
+
+
+
+struct osockaddr
+{
+  unsigned short int sa_family;
+  unsigned char sa_data[14];
+};
+# 37 "/usr/include/sys/socket.h" 2 3 4
+
+
+
+
+enum
+{
+  SHUT_RD = 0,
+
+  SHUT_WR,
+
+  SHUT_RDWR
+
+};
+# 90 "/usr/include/sys/socket.h" 3 4
+struct mmsghdr
+  {
+    struct msghdr msg_hdr;
+    unsigned int msg_len;
+
+  };
+
+
+
+
+
+
+extern int socket (int __domain, int __type, int __protocol) throw ();
+
+
+
+
+
+extern int socketpair (int __domain, int __type, int __protocol,
+         int __fds[2]) throw ();
+
+
+extern int bind (int __fd, const struct sockaddr * __addr, socklen_t __len)
+     throw ();
+
+
+extern int getsockname (int __fd, struct sockaddr *__restrict __addr,
+   socklen_t *__restrict __len) throw ();
+# 126 "/usr/include/sys/socket.h" 3 4
+extern int connect (int __fd, const struct sockaddr * __addr, socklen_t __len);
+
+
+
+extern int getpeername (int __fd, struct sockaddr *__restrict __addr,
+   socklen_t *__restrict __len) throw ();
+
+
+
+
+
+
+extern ssize_t send (int __fd, const void *__buf, size_t __n, int __flags);
+
+
+
+
+
+
+extern ssize_t recv (int __fd, void *__buf, size_t __n, int __flags);
+
+
+
+
+
+
+extern ssize_t sendto (int __fd, const void *__buf, size_t __n,
+         int __flags, const struct sockaddr * __addr,
+         socklen_t __addr_len);
+# 163 "/usr/include/sys/socket.h" 3 4
+extern ssize_t recvfrom (int __fd, void *__restrict __buf, size_t __n,
+    int __flags, struct sockaddr *__restrict __addr,
+    socklen_t *__restrict __addr_len);
+
+
+
+
+
+
+
+extern ssize_t sendmsg (int __fd, const struct msghdr *__message,
+   int __flags);
+
+
+
+
+
+
+
+extern int sendmmsg (int __fd, struct mmsghdr *__vmessages,
+       unsigned int __vlen, int __flags);
+
+
+
+
+
+
+
+extern ssize_t recvmsg (int __fd, struct msghdr *__message, int __flags);
+
+
+
+
+
+
+
+extern int recvmmsg (int __fd, struct mmsghdr *__vmessages,
+       unsigned int __vlen, int __flags,
+       struct timespec *__tmo);
+
+
+
+
+
+
+extern int getsockopt (int __fd, int __level, int __optname,
+         void *__restrict __optval,
+         socklen_t *__restrict __optlen) throw ();
+
+
+
+
+extern int setsockopt (int __fd, int __level, int __optname,
+         const void *__optval, socklen_t __optlen) throw ();
+
+
+
+
+
+extern int listen (int __fd, int __n) throw ();
+# 232 "/usr/include/sys/socket.h" 3 4
+extern int accept (int __fd, struct sockaddr *__restrict __addr,
+     socklen_t *__restrict __addr_len);
+
+
+
+
+
+
+extern int accept4 (int __fd, struct sockaddr *__restrict __addr,
+      socklen_t *__restrict __addr_len, int __flags);
+# 250 "/usr/include/sys/socket.h" 3 4
+extern int shutdown (int __fd, int __how) throw ();
+
+
+
+
+extern int sockatmark (int __fd) throw ();
+
+
+
+
+
+
+
+extern int isfdtype (int __fd, int __fdtype) throw ();
+# 272 "/usr/include/sys/socket.h" 3 4
+}
+# 6 "././common/../server.h" 2
+# 1 "/usr/include/arpa/inet.h" 1 3 4
+# 22 "/usr/include/arpa/inet.h" 3 4
+# 1 "/usr/include/netinet/in.h" 1 3 4
+# 27 "/usr/include/netinet/in.h" 3 4
+extern "C" {
+
+
+typedef uint32_t in_addr_t;
+struct in_addr
+  {
+    in_addr_t s_addr;
+  };
+
+
+
+# 1 "/usr/include/bits/in.h" 1 3 4
+# 142 "/usr/include/bits/in.h" 3 4
+struct ip_opts
+  {
+    struct in_addr ip_dst;
+    char ip_opts[40];
+  };
+
+
+struct ip_mreqn
+  {
+    struct in_addr imr_multiaddr;
+    struct in_addr imr_address;
+    int imr_ifindex;
+  };
+
+
+struct in_pktinfo
+  {
+    int ipi_ifindex;
+    struct in_addr ipi_spec_dst;
+    struct in_addr ipi_addr;
+  };
+# 38 "/usr/include/netinet/in.h" 2 3 4
+
+
+enum
+  {
+    IPPROTO_IP = 0,
+
+    IPPROTO_ICMP = 1,
+
+    IPPROTO_IGMP = 2,
+
+    IPPROTO_IPIP = 4,
+
+    IPPROTO_TCP = 6,
+
+    IPPROTO_EGP = 8,
+
+    IPPROTO_PUP = 12,
+
+    IPPROTO_UDP = 17,
+
+    IPPROTO_IDP = 22,
+
+    IPPROTO_TP = 29,
+
+    IPPROTO_DCCP = 33,
+
+    IPPROTO_IPV6 = 41,
+
+    IPPROTO_RSVP = 46,
+
+    IPPROTO_GRE = 47,
+
+    IPPROTO_ESP = 50,
+
+    IPPROTO_AH = 51,
+
+    IPPROTO_MTP = 92,
+
+    IPPROTO_BEETPH = 94,
+
+    IPPROTO_ENCAP = 98,
+
+    IPPROTO_PIM = 103,
+
+    IPPROTO_COMP = 108,
+
+    IPPROTO_SCTP = 132,
+
+    IPPROTO_UDPLITE = 136,
+
+    IPPROTO_MPLS = 137,
+
+    IPPROTO_RAW = 255,
+
+    IPPROTO_MAX
+  };
+
+
+
+
+
+enum
+  {
+    IPPROTO_HOPOPTS = 0,
+
+    IPPROTO_ROUTING = 43,
+
+    IPPROTO_FRAGMENT = 44,
+
+    IPPROTO_ICMPV6 = 58,
+
+    IPPROTO_NONE = 59,
+
+    IPPROTO_DSTOPTS = 60,
+
+    IPPROTO_MH = 135
+
+  };
+
+
+
+typedef uint16_t in_port_t;
+
+
+enum
+  {
+    IPPORT_ECHO = 7,
+    IPPORT_DISCARD = 9,
+    IPPORT_SYSTAT = 11,
+    IPPORT_DAYTIME = 13,
+    IPPORT_NETSTAT = 15,
+    IPPORT_FTP = 21,
+    IPPORT_TELNET = 23,
+    IPPORT_SMTP = 25,
+    IPPORT_TIMESERVER = 37,
+    IPPORT_NAMESERVER = 42,
+    IPPORT_WHOIS = 43,
+    IPPORT_MTP = 57,
+
+    IPPORT_TFTP = 69,
+    IPPORT_RJE = 77,
+    IPPORT_FINGER = 79,
+    IPPORT_TTYLINK = 87,
+    IPPORT_SUPDUP = 95,
+
+
+    IPPORT_EXECSERVER = 512,
+    IPPORT_LOGINSERVER = 513,
+    IPPORT_CMDSERVER = 514,
+    IPPORT_EFSSERVER = 520,
+
+
+    IPPORT_BIFFUDP = 512,
+    IPPORT_WHOSERVER = 513,
+    IPPORT_ROUTESERVER = 520,
+
+
+    IPPORT_RESERVED = 1024,
+
+
+    IPPORT_USERRESERVED = 5000
+  };
+# 212 "/usr/include/netinet/in.h" 3 4
+struct in6_addr
+  {
+    union
+      {
+ uint8_t __u6_addr8[16];
+ uint16_t __u6_addr16[8];
+ uint32_t __u6_addr32[4];
+      } __in6_u;
+
+
+
+
+
+  };
+
+
+extern const struct in6_addr in6addr_any;
+extern const struct in6_addr in6addr_loopback;
+# 238 "/usr/include/netinet/in.h" 3 4
+struct sockaddr_in
+  {
+    sa_family_t sin_family;
+    in_port_t sin_port;
+    struct in_addr sin_addr;
+
+
+    unsigned char sin_zero[sizeof (struct sockaddr)
+      - (sizeof (unsigned short int))
+      - sizeof (in_port_t)
+      - sizeof (struct in_addr)];
+  };
+
+
+
+struct sockaddr_in6
+  {
+    sa_family_t sin6_family;
+    in_port_t sin6_port;
+    uint32_t sin6_flowinfo;
+    struct in6_addr sin6_addr;
+    uint32_t sin6_scope_id;
+  };
+
+
+
+
+struct ip_mreq
+  {
+
+    struct in_addr imr_multiaddr;
+
+
+    struct in_addr imr_interface;
+  };
+
+struct ip_mreq_source
+  {
+
+    struct in_addr imr_multiaddr;
+
+
+    struct in_addr imr_interface;
+
+
+    struct in_addr imr_sourceaddr;
+  };
+
+
+
+
+struct ipv6_mreq
+  {
+
+    struct in6_addr ipv6mr_multiaddr;
+
+
+    unsigned int ipv6mr_interface;
+  };
+
+
+
+
+struct group_req
+  {
+
+    uint32_t gr_interface;
+
+
+    struct sockaddr_storage gr_group;
+  };
+
+struct group_source_req
+  {
+
+    uint32_t gsr_interface;
+
+
+    struct sockaddr_storage gsr_group;
+
+
+    struct sockaddr_storage gsr_source;
+  };
+
+
+
+struct ip_msfilter
+  {
+
+    struct in_addr imsf_multiaddr;
+
+
+    struct in_addr imsf_interface;
+
+
+    uint32_t imsf_fmode;
+
+
+    uint32_t imsf_numsrc;
+
+    struct in_addr imsf_slist[1];
+  };
+
+
+
+
+
+struct group_filter
+  {
+
+    uint32_t gf_interface;
+
+
+    struct sockaddr_storage gf_group;
+
+
+    uint32_t gf_fmode;
+
+
+    uint32_t gf_numsrc;
+
+    struct sockaddr_storage gf_slist[1];
+};
+# 375 "/usr/include/netinet/in.h" 3 4
+extern uint32_t ntohl (uint32_t __netlong) throw () __attribute__ ((__const__));
+extern uint16_t ntohs (uint16_t __netshort)
+     throw () __attribute__ ((__const__));
+extern uint32_t htonl (uint32_t __hostlong)
+     throw () __attribute__ ((__const__));
+extern uint16_t htons (uint16_t __hostshort)
+     throw () __attribute__ ((__const__));
+
+
+
+
+
+# 1 "/usr/include/bits/byteswap.h" 1 3 4
+# 387 "/usr/include/netinet/in.h" 2 3 4
+# 1 "/usr/include/bits/uintn-identity.h" 1 3 4
+# 388 "/usr/include/netinet/in.h" 2 3 4
+# 503 "/usr/include/netinet/in.h" 3 4
+extern int bindresvport (int __sockfd, struct sockaddr_in *__sock_in) throw ();
+
+
+extern int bindresvport6 (int __sockfd, struct sockaddr_in6 *__sock_in)
+     throw ();
+# 533 "/usr/include/netinet/in.h" 3 4
+struct cmsghdr;
+
+
+
+struct in6_pktinfo
+  {
+    struct in6_addr ipi6_addr;
+    unsigned int ipi6_ifindex;
+  };
+
+
+struct ip6_mtuinfo
+  {
+    struct sockaddr_in6 ip6m_addr;
+    uint32_t ip6m_mtu;
+  };
+
+
+
+extern int inet6_option_space (int __nbytes)
+     throw () __attribute__ ((__deprecated__));
+extern int inet6_option_init (void *__bp, struct cmsghdr **__cmsgp,
+         int __type) throw () __attribute__ ((__deprecated__));
+extern int inet6_option_append (struct cmsghdr *__cmsg,
+    const uint8_t *__typep, int __multx,
+    int __plusy) throw () __attribute__ ((__deprecated__));
+extern uint8_t *inet6_option_alloc (struct cmsghdr *__cmsg, int __datalen,
+        int __multx, int __plusy)
+     throw () __attribute__ ((__deprecated__));
+extern int inet6_option_next (const struct cmsghdr *__cmsg,
+         uint8_t **__tptrp)
+     throw () __attribute__ ((__deprecated__));
+extern int inet6_option_find (const struct cmsghdr *__cmsg,
+         uint8_t **__tptrp, int __type)
+     throw () __attribute__ ((__deprecated__));
+
+
+
+extern int inet6_opt_init (void *__extbuf, socklen_t __extlen) throw ();
+extern int inet6_opt_append (void *__extbuf, socklen_t __extlen, int __offset,
+        uint8_t __type, socklen_t __len, uint8_t __align,
+        void **__databufp) throw ();
+extern int inet6_opt_finish (void *__extbuf, socklen_t __extlen, int __offset)
+     throw ();
+extern int inet6_opt_set_val (void *__databuf, int __offset, void *__val,
+         socklen_t __vallen) throw ();
+extern int inet6_opt_next (void *__extbuf, socklen_t __extlen, int __offset,
+      uint8_t *__typep, socklen_t *__lenp,
+      void **__databufp) throw ();
+extern int inet6_opt_find (void *__extbuf, socklen_t __extlen, int __offset,
+      uint8_t __type, socklen_t *__lenp,
+      void **__databufp) throw ();
+extern int inet6_opt_get_val (void *__databuf, int __offset, void *__val,
+         socklen_t __vallen) throw ();
+
+
+
+extern socklen_t inet6_rth_space (int __type, int __segments) throw ();
+extern void *inet6_rth_init (void *__bp, socklen_t __bp_len, int __type,
+        int __segments) throw ();
+extern int inet6_rth_add (void *__bp, const struct in6_addr *__addr) throw ();
+extern int inet6_rth_reverse (const void *__in, void *__out) throw ();
+extern int inet6_rth_segments (const void *__bp) throw ();
+extern struct in6_addr *inet6_rth_getaddr (const void *__bp, int __index)
+     throw ();
+
+
+
+
+
+extern int getipv4sourcefilter (int __s, struct in_addr __interface_addr,
+    struct in_addr __group, uint32_t *__fmode,
+    uint32_t *__numsrc, struct in_addr *__slist)
+     throw ();
+
+
+extern int setipv4sourcefilter (int __s, struct in_addr __interface_addr,
+    struct in_addr __group, uint32_t __fmode,
+    uint32_t __numsrc,
+    const struct in_addr *__slist)
+     throw ();
+
+
+
+extern int getsourcefilter (int __s, uint32_t __interface_addr,
+       const struct sockaddr *__group,
+       socklen_t __grouplen, uint32_t *__fmode,
+       uint32_t *__numsrc,
+       struct sockaddr_storage *__slist) throw ();
+
+
+extern int setsourcefilter (int __s, uint32_t __interface_addr,
+       const struct sockaddr *__group,
+       socklen_t __grouplen, uint32_t __fmode,
+       uint32_t __numsrc,
+       const struct sockaddr_storage *__slist) throw ();
+
+
+}
+# 23 "/usr/include/arpa/inet.h" 2 3 4
+
+
+
+
+
+
+
+extern "C" {
+
+
+
+extern in_addr_t inet_addr (const char *__cp) throw ();
+
+
+extern in_addr_t inet_lnaof (struct in_addr __in) throw ();
+
+
+
+extern struct in_addr inet_makeaddr (in_addr_t __net, in_addr_t __host)
+     throw ();
+
+
+extern in_addr_t inet_netof (struct in_addr __in) throw ();
+
+
+
+extern in_addr_t inet_network (const char *__cp) throw ();
+
+
+
+extern char *inet_ntoa (struct in_addr __in) throw ();
+
+
+
+
+extern int inet_pton (int __af, const char *__restrict __cp,
+        void *__restrict __buf) throw ();
+
+
+
+
+extern const char *inet_ntop (int __af, const void *__restrict __cp,
+         char *__restrict __buf, socklen_t __len)
+     throw ();
+
+
+
+
+
+
+extern int inet_aton (const char *__cp, struct in_addr *__inp) throw ();
+
+
+
+extern char *inet_neta (in_addr_t __net, char *__buf, size_t __len) throw ();
+
+
+
+
+extern char *inet_net_ntop (int __af, const void *__cp, int __bits,
+       char *__buf, size_t __len) throw ();
+
+
+
+
+extern int inet_net_pton (int __af, const char *__cp,
+     void *__buf, size_t __len) throw ();
+
+
+
+
+extern unsigned int inet_nsap_addr (const char *__cp,
+        unsigned char *__buf, int __len) throw ();
+
+
+
+extern char *inet_nsap_ntoa (int __len, const unsigned char *__cp,
+        char *__buf) throw ();
+
+
+}
+# 7 "././common/../server.h" 2
+
+
+
+
+
+
+class ESE532_Server {
+public:
+
+
+ int setup_server(int avg_blocksize);
+
+
+ int get_packet(unsigned char* buffer);
+
+protected:
+
+
+ int sockfd;
+
+
+ int blocksize;
+
+
+ struct sockaddr_in servaddr;
+
+
+ socklen_t server_len = sizeof(servaddr);
+
+ int packets_read;
+
+};
+# 43 "././common/Utilities.h" 2
+
+
+# 1 "/usr/include/sys/mman.h" 1 3 4
+# 25 "/usr/include/sys/mman.h" 3 4
+# 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/lib/clang/7.0.0/include/stddef.h" 1 3 4
+# 26 "/usr/include/sys/mman.h" 2 3 4
+# 41 "/usr/include/sys/mman.h" 3 4
+# 1 "/usr/include/bits/mman.h" 1 3 4
+# 31 "/usr/include/bits/mman.h" 3 4
+# 1 "/usr/include/bits/mman-map-flags-generic.h" 1 3 4
+# 32 "/usr/include/bits/mman.h" 2 3 4
+
+
+# 1 "/usr/include/bits/mman-linux.h" 1 3 4
+# 113 "/usr/include/bits/mman-linux.h" 3 4
+# 1 "/usr/include/bits/mman-shared.h" 1 3 4
+# 46 "/usr/include/bits/mman-shared.h" 3 4
+extern "C" {
+
+
+
+int memfd_create (const char *__name, unsigned int __flags) throw ();
+
+
+
+int mlock2 (const void *__addr, size_t __length, unsigned int __flags) throw ();
+
+
+
+
+
+int pkey_alloc (unsigned int __flags, unsigned int __access_rights) throw ();
+
+
+
+int pkey_set (int __key, unsigned int __access_rights) throw ();
+
+
+
+int pkey_get (int __key) throw ();
+
+
+
+int pkey_free (int __key) throw ();
+
+
+
+int pkey_mprotect (void *__addr, size_t __len, int __prot, int __pkey) throw ();
+
+}
+# 114 "/usr/include/bits/mman-linux.h" 2 3 4
+# 35 "/usr/include/bits/mman.h" 2 3 4
+# 42 "/usr/include/sys/mman.h" 2 3 4
+
+
+
+
+extern "C" {
+# 57 "/usr/include/sys/mman.h" 3 4
+extern void *mmap (void *__addr, size_t __len, int __prot,
+     int __flags, int __fd, __off_t __offset) throw ();
+# 70 "/usr/include/sys/mman.h" 3 4
+extern void *mmap64 (void *__addr, size_t __len, int __prot,
+       int __flags, int __fd, __off64_t __offset) throw ();
+
+
+
+
+extern int munmap (void *__addr, size_t __len) throw ();
+
+
+
+
+extern int mprotect (void *__addr, size_t __len, int __prot) throw ();
+
+
+
+
+
+
+
+extern int msync (void *__addr, size_t __len, int __flags);
+
+
+
+
+extern int madvise (void *__addr, size_t __len, int __advice) throw ();
+
+
+
+extern int posix_madvise (void *__addr, size_t __len, int __advice) throw ();
+
+
+
+
+extern int mlock (const void *__addr, size_t __len) throw ();
+
+
+extern int munlock (const void *__addr, size_t __len) throw ();
+
+
+
+
+extern int mlockall (int __flags) throw ();
+
+
+
+extern int munlockall (void) throw ();
+
+
+
+
+
+
+
+extern int mincore (void *__start, size_t __len, unsigned char *__vec)
+     throw ();
+# 133 "/usr/include/sys/mman.h" 3 4
+extern void *mremap (void *__addr, size_t __old_len, size_t __new_len,
+       int __flags, ...) throw ();
+
+
+
+extern int remap_file_pages (void *__start, size_t __size, int __prot,
+        size_t __pgoff, int __flags) throw ();
+
+
+
+
+extern int shm_open (const char *__name, int __oflag, mode_t __mode);
+
+
+extern int shm_unlink (const char *__name);
+
+}
+# 46 "././common/Utilities.h" 2
+# 1 "././common/../encoder.h" 1
+# 47 "././common/Utilities.h" 2
+# 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/atomic" 1 3
+# 36 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/atomic" 3
+
+
+
+
+
+# 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/atomic_base.h" 1 3
+# 34 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/atomic_base.h" 3
+# 43 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/atomic_base.h" 3
+namespace std __attribute__ ((__visibility__ ("default")))
+{
+# 55 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/atomic_base.h" 3
+  typedef enum memory_order
+    {
+      memory_order_relaxed,
+      memory_order_consume,
+      memory_order_acquire,
+      memory_order_release,
+      memory_order_acq_rel,
+      memory_order_seq_cst
+    } memory_order;
+
+  enum __memory_order_modifier
+    {
+      __memory_order_mask = 0x0ffff,
+      __memory_order_modifier_mask = 0xffff0000,
+      __memory_order_hle_acquire = 0x10000,
+      __memory_order_hle_release = 0x20000
+    };
+
+  constexpr memory_order
+  operator|(memory_order __m, __memory_order_modifier __mod)
+  {
+    return memory_order(__m | int(__mod));
+  }
+
+  constexpr memory_order
+  operator&(memory_order __m, __memory_order_modifier __mod)
+  {
+    return memory_order(__m & int(__mod));
+  }
+
+
+  constexpr memory_order
+  __cmpexch_failure_order2(memory_order __m) noexcept
+  {
+    return __m == memory_order_acq_rel ? memory_order_acquire
+      : __m == memory_order_release ? memory_order_relaxed : __m;
+  }
+
+  constexpr memory_order
+  __cmpexch_failure_order(memory_order __m) noexcept
+  {
+    return memory_order(__cmpexch_failure_order2(__m & __memory_order_mask)
+      | (__m & __memory_order_modifier_mask));
+  }
+
+  inline __attribute__((__always_inline__)) void
+  atomic_thread_fence(memory_order __m) noexcept
+  { __atomic_thread_fence(__m); }
+
+  inline __attribute__((__always_inline__)) void
+  atomic_signal_fence(memory_order __m) noexcept
+  { __atomic_signal_fence(__m); }
+
+
+  template<typename _Tp>
+    inline _Tp
+    kill_dependency(_Tp __y) noexcept
+    {
+      _Tp __ret(__y);
+      return __ret;
+    }
+
+
+
+  template<typename _IntTp>
+    struct __atomic_base;
+
+
+
+
+  template<typename _Tp>
+    struct atomic;
+
+  template<typename _Tp>
+    struct atomic<_Tp*>;
+
+
+
+    typedef bool __atomic_flag_data_type;
+# 148 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/atomic_base.h" 3
+  extern "C" {
+
+  struct __atomic_flag_base
+  {
+    __atomic_flag_data_type _M_i;
+  };
+
+  }
+
+
+
+
+  struct atomic_flag : public __atomic_flag_base
+  {
+    atomic_flag() noexcept = default;
+    ~atomic_flag() noexcept = default;
+    atomic_flag(const atomic_flag&) = delete;
+    atomic_flag& operator=(const atomic_flag&) = delete;
+    atomic_flag& operator=(const atomic_flag&) volatile = delete;
+
+
+    constexpr atomic_flag(bool __i) noexcept
+      : __atomic_flag_base{ _S_init(__i) }
+    { }
+
+    inline __attribute__((__always_inline__)) bool
+    test_and_set(memory_order __m = memory_order_seq_cst) noexcept
+    {
+      return __atomic_test_and_set (&_M_i, __m);
+    }
+
+    inline __attribute__((__always_inline__)) bool
+    test_and_set(memory_order __m = memory_order_seq_cst) volatile noexcept
+    {
+      return __atomic_test_and_set (&_M_i, __m);
+    }
+
+    inline __attribute__((__always_inline__)) void
+    clear(memory_order __m = memory_order_seq_cst) noexcept
+    {
+      memory_order __b = __m & __memory_order_mask;
+                                                   ;
+                                                   ;
+                                                   ;
+
+      __atomic_clear (&_M_i, __m);
+    }
+
+    inline __attribute__((__always_inline__)) void
+    clear(memory_order __m = memory_order_seq_cst) volatile noexcept
+    {
+      memory_order __b = __m & __memory_order_mask;
+                                                   ;
+                                                   ;
+                                                   ;
+
+      __atomic_clear (&_M_i, __m);
+    }
+
+  private:
+    static constexpr __atomic_flag_data_type
+    _S_init(bool __i)
+    { return __i ? 1 : 0; }
+  };
+# 237 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/atomic_base.h" 3
+  template<typename _ITp>
+    struct __atomic_base
+    {
+    private:
+      typedef _ITp __int_type;
+
+      static constexpr int _S_alignment =
+ sizeof(_ITp) > alignof(_ITp) ? sizeof(_ITp) : alignof(_ITp);
+
+      alignas(_S_alignment) __int_type _M_i;
+
+    public:
+      __atomic_base() noexcept = default;
+      ~__atomic_base() noexcept = default;
+      __atomic_base(const __atomic_base&) = delete;
+      __atomic_base& operator=(const __atomic_base&) = delete;
+      __atomic_base& operator=(const __atomic_base&) volatile = delete;
+
+
+      constexpr __atomic_base(__int_type __i) noexcept : _M_i (__i) { }
+
+      operator __int_type() const noexcept
+      { return load(); }
+
+      operator __int_type() const volatile noexcept
+      { return load(); }
+
+      __int_type
+      operator=(__int_type __i) noexcept
+      {
+ store(__i);
+ return __i;
+      }
+
+      __int_type
+      operator=(__int_type __i) volatile noexcept
+      {
+ store(__i);
+ return __i;
+      }
+
+      __int_type
+      operator++(int) noexcept
+      { return fetch_add(1); }
+
+      __int_type
+      operator++(int) volatile noexcept
+      { return fetch_add(1); }
+
+      __int_type
+      operator--(int) noexcept
+      { return fetch_sub(1); }
+
+      __int_type
+      operator--(int) volatile noexcept
+      { return fetch_sub(1); }
+
+      __int_type
+      operator++() noexcept
+      { return __atomic_add_fetch(&_M_i, 1, memory_order_seq_cst); }
+
+      __int_type
+      operator++() volatile noexcept
+      { return __atomic_add_fetch(&_M_i, 1, memory_order_seq_cst); }
+
+      __int_type
+      operator--() noexcept
+      { return __atomic_sub_fetch(&_M_i, 1, memory_order_seq_cst); }
+
+      __int_type
+      operator--() volatile noexcept
+      { return __atomic_sub_fetch(&_M_i, 1, memory_order_seq_cst); }
+
+      __int_type
+      operator+=(__int_type __i) noexcept
+      { return __atomic_add_fetch(&_M_i, __i, memory_order_seq_cst); }
+
+      __int_type
+      operator+=(__int_type __i) volatile noexcept
+      { return __atomic_add_fetch(&_M_i, __i, memory_order_seq_cst); }
+
+      __int_type
+      operator-=(__int_type __i) noexcept
+      { return __atomic_sub_fetch(&_M_i, __i, memory_order_seq_cst); }
+
+      __int_type
+      operator-=(__int_type __i) volatile noexcept
+      { return __atomic_sub_fetch(&_M_i, __i, memory_order_seq_cst); }
+
+      __int_type
+      operator&=(__int_type __i) noexcept
+      { return __atomic_and_fetch(&_M_i, __i, memory_order_seq_cst); }
+
+      __int_type
+      operator&=(__int_type __i) volatile noexcept
+      { return __atomic_and_fetch(&_M_i, __i, memory_order_seq_cst); }
+
+      __int_type
+      operator|=(__int_type __i) noexcept
+      { return __atomic_or_fetch(&_M_i, __i, memory_order_seq_cst); }
+
+      __int_type
+      operator|=(__int_type __i) volatile noexcept
+      { return __atomic_or_fetch(&_M_i, __i, memory_order_seq_cst); }
+
+      __int_type
+      operator^=(__int_type __i) noexcept
+      { return __atomic_xor_fetch(&_M_i, __i, memory_order_seq_cst); }
+
+      __int_type
+      operator^=(__int_type __i) volatile noexcept
+      { return __atomic_xor_fetch(&_M_i, __i, memory_order_seq_cst); }
+
+      bool
+      is_lock_free() const noexcept
+      {
+
+ return __atomic_is_lock_free(sizeof(_M_i),
+     reinterpret_cast<void *>(-__alignof(_M_i)));
+      }
+
+      bool
+      is_lock_free() const volatile noexcept
+      {
+
+ return __atomic_is_lock_free(sizeof(_M_i),
+     reinterpret_cast<void *>(-__alignof(_M_i)));
+      }
+
+      inline __attribute__((__always_inline__)) void
+      store(__int_type __i, memory_order __m = memory_order_seq_cst) noexcept
+      {
+        memory_order __b = __m & __memory_order_mask;
+                                              ;
+                                              ;
+                                              ;
+
+ __atomic_store_n(&_M_i, __i, __m);
+      }
+
+      inline __attribute__((__always_inline__)) void
+      store(__int_type __i,
+     memory_order __m = memory_order_seq_cst) volatile noexcept
+      {
+        memory_order __b = __m & __memory_order_mask;
+                                              ;
+                                              ;
+                                              ;
+
+ __atomic_store_n(&_M_i, __i, __m);
+      }
+
+      inline __attribute__((__always_inline__)) __int_type
+      load(memory_order __m = memory_order_seq_cst) const noexcept
+      {
+       memory_order __b = __m & __memory_order_mask;
+                                              ;
+                                              ;
+
+ return __atomic_load_n(&_M_i, __m);
+      }
+
+      inline __attribute__((__always_inline__)) __int_type
+      load(memory_order __m = memory_order_seq_cst) const volatile noexcept
+      {
+        memory_order __b = __m & __memory_order_mask;
+                                              ;
+                                              ;
+
+ return __atomic_load_n(&_M_i, __m);
+      }
+
+      inline __attribute__((__always_inline__)) __int_type
+      exchange(__int_type __i,
+        memory_order __m = memory_order_seq_cst) noexcept
+      {
+ return __atomic_exchange_n(&_M_i, __i, __m);
+      }
+
+
+      inline __attribute__((__always_inline__)) __int_type
+      exchange(__int_type __i,
+        memory_order __m = memory_order_seq_cst) volatile noexcept
+      {
+ return __atomic_exchange_n(&_M_i, __i, __m);
+      }
+
+      inline __attribute__((__always_inline__)) bool
+      compare_exchange_weak(__int_type& __i1, __int_type __i2,
+       memory_order __m1, memory_order __m2) noexcept
+      {
+       memory_order __b2 = __m2 & __memory_order_mask;
+       memory_order __b1 = __m1 & __memory_order_mask;
+                                               ;
+                                               ;
+                               ;
+
+ return __atomic_compare_exchange_n(&_M_i, &__i1, __i2, 1, __m1, __m2);
+      }
+
+      inline __attribute__((__always_inline__)) bool
+      compare_exchange_weak(__int_type& __i1, __int_type __i2,
+       memory_order __m1,
+       memory_order __m2) volatile noexcept
+      {
+       memory_order __b2 = __m2 & __memory_order_mask;
+       memory_order __b1 = __m1 & __memory_order_mask;
+                                               ;
+                                               ;
+                               ;
+
+ return __atomic_compare_exchange_n(&_M_i, &__i1, __i2, 1, __m1, __m2);
+      }
+
+      inline __attribute__((__always_inline__)) bool
+      compare_exchange_weak(__int_type& __i1, __int_type __i2,
+       memory_order __m = memory_order_seq_cst) noexcept
+      {
+ return compare_exchange_weak(__i1, __i2, __m,
+         __cmpexch_failure_order(__m));
+      }
+
+      inline __attribute__((__always_inline__)) bool
+      compare_exchange_weak(__int_type& __i1, __int_type __i2,
+     memory_order __m = memory_order_seq_cst) volatile noexcept
+      {
+ return compare_exchange_weak(__i1, __i2, __m,
+         __cmpexch_failure_order(__m));
+      }
+
+      inline __attribute__((__always_inline__)) bool
+      compare_exchange_strong(__int_type& __i1, __int_type __i2,
+         memory_order __m1, memory_order __m2) noexcept
+      {
+        memory_order __b2 = __m2 & __memory_order_mask;
+        memory_order __b1 = __m1 & __memory_order_mask;
+                                               ;
+                                               ;
+                               ;
+
+ return __atomic_compare_exchange_n(&_M_i, &__i1, __i2, 0, __m1, __m2);
+      }
+
+      inline __attribute__((__always_inline__)) bool
+      compare_exchange_strong(__int_type& __i1, __int_type __i2,
+         memory_order __m1,
+         memory_order __m2) volatile noexcept
+      {
+        memory_order __b2 = __m2 & __memory_order_mask;
+        memory_order __b1 = __m1 & __memory_order_mask;
+
+                                               ;
+                                               ;
+                               ;
+
+ return __atomic_compare_exchange_n(&_M_i, &__i1, __i2, 0, __m1, __m2);
+      }
+
+      inline __attribute__((__always_inline__)) bool
+      compare_exchange_strong(__int_type& __i1, __int_type __i2,
+         memory_order __m = memory_order_seq_cst) noexcept
+      {
+ return compare_exchange_strong(__i1, __i2, __m,
+           __cmpexch_failure_order(__m));
+      }
+
+      inline __attribute__((__always_inline__)) bool
+      compare_exchange_strong(__int_type& __i1, __int_type __i2,
+   memory_order __m = memory_order_seq_cst) volatile noexcept
+      {
+ return compare_exchange_strong(__i1, __i2, __m,
+           __cmpexch_failure_order(__m));
+      }
+
+      inline __attribute__((__always_inline__)) __int_type
+      fetch_add(__int_type __i,
+  memory_order __m = memory_order_seq_cst) noexcept
+      { return __atomic_fetch_add(&_M_i, __i, __m); }
+
+      inline __attribute__((__always_inline__)) __int_type
+      fetch_add(__int_type __i,
+  memory_order __m = memory_order_seq_cst) volatile noexcept
+      { return __atomic_fetch_add(&_M_i, __i, __m); }
+
+      inline __attribute__((__always_inline__)) __int_type
+      fetch_sub(__int_type __i,
+  memory_order __m = memory_order_seq_cst) noexcept
+      { return __atomic_fetch_sub(&_M_i, __i, __m); }
+
+      inline __attribute__((__always_inline__)) __int_type
+      fetch_sub(__int_type __i,
+  memory_order __m = memory_order_seq_cst) volatile noexcept
+      { return __atomic_fetch_sub(&_M_i, __i, __m); }
+
+      inline __attribute__((__always_inline__)) __int_type
+      fetch_and(__int_type __i,
+  memory_order __m = memory_order_seq_cst) noexcept
+      { return __atomic_fetch_and(&_M_i, __i, __m); }
+
+      inline __attribute__((__always_inline__)) __int_type
+      fetch_and(__int_type __i,
+  memory_order __m = memory_order_seq_cst) volatile noexcept
+      { return __atomic_fetch_and(&_M_i, __i, __m); }
+
+      inline __attribute__((__always_inline__)) __int_type
+      fetch_or(__int_type __i,
+        memory_order __m = memory_order_seq_cst) noexcept
+      { return __atomic_fetch_or(&_M_i, __i, __m); }
+
+      inline __attribute__((__always_inline__)) __int_type
+      fetch_or(__int_type __i,
+        memory_order __m = memory_order_seq_cst) volatile noexcept
+      { return __atomic_fetch_or(&_M_i, __i, __m); }
+
+      inline __attribute__((__always_inline__)) __int_type
+      fetch_xor(__int_type __i,
+  memory_order __m = memory_order_seq_cst) noexcept
+      { return __atomic_fetch_xor(&_M_i, __i, __m); }
+
+      inline __attribute__((__always_inline__)) __int_type
+      fetch_xor(__int_type __i,
+  memory_order __m = memory_order_seq_cst) volatile noexcept
+      { return __atomic_fetch_xor(&_M_i, __i, __m); }
+    };
+
+
+
+  template<typename _PTp>
+    struct __atomic_base<_PTp*>
+    {
+    private:
+      typedef _PTp* __pointer_type;
+
+      __pointer_type _M_p;
+
+
+      constexpr ptrdiff_t
+      _M_type_size(ptrdiff_t __d) const { return __d * sizeof(_PTp); }
+
+      constexpr ptrdiff_t
+      _M_type_size(ptrdiff_t __d) const volatile { return __d * sizeof(_PTp); }
+
+    public:
+      __atomic_base() noexcept = default;
+      ~__atomic_base() noexcept = default;
+      __atomic_base(const __atomic_base&) = delete;
+      __atomic_base& operator=(const __atomic_base&) = delete;
+      __atomic_base& operator=(const __atomic_base&) volatile = delete;
+
+
+      constexpr __atomic_base(__pointer_type __p) noexcept : _M_p (__p) { }
+
+      operator __pointer_type() const noexcept
+      { return load(); }
+
+      operator __pointer_type() const volatile noexcept
+      { return load(); }
+
+      __pointer_type
+      operator=(__pointer_type __p) noexcept
+      {
+ store(__p);
+ return __p;
+      }
+
+      __pointer_type
+      operator=(__pointer_type __p) volatile noexcept
+      {
+ store(__p);
+ return __p;
+      }
+
+      __pointer_type
+      operator++(int) noexcept
+      { return fetch_add(1); }
+
+      __pointer_type
+      operator++(int) volatile noexcept
+      { return fetch_add(1); }
+
+      __pointer_type
+      operator--(int) noexcept
+      { return fetch_sub(1); }
+
+      __pointer_type
+      operator--(int) volatile noexcept
+      { return fetch_sub(1); }
+
+      __pointer_type
+      operator++() noexcept
+      { return __atomic_add_fetch(&_M_p, _M_type_size(1),
+      memory_order_seq_cst); }
+
+      __pointer_type
+      operator++() volatile noexcept
+      { return __atomic_add_fetch(&_M_p, _M_type_size(1),
+      memory_order_seq_cst); }
+
+      __pointer_type
+      operator--() noexcept
+      { return __atomic_sub_fetch(&_M_p, _M_type_size(1),
+      memory_order_seq_cst); }
+
+      __pointer_type
+      operator--() volatile noexcept
+      { return __atomic_sub_fetch(&_M_p, _M_type_size(1),
+      memory_order_seq_cst); }
+
+      __pointer_type
+      operator+=(ptrdiff_t __d) noexcept
+      { return __atomic_add_fetch(&_M_p, _M_type_size(__d),
+      memory_order_seq_cst); }
+
+      __pointer_type
+      operator+=(ptrdiff_t __d) volatile noexcept
+      { return __atomic_add_fetch(&_M_p, _M_type_size(__d),
+      memory_order_seq_cst); }
+
+      __pointer_type
+      operator-=(ptrdiff_t __d) noexcept
+      { return __atomic_sub_fetch(&_M_p, _M_type_size(__d),
+      memory_order_seq_cst); }
+
+      __pointer_type
+      operator-=(ptrdiff_t __d) volatile noexcept
+      { return __atomic_sub_fetch(&_M_p, _M_type_size(__d),
+      memory_order_seq_cst); }
+
+      bool
+      is_lock_free() const noexcept
+      {
+
+ return __atomic_is_lock_free(sizeof(_M_p),
+     reinterpret_cast<void *>(-__alignof(_M_p)));
+      }
+
+      bool
+      is_lock_free() const volatile noexcept
+      {
+
+ return __atomic_is_lock_free(sizeof(_M_p),
+     reinterpret_cast<void *>(-__alignof(_M_p)));
+      }
+
+      inline __attribute__((__always_inline__)) void
+      store(__pointer_type __p,
+     memory_order __m = memory_order_seq_cst) noexcept
+      {
+        memory_order __b = __m & __memory_order_mask;
+
+                                              ;
+                                              ;
+                                              ;
+
+ __atomic_store_n(&_M_p, __p, __m);
+      }
+
+      inline __attribute__((__always_inline__)) void
+      store(__pointer_type __p,
+     memory_order __m = memory_order_seq_cst) volatile noexcept
+      {
+        memory_order __b = __m & __memory_order_mask;
+                                              ;
+                                              ;
+                                              ;
+
+ __atomic_store_n(&_M_p, __p, __m);
+      }
+
+      inline __attribute__((__always_inline__)) __pointer_type
+      load(memory_order __m = memory_order_seq_cst) const noexcept
+      {
+        memory_order __b = __m & __memory_order_mask;
+                                              ;
+                                              ;
+
+ return __atomic_load_n(&_M_p, __m);
+      }
+
+      inline __attribute__((__always_inline__)) __pointer_type
+      load(memory_order __m = memory_order_seq_cst) const volatile noexcept
+      {
+        memory_order __b = __m & __memory_order_mask;
+                                              ;
+                                              ;
+
+ return __atomic_load_n(&_M_p, __m);
+      }
+
+      inline __attribute__((__always_inline__)) __pointer_type
+      exchange(__pointer_type __p,
+        memory_order __m = memory_order_seq_cst) noexcept
+      {
+ return __atomic_exchange_n(&_M_p, __p, __m);
+      }
+
+
+      inline __attribute__((__always_inline__)) __pointer_type
+      exchange(__pointer_type __p,
+        memory_order __m = memory_order_seq_cst) volatile noexcept
+      {
+ return __atomic_exchange_n(&_M_p, __p, __m);
+      }
+
+      inline __attribute__((__always_inline__)) bool
+      compare_exchange_strong(__pointer_type& __p1, __pointer_type __p2,
+         memory_order __m1,
+         memory_order __m2) noexcept
+      {
+        memory_order __b2 = __m2 & __memory_order_mask;
+        memory_order __b1 = __m1 & __memory_order_mask;
+                                               ;
+                                               ;
+                               ;
+
+ return __atomic_compare_exchange_n(&_M_p, &__p1, __p2, 0, __m1, __m2);
+      }
+
+      inline __attribute__((__always_inline__)) bool
+      compare_exchange_strong(__pointer_type& __p1, __pointer_type __p2,
+         memory_order __m1,
+         memory_order __m2) volatile noexcept
+      {
+        memory_order __b2 = __m2 & __memory_order_mask;
+        memory_order __b1 = __m1 & __memory_order_mask;
+
+                                               ;
+                                               ;
+                               ;
+
+ return __atomic_compare_exchange_n(&_M_p, &__p1, __p2, 0, __m1, __m2);
+      }
+
+      inline __attribute__((__always_inline__)) __pointer_type
+      fetch_add(ptrdiff_t __d,
+  memory_order __m = memory_order_seq_cst) noexcept
+      { return __atomic_fetch_add(&_M_p, _M_type_size(__d), __m); }
+
+      inline __attribute__((__always_inline__)) __pointer_type
+      fetch_add(ptrdiff_t __d,
+  memory_order __m = memory_order_seq_cst) volatile noexcept
+      { return __atomic_fetch_add(&_M_p, _M_type_size(__d), __m); }
+
+      inline __attribute__((__always_inline__)) __pointer_type
+      fetch_sub(ptrdiff_t __d,
+  memory_order __m = memory_order_seq_cst) noexcept
+      { return __atomic_fetch_sub(&_M_p, _M_type_size(__d), __m); }
+
+      inline __attribute__((__always_inline__)) __pointer_type
+      fetch_sub(ptrdiff_t __d,
+  memory_order __m = memory_order_seq_cst) volatile noexcept
+      { return __atomic_fetch_sub(&_M_p, _M_type_size(__d), __m); }
+    };
+
+
+
+
+}
+# 42 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/atomic" 2 3
+
+namespace std __attribute__ ((__visibility__ ("default")))
+{
+
+
+
+
+
+
+
+  template<typename _Tp>
+    struct atomic;
+
+
+
+  template<>
+  struct atomic<bool>
+  {
+  private:
+    __atomic_base<bool> _M_base;
+
+  public:
+    atomic() noexcept = default;
+    ~atomic() noexcept = default;
+    atomic(const atomic&) = delete;
+    atomic& operator=(const atomic&) = delete;
+    atomic& operator=(const atomic&) volatile = delete;
+
+    constexpr atomic(bool __i) noexcept : _M_base(__i) { }
+
+    bool
+    operator=(bool __i) noexcept
+    { return _M_base.operator=(__i); }
+
+    bool
+    operator=(bool __i) volatile noexcept
+    { return _M_base.operator=(__i); }
+
+    operator bool() const noexcept
+    { return _M_base.load(); }
+
+    operator bool() const volatile noexcept
+    { return _M_base.load(); }
+
+    bool
+    is_lock_free() const noexcept { return _M_base.is_lock_free(); }
+
+    bool
+    is_lock_free() const volatile noexcept { return _M_base.is_lock_free(); }
+
+    void
+    store(bool __i, memory_order __m = memory_order_seq_cst) noexcept
+    { _M_base.store(__i, __m); }
+
+    void
+    store(bool __i, memory_order __m = memory_order_seq_cst) volatile noexcept
+    { _M_base.store(__i, __m); }
+
+    bool
+    load(memory_order __m = memory_order_seq_cst) const noexcept
+    { return _M_base.load(__m); }
+
+    bool
+    load(memory_order __m = memory_order_seq_cst) const volatile noexcept
+    { return _M_base.load(__m); }
+
+    bool
+    exchange(bool __i, memory_order __m = memory_order_seq_cst) noexcept
+    { return _M_base.exchange(__i, __m); }
+
+    bool
+    exchange(bool __i,
+      memory_order __m = memory_order_seq_cst) volatile noexcept
+    { return _M_base.exchange(__i, __m); }
+
+    bool
+    compare_exchange_weak(bool& __i1, bool __i2, memory_order __m1,
+     memory_order __m2) noexcept
+    { return _M_base.compare_exchange_weak(__i1, __i2, __m1, __m2); }
+
+    bool
+    compare_exchange_weak(bool& __i1, bool __i2, memory_order __m1,
+     memory_order __m2) volatile noexcept
+    { return _M_base.compare_exchange_weak(__i1, __i2, __m1, __m2); }
+
+    bool
+    compare_exchange_weak(bool& __i1, bool __i2,
+     memory_order __m = memory_order_seq_cst) noexcept
+    { return _M_base.compare_exchange_weak(__i1, __i2, __m); }
+
+    bool
+    compare_exchange_weak(bool& __i1, bool __i2,
+       memory_order __m = memory_order_seq_cst) volatile noexcept
+    { return _M_base.compare_exchange_weak(__i1, __i2, __m); }
+
+    bool
+    compare_exchange_strong(bool& __i1, bool __i2, memory_order __m1,
+       memory_order __m2) noexcept
+    { return _M_base.compare_exchange_strong(__i1, __i2, __m1, __m2); }
+
+    bool
+    compare_exchange_strong(bool& __i1, bool __i2, memory_order __m1,
+       memory_order __m2) volatile noexcept
+    { return _M_base.compare_exchange_strong(__i1, __i2, __m1, __m2); }
+
+    bool
+    compare_exchange_strong(bool& __i1, bool __i2,
+       memory_order __m = memory_order_seq_cst) noexcept
+    { return _M_base.compare_exchange_strong(__i1, __i2, __m); }
+
+    bool
+    compare_exchange_strong(bool& __i1, bool __i2,
+      memory_order __m = memory_order_seq_cst) volatile noexcept
+    { return _M_base.compare_exchange_strong(__i1, __i2, __m); }
+  };
+
+
+
+
+
+
+
+  template<typename _Tp>
+    struct atomic
+    {
+    private:
+
+      static constexpr int _S_min_alignment
+ = (sizeof(_Tp) & (sizeof(_Tp) - 1)) || sizeof(_Tp) > 16
+ ? 0 : sizeof(_Tp);
+
+      static constexpr int _S_alignment
+        = _S_min_alignment > alignof(_Tp) ? _S_min_alignment : alignof(_Tp);
+
+      alignas(_S_alignment) _Tp _M_i;
+
+      static_assert(__is_trivially_copyable(_Tp),
+      "std::atomic requires a trivially copyable type");
+
+      static_assert(sizeof(_Tp) > 0,
+      "Incomplete or zero-sized types are not supported");
+
+    public:
+      atomic() noexcept = default;
+      ~atomic() noexcept = default;
+      atomic(const atomic&) = delete;
+      atomic& operator=(const atomic&) = delete;
+      atomic& operator=(const atomic&) volatile = delete;
+
+      constexpr atomic(_Tp __i) noexcept : _M_i(__i) { }
+
+      operator _Tp() const noexcept
+      { return load(); }
+
+      operator _Tp() const volatile noexcept
+      { return load(); }
+
+      _Tp
+      operator=(_Tp __i) noexcept
+      { store(__i); return __i; }
+
+      _Tp
+      operator=(_Tp __i) volatile noexcept
+      { store(__i); return __i; }
+
+      bool
+      is_lock_free() const noexcept
+      {
+
+ return __atomic_is_lock_free(sizeof(_M_i),
+     reinterpret_cast<void *>(-__alignof(_M_i)));
+      }
+
+      bool
+      is_lock_free() const volatile noexcept
+      {
+
+ return __atomic_is_lock_free(sizeof(_M_i),
+     reinterpret_cast<void *>(-__alignof(_M_i)));
+      }
+
+      void
+      store(_Tp __i, memory_order __m = memory_order_seq_cst) noexcept
+      { __atomic_store(&_M_i, &__i, __m); }
+
+      void
+      store(_Tp __i, memory_order __m = memory_order_seq_cst) volatile noexcept
+      { __atomic_store(&_M_i, &__i, __m); }
+
+      _Tp
+      load(memory_order __m = memory_order_seq_cst) const noexcept
+      {
+        _Tp tmp;
+ __atomic_load(&_M_i, &tmp, __m);
+ return tmp;
+      }
+
+      _Tp
+      load(memory_order __m = memory_order_seq_cst) const volatile noexcept
+      {
+        _Tp tmp;
+ __atomic_load(&_M_i, &tmp, __m);
+ return tmp;
+      }
+
+      _Tp
+      exchange(_Tp __i, memory_order __m = memory_order_seq_cst) noexcept
+      {
+        _Tp tmp;
+ __atomic_exchange(&_M_i, &__i, &tmp, __m);
+ return tmp;
+      }
+
+      _Tp
+      exchange(_Tp __i,
+        memory_order __m = memory_order_seq_cst) volatile noexcept
+      {
+        _Tp tmp;
+ __atomic_exchange(&_M_i, &__i, &tmp, __m);
+ return tmp;
+      }
+
+      bool
+      compare_exchange_weak(_Tp& __e, _Tp __i, memory_order __s,
+       memory_order __f) noexcept
+      {
+ return __atomic_compare_exchange(&_M_i, &__e, &__i, true, __s, __f);
+      }
+
+      bool
+      compare_exchange_weak(_Tp& __e, _Tp __i, memory_order __s,
+       memory_order __f) volatile noexcept
+      {
+ return __atomic_compare_exchange(&_M_i, &__e, &__i, true, __s, __f);
+      }
+
+      bool
+      compare_exchange_weak(_Tp& __e, _Tp __i,
+       memory_order __m = memory_order_seq_cst) noexcept
+      { return compare_exchange_weak(__e, __i, __m,
+                                     __cmpexch_failure_order(__m)); }
+
+      bool
+      compare_exchange_weak(_Tp& __e, _Tp __i,
+       memory_order __m = memory_order_seq_cst) volatile noexcept
+      { return compare_exchange_weak(__e, __i, __m,
+                                     __cmpexch_failure_order(__m)); }
+
+      bool
+      compare_exchange_strong(_Tp& __e, _Tp __i, memory_order __s,
+         memory_order __f) noexcept
+      {
+ return __atomic_compare_exchange(&_M_i, &__e, &__i, false, __s, __f);
+      }
+
+      bool
+      compare_exchange_strong(_Tp& __e, _Tp __i, memory_order __s,
+         memory_order __f) volatile noexcept
+      {
+ return __atomic_compare_exchange(&_M_i, &__e, &__i, false, __s, __f);
+      }
+
+      bool
+      compare_exchange_strong(_Tp& __e, _Tp __i,
+          memory_order __m = memory_order_seq_cst) noexcept
+      { return compare_exchange_strong(__e, __i, __m,
+                                       __cmpexch_failure_order(__m)); }
+
+      bool
+      compare_exchange_strong(_Tp& __e, _Tp __i,
+       memory_order __m = memory_order_seq_cst) volatile noexcept
+      { return compare_exchange_strong(__e, __i, __m,
+                                       __cmpexch_failure_order(__m)); }
+    };
+
+
+
+  template<typename _Tp>
+    struct atomic<_Tp*>
+    {
+      typedef _Tp* __pointer_type;
+      typedef __atomic_base<_Tp*> __base_type;
+      __base_type _M_b;
+
+      atomic() noexcept = default;
+      ~atomic() noexcept = default;
+      atomic(const atomic&) = delete;
+      atomic& operator=(const atomic&) = delete;
+      atomic& operator=(const atomic&) volatile = delete;
+
+      constexpr atomic(__pointer_type __p) noexcept : _M_b(__p) { }
+
+      operator __pointer_type() const noexcept
+      { return __pointer_type(_M_b); }
+
+      operator __pointer_type() const volatile noexcept
+      { return __pointer_type(_M_b); }
+
+      __pointer_type
+      operator=(__pointer_type __p) noexcept
+      { return _M_b.operator=(__p); }
+
+      __pointer_type
+      operator=(__pointer_type __p) volatile noexcept
+      { return _M_b.operator=(__p); }
+
+      __pointer_type
+      operator++(int) noexcept
+      { return _M_b++; }
+
+      __pointer_type
+      operator++(int) volatile noexcept
+      { return _M_b++; }
+
+      __pointer_type
+      operator--(int) noexcept
+      { return _M_b--; }
+
+      __pointer_type
+      operator--(int) volatile noexcept
+      { return _M_b--; }
+
+      __pointer_type
+      operator++() noexcept
+      { return ++_M_b; }
+
+      __pointer_type
+      operator++() volatile noexcept
+      { return ++_M_b; }
+
+      __pointer_type
+      operator--() noexcept
+      { return --_M_b; }
+
+      __pointer_type
+      operator--() volatile noexcept
+      { return --_M_b; }
+
+      __pointer_type
+      operator+=(ptrdiff_t __d) noexcept
+      { return _M_b.operator+=(__d); }
+
+      __pointer_type
+      operator+=(ptrdiff_t __d) volatile noexcept
+      { return _M_b.operator+=(__d); }
+
+      __pointer_type
+      operator-=(ptrdiff_t __d) noexcept
+      { return _M_b.operator-=(__d); }
+
+      __pointer_type
+      operator-=(ptrdiff_t __d) volatile noexcept
+      { return _M_b.operator-=(__d); }
+
+      bool
+      is_lock_free() const noexcept
+      { return _M_b.is_lock_free(); }
+
+      bool
+      is_lock_free() const volatile noexcept
+      { return _M_b.is_lock_free(); }
+
+      void
+      store(__pointer_type __p,
+     memory_order __m = memory_order_seq_cst) noexcept
+      { return _M_b.store(__p, __m); }
+
+      void
+      store(__pointer_type __p,
+     memory_order __m = memory_order_seq_cst) volatile noexcept
+      { return _M_b.store(__p, __m); }
+
+      __pointer_type
+      load(memory_order __m = memory_order_seq_cst) const noexcept
+      { return _M_b.load(__m); }
+
+      __pointer_type
+      load(memory_order __m = memory_order_seq_cst) const volatile noexcept
+      { return _M_b.load(__m); }
+
+      __pointer_type
+      exchange(__pointer_type __p,
+        memory_order __m = memory_order_seq_cst) noexcept
+      { return _M_b.exchange(__p, __m); }
+
+      __pointer_type
+      exchange(__pointer_type __p,
+        memory_order __m = memory_order_seq_cst) volatile noexcept
+      { return _M_b.exchange(__p, __m); }
+
+      bool
+      compare_exchange_weak(__pointer_type& __p1, __pointer_type __p2,
+       memory_order __m1, memory_order __m2) noexcept
+      { return _M_b.compare_exchange_strong(__p1, __p2, __m1, __m2); }
+
+      bool
+      compare_exchange_weak(__pointer_type& __p1, __pointer_type __p2,
+       memory_order __m1,
+       memory_order __m2) volatile noexcept
+      { return _M_b.compare_exchange_strong(__p1, __p2, __m1, __m2); }
+
+      bool
+      compare_exchange_weak(__pointer_type& __p1, __pointer_type __p2,
+       memory_order __m = memory_order_seq_cst) noexcept
+      {
+ return compare_exchange_weak(__p1, __p2, __m,
+         __cmpexch_failure_order(__m));
+      }
+
+      bool
+      compare_exchange_weak(__pointer_type& __p1, __pointer_type __p2,
+      memory_order __m = memory_order_seq_cst) volatile noexcept
+      {
+ return compare_exchange_weak(__p1, __p2, __m,
+         __cmpexch_failure_order(__m));
+      }
+
+      bool
+      compare_exchange_strong(__pointer_type& __p1, __pointer_type __p2,
+         memory_order __m1, memory_order __m2) noexcept
+      { return _M_b.compare_exchange_strong(__p1, __p2, __m1, __m2); }
+
+      bool
+      compare_exchange_strong(__pointer_type& __p1, __pointer_type __p2,
+         memory_order __m1,
+         memory_order __m2) volatile noexcept
+      { return _M_b.compare_exchange_strong(__p1, __p2, __m1, __m2); }
+
+      bool
+      compare_exchange_strong(__pointer_type& __p1, __pointer_type __p2,
+         memory_order __m = memory_order_seq_cst) noexcept
+      {
+ return _M_b.compare_exchange_strong(__p1, __p2, __m,
+         __cmpexch_failure_order(__m));
+      }
+
+      bool
+      compare_exchange_strong(__pointer_type& __p1, __pointer_type __p2,
+      memory_order __m = memory_order_seq_cst) volatile noexcept
+      {
+ return _M_b.compare_exchange_strong(__p1, __p2, __m,
+         __cmpexch_failure_order(__m));
+      }
+
+      __pointer_type
+      fetch_add(ptrdiff_t __d,
+  memory_order __m = memory_order_seq_cst) noexcept
+      { return _M_b.fetch_add(__d, __m); }
+
+      __pointer_type
+      fetch_add(ptrdiff_t __d,
+  memory_order __m = memory_order_seq_cst) volatile noexcept
+      { return _M_b.fetch_add(__d, __m); }
+
+      __pointer_type
+      fetch_sub(ptrdiff_t __d,
+  memory_order __m = memory_order_seq_cst) noexcept
+      { return _M_b.fetch_sub(__d, __m); }
+
+      __pointer_type
+      fetch_sub(ptrdiff_t __d,
+  memory_order __m = memory_order_seq_cst) volatile noexcept
+      { return _M_b.fetch_sub(__d, __m); }
+    };
+
+
+
+  template<>
+    struct atomic<char> : __atomic_base<char>
+    {
+      typedef char __integral_type;
+      typedef __atomic_base<char> __base_type;
+
+      atomic() noexcept = default;
+      ~atomic() noexcept = default;
+      atomic(const atomic&) = delete;
+      atomic& operator=(const atomic&) = delete;
+      atomic& operator=(const atomic&) volatile = delete;
+
+      constexpr atomic(__integral_type __i) noexcept : __base_type(__i) { }
+
+      using __base_type::operator __integral_type;
+      using __base_type::operator=;
+    };
+
+
+  template<>
+    struct atomic<signed char> : __atomic_base<signed char>
+    {
+      typedef signed char __integral_type;
+      typedef __atomic_base<signed char> __base_type;
+
+      atomic() noexcept= default;
+      ~atomic() noexcept = default;
+      atomic(const atomic&) = delete;
+      atomic& operator=(const atomic&) = delete;
+      atomic& operator=(const atomic&) volatile = delete;
+
+      constexpr atomic(__integral_type __i) noexcept : __base_type(__i) { }
+
+      using __base_type::operator __integral_type;
+      using __base_type::operator=;
+    };
+
+
+  template<>
+    struct atomic<unsigned char> : __atomic_base<unsigned char>
+    {
+      typedef unsigned char __integral_type;
+      typedef __atomic_base<unsigned char> __base_type;
+
+      atomic() noexcept= default;
+      ~atomic() noexcept = default;
+      atomic(const atomic&) = delete;
+      atomic& operator=(const atomic&) = delete;
+      atomic& operator=(const atomic&) volatile = delete;
+
+      constexpr atomic(__integral_type __i) noexcept : __base_type(__i) { }
+
+      using __base_type::operator __integral_type;
+      using __base_type::operator=;
+    };
+
+
+  template<>
+    struct atomic<short> : __atomic_base<short>
+    {
+      typedef short __integral_type;
+      typedef __atomic_base<short> __base_type;
+
+      atomic() noexcept = default;
+      ~atomic() noexcept = default;
+      atomic(const atomic&) = delete;
+      atomic& operator=(const atomic&) = delete;
+      atomic& operator=(const atomic&) volatile = delete;
+
+      constexpr atomic(__integral_type __i) noexcept : __base_type(__i) { }
+
+      using __base_type::operator __integral_type;
+      using __base_type::operator=;
+    };
+
+
+  template<>
+    struct atomic<unsigned short> : __atomic_base<unsigned short>
+    {
+      typedef unsigned short __integral_type;
+      typedef __atomic_base<unsigned short> __base_type;
+
+      atomic() noexcept = default;
+      ~atomic() noexcept = default;
+      atomic(const atomic&) = delete;
+      atomic& operator=(const atomic&) = delete;
+      atomic& operator=(const atomic&) volatile = delete;
+
+      constexpr atomic(__integral_type __i) noexcept : __base_type(__i) { }
+
+      using __base_type::operator __integral_type;
+      using __base_type::operator=;
+    };
+
+
+  template<>
+    struct atomic<int> : __atomic_base<int>
+    {
+      typedef int __integral_type;
+      typedef __atomic_base<int> __base_type;
+
+      atomic() noexcept = default;
+      ~atomic() noexcept = default;
+      atomic(const atomic&) = delete;
+      atomic& operator=(const atomic&) = delete;
+      atomic& operator=(const atomic&) volatile = delete;
+
+      constexpr atomic(__integral_type __i) noexcept : __base_type(__i) { }
+
+      using __base_type::operator __integral_type;
+      using __base_type::operator=;
+    };
+
+
+  template<>
+    struct atomic<unsigned int> : __atomic_base<unsigned int>
+    {
+      typedef unsigned int __integral_type;
+      typedef __atomic_base<unsigned int> __base_type;
+
+      atomic() noexcept = default;
+      ~atomic() noexcept = default;
+      atomic(const atomic&) = delete;
+      atomic& operator=(const atomic&) = delete;
+      atomic& operator=(const atomic&) volatile = delete;
+
+      constexpr atomic(__integral_type __i) noexcept : __base_type(__i) { }
+
+      using __base_type::operator __integral_type;
+      using __base_type::operator=;
+    };
+
+
+  template<>
+    struct atomic<long> : __atomic_base<long>
+    {
+      typedef long __integral_type;
+      typedef __atomic_base<long> __base_type;
+
+      atomic() noexcept = default;
+      ~atomic() noexcept = default;
+      atomic(const atomic&) = delete;
+      atomic& operator=(const atomic&) = delete;
+      atomic& operator=(const atomic&) volatile = delete;
+
+      constexpr atomic(__integral_type __i) noexcept : __base_type(__i) { }
+
+      using __base_type::operator __integral_type;
+      using __base_type::operator=;
+    };
+
+
+  template<>
+    struct atomic<unsigned long> : __atomic_base<unsigned long>
+    {
+      typedef unsigned long __integral_type;
+      typedef __atomic_base<unsigned long> __base_type;
+
+      atomic() noexcept = default;
+      ~atomic() noexcept = default;
+      atomic(const atomic&) = delete;
+      atomic& operator=(const atomic&) = delete;
+      atomic& operator=(const atomic&) volatile = delete;
+
+      constexpr atomic(__integral_type __i) noexcept : __base_type(__i) { }
+
+      using __base_type::operator __integral_type;
+      using __base_type::operator=;
+    };
+
+
+  template<>
+    struct atomic<long long> : __atomic_base<long long>
+    {
+      typedef long long __integral_type;
+      typedef __atomic_base<long long> __base_type;
+
+      atomic() noexcept = default;
+      ~atomic() noexcept = default;
+      atomic(const atomic&) = delete;
+      atomic& operator=(const atomic&) = delete;
+      atomic& operator=(const atomic&) volatile = delete;
+
+      constexpr atomic(__integral_type __i) noexcept : __base_type(__i) { }
+
+      using __base_type::operator __integral_type;
+      using __base_type::operator=;
+    };
+
+
+  template<>
+    struct atomic<unsigned long long> : __atomic_base<unsigned long long>
+    {
+      typedef unsigned long long __integral_type;
+      typedef __atomic_base<unsigned long long> __base_type;
+
+      atomic() noexcept = default;
+      ~atomic() noexcept = default;
+      atomic(const atomic&) = delete;
+      atomic& operator=(const atomic&) = delete;
+      atomic& operator=(const atomic&) volatile = delete;
+
+      constexpr atomic(__integral_type __i) noexcept : __base_type(__i) { }
+
+      using __base_type::operator __integral_type;
+      using __base_type::operator=;
+    };
+
+
+  template<>
+    struct atomic<wchar_t> : __atomic_base<wchar_t>
+    {
+      typedef wchar_t __integral_type;
+      typedef __atomic_base<wchar_t> __base_type;
+
+      atomic() noexcept = default;
+      ~atomic() noexcept = default;
+      atomic(const atomic&) = delete;
+      atomic& operator=(const atomic&) = delete;
+      atomic& operator=(const atomic&) volatile = delete;
+
+      constexpr atomic(__integral_type __i) noexcept : __base_type(__i) { }
+
+      using __base_type::operator __integral_type;
+      using __base_type::operator=;
+    };
+
+
+  template<>
+    struct atomic<char16_t> : __atomic_base<char16_t>
+    {
+      typedef char16_t __integral_type;
+      typedef __atomic_base<char16_t> __base_type;
+
+      atomic() noexcept = default;
+      ~atomic() noexcept = default;
+      atomic(const atomic&) = delete;
+      atomic& operator=(const atomic&) = delete;
+      atomic& operator=(const atomic&) volatile = delete;
+
+      constexpr atomic(__integral_type __i) noexcept : __base_type(__i) { }
+
+      using __base_type::operator __integral_type;
+      using __base_type::operator=;
+    };
+
+
+  template<>
+    struct atomic<char32_t> : __atomic_base<char32_t>
+    {
+      typedef char32_t __integral_type;
+      typedef __atomic_base<char32_t> __base_type;
+
+      atomic() noexcept = default;
+      ~atomic() noexcept = default;
+      atomic(const atomic&) = delete;
+      atomic& operator=(const atomic&) = delete;
+      atomic& operator=(const atomic&) volatile = delete;
+
+      constexpr atomic(__integral_type __i) noexcept : __base_type(__i) { }
+
+      using __base_type::operator __integral_type;
+      using __base_type::operator=;
+    };
+
+
+
+  typedef atomic<bool> atomic_bool;
+
+
+  typedef atomic<char> atomic_char;
+
+
+  typedef atomic<signed char> atomic_schar;
+
+
+  typedef atomic<unsigned char> atomic_uchar;
+
+
+  typedef atomic<short> atomic_short;
+
+
+  typedef atomic<unsigned short> atomic_ushort;
+
+
+  typedef atomic<int> atomic_int;
+
+
+  typedef atomic<unsigned int> atomic_uint;
+
+
+  typedef atomic<long> atomic_long;
+
+
+  typedef atomic<unsigned long> atomic_ulong;
+
+
+  typedef atomic<long long> atomic_llong;
+
+
+  typedef atomic<unsigned long long> atomic_ullong;
+
+
+  typedef atomic<wchar_t> atomic_wchar_t;
+
+
+  typedef atomic<char16_t> atomic_char16_t;
+
+
+  typedef atomic<char32_t> atomic_char32_t;
+
+
+
+  typedef atomic<int_least8_t> atomic_int_least8_t;
+
+
+  typedef atomic<uint_least8_t> atomic_uint_least8_t;
+
+
+  typedef atomic<int_least16_t> atomic_int_least16_t;
+
+
+  typedef atomic<uint_least16_t> atomic_uint_least16_t;
+
+
+  typedef atomic<int_least32_t> atomic_int_least32_t;
+
+
+  typedef atomic<uint_least32_t> atomic_uint_least32_t;
+
+
+  typedef atomic<int_least64_t> atomic_int_least64_t;
+
+
+  typedef atomic<uint_least64_t> atomic_uint_least64_t;
+
+
+
+  typedef atomic<int_fast8_t> atomic_int_fast8_t;
+
+
+  typedef atomic<uint_fast8_t> atomic_uint_fast8_t;
+
+
+  typedef atomic<int_fast16_t> atomic_int_fast16_t;
+
+
+  typedef atomic<uint_fast16_t> atomic_uint_fast16_t;
+
+
+  typedef atomic<int_fast32_t> atomic_int_fast32_t;
+
+
+  typedef atomic<uint_fast32_t> atomic_uint_fast32_t;
+
+
+  typedef atomic<int_fast64_t> atomic_int_fast64_t;
+
+
+  typedef atomic<uint_fast64_t> atomic_uint_fast64_t;
+
+
+
+  typedef atomic<intptr_t> atomic_intptr_t;
+
+
+  typedef atomic<uintptr_t> atomic_uintptr_t;
+
+
+  typedef atomic<size_t> atomic_size_t;
+
+
+  typedef atomic<intmax_t> atomic_intmax_t;
+
+
+  typedef atomic<uintmax_t> atomic_uintmax_t;
+
+
+  typedef atomic<ptrdiff_t> atomic_ptrdiff_t;
+
+
+
+  inline bool
+  atomic_flag_test_and_set_explicit(atomic_flag* __a,
+        memory_order __m) noexcept
+  { return __a->test_and_set(__m); }
+
+  inline bool
+  atomic_flag_test_and_set_explicit(volatile atomic_flag* __a,
+        memory_order __m) noexcept
+  { return __a->test_and_set(__m); }
+
+  inline void
+  atomic_flag_clear_explicit(atomic_flag* __a, memory_order __m) noexcept
+  { __a->clear(__m); }
+
+  inline void
+  atomic_flag_clear_explicit(volatile atomic_flag* __a,
+        memory_order __m) noexcept
+  { __a->clear(__m); }
+
+  inline bool
+  atomic_flag_test_and_set(atomic_flag* __a) noexcept
+  { return atomic_flag_test_and_set_explicit(__a, memory_order_seq_cst); }
+
+  inline bool
+  atomic_flag_test_and_set(volatile atomic_flag* __a) noexcept
+  { return atomic_flag_test_and_set_explicit(__a, memory_order_seq_cst); }
+
+  inline void
+  atomic_flag_clear(atomic_flag* __a) noexcept
+  { atomic_flag_clear_explicit(__a, memory_order_seq_cst); }
+
+  inline void
+  atomic_flag_clear(volatile atomic_flag* __a) noexcept
+  { atomic_flag_clear_explicit(__a, memory_order_seq_cst); }
+
+
+
+  template<typename _ITp>
+    inline bool
+    atomic_is_lock_free(const atomic<_ITp>* __a) noexcept
+    { return __a->is_lock_free(); }
+
+  template<typename _ITp>
+    inline bool
+    atomic_is_lock_free(const volatile atomic<_ITp>* __a) noexcept
+    { return __a->is_lock_free(); }
+
+  template<typename _ITp>
+    inline void
+    atomic_init(atomic<_ITp>* __a, _ITp __i) noexcept
+    { __a->store(__i, memory_order_relaxed); }
+
+  template<typename _ITp>
+    inline void
+    atomic_init(volatile atomic<_ITp>* __a, _ITp __i) noexcept
+    { __a->store(__i, memory_order_relaxed); }
+
+  template<typename _ITp>
+    inline void
+    atomic_store_explicit(atomic<_ITp>* __a, _ITp __i,
+     memory_order __m) noexcept
+    { __a->store(__i, __m); }
+
+  template<typename _ITp>
+    inline void
+    atomic_store_explicit(volatile atomic<_ITp>* __a, _ITp __i,
+     memory_order __m) noexcept
+    { __a->store(__i, __m); }
+
+  template<typename _ITp>
+    inline _ITp
+    atomic_load_explicit(const atomic<_ITp>* __a, memory_order __m) noexcept
+    { return __a->load(__m); }
+
+  template<typename _ITp>
+    inline _ITp
+    atomic_load_explicit(const volatile atomic<_ITp>* __a,
+    memory_order __m) noexcept
+    { return __a->load(__m); }
+
+  template<typename _ITp>
+    inline _ITp
+    atomic_exchange_explicit(atomic<_ITp>* __a, _ITp __i,
+        memory_order __m) noexcept
+    { return __a->exchange(__i, __m); }
+
+  template<typename _ITp>
+    inline _ITp
+    atomic_exchange_explicit(volatile atomic<_ITp>* __a, _ITp __i,
+        memory_order __m) noexcept
+    { return __a->exchange(__i, __m); }
+
+  template<typename _ITp>
+    inline bool
+    atomic_compare_exchange_weak_explicit(atomic<_ITp>* __a,
+       _ITp* __i1, _ITp __i2,
+       memory_order __m1,
+       memory_order __m2) noexcept
+    { return __a->compare_exchange_weak(*__i1, __i2, __m1, __m2); }
+
+  template<typename _ITp>
+    inline bool
+    atomic_compare_exchange_weak_explicit(volatile atomic<_ITp>* __a,
+       _ITp* __i1, _ITp __i2,
+       memory_order __m1,
+       memory_order __m2) noexcept
+    { return __a->compare_exchange_weak(*__i1, __i2, __m1, __m2); }
+
+  template<typename _ITp>
+    inline bool
+    atomic_compare_exchange_strong_explicit(atomic<_ITp>* __a,
+         _ITp* __i1, _ITp __i2,
+         memory_order __m1,
+         memory_order __m2) noexcept
+    { return __a->compare_exchange_strong(*__i1, __i2, __m1, __m2); }
+
+  template<typename _ITp>
+    inline bool
+    atomic_compare_exchange_strong_explicit(volatile atomic<_ITp>* __a,
+         _ITp* __i1, _ITp __i2,
+         memory_order __m1,
+         memory_order __m2) noexcept
+    { return __a->compare_exchange_strong(*__i1, __i2, __m1, __m2); }
+
+
+  template<typename _ITp>
+    inline void
+    atomic_store(atomic<_ITp>* __a, _ITp __i) noexcept
+    { atomic_store_explicit(__a, __i, memory_order_seq_cst); }
+
+  template<typename _ITp>
+    inline void
+    atomic_store(volatile atomic<_ITp>* __a, _ITp __i) noexcept
+    { atomic_store_explicit(__a, __i, memory_order_seq_cst); }
+
+  template<typename _ITp>
+    inline _ITp
+    atomic_load(const atomic<_ITp>* __a) noexcept
+    { return atomic_load_explicit(__a, memory_order_seq_cst); }
+
+  template<typename _ITp>
+    inline _ITp
+    atomic_load(const volatile atomic<_ITp>* __a) noexcept
+    { return atomic_load_explicit(__a, memory_order_seq_cst); }
+
+  template<typename _ITp>
+    inline _ITp
+    atomic_exchange(atomic<_ITp>* __a, _ITp __i) noexcept
+    { return atomic_exchange_explicit(__a, __i, memory_order_seq_cst); }
+
+  template<typename _ITp>
+    inline _ITp
+    atomic_exchange(volatile atomic<_ITp>* __a, _ITp __i) noexcept
+    { return atomic_exchange_explicit(__a, __i, memory_order_seq_cst); }
+
+  template<typename _ITp>
+    inline bool
+    atomic_compare_exchange_weak(atomic<_ITp>* __a,
+     _ITp* __i1, _ITp __i2) noexcept
+    {
+      return atomic_compare_exchange_weak_explicit(__a, __i1, __i2,
+         memory_order_seq_cst,
+         memory_order_seq_cst);
+    }
+
+  template<typename _ITp>
+    inline bool
+    atomic_compare_exchange_weak(volatile atomic<_ITp>* __a,
+     _ITp* __i1, _ITp __i2) noexcept
+    {
+      return atomic_compare_exchange_weak_explicit(__a, __i1, __i2,
+         memory_order_seq_cst,
+         memory_order_seq_cst);
+    }
+
+  template<typename _ITp>
+    inline bool
+    atomic_compare_exchange_strong(atomic<_ITp>* __a,
+       _ITp* __i1, _ITp __i2) noexcept
+    {
+      return atomic_compare_exchange_strong_explicit(__a, __i1, __i2,
+           memory_order_seq_cst,
+           memory_order_seq_cst);
+    }
+
+  template<typename _ITp>
+    inline bool
+    atomic_compare_exchange_strong(volatile atomic<_ITp>* __a,
+       _ITp* __i1, _ITp __i2) noexcept
+    {
+      return atomic_compare_exchange_strong_explicit(__a, __i1, __i2,
+           memory_order_seq_cst,
+           memory_order_seq_cst);
+    }
+
+
+
+
+
+  template<typename _ITp>
+    inline _ITp
+    atomic_fetch_add_explicit(__atomic_base<_ITp>* __a, _ITp __i,
+         memory_order __m) noexcept
+    { return __a->fetch_add(__i, __m); }
+
+  template<typename _ITp>
+    inline _ITp
+    atomic_fetch_add_explicit(volatile __atomic_base<_ITp>* __a, _ITp __i,
+         memory_order __m) noexcept
+    { return __a->fetch_add(__i, __m); }
+
+  template<typename _ITp>
+    inline _ITp
+    atomic_fetch_sub_explicit(__atomic_base<_ITp>* __a, _ITp __i,
+         memory_order __m) noexcept
+    { return __a->fetch_sub(__i, __m); }
+
+  template<typename _ITp>
+    inline _ITp
+    atomic_fetch_sub_explicit(volatile __atomic_base<_ITp>* __a, _ITp __i,
+         memory_order __m) noexcept
+    { return __a->fetch_sub(__i, __m); }
+
+  template<typename _ITp>
+    inline _ITp
+    atomic_fetch_and_explicit(__atomic_base<_ITp>* __a, _ITp __i,
+         memory_order __m) noexcept
+    { return __a->fetch_and(__i, __m); }
+
+  template<typename _ITp>
+    inline _ITp
+    atomic_fetch_and_explicit(volatile __atomic_base<_ITp>* __a, _ITp __i,
+         memory_order __m) noexcept
+    { return __a->fetch_and(__i, __m); }
+
+  template<typename _ITp>
+    inline _ITp
+    atomic_fetch_or_explicit(__atomic_base<_ITp>* __a, _ITp __i,
+        memory_order __m) noexcept
+    { return __a->fetch_or(__i, __m); }
+
+  template<typename _ITp>
+    inline _ITp
+    atomic_fetch_or_explicit(volatile __atomic_base<_ITp>* __a, _ITp __i,
+        memory_order __m) noexcept
+    { return __a->fetch_or(__i, __m); }
+
+  template<typename _ITp>
+    inline _ITp
+    atomic_fetch_xor_explicit(__atomic_base<_ITp>* __a, _ITp __i,
+         memory_order __m) noexcept
+    { return __a->fetch_xor(__i, __m); }
+
+  template<typename _ITp>
+    inline _ITp
+    atomic_fetch_xor_explicit(volatile __atomic_base<_ITp>* __a, _ITp __i,
+         memory_order __m) noexcept
+    { return __a->fetch_xor(__i, __m); }
+
+  template<typename _ITp>
+    inline _ITp
+    atomic_fetch_add(__atomic_base<_ITp>* __a, _ITp __i) noexcept
+    { return atomic_fetch_add_explicit(__a, __i, memory_order_seq_cst); }
+
+  template<typename _ITp>
+    inline _ITp
+    atomic_fetch_add(volatile __atomic_base<_ITp>* __a, _ITp __i) noexcept
+    { return atomic_fetch_add_explicit(__a, __i, memory_order_seq_cst); }
+
+  template<typename _ITp>
+    inline _ITp
+    atomic_fetch_sub(__atomic_base<_ITp>* __a, _ITp __i) noexcept
+    { return atomic_fetch_sub_explicit(__a, __i, memory_order_seq_cst); }
+
+  template<typename _ITp>
+    inline _ITp
+    atomic_fetch_sub(volatile __atomic_base<_ITp>* __a, _ITp __i) noexcept
+    { return atomic_fetch_sub_explicit(__a, __i, memory_order_seq_cst); }
+
+  template<typename _ITp>
+    inline _ITp
+    atomic_fetch_and(__atomic_base<_ITp>* __a, _ITp __i) noexcept
+    { return atomic_fetch_and_explicit(__a, __i, memory_order_seq_cst); }
+
+  template<typename _ITp>
+    inline _ITp
+    atomic_fetch_and(volatile __atomic_base<_ITp>* __a, _ITp __i) noexcept
+    { return atomic_fetch_and_explicit(__a, __i, memory_order_seq_cst); }
+
+  template<typename _ITp>
+    inline _ITp
+    atomic_fetch_or(__atomic_base<_ITp>* __a, _ITp __i) noexcept
+    { return atomic_fetch_or_explicit(__a, __i, memory_order_seq_cst); }
+
+  template<typename _ITp>
+    inline _ITp
+    atomic_fetch_or(volatile __atomic_base<_ITp>* __a, _ITp __i) noexcept
+    { return atomic_fetch_or_explicit(__a, __i, memory_order_seq_cst); }
+
+  template<typename _ITp>
+    inline _ITp
+    atomic_fetch_xor(__atomic_base<_ITp>* __a, _ITp __i) noexcept
+    { return atomic_fetch_xor_explicit(__a, __i, memory_order_seq_cst); }
+
+  template<typename _ITp>
+    inline _ITp
+    atomic_fetch_xor(volatile __atomic_base<_ITp>* __a, _ITp __i) noexcept
+    { return atomic_fetch_xor_explicit(__a, __i, memory_order_seq_cst); }
+
+
+
+  template<typename _ITp>
+    inline _ITp*
+    atomic_fetch_add_explicit(atomic<_ITp*>* __a, ptrdiff_t __d,
+         memory_order __m) noexcept
+    { return __a->fetch_add(__d, __m); }
+
+  template<typename _ITp>
+    inline _ITp*
+    atomic_fetch_add_explicit(volatile atomic<_ITp*>* __a, ptrdiff_t __d,
+         memory_order __m) noexcept
+    { return __a->fetch_add(__d, __m); }
+
+  template<typename _ITp>
+    inline _ITp*
+    atomic_fetch_add(volatile atomic<_ITp*>* __a, ptrdiff_t __d) noexcept
+    { return __a->fetch_add(__d); }
+
+  template<typename _ITp>
+    inline _ITp*
+    atomic_fetch_add(atomic<_ITp*>* __a, ptrdiff_t __d) noexcept
+    { return __a->fetch_add(__d); }
+
+  template<typename _ITp>
+    inline _ITp*
+    atomic_fetch_sub_explicit(volatile atomic<_ITp*>* __a,
+         ptrdiff_t __d, memory_order __m) noexcept
+    { return __a->fetch_sub(__d, __m); }
+
+  template<typename _ITp>
+    inline _ITp*
+    atomic_fetch_sub_explicit(atomic<_ITp*>* __a, ptrdiff_t __d,
+         memory_order __m) noexcept
+    { return __a->fetch_sub(__d, __m); }
+
+  template<typename _ITp>
+    inline _ITp*
+    atomic_fetch_sub(volatile atomic<_ITp*>* __a, ptrdiff_t __d) noexcept
+    { return __a->fetch_sub(__d); }
+
+  template<typename _ITp>
+    inline _ITp*
+    atomic_fetch_sub(atomic<_ITp*>* __a, ptrdiff_t __d) noexcept
+    { return __a->fetch_sub(__d); }
+
+
+
+}
+# 48 "././common/Utilities.h" 2
+
+
 
 void Exit_with_error(const char *s);
 void send_data(unsigned char *Data, uint16_t Data_size);
@@ -54418,31 +61053,4650 @@ uint32_t swap_endian_32(uint32_t value);
 # 5 "./Constants.h" 2
 # 27 "./Constants.h"
 uint64_t hash_func(unsigned char *input, unsigned int pos);
-int cdc( const char* file, char** chunk, uint16_t *chunk_size);
-uint64_t basicHash(char* input, size_t length);
-uint32_t deDup(char* inputChunk, uint16_t chunk_size,
-               std::unordered_map<uint64_t, uint32_t>& chunkTable, stopwatch& stopwatch);
+int cdc( unsigned char* buff, int buff_size, unsigned char** chunk, uint16_t *chunk_size);
+uint64_t basicHash(unsigned char* input, size_t length);
+uint32_t deDup(unsigned char* inputChunk, uint16_t chunk_size,
+               std::unordered_map<string, uint32_t>& chunkTable, stopwatch& stopwatch);
 unsigned int my_hash(ap_uint<(13 + 8)> key);
-uint16_t LZW_hybrid_hash_HW(char in[4096], uint16_t in_length,
-                        uint16_t send_data[(1 << 13) + 2]);
+void LZW_hybrid_hash_HW(unsigned char *in, uint16_t *input_length,
+                        uint16_t *send_data, uint16_t *output_length);
 # 2 "Dedup.cpp" 2
 
-uint64_t basicHash(char* input, size_t length) {
-    uint64_t hash = 0;
+# 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/iomanip" 1 3
+# 37 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/iomanip" 3
 
-    VITIS_LOOP_6_1: for (size_t i = 0; i < length; i++) {
-        hash += static_cast <uint64_t>(input[i]);
+
+
+
+
+
+# 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/locale" 1 3
+# 37 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/locale" 3
+
+
+
+
+# 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 1 3
+# 38 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+
+# 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/ctime" 1 3
+# 40 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/ctime" 3
+# 40 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 2 3
+
+namespace std __attribute__ ((__visibility__ ("default")))
+{
+# 52 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+  class time_base
+  {
+  public:
+    enum dateorder { no_order, dmy, mdy, ymd, ydm };
+  };
+
+  template<typename _CharT>
+    struct __timepunct_cache : public locale::facet
+    {
+
+      static const _CharT* _S_timezones[14];
+
+      const _CharT* _M_date_format;
+      const _CharT* _M_date_era_format;
+      const _CharT* _M_time_format;
+      const _CharT* _M_time_era_format;
+      const _CharT* _M_date_time_format;
+      const _CharT* _M_date_time_era_format;
+      const _CharT* _M_am;
+      const _CharT* _M_pm;
+      const _CharT* _M_am_pm_format;
+
+
+      const _CharT* _M_day1;
+      const _CharT* _M_day2;
+      const _CharT* _M_day3;
+      const _CharT* _M_day4;
+      const _CharT* _M_day5;
+      const _CharT* _M_day6;
+      const _CharT* _M_day7;
+
+
+      const _CharT* _M_aday1;
+      const _CharT* _M_aday2;
+      const _CharT* _M_aday3;
+      const _CharT* _M_aday4;
+      const _CharT* _M_aday5;
+      const _CharT* _M_aday6;
+      const _CharT* _M_aday7;
+
+
+      const _CharT* _M_month01;
+      const _CharT* _M_month02;
+      const _CharT* _M_month03;
+      const _CharT* _M_month04;
+      const _CharT* _M_month05;
+      const _CharT* _M_month06;
+      const _CharT* _M_month07;
+      const _CharT* _M_month08;
+      const _CharT* _M_month09;
+      const _CharT* _M_month10;
+      const _CharT* _M_month11;
+      const _CharT* _M_month12;
+
+
+      const _CharT* _M_amonth01;
+      const _CharT* _M_amonth02;
+      const _CharT* _M_amonth03;
+      const _CharT* _M_amonth04;
+      const _CharT* _M_amonth05;
+      const _CharT* _M_amonth06;
+      const _CharT* _M_amonth07;
+      const _CharT* _M_amonth08;
+      const _CharT* _M_amonth09;
+      const _CharT* _M_amonth10;
+      const _CharT* _M_amonth11;
+      const _CharT* _M_amonth12;
+
+      bool _M_allocated;
+
+      __timepunct_cache(size_t __refs = 0) : facet(__refs),
+      _M_date_format(0), _M_date_era_format(0), _M_time_format(0),
+      _M_time_era_format(0), _M_date_time_format(0),
+      _M_date_time_era_format(0), _M_am(0), _M_pm(0),
+      _M_am_pm_format(0), _M_day1(0), _M_day2(0), _M_day3(0),
+      _M_day4(0), _M_day5(0), _M_day6(0), _M_day7(0),
+      _M_aday1(0), _M_aday2(0), _M_aday3(0), _M_aday4(0),
+      _M_aday5(0), _M_aday6(0), _M_aday7(0), _M_month01(0),
+      _M_month02(0), _M_month03(0), _M_month04(0), _M_month05(0),
+      _M_month06(0), _M_month07(0), _M_month08(0), _M_month09(0),
+      _M_month10(0), _M_month11(0), _M_month12(0), _M_amonth01(0),
+      _M_amonth02(0), _M_amonth03(0), _M_amonth04(0),
+      _M_amonth05(0), _M_amonth06(0), _M_amonth07(0),
+      _M_amonth08(0), _M_amonth09(0), _M_amonth10(0),
+      _M_amonth11(0), _M_amonth12(0), _M_allocated(false)
+      { }
+
+      ~__timepunct_cache();
+
+    private:
+      __timepunct_cache&
+      operator=(const __timepunct_cache&);
+
+      explicit
+      __timepunct_cache(const __timepunct_cache&);
+    };
+
+  template<typename _CharT>
+    __timepunct_cache<_CharT>::~__timepunct_cache()
+    {
+      if (_M_allocated)
+ {
+
+ }
     }
-    return hash;
+
+
+  template<>
+    const char*
+    __timepunct_cache<char>::_S_timezones[14];
+
+
+  template<>
+    const wchar_t*
+    __timepunct_cache<wchar_t>::_S_timezones[14];
+
+
+
+  template<typename _CharT>
+    const _CharT* __timepunct_cache<_CharT>::_S_timezones[14];
+
+  template<typename _CharT>
+    class __timepunct : public locale::facet
+    {
+    public:
+
+      typedef _CharT __char_type;
+      typedef __timepunct_cache<_CharT> __cache_type;
+
+    protected:
+      __cache_type* _M_data;
+      __c_locale _M_c_locale_timepunct;
+      const char* _M_name_timepunct;
+
+    public:
+
+      static locale::id id;
+
+      explicit
+      __timepunct(size_t __refs = 0);
+
+      explicit
+      __timepunct(__cache_type* __cache, size_t __refs = 0);
+# 206 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      explicit
+      __timepunct(__c_locale __cloc, const char* __s, size_t __refs = 0);
+
+
+
+      void
+      _M_put(_CharT* __s, size_t __maxlen, const _CharT* __format,
+      const tm* __tm) const throw ();
+
+      void
+      _M_date_formats(const _CharT** __date) const
+      {
+
+ __date[0] = _M_data->_M_date_format;
+ __date[1] = _M_data->_M_date_era_format;
+      }
+
+      void
+      _M_time_formats(const _CharT** __time) const
+      {
+
+ __time[0] = _M_data->_M_time_format;
+ __time[1] = _M_data->_M_time_era_format;
+      }
+
+      void
+      _M_date_time_formats(const _CharT** __dt) const
+      {
+
+ __dt[0] = _M_data->_M_date_time_format;
+ __dt[1] = _M_data->_M_date_time_era_format;
+      }
+
+      void
+      _M_am_pm_format(const _CharT* __ampm) const
+      { __ampm = _M_data->_M_am_pm_format; }
+
+      void
+      _M_am_pm(const _CharT** __ampm) const
+      {
+ __ampm[0] = _M_data->_M_am;
+ __ampm[1] = _M_data->_M_pm;
+      }
+
+      void
+      _M_days(const _CharT** __days) const
+      {
+ __days[0] = _M_data->_M_day1;
+ __days[1] = _M_data->_M_day2;
+ __days[2] = _M_data->_M_day3;
+ __days[3] = _M_data->_M_day4;
+ __days[4] = _M_data->_M_day5;
+ __days[5] = _M_data->_M_day6;
+ __days[6] = _M_data->_M_day7;
+      }
+
+      void
+      _M_days_abbreviated(const _CharT** __days) const
+      {
+ __days[0] = _M_data->_M_aday1;
+ __days[1] = _M_data->_M_aday2;
+ __days[2] = _M_data->_M_aday3;
+ __days[3] = _M_data->_M_aday4;
+ __days[4] = _M_data->_M_aday5;
+ __days[5] = _M_data->_M_aday6;
+ __days[6] = _M_data->_M_aday7;
+      }
+
+      void
+      _M_months(const _CharT** __months) const
+      {
+ __months[0] = _M_data->_M_month01;
+ __months[1] = _M_data->_M_month02;
+ __months[2] = _M_data->_M_month03;
+ __months[3] = _M_data->_M_month04;
+ __months[4] = _M_data->_M_month05;
+ __months[5] = _M_data->_M_month06;
+ __months[6] = _M_data->_M_month07;
+ __months[7] = _M_data->_M_month08;
+ __months[8] = _M_data->_M_month09;
+ __months[9] = _M_data->_M_month10;
+ __months[10] = _M_data->_M_month11;
+ __months[11] = _M_data->_M_month12;
+      }
+
+      void
+      _M_months_abbreviated(const _CharT** __months) const
+      {
+ __months[0] = _M_data->_M_amonth01;
+ __months[1] = _M_data->_M_amonth02;
+ __months[2] = _M_data->_M_amonth03;
+ __months[3] = _M_data->_M_amonth04;
+ __months[4] = _M_data->_M_amonth05;
+ __months[5] = _M_data->_M_amonth06;
+ __months[6] = _M_data->_M_amonth07;
+ __months[7] = _M_data->_M_amonth08;
+ __months[8] = _M_data->_M_amonth09;
+ __months[9] = _M_data->_M_amonth10;
+ __months[10] = _M_data->_M_amonth11;
+ __months[11] = _M_data->_M_amonth12;
+      }
+
+    protected:
+      virtual
+      ~__timepunct();
+
+
+      void
+      _M_initialize_timepunct(__c_locale __cloc = 0);
+    };
+
+  template<typename _CharT>
+    locale::id __timepunct<_CharT>::id;
+
+
+  template<>
+    void
+    __timepunct<char>::_M_initialize_timepunct(__c_locale __cloc);
+
+  template<>
+    void
+    __timepunct<char>::_M_put(char*, size_t, const char*, const tm*) const throw ();
+
+
+  template<>
+    void
+    __timepunct<wchar_t>::_M_initialize_timepunct(__c_locale __cloc);
+
+  template<>
+    void
+    __timepunct<wchar_t>::_M_put(wchar_t*, size_t, const wchar_t*,
+     const tm*) const throw ();
+
+
+
 }
 
-uint32_t deDup(char* inputChunk, uint16_t chunk_size,
-    std::unordered_map<uint64_t, uint32_t>& chunkTable,
-    stopwatch& stopwatch) {
 
-        size_t length = chunk_size;
+
+# 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/x86_64-pc-linux-gnu/bits/time_members.h" 1 3
+# 37 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/x86_64-pc-linux-gnu/bits/time_members.h" 3
+namespace std __attribute__ ((__visibility__ ("default")))
+{
+
+
+  template<typename _CharT>
+    __timepunct<_CharT>::__timepunct(size_t __refs)
+    : facet(__refs), _M_data(0), _M_c_locale_timepunct(0),
+      _M_name_timepunct(_S_get_c_name())
+    { _M_initialize_timepunct(); }
+
+  template<typename _CharT>
+    __timepunct<_CharT>::__timepunct(__cache_type* __cache, size_t __refs)
+    : facet(__refs), _M_data(__cache), _M_c_locale_timepunct(0),
+      _M_name_timepunct(_S_get_c_name())
+    { _M_initialize_timepunct(); }
+
+  template<typename _CharT>
+    __timepunct<_CharT>::__timepunct(__c_locale __cloc, const char* __s,
+         size_t __refs)
+    : facet(__refs), _M_data(0), _M_c_locale_timepunct(0),
+      _M_name_timepunct(0)
+    {
+      if (__builtin_strcmp(__s, _S_get_c_name()) != 0)
+ {
+   const size_t __len = __builtin_strlen(__s) + 1;
+   char* __tmp = new char[__len];
+   __builtin_memcpy(__tmp, __s, __len);
+   _M_name_timepunct = __tmp;
+ }
+      else
+ _M_name_timepunct = _S_get_c_name();
+
+      if (true)
+ { _M_initialize_timepunct(__cloc); }
+      if (false)
+ {
+   if (_M_name_timepunct != _S_get_c_name())
+     delete [] _M_name_timepunct;
+                          ;
+ }
+    }
+
+  template<typename _CharT>
+    __timepunct<_CharT>::~__timepunct()
+    {
+      if (_M_name_timepunct != _S_get_c_name())
+ delete [] _M_name_timepunct;
+      delete _M_data;
+      _S_destroy_c_locale(_M_c_locale_timepunct);
+    }
+
+
+}
+# 345 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 2 3
+
+namespace std __attribute__ ((__visibility__ ("default")))
+{
+
+
+namespace __cxx11 {
+# 365 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+  template<typename _CharT, typename _InIter>
+    class time_get : public locale::facet, public time_base
+    {
+    public:
+
+
+
+      typedef _CharT char_type;
+      typedef _InIter iter_type;
+
+
+
+      static locale::id id;
+# 386 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      explicit
+      time_get(size_t __refs = 0)
+      : facet (__refs) { }
+# 403 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      dateorder
+      date_order() const
+      { return this->do_date_order(); }
+# 427 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      iter_type
+      get_time(iter_type __beg, iter_type __end, ios_base& __io,
+        ios_base::iostate& __err, tm* __tm) const
+      { return this->do_get_time(__beg, __end, __io, __err, __tm); }
+# 452 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      iter_type
+      get_date(iter_type __beg, iter_type __end, ios_base& __io,
+        ios_base::iostate& __err, tm* __tm) const
+      { return this->do_get_date(__beg, __end, __io, __err, __tm); }
+# 480 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      iter_type
+      get_weekday(iter_type __beg, iter_type __end, ios_base& __io,
+    ios_base::iostate& __err, tm* __tm) const
+      { return this->do_get_weekday(__beg, __end, __io, __err, __tm); }
+# 509 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      iter_type
+      get_monthname(iter_type __beg, iter_type __end, ios_base& __io,
+      ios_base::iostate& __err, tm* __tm) const
+      { return this->do_get_monthname(__beg, __end, __io, __err, __tm); }
+# 535 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      iter_type
+      get_year(iter_type __beg, iter_type __end, ios_base& __io,
+        ios_base::iostate& __err, tm* __tm) const
+      { return this->do_get_year(__beg, __end, __io, __err, __tm); }
+# 556 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      inline
+      iter_type get(iter_type __s, iter_type __end, ios_base& __io,
+                    ios_base::iostate& __err, tm* __tm, char __format,
+                    char __modifier = 0) const
+      {
+        return this->do_get(__s, __end, __io, __err, __tm, __format,
+                            __modifier);
+      }
+# 583 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      iter_type get(iter_type __s, iter_type __end, ios_base& __io,
+                    ios_base::iostate& __err, tm* __tm, const char_type* __fmt,
+                    const char_type* __fmtend) const;
+
+
+    protected:
+
+      virtual
+      ~time_get() { }
+# 603 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      virtual dateorder
+      do_date_order() const;
+# 621 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      virtual iter_type
+      do_get_time(iter_type __beg, iter_type __end, ios_base& __io,
+    ios_base::iostate& __err, tm* __tm) const;
+# 640 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      virtual iter_type
+      do_get_date(iter_type __beg, iter_type __end, ios_base& __io,
+    ios_base::iostate& __err, tm* __tm) const;
+# 659 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      virtual iter_type
+      do_get_weekday(iter_type __beg, iter_type __end, ios_base&,
+       ios_base::iostate& __err, tm* __tm) const;
+# 678 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      virtual iter_type
+      do_get_monthname(iter_type __beg, iter_type __end, ios_base&,
+         ios_base::iostate& __err, tm* __tm) const;
+# 697 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      virtual iter_type
+      do_get_year(iter_type __beg, iter_type __end, ios_base& __io,
+    ios_base::iostate& __err, tm* __tm) const;
+# 720 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      virtual
+
+      iter_type
+      do_get(iter_type __s, iter_type __end, ios_base& __f,
+             ios_base::iostate& __err, tm* __tm,
+             char __format, char __modifier) const;
+
+
+
+      iter_type
+      _M_extract_num(iter_type __beg, iter_type __end, int& __member,
+       int __min, int __max, size_t __len,
+       ios_base& __io, ios_base::iostate& __err) const;
+
+
+      iter_type
+      _M_extract_name(iter_type __beg, iter_type __end, int& __member,
+        const _CharT** __names, size_t __indexlen,
+        ios_base& __io, ios_base::iostate& __err) const;
+
+
+      iter_type
+      _M_extract_wday_or_month(iter_type __beg, iter_type __end, int& __member,
+          const _CharT** __names, size_t __indexlen,
+          ios_base& __io, ios_base::iostate& __err) const;
+
+
+      iter_type
+      _M_extract_via_format(iter_type __beg, iter_type __end, ios_base& __io,
+       ios_base::iostate& __err, tm* __tm,
+       const _CharT* __format) const;
+    };
+
+  template<typename _CharT, typename _InIter>
+    locale::id time_get<_CharT, _InIter>::id;
+
+
+  template<typename _CharT, typename _InIter>
+    class time_get_byname : public time_get<_CharT, _InIter>
+    {
+    public:
+
+      typedef _CharT char_type;
+      typedef _InIter iter_type;
+
+      explicit
+      time_get_byname(const char*, size_t __refs = 0)
+      : time_get<_CharT, _InIter>(__refs) { }
+
+
+      explicit
+      time_get_byname(const string& __s, size_t __refs = 0)
+      : time_get_byname(__s.c_str(), __refs) { }
+
+
+    protected:
+      virtual
+      ~time_get_byname() { }
+    };
+
+}
+# 794 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+  template<typename _CharT, typename _OutIter>
+    class time_put : public locale::facet
+    {
+    public:
+
+
+
+      typedef _CharT char_type;
+      typedef _OutIter iter_type;
+
+
+
+      static locale::id id;
+# 815 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      explicit
+      time_put(size_t __refs = 0)
+      : facet(__refs) { }
+# 834 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      iter_type
+      put(iter_type __s, ios_base& __io, char_type __fill, const tm* __tm,
+   const _CharT* __beg, const _CharT* __end) const;
+# 854 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      iter_type
+      put(iter_type __s, ios_base& __io, char_type __fill,
+   const tm* __tm, char __format, char __mod = 0) const
+      { return this->do_put(__s, __io, __fill, __tm, __format, __mod); }
+
+    protected:
+
+      virtual
+      ~time_put()
+      { }
+# 881 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      virtual iter_type
+      do_put(iter_type __s, ios_base& __io, char_type __fill, const tm* __tm,
+      char __format, char __mod) const;
+    };
+
+  template<typename _CharT, typename _OutIter>
+    locale::id time_put<_CharT, _OutIter>::id;
+
+
+  template<typename _CharT, typename _OutIter>
+    class time_put_byname : public time_put<_CharT, _OutIter>
+    {
+    public:
+
+      typedef _CharT char_type;
+      typedef _OutIter iter_type;
+
+      explicit
+      time_put_byname(const char*, size_t __refs = 0)
+      : time_put<_CharT, _OutIter>(__refs)
+      { };
+
+
+      explicit
+      time_put_byname(const string& __s, size_t __refs = 0)
+      : time_put_byname(__s.c_str(), __refs) { }
+
+
+    protected:
+      virtual
+      ~time_put_byname() { }
+    };
+# 926 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+  class money_base
+  {
+  public:
+    enum part { none, space, symbol, sign, value };
+    struct pattern { char field[4]; };
+
+    static const pattern _S_default_pattern;
+
+    enum
+    {
+      _S_minus,
+      _S_zero,
+      _S_end = 11
+    };
+
+
+
+    static const char* _S_atoms;
+
+
+
+    __attribute__ ((__const__)) static pattern
+    _S_construct_pattern(char __precedes, char __space, char __posn) throw ();
+  };
+
+  template<typename _CharT, bool _Intl>
+    struct __moneypunct_cache : public locale::facet
+    {
+      const char* _M_grouping;
+      size_t _M_grouping_size;
+      bool _M_use_grouping;
+      _CharT _M_decimal_point;
+      _CharT _M_thousands_sep;
+      const _CharT* _M_curr_symbol;
+      size_t _M_curr_symbol_size;
+      const _CharT* _M_positive_sign;
+      size_t _M_positive_sign_size;
+      const _CharT* _M_negative_sign;
+      size_t _M_negative_sign_size;
+      int _M_frac_digits;
+      money_base::pattern _M_pos_format;
+      money_base::pattern _M_neg_format;
+
+
+
+
+      _CharT _M_atoms[money_base::_S_end];
+
+      bool _M_allocated;
+
+      __moneypunct_cache(size_t __refs = 0) : facet(__refs),
+      _M_grouping(0), _M_grouping_size(0), _M_use_grouping(false),
+      _M_decimal_point(_CharT()), _M_thousands_sep(_CharT()),
+      _M_curr_symbol(0), _M_curr_symbol_size(0),
+      _M_positive_sign(0), _M_positive_sign_size(0),
+      _M_negative_sign(0), _M_negative_sign_size(0),
+      _M_frac_digits(0),
+      _M_pos_format(money_base::pattern()),
+      _M_neg_format(money_base::pattern()), _M_allocated(false)
+      { }
+
+      ~__moneypunct_cache();
+
+      void
+      _M_cache(const locale& __loc);
+
+    private:
+      __moneypunct_cache&
+      operator=(const __moneypunct_cache&);
+
+      explicit
+      __moneypunct_cache(const __moneypunct_cache&);
+    };
+
+  template<typename _CharT, bool _Intl>
+    __moneypunct_cache<_CharT, _Intl>::~__moneypunct_cache()
+    {
+      if (_M_allocated)
+ {
+   delete [] _M_grouping;
+   delete [] _M_curr_symbol;
+   delete [] _M_positive_sign;
+   delete [] _M_negative_sign;
+ }
+    }
+
+namespace __cxx11 {
+# 1021 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+  template<typename _CharT, bool _Intl>
+    class moneypunct : public locale::facet, public money_base
+    {
+    public:
+
+
+
+      typedef _CharT char_type;
+      typedef basic_string<_CharT> string_type;
+
+      typedef __moneypunct_cache<_CharT, _Intl> __cache_type;
+
+    private:
+      __cache_type* _M_data;
+
+    public:
+
+
+      static const bool intl = _Intl;
+
+      static locale::id id;
+# 1050 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      explicit
+      moneypunct(size_t __refs = 0)
+      : facet(__refs), _M_data(0)
+      { _M_initialize_moneypunct(); }
+# 1063 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      explicit
+      moneypunct(__cache_type* __cache, size_t __refs = 0)
+      : facet(__refs), _M_data(__cache)
+      { _M_initialize_moneypunct(); }
+# 1078 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      explicit
+      moneypunct(__c_locale __cloc, const char* __s, size_t __refs = 0)
+      : facet(__refs), _M_data(0)
+      { _M_initialize_moneypunct(__cloc, __s); }
+# 1092 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      char_type
+      decimal_point() const
+      { return this->do_decimal_point(); }
+# 1105 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      char_type
+      thousands_sep() const
+      { return this->do_thousands_sep(); }
+# 1135 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      string
+      grouping() const
+      { return this->do_grouping(); }
+# 1148 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      string_type
+      curr_symbol() const
+      { return this->do_curr_symbol(); }
+# 1165 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      string_type
+      positive_sign() const
+      { return this->do_positive_sign(); }
+# 1182 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      string_type
+      negative_sign() const
+      { return this->do_negative_sign(); }
+# 1198 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      int
+      frac_digits() const
+      { return this->do_frac_digits(); }
+# 1234 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      pattern
+      pos_format() const
+      { return this->do_pos_format(); }
+
+      pattern
+      neg_format() const
+      { return this->do_neg_format(); }
+
+
+    protected:
+
+      virtual
+      ~moneypunct();
+# 1256 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      virtual char_type
+      do_decimal_point() const
+      { return _M_data->_M_decimal_point; }
+# 1268 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      virtual char_type
+      do_thousands_sep() const
+      { return _M_data->_M_thousands_sep; }
+# 1281 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      virtual string
+      do_grouping() const
+      { return _M_data->_M_grouping; }
+# 1294 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      virtual string_type
+      do_curr_symbol() const
+      { return _M_data->_M_curr_symbol; }
+# 1307 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      virtual string_type
+      do_positive_sign() const
+      { return _M_data->_M_positive_sign; }
+# 1320 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      virtual string_type
+      do_negative_sign() const
+      { return _M_data->_M_negative_sign; }
+# 1334 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      virtual int
+      do_frac_digits() const
+      { return _M_data->_M_frac_digits; }
+# 1348 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      virtual pattern
+      do_pos_format() const
+      { return _M_data->_M_pos_format; }
+# 1362 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      virtual pattern
+      do_neg_format() const
+      { return _M_data->_M_neg_format; }
+
+
+       void
+       _M_initialize_moneypunct(__c_locale __cloc = 0,
+    const char* __name = 0);
+    };
+
+  template<typename _CharT, bool _Intl>
+    locale::id moneypunct<_CharT, _Intl>::id;
+
+  template<typename _CharT, bool _Intl>
+    const bool moneypunct<_CharT, _Intl>::intl;
+
+  template<>
+    moneypunct<char, true>::~moneypunct();
+
+  template<>
+    moneypunct<char, false>::~moneypunct();
+
+  template<>
+    void
+    moneypunct<char, true>::_M_initialize_moneypunct(__c_locale, const char*);
+
+  template<>
+    void
+    moneypunct<char, false>::_M_initialize_moneypunct(__c_locale, const char*);
+
+
+  template<>
+    moneypunct<wchar_t, true>::~moneypunct();
+
+  template<>
+    moneypunct<wchar_t, false>::~moneypunct();
+
+  template<>
+    void
+    moneypunct<wchar_t, true>::_M_initialize_moneypunct(__c_locale,
+       const char*);
+
+  template<>
+    void
+    moneypunct<wchar_t, false>::_M_initialize_moneypunct(__c_locale,
+        const char*);
+
+
+
+  template<typename _CharT, bool _Intl>
+    class moneypunct_byname : public moneypunct<_CharT, _Intl>
+    {
+    public:
+      typedef _CharT char_type;
+      typedef basic_string<_CharT> string_type;
+
+      static const bool intl = _Intl;
+
+      explicit
+      moneypunct_byname(const char* __s, size_t __refs = 0)
+      : moneypunct<_CharT, _Intl>(__refs)
+      {
+ if (__builtin_strcmp(__s, "C") != 0
+     && __builtin_strcmp(__s, "POSIX") != 0)
+   {
+     __c_locale __tmp;
+     this->_S_create_c_locale(__tmp, __s);
+     this->_M_initialize_moneypunct(__tmp);
+     this->_S_destroy_c_locale(__tmp);
+   }
+      }
+
+
+      explicit
+      moneypunct_byname(const string& __s, size_t __refs = 0)
+      : moneypunct_byname(__s.c_str(), __refs) { }
+
+
+    protected:
+      virtual
+      ~moneypunct_byname() { }
+    };
+
+  template<typename _CharT, bool _Intl>
+    const bool moneypunct_byname<_CharT, _Intl>::intl;
+
+}
+
+namespace __cxx11 {
+# 1465 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+  template<typename _CharT, typename _InIter>
+    class money_get : public locale::facet
+    {
+    public:
+
+
+
+      typedef _CharT char_type;
+      typedef _InIter iter_type;
+      typedef basic_string<_CharT> string_type;
+
+
+
+      static locale::id id;
+# 1487 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      explicit
+      money_get(size_t __refs = 0) : facet(__refs) { }
+# 1517 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      iter_type
+      get(iter_type __s, iter_type __end, bool __intl, ios_base& __io,
+   ios_base::iostate& __err, long double& __units) const
+      { return this->do_get(__s, __end, __intl, __io, __err, __units); }
+# 1548 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      iter_type
+      get(iter_type __s, iter_type __end, bool __intl, ios_base& __io,
+   ios_base::iostate& __err, string_type& __digits) const
+      { return this->do_get(__s, __end, __intl, __io, __err, __digits); }
+
+    protected:
+
+      virtual
+      ~money_get() { }
+# 1572 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      virtual iter_type
+      do_get(iter_type __s, iter_type __end, bool __intl, ios_base& __io,
+      ios_base::iostate& __err, long double& __units) const;
+# 1584 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      virtual iter_type
+      do_get(iter_type __s, iter_type __end, bool __intl, ios_base& __io,
+      ios_base::iostate& __err, string_type& __digits) const;
+# 1596 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      template<bool _Intl>
+        iter_type
+        _M_extract(iter_type __s, iter_type __end, ios_base& __io,
+     ios_base::iostate& __err, string& __digits) const;
+    };
+
+  template<typename _CharT, typename _InIter>
+    locale::id money_get<_CharT, _InIter>::id;
+# 1618 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+  template<typename _CharT, typename _OutIter>
+    class money_put : public locale::facet
+    {
+    public:
+
+
+      typedef _CharT char_type;
+      typedef _OutIter iter_type;
+      typedef basic_string<_CharT> string_type;
+
+
+
+      static locale::id id;
+# 1639 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      explicit
+      money_put(size_t __refs = 0) : facet(__refs) { }
+# 1659 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      iter_type
+      put(iter_type __s, bool __intl, ios_base& __io,
+   char_type __fill, long double __units) const
+      { return this->do_put(__s, __intl, __io, __fill, __units); }
+# 1682 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      iter_type
+      put(iter_type __s, bool __intl, ios_base& __io,
+   char_type __fill, const string_type& __digits) const
+      { return this->do_put(__s, __intl, __io, __fill, __digits); }
+
+    protected:
+
+      virtual
+      ~money_put() { }
+# 1717 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      virtual iter_type
+      do_put(iter_type __s, bool __intl, ios_base& __io, char_type __fill,
+      long double __units) const;
+# 1741 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      virtual iter_type
+      do_put(iter_type __s, bool __intl, ios_base& __io, char_type __fill,
+      const string_type& __digits) const;
+# 1753 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      template<bool _Intl>
+        iter_type
+        _M_insert(iter_type __s, ios_base& __io, char_type __fill,
+    const string_type& __digits) const;
+    };
+
+  template<typename _CharT, typename _OutIter>
+    locale::id money_put<_CharT, _OutIter>::id;
+
+}
+
+
+
+
+
+  struct messages_base
+  {
+    typedef int catalog;
+  };
+
+namespace __cxx11 {
+# 1796 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+  template<typename _CharT>
+    class messages : public locale::facet, public messages_base
+    {
+    public:
+
+
+
+      typedef _CharT char_type;
+      typedef basic_string<_CharT> string_type;
+
+
+    protected:
+
+
+      __c_locale _M_c_locale_messages;
+      const char* _M_name_messages;
+
+    public:
+
+      static locale::id id;
+# 1824 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      explicit
+      messages(size_t __refs = 0);
+# 1838 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      explicit
+      messages(__c_locale __cloc, const char* __s, size_t __refs = 0);
+# 1851 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      catalog
+      open(const basic_string<char>& __s, const locale& __loc) const
+      { return this->do_open(__s, __loc); }
+# 1869 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      catalog
+      open(const basic_string<char>&, const locale&, const char*) const;
+# 1887 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      string_type
+      get(catalog __c, int __set, int __msgid, const string_type& __s) const
+      { return this->do_get(__c, __set, __msgid, __s); }
+# 1898 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      void
+      close(catalog __c) const
+      { return this->do_close(__c); }
+
+    protected:
+
+      virtual
+      ~messages();
+# 1918 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      virtual catalog
+      do_open(const basic_string<char>&, const locale&) const;
+# 1937 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 3
+      virtual string_type
+      do_get(catalog, int, int, const string_type& __dfault) const;
+
+
+
+
+
+
+      virtual void
+      do_close(catalog) const;
+
+
+      char*
+      _M_convert_to_char(const string_type& __msg) const
+      {
+
+ return reinterpret_cast<char*>(const_cast<_CharT*>(__msg.c_str()));
+      }
+
+
+      string_type
+      _M_convert_from_char(char*) const
+      {
+
+ return string_type();
+      }
+     };
+
+  template<typename _CharT>
+    locale::id messages<_CharT>::id;
+
+
+  template<>
+    string
+    messages<char>::do_get(catalog, int, int, const string&) const;
+
+
+  template<>
+    wstring
+    messages<wchar_t>::do_get(catalog, int, int, const wstring&) const;
+
+
+
+   template<typename _CharT>
+    class messages_byname : public messages<_CharT>
+    {
+    public:
+      typedef _CharT char_type;
+      typedef basic_string<_CharT> string_type;
+
+      explicit
+      messages_byname(const char* __s, size_t __refs = 0);
+
+
+      explicit
+      messages_byname(const string& __s, size_t __refs = 0)
+      : messages_byname(__s.c_str(), __refs) { }
+
+
+    protected:
+      virtual
+      ~messages_byname()
+      { }
+    };
+
+}
+
+
+}
+
+
+
+# 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/x86_64-pc-linux-gnu/bits/messages_members.h" 1 3
+# 36 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/x86_64-pc-linux-gnu/bits/messages_members.h" 3
+# 1 "/usr/include/libintl.h" 1 3 4
+# 34 "/usr/include/libintl.h" 3 4
+extern "C" {
+
+
+
+
+extern char *gettext (const char *__msgid)
+     throw () __attribute__ ((__format_arg__ (1)));
+
+
+
+extern char *dgettext (const char *__domainname, const char *__msgid)
+     throw () __attribute__ ((__format_arg__ (2)));
+extern char *__dgettext (const char *__domainname, const char *__msgid)
+     throw () __attribute__ ((__format_arg__ (2)));
+
+
+
+extern char *dcgettext (const char *__domainname,
+   const char *__msgid, int __category)
+     throw () __attribute__ ((__format_arg__ (2)));
+extern char *__dcgettext (const char *__domainname,
+     const char *__msgid, int __category)
+     throw () __attribute__ ((__format_arg__ (2)));
+
+
+
+
+extern char *ngettext (const char *__msgid1, const char *__msgid2,
+         unsigned long int __n)
+     throw () __attribute__ ((__format_arg__ (1))) __attribute__ ((__format_arg__ (2)));
+
+
+
+extern char *dngettext (const char *__domainname, const char *__msgid1,
+   const char *__msgid2, unsigned long int __n)
+     throw () __attribute__ ((__format_arg__ (2))) __attribute__ ((__format_arg__ (3)));
+
+
+
+extern char *dcngettext (const char *__domainname, const char *__msgid1,
+    const char *__msgid2, unsigned long int __n,
+    int __category)
+     throw () __attribute__ ((__format_arg__ (2))) __attribute__ ((__format_arg__ (3)));
+
+
+
+
+
+extern char *textdomain (const char *__domainname) throw ();
+
+
+
+extern char *bindtextdomain (const char *__domainname,
+        const char *__dirname) throw ();
+
+
+
+extern char *bind_textdomain_codeset (const char *__domainname,
+          const char *__codeset) throw ();
+# 121 "/usr/include/libintl.h" 3 4
+}
+# 37 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/x86_64-pc-linux-gnu/bits/messages_members.h" 2 3
+
+namespace std __attribute__ ((__visibility__ ("default")))
+{
+
+
+
+  template<typename _CharT>
+    messages<_CharT>::messages(size_t __refs)
+    : facet(__refs), _M_c_locale_messages(_S_get_c_locale()),
+      _M_name_messages(_S_get_c_name())
+    { }
+
+  template<typename _CharT>
+    messages<_CharT>::messages(__c_locale __cloc, const char* __s,
+          size_t __refs)
+    : facet(__refs), _M_c_locale_messages(0), _M_name_messages(0)
+    {
+      if (__builtin_strcmp(__s, _S_get_c_name()) != 0)
+ {
+   const size_t __len = __builtin_strlen(__s) + 1;
+   char* __tmp = new char[__len];
+   __builtin_memcpy(__tmp, __s, __len);
+   _M_name_messages = __tmp;
+ }
+      else
+ _M_name_messages = _S_get_c_name();
+
+
+      _M_c_locale_messages = _S_clone_c_locale(__cloc);
+    }
+
+  template<typename _CharT>
+    typename messages<_CharT>::catalog
+    messages<_CharT>::open(const basic_string<char>& __s, const locale& __loc,
+      const char* __dir) const
+    {
+      bindtextdomain(__s.c_str(), __dir);
+      return this->do_open(__s, __loc);
+    }
+
+
+  template<typename _CharT>
+    messages<_CharT>::~messages()
+    {
+      if (_M_name_messages != _S_get_c_name())
+ delete [] _M_name_messages;
+      _S_destroy_c_locale(_M_c_locale_messages);
+    }
+
+  template<typename _CharT>
+    typename messages<_CharT>::catalog
+    messages<_CharT>::do_open(const basic_string<char>& __s,
+         const locale&) const
+    {
+
+
+      textdomain(__s.c_str());
+      return 0;
+    }
+
+  template<typename _CharT>
+    void
+    messages<_CharT>::do_close(catalog) const
+    { }
+
+
+  template<typename _CharT>
+    messages_byname<_CharT>::messages_byname(const char* __s, size_t __refs)
+    : messages<_CharT>(__refs)
+    {
+      if (this->_M_name_messages != locale::facet::_S_get_c_name())
+ {
+   delete [] this->_M_name_messages;
+   if (__builtin_strcmp(__s, locale::facet::_S_get_c_name()) != 0)
+     {
+       const size_t __len = __builtin_strlen(__s) + 1;
+       char* __tmp = new char[__len];
+       __builtin_memcpy(__tmp, __s, __len);
+       this->_M_name_messages = __tmp;
+     }
+   else
+     this->_M_name_messages = locale::facet::_S_get_c_name();
+ }
+
+      if (__builtin_strcmp(__s, "C") != 0
+   && __builtin_strcmp(__s, "POSIX") != 0)
+ {
+   this->_S_destroy_c_locale(this->_M_c_locale_messages);
+   this->_S_create_c_locale(this->_M_c_locale_messages, __s);
+ }
+    }
+
+
+  template<>
+    typename messages<char>::catalog
+    messages<char>::do_open(const basic_string<char>&,
+       const locale&) const;
+
+  template<>
+    void
+    messages<char>::do_close(catalog) const;
+
+
+  template<>
+    typename messages<wchar_t>::catalog
+    messages<wchar_t>::do_open(const basic_string<char>&,
+          const locale&) const;
+
+  template<>
+    void
+    messages<wchar_t>::do_close(catalog) const;
+
+
+
+}
+# 2009 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 2 3
+
+
+
+
+# 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.tcc" 1 3
+# 34 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.tcc" 3
+
+namespace std __attribute__ ((__visibility__ ("default")))
+{
+
+
+  template<typename _CharT, bool _Intl>
+    struct __use_cache<__moneypunct_cache<_CharT, _Intl> >
+    {
+      const __moneypunct_cache<_CharT, _Intl>*
+      operator() (const locale& __loc) const
+      {
+ const size_t __i = moneypunct<_CharT, _Intl>::id._M_id();
+ const locale::facet** __caches = __loc._M_impl->_M_caches;
+ if (!__caches[__i])
+   {
+     __moneypunct_cache<_CharT, _Intl>* __tmp = 0;
+     if (true)
+       {
+  __tmp = new __moneypunct_cache<_CharT, _Intl>;
+  __tmp->_M_cache(__loc);
+       }
+     if (false)
+       {
+  delete __tmp;
+                         ;
+       }
+     __loc._M_impl->_M_install_cache(__tmp, __i);
+   }
+ return static_cast<
+   const __moneypunct_cache<_CharT, _Intl>*>(__caches[__i]);
+      }
+    };
+
+  template<typename _CharT, bool _Intl>
+    void
+    __moneypunct_cache<_CharT, _Intl>::_M_cache(const locale& __loc)
+    {
+      const moneypunct<_CharT, _Intl>& __mp =
+ use_facet<moneypunct<_CharT, _Intl> >(__loc);
+
+      _M_decimal_point = __mp.decimal_point();
+      _M_thousands_sep = __mp.thousands_sep();
+      _M_frac_digits = __mp.frac_digits();
+
+      char* __grouping = 0;
+      _CharT* __curr_symbol = 0;
+      _CharT* __positive_sign = 0;
+      _CharT* __negative_sign = 0;
+      if (true)
+ {
+   const string& __g = __mp.grouping();
+   _M_grouping_size = __g.size();
+   __grouping = new char[_M_grouping_size];
+   __g.copy(__grouping, _M_grouping_size);
+   _M_use_grouping = (_M_grouping_size
+        && static_cast<signed char>(__grouping[0]) > 0
+        && (__grouping[0]
+     != __gnu_cxx::__numeric_traits<char>::__max));
+
+   const basic_string<_CharT>& __cs = __mp.curr_symbol();
+   _M_curr_symbol_size = __cs.size();
+   __curr_symbol = new _CharT[_M_curr_symbol_size];
+   __cs.copy(__curr_symbol, _M_curr_symbol_size);
+
+   const basic_string<_CharT>& __ps = __mp.positive_sign();
+   _M_positive_sign_size = __ps.size();
+   __positive_sign = new _CharT[_M_positive_sign_size];
+   __ps.copy(__positive_sign, _M_positive_sign_size);
+
+   const basic_string<_CharT>& __ns = __mp.negative_sign();
+   _M_negative_sign_size = __ns.size();
+   __negative_sign = new _CharT[_M_negative_sign_size];
+   __ns.copy(__negative_sign, _M_negative_sign_size);
+
+   _M_pos_format = __mp.pos_format();
+   _M_neg_format = __mp.neg_format();
+
+   const ctype<_CharT>& __ct = use_facet<ctype<_CharT> >(__loc);
+   __ct.widen(money_base::_S_atoms,
+       money_base::_S_atoms + money_base::_S_end, _M_atoms);
+
+   _M_grouping = __grouping;
+   _M_curr_symbol = __curr_symbol;
+   _M_positive_sign = __positive_sign;
+   _M_negative_sign = __negative_sign;
+   _M_allocated = true;
+ }
+      if (false)
+ {
+   delete [] __grouping;
+   delete [] __curr_symbol;
+   delete [] __positive_sign;
+   delete [] __negative_sign;
+                          ;
+ }
+    }
+
+namespace __cxx11 {
+
+  template<typename _CharT, typename _InIter>
+    template<bool _Intl>
+      _InIter
+      money_get<_CharT, _InIter>::
+      _M_extract(iter_type __beg, iter_type __end, ios_base& __io,
+   ios_base::iostate& __err, string& __units) const
+      {
+ typedef char_traits<_CharT> __traits_type;
+ typedef typename string_type::size_type size_type;
+ typedef money_base::part part;
+ typedef __moneypunct_cache<_CharT, _Intl> __cache_type;
+
+ const locale& __loc = __io._M_getloc();
+ const ctype<_CharT>& __ctype = use_facet<ctype<_CharT> >(__loc);
+
+ __use_cache<__cache_type> __uc;
+ const __cache_type* __lc = __uc(__loc);
+ const char_type* __lit = __lc->_M_atoms;
+
+
+ bool __negative = false;
+
+ size_type __sign_size = 0;
+
+ const bool __mandatory_sign = (__lc->_M_positive_sign_size
+           && __lc->_M_negative_sign_size);
+
+ string __grouping_tmp;
+ if (__lc->_M_use_grouping)
+   __grouping_tmp.reserve(32);
+
+ int __last_pos = 0;
+
+ int __n = 0;
+
+ bool __testvalid = true;
+
+ bool __testdecfound = false;
+
+
+ string __res;
+ __res.reserve(32);
+
+ const char_type* __lit_zero = __lit + money_base::_S_zero;
+ const money_base::pattern __p = __lc->_M_neg_format;
+ for (int __i = 0; __i < 4 && __testvalid; ++__i)
+   {
+     const part __which = static_cast<part>(__p.field[__i]);
+     switch (__which)
+       {
+       case money_base::symbol:
+
+
+
+
+  if (__io.flags() & ios_base::showbase || __sign_size > 1
+      || __i == 0
+      || (__i == 1 && (__mandatory_sign
+         || (static_cast<part>(__p.field[0])
+      == money_base::sign)
+         || (static_cast<part>(__p.field[2])
+      == money_base::space)))
+      || (__i == 2 && ((static_cast<part>(__p.field[3])
+          == money_base::value)
+         || (__mandatory_sign
+      && (static_cast<part>(__p.field[3])
+          == money_base::sign)))))
+    {
+      const size_type __len = __lc->_M_curr_symbol_size;
+      size_type __j = 0;
+      for (; __beg != __end && __j < __len
+      && *__beg == __lc->_M_curr_symbol[__j];
+    ++__beg, (void)++__j);
+      if (__j != __len
+   && (__j || __io.flags() & ios_base::showbase))
+        __testvalid = false;
+    }
+  break;
+       case money_base::sign:
+
+  if (__lc->_M_positive_sign_size && __beg != __end
+      && *__beg == __lc->_M_positive_sign[0])
+    {
+      __sign_size = __lc->_M_positive_sign_size;
+      ++__beg;
+    }
+  else if (__lc->_M_negative_sign_size && __beg != __end
+    && *__beg == __lc->_M_negative_sign[0])
+    {
+      __negative = true;
+      __sign_size = __lc->_M_negative_sign_size;
+      ++__beg;
+    }
+  else if (__lc->_M_positive_sign_size
+    && !__lc->_M_negative_sign_size)
+
+
+    __negative = true;
+  else if (__mandatory_sign)
+    __testvalid = false;
+  break;
+       case money_base::value:
+
+
+  for (; __beg != __end; ++__beg)
+    {
+      const char_type __c = *__beg;
+      const char_type* __q = __traits_type::find(__lit_zero,
+              10, __c);
+      if (__q != 0)
+        {
+   __res += money_base::_S_atoms[__q - __lit];
+   ++__n;
+        }
+      else if (__c == __lc->_M_decimal_point
+        && !__testdecfound)
+        {
+   if (__lc->_M_frac_digits <= 0)
+     break;
+
+   __last_pos = __n;
+   __n = 0;
+   __testdecfound = true;
+        }
+      else if (__lc->_M_use_grouping
+        && __c == __lc->_M_thousands_sep
+        && !__testdecfound)
+        {
+   if (__n)
+     {
+
+       __grouping_tmp += static_cast<char>(__n);
+       __n = 0;
+     }
+   else
+     {
+       __testvalid = false;
+       break;
+     }
+        }
+      else
+        break;
+    }
+  if (__res.empty())
+    __testvalid = false;
+  break;
+       case money_base::space:
+
+  if (__beg != __end && __ctype.is(ctype_base::space, *__beg))
+    ++__beg;
+  else
+    __testvalid = false;
+       case money_base::none:
+
+  if (__i != 3)
+    for (; __beg != __end
+    && __ctype.is(ctype_base::space, *__beg); ++__beg);
+  break;
+       }
+   }
+
+
+ if (__sign_size > 1 && __testvalid)
+   {
+     const char_type* __sign = __negative ? __lc->_M_negative_sign
+                                          : __lc->_M_positive_sign;
+     size_type __i = 1;
+     for (; __beg != __end && __i < __sign_size
+     && *__beg == __sign[__i]; ++__beg, (void)++__i);
+
+     if (__i != __sign_size)
+       __testvalid = false;
+   }
+
+ if (__testvalid)
+   {
+
+     if (__res.size() > 1)
+       {
+  const size_type __first = __res.find_first_not_of('0');
+  const bool __only_zeros = __first == string::npos;
+  if (__first)
+    __res.erase(0, __only_zeros ? __res.size() - 1 : __first);
+       }
+
+
+     if (__negative && __res[0] != '0')
+       __res.insert(__res.begin(), '-');
+
+
+     if (__grouping_tmp.size())
+       {
+
+  __grouping_tmp += static_cast<char>(__testdecfound ? __last_pos
+                         : __n);
+  if (!std::__verify_grouping(__lc->_M_grouping,
+         __lc->_M_grouping_size,
+         __grouping_tmp))
+    __err |= ios_base::failbit;
+       }
+
+
+     if (__testdecfound && __n != __lc->_M_frac_digits)
+       __testvalid = false;
+   }
+
+
+ if (!__testvalid)
+   __err |= ios_base::failbit;
+ else
+   __units.swap(__res);
+
+
+ if (__beg == __end)
+   __err |= ios_base::eofbit;
+ return __beg;
+      }
+# 367 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.tcc" 3
+  template<typename _CharT, typename _InIter>
+    _InIter
+    money_get<_CharT, _InIter>::
+    do_get(iter_type __beg, iter_type __end, bool __intl, ios_base& __io,
+    ios_base::iostate& __err, long double& __units) const
+    {
+      string __str;
+      __beg = __intl ? _M_extract<true>(__beg, __end, __io, __err, __str)
+              : _M_extract<false>(__beg, __end, __io, __err, __str);
+      std::__convert_to_v(__str.c_str(), __units, __err, _S_get_c_locale());
+      return __beg;
+    }
+
+  template<typename _CharT, typename _InIter>
+    _InIter
+    money_get<_CharT, _InIter>::
+    do_get(iter_type __beg, iter_type __end, bool __intl, ios_base& __io,
+    ios_base::iostate& __err, string_type& __digits) const
+    {
+      typedef typename string::size_type size_type;
+
+      const locale& __loc = __io._M_getloc();
+      const ctype<_CharT>& __ctype = use_facet<ctype<_CharT> >(__loc);
+
+      string __str;
+      __beg = __intl ? _M_extract<true>(__beg, __end, __io, __err, __str)
+              : _M_extract<false>(__beg, __end, __io, __err, __str);
+      const size_type __len = __str.size();
+      if (__len)
+ {
+   __digits.resize(__len);
+   __ctype.widen(__str.data(), __str.data() + __len, &__digits[0]);
+ }
+      return __beg;
+    }
+
+  template<typename _CharT, typename _OutIter>
+    template<bool _Intl>
+      _OutIter
+      money_put<_CharT, _OutIter>::
+      _M_insert(iter_type __s, ios_base& __io, char_type __fill,
+  const string_type& __digits) const
+      {
+ typedef typename string_type::size_type size_type;
+ typedef money_base::part part;
+ typedef __moneypunct_cache<_CharT, _Intl> __cache_type;
+
+ const locale& __loc = __io._M_getloc();
+ const ctype<_CharT>& __ctype = use_facet<ctype<_CharT> >(__loc);
+
+ __use_cache<__cache_type> __uc;
+ const __cache_type* __lc = __uc(__loc);
+ const char_type* __lit = __lc->_M_atoms;
+
+
+
+ const char_type* __beg = __digits.data();
+
+ money_base::pattern __p;
+ const char_type* __sign;
+ size_type __sign_size;
+ if (!(*__beg == __lit[money_base::_S_minus]))
+   {
+     __p = __lc->_M_pos_format;
+     __sign = __lc->_M_positive_sign;
+     __sign_size = __lc->_M_positive_sign_size;
+   }
+ else
+   {
+     __p = __lc->_M_neg_format;
+     __sign = __lc->_M_negative_sign;
+     __sign_size = __lc->_M_negative_sign_size;
+     if (__digits.size())
+       ++__beg;
+   }
+
+
+ size_type __len = __ctype.scan_not(ctype_base::digit, __beg,
+        __beg + __digits.size()) - __beg;
+ if (__len)
+   {
+
+
+
+     string_type __value;
+     __value.reserve(2 * __len);
+
+
+
+     long __paddec = __len - __lc->_M_frac_digits;
+     if (__paddec > 0)
+         {
+  if (__lc->_M_frac_digits < 0)
+    __paddec = __len;
+    if (__lc->_M_grouping_size)
+      {
+      __value.assign(2 * __paddec, char_type());
+       _CharT* __vend =
+        std::__add_grouping(&__value[0], __lc->_M_thousands_sep,
+       __lc->_M_grouping,
+       __lc->_M_grouping_size,
+       __beg, __beg + __paddec);
+      __value.erase(__vend - &__value[0]);
+      }
+    else
+    __value.assign(__beg, __paddec);
+       }
+
+
+     if (__lc->_M_frac_digits > 0)
+       {
+  __value += __lc->_M_decimal_point;
+  if (__paddec >= 0)
+    __value.append(__beg + __paddec, __lc->_M_frac_digits);
+  else
+    {
+
+      __value.append(-__paddec, __lit[money_base::_S_zero]);
+      __value.append(__beg, __len);
+    }
+         }
+
+
+     const ios_base::fmtflags __f = __io.flags()
+                                    & ios_base::adjustfield;
+     __len = __value.size() + __sign_size;
+     __len += ((__io.flags() & ios_base::showbase)
+        ? __lc->_M_curr_symbol_size : 0);
+
+     string_type __res;
+     __res.reserve(2 * __len);
+
+     const size_type __width = static_cast<size_type>(__io.width());
+     const bool __testipad = (__f == ios_base::internal
+         && __len < __width);
+
+     for (int __i = 0; __i < 4; ++__i)
+       {
+  const part __which = static_cast<part>(__p.field[__i]);
+  switch (__which)
+    {
+    case money_base::symbol:
+      if (__io.flags() & ios_base::showbase)
+        __res.append(__lc->_M_curr_symbol,
+       __lc->_M_curr_symbol_size);
+      break;
+    case money_base::sign:
+
+
+
+      if (__sign_size)
+        __res += __sign[0];
+      break;
+    case money_base::value:
+      __res += __value;
+      break;
+    case money_base::space:
+
+
+
+      if (__testipad)
+        __res.append(__width - __len, __fill);
+      else
+        __res += __fill;
+      break;
+    case money_base::none:
+      if (__testipad)
+        __res.append(__width - __len, __fill);
+      break;
+    }
+       }
+
+
+     if (__sign_size > 1)
+       __res.append(__sign + 1, __sign_size - 1);
+
+
+     __len = __res.size();
+     if (__width > __len)
+       {
+  if (__f == ios_base::left)
+
+    __res.append(__width - __len, __fill);
+  else
+
+    __res.insert(0, __width - __len, __fill);
+  __len = __width;
+       }
+
+
+     __s = std::__write(__s, __res.data(), __len);
+   }
+ __io.width(0);
+ return __s;
+      }
+# 573 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.tcc" 3
+  template<typename _CharT, typename _OutIter>
+    _OutIter
+    money_put<_CharT, _OutIter>::
+    do_put(iter_type __s, bool __intl, ios_base& __io, char_type __fill,
+    long double __units) const
+    {
+      const locale __loc = __io.getloc();
+      const ctype<_CharT>& __ctype = use_facet<ctype<_CharT> >(__loc);
+
+
+      int __cs_size = 64;
+      char* __cs = static_cast<char*>(__builtin_alloca(__cs_size));
+
+
+      int __len = std::__convert_from_v(_S_get_c_locale(), __cs, __cs_size,
+     "%.*Lf", 0, __units);
+
+      if (__len >= __cs_size)
+ {
+   __cs_size = __len + 1;
+   __cs = static_cast<char*>(__builtin_alloca(__cs_size));
+   __len = std::__convert_from_v(_S_get_c_locale(), __cs, __cs_size,
+     "%.*Lf", 0, __units);
+ }
+# 605 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.tcc" 3
+      string_type __digits(__len, char_type());
+      __ctype.widen(__cs, __cs + __len, &__digits[0]);
+      return __intl ? _M_insert<true>(__s, __io, __fill, __digits)
+             : _M_insert<false>(__s, __io, __fill, __digits);
+    }
+
+  template<typename _CharT, typename _OutIter>
+    _OutIter
+    money_put<_CharT, _OutIter>::
+    do_put(iter_type __s, bool __intl, ios_base& __io, char_type __fill,
+    const string_type& __digits) const
+    { return __intl ? _M_insert<true>(__s, __io, __fill, __digits)
+             : _M_insert<false>(__s, __io, __fill, __digits); }
+
+}
+
+
+
+
+  template<typename _CharT, typename _InIter>
+    time_base::dateorder
+    time_get<_CharT, _InIter>::do_date_order() const
+    { return time_base::no_order; }
+
+
+
+  template<typename _CharT, typename _InIter>
+    _InIter
+    time_get<_CharT, _InIter>::
+    _M_extract_via_format(iter_type __beg, iter_type __end, ios_base& __io,
+     ios_base::iostate& __err, tm* __tm,
+     const _CharT* __format) const
+    {
+      const locale& __loc = __io._M_getloc();
+      const __timepunct<_CharT>& __tp = use_facet<__timepunct<_CharT> >(__loc);
+      const ctype<_CharT>& __ctype = use_facet<ctype<_CharT> >(__loc);
+      const size_t __len = char_traits<_CharT>::length(__format);
+
+      ios_base::iostate __tmperr = ios_base::goodbit;
+      size_t __i = 0;
+      for (; __beg != __end && __i < __len && !__tmperr; ++__i)
+ {
+   if (__ctype.narrow(__format[__i], 0) == '%')
+     {
+
+       char __c = __ctype.narrow(__format[++__i], 0);
+       int __mem = 0;
+       if (__c == 'E' || __c == 'O')
+  __c = __ctype.narrow(__format[++__i], 0);
+       switch (__c)
+  {
+    const char* __cs;
+    _CharT __wcs[10];
+  case 'a':
+
+    const char_type* __days1[7];
+    __tp._M_days_abbreviated(__days1);
+    __beg = _M_extract_name(__beg, __end, __tm->tm_wday, __days1,
+       7, __io, __tmperr);
+    break;
+  case 'A':
+
+    const char_type* __days2[7];
+    __tp._M_days(__days2);
+    __beg = _M_extract_name(__beg, __end, __tm->tm_wday, __days2,
+       7, __io, __tmperr);
+    break;
+  case 'h':
+  case 'b':
+
+    const char_type* __months1[12];
+    __tp._M_months_abbreviated(__months1);
+    __beg = _M_extract_name(__beg, __end, __tm->tm_mon,
+       __months1, 12, __io, __tmperr);
+    break;
+  case 'B':
+
+    const char_type* __months2[12];
+    __tp._M_months(__months2);
+    __beg = _M_extract_name(__beg, __end, __tm->tm_mon,
+       __months2, 12, __io, __tmperr);
+    break;
+  case 'c':
+
+    const char_type* __dt[2];
+    __tp._M_date_time_formats(__dt);
+    __beg = _M_extract_via_format(__beg, __end, __io, __tmperr,
+      __tm, __dt[0]);
+    break;
+  case 'd':
+
+    __beg = _M_extract_num(__beg, __end, __tm->tm_mday, 1, 31, 2,
+      __io, __tmperr);
+    break;
+  case 'e':
+
+
+    if (__ctype.is(ctype_base::space, *__beg))
+      __beg = _M_extract_num(++__beg, __end, __tm->tm_mday, 1, 9,
+        1, __io, __tmperr);
+    else
+      __beg = _M_extract_num(__beg, __end, __tm->tm_mday, 10, 31,
+        2, __io, __tmperr);
+    break;
+  case 'D':
+
+    __cs = "%m/%d/%y";
+    __ctype.widen(__cs, __cs + 9, __wcs);
+    __beg = _M_extract_via_format(__beg, __end, __io, __tmperr,
+      __tm, __wcs);
+    break;
+  case 'H':
+
+    __beg = _M_extract_num(__beg, __end, __tm->tm_hour, 0, 23, 2,
+      __io, __tmperr);
+    break;
+  case 'I':
+
+    __beg = _M_extract_num(__beg, __end, __tm->tm_hour, 1, 12, 2,
+      __io, __tmperr);
+    break;
+  case 'm':
+
+    __beg = _M_extract_num(__beg, __end, __mem, 1, 12, 2,
+      __io, __tmperr);
+    if (!__tmperr)
+      __tm->tm_mon = __mem - 1;
+    break;
+  case 'M':
+
+    __beg = _M_extract_num(__beg, __end, __tm->tm_min, 0, 59, 2,
+      __io, __tmperr);
+    break;
+  case 'n':
+    if (__ctype.narrow(*__beg, 0) == '\n')
+      ++__beg;
+    else
+      __tmperr |= ios_base::failbit;
+    break;
+  case 'R':
+
+    __cs = "%H:%M";
+    __ctype.widen(__cs, __cs + 6, __wcs);
+    __beg = _M_extract_via_format(__beg, __end, __io, __tmperr,
+      __tm, __wcs);
+    break;
+  case 'S':
+
+
+
+    __beg = _M_extract_num(__beg, __end, __tm->tm_sec, 0, 60, 2,
+
+
+
+      __io, __tmperr);
+    break;
+  case 't':
+    if (__ctype.narrow(*__beg, 0) == '\t')
+      ++__beg;
+    else
+      __tmperr |= ios_base::failbit;
+    break;
+  case 'T':
+
+    __cs = "%H:%M:%S";
+    __ctype.widen(__cs, __cs + 9, __wcs);
+    __beg = _M_extract_via_format(__beg, __end, __io, __tmperr,
+      __tm, __wcs);
+    break;
+  case 'x':
+
+    const char_type* __dates[2];
+    __tp._M_date_formats(__dates);
+    __beg = _M_extract_via_format(__beg, __end, __io, __tmperr,
+      __tm, __dates[0]);
+    break;
+  case 'X':
+
+    const char_type* __times[2];
+    __tp._M_time_formats(__times);
+    __beg = _M_extract_via_format(__beg, __end, __io, __tmperr,
+      __tm, __times[0]);
+    break;
+  case 'y':
+  case 'C':
+
+  case 'Y':
+
+
+
+
+    __beg = _M_extract_num(__beg, __end, __mem, 0, 9999, 4,
+      __io, __tmperr);
+    if (!__tmperr)
+      __tm->tm_year = __mem < 0 ? __mem + 100 : __mem - 1900;
+    break;
+  case 'Z':
+
+    if (__ctype.is(ctype_base::upper, *__beg))
+      {
+        int __tmp;
+        __beg = _M_extract_name(__beg, __end, __tmp,
+           __timepunct_cache<_CharT>::_S_timezones,
+           14, __io, __tmperr);
+
+
+        if (__beg != __end && !__tmperr && __tmp == 0
+     && (*__beg == __ctype.widen('-')
+         || *__beg == __ctype.widen('+')))
+   {
+     __beg = _M_extract_num(__beg, __end, __tmp, 0, 23, 2,
+       __io, __tmperr);
+     __beg = _M_extract_num(__beg, __end, __tmp, 0, 59, 2,
+       __io, __tmperr);
+   }
+      }
+    else
+      __tmperr |= ios_base::failbit;
+    break;
+  default:
+
+    __tmperr |= ios_base::failbit;
+  }
+     }
+   else
+     {
+
+       if (__format[__i] == *__beg)
+  ++__beg;
+       else
+  __tmperr |= ios_base::failbit;
+     }
+ }
+
+      if (__tmperr || __i != __len)
+ __err |= ios_base::failbit;
+
+      return __beg;
+    }
+
+  template<typename _CharT, typename _InIter>
+    _InIter
+    time_get<_CharT, _InIter>::
+    _M_extract_num(iter_type __beg, iter_type __end, int& __member,
+     int __min, int __max, size_t __len,
+     ios_base& __io, ios_base::iostate& __err) const
+    {
+      const locale& __loc = __io._M_getloc();
+      const ctype<_CharT>& __ctype = use_facet<ctype<_CharT> >(__loc);
+
+
+      int __mult = __len == 2 ? 10 : (__len == 4 ? 1000 : 1);
+
+      ++__min;
+      size_t __i = 0;
+      int __value = 0;
+      for (; __beg != __end && __i < __len; ++__beg, (void)++__i)
+ {
+   const char __c = __ctype.narrow(*__beg, '*');
+   if (__c >= '0' && __c <= '9')
+     {
+       __value = __value * 10 + (__c - '0');
+       const int __valuec = __value * __mult;
+       if (__valuec > __max || __valuec + __mult < __min)
+  break;
+       __mult /= 10;
+     }
+   else
+     break;
+ }
+      if (__i == __len)
+ __member = __value;
+
+      else if (__len == 4 && __i == 2)
+ __member = __value - 100;
+      else
+ __err |= ios_base::failbit;
+
+      return __beg;
+    }
+
+
+
+  template<typename _CharT, typename _InIter>
+    _InIter
+    time_get<_CharT, _InIter>::
+    _M_extract_name(iter_type __beg, iter_type __end, int& __member,
+      const _CharT** __names, size_t __indexlen,
+      ios_base& __io, ios_base::iostate& __err) const
+    {
+      typedef char_traits<_CharT> __traits_type;
+      const locale& __loc = __io._M_getloc();
+      const ctype<_CharT>& __ctype = use_facet<ctype<_CharT> >(__loc);
+
+      int* __matches = static_cast<int*>(__builtin_alloca(sizeof(int)
+         * __indexlen));
+      size_t __nmatches = 0;
+      size_t __pos = 0;
+      bool __testvalid = true;
+      const char_type* __name;
+
+
+
+
+
+      if (__beg != __end)
+ {
+   const char_type __c = *__beg;
+   for (size_t __i1 = 0; __i1 < __indexlen; ++__i1)
+     if (__c == __names[__i1][0]
+  || __c == __ctype.toupper(__names[__i1][0]))
+       __matches[__nmatches++] = __i1;
+ }
+
+      while (__nmatches > 1)
+ {
+
+   size_t __minlen = __traits_type::length(__names[__matches[0]]);
+   for (size_t __i2 = 1; __i2 < __nmatches; ++__i2)
+     __minlen = std::min(__minlen,
+         __traits_type::length(__names[__matches[__i2]]));
+   ++__beg;
+   ++__pos;
+   if (__pos < __minlen && __beg != __end)
+     for (size_t __i3 = 0; __i3 < __nmatches;)
+       {
+  __name = __names[__matches[__i3]];
+  if (!(__name[__pos] == *__beg))
+    __matches[__i3] = __matches[--__nmatches];
+  else
+    ++__i3;
+       }
+   else
+     break;
+ }
+
+      if (__nmatches == 1)
+ {
+
+   ++__beg;
+   ++__pos;
+   __name = __names[__matches[0]];
+   const size_t __len = __traits_type::length(__name);
+   while (__pos < __len && __beg != __end && __name[__pos] == *__beg)
+     ++__beg, (void)++__pos;
+
+   if (__len == __pos)
+     __member = __matches[0];
+   else
+     __testvalid = false;
+ }
+      else
+ __testvalid = false;
+      if (!__testvalid)
+ __err |= ios_base::failbit;
+
+      return __beg;
+    }
+
+  template<typename _CharT, typename _InIter>
+    _InIter
+    time_get<_CharT, _InIter>::
+    _M_extract_wday_or_month(iter_type __beg, iter_type __end, int& __member,
+        const _CharT** __names, size_t __indexlen,
+        ios_base& __io, ios_base::iostate& __err) const
+    {
+      typedef char_traits<_CharT> __traits_type;
+      const locale& __loc = __io._M_getloc();
+      const ctype<_CharT>& __ctype = use_facet<ctype<_CharT> >(__loc);
+
+      int* __matches = static_cast<int*>(__builtin_alloca(2 * sizeof(int)
+         * __indexlen));
+      size_t __nmatches = 0;
+      size_t* __matches_lengths = 0;
+      size_t __pos = 0;
+
+      if (__beg != __end)
+ {
+   const char_type __c = *__beg;
+   for (size_t __i = 0; __i < 2 * __indexlen; ++__i)
+     if (__c == __names[__i][0]
+  || __c == __ctype.toupper(__names[__i][0]))
+       __matches[__nmatches++] = __i;
+ }
+
+      if (__nmatches)
+ {
+   ++__beg;
+   ++__pos;
+
+   __matches_lengths
+     = static_cast<size_t*>(__builtin_alloca(sizeof(size_t)
+          * __nmatches));
+   for (size_t __i = 0; __i < __nmatches; ++__i)
+     __matches_lengths[__i]
+       = __traits_type::length(__names[__matches[__i]]);
+ }
+
+      for (; __beg != __end; ++__beg, (void)++__pos)
+ {
+   size_t __nskipped = 0;
+   const char_type __c = *__beg;
+   for (size_t __i = 0; __i < __nmatches;)
+     {
+       const char_type* __name = __names[__matches[__i]];
+       if (__pos >= __matches_lengths[__i])
+  ++__nskipped, ++__i;
+       else if (!(__name[__pos] == __c))
+  {
+    --__nmatches;
+    __matches[__i] = __matches[__nmatches];
+    __matches_lengths[__i] = __matches_lengths[__nmatches];
+  }
+       else
+  ++__i;
+     }
+   if (__nskipped == __nmatches)
+     break;
+ }
+
+      if ((__nmatches == 1 && __matches_lengths[0] == __pos)
+   || (__nmatches == 2 && (__matches_lengths[0] == __pos
+      || __matches_lengths[1] == __pos)))
+ __member = (__matches[0] >= __indexlen
+      ? __matches[0] - __indexlen : __matches[0]);
+      else
+ __err |= ios_base::failbit;
+
+      return __beg;
+    }
+
+  template<typename _CharT, typename _InIter>
+    _InIter
+    time_get<_CharT, _InIter>::
+    do_get_time(iter_type __beg, iter_type __end, ios_base& __io,
+  ios_base::iostate& __err, tm* __tm) const
+    {
+      const locale& __loc = __io._M_getloc();
+      const __timepunct<_CharT>& __tp = use_facet<__timepunct<_CharT> >(__loc);
+      const char_type* __times[2];
+      __tp._M_time_formats(__times);
+      __beg = _M_extract_via_format(__beg, __end, __io, __err,
+        __tm, __times[0]);
+      if (__beg == __end)
+ __err |= ios_base::eofbit;
+      return __beg;
+    }
+
+  template<typename _CharT, typename _InIter>
+    _InIter
+    time_get<_CharT, _InIter>::
+    do_get_date(iter_type __beg, iter_type __end, ios_base& __io,
+  ios_base::iostate& __err, tm* __tm) const
+    {
+      const locale& __loc = __io._M_getloc();
+      const __timepunct<_CharT>& __tp = use_facet<__timepunct<_CharT> >(__loc);
+      const char_type* __dates[2];
+      __tp._M_date_formats(__dates);
+      __beg = _M_extract_via_format(__beg, __end, __io, __err,
+        __tm, __dates[0]);
+      if (__beg == __end)
+ __err |= ios_base::eofbit;
+      return __beg;
+    }
+
+  template<typename _CharT, typename _InIter>
+    _InIter
+    time_get<_CharT, _InIter>::
+    do_get_weekday(iter_type __beg, iter_type __end, ios_base& __io,
+     ios_base::iostate& __err, tm* __tm) const
+    {
+      const locale& __loc = __io._M_getloc();
+      const __timepunct<_CharT>& __tp = use_facet<__timepunct<_CharT> >(__loc);
+      const ctype<_CharT>& __ctype = use_facet<ctype<_CharT> >(__loc);
+      const char_type* __days[14];
+      __tp._M_days_abbreviated(__days);
+      __tp._M_days(__days + 7);
+      int __tmpwday;
+      ios_base::iostate __tmperr = ios_base::goodbit;
+
+      __beg = _M_extract_wday_or_month(__beg, __end, __tmpwday, __days, 7,
+           __io, __tmperr);
+      if (!__tmperr)
+ __tm->tm_wday = __tmpwday;
+      else
+ __err |= ios_base::failbit;
+
+      if (__beg == __end)
+ __err |= ios_base::eofbit;
+      return __beg;
+     }
+
+  template<typename _CharT, typename _InIter>
+    _InIter
+    time_get<_CharT, _InIter>::
+    do_get_monthname(iter_type __beg, iter_type __end,
+                     ios_base& __io, ios_base::iostate& __err, tm* __tm) const
+    {
+      const locale& __loc = __io._M_getloc();
+      const __timepunct<_CharT>& __tp = use_facet<__timepunct<_CharT> >(__loc);
+      const ctype<_CharT>& __ctype = use_facet<ctype<_CharT> >(__loc);
+      const char_type* __months[24];
+      __tp._M_months_abbreviated(__months);
+      __tp._M_months(__months + 12);
+      int __tmpmon;
+      ios_base::iostate __tmperr = ios_base::goodbit;
+
+      __beg = _M_extract_wday_or_month(__beg, __end, __tmpmon, __months, 12,
+           __io, __tmperr);
+      if (!__tmperr)
+ __tm->tm_mon = __tmpmon;
+      else
+ __err |= ios_base::failbit;
+
+      if (__beg == __end)
+ __err |= ios_base::eofbit;
+      return __beg;
+    }
+
+  template<typename _CharT, typename _InIter>
+    _InIter
+    time_get<_CharT, _InIter>::
+    do_get_year(iter_type __beg, iter_type __end, ios_base& __io,
+  ios_base::iostate& __err, tm* __tm) const
+    {
+      const locale& __loc = __io._M_getloc();
+      const ctype<_CharT>& __ctype = use_facet<ctype<_CharT> >(__loc);
+      int __tmpyear;
+      ios_base::iostate __tmperr = ios_base::goodbit;
+
+      __beg = _M_extract_num(__beg, __end, __tmpyear, 0, 9999, 4,
+        __io, __tmperr);
+      if (!__tmperr)
+ __tm->tm_year = __tmpyear < 0 ? __tmpyear + 100 : __tmpyear - 1900;
+      else
+ __err |= ios_base::failbit;
+
+      if (__beg == __end)
+ __err |= ios_base::eofbit;
+      return __beg;
+    }
+
+
+  template<typename _CharT, typename _InIter>
+    inline
+    _InIter
+    time_get<_CharT, _InIter>::
+    get(iter_type __s, iter_type __end, ios_base& __io,
+        ios_base::iostate& __err, tm* __tm, const char_type* __fmt,
+        const char_type* __fmtend) const
+    {
+      const locale& __loc = __io._M_getloc();
+      ctype<_CharT> const& __ctype = use_facet<ctype<_CharT> >(__loc);
+      __err = ios_base::goodbit;
+      while (__fmt != __fmtend &&
+             __err == ios_base::goodbit)
+        {
+          if (__s == __end)
+            {
+              __err = ios_base::eofbit | ios_base::failbit;
+              break;
+            }
+          else if (__ctype.narrow(*__fmt, 0) == '%')
+            {
+              char __format;
+              char __mod = 0;
+              if (++__fmt == __fmtend)
+                {
+                  __err = ios_base::failbit;
+                  break;
+                }
+              const char __c = __ctype.narrow(*__fmt, 0);
+              if (__c != 'E' && __c != 'O')
+                __format = __c;
+              else if (++__fmt != __fmtend)
+                {
+                  __mod = __c;
+                  __format = __ctype.narrow(*__fmt, 0);
+                }
+              else
+                {
+                  __err = ios_base::failbit;
+                  break;
+                }
+              __s = this->do_get(__s, __end, __io, __err, __tm, __format,
+     __mod);
+              ++__fmt;
+            }
+          else if (__ctype.is(ctype_base::space, *__fmt))
+            {
+              ++__fmt;
+              while (__fmt != __fmtend &&
+                     __ctype.is(ctype_base::space, *__fmt))
+                ++__fmt;
+
+              while (__s != __end &&
+                     __ctype.is(ctype_base::space, *__s))
+                ++__s;
+            }
+
+          else if (__ctype.tolower(*__s) == __ctype.tolower(*__fmt) ||
+                   __ctype.toupper(*__s) == __ctype.toupper(*__fmt))
+            {
+              ++__s;
+              ++__fmt;
+            }
+          else
+            {
+              __err = ios_base::failbit;
+              break;
+            }
+        }
+      return __s;
+    }
+
+  template<typename _CharT, typename _InIter>
+    inline
+    _InIter
+    time_get<_CharT, _InIter>::
+    do_get(iter_type __beg, iter_type __end, ios_base& __io,
+           ios_base::iostate& __err, tm* __tm,
+           char __format, char __mod) const
+    {
+      const locale& __loc = __io._M_getloc();
+      ctype<_CharT> const& __ctype = use_facet<ctype<_CharT> >(__loc);
+      __err = ios_base::goodbit;
+
+      char_type __fmt[4];
+      __fmt[0] = __ctype.widen('%');
+      if (!__mod)
+        {
+          __fmt[1] = __format;
+          __fmt[2] = char_type();
+        }
+      else
+        {
+          __fmt[1] = __mod;
+          __fmt[2] = __format;
+          __fmt[3] = char_type();
+        }
+
+      __beg = _M_extract_via_format(__beg, __end, __io, __err, __tm, __fmt);
+      if (__beg == __end)
+ __err |= ios_base::eofbit;
+      return __beg;
+    }
+
+
+
+  template<typename _CharT, typename _OutIter>
+    _OutIter
+    time_put<_CharT, _OutIter>::
+    put(iter_type __s, ios_base& __io, char_type __fill, const tm* __tm,
+ const _CharT* __beg, const _CharT* __end) const
+    {
+      const locale& __loc = __io._M_getloc();
+      ctype<_CharT> const& __ctype = use_facet<ctype<_CharT> >(__loc);
+      for (; __beg != __end; ++__beg)
+ if (__ctype.narrow(*__beg, 0) != '%')
+   {
+     *__s = *__beg;
+     ++__s;
+   }
+ else if (++__beg != __end)
+   {
+     char __format;
+     char __mod = 0;
+     const char __c = __ctype.narrow(*__beg, 0);
+     if (__c != 'E' && __c != 'O')
+       __format = __c;
+     else if (++__beg != __end)
+       {
+  __mod = __c;
+  __format = __ctype.narrow(*__beg, 0);
+       }
+     else
+       break;
+     __s = this->do_put(__s, __io, __fill, __tm, __format, __mod);
+   }
+ else
+   break;
+      return __s;
+    }
+
+  template<typename _CharT, typename _OutIter>
+    _OutIter
+    time_put<_CharT, _OutIter>::
+    do_put(iter_type __s, ios_base& __io, char_type, const tm* __tm,
+    char __format, char __mod) const
+    {
+      const locale& __loc = __io._M_getloc();
+      ctype<_CharT> const& __ctype = use_facet<ctype<_CharT> >(__loc);
+      __timepunct<_CharT> const& __tp = use_facet<__timepunct<_CharT> >(__loc);
+
+
+
+      const size_t __maxlen = 128;
+      char_type __res[__maxlen];
+
+
+
+
+
+
+      char_type __fmt[4];
+      __fmt[0] = __ctype.widen('%');
+      if (!__mod)
+ {
+   __fmt[1] = __format;
+   __fmt[2] = char_type();
+ }
+      else
+ {
+   __fmt[1] = __mod;
+   __fmt[2] = __format;
+   __fmt[3] = char_type();
+ }
+
+      __tp._M_put(__res, __maxlen, __fmt, __tm);
+
+
+      return std::__write(__s, __res, char_traits<char_type>::length(__res));
+    }
+
+
+
+
+
+  extern template class moneypunct<char, false>;
+  extern template class moneypunct<char, true>;
+  extern template class moneypunct_byname<char, false>;
+  extern template class moneypunct_byname<char, true>;
+  extern template class __cxx11:: money_get<char>;
+  extern template class __cxx11:: money_put<char>;
+  extern template class __timepunct<char>;
+  extern template class time_put<char>;
+  extern template class time_put_byname<char>;
+  extern template class time_get<char>;
+  extern template class time_get_byname<char>;
+  extern template class messages<char>;
+  extern template class messages_byname<char>;
+
+  extern template
+    const moneypunct<char, true>&
+    use_facet<moneypunct<char, true> >(const locale&);
+
+  extern template
+    const moneypunct<char, false>&
+    use_facet<moneypunct<char, false> >(const locale&);
+
+  extern template
+    const money_put<char>&
+    use_facet<money_put<char> >(const locale&);
+
+  extern template
+    const money_get<char>&
+    use_facet<money_get<char> >(const locale&);
+
+  extern template
+    const __timepunct<char>&
+    use_facet<__timepunct<char> >(const locale&);
+
+  extern template
+    const time_put<char>&
+    use_facet<time_put<char> >(const locale&);
+
+  extern template
+    const time_get<char>&
+    use_facet<time_get<char> >(const locale&);
+
+  extern template
+    const messages<char>&
+    use_facet<messages<char> >(const locale&);
+
+  extern template
+    bool
+    has_facet<moneypunct<char> >(const locale&);
+
+  extern template
+    bool
+    has_facet<money_put<char> >(const locale&);
+
+  extern template
+    bool
+    has_facet<money_get<char> >(const locale&);
+
+  extern template
+    bool
+    has_facet<__timepunct<char> >(const locale&);
+
+  extern template
+    bool
+    has_facet<time_put<char> >(const locale&);
+
+  extern template
+    bool
+    has_facet<time_get<char> >(const locale&);
+
+  extern template
+    bool
+    has_facet<messages<char> >(const locale&);
+
+
+  extern template class moneypunct<wchar_t, false>;
+  extern template class moneypunct<wchar_t, true>;
+  extern template class moneypunct_byname<wchar_t, false>;
+  extern template class moneypunct_byname<wchar_t, true>;
+  extern template class __cxx11:: money_get<wchar_t>;
+  extern template class __cxx11:: money_put<wchar_t>;
+  extern template class __timepunct<wchar_t>;
+  extern template class time_put<wchar_t>;
+  extern template class time_put_byname<wchar_t>;
+  extern template class time_get<wchar_t>;
+  extern template class time_get_byname<wchar_t>;
+  extern template class messages<wchar_t>;
+  extern template class messages_byname<wchar_t>;
+
+  extern template
+    const moneypunct<wchar_t, true>&
+    use_facet<moneypunct<wchar_t, true> >(const locale&);
+
+  extern template
+    const moneypunct<wchar_t, false>&
+    use_facet<moneypunct<wchar_t, false> >(const locale&);
+
+  extern template
+    const money_put<wchar_t>&
+    use_facet<money_put<wchar_t> >(const locale&);
+
+  extern template
+    const money_get<wchar_t>&
+    use_facet<money_get<wchar_t> >(const locale&);
+
+  extern template
+    const __timepunct<wchar_t>&
+    use_facet<__timepunct<wchar_t> >(const locale&);
+
+  extern template
+    const time_put<wchar_t>&
+    use_facet<time_put<wchar_t> >(const locale&);
+
+  extern template
+    const time_get<wchar_t>&
+    use_facet<time_get<wchar_t> >(const locale&);
+
+  extern template
+    const messages<wchar_t>&
+    use_facet<messages<wchar_t> >(const locale&);
+
+  extern template
+    bool
+    has_facet<moneypunct<wchar_t> >(const locale&);
+
+  extern template
+    bool
+    has_facet<money_put<wchar_t> >(const locale&);
+
+  extern template
+    bool
+    has_facet<money_get<wchar_t> >(const locale&);
+
+  extern template
+    bool
+    has_facet<__timepunct<wchar_t> >(const locale&);
+
+  extern template
+    bool
+    has_facet<time_put<wchar_t> >(const locale&);
+
+  extern template
+    bool
+    has_facet<time_get<wchar_t> >(const locale&);
+
+  extern template
+    bool
+    has_facet<messages<wchar_t> >(const locale&);
+
+
+
+
+}
+# 2014 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_facets_nonio.h" 2 3
+# 42 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/locale" 2 3
+
+# 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_conv.h" 1 3
+# 41 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_conv.h" 3
+# 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/unique_ptr.h" 1 3
+# 39 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/unique_ptr.h" 3
+namespace std __attribute__ ((__visibility__ ("default")))
+{
+# 49 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/unique_ptr.h" 3
+  template<typename> class auto_ptr;
+
+
+
+  template<typename _Tp>
+    struct default_delete
+    {
+
+      constexpr default_delete() noexcept = default;
+
+
+
+
+
+
+      template<typename _Up, typename = typename
+        enable_if<is_convertible<_Up*, _Tp*>::value>::type>
+        default_delete(const default_delete<_Up>&) noexcept { }
+
+
+      void
+      operator()(_Tp* __ptr) const
+      {
+ static_assert(!is_void<_Tp>::value,
+        "can't delete pointer to incomplete type");
+ static_assert(sizeof(_Tp)>0,
+        "can't delete pointer to incomplete type");
+ delete __ptr;
+      }
+    };
+
+
+
+
+  template<typename _Tp>
+    struct default_delete<_Tp[]>
+    {
+    public:
+
+      constexpr default_delete() noexcept = default;
+# 99 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/unique_ptr.h" 3
+      template<typename _Up, typename = typename
+        enable_if<is_convertible<_Up(*)[], _Tp(*)[]>::value>::type>
+        default_delete(const default_delete<_Up[]>&) noexcept { }
+
+
+      template<typename _Up>
+      typename enable_if<is_convertible<_Up(*)[], _Tp(*)[]>::value>::type
+ operator()(_Up* __ptr) const
+      {
+ static_assert(sizeof(_Tp)>0,
+        "can't delete pointer to incomplete type");
+ delete [] __ptr;
+      }
+    };
+
+
+  template <typename _Tp, typename _Dp = default_delete<_Tp> >
+    class unique_ptr
+    {
+
+      class _Pointer
+      {
+ template<typename _Up>
+   static typename _Up::pointer __test(typename _Up::pointer*);
+
+ template<typename _Up>
+   static _Tp* __test(...);
+
+ typedef typename remove_reference<_Dp>::type _Del;
+
+      public:
+ typedef decltype(__test<_Del>(0)) type;
+      };
+
+      typedef std::tuple<typename _Pointer::type, _Dp> __tuple_type;
+      __tuple_type _M_t;
+
+    public:
+      typedef typename _Pointer::type pointer;
+      typedef _Tp element_type;
+      typedef _Dp deleter_type;
+
+
+
+
+      template<typename _Up, typename _Ep>
+ using __safe_conversion_up = __and_<
+         is_convertible<typename unique_ptr<_Up, _Ep>::pointer, pointer>,
+                __not_<is_array<_Up>>,
+                __or_<__and_<is_reference<deleter_type>,
+                             is_same<deleter_type, _Ep>>,
+                      __and_<__not_<is_reference<deleter_type>>,
+                             is_convertible<_Ep, deleter_type>>
+                >
+              >;
+
+
+
+
+      constexpr unique_ptr() noexcept
+      : _M_t()
+      { static_assert(!is_pointer<deleter_type>::value,
+       "constructed with null function pointer deleter"); }
+
+
+
+
+
+
+
+      explicit
+      unique_ptr(pointer __p) noexcept
+      : _M_t(__p, deleter_type())
+      { static_assert(!is_pointer<deleter_type>::value,
+       "constructed with null function pointer deleter"); }
+# 182 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/unique_ptr.h" 3
+      unique_ptr(pointer __p,
+   typename conditional<is_reference<deleter_type>::value,
+     deleter_type, const deleter_type&>::type __d) noexcept
+      : _M_t(__p, __d) { }
+# 194 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/unique_ptr.h" 3
+      unique_ptr(pointer __p,
+   typename remove_reference<deleter_type>::type&& __d) noexcept
+      : _M_t(std::move(__p), std::move(__d))
+      { static_assert(!std::is_reference<deleter_type>::value,
+        "rvalue deleter bound to reference"); }
+
+
+      constexpr unique_ptr(nullptr_t) noexcept : unique_ptr() { }
+
+
+
+
+      unique_ptr(unique_ptr&& __u) noexcept
+      : _M_t(__u.release(), std::forward<deleter_type>(__u.get_deleter())) { }
+
+
+
+
+
+
+
+      template<typename _Up, typename _Ep, typename = _Require<
+               __safe_conversion_up<_Up, _Ep>,
+        typename conditional<is_reference<_Dp>::value,
+        is_same<_Ep, _Dp>,
+        is_convertible<_Ep, _Dp>>::type>>
+ unique_ptr(unique_ptr<_Up, _Ep>&& __u) noexcept
+ : _M_t(__u.release(), std::forward<_Ep>(__u.get_deleter()))
+ { }
+
+
+
+      template<typename _Up, typename = _Require<
+        is_convertible<_Up*, _Tp*>, is_same<_Dp, default_delete<_Tp>>>>
+ unique_ptr(auto_ptr<_Up>&& __u) noexcept;
+
+
+
+      ~unique_ptr() noexcept
+      {
+ auto& __ptr = std::get<0>(_M_t);
+ if (__ptr != nullptr)
+   get_deleter()(__ptr);
+ __ptr = pointer();
+      }
+# 248 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/unique_ptr.h" 3
+      unique_ptr&
+      operator=(unique_ptr&& __u) noexcept
+      {
+ reset(__u.release());
+ get_deleter() = std::forward<deleter_type>(__u.get_deleter());
+ return *this;
+      }
+# 263 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/unique_ptr.h" 3
+      template<typename _Up, typename _Ep>
+        typename enable_if< __and_<
+          __safe_conversion_up<_Up, _Ep>,
+          is_assignable<deleter_type&, _Ep&&>
+          >::value,
+          unique_ptr&>::type
+ operator=(unique_ptr<_Up, _Ep>&& __u) noexcept
+ {
+   reset(__u.release());
+   get_deleter() = std::forward<_Ep>(__u.get_deleter());
+   return *this;
+ }
+
+
+      unique_ptr&
+      operator=(nullptr_t) noexcept
+      {
+ reset();
+ return *this;
+      }
+
+
+
+
+      typename add_lvalue_reference<element_type>::type
+      operator*() const
+      {
+                                     ;
+ return *get();
+      }
+
+
+      pointer
+      operator->() const noexcept
+      {
+                                             ;
+ return get();
+      }
+
+
+      pointer
+      get() const noexcept
+      { return std::get<0>(_M_t); }
+
+
+      deleter_type&
+      get_deleter() noexcept
+      { return std::get<1>(_M_t); }
+
+
+      const deleter_type&
+      get_deleter() const noexcept
+      { return std::get<1>(_M_t); }
+
+
+      explicit operator bool() const noexcept
+      { return get() == pointer() ? false : true; }
+
+
+
+
+      pointer
+      release() noexcept
+      {
+ pointer __p = get();
+ std::get<0>(_M_t) = pointer();
+ return __p;
+      }
+
+
+
+
+
+
+
+      void
+      reset(pointer __p = pointer()) noexcept
+      {
+ using std::swap;
+ swap(std::get<0>(_M_t), __p);
+ if (__p != pointer())
+   get_deleter()(__p);
+      }
+
+
+      void
+      swap(unique_ptr& __u) noexcept
+      {
+ using std::swap;
+ swap(_M_t, __u._M_t);
+      }
+
+
+      unique_ptr(const unique_ptr&) = delete;
+      unique_ptr& operator=(const unique_ptr&) = delete;
+  };
+
+
+
+
+
+  template<typename _Tp, typename _Dp>
+    class unique_ptr<_Tp[], _Dp>
+    {
+
+      class _Pointer
+      {
+ template<typename _Up>
+   static typename _Up::pointer __test(typename _Up::pointer*);
+
+ template<typename _Up>
+   static _Tp* __test(...);
+
+ typedef typename remove_reference<_Dp>::type _Del;
+
+      public:
+ typedef decltype(__test<_Del>(0)) type;
+      };
+
+      typedef std::tuple<typename _Pointer::type, _Dp> __tuple_type;
+      __tuple_type _M_t;
+
+      template<typename _Up>
+ using __remove_cv = typename remove_cv<_Up>::type;
+
+
+      template<typename _Up>
+ using __is_derived_Tp
+   = __and_< is_base_of<_Tp, _Up>,
+      __not_<is_same<__remove_cv<_Tp>, __remove_cv<_Up>>> >;
+
+
+    public:
+      typedef typename _Pointer::type pointer;
+      typedef _Tp element_type;
+      typedef _Dp deleter_type;
+
+
+
+      template<typename _Up, typename _Ep,
+               typename _Up_up = unique_ptr<_Up, _Ep>,
+        typename _Up_element_type = typename _Up_up::element_type>
+ using __safe_conversion_up = __and_<
+          is_array<_Up>,
+          is_same<pointer, element_type*>,
+          is_same<typename _Up_up::pointer, _Up_element_type*>,
+          is_convertible<_Up_element_type(*)[], element_type(*)[]>,
+          __or_<__and_<is_reference<deleter_type>, is_same<deleter_type, _Ep>>,
+                __and_<__not_<is_reference<deleter_type>>,
+                       is_convertible<_Ep, deleter_type>>>
+        >;
+
+
+      template<typename _Up>
+        using __safe_conversion_raw = __and_<
+          __or_<__or_<is_same<_Up, pointer>,
+                      is_same<_Up, nullptr_t>>,
+                __and_<is_pointer<_Up>,
+                       is_same<pointer, element_type*>,
+                       is_convertible<
+                         typename remove_pointer<_Up>::type(*)[],
+                         element_type(*)[]>
+                >
+          >
+        >;
+
+
+
+
+      constexpr unique_ptr() noexcept
+      : _M_t()
+      { static_assert(!std::is_pointer<deleter_type>::value,
+        "constructed with null function pointer deleter"); }
+# 444 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/unique_ptr.h" 3
+      template<typename _Up,
+               typename = typename enable_if<
+                 __safe_conversion_raw<_Up>::value, bool>::type>
+      explicit
+      unique_ptr(_Up __p) noexcept
+      : _M_t(__p, deleter_type())
+      { static_assert(!is_pointer<deleter_type>::value,
+        "constructed with null function pointer deleter"); }
+# 461 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/unique_ptr.h" 3
+      template<typename _Up,
+               typename = typename enable_if<
+                 __safe_conversion_raw<_Up>::value, bool>::type>
+      unique_ptr(_Up __p,
+                 typename conditional<is_reference<deleter_type>::value,
+                 deleter_type, const deleter_type&>::type __d) noexcept
+      : _M_t(__p, __d) { }
+# 477 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/unique_ptr.h" 3
+      template<typename _Up,
+               typename = typename enable_if<
+                 __safe_conversion_raw<_Up>::value, bool>::type>
+      unique_ptr(_Up __p, typename
+   remove_reference<deleter_type>::type&& __d) noexcept
+      : _M_t(std::move(__p), std::move(__d))
+      { static_assert(!is_reference<deleter_type>::value,
+        "rvalue deleter bound to reference"); }
+
+
+      unique_ptr(unique_ptr&& __u) noexcept
+      : _M_t(__u.release(), std::forward<deleter_type>(__u.get_deleter())) { }
+
+
+      constexpr unique_ptr(nullptr_t) noexcept : unique_ptr() { }
+
+      template<typename _Up, typename _Ep,
+        typename = _Require<__safe_conversion_up<_Up, _Ep>>>
+ unique_ptr(unique_ptr<_Up, _Ep>&& __u) noexcept
+ : _M_t(__u.release(), std::forward<_Ep>(__u.get_deleter()))
+ { }
+
+
+      ~unique_ptr()
+      {
+ auto& __ptr = std::get<0>(_M_t);
+ if (__ptr != nullptr)
+   get_deleter()(__ptr);
+ __ptr = pointer();
+      }
+# 516 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/unique_ptr.h" 3
+      unique_ptr&
+      operator=(unique_ptr&& __u) noexcept
+      {
+ reset(__u.release());
+ get_deleter() = std::forward<deleter_type>(__u.get_deleter());
+ return *this;
+      }
+# 531 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/unique_ptr.h" 3
+      template<typename _Up, typename _Ep>
+ typename
+ enable_if<__and_<__safe_conversion_up<_Up, _Ep>,
+                         is_assignable<deleter_type&, _Ep&&>
+                  >::value,
+                  unique_ptr&>::type
+ operator=(unique_ptr<_Up, _Ep>&& __u) noexcept
+ {
+   reset(__u.release());
+   get_deleter() = std::forward<_Ep>(__u.get_deleter());
+   return *this;
+ }
+
+
+      unique_ptr&
+      operator=(nullptr_t) noexcept
+      {
+ reset();
+ return *this;
+      }
+
+
+
+
+      typename std::add_lvalue_reference<element_type>::type
+      operator[](size_t __i) const
+      {
+                                     ;
+ return get()[__i];
+      }
+
+
+      pointer
+      get() const noexcept
+      { return std::get<0>(_M_t); }
+
+
+      deleter_type&
+      get_deleter() noexcept
+      { return std::get<1>(_M_t); }
+
+
+      const deleter_type&
+      get_deleter() const noexcept
+      { return std::get<1>(_M_t); }
+
+
+      explicit operator bool() const noexcept
+      { return get() == pointer() ? false : true; }
+
+
+
+
+      pointer
+      release() noexcept
+      {
+ pointer __p = get();
+ std::get<0>(_M_t) = pointer();
+ return __p;
+      }
+
+
+
+
+
+
+
+      template <typename _Up,
+                typename = _Require<
+                  __or_<is_same<_Up, pointer>,
+                        __and_<is_same<pointer, element_type*>,
+                               is_pointer<_Up>,
+                               is_convertible<
+                                 typename remove_pointer<_Up>::type(*)[],
+                                 element_type(*)[]
+                               >
+                        >
+                  >
+               >>
+      void
+      reset(_Up __p) noexcept
+      {
+ using std::swap;
+ swap(std::get<0>(_M_t), __p);
+ if (__p != nullptr)
+   get_deleter()(__p);
+      }
+
+      void reset(nullptr_t = nullptr) noexcept
+      {
+        reset(pointer());
+      }
+
+
+      void
+      swap(unique_ptr& __u) noexcept
+      {
+ using std::swap;
+ swap(_M_t, __u._M_t);
+      }
+
+
+      unique_ptr(const unique_ptr&) = delete;
+      unique_ptr& operator=(const unique_ptr&) = delete;
+    };
+
+  template<typename _Tp, typename _Dp>
+    inline void
+    swap(unique_ptr<_Tp, _Dp>& __x,
+  unique_ptr<_Tp, _Dp>& __y) noexcept
+    { __x.swap(__y); }
+
+  template<typename _Tp, typename _Dp,
+    typename _Up, typename _Ep>
+    inline bool
+    operator==(const unique_ptr<_Tp, _Dp>& __x,
+        const unique_ptr<_Up, _Ep>& __y)
+    { return __x.get() == __y.get(); }
+
+  template<typename _Tp, typename _Dp>
+    inline bool
+    operator==(const unique_ptr<_Tp, _Dp>& __x, nullptr_t) noexcept
+    { return !__x; }
+
+  template<typename _Tp, typename _Dp>
+    inline bool
+    operator==(nullptr_t, const unique_ptr<_Tp, _Dp>& __x) noexcept
+    { return !__x; }
+
+  template<typename _Tp, typename _Dp,
+    typename _Up, typename _Ep>
+    inline bool
+    operator!=(const unique_ptr<_Tp, _Dp>& __x,
+        const unique_ptr<_Up, _Ep>& __y)
+    { return __x.get() != __y.get(); }
+
+  template<typename _Tp, typename _Dp>
+    inline bool
+    operator!=(const unique_ptr<_Tp, _Dp>& __x, nullptr_t) noexcept
+    { return (bool)__x; }
+
+  template<typename _Tp, typename _Dp>
+    inline bool
+    operator!=(nullptr_t, const unique_ptr<_Tp, _Dp>& __x) noexcept
+    { return (bool)__x; }
+
+  template<typename _Tp, typename _Dp,
+    typename _Up, typename _Ep>
+    inline bool
+    operator<(const unique_ptr<_Tp, _Dp>& __x,
+       const unique_ptr<_Up, _Ep>& __y)
+    {
+      typedef typename
+ std::common_type<typename unique_ptr<_Tp, _Dp>::pointer,
+                  typename unique_ptr<_Up, _Ep>::pointer>::type _CT;
+      return std::less<_CT>()(__x.get(), __y.get());
+    }
+
+  template<typename _Tp, typename _Dp>
+    inline bool
+    operator<(const unique_ptr<_Tp, _Dp>& __x, nullptr_t)
+    { return std::less<typename unique_ptr<_Tp, _Dp>::pointer>()(__x.get(),
+         nullptr); }
+
+  template<typename _Tp, typename _Dp>
+    inline bool
+    operator<(nullptr_t, const unique_ptr<_Tp, _Dp>& __x)
+    { return std::less<typename unique_ptr<_Tp, _Dp>::pointer>()(nullptr,
+         __x.get()); }
+
+  template<typename _Tp, typename _Dp,
+    typename _Up, typename _Ep>
+    inline bool
+    operator<=(const unique_ptr<_Tp, _Dp>& __x,
+        const unique_ptr<_Up, _Ep>& __y)
+    { return !(__y < __x); }
+
+  template<typename _Tp, typename _Dp>
+    inline bool
+    operator<=(const unique_ptr<_Tp, _Dp>& __x, nullptr_t)
+    { return !(nullptr < __x); }
+
+  template<typename _Tp, typename _Dp>
+    inline bool
+    operator<=(nullptr_t, const unique_ptr<_Tp, _Dp>& __x)
+    { return !(__x < nullptr); }
+
+  template<typename _Tp, typename _Dp,
+    typename _Up, typename _Ep>
+    inline bool
+    operator>(const unique_ptr<_Tp, _Dp>& __x,
+       const unique_ptr<_Up, _Ep>& __y)
+    { return (__y < __x); }
+
+  template<typename _Tp, typename _Dp>
+    inline bool
+    operator>(const unique_ptr<_Tp, _Dp>& __x, nullptr_t)
+    { return std::less<typename unique_ptr<_Tp, _Dp>::pointer>()(nullptr,
+         __x.get()); }
+
+  template<typename _Tp, typename _Dp>
+    inline bool
+    operator>(nullptr_t, const unique_ptr<_Tp, _Dp>& __x)
+    { return std::less<typename unique_ptr<_Tp, _Dp>::pointer>()(__x.get(),
+         nullptr); }
+
+  template<typename _Tp, typename _Dp,
+    typename _Up, typename _Ep>
+    inline bool
+    operator>=(const unique_ptr<_Tp, _Dp>& __x,
+        const unique_ptr<_Up, _Ep>& __y)
+    { return !(__x < __y); }
+
+  template<typename _Tp, typename _Dp>
+    inline bool
+    operator>=(const unique_ptr<_Tp, _Dp>& __x, nullptr_t)
+    { return !(__x < nullptr); }
+
+  template<typename _Tp, typename _Dp>
+    inline bool
+    operator>=(nullptr_t, const unique_ptr<_Tp, _Dp>& __x)
+    { return !(nullptr < __x); }
+
+
+  template<typename _Tp, typename _Dp>
+    struct hash<unique_ptr<_Tp, _Dp>>
+    : public __hash_base<size_t, unique_ptr<_Tp, _Dp>>
+    {
+      size_t
+      operator()(const unique_ptr<_Tp, _Dp>& __u) const noexcept
+      {
+ typedef unique_ptr<_Tp, _Dp> _UP;
+ return std::hash<typename _UP::pointer>()(__u.get());
+      }
+    };
+
+
+
+
+
+  template<typename _Tp>
+    struct _MakeUniq
+    { typedef unique_ptr<_Tp> __single_object; };
+
+  template<typename _Tp>
+    struct _MakeUniq<_Tp[]>
+    { typedef unique_ptr<_Tp[]> __array; };
+
+  template<typename _Tp, size_t _Bound>
+    struct _MakeUniq<_Tp[_Bound]>
+    { struct __invalid_type { }; };
+
+
+  template<typename _Tp, typename... _Args>
+    inline typename _MakeUniq<_Tp>::__single_object
+    make_unique(_Args&&... __args)
+    { return unique_ptr<_Tp>(new _Tp(std::forward<_Args>(__args)...)); }
+
+
+  template<typename _Tp>
+    inline typename _MakeUniq<_Tp>::__array
+    make_unique(size_t __num)
+    { return unique_ptr<_Tp>(new remove_extent_t<_Tp>[__num]()); }
+
+
+  template<typename _Tp, typename... _Args>
+    inline typename _MakeUniq<_Tp>::__invalid_type
+    make_unique(_Args&&...) = delete;
+
+
+
+
+
+}
+# 42 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_conv.h" 2 3
+
+namespace std __attribute__ ((__visibility__ ("default")))
+{
+
+
+
+
+
+
+
+  template<typename _OutStr, typename _InChar, typename _Codecvt,
+    typename _State, typename _Fn>
+    bool
+    __do_str_codecvt(const _InChar* __first, const _InChar* __last,
+       _OutStr& __outstr, const _Codecvt& __cvt, _State& __state,
+       size_t& __count, _Fn __fn)
+    {
+      if (__first == __last)
+ {
+   __outstr.clear();
+   __count = 0;
+   return true;
+ }
+
+      size_t __outchars = 0;
+      auto __next = __first;
+      const auto __maxlen = __cvt.max_length() + 1;
+
+      codecvt_base::result __result;
+      do
+ {
+   __outstr.resize(__outstr.size() + (__last - __next) * __maxlen);
+   auto __outnext = &__outstr.front() + __outchars;
+   auto const __outlast = &__outstr.back() + 1;
+   __result = (__cvt.*__fn)(__state, __next, __last, __next,
+     __outnext, __outlast, __outnext);
+   __outchars = __outnext - &__outstr.front();
+ }
+      while (__result == codecvt_base::partial && __next != __last
+      && (__outstr.size() - __outchars) < __maxlen);
+
+      if (__result == codecvt_base::error)
+ return false;
+
+      if (__result == codecvt_base::noconv)
+ {
+   __outstr.assign(__first, __last);
+   __count = __last - __first;
+ }
+      else
+ {
+   __outstr.resize(__outchars);
+   __count = __next - __first;
+ }
+
+      return true;
+    }
+
+
+  template<typename _CharT, typename _Traits, typename _Alloc, typename _State>
+    inline bool
+    __str_codecvt_in(const char* __first, const char* __last,
+       basic_string<_CharT, _Traits, _Alloc>& __outstr,
+       const codecvt<_CharT, char, _State>& __cvt,
+       _State& __state, size_t& __count)
+    {
+      using _Codecvt = codecvt<_CharT, char, _State>;
+      using _ConvFn
+ = codecvt_base::result
+   (_Codecvt::*)(_State&, const char*, const char*, const char*&,
+   _CharT*, _CharT*, _CharT*&) const;
+      _ConvFn __fn = &codecvt<_CharT, char, _State>::in;
+      return __do_str_codecvt(__first, __last, __outstr, __cvt, __state,
+         __count, __fn);
+    }
+
+  template<typename _CharT, typename _Traits, typename _Alloc, typename _State>
+    inline bool
+    __str_codecvt_in(const char* __first, const char* __last,
+       basic_string<_CharT, _Traits, _Alloc>& __outstr,
+       const codecvt<_CharT, char, _State>& __cvt)
+    {
+      _State __state = {};
+      size_t __n;
+      return __str_codecvt_in(__first, __last, __outstr, __cvt, __state, __n);
+    }
+
+
+  template<typename _CharT, typename _Traits, typename _Alloc, typename _State>
+    inline bool
+    __str_codecvt_out(const _CharT* __first, const _CharT* __last,
+        basic_string<char, _Traits, _Alloc>& __outstr,
+        const codecvt<_CharT, char, _State>& __cvt,
+        _State& __state, size_t& __count)
+    {
+      using _Codecvt = codecvt<_CharT, char, _State>;
+      using _ConvFn
+ = codecvt_base::result
+   (_Codecvt::*)(_State&, const _CharT*, const _CharT*, const _CharT*&,
+   char*, char*, char*&) const;
+      _ConvFn __fn = &codecvt<_CharT, char, _State>::out;
+      return __do_str_codecvt(__first, __last, __outstr, __cvt, __state,
+         __count, __fn);
+    }
+
+  template<typename _CharT, typename _Traits, typename _Alloc, typename _State>
+    inline bool
+    __str_codecvt_out(const _CharT* __first, const _CharT* __last,
+        basic_string<char, _Traits, _Alloc>& __outstr,
+        const codecvt<_CharT, char, _State>& __cvt)
+    {
+      _State __state = {};
+      size_t __n;
+      return __str_codecvt_out(__first, __last, __outstr, __cvt, __state, __n);
+    }
+
+
+
+namespace __cxx11 {
+
+
+  template<typename _Codecvt, typename _Elem = wchar_t,
+    typename _Wide_alloc = allocator<_Elem>,
+    typename _Byte_alloc = allocator<char>>
+    class wstring_convert
+    {
+    public:
+      typedef basic_string<char, char_traits<char>, _Byte_alloc> byte_string;
+      typedef basic_string<_Elem, char_traits<_Elem>, _Wide_alloc> wide_string;
+      typedef typename _Codecvt::state_type state_type;
+      typedef typename wide_string::traits_type::int_type int_type;
+
+
+
+
+
+
+
+      explicit
+      wstring_convert(_Codecvt* __pcvt = new _Codecvt()) : _M_cvt(__pcvt)
+      {
+ if (!_M_cvt)
+   __throw_logic_error("wstring_convert");
+      }
+# 195 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_conv.h" 3
+      wstring_convert(_Codecvt* __pcvt, state_type __state)
+      : _M_cvt(__pcvt), _M_state(__state), _M_with_cvtstate(true)
+      {
+ if (!_M_cvt)
+   __throw_logic_error("wstring_convert");
+      }
+
+
+
+
+
+
+      explicit
+      wstring_convert(const byte_string& __byte_err,
+        const wide_string& __wide_err = wide_string())
+      : _M_cvt(new _Codecvt),
+ _M_byte_err_string(__byte_err), _M_wide_err_string(__wide_err),
+ _M_with_strings(true)
+      {
+ if (!_M_cvt)
+   __throw_logic_error("wstring_convert");
+      }
+
+      ~wstring_convert() = default;
+
+
+
+      wstring_convert(const wstring_convert&) = delete;
+      wstring_convert& operator=(const wstring_convert&) = delete;
+
+
+      wide_string
+      from_bytes(char __byte)
+      {
+ char __bytes[2] = { __byte };
+ return from_bytes(__bytes, __bytes+1);
+      }
+
+      wide_string
+      from_bytes(const char* __ptr)
+      { return from_bytes(__ptr, __ptr+char_traits<char>::length(__ptr)); }
+
+      wide_string
+      from_bytes(const byte_string& __str)
+      {
+ auto __ptr = __str.data();
+ return from_bytes(__ptr, __ptr + __str.size());
+      }
+
+      wide_string
+      from_bytes(const char* __first, const char* __last)
+      {
+ if (!_M_with_cvtstate)
+   _M_state = state_type();
+ wide_string __out{ _M_wide_err_string.get_allocator() };
+ if (__str_codecvt_in(__first, __last, __out, *_M_cvt, _M_state,
+        _M_count))
+   return __out;
+ if (_M_with_strings)
+   return _M_wide_err_string;
+ __throw_range_error("wstring_convert::from_bytes");
+      }
+
+
+
+      byte_string
+      to_bytes(_Elem __wchar)
+      {
+ _Elem __wchars[2] = { __wchar };
+ return to_bytes(__wchars, __wchars+1);
+      }
+
+      byte_string
+      to_bytes(const _Elem* __ptr)
+      {
+ return to_bytes(__ptr, __ptr+wide_string::traits_type::length(__ptr));
+      }
+
+      byte_string
+      to_bytes(const wide_string& __wstr)
+      {
+ auto __ptr = __wstr.data();
+ return to_bytes(__ptr, __ptr + __wstr.size());
+      }
+
+      byte_string
+      to_bytes(const _Elem* __first, const _Elem* __last)
+      {
+ if (!_M_with_cvtstate)
+   _M_state = state_type();
+ byte_string __out{ _M_byte_err_string.get_allocator() };
+ if (__str_codecvt_out(__first, __last, __out, *_M_cvt, _M_state,
+         _M_count))
+   return __out;
+ if (_M_with_strings)
+   return _M_byte_err_string;
+ __throw_range_error("wstring_convert::to_bytes");
+      }
+
+
+
+
+
+      size_t converted() const noexcept { return _M_count; }
+
+
+      state_type state() const { return _M_state; }
+
+    private:
+      unique_ptr<_Codecvt> _M_cvt;
+      byte_string _M_byte_err_string;
+      wide_string _M_wide_err_string;
+      state_type _M_state = state_type();
+      size_t _M_count = 0;
+      bool _M_with_cvtstate = false;
+      bool _M_with_strings = false;
+    };
+
+}
+
+
+  template<typename _Codecvt, typename _Elem = wchar_t,
+    typename _Tr = char_traits<_Elem>>
+    class wbuffer_convert : public basic_streambuf<_Elem, _Tr>
+    {
+      typedef basic_streambuf<_Elem, _Tr> _Wide_streambuf;
+
+    public:
+      typedef typename _Codecvt::state_type state_type;
+# 333 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/locale_conv.h" 3
+      explicit
+      wbuffer_convert(streambuf* __bytebuf = 0, _Codecvt* __pcvt = new _Codecvt,
+        state_type __state = state_type())
+      : _M_buf(__bytebuf), _M_cvt(__pcvt), _M_state(__state)
+      {
+ if (!_M_cvt)
+   __throw_logic_error("wbuffer_convert");
+
+ _M_always_noconv = _M_cvt->always_noconv();
+
+ if (_M_buf)
+   {
+     this->setp(_M_put_area, _M_put_area + _S_buffer_length);
+     this->setg(_M_get_area + _S_putback_length,
+         _M_get_area + _S_putback_length,
+         _M_get_area + _S_putback_length);
+   }
+      }
+
+      ~wbuffer_convert() = default;
+
+
+
+      wbuffer_convert(const wbuffer_convert&) = delete;
+      wbuffer_convert& operator=(const wbuffer_convert&) = delete;
+
+      streambuf* rdbuf() const noexcept { return _M_buf; }
+
+      streambuf*
+      rdbuf(streambuf *__bytebuf) noexcept
+      {
+ auto __prev = _M_buf;
+ _M_buf = __bytebuf;
+ return __prev;
+      }
+
+
+      state_type state() const noexcept { return _M_state; }
+
+    protected:
+      int
+      sync()
+      { return _M_buf && _M_conv_put() && _M_buf->pubsync() ? 0 : -1; }
+
+      typename _Wide_streambuf::int_type
+      overflow(typename _Wide_streambuf::int_type __out)
+      {
+ if (!_M_buf || !_M_conv_put())
+   return _Tr::eof();
+ else if (!_Tr::eq_int_type(__out, _Tr::eof()))
+   return this->sputc(__out);
+ return _Tr::not_eof(__out);
+      }
+
+      typename _Wide_streambuf::int_type
+      underflow()
+      {
+ if (!_M_buf)
+   return _Tr::eof();
+
+ if (this->gptr() < this->egptr() || (_M_buf && _M_conv_get()))
+   return _Tr::to_int_type(*this->gptr());
+ else
+   return _Tr::eof();
+      }
+
+      streamsize
+      xsputn(const typename _Wide_streambuf::char_type* __s, streamsize __n)
+      {
+ if (!_M_buf || __n == 0)
+   return 0;
+ streamsize __done = 0;
+ do
+ {
+   auto __nn = std::min<streamsize>(this->epptr() - this->pptr(),
+        __n - __done);
+   _Tr::copy(this->pptr(), __s + __done, __nn);
+   this->pbump(__nn);
+   __done += __nn;
+ } while (__done < __n && _M_conv_put());
+ return __done;
+      }
+
+    private:
+
+      bool
+      _M_conv_get()
+      {
+ const streamsize __pb1 = this->gptr() - this->eback();
+ const streamsize __pb2 = _S_putback_length;
+ const streamsize __npb = std::min(__pb1, __pb2);
+
+ _Tr::move(_M_get_area + _S_putback_length - __npb,
+    this->gptr() - __npb, __npb);
+
+ streamsize __nbytes = sizeof(_M_get_buf) - _M_unconv;
+ __nbytes = std::min(__nbytes, _M_buf->in_avail());
+ if (__nbytes < 1)
+   __nbytes == 1;
+ __nbytes = _M_buf->sgetn(_M_get_buf + _M_unconv, __nbytes);
+ if (__nbytes < 1)
+   return false;
+ __nbytes += _M_unconv;
+
+
+
+ _Elem* __outbuf = _M_get_area + _S_putback_length;
+ _Elem* __outnext = __outbuf;
+ const char* __bnext = _M_get_buf;
+
+ codecvt_base::result __result;
+ if (_M_always_noconv)
+   __result = codecvt_base::noconv;
+ else
+   {
+     _Elem* __outend = _M_get_area + _S_buffer_length;
+
+     __result = _M_cvt->in(_M_state,
+      __bnext, __bnext + __nbytes, __bnext,
+      __outbuf, __outend, __outnext);
+   }
+
+ if (__result == codecvt_base::noconv)
+   {
+
+     auto __get_buf = reinterpret_cast<const _Elem*>(_M_get_buf);
+     _Tr::copy(__outbuf, __get_buf, __nbytes);
+     _M_unconv = 0;
+     return true;
+   }
+
+ if ((_M_unconv = _M_get_buf + __nbytes - __bnext))
+   char_traits<char>::move(_M_get_buf, __bnext, _M_unconv);
+
+ this->setg(__outbuf, __outbuf, __outnext);
+
+ return __result != codecvt_base::error;
+      }
+
+
+      bool
+      _M_put(...)
+      { return false; }
+
+      bool
+      _M_put(const char* __p, streamsize __n)
+      {
+ if (_M_buf->sputn(__p, __n) < __n)
+   return false;
+      }
+
+
+      bool
+      _M_conv_put()
+      {
+ _Elem* const __first = this->pbase();
+ const _Elem* const __last = this->pptr();
+ const streamsize __pending = __last - __first;
+
+ if (_M_always_noconv)
+   return _M_put(__first, __pending);
+
+ char __outbuf[2 * _S_buffer_length];
+
+ const _Elem* __next = __first;
+ const _Elem* __start;
+ do
+   {
+     __start = __next;
+     char* __outnext = __outbuf;
+     char* const __outlast = __outbuf + sizeof(__outbuf);
+     auto __result = _M_cvt->out(_M_state, __next, __last, __next,
+     __outnext, __outlast, __outnext);
+     if (__result == codecvt_base::error)
+       return false;
+     else if (__result == codecvt_base::noconv)
+       return _M_put(__next, __pending);
+
+     if (!_M_put(__outbuf, __outnext - __outbuf))
+       return false;
+   }
+ while (__next != __last && __next != __start);
+
+ if (__next != __last)
+   _Tr::move(__first, __next, __last - __next);
+
+ this->pbump(__first - __next);
+ return __next != __first;
+      }
+
+      streambuf* _M_buf;
+      unique_ptr<_Codecvt> _M_cvt;
+      state_type _M_state;
+
+      static const streamsize _S_buffer_length = 32;
+      static const streamsize _S_putback_length = 3;
+      _Elem _M_put_area[_S_buffer_length];
+      _Elem _M_get_area[_S_buffer_length];
+      streamsize _M_unconv = 0;
+      char _M_get_buf[_S_buffer_length-_S_putback_length];
+      bool _M_always_noconv;
+    };
+
+
+
+
+
+
+}
+# 44 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/locale" 2 3
+# 44 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/iomanip" 2 3
+
+# 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/quoted_string.h" 1 3
+# 34 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/bits/quoted_string.h" 3
+
+
+
+
+
+
+namespace std __attribute__ ((__visibility__ ("default")))
+{
+  namespace __detail {
+
+
+
+
+
+    template<typename _String, typename _CharT>
+      struct _Quoted_string
+      {
+ static_assert(is_reference<_String>::value
+     || is_pointer<_String>::value,
+        "String type must be pointer or reference");
+
+ _Quoted_string(_String __str, _CharT __del, _CharT __esc)
+ : _M_string(__str), _M_delim{__del}, _M_escape{__esc}
+ { }
+
+ _Quoted_string&
+ operator=(_Quoted_string&) = delete;
+
+ _String _M_string;
+ _CharT _M_delim;
+ _CharT _M_escape;
+      };
+
+
+
+
+
+
+
+    template<typename _CharT, typename _Traits>
+      std::basic_ostream<_CharT, _Traits>&
+      operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+   const _Quoted_string<const _CharT*, _CharT>& __str)
+      {
+ std::basic_ostringstream<_CharT, _Traits> __ostr;
+ __ostr << __str._M_delim;
+ for (const _CharT* __c = __str._M_string; *__c; ++__c)
+   {
+     if (*__c == __str._M_delim || *__c == __str._M_escape)
+       __ostr << __str._M_escape;
+     __ostr << *__c;
+   }
+ __ostr << __str._M_delim;
+
+ return __os << __ostr.str();
+      }
+
+
+
+
+
+
+
+    template<typename _CharT, typename _Traits, typename _String>
+      std::basic_ostream<_CharT, _Traits>&
+      operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+   const _Quoted_string<_String, _CharT>& __str)
+      {
+ std::basic_ostringstream<_CharT, _Traits> __ostr;
+ __ostr << __str._M_delim;
+ for (auto& __c : __str._M_string)
+   {
+     if (__c == __str._M_delim || __c == __str._M_escape)
+       __ostr << __str._M_escape;
+     __ostr << __c;
+   }
+ __ostr << __str._M_delim;
+
+ return __os << __ostr.str();
+      }
+
+
+
+
+
+    template<typename _CharT, typename _Traits, typename _Alloc>
+      std::basic_istream<_CharT, _Traits>&
+      operator>>(std::basic_istream<_CharT, _Traits>& __is,
+   const _Quoted_string<basic_string<_CharT, _Traits, _Alloc>&,
+          _CharT>& __str)
+      {
+ _CharT __c;
+ __is >> __c;
+ if (!__is.good())
+   return __is;
+ if (__c != __str._M_delim)
+   {
+     __is.unget();
+     __is >> __str._M_string;
+     return __is;
+   }
+ __str._M_string.clear();
+ std::ios_base::fmtflags __flags
+   = __is.flags(__is.flags() & ~std::ios_base::skipws);
+ do
+   {
+     __is >> __c;
+     if (!__is.good())
+       break;
+     if (__c == __str._M_escape)
+       {
+  __is >> __c;
+  if (!__is.good())
+    break;
+       }
+     else if (__c == __str._M_delim)
+       break;
+     __str._M_string += __c;
+   }
+ while (true);
+ __is.setf(__flags);
+
+ return __is;
+      }
+
+
+  }
+}
+# 46 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/iomanip" 2 3
+
+
+
+namespace std __attribute__ ((__visibility__ ("default")))
+{
+
+
+
+
+
+  struct _Resetiosflags { ios_base::fmtflags _M_mask; };
+# 65 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/iomanip" 3
+  inline _Resetiosflags
+  resetiosflags(ios_base::fmtflags __mask)
+  { return { __mask }; }
+
+  template<typename _CharT, typename _Traits>
+    inline basic_istream<_CharT, _Traits>&
+    operator>>(basic_istream<_CharT, _Traits>& __is, _Resetiosflags __f)
+    {
+      __is.setf(ios_base::fmtflags(0), __f._M_mask);
+      return __is;
+    }
+
+  template<typename _CharT, typename _Traits>
+    inline basic_ostream<_CharT, _Traits>&
+    operator<<(basic_ostream<_CharT, _Traits>& __os, _Resetiosflags __f)
+    {
+      __os.setf(ios_base::fmtflags(0), __f._M_mask);
+      return __os;
+    }
+
+
+  struct _Setiosflags { ios_base::fmtflags _M_mask; };
+# 95 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/iomanip" 3
+  inline _Setiosflags
+  setiosflags(ios_base::fmtflags __mask)
+  { return { __mask }; }
+
+  template<typename _CharT, typename _Traits>
+    inline basic_istream<_CharT, _Traits>&
+    operator>>(basic_istream<_CharT, _Traits>& __is, _Setiosflags __f)
+    {
+      __is.setf(__f._M_mask);
+      return __is;
+    }
+
+  template<typename _CharT, typename _Traits>
+    inline basic_ostream<_CharT, _Traits>&
+    operator<<(basic_ostream<_CharT, _Traits>& __os, _Setiosflags __f)
+    {
+      __os.setf(__f._M_mask);
+      return __os;
+    }
+
+
+  struct _Setbase { int _M_base; };
+# 126 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/iomanip" 3
+  inline _Setbase
+  setbase(int __base)
+  { return { __base }; }
+
+  template<typename _CharT, typename _Traits>
+    inline basic_istream<_CharT, _Traits>&
+    operator>>(basic_istream<_CharT, _Traits>& __is, _Setbase __f)
+    {
+      __is.setf(__f._M_base == 8 ? ios_base::oct :
+  __f._M_base == 10 ? ios_base::dec :
+  __f._M_base == 16 ? ios_base::hex :
+  ios_base::fmtflags(0), ios_base::basefield);
+      return __is;
+    }
+
+  template<typename _CharT, typename _Traits>
+    inline basic_ostream<_CharT, _Traits>&
+    operator<<(basic_ostream<_CharT, _Traits>& __os, _Setbase __f)
+    {
+      __os.setf(__f._M_base == 8 ? ios_base::oct :
+  __f._M_base == 10 ? ios_base::dec :
+  __f._M_base == 16 ? ios_base::hex :
+  ios_base::fmtflags(0), ios_base::basefield);
+      return __os;
+    }
+
+
+  template<typename _CharT>
+    struct _Setfill { _CharT _M_c; };
+# 163 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/iomanip" 3
+  template<typename _CharT>
+    inline _Setfill<_CharT>
+    setfill(_CharT __c)
+    { return { __c }; }
+
+  template<typename _CharT, typename _Traits>
+    inline basic_istream<_CharT, _Traits>&
+    operator>>(basic_istream<_CharT, _Traits>& __is, _Setfill<_CharT> __f)
+    {
+      __is.fill(__f._M_c);
+      return __is;
+    }
+
+  template<typename _CharT, typename _Traits>
+    inline basic_ostream<_CharT, _Traits>&
+    operator<<(basic_ostream<_CharT, _Traits>& __os, _Setfill<_CharT> __f)
+    {
+      __os.fill(__f._M_c);
+      return __os;
+    }
+
+
+  struct _Setprecision { int _M_n; };
+# 194 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/iomanip" 3
+  inline _Setprecision
+  setprecision(int __n)
+  { return { __n }; }
+
+  template<typename _CharT, typename _Traits>
+    inline basic_istream<_CharT, _Traits>&
+    operator>>(basic_istream<_CharT, _Traits>& __is, _Setprecision __f)
+    {
+      __is.precision(__f._M_n);
+      return __is;
+    }
+
+  template<typename _CharT, typename _Traits>
+    inline basic_ostream<_CharT, _Traits>&
+    operator<<(basic_ostream<_CharT, _Traits>& __os, _Setprecision __f)
+    {
+      __os.precision(__f._M_n);
+      return __os;
+    }
+
+
+  struct _Setw { int _M_n; };
+# 224 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/iomanip" 3
+  inline _Setw
+  setw(int __n)
+  { return { __n }; }
+
+  template<typename _CharT, typename _Traits>
+    inline basic_istream<_CharT, _Traits>&
+    operator>>(basic_istream<_CharT, _Traits>& __is, _Setw __f)
+    {
+      __is.width(__f._M_n);
+      return __is;
+    }
+
+  template<typename _CharT, typename _Traits>
+    inline basic_ostream<_CharT, _Traits>&
+    operator<<(basic_ostream<_CharT, _Traits>& __os, _Setw __f)
+    {
+      __os.width(__f._M_n);
+      return __os;
+    }
+
+
+
+  template<typename _MoneyT>
+    struct _Get_money { _MoneyT& _M_mon; bool _M_intl; };
+# 257 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/iomanip" 3
+  template<typename _MoneyT>
+    inline _Get_money<_MoneyT>
+    get_money(_MoneyT& __mon, bool __intl = false)
+    { return { __mon, __intl }; }
+
+  template<typename _CharT, typename _Traits, typename _MoneyT>
+    basic_istream<_CharT, _Traits>&
+    operator>>(basic_istream<_CharT, _Traits>& __is, _Get_money<_MoneyT> __f)
+    {
+      typename basic_istream<_CharT, _Traits>::sentry __cerb(__is, false);
+      if (__cerb)
+ {
+   ios_base::iostate __err = ios_base::goodbit;
+   if (true)
+     {
+       typedef istreambuf_iterator<_CharT, _Traits> _Iter;
+       typedef money_get<_CharT, _Iter> _MoneyGet;
+
+       const _MoneyGet& __mg = use_facet<_MoneyGet>(__is.getloc());
+       __mg.get(_Iter(__is.rdbuf()), _Iter(), __f._M_intl,
+         __is, __err, __f._M_mon);
+     }
+   if (false)
+     {
+       __is._M_setstate(ios_base::badbit);
+                              ;
+     }
+   if (false)
+     { __is._M_setstate(ios_base::badbit); }
+   if (__err)
+     __is.setstate(__err);
+ }
+      return __is;
+    }
+
+
+  template<typename _MoneyT>
+    struct _Put_money { const _MoneyT& _M_mon; bool _M_intl; };
+# 304 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/iomanip" 3
+  template<typename _MoneyT>
+    inline _Put_money<_MoneyT>
+    put_money(const _MoneyT& __mon, bool __intl = false)
+    { return { __mon, __intl }; }
+
+  template<typename _CharT, typename _Traits, typename _MoneyT>
+    basic_ostream<_CharT, _Traits>&
+    operator<<(basic_ostream<_CharT, _Traits>& __os, _Put_money<_MoneyT> __f)
+    {
+      typename basic_ostream<_CharT, _Traits>::sentry __cerb(__os);
+      if (__cerb)
+ {
+   ios_base::iostate __err = ios_base::goodbit;
+   if (true)
+     {
+       typedef ostreambuf_iterator<_CharT, _Traits> _Iter;
+       typedef money_put<_CharT, _Iter> _MoneyPut;
+
+       const _MoneyPut& __mp = use_facet<_MoneyPut>(__os.getloc());
+       if (__mp.put(_Iter(__os.rdbuf()), __f._M_intl, __os,
+      __os.fill(), __f._M_mon).failed())
+  __err |= ios_base::badbit;
+     }
+   if (false)
+     {
+       __os._M_setstate(ios_base::badbit);
+                              ;
+     }
+   if (false)
+     { __os._M_setstate(ios_base::badbit); }
+   if (__err)
+     __os.setstate(__err);
+ }
+      return __os;
+    }
+
+  template<typename _CharT>
+    struct _Put_time
+    {
+      const std::tm* _M_tmb;
+      const _CharT* _M_fmt;
+    };
+# 356 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/iomanip" 3
+  template<typename _CharT>
+    inline _Put_time<_CharT>
+    put_time(const std::tm* __tmb, const _CharT* __fmt)
+    { return { __tmb, __fmt }; }
+
+  template<typename _CharT, typename _Traits>
+    basic_ostream<_CharT, _Traits>&
+    operator<<(basic_ostream<_CharT, _Traits>& __os, _Put_time<_CharT> __f)
+    {
+      typename basic_ostream<_CharT, _Traits>::sentry __cerb(__os);
+      if (__cerb)
+        {
+          ios_base::iostate __err = ios_base::goodbit;
+          if (true)
+            {
+              typedef ostreambuf_iterator<_CharT, _Traits> _Iter;
+              typedef time_put<_CharT, _Iter> _TimePut;
+
+              const _CharT* const __fmt_end = __f._M_fmt +
+                _Traits::length(__f._M_fmt);
+
+              const _TimePut& __mp = use_facet<_TimePut>(__os.getloc());
+              if (__mp.put(_Iter(__os.rdbuf()), __os, __os.fill(),
+                           __f._M_tmb, __f._M_fmt, __fmt_end).failed())
+                __err |= ios_base::badbit;
+            }
+          if (false)
+            {
+              __os._M_setstate(ios_base::badbit);
+                                     ;
+            }
+          if (false)
+            { __os._M_setstate(ios_base::badbit); }
+          if (__err)
+            __os.setstate(__err);
+        }
+      return __os;
+    }
+
+  template<typename _CharT>
+    struct _Get_time
+    {
+      std::tm* _M_tmb;
+      const _CharT* _M_fmt;
+    };
+# 411 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/iomanip" 3
+  template<typename _CharT>
+    inline _Get_time<_CharT>
+    get_time(std::tm* __tmb, const _CharT* __fmt)
+    { return { __tmb, __fmt }; }
+
+  template<typename _CharT, typename _Traits>
+    basic_istream<_CharT, _Traits>&
+    operator>>(basic_istream<_CharT, _Traits>& __is, _Get_time<_CharT> __f)
+    {
+      typename basic_istream<_CharT, _Traits>::sentry __cerb(__is, false);
+      if (__cerb)
+        {
+          ios_base::iostate __err = ios_base::goodbit;
+          if (true)
+            {
+              typedef istreambuf_iterator<_CharT, _Traits> _Iter;
+              typedef time_get<_CharT, _Iter> _TimeGet;
+
+              const _CharT* const __fmt_end = __f._M_fmt +
+                _Traits::length(__f._M_fmt);
+
+              const _TimeGet& __mg = use_facet<_TimeGet>(__is.getloc());
+              __mg.get(_Iter(__is.rdbuf()), _Iter(), __is,
+                       __err, __f._M_tmb, __f._M_fmt, __fmt_end);
+            }
+          if (false)
+            {
+              __is._M_setstate(ios_base::badbit);
+                                     ;
+            }
+          if (false)
+            { __is._M_setstate(ios_base::badbit); }
+          if (__err)
+            __is.setstate(__err);
+        }
+      return __is;
+    }
+# 459 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/iomanip" 3
+  template<typename _CharT>
+    inline auto
+    quoted(const _CharT* __string,
+    _CharT __delim = _CharT('"'), _CharT __escape = _CharT('\\'))
+    {
+      return __detail::_Quoted_string<const _CharT*, _CharT>(__string, __delim,
+            __escape);
+    }
+
+  template<typename _CharT, typename _Traits, typename _Alloc>
+    inline auto
+    quoted(const basic_string<_CharT, _Traits, _Alloc>& __string,
+    _CharT __delim = _CharT('"'), _CharT __escape = _CharT('\\'))
+    {
+      return __detail::_Quoted_string<
+   const basic_string<_CharT, _Traits, _Alloc>&, _CharT>(
+    __string, __delim, __escape);
+    }
+
+  template<typename _CharT, typename _Traits, typename _Alloc>
+    inline auto
+    quoted(basic_string<_CharT, _Traits, _Alloc>& __string,
+    _CharT __delim = _CharT('"'), _CharT __escape = _CharT('\\'))
+    {
+      return __detail::_Quoted_string<
+   basic_string<_CharT, _Traits, _Alloc>&, _CharT>(
+    __string, __delim, __escape);
+    }
+# 496 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/iomanip" 3
+  extern template ostream& operator<<(ostream&, _Setfill<char>);
+  extern template ostream& operator<<(ostream&, _Setiosflags);
+  extern template ostream& operator<<(ostream&, _Resetiosflags);
+  extern template ostream& operator<<(ostream&, _Setbase);
+  extern template ostream& operator<<(ostream&, _Setprecision);
+  extern template ostream& operator<<(ostream&, _Setw);
+  extern template istream& operator>>(istream&, _Setfill<char>);
+  extern template istream& operator>>(istream&, _Setiosflags);
+  extern template istream& operator>>(istream&, _Resetiosflags);
+  extern template istream& operator>>(istream&, _Setbase);
+  extern template istream& operator>>(istream&, _Setprecision);
+  extern template istream& operator>>(istream&, _Setw);
+
+
+  extern template wostream& operator<<(wostream&, _Setfill<wchar_t>);
+  extern template wostream& operator<<(wostream&, _Setiosflags);
+  extern template wostream& operator<<(wostream&, _Resetiosflags);
+  extern template wostream& operator<<(wostream&, _Setbase);
+  extern template wostream& operator<<(wostream&, _Setprecision);
+  extern template wostream& operator<<(wostream&, _Setw);
+  extern template wistream& operator>>(wistream&, _Setfill<wchar_t>);
+  extern template wistream& operator>>(wistream&, _Setiosflags);
+  extern template wistream& operator>>(wistream&, _Resetiosflags);
+  extern template wistream& operator>>(wistream&, _Setbase);
+  extern template wistream& operator>>(wistream&, _Setprecision);
+  extern template wistream& operator>>(wistream&, _Setw);
+
+
+
+
+}
+# 4 "Dedup.cpp" 2
+
+
+using namespace std;
+
+
+
+# 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/stdlib.h" 1 3
+# 10 "Dedup.cpp" 2
+# 1 "/usr/include/memory.h" 1 3 4
+# 11 "Dedup.cpp" 2
+# 1 "./sha256.h" 1
+# 13 "./sha256.h"
+# 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/lib/clang/7.0.0/include/stddef.h" 1 3
+# 51 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/lib/clang/7.0.0/include/stddef.h" 3
+typedef long int ptrdiff_t;
+# 118 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/lib/clang/7.0.0/include/stddef.h" 3
+# 1 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/lib/clang/7.0.0/include/__stddef_max_align_t.h" 1 3
+# 35 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/lib/clang/7.0.0/include/__stddef_max_align_t.h" 3
+typedef struct {
+  long long __clang_max_align_nonce1
+      __attribute__((__aligned__(__alignof__(long long))));
+  long double __clang_max_align_nonce2
+      __attribute__((__aligned__(__alignof__(long double))));
+} max_align_t;
+# 119 "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/lib/clang/7.0.0/include/stddef.h" 2 3
+# 14 "./sha256.h" 2
+
+
+
+
+
+
+typedef unsigned char BYTE;
+typedef unsigned int WORD;
+
+typedef struct {
+ BYTE data[64];
+ WORD datalen;
+ unsigned long long bitlen;
+ WORD state[8];
+} SHA256_CTX;
+
+
+void sha256_init(SHA256_CTX *ctx);
+void sha256_update(SHA256_CTX *ctx, const BYTE data[], size_t len);
+void sha256_final(SHA256_CTX *ctx, BYTE hash[]);
+void sha256_hash(SHA256_CTX* ctx, const BYTE data[], BYTE hash[], size_t runLen, uint16_t data_len);
+void sha256_hash_file(SHA256_CTX* ctx, const BYTE data[], BYTE hash[], size_t dataLen);
+# 12 "Dedup.cpp" 2
+# 25 "Dedup.cpp"
+static const WORD k[64] = {
+ 0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,
+ 0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,
+ 0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,
+ 0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,
+ 0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,
+ 0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,
+ 0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,
+ 0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2
+};
+
+
+void sha256_transform(SHA256_CTX *ctx, const BYTE data[])
+{
+ WORD a, b, c, d, e, f, g, h, i, j, t1, t2, m[64];
+
+ VITIS_LOOP_41_1: for (i = 0, j = 0; i < 16; ++i, j += 4)
+  m[i] = (data[j] << 24) | (data[j + 1] << 16) | (data[j + 2] << 8) | (data[j + 3]);
+ VITIS_LOOP_43_2: for ( ; i < 64; ++i)
+  m[i] = ((((m[i - 2]) >> (17)) | ((m[i - 2]) << (32-(17)))) ^ (((m[i - 2]) >> (19)) | ((m[i - 2]) << (32-(19)))) ^ ((m[i - 2]) >> 10)) + m[i - 7] + ((((m[i - 15]) >> (7)) | ((m[i - 15]) << (32-(7)))) ^ (((m[i - 15]) >> (18)) | ((m[i - 15]) << (32-(18)))) ^ ((m[i - 15]) >> 3)) + m[i - 16];
+
+ a = ctx->state[0];
+ b = ctx->state[1];
+ c = ctx->state[2];
+ d = ctx->state[3];
+ e = ctx->state[4];
+ f = ctx->state[5];
+ g = ctx->state[6];
+ h = ctx->state[7];
+
+ VITIS_LOOP_55_3: for (i = 0; i < 64; ++i) {
+  t1 = h + ((((e) >> (6)) | ((e) << (32-(6)))) ^ (((e) >> (11)) | ((e) << (32-(11)))) ^ (((e) >> (25)) | ((e) << (32-(25))))) + (((e) & (f)) ^ (~(e) & (g))) + k[i] + m[i];
+  t2 = ((((a) >> (2)) | ((a) << (32-(2)))) ^ (((a) >> (13)) | ((a) << (32-(13)))) ^ (((a) >> (22)) | ((a) << (32-(22))))) + (((a) & (b)) ^ ((a) & (c)) ^ ((b) & (c)));
+  h = g;
+  g = f;
+  f = e;
+  e = d + t1;
+  d = c;
+  c = b;
+  b = a;
+  a = t1 + t2;
+ }
+
+ ctx->state[0] += a;
+ ctx->state[1] += b;
+ ctx->state[2] += c;
+ ctx->state[3] += d;
+ ctx->state[4] += e;
+ ctx->state[5] += f;
+ ctx->state[6] += g;
+ ctx->state[7] += h;
+}
+
+void sha256_init(SHA256_CTX *ctx)
+{
+ ctx->datalen = 0;
+ ctx->bitlen = 0;
+ ctx->state[0] = 0x6a09e667;
+ ctx->state[1] = 0xbb67ae85;
+ ctx->state[2] = 0x3c6ef372;
+ ctx->state[3] = 0xa54ff53a;
+ ctx->state[4] = 0x510e527f;
+ ctx->state[5] = 0x9b05688c;
+ ctx->state[6] = 0x1f83d9ab;
+ ctx->state[7] = 0x5be0cd19;
+}
+
+void sha256_update(SHA256_CTX *ctx, const BYTE data[], size_t len)
+{
+ WORD i;
+
+ VITIS_LOOP_96_1: for (i = 0; i < len; ++i) {
+  ctx->data[ctx->datalen] = data[i];
+  ctx->datalen++;
+  if (ctx->datalen == 64) {
+   sha256_transform(ctx, ctx->data);
+   ctx->bitlen += 512;
+   ctx->datalen = 0;
+  }
+ }
+}
+
+void sha256_final(SHA256_CTX *ctx, BYTE hash[])
+{
+ WORD i;
+
+ i = ctx->datalen;
+
+
+ if (ctx->datalen < 56) {
+  ctx->data[i++] = 0x80;
+  VITIS_LOOP_116_1: while (i < 56)
+   ctx->data[i++] = 0x00;
+ }
+ else {
+  ctx->data[i++] = 0x80;
+  VITIS_LOOP_121_2: while (i < 64)
+   ctx->data[i++] = 0x00;
+  sha256_transform(ctx, ctx->data);
+  memset(ctx->data, 0, 56);
+ }
+
+
+ ctx->bitlen += ctx->datalen * 8;
+ ctx->data[63] = ctx->bitlen;
+ ctx->data[62] = ctx->bitlen >> 8;
+ ctx->data[61] = ctx->bitlen >> 16;
+ ctx->data[60] = ctx->bitlen >> 24;
+ ctx->data[59] = ctx->bitlen >> 32;
+ ctx->data[58] = ctx->bitlen >> 40;
+ ctx->data[57] = ctx->bitlen >> 48;
+ ctx->data[56] = ctx->bitlen >> 56;
+ sha256_transform(ctx, ctx->data);
+
+
+
+ VITIS_LOOP_141_3: for (i = 0; i < 4; ++i) {
+  hash[i] = (ctx->state[0] >> (24 - i * 8)) & 0x000000ff;
+  hash[i + 4] = (ctx->state[1] >> (24 - i * 8)) & 0x000000ff;
+  hash[i + 8] = (ctx->state[2] >> (24 - i * 8)) & 0x000000ff;
+  hash[i + 12] = (ctx->state[3] >> (24 - i * 8)) & 0x000000ff;
+  hash[i + 16] = (ctx->state[4] >> (24 - i * 8)) & 0x000000ff;
+  hash[i + 20] = (ctx->state[5] >> (24 - i * 8)) & 0x000000ff;
+  hash[i + 24] = (ctx->state[6] >> (24 - i * 8)) & 0x000000ff;
+  hash[i + 28] = (ctx->state[7] >> (24 - i * 8)) & 0x000000ff;
+ }
+}
+
+void sha256_hash(SHA256_CTX* ctx, const BYTE data[], BYTE hash[], size_t runLen, uint16_t data_len)
+{
+ size_t idx;
+
+ sha256_init(ctx);
+ VITIS_LOOP_158_1: for (idx = 0; idx < runLen; ++idx)
+  sha256_update(ctx, data, data_len);
+    sha256_final(ctx, hash);
+}
+
+
+void sha256_hash_file(SHA256_CTX* ctx, const BYTE data[], BYTE hash[], size_t dataLen)
+{
+ size_t idx;
+ sha256_init(ctx);
+ sha256_update(ctx, data, dataLen);
+    sha256_final(ctx, hash);
+}
+
+
+string hexconvert(unsigned char* bytes, int size) {
+    stringstream ss;
+    ss << hex << setfill('0');
+    VITIS_LOOP_176_1: for (int i = 0; i < size; i++) {
+        ss << setw(2) << static_cast<int>(bytes[i]);
+    }
+    return ss.str();
+}
+
+uint32_t deDup(unsigned char* inputChunk, uint16_t chunk_size,
+    std::unordered_map<string, uint32_t>& chunkTable,
+    stopwatch& stopwatch) {
+    unsigned char uinputChunk[static_cast<int>(chunk_size)];
+    VITIS_LOOP_186_1: for (size_t i = 0; i < chunk_size; i++) {
+            uinputChunk[i] = static_cast<unsigned char>(inputChunk[i]);
+        }
+
+
+
+    BYTE buf[32];
+    SHA256_CTX ctx;
         stopwatch.start();
-        uint64_t hash = basicHash(inputChunk, length);
+    sha256_hash(&ctx, uinputChunk, buf, 1, chunk_size);
+    string hash = hexconvert(buf, 32);
         stopwatch.stop();
         auto it = chunkTable.find(hash);
 

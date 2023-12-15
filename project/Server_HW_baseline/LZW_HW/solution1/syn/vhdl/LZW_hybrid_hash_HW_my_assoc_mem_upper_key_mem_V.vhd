@@ -9,7 +9,7 @@ use ieee.std_logic_unsigned.all;
 
 entity LZW_hybrid_hash_HW_my_assoc_mem_upper_key_mem_V_ram is 
     generic(
-            DWIDTH     : integer := 72; 
+            DWIDTH     : integer := 216; 
             AWIDTH     : integer := 9; 
             MEM_SIZE    : integer := 512
     ); 
@@ -66,7 +66,7 @@ use IEEE.std_logic_1164.all;
 
 entity LZW_hybrid_hash_HW_my_assoc_mem_upper_key_mem_V is
     generic (
-        DataWidth : INTEGER := 72;
+        DataWidth : INTEGER := 216;
         AddressRange : INTEGER := 512;
         AddressWidth : INTEGER := 9);
     port (

@@ -16,16 +16,16 @@ set Interface "wire"
 set DataType "void"
 set Port [list $PortName $Interface $DataType $Pointer $Dims $Const    $Volatile $ArrayOpt]
 lappend PortList $Port
-set PortName "in_length"
-set BitWidth "16"
+set PortName "input_length"
+set BitWidth "64"
 set ArrayOpt ""
 set Const "0"
-set Volatile "0"
-set Pointer "0"
+set Volatile "1"
+set Pointer "1"
 set Reference "0"
 set Dims [list 0]
 set Interface "wire"
-set DataType "short"
+set DataType "void"
 set Port [list $PortName $Interface $DataType $Pointer $Dims $Const    $Volatile $ArrayOpt]
 lappend PortList $Port
 set PortName "send_data"
@@ -40,16 +40,16 @@ set Interface "wire"
 set DataType "void"
 set Port [list $PortName $Interface $DataType $Pointer $Dims $Const    $Volatile $ArrayOpt]
 lappend PortList $Port
-set PortName "return"
-set BitWidth "16"
+set PortName "output_length"
+set BitWidth "64"
 set ArrayOpt ""
 set Const "0"
-set Volatile "0"
-set Pointer "0"
+set Volatile "1"
+set Pointer "1"
 set Reference "0"
 set Dims [list 0]
 set Interface "wire"
-set DataType "short"
+set DataType "void"
 set Port [list $PortName $Interface $DataType $Pointer $Dims $Const    $Volatile $ArrayOpt]
 lappend PortList $Port
 set globalAPint "" 

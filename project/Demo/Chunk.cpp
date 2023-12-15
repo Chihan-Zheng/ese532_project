@@ -101,6 +101,9 @@ void cdc( unsigned char* buff, int buff_size, unsigned char* chunk, uint16_t *ch
 			hash[i] = hash[i-1] * PRIME - buff_new[i-1]*POW + buff_new[i+WIN_SIZE-1]*PRIME;
 		}
 		// printf("loop num: %d\n", i);
+		//---: if target hit and current chunk len greater than minimum length
+		//	   or current chunk len reach maximum length
+		// 	   or reach the end section of the packet --> set boundary
 		if((((hash[i] % MODULUS) == TARGET)&&(i>=MIN_CHUNK))||(i>=MAX_CHUNK)||(i==buff_size_new-WIN_SIZE-1)) {
 		// if((((hash[i] % MODULUS) == TARGET)&&(i-previous_boundary>=MIN_CHUNK))||(i-previous_boundary>=MAX_CHUNK)||(i==buff_size_new-WIN_SIZE)) {
 			// printf("The index %d is a boundary\n", i + *offset_buff); //Print out the boundary we found.
@@ -111,7 +114,7 @@ void cdc( unsigned char* buff, int buff_size, unsigned char* chunk, uint16_t *ch
 			}else{
 				memcpy(chunk, buff_new, buff_size_new);  //because the hash cannot calculate after buff_size_new-win_size, the last chunk copy will be different.
 				*chunk_size = i + WIN_SIZE + 1;
-                *pipeline_drained = 1;
+                *pipeline_drained = 1;   //reach end of packet: cdc finishes
 				// printf("last chunk\n");
 			}
 // printf("i is %d\n", i);
@@ -128,6 +131,7 @@ void cdc( unsigned char* buff, int buff_size, unsigned char* chunk, uint16_t *ch
 			// printf("The calculated 8 bytes are: %c%c%c%c%c%c%c%c\n",buff[i],buff[i+1],buff[i+2],buff[i+3],buff[i+4],buff[i+5],buff[i+6],buff[i+7]); //print out the 8 characters that hash based on.
         }
 
+		//---: deal with the case where input is too short to go to the loop above
 		if(buff_size_new < ((WIN_SIZE * 2)+1)){
 // printf("reach special case of cdc\n");
 			// chunk = (char*)malloc(sizeof(char)*MAX_CHUNK);

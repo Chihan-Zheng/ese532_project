@@ -83,15 +83,6 @@ void XLzw_hybrid_hash_hw_DisableAutoRestart(XLzw_hybrid_hash_hw *InstancePtr) {
     XLzw_hybrid_hash_hw_WriteReg(InstancePtr->Control_BaseAddress, XLZW_HYBRID_HASH_HW_CONTROL_ADDR_AP_CTRL, 0);
 }
 
-u32 XLzw_hybrid_hash_hw_Get_return(XLzw_hybrid_hash_hw *InstancePtr) {
-    u32 Data;
-
-    Xil_AssertNonvoid(InstancePtr != NULL);
-    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    Data = XLzw_hybrid_hash_hw_ReadReg(InstancePtr->Control_BaseAddress, XLZW_HYBRID_HASH_HW_CONTROL_ADDR_AP_RETURN);
-    return Data;
-}
 void XLzw_hybrid_hash_hw_Set_in_r(XLzw_hybrid_hash_hw *InstancePtr, u64 Data) {
     Xil_AssertVoid(InstancePtr != NULL);
     Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
@@ -111,20 +102,22 @@ u64 XLzw_hybrid_hash_hw_Get_in_r(XLzw_hybrid_hash_hw *InstancePtr) {
     return Data;
 }
 
-void XLzw_hybrid_hash_hw_Set_in_length(XLzw_hybrid_hash_hw *InstancePtr, u32 Data) {
+void XLzw_hybrid_hash_hw_Set_input_length(XLzw_hybrid_hash_hw *InstancePtr, u64 Data) {
     Xil_AssertVoid(InstancePtr != NULL);
     Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    XLzw_hybrid_hash_hw_WriteReg(InstancePtr->Control_BaseAddress, XLZW_HYBRID_HASH_HW_CONTROL_ADDR_IN_LENGTH_DATA, Data);
+    XLzw_hybrid_hash_hw_WriteReg(InstancePtr->Control_BaseAddress, XLZW_HYBRID_HASH_HW_CONTROL_ADDR_INPUT_LENGTH_DATA, (u32)(Data));
+    XLzw_hybrid_hash_hw_WriteReg(InstancePtr->Control_BaseAddress, XLZW_HYBRID_HASH_HW_CONTROL_ADDR_INPUT_LENGTH_DATA + 4, (u32)(Data >> 32));
 }
 
-u32 XLzw_hybrid_hash_hw_Get_in_length(XLzw_hybrid_hash_hw *InstancePtr) {
-    u32 Data;
+u64 XLzw_hybrid_hash_hw_Get_input_length(XLzw_hybrid_hash_hw *InstancePtr) {
+    u64 Data;
 
     Xil_AssertNonvoid(InstancePtr != NULL);
     Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    Data = XLzw_hybrid_hash_hw_ReadReg(InstancePtr->Control_BaseAddress, XLZW_HYBRID_HASH_HW_CONTROL_ADDR_IN_LENGTH_DATA);
+    Data = XLzw_hybrid_hash_hw_ReadReg(InstancePtr->Control_BaseAddress, XLZW_HYBRID_HASH_HW_CONTROL_ADDR_INPUT_LENGTH_DATA);
+    Data += (u64)XLzw_hybrid_hash_hw_ReadReg(InstancePtr->Control_BaseAddress, XLZW_HYBRID_HASH_HW_CONTROL_ADDR_INPUT_LENGTH_DATA + 4) << 32;
     return Data;
 }
 
@@ -144,6 +137,25 @@ u64 XLzw_hybrid_hash_hw_Get_send_data(XLzw_hybrid_hash_hw *InstancePtr) {
 
     Data = XLzw_hybrid_hash_hw_ReadReg(InstancePtr->Control_BaseAddress, XLZW_HYBRID_HASH_HW_CONTROL_ADDR_SEND_DATA_DATA);
     Data += (u64)XLzw_hybrid_hash_hw_ReadReg(InstancePtr->Control_BaseAddress, XLZW_HYBRID_HASH_HW_CONTROL_ADDR_SEND_DATA_DATA + 4) << 32;
+    return Data;
+}
+
+void XLzw_hybrid_hash_hw_Set_output_length(XLzw_hybrid_hash_hw *InstancePtr, u64 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XLzw_hybrid_hash_hw_WriteReg(InstancePtr->Control_BaseAddress, XLZW_HYBRID_HASH_HW_CONTROL_ADDR_OUTPUT_LENGTH_DATA, (u32)(Data));
+    XLzw_hybrid_hash_hw_WriteReg(InstancePtr->Control_BaseAddress, XLZW_HYBRID_HASH_HW_CONTROL_ADDR_OUTPUT_LENGTH_DATA + 4, (u32)(Data >> 32));
+}
+
+u64 XLzw_hybrid_hash_hw_Get_output_length(XLzw_hybrid_hash_hw *InstancePtr) {
+    u64 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XLzw_hybrid_hash_hw_ReadReg(InstancePtr->Control_BaseAddress, XLZW_HYBRID_HASH_HW_CONTROL_ADDR_OUTPUT_LENGTH_DATA);
+    Data += (u64)XLzw_hybrid_hash_hw_ReadReg(InstancePtr->Control_BaseAddress, XLZW_HYBRID_HASH_HW_CONTROL_ADDR_OUTPUT_LENGTH_DATA + 4) << 32;
     return Data;
 }
 

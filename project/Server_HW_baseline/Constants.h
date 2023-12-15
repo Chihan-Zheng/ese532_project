@@ -21,7 +21,7 @@
 #define BUCKETS_NUM 1
 #define BUCKET_LEN (KEY_LEN + CODE_LEN + 1)
 
-#define MATCH_UNITS_COLUMN_NUM 1
+#define MATCH_UNITS_COLUMN_NUM 3
 #define ASSOC_MEM_SIZE (72 * MATCH_UNITS_COLUMN_NUM)
 
 uint64_t hash_func(unsigned char *input, unsigned int pos);

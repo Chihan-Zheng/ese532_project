@@ -176,7 +176,7 @@ set hasByteEnable 0
 set MemName LZW_hybrid_hash_HW_my_assoc_mem_upper_key_mem_V
 set CoreName ap_simcore_mem
 set PortList { 2 3 }
-set DataWd 72
+set DataWd 216
 set AddrRange 512
 set AddrWd 9
 set impl_style auto
@@ -262,8 +262,8 @@ set MemName LZW_hybrid_hash_HW_my_assoc_mem_value_V
 set CoreName ap_simcore_mem
 set PortList { 2 3 }
 set DataWd 13
-set AddrRange 72
-set AddrWd 7
+set AddrRange 216
+set AddrWd 8
 set impl_style auto
 set TrueReset 0
 set HasInitializer 0
@@ -271,7 +271,7 @@ set IsROM 0
 set ROMData {}
 set NumOfStage 2
 set MaxLatency -1
-set DelayBudget 0.79
+set DelayBudget 1.352
 set ClkPeriod 6.667
 set RegisteredInput 0
 if {${::AESL::PGuard_simmodel_gen}} {
@@ -349,43 +349,43 @@ if {${::AESL::PGuard_autoexp_gen}} {
 
 set axilite_register_dict [dict create]
 set port_control {
-ap_start { }
-ap_done { }
-ap_ready { }
-ap_continue { }
-ap_idle { }
-ap_return { 
-	dir o
-	width 16
-	depth 1
-	mode ap_ctrl_chain
-	offset 16
-	offset_end 0
-}
 in_r { 
 	dir I
 	width 64
 	depth 1
 	mode ap_none
-	offset 24
-	offset_end 35
+	offset 16
+	offset_end 27
 }
-in_length { 
+input_length { 
 	dir I
-	width 16
+	width 64
 	depth 1
 	mode ap_none
-	offset 36
-	offset_end 43
+	offset 28
+	offset_end 39
 }
 send_data { 
 	dir I
 	width 64
 	depth 1
 	mode ap_none
-	offset 44
-	offset_end 55
+	offset 40
+	offset_end 51
 }
+output_length { 
+	dir I
+	width 64
+	depth 1
+	mode ap_none
+	offset 52
+	offset_end 63
+}
+ap_start { }
+ap_done { }
+ap_ready { }
+ap_continue { }
+ap_idle { }
 }
 dict set axilite_register_dict control $port_control
 
@@ -432,20 +432,6 @@ if {${::AESL::PGuard_rtl_comp_handler}} {
 	::AP::rtl_comp_handler LZW_hybrid_hash_HW_gmem_m_axi
 }
 
-# Direct connection:
-if {${::AESL::PGuard_autoexp_gen}} {
-eval "cg_default_interface_gen_dc { \
-    id -1 \
-    name ap_return \
-    type ap_return \
-    reset_level 0 \
-    sync_rst true \
-    corename ap_return \
-    op interface \
-    ports { ap_return { O 16 vector } } \
-} "
-}
-
 
 # Adapter definition:
 set PortName ap_clk
@@ -453,7 +439,7 @@ set DataWd 1
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc cg_default_interface_gen_clock] == "cg_default_interface_gen_clock"} {
 eval "cg_default_interface_gen_clock { \
-    id -2 \
+    id -1 \
     name ${PortName} \
     reset_level 0 \
     sync_rst true \
@@ -473,7 +459,7 @@ set DataWd 1
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc cg_default_interface_gen_reset] == "cg_default_interface_gen_reset"} {
 eval "cg_default_interface_gen_reset { \
-    id -3 \
+    id -2 \
     name ${PortName} \
     reset_level 0 \
     sync_rst true \
